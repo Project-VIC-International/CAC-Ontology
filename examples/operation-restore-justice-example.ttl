@@ -1,0 +1,334 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/core#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/identity#> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/action#> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/role#> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/location#> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/observable#> .
+@prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
+@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
+@prefix icac-multi: <https://ontology.unifiedcyberontology.org/icac/multi-jurisdiction#> .
+@prefix icac-corruption: <https://ontology.unifiedcyberontology.org/icac/law-enforcement-corruption#> .
+@prefix icac-prevention: <https://ontology.unifiedcyberontology.org/icac/prevention#> .
+@prefix icac-sentencing: <https://ontology.unifiedcyberontology.org/icac/sentencing#> .
+@prefix icac-production: <https://ontology.unifiedcyberontology.org/icac/production#> .
+@prefix ex: <https://example.org/operation-restore-justice#> .
+
+# =============================================================================
+# OPERATION RESTORE JUSTICE EXAMPLE
+# Demonstrates nationwide FBI coordination, law enforcement corruption, 
+# community outreach effectiveness, and rapid response capabilities
+# =============================================================================
+
+# =============================================================================
+# OPERATION COORDINATION
+# =============================================================================
+
+ex:operation-restore-justice rdf:type icac-multi:AllFBIFieldOfficesOperation, icac-multi:CEOSCoordinatedOperation, icac-multi:ProjectSafeChildhoodOperation ;
+    rdfs:label "Operation Restore Justice"@en ;
+    rdfs:comment "5-day nationwide coordinated enforcement effort involving all 55 FBI field offices."@en ;
+    icac-multi:operationName "Operation Restore Justice" ;
+    icac-multi:operationDurationDays 5 ;
+    icac-multi:fbiFieldOfficesInvolved 55 ;
+    icac-multi:arrestsNationwide 205 ;
+    icac-multi:childrenRescuedCount 115 ;
+    icac-multi:operationStartDate "2025-04-14T00:00:00Z"^^xsd:dateTime ;
+    icac-multi:operationEndDate "2025-04-18T23:59:59Z"^^xsd:dateTime ;
+    icac-multi:coordinatesNationwide ex:child-exploitation-obscenity-section ;
+    icac-multi:involvesFBIFieldOffice ex:fbi-minneapolis, ex:fbi-norfolk, ex:fbi-washington-dc, ex:fbi-california ;
+    icac-multi:hostedBy ex:department-of-justice .
+
+ex:mass-child-rescue rdf:type icac-multi:NationwideChildRescueCoordination ;
+    rdfs:label "Operation Restore Justice Child Rescue"@en ;
+    rdfs:comment "Coordination resulting in rescue of 115 children nationwide."@en ;
+    icac-multi:childrenRescuedCount 115 ;
+    icac-multi:rescuesChildren ex:rescued-child-1, ex:rescued-child-2, ex:rescued-child-3 .
+
+ex:child-abuse-prevention-month-coordination rdf:type icac-prevention:ChildAbusePreventionMonth ;
+    rdfs:label "April 2025 Child Abuse Prevention Month"@en ;
+    rdfs:comment "National Child Abuse Prevention Month awareness activities coordinated with Operation Restore Justice."@en ;
+    icac-prevention:campaignMonth "April" ;
+    icac-prevention:coordinatedWith ex:department-of-justice, ex:project-safe-childhood .
+
+# =============================================================================
+# COORDINATING AGENCIES
+# =============================================================================
+
+ex:child-exploitation-obscenity-section rdf:type uco-identity:Organization ;
+    rdfs:label "Child Exploitation and Obscenity Section (CEOS)"@en ;
+    rdfs:comment "DOJ section coordinating Operation Restore Justice."@en ;
+    uco-core:name "Child Exploitation and Obscenity Section" .
+
+ex:department-of-justice rdf:type uco-identity:Organization ;
+    rdfs:label "U.S. Department of Justice"@en ;
+    rdfs:comment "Federal law enforcement agency hosting Operation Restore Justice."@en ;
+    uco-core:name "U.S. Department of Justice" .
+
+ex:project-safe-childhood rdf:type uco-identity:Organization ;
+    rdfs:label "Project Safe Childhood"@en ;
+    rdfs:comment "National initiative under which Operation Restore Justice was conducted."@en ;
+    uco-core:name "Project Safe Childhood" .
+
+ex:us-attorney-offices-participation rdf:type icac-multi:USAttorneyOfficeParticipation ;
+    rdfs:label "US Attorney Offices Nationwide Participation"@en ;
+    rdfs:comment "Participation of US Attorney's Offices around the country in Operation Restore Justice."@en ;
+    icac-multi:usAttorneyOfficesInvolved 93 .
+
+# =============================================================================
+# FBI FIELD OFFICES
+# =============================================================================
+
+ex:fbi-minneapolis rdf:type uco-identity:Organization ;
+    rdfs:label "FBI Minneapolis Field Office"@en ;
+    uco-core:name "FBI Minneapolis Field Office" ;
+    uco-location:hasLocation ex:minneapolis-minnesota .
+
+ex:fbi-norfolk rdf:type uco-identity:Organization ;
+    rdfs:label "FBI Norfolk Field Office"@en ;
+    uco-core:name "FBI Norfolk Field Office" ;
+    uco-location:hasLocation ex:norfolk-virginia .
+
+ex:fbi-washington-dc rdf:type uco-identity:Organization ;
+    rdfs:label "FBI Washington Field Office"@en ;
+    uco-core:name "FBI Washington Field Office" ;
+    uco-location:hasLocation ex:washington-dc .
+
+ex:fbi-california rdf:type uco-identity:Organization ;
+    rdfs:label "FBI California Field Office"@en ;
+    uco-core:name "FBI California Field Office" ;
+    uco-location:hasLocation ex:california .
+
+# =============================================================================
+# LOCATIONS
+# =============================================================================
+
+ex:minneapolis-minnesota rdf:type uco-location:Location ;
+    rdfs:label "Minneapolis, Minnesota"@en .
+
+ex:norfolk-virginia rdf:type uco-location:Location ;
+    rdfs:label "Norfolk, Virginia"@en .
+
+ex:washington-dc rdf:type uco-location:Location ;
+    rdfs:label "Washington, D.C."@en .
+
+ex:california rdf:type uco-location:Location ;
+    rdfs:label "California"@en .
+
+# =============================================================================
+# LAW ENFORCEMENT CORRUPTION CASES
+# =============================================================================
+
+# Minneapolis State Trooper and Army Reservist Case
+ex:minneapolis-corruption-case rdf:type icac-corruption:UniformBasedExploitation ;
+    rdfs:label "Minneapolis State Trooper and Army Reservist Corruption Case"@en ;
+    rdfs:comment "State trooper and Army Reservist arrested for producing CSAM while wearing uniforms."@en ;
+    icac-corruption:uniformType "state_trooper_and_military" ;
+    icac-corruption:corruptionDuration 8 ;
+    icac-corruption:victimCount 2 ;
+    icac-corruption:uniformDisplayed true ;
+    icac-corruption:badgeVisible true ;
+    icac-corruption:exploitsPosition ex:state-trooper-role, ex:army-reservist-role ;
+    icac-corruption:wearsUniform ex:minnesota-state-trooper-uniform, ex:us-army-uniform ;
+    icac-corruption:investigatedBy ex:fbi-minneapolis .
+
+ex:corrupt-state-trooper rdf:type icac-corruption:CorruptStateTrooper ;
+    rdfs:label "Corrupt Minnesota State Trooper"@en ;
+    rdfs:comment "Minnesota state trooper who produced CSAM while in uniform."@en ;
+    icac-corruption:yearsOfService 7 ;
+    icac-corruption:authorityLevel "patrol" ;
+    icac-corruption:departmentAffiliation "Minnesota State Patrol" ;
+    icac-corruption:employmentStatus "active" .
+
+ex:corrupt-army-reservist rdf:type icac-corruption:CorruptArmyReservist ;
+    rdfs:label "Corrupt Army Reservist"@en ;
+    rdfs:comment "Army reservist who produced CSAM while in military uniform."@en ;
+    icac-corruption:yearsOfService 12 ;
+    icac-corruption:authorityLevel "enlisted" ;
+    icac-corruption:departmentAffiliation "U.S. Army Reserve" ;
+    icac-corruption:employmentStatus "reserve" .
+
+ex:uniform-enhanced-production rdf:type icac-corruption:UniformEnhancedProduction ;
+    rdfs:label "Uniform Enhanced CSAM Production"@en ;
+    rdfs:comment "Production of CSAM enhanced by wearing official uniforms."@en ;
+    icac-corruption:uniformDisplayed true ;
+    icac-corruption:wearsUniform ex:minnesota-state-trooper-uniform, ex:us-army-uniform .
+
+# Washington D.C. Police Officer Trafficking Case
+ex:dc-trafficking-case rdf:type icac-corruption:OfficerChildTrafficking ;
+    rdfs:label "D.C. Former Police Officer Trafficking Case"@en ;
+    rdfs:comment "Former Metropolitan Police Department officer arrested for trafficking minor victims."@en ;
+    icac-corruption:corruptionDuration 18 ;
+    icac-corruption:victimCount 3 ;
+    icac-corruption:exploitsPosition ex:former-police-officer-role ;
+    icac-corruption:investigatedBy ex:fbi-washington-dc .
+
+ex:corrupt-former-officer rdf:type icac-corruption:CorruptMetropolitanPoliceDepartmentOfficer, icac-corruption:FormerLawEnforcementOfficer ;
+    rdfs:label "Corrupt Former D.C. Police Officer"@en ;
+    rdfs:comment "Former Metropolitan Police Department officer involved in child trafficking."@en ;
+    icac-corruption:yearsOfService 15 ;
+    icac-corruption:authorityLevel "detective" ;
+    icac-corruption:departmentAffiliation "Metropolitan Police Department" ;
+    icac-corruption:employmentStatus "terminated" .
+
+# =============================================================================
+# UNIFORMS AND AUTHORITY SYMBOLS
+# =============================================================================
+
+ex:minnesota-state-trooper-uniform rdf:type uco-observable:ObservableObject ;
+    rdfs:label "Minnesota State Trooper Uniform"@en ;
+    rdfs:comment "Official Minnesota State Patrol uniform worn during CSAM production."@en .
+
+ex:us-army-uniform rdf:type uco-observable:ObservableObject ;
+    rdfs:label "U.S. Army Uniform"@en ;
+    rdfs:comment "Official U.S. Army uniform worn during CSAM production."@en .
+
+ex:state-trooper-role rdf:type uco-role:Role ;
+    rdfs:label "State Trooper Role"@en ;
+    rdfs:comment "Law enforcement role exploited for CSAM production."@en .
+
+ex:army-reservist-role rdf:type uco-role:Role ;
+    rdfs:label "Army Reservist Role"@en ;
+    rdfs:comment "Military role exploited for CSAM production."@en .
+
+ex:former-police-officer-role rdf:type uco-role:Role ;
+    rdfs:label "Former Police Officer Role"@en ;
+    rdfs:comment "Former police authority exploited for child trafficking."@en .
+
+# =============================================================================
+# COMMUNITY OUTREACH EFFECTIVENESS CASE (California)
+# =============================================================================
+
+ex:california-outreach-case rdf:type icac-prevention:OutreachTriggeredInvestigation ;
+    rdfs:label "California School Presentation Triggered Investigation"@en ;
+    rdfs:comment "Investigation triggered by victim disclosure following FBI school presentation."@en ;
+    icac-prevention:triggeredByOutreach ex:california-school-presentation ;
+    icac-prevention:resultsInArrest ex:california-rapid-arrest .
+
+ex:california-school-presentation rdf:type icac-prevention:SchoolPresentationProgram, icac-prevention:VictimDisclosureTriggering ;
+    rdfs:label "California FBI School Safety Presentation"@en ;
+    rdfs:comment "FBI school presentation that triggered victim disclosure of ongoing abuse."@en ;
+    icac-prevention:presentationAttendance 180 ;
+    icac-prevention:presentationDate "2025-04-17T10:00:00Z"^^xsd:dateTime ;
+    icac-prevention:presentationDuration 60 ;
+    icac-prevention:triggersDisclosure ex:victim-disclosure-california .
+
+ex:victim-disclosure-california rdf:type icac-prevention:PostPresentationDisclosure ;
+    rdfs:label "California Victim Disclosure"@en ;
+    rdfs:comment "Victim disclosure that occurred following FBI school safety presentation."@en ;
+    icac-prevention:averageDisclosureTime 2.5 ;
+    icac-prevention:disclosureDate "2025-04-17T12:30:00Z"^^xsd:dateTime ;
+    icac-prevention:enablesRapidResponse ex:california-rapid-response ;
+    icac-prevention:supportedBy ex:safe-disclosure-environment .
+
+ex:california-rapid-response rdf:type icac-prevention:RapidResponseDisclosureWorkflow, icac-multi:RapidResponseCoordination ;
+    rdfs:label "California 8-Hour Rapid Response"@en ;
+    rdfs:comment "Rapid response coordination enabling arrest within 8 hours of victim disclosure."@en ;
+    icac-prevention:rapidResponseCapability true ;
+    icac-multi:disclosureToArrestHours 8.0 ;
+    icac-prevention:enablesRapidResponse ex:california-rapid-arrest .
+
+ex:california-rapid-arrest rdf:type uco-action:Action ;
+    rdfs:label "California Rapid Arrest"@en ;
+    rdfs:comment "Arrest made within 8 hours of victim disclosure following school presentation."@en ;
+    uco-action:startTime "2025-04-17T20:30:00Z"^^xsd:dateTime .
+
+ex:safe-disclosure-environment rdf:type icac-prevention:SafeDisclosureEnvironment ;
+    rdfs:label "California School Safe Disclosure Environment"@en ;
+    rdfs:comment "Safe environment created during FBI presentation that enabled victim disclosure."@en ;
+    icac-prevention:disclosureBarriersAddressed 3 ;
+    icac-prevention:trustedAdultsIdentified 2 .
+
+# =============================================================================
+# IMMIGRATION TRAFFICKING CASE (Norfolk, Virginia)
+# =============================================================================
+
+ex:norfolk-trafficking-case rdf:type uco-action:Action ;
+    rdfs:label "Norfolk Immigration-Related Trafficking Case"@en ;
+    rdfs:comment "Illegal alien from Mexico arrested for transporting minor across state lines."@en ;
+    uco-location:hasLocation ex:norfolk-virginia ;
+    case-investigation:investigatedBy ex:fbi-norfolk .
+
+ex:immigration-offender rdf:type uco-identity:Person ;
+    rdfs:label "Immigration Status Offender"@en ;
+    rdfs:comment "Individual with illegal immigration status involved in minor transportation."@en ;
+    uco-core:name "Immigration Status Offender (Norfolk)" .
+
+# =============================================================================
+# CHILD RESCUE COORDINATION
+# =============================================================================
+
+ex:rescued-child-1 rdf:type uco-identity:Person ;
+    rdfs:label "Rescued Child 1"@en ;
+    rdfs:comment "Child rescued during Operation Restore Justice coordination."@en .
+
+ex:rescued-child-2 rdf:type uco-identity:Person ;
+    rdfs:label "Rescued Child 2"@en ;
+    rdfs:comment "Child rescued during Operation Restore Justice coordination."@en .
+
+ex:rescued-child-3 rdf:type uco-identity:Person ;
+    rdfs:label "Rescued Child 3"@en ;
+    rdfs:comment "Child rescued during Operation Restore Justice coordination."@en .
+
+# =============================================================================
+# PARENTAL VIGILANCE AND COMMUNITY ENGAGEMENT
+# =============================================================================
+
+ex:parental-vigilance-initiative rdf:type icac-prevention:ParentalVigilanceProgram ;
+    rdfs:label "Operation Restore Justice Parental Vigilance"@en ;
+    rdfs:comment "Parental vigilance program that played critical role in Operation Restore Justice."@en ;
+    icac-prevention:parentalEngagementRate 0.78 ;
+    icac-prevention:communityReportingIncrease 34.5 ;
+    icac-prevention:engagesParents ex:engaged-parent-1, ex:engaged-parent-2 .
+
+ex:community-partnership rdf:type icac-prevention:CommunityPartnershipInitiative ;
+    rdfs:label "Operation Restore Justice Community Partnerships"@en ;
+    rdfs:comment "Community partnerships that contributed to operation success."@en ;
+    icac-prevention:communityReportingIncrease 28.7 ;
+    icac-prevention:coordinatedWith ex:project-safe-childhood .
+
+ex:engaged-parent-1 rdf:type uco-identity:Person ;
+    rdfs:label "Engaged Parent 1"@en ;
+    rdfs:comment "Parent engaged in vigilance program."@en .
+
+ex:engaged-parent-2 rdf:type uco-identity:Person ;
+    rdfs:label "Engaged Parent 2"@en ;
+    rdfs:comment "Parent engaged in vigilance program."@en .
+
+# =============================================================================
+# OUTREACH EFFECTIVENESS METRICS
+# =============================================================================
+
+ex:operation-outreach-effectiveness rdf:type icac-prevention:CommunityOutreachEffectiveness ;
+    rdfs:label "Operation Restore Justice Outreach Effectiveness"@en ;
+    rdfs:comment "Measurement of community outreach effectiveness in Operation Restore Justice."@en ;
+    icac-prevention:disclosuresGenerated 23 ;
+    icac-prevention:arrestsFromDisclosures 18 ;
+    icac-prevention:outreachSuccessRate 0.78 .
+
+# =============================================================================
+# FEDERAL CHARGES AND SENTENCING
+# =============================================================================
+
+ex:minneapolis-csam-production-charge rdf:type icac-sentencing:CSAM_Production ;
+    rdfs:label "Minneapolis CSAM Production Charge"@en ;
+    rdfs:comment "Federal CSAM production charge for uniform-based exploitation."@en ;
+    icac-sentencing:maximumSentenceYears 30 ;
+    icac-sentencing:mandatoryMinimumYears 15 .
+
+ex:dc-trafficking-charge rdf:type icac-sentencing:SexTrafficking ;
+    rdfs:label "D.C. Sex Trafficking Charge"@en ;
+    rdfs:comment "Federal sex trafficking charge for former police officer."@en ;
+    icac-sentencing:maximumSentenceYears 25 ;
+    icac-sentencing:mandatoryMinimumYears 10 .
+
+ex:norfolk-transportation-charge rdf:type icac-sentencing:OnlineEnticement ;
+    rdfs:label "Norfolk Transportation Charge"@en ;
+    rdfs:comment "Federal charge for transporting minor across state lines."@en ;
+    icac-sentencing:maximumSentenceYears 20 .
+
+ex:california-exploitation-charge rdf:type icac-sentencing:CSAM_Possession ;
+    rdfs:label "California CSAM Possession Charge"@en ;
+    rdfs:comment "Federal CSAM possession charge following rapid response arrest."@en ;
+    icac-sentencing:maximumSentenceYears 15 . 

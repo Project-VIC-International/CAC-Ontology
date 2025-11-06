@@ -1,0 +1,235 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity#> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location#> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
+@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
+@prefix icac-production: <https://ontology.unifiedcyberontology.org/icac/production#> .
+@prefix icac-partnerships: <https://ontology.unifiedcyberontology.org/icac/partnerships#> .
+@prefix icac-international: <https://ontology.unifiedcyberontology.org/icac/international#> .
+
+# Example modeling of the Vermont case (Brian Bluto) using enhanced ICAC ontology
+# This demonstrates the Vermont case enhancements implemented in the ontology modules
+
+# =============================================================================
+# CASE OVERVIEW - Project Safe Childhood Case
+# =============================================================================
+
+:VermontCase2024 rdf:type icac-partnerships:ProjectSafeChildhoodCase ;
+    rdfs:label "Brian Bluto Production Case"@en ;
+    rdfs:comment "Vermont case involving sophisticated covert production and international distribution of CSAM"@en ;
+    icac:caseNumber "VT-2024-HSI-001" ;
+    icac:caseStatus "sentenced" ;
+    icac:hasInvestigationMethod :InternationalCoordination ;
+    icac:hasStep :VermontProduction ,
+                 :InternationalAlert ,
+                 :SearchAndSeizure .
+
+# =============================================================================
+# PROJECT SAFE CHILDHOOD PROGRAM IMPLEMENTATION
+# =============================================================================
+
+:ProjectSafeChildhoodProgram rdf:type icac-partnerships:NationalInitiativeProgram ;
+    rdfs:label "Project Safe Childhood"@en ;
+    rdfs:comment "Department of Justice initiative coordinating federal, state, and local efforts"@en ;
+    icac-partnerships:initiativeName "Project_Safe_Childhood" ;
+    icac-partnerships:launchedDate "2006-05-17T00:00:00"^^xsd:dateTime ;
+    icac-partnerships:programScope "federal" ;
+    icac-partnerships:leadAgency "DOJ" ;
+    icac-partnerships:casesProcessed 15000 ;
+    icac-partnerships:includesPartner :HSI , :VermontICAC , :USAOVermont .
+
+:HSI rdf:type uco-identity:Organization ;
+    rdfs:label "Homeland Security Investigations"@en .
+
+:VermontICAC rdf:type uco-identity:Organization ;
+    rdfs:label "Vermont ICAC Task Force"@en .
+
+:USAOVermont rdf:type uco-identity:Organization ;
+    rdfs:label "US Attorney's Office - Vermont District"@en .
+
+# =============================================================================
+# INTERNATIONAL COORDINATION (Australian Police → HSI)
+# =============================================================================
+
+:InternationalAlert rdf:type icac-international:InternationalReferral ;
+    rdfs:label "Australian Police to HSI Referral"@en ;
+    rdfs:comment "Queensland Police Service undercover operation leading to Vermont suspect identification"@en ;
+    icac-international:alertingPartner :QueenslandPolice ;
+    icac-international:undercoverCoordination true ;
+    icac-international:coordinationMethod "intelligence_sharing" ;
+    icac-international:responseTimeInternational 24.0 ; # 24 hours
+    uco-action:startTime "2024-01-15T10:00:00"^^xsd:dateTime ;
+    uco-action:endTime "2024-01-16T10:00:00"^^xsd:dateTime .
+
+:USAustraliaOperation rdf:type icac-international:USAustraliaCoordination ;
+    rdfs:label "US-Australia Undercover Coordination"@en ;
+    rdfs:comment "Coordination between Australian undercover operation and US follow-up investigation"@en ;
+    icac-international:operationContext "undercover_investigation" ;
+    icac-international:coordinatingAgency :HSI ;
+    icac-international:coordinatesWith :QueenslandPolice .
+
+:QueenslandPolice rdf:type uco-identity:Organization ;
+    rdfs:label "Queensland Australia Police Service"@en ;
+    rdfs:comment "Australian law enforcement conducting undercover operations"@en .
+
+# =============================================================================
+# SOPHISTICATED COVERT PRODUCTION IMPLEMENTATION
+# =============================================================================
+
+:VermontProduction rdf:type icac-production:ExtendedProductionPeriod ;
+    rdfs:label "Brian Bluto Extended Production Period"@en ;
+    rdfs:comment "3+ years of systematic covert surveillance and recording in private bathroom"@en ;
+    icac-production:productionPeriod 1095 ; # ~3 years in days
+    icac-production:victimAgeProgression "13-16" ;
+    icac-production:systematicNature true ;
+    icac-production:developmentalDocumentation true ;
+    icac-production:productionStartDate "2021-01-01T00:00:00"^^xsd:dateTime ;
+    icac-production:productionEndDate "2024-01-15T00:00:00"^^xsd:dateTime ;
+    icac-production:sessionCount 365 ; # Approximately daily recording
+    icac-production:imageCount 400 ;
+    icac-production:videoCount 200 ;
+    icac-production:victimCount 1 ;
+    icac-production:distributionIntent "intended_distribution" ;
+    icac-production:immediateDistribution true ;
+    icac-production:usesEquipment :HiddenBackpackCamera ;
+    icac-production:producedAt :BathroomLocation ;
+    icac-production:involvestVictim :PrimaryVictim ;
+    icac-production:producedBy :BrianBluto .
+
+# =============================================================================
+# DEVICE CONCEALMENT AND PRIVATE SPACE SURVEILLANCE
+# =============================================================================
+
+:HiddenBackpackCamera rdf:type icac-production:HiddenRecordingDevice ;
+    rdfs:label "Concealed Camera in Backpack"@en ;
+    rdfs:comment "Camera hidden in backpack with custom fabric modification for bathroom surveillance"@en ;
+    icac-production:deviceBrand "Generic" ;
+    icac-production:recordingCapability "both" ;
+    icac-production:recordingQuality "medium" ;
+    icac-production:storageCapacity 32.0 ; # 32GB storage
+    icac-production:hasConcealment :BackpackConcealment .
+
+:BackpackConcealment rdf:type icac-production:DeviceConcealment ;
+    rdfs:label "Backpack Fabric Modification"@en ;
+    rdfs:comment "Custom fabric modification to enable covert recording through backpack"@en ;
+    icac-production:concealmentMethod "fabric_cut" ;
+    icac-production:concealmentLocation "bathroom" ;
+    icac-production:modificationDescription "Custom cut in backpack fabric allowing camera lens to protrude covertly" ;
+    icac-production:usesContainer :ModifiedBackpack .
+
+:ModifiedBackpack rdf:type icac-production:ConcealmentContainer ;
+    rdfs:label "Modified Backpack Container"@en ;
+    rdfs:comment "Backpack physically modified to conceal recording equipment"@en .
+
+:PhysicalModification rdf:type icac-production:PhysicalDeviceModification ;
+    rdfs:label "Backpack Fabric Cutting"@en ;
+    rdfs:comment "Physical alteration of backpack fabric to enable covert camera placement"@en ;
+    icac-production:modificationDescription "Precise cutting of backpack material to create hidden camera aperture" ;
+    uco-action:performedBy :BrianBluto .
+
+# =============================================================================
+# PRIVATE SPACE SURVEILLANCE SPECIFICS
+# =============================================================================
+
+:BathroomSurveillanceAction rdf:type icac-production:BathroomSurveillance ;
+    rdfs:label "Covert Bathroom Recording"@en ;
+    rdfs:comment "Systematic surveillance of bathroom where victim had high expectation of privacy"@en ;
+    icac-production:privacyExpectation "high" ;
+    icac-production:surveillanceAngle "pointing_toward_bathroom" ;
+    icac-production:victimAwareness "unaware" ;
+    icac-production:sessionDuration 30 ; # 30 minutes average per session
+    uco-action:performedBy :BrianBluto ;
+    uco-action:location :BathroomLocation .
+
+:BathroomLocation rdf:type icac-production:ResidentialProductionSite ;
+    rdfs:label "Residence Bathroom"@en ;
+    rdfs:comment "Private bathroom in Alburgh, Vermont residence"@en ;
+    icac-production:locationSecurity "private" ;
+    icac-production:locationAccess "controlled" ;
+    uco-location:hasAddress :AlburghAddress .
+
+:AlburghAddress rdf:type uco-location:Address ;
+    rdfs:label "Alburgh, Vermont Residence"@en ;
+    uco-location:city "Alburgh" ;
+    uco-location:administrativeArea "Vermont" ;
+    uco-location:country "United States" .
+
+# =============================================================================
+# PARTICIPANTS AND ROLES
+# =============================================================================
+
+:BrianBluto rdf:type icac-production:Producer ;
+    rdfs:label "Brian Bluto"@en ;
+    rdfs:comment "60-year-old defendant from Alburgh, Vermont"@en ;
+    icac:hasAge 60 ;
+    icac:hasSentence :SentenceDetails .
+
+:PrimaryVictim rdf:type icac-production:ProductionVictim ;
+    rdfs:label "Primary Victim"@en ;
+    rdfs:comment "Victim recorded during ages 13-16 over 3+ year period"@en ;
+    icac-production:victimAge 13 ; # Starting age
+    icac:hasVictimStatus "identified" .
+
+:SentenceDetails rdf:type icac:Sentence ;
+    rdfs:label "Federal Sentence"@en ;
+    rdfs:comment "144 months imprisonment plus 15 years supervised release"@en ;
+    icac:imprisonmentMonths 144 ;
+    icac:supervisedReleaseYears 15 ;
+    icac:hasCharges :ProductionCharges .
+
+:ProductionCharges rdf:type icac:CriminalCharges ;
+    rdfs:label "Production and Distribution Charges"@en ;
+    rdfs:comment "Federal charges for production and distribution of child sexual abuse material"@en ;
+    icac:chargeType "production_and_distribution" ;
+    icac:federalCharges true .
+
+# =============================================================================
+# SEARCH AND SEIZURE OPERATION
+# =============================================================================
+
+:SearchAndSeizure rdf:type uco-action:Action ;
+    rdfs:label "Search Warrant Execution"@en ;
+    rdfs:comment "HSI execution of search warrant resulting in device seizure and evidence recovery"@en ;
+    uco-action:performedBy :HSI ;
+    uco-action:location :AlburghAddress ;
+    icac-production:evidenceRecovered true ;
+    icac-production:metadataPreserved true ;
+    icac-production:forensicValue "high" .
+
+# =============================================================================
+# CONTENT AND DISTRIBUTION
+# =============================================================================
+
+:ProducedMaterial rdf:type icac-production:ProducedVideo ;
+    rdfs:label "Covertly Recorded Material"@en ;
+    rdfs:comment "Video material produced through systematic bathroom surveillance"@en ;
+    icac-production:recordedWith :HiddenBackpackCamera ;
+    icac-production:metadataPreserved true ;
+    icac-production:forensicValue "high" ;
+    icac-production:evidenceOf :VermontProduction .
+
+# =============================================================================
+# RELATIONSHIPS AND CONNECTIONS
+# =============================================================================
+
+# Link case to Project Safe Childhood program
+:VermontCase2024 icac-partnerships:partOfProgram :ProjectSafeChildhoodProgram .
+
+# Link international coordination to case
+:VermontCase2024 icac:hasInternationalElement :InternationalAlert .
+
+# Link production activities
+:VermontProduction icac-production:partOfSeries :VermontCase2024 .
+:BathroomSurveillanceAction icac-production:partOfSeries :VermontProduction .
+
+# Equipment relationships
+:VermontProduction icac-production:usesEquipment :HiddenBackpackCamera .
+:ProducedMaterial icac-production:recordedWith :HiddenBackpackCamera .
+
+# Evidence relationships
+:ProducedMaterial icac-production:evidenceOf :VermontProduction .
+:SearchAndSeizure icac:recoversEvidence :ProducedMaterial . 

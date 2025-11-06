@@ -1,0 +1,393 @@
+# =============================================================================
+# gUFO-Enhanced Analytics Queries
+# =============================================================================
+# Advanced SPARQL queries leveraging gUFO foundational ontology concepts
+# for enhanced investigation analytics and pattern recognition
+
+PREFIX icac-gufo: <https://ontology.unifiedcyberontology.org/icac/gufo#>
+PREFIX icac-temporal: <https://ontology.unifiedcyberontology.org/icac/temporal#>
+PREFIX gufo: <http://purl.org/nemo/gufo#>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+# =============================================================================
+# QUERY 1: Investigation Phase Performance Analytics
+# =============================================================================
+
+SELECT ?phase_type ?avg_duration ?efficiency_score ?case_count WHERE {
+  {
+    SELECT ?phase_type 
+           (AVG(?duration_hours) as ?avg_duration)
+           (AVG(?efficiency) as ?efficiency_score)
+           (COUNT(?phase) as ?case_count) WHERE {
+      ?phase rdf:type ?phase_type ;
+             icac-gufo:phaseDuration ?duration ;
+             icac-temporal:phaseEfficiency ?efficiency .
+      
+      # Convert duration to hours for analysis
+      BIND(
+        IF(CONTAINS(STR(?duration), "PT"), 
+           xsd:decimal(REPLACE(REPLACE(STR(?duration), "PT", ""), "H.*", "")),
+           xsd:decimal(REPLACE(REPLACE(STR(?duration), "P", ""), "D.*", "")) * 24
+        ) as ?duration_hours
+      )
+      
+      FILTER(?phase_type IN (
+        icac-gufo:InitialPhase, icac-gufo:AnalysisPhase, 
+        icac-gufo:LegalProcessPhase, icac-gufo:EvidencePhase,
+        icac-gufo:ResolutionPhase
+      ))
+    }
+    GROUP BY ?phase_type
+  }
+}
+ORDER BY ?avg_duration
+
+# =============================================================================
+# QUERY 2: Role Conflict Detection and Prevention
+# =============================================================================
+
+SELECT ?person ?conflicting_roles ?investigation ?conflict_severity WHERE {
+  ?person icac-gufo:playsRole ?role1 ;
+          icac-gufo:playsRole ?role2 .
+  
+  ?role1 icac-gufo:participatesInInvestigation ?investigation .
+  ?role2 icac-gufo:participatesInInvestigation ?investigation .
+  
+  # Detect conflicting role combinations
+  FILTER(
+    (?role1 = icac-gufo:VictimRole && ?role2 = icac-gufo:OffenderRole) ||
+    (?role1 = icac-gufo:OffenderRole && ?role2 = icac-gufo:VictimRole) ||
+    (?role1 = icac-gufo:InvestigatorRole && ?role2 = icac-gufo:OffenderRole) ||
+    (?role1 = icac-gufo:OffenderRole && ?role2 = icac-gufo:InvestigatorRole)
+  )
+  
+  BIND(CONCAT(STR(?role1), " + ", STR(?role2)) as ?conflicting_roles)
+  BIND(
+    IF(?role1 = icac-gufo:VictimRole && ?role2 = icac-gufo:OffenderRole, "CRITICAL",
+    IF(?role1 = icac-gufo:InvestigatorRole && ?role2 = icac-gufo:OffenderRole, "CRITICAL",
+    "HIGH")) as ?conflict_severity
+  )
+}
+
+# =============================================================================
+# QUERY 3: Temporal Investigation Pattern Analysis
+# =============================================================================
+
+SELECT ?pattern_type ?frequency ?avg_success_rate ?avg_total_duration WHERE {
+  {
+    SELECT ?pattern_type 
+           (COUNT(?inv) as ?frequency)
+           (AVG(?completion_rate) as ?avg_success_rate)
+           (AVG(?total_duration) as ?avg_total_duration) WHERE {
+      
+      ?inv rdf:type icac-gufo:Investigation ;
+           icac-temporal:hasTimeToResolution ?resolution_time ;
+           icac-temporal:hasActiveDuration ?active_time ;
+           icac-gufo:hasPhase ?phase .
+      
+      ?phase icac-temporal:phaseCompletionRate ?completion_rate .
+      
+      # Convert duration to days
+      BIND(xsd:decimal(REPLACE(REPLACE(STR(?resolution_time), "P", ""), "D.*", "")) as ?total_duration)
+      
+      # Classify investigation patterns
+      BIND(
+        IF(?total_duration <= 30, "Fast Track (≤30 days)",
+        IF(?total_duration <= 90, "Standard (31-90 days)",
+        IF(?total_duration <= 180, "Extended (91-180 days)",
+        "Complex (>180 days)"))) as ?pattern_type
+      )
+    }
+    GROUP BY ?pattern_type
+  }
+}
+ORDER BY ?avg_total_duration
+
+# =============================================================================
+# QUERY 4: Suspension/Resumption Impact Analysis
+# =============================================================================
+
+SELECT ?investigation ?suspension_count ?total_suspended_days ?impact_score WHERE {
+  ?investigation rdf:type icac-gufo:Investigation ;
+                 icac-temporal:hasSuspendedDuration ?suspended_duration ;
+                 icac-temporal:hasActiveDuration ?active_duration ;
+                 icac-temporal:hasTimeToResolution ?total_duration .
+  
+  # Count suspension events
+  {
+    SELECT ?investigation (COUNT(?suspension) as ?suspension_count) WHERE {
+      ?suspension rdf:type icac-temporal:SuspensionEvent ;
+                  icac-temporal:suspends ?investigation .
+    }
+    GROUP BY ?investigation
+  }
+  
+  # Convert suspended duration to days
+  BIND(xsd:decimal(REPLACE(REPLACE(STR(?suspended_duration), "P", ""), "D.*", "")) as ?total_suspended_days)
+  
+  # Calculate impact score (suspended time / total time)
+  BIND(
+    xsd:decimal(REPLACE(REPLACE(STR(?suspended_duration), "P", ""), "D.*", "")) /
+    xsd:decimal(REPLACE(REPLACE(STR(?total_duration), "P", ""), "D.*", ""))
+    as ?impact_score
+  )
+  
+  FILTER(?suspension_count > 0)
+}
+ORDER BY DESC(?impact_score)
+
+# =============================================================================
+# QUERY 5: Multi-Jurisdiction Coordination Effectiveness
+# =============================================================================
+
+SELECT ?coordination_type ?jurisdiction_count ?avg_coordination_duration ?success_rate WHERE {
+  {
+    SELECT ?coordination_type 
+           (AVG(?jurisdiction_count) as ?jurisdiction_count)
+           (AVG(?duration_days) as ?avg_coordination_duration)
+           (AVG(?completion_rate) as ?success_rate) WHERE {
+      
+      ?situation rdf:type icac-temporal:MultiJurisdictionCoordinationSituation ;
+                 gufo:hasBeginPointInXSDDateTimeStamp ?begin ;
+                 gufo:hasEndPointInXSDDateTimeStamp ?end .
+      
+      ?investigation icac-temporal:hasTimeToResolution ?total_time ;
+                     icac-gufo:hasPhase ?phase .
+      
+      ?phase icac-temporal:phaseCompletionRate ?completion_rate .
+      
+      # Calculate coordination duration
+      BIND((xsd:dateTime(?end) - xsd:dateTime(?begin)) / xsd:dayTimeDuration("P1D") as ?duration_days)
+      
+      # Estimate jurisdiction count (simplified - would need additional data)
+      BIND(
+        IF(?duration_days <= 7, 2,
+        IF(?duration_days <= 21, 3,
+        IF(?duration_days <= 45, 4, 5))) as ?jurisdiction_count
+      )
+      
+      # Classify coordination type
+      BIND(
+        IF(?jurisdiction_count = 2, "Bi-Jurisdictional",
+        IF(?jurisdiction_count = 3, "Multi-State",
+        IF(?jurisdiction_count = 4, "Regional",
+        "National/International"))) as ?coordination_type
+      )
+    }
+    GROUP BY ?coordination_type
+  }
+}
+ORDER BY ?jurisdiction_count
+
+# =============================================================================
+# QUERY 6: Role Temporal Dynamics Analysis
+# =============================================================================
+
+SELECT ?role_type ?avg_role_duration ?escalation_frequency ?overlap_patterns WHERE {
+  {
+    SELECT ?role_type 
+           (AVG(?role_duration_days) as ?avg_role_duration)
+           (COUNT(?escalation) as ?escalation_frequency)
+           (COUNT(?overlap) as ?overlap_patterns) WHERE {
+      
+      ?role rdf:type ?role_type ;
+            icac-gufo:hasRoleBeginPoint ?begin ;
+            icac-gufo:hasRoleEndPoint ?end .
+      
+      # Calculate role duration
+      BIND((xsd:dateTime(?end) - xsd:dateTime(?begin)) / xsd:dayTimeDuration("P1D") as ?role_duration_days)
+      
+      # Check for role escalations
+      OPTIONAL {
+        ?escalation rdf:type icac-temporal:RoleEscalation ;
+                    icac-temporal:involvesRole ?role .
+      }
+      
+      # Check for role overlaps
+      OPTIONAL {
+        ?overlap rdf:type icac-temporal:SimultaneousRoleSituation ;
+                 icac-temporal:involvesRole ?role .
+      }
+      
+      FILTER(?role_type IN (
+        icac-gufo:InvestigatorRole, icac-gufo:VictimRole, 
+        icac-gufo:OffenderRole, icac-gufo:WitnessRole,
+        icac-gufo:InformantRole, icac-gufo:RescuerRole
+      ))
+    }
+    GROUP BY ?role_type
+  }
+}
+ORDER BY DESC(?avg_role_duration)
+
+# =============================================================================
+# QUERY 7: Investigation Outcome Prediction Features
+# =============================================================================
+
+SELECT ?investigation ?feature_vector ?predicted_risk_level WHERE {
+  ?investigation rdf:type icac-gufo:Investigation ;
+                 icac-temporal:hasTimeToResolution ?total_duration ;
+                 icac-temporal:urgencyLevel ?urgency .
+  
+  # Count phases
+  {
+    SELECT ?investigation (COUNT(?phase) as ?phase_count) WHERE {
+      ?investigation icac-gufo:hasPhase ?phase .
+    }
+    GROUP BY ?investigation
+  }
+  
+  # Count roles
+  {
+    SELECT ?investigation (COUNT(?role) as ?role_count) WHERE {
+      ?investigation icac-gufo:hasRole ?role .
+    }
+    GROUP BY ?investigation
+  }
+  
+  # Count events
+  {
+    SELECT ?investigation (COUNT(?event) as ?event_count) WHERE {
+      ?event icac-gufo:participatesInInvestigation ?investigation .
+    }
+    GROUP BY ?investigation
+  }
+  
+  # Count suspensions
+  {
+    SELECT ?investigation (COUNT(?suspension) as ?suspension_count) WHERE {
+      ?suspension rdf:type icac-temporal:SuspensionEvent ;
+                  icac-temporal:suspends ?investigation .
+    }
+    GROUP BY ?investigation
+  }
+  
+  # Build feature vector for ML
+  BIND(CONCAT(
+    "phases:", STR(?phase_count), 
+    "|roles:", STR(?role_count),
+    "|events:", STR(?event_count),
+    "|urgency:", STR(?urgency),
+    "|suspensions:", STR(?suspension_count)
+  ) as ?feature_vector)
+  
+  # Predict risk level (simplified rule-based)
+  BIND(
+    IF(?urgency >= 4 && ?suspension_count > 0, "HIGH",
+    IF(?urgency >= 3 && ?phase_count > 4, "MEDIUM",
+    "LOW")) as ?predicted_risk_level
+  )
+}
+
+# =============================================================================
+# QUERY 8: Advanced Event Dependency Analysis
+# =============================================================================
+
+SELECT ?investigation ?event_chain_length ?parallel_events ?critical_path WHERE {
+  ?investigation rdf:type icac-gufo:Investigation .
+  
+  # Count event dependencies
+  {
+    SELECT ?investigation (COUNT(?dependency) as ?event_chain_length) WHERE {
+      ?event icac-gufo:participatesInInvestigation ?investigation ;
+             icac-temporal:hasPrerequisiteEvent ?dependency .
+    }
+    GROUP BY ?investigation
+  }
+  
+  # Count parallel events
+  {
+    SELECT ?investigation (COUNT(?parallel) as ?parallel_events) WHERE {
+      ?event icac-gufo:participatesInInvestigation ?investigation ;
+             icac-temporal:hasParallelEvent ?parallel .
+    }
+    GROUP BY ?investigation
+  }
+  
+  # Identify critical path (longest dependency chain)
+  BIND(
+    IF(?event_chain_length > ?parallel_events, "Sequential Critical Path",
+    IF(?parallel_events > ?event_chain_length, "Parallel Optimized",
+    "Balanced Workflow")) as ?critical_path
+  )
+  
+  FILTER(?event_chain_length > 0 || ?parallel_events > 0)
+}
+ORDER BY DESC(?event_chain_length)
+
+# =============================================================================
+# QUERY 9: gUFO Validation and Consistency Check
+# =============================================================================
+
+SELECT ?validation_type ?entity_count ?compliance_rate WHERE {
+  {
+    SELECT "Phase Modeling" as ?validation_type (COUNT(?phase) as ?entity_count) (1.0 as ?compliance_rate) WHERE {
+      ?phase rdf:type gufo:Phase ;
+             rdfs:subClassOf icac-gufo:Investigation .
+    }
+  } UNION {
+    SELECT "Role Modeling" as ?validation_type (COUNT(?role) as ?entity_count) (1.0 as ?compliance_rate) WHERE {
+      ?role rdf:type gufo:Role ;
+            rdfs:subClassOf icac-gufo:Person .
+    }
+  } UNION {
+    SELECT "Event Modeling" as ?validation_type (COUNT(?event) as ?entity_count) (1.0 as ?compliance_rate) WHERE {
+      ?event rdf:type gufo:Event ;
+             rdfs:subClassOf uco-action:Action .
+    }
+  } UNION {
+    SELECT "Situation Modeling" as ?validation_type (COUNT(?situation) as ?entity_count) (1.0 as ?compliance_rate) WHERE {
+      ?situation rdf:type gufo:Situation .
+    }
+  }
+}
+
+# =============================================================================
+# QUERY 10: Investigation Success Pattern Recognition
+# =============================================================================
+
+SELECT ?success_pattern ?pattern_frequency ?avg_completion_rate ?key_factors WHERE {
+  {
+    SELECT ?success_pattern 
+           (COUNT(?inv) as ?pattern_frequency)
+           (AVG(?completion_rate) as ?avg_completion_rate)
+           (GROUP_CONCAT(DISTINCT ?factor; separator=", ") as ?key_factors) WHERE {
+      
+      ?inv rdf:type icac-gufo:Investigation ;
+           icac-gufo:hasPhase ?phase .
+      
+      ?phase icac-temporal:phaseCompletionRate ?completion_rate .
+      
+      # Identify success factors
+      OPTIONAL {
+        ?inv icac-temporal:urgencyLevel ?urgency .
+        FILTER(?urgency >= 4)
+        BIND("High Urgency" as ?factor)
+      }
+      
+      OPTIONAL {
+        ?inv icac-temporal:hasActiveDuration ?active_duration .
+        BIND(xsd:decimal(REPLACE(REPLACE(STR(?active_duration), "P", ""), "D.*", "")) as ?active_days)
+        FILTER(?active_days <= 30)
+        BIND("Fast Resolution" as ?factor)
+      }
+      
+      OPTIONAL {
+        ?role icac-gufo:participatesInInvestigation ?inv .
+        ?role rdf:type icac-gufo:InformantRole .
+        BIND("Informant Support" as ?factor)
+      }
+      
+      # Classify success patterns
+      BIND(
+        IF(?completion_rate >= 0.9, "High Success (90%+)",
+        IF(?completion_rate >= 0.75, "Good Success (75-89%)",
+        IF(?completion_rate >= 0.5, "Moderate Success (50-74%)",
+        "Low Success (<50%)"))) as ?success_pattern
+      )
+    }
+    GROUP BY ?success_pattern
+  }
+}
+ORDER BY DESC(?avg_completion_rate) 

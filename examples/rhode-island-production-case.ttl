@@ -1,0 +1,394 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex: <http://example.org/rhode-island-case#> .
+
+# Import all required ontologies
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core#> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity#> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable#> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role#> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location#> .
+
+@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
+@prefix icacus: <https://ontology.unifiedcyberontology.org/icac/us/ncmec/0.2#> .
+@prefix icac-production: <https://ontology.unifiedcyberontology.org/icac/production#> .
+@prefix icac-custodial: <https://ontology.unifiedcyberontology.org/icac/custodial#> .
+@prefix icac-victim-impact: <https://ontology.unifiedcyberontology.org/icac/victim-impact#> .
+@prefix icac-taskforce: <https://ontology.unifiedcyberontology.org/icac/taskforce#> .
+@prefix icac-sentencing: <https://ontology.unifiedcyberontology.org/icac/sentencing#> .
+
+# =============================================================================
+# ENHANCED NCMEC TIP ANALYSIS
+# =============================================================================
+
+ex:NCMECTip2023001 rdf:type icacus:NCMECCybertipReport ;
+    icacus:hasNCMECIncidentType icacus:ChildSexTraffickingIncident ;
+    uco-core:name "NCMEC-2023-001-RI" ;
+    uco-core:description "CyberTip report involving suspected CSAM production in Rhode Island area" .
+
+ex:TipAnalysis2023001 rdf:type icacus:CyberTipAnalysis ;
+    icacus:analysisOf ex:NCMECTip2023001 ;
+    icacus:analysisConfidence "high" ;
+    icacus:supportedBy ex:PlatformCooperation001 .
+
+ex:PossessionIndicator001 rdf:type icacus:PossessionIndicator ;
+    icacus:indicatorStrength "strong" ;
+    icacus:linkedToAccount ex:SuspectDigitalAccount .
+
+ex:AccountLinking001 rdf:type icacus:AccountLinking ;
+    icacus:accountConfidence "verified" ;
+    icacus:linkedToAccount ex:SuspectDigitalAccount ;
+    icacus:tracedToPhone ex:SuspectPhoneNumber .
+
+ex:PlatformCooperation001 rdf:type icacus:PlatformCooperation ;
+    icacus:platformResponseTime 12.5 ;
+    icacus:cooperationLevel "full" ;
+    icacus:dataProvided "account_info, user_data, content, metadata" .
+
+ex:TaskForceReferral001 rdf:type icacus:TaskForceReferral ;
+    icacus:triggeredBy ex:NCMECTip2023001 ;
+    icacus:urgencyLevel "immediate" ;
+    icacus:triggerCriteria "production_evidence, custodial_relationship" ;
+    icacus:referralJurisdiction "state" ;
+    icacus:resultedInInvestigation ex:RIInvestigation2023001 .
+
+# =============================================================================
+# ICAC TASK FORCE ORGANIZATION
+# =============================================================================
+
+ex:RhodeIslandICACtaskForce rdf:type icac-taskforce:StateICACtaskForce ;
+    icac-taskforce:taskForceId "RI-ICAC-001" ;
+    icac-taskforce:establishmentDate "2015-03-15T00:00:00Z"^^xsd:dateTime ;
+    icac-taskforce:coverageArea "Rhode Island, Southeastern Massachusetts" ;
+    icac-taskforce:memberCount 25 ;
+    icac-taskforce:agencyCount 8 ;
+    icac-taskforce:commandedBy ex:TaskForceCommander001 .
+
+ex:DigitalForensicsUnit001 rdf:type icac-taskforce:DigitalForensicsUnit ;
+    icac-taskforce:specializationArea "forensics" ;
+    icac-taskforce:capabilityLevel "advanced" ;
+    icac-taskforce:resourceCapacity "high" .
+
+ex:VictimServiceUnit001 rdf:type icac-taskforce:VictimServiceUnit ;
+    icac-taskforce:specializationArea "victim_services" ;
+    icac-taskforce:capabilityLevel "expert" ;
+    icac-taskforce:resourceCapacity "moderate" .
+
+ex:RhodeIslandICACtaskForce icac-taskforce:hasUnit ex:DigitalForensicsUnit001, ex:VictimServiceUnit001 .
+
+ex:TaskForceInvestigator001 rdf:type icac-taskforce:TaskForceInvestigator ;
+    icac-taskforce:memberRole "investigator" ;
+    icac-taskforce:experienceLevel "expert" ;
+    icac-taskforce:certificationStatus "certified" ;
+    icac-taskforce:yearsOfService 8 ;
+    icac-taskforce:assignedToUnit ex:DigitalForensicsUnit001 .
+
+ex:ReactiveOperation001 rdf:type icac-taskforce:ReactiveOperation ;
+    icac-taskforce:operationType "reactive" ;
+    icac-taskforce:operationScale "regional" ;
+    icac-taskforce:participatingUnits 2 ;
+    icac-taskforce:operationDuration 45 ;
+    icac-taskforce:operationOutcome "successful" ;
+    icac-taskforce:conductedBy ex:RhodeIslandICACtaskForce ;
+    icac-taskforce:handledInvestigation ex:RIInvestigation2023001 .
+
+# =============================================================================
+# INVESTIGATION AND SUBJECTS
+# =============================================================================
+
+ex:RIInvestigation2023001 rdf:type icac:Investigation ;
+    icac:caseNumber "RI-HSI-2023-PROD-001" ;
+    icac:investigationStatus "completed" ;
+    uco-core:startTime "2023-02-15T08:00:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2023-06-30T17:00:00Z"^^xsd:dateTime ;
+    icac:hasSubject ex:Suspect001, ex:Victim001, ex:Victim002 .
+
+ex:Suspect001 rdf:type uco-identity:Person ;
+    uco-core:name "John Alexander Rodriguez" ;
+    icac:ageAtOffense 34 ;
+    uco-core:hasRole ex:BabysitterRole, ex:ProducerRole .
+
+ex:Victim001 rdf:type uco-identity:Person ;
+    icac:ageAtOffense 8 ;
+    uco-core:hasRole ex:ProductionVictimRole001 .
+
+ex:Victim002 rdf:type uco-identity:Person ;
+    icac:ageAtOffense 10 ;
+    uco-core:hasRole ex:ProductionVictimRole002 .
+
+# =============================================================================
+# CUSTODIAL RELATIONSHIPS AND TRUST VIOLATIONS
+# =============================================================================
+
+ex:CustodialRelationship001 rdf:type icac-custodial:TemporaryCustody ;
+    icac-custodial:relationshipType "babysitter" ;
+    icac-custodial:relationshipDuration 18 ;
+    icac-custodial:relationshipFrequency "weekly" ;
+    icac-custodial:relationshipIntimacy "close" ;
+    icac-custodial:involvesCustodian ex:BabysitterRole ;
+    icac-custodial:involvesChild ex:Victim001 .
+
+ex:CustodialRelationship002 rdf:type icac-custodial:TemporaryCustody ;
+    icac-custodial:relationshipType "babysitter" ;
+    icac-custodial:relationshipDuration 12 ;
+    icac-custodial:relationshipFrequency "weekly" ;
+    icac-custodial:relationshipIntimacy "close" ;
+    icac-custodial:involvesCustodian ex:BabysitterRole ;
+    icac-custodial:involvesChild ex:Victim002 .
+
+ex:BabysitterRole rdf:type icac-custodial:Babysitter ;
+    icac-custodial:authorityLevel "extensive" ;
+    icac-custodial:authorityScope "physical_care" ;
+    icac-custodial:supervisionLevel "none" ;
+    icac-custodial:trustLevel "complete" ;
+    icac-custodial:accessLevel "unsupervised" .
+
+ex:TrustViolation001 rdf:type icac-custodial:CustodialAbuse ;
+    icac-custodial:violationType "exploitation" ;
+    icac-custodial:violationSeverity "extreme" ;
+    icac-custodial:breachDuration 365 ;
+    icac-custodial:violationPattern "systematic" ;
+    icac-custodial:violatesPosition ex:BabysitterRole ;
+    icac-custodial:violatesRelationship ex:CustodialRelationship001, ex:CustodialRelationship002 ;
+    icac-custodial:perpetratedBy ex:BabysitterRole .
+
+# =============================================================================
+# PRODUCTION OFFENSE AND ACTIVITIES
+# =============================================================================
+
+ex:ProductionOffense001 rdf:type icac-production:ProductionOffense ;
+    icac-production:productionStartDate "2022-06-01T00:00:00Z"^^xsd:dateTime ;
+    icac-production:productionEndDate "2023-02-10T00:00:00Z"^^xsd:dateTime ;
+    icac-production:productionPeriod 254 ;
+    icac-production:imageCount 127 ;
+    icac-production:videoCount 23 ;
+    icac-production:victimCount 2 ;
+    icac-production:productionMethod "direct_recording" ;
+    icac-production:productionComplexity "intermediate" ;
+    icac-production:distributionIntent "intended_distribution" ;
+    icac-production:immediateDistribution false ;
+    icac-production:evidenceRecovered true ;
+    icac-production:producedBy ex:ProducerRole ;
+    icac-production:involvestVictim ex:ProductionVictimRole001, ex:ProductionVictimRole002 ;
+    icac-production:producedAt ex:ProductionLocation001 ;
+    icac-production:usesEquipment ex:MobileDevice001 .
+
+ex:ProductionSeries001 rdf:type icac-production:ProductionSeries ;
+    icac-production:sessionCount 15 ;
+    icac-production:productionPeriod 254 .
+
+ex:ProductionSession001 rdf:type icac-production:ProductionSession ;
+    icac-production:sessionDuration 45 ;
+    icac-production:victimAwareness "unaware" ;
+    icac-production:partOfSeries ex:ProductionSeries001 ;
+    icac-production:sessionLocation ex:ProductionLocation001 ;
+    icac-production:resultingContent ex:ProducedVideo001, ex:ProducedImage001 .
+
+ex:ProducerRole rdf:type icac-production:Producer ;
+    icac-production:holdsPositionOf ex:BabysitterRole .
+
+ex:ProductionVictimRole001 rdf:type icac-production:ProductionVictim ;
+    icac-production:victimAge 8 .
+
+ex:ProductionVictimRole002 rdf:type icac-production:ProductionVictim ;
+    icac-production:victimAge 10 .
+
+ex:ProductionLocation001 rdf:type icac-production:ResidentialProductionSite ;
+    icac-production:locationSecurity "isolated" ;
+    icac-production:locationAccess "controlled" ;
+    uco-core:name "Suspect's Residence" .
+
+ex:MobileDevice001 rdf:type icac-production:MobileRecordingDevice ;
+    icac-production:deviceBrand "Apple" ;
+    icac-production:deviceModel "iPhone 12" ;
+    icac-production:recordingCapability "both" ;
+    icac-production:storageCapacity 128.0 .
+
+ex:ProducedVideo001 rdf:type icac-production:ProducedVideo ;
+    icac-production:recordedWith ex:MobileDevice001 ;
+    icac-production:metadataPreserved true ;
+    icac-production:forensicValue "high" .
+
+ex:ProducedImage001 rdf:type icac-production:ProducedImage ;
+    icac-production:recordedWith ex:MobileDevice001 ;
+    icac-production:metadataPreserved true ;
+    icac-production:forensicValue "high" .
+
+# =============================================================================
+# VICTIM IMPACT ASSESSMENT
+# =============================================================================
+
+ex:VictimImpactAssessment001 rdf:type icac-victim-impact:ComprehensiveImpactAssessment ;
+    icac-victim-impact:assessmentDate "2023-04-15T10:00:00Z"^^xsd:dateTime ;
+    icac-victim-impact:assessmentType "forensic" ;
+    icac-victim-impact:severityLevel "severe" ;
+    icac-victim-impact:functioningLevel "impaired" ;
+    icac-victim-impact:assessesVictim ex:Victim001 ;
+    icac-victim-impact:identifiesHarm ex:ComplexTrauma001 ;
+    icac-victim-impact:documentedBy ex:MentalHealthProfessional001 .
+
+ex:VictimImpactAssessment002 rdf:type icac-victim-impact:ComprehensiveImpactAssessment ;
+    icac-victim-impact:assessmentDate "2023-04-16T14:00:00Z"^^xsd:dateTime ;
+    icac-victim-impact:assessmentType "forensic" ;
+    icac-victim-impact:severityLevel "moderate" ;
+    icac-victim-impact:functioningLevel "low" ;
+    icac-victim-impact:assessesVictim ex:Victim002 ;
+    icac-victim-impact:identifiesHarm ex:ComplexTrauma002 ;
+    icac-victim-impact:documentedBy ex:MentalHealthProfessional001 .
+
+ex:ComplexTrauma001 rdf:type icac-victim-impact:ComplexTrauma ;
+    icac-victim-impact:traumaType "complex" ;
+    icac-victim-impact:onsetDate "2022-08-01T00:00:00Z"^^xsd:dateTime ;
+    icac-victim-impact:duration 8 ;
+    icac-victim-impact:severity "severe" ;
+    icac-victim-impact:manifestsAs ex:BehavioralIndicator001, ex:EmotionalIndicator001, ex:SocialIndicator001 ;
+    icac-victim-impact:resultedFrom ex:ProductionOffense001 .
+
+ex:ComplexTrauma002 rdf:type icac-victim-impact:ComplexTrauma ;
+    icac-victim-impact:traumaType "complex" ;
+    icac-victim-impact:onsetDate "2022-10-15T00:00:00Z"^^xsd:dateTime ;
+    icac-victim-impact:duration 6 ;
+    icac-victim-impact:severity "moderate" ;
+    icac-victim-impact:manifestsAs ex:BehavioralIndicator002, ex:EmotionalIndicator002 ;
+    icac-victim-impact:resultedFrom ex:ProductionOffense001 .
+
+ex:BehavioralIndicator001 rdf:type icac-victim-impact:BehavioralIndicator ;
+    icac-victim-impact:indicatorType "behavioral" ;
+    icac-victim-impact:frequency "frequent" ;
+    icac-victim-impact:intensity "severe" ;
+    icac-victim-impact:progressionPattern "improving" .
+
+ex:EmotionalIndicator001 rdf:type icac-victim-impact:EmotionalIndicator ;
+    icac-victim-impact:indicatorType "emotional" ;
+    icac-victim-impact:frequency "constant" ;
+    icac-victim-impact:intensity "severe" ;
+    icac-victim-impact:progressionPattern "stable" .
+
+ex:SocialIndicator001 rdf:type icac-victim-impact:SocialIndicator ;
+    icac-victim-impact:indicatorType "social" ;
+    icac-victim-impact:frequency "occasional" ;
+    icac-victim-impact:intensity "moderate" ;
+    icac-victim-impact:progressionPattern "improving" .
+
+ex:BehavioralIndicator002 rdf:type icac-victim-impact:BehavioralIndicator ;
+    icac-victim-impact:indicatorType "behavioral" ;
+    icac-victim-impact:frequency "occasional" ;
+    icac-victim-impact:intensity "moderate" ;
+    icac-victim-impact:progressionPattern "improving" .
+
+ex:EmotionalIndicator002 rdf:type icac-victim-impact:EmotionalIndicator ;
+    icac-victim-impact:indicatorType "emotional" ;
+    icac-victim-impact:frequency "frequent" ;
+    icac-victim-impact:intensity "moderate" ;
+    icac-victim-impact:progressionPattern "improving" .
+
+# =============================================================================
+# THERAPEUTIC INTERVENTIONS AND RECOVERY
+# =============================================================================
+
+ex:TraumaTherapy001 rdf:type icac-victim-impact:TraumaTherapy ;
+    icac-victim-impact:interventionType "individual" ;
+    icac-victim-impact:treatmentModality "CBT" ;
+    icac-victim-impact:sessionCount 24 ;
+    icac-victim-impact:treatmentDuration 6 ;
+    icac-victim-impact:treatmentOutcome "partially_successful" ;
+    icac-victim-impact:addressesHarm ex:ComplexTrauma001 ;
+    icac-victim-impact:providedBy ex:MentalHealthProfessional001 ;
+    icac-victim-impact:receivedTreatment ex:Victim001 .
+
+ex:FamilyTherapy001 rdf:type icac-victim-impact:FamilyTherapy ;
+    icac-victim-impact:interventionType "family" ;
+    icac-victim-impact:treatmentModality "family_systems" ;
+    icac-victim-impact:sessionCount 12 ;
+    icac-victim-impact:treatmentDuration 4 ;
+    icac-victim-impact:treatmentOutcome "successful" ;
+    icac-victim-impact:addressesHarm ex:ComplexTrauma001, ex:ComplexTrauma002 .
+
+ex:VictimAdvocacy001 rdf:type icac-victim-impact:VictimAdvocacy ;
+    icac-victim-impact:serviceType "advocacy" ;
+    icac-victim-impact:serviceProvider "Rhode Island Children's Advocacy Center" ;
+    icac-victim-impact:serviceDuration 12 .
+
+ex:LegalSupport001 rdf:type icac-victim-impact:LegalSupport ;
+    icac-victim-impact:serviceType "legal" ;
+    icac-victim-impact:serviceProvider "Victim Advocate Office" ;
+    icac-victim-impact:serviceDuration 8 .
+
+ex:RecoveryProcess001 rdf:type icac-victim-impact:RecoveryProcess ;
+    icac-victim-impact:recoveryStage "progress" ;
+    icac-victim-impact:recoveryTimeframe 24 ;
+    icac-victim-impact:prognosis "good" ;
+    icac-victim-impact:facilitatedBy ex:TraumaTherapy001, ex:FamilyTherapy001, ex:VictimAdvocacy001 .
+
+ex:RecoveryMilestone001 rdf:type icac-victim-impact:RecoveryMilestone ;
+    icac-victim-impact:milestoneDate "2023-09-15T00:00:00Z"^^xsd:dateTime ;
+    icac-victim-impact:milestoneDescription "Significant reduction in nightmares and anxiety symptoms" ;
+    icac-victim-impact:partOfRecovery ex:RecoveryProcess001 .
+
+ex:MentalHealthProfessional001 rdf:type icac-victim-impact:MentalHealthProfessional .
+
+# =============================================================================
+# LEGAL PROCEEDINGS AND SENTENCING
+# =============================================================================
+
+ex:FederalCharge001 rdf:type icac-sentencing:CSAM_Production ;
+    icac-sentencing:chargeStatute "18 U.S.C. § 2251(a)" ;
+    icac-sentencing:chargeLevel "federal_felony" ;
+    icac-sentencing:maximumPenalty 30 ;
+    icac-sentencing:minimumPenalty 15 ;
+    icac-sentencing:chargeCount 2 .
+
+ex:FederalCharge002 rdf:type icac-sentencing:CSAM_Possession ;
+    icac-sentencing:chargeStatute "18 U.S.C. § 2252A(a)(5)(B)" ;
+    icac-sentencing:chargeLevel "federal_felony" ;
+    icac-sentencing:maximumPenalty 20 ;
+    icac-sentencing:minimumPenalty 0 ;
+    icac-sentencing:chargeCount 1 .
+
+ex:PleaAgreement001 rdf:type icac-sentencing:PleaAgreement ;
+    icac-sentencing:pleaBargainOffered true ;
+    icac-sentencing:pleaBargainAccepted true ;
+    uco-core:name "Federal Plea Agreement - Rodriguez" .
+
+ex:PrisonSentence001 rdf:type icac-sentencing:PrisonSentence ;
+    icac-sentencing:sentenceLength 288 ;  # 24 years
+    icac-sentencing:timeServed 6 ;
+    uco-core:description "24-year federal prison sentence for CSAM production and possession" .
+
+ex:SupervisedRelease001 rdf:type icac-sentencing:SupervisedRelease ;
+    icac-sentencing:supervisionDuration 120 ;  # 10 years
+    uco-core:description "10-year supervised release with internet restrictions and mandatory registration" .
+
+# =============================================================================
+# INVESTIGATION RELATIONSHIPS AND TRIGGERS
+# =============================================================================
+
+ex:TrustViolation001 icac-custodial:aggravatingFactor ex:FederalCharge001 .
+ex:VictimImpactAssessment001 icac-victim-impact:relevantToSentencing ex:PrisonSentence001 .
+ex:VictimImpactAssessment002 icac-victim-impact:relevantToSentencing ex:PrisonSentence001 .
+ex:VictimImpactAssessment001 icac-victim-impact:informsRestitution ex:MonetaryPenalty001 .
+
+ex:MonetaryPenalty001 rdf:type icac-sentencing:MonetaryPenalty ;
+    uco-core:description "Restitution for victim therapy and counseling costs" .
+
+ex:ProductionOffense001 icac-production:triggeredInvestigation ex:RIInvestigation2023001 .
+ex:ProductionOffense001 icac-production:evidenceOf ex:FederalCharge001 .
+
+ex:TrustViolation001 icac-custodial:relevantToInvestigation ex:RIInvestigation2023001 .
+ex:CustodialRelationship001 icac-custodial:relevantToInvestigation ex:RIInvestigation2023001 .
+ex:CustodialRelationship002 icac-custodial:relevantToInvestigation ex:RIInvestigation2023001 .
+
+# =============================================================================
+# DIGITAL EVIDENCE AND FORENSICS LINKS
+# =============================================================================
+
+ex:SuspectDigitalAccount rdf:type uco-observable:DigitalAccount ;
+    uco-core:name "suspect.social.media.account" .
+
+ex:SuspectPhoneNumber rdf:type uco-observable:PhoneNumber ;
+    uco-core:name "+1-401-555-0123" .
+
+ex:AccountLinking001 icacus:linkedToAccount ex:SuspectDigitalAccount .
+ex:AccountLinking001 icacus:tracedToPhone ex:SuspectPhoneNumber . 

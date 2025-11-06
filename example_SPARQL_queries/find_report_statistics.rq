@@ -1,0 +1,66 @@
+# Query: Q6 find_report_statistics
+# Purpose: Management dashboard - report processing metrics
+# Parameters: ?from (dateTime), ?to (dateTime), ?limit (integer), ?organizationURI (optional)
+# Security: TLP-RED content excluded by default
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX hotline: <https://ontology.unifiedcyberontology.org/hotlines/2025/core#>
+PREFIX icac: <https://ontology.unifiedcyberontology.org/icac/0.3#>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/core#>
+PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/observable#>
+PREFIX uco-confidentiality: <https://ontology.unifiedcyberontology.org/confidentiality#>
+
+SELECT ?organization ?yearMonth
+       (COUNT(DISTINCT ?report) AS ?totalReports)
+       (COUNT(DISTINCT ?evidence) AS ?totalEvidence)
+       (AVG(?processingTime) AS ?avgProcessingTimeDays)
+       (COUNT(DISTINCT ?crossBorderAction) AS ?crossBorderForwardCount)
+       (COUNT(DISTINCT ?rescueAction) AS ?rescueActionCount)
+WHERE {
+    # Parameter defaults
+    VALUES (?from ?to ?limit ?organizationURI) {
+        ("2025-01-01T00:00:00Z"^^xsd:dateTime "2025-12-31T23:59:59Z"^^xsd:dateTime 100 UNDEF) # UNDEF for optional org
+    }
+    
+    ?report a ?reportType ;
+            hotline:receivedBy ?organization ;
+            hotline:createdTime ?createdTime ;
+            hotline:hasEvidence ?evidence .
+    
+    # Filter by specific organization if URI is provided
+    FILTER(!BOUND(?organizationURI) || (?organization = ?organizationURI))
+
+    BIND(STRDT(CONCAT(STR(YEAR(?createdTime)), "-", STR(MONTH(?createdTime))), xsd:gYearMonth) AS ?yearMonth)
+    
+    OPTIONAL {
+        ?report hotline:status hotline:status-closed ;
+                hotline:closedAt ?closedTime .
+        BIND(DAYS(?closedTime - ?createdTime) AS ?processingTime) # Simpler duration for days
+    }
+    
+    OPTIONAL {
+        ?report hotline:triggersAction ?crossBorderAction .
+        ?crossBorderAction a hotline:ForwardToLEAction .
+        ?organization hotline:countryCode ?sourceCountry .
+        ?crossBorderAction hotline:forwardsTo ?targetOrg .
+        ?targetOrg hotline:countryCode ?targetCountry .
+        FILTER(?sourceCountry != ?targetCountry)
+    }
+    
+    OPTIONAL {
+        ?report hotline:triggersAction ?rescueAction .
+        ?rescueAction a icac:VictimRescueAction ; # Assuming VictimRescueAction is in icac namespace
+                     hotline:outcome hotline:outcome-success .
+    }
+    
+    FILTER(?createdTime >= ?from && ?createdTime <= ?to)
+
+    # Security filter
+    FILTER NOT EXISTS {
+        ?report uco-confidentiality:TLP-RED ?whatever .
+    }
+}
+GROUP BY ?organization ?yearMonth
+ORDER BY ?organization DESC(?yearMonth)
+LIMIT ?limit 

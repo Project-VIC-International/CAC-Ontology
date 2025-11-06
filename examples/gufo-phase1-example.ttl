@@ -1,0 +1,260 @@
+@prefix example: <http://ontology.icac.org/examples/gufo-phase1#> .
+@prefix icac-gufo: <https://ontology.unifiedcyberontology.org/icac/gufo#> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/core#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/identity#> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/action#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# =============================================================================
+# PHASE 1 gUFO INTEGRATION EXAMPLE
+# =============================================================================
+
+# Investigation Instance (Kind with Phase modeling)
+example:Investigation001 rdf:type icac-gufo:Investigation ;
+    uco-core:name "ICAC Investigation 2025-001" ;
+    uco-core:description "Multi-phase investigation beginning with NCMEC cybertip" ;
+    rdfs:label "ICAC Investigation 001"@en .
+
+# =============================================================================
+# INVESTIGATION PHASES WITH gUFO TEMPORAL FRAMEWORK
+# =============================================================================
+
+# Initial Phase Instance
+example:InitialPhase001 rdf:type icac-gufo:InitialPhase ;
+    icac-gufo:hasPhaseBeginPoint "2025-01-01T08:00:00Z"^^xsd:dateTimeStamp ;
+    icac-gufo:hasPhaseEndPoint "2025-01-01T10:30:00Z"^^xsd:dateTimeStamp ;
+    icac-gufo:phaseDuration "PT2H30M"^^xsd:duration ;
+    rdfs:label "Initial Investigation Phase 001"@en .
+
+# Analysis Phase Instance
+example:AnalysisPhase001 rdf:type icac-gufo:AnalysisPhase ;
+    icac-gufo:hasPhaseBeginPoint "2025-01-01T10:30:00Z"^^xsd:dateTimeStamp ;
+    icac-gufo:hasPhaseEndPoint "2025-01-03T16:00:00Z"^^xsd:dateTimeStamp ;
+    icac-gufo:phaseDuration "P2DT5H30M"^^xsd:duration ;
+    rdfs:label "Analysis Investigation Phase 001"@en .
+
+# Legal Process Phase Instance
+example:LegalProcessPhase001 rdf:type icac-gufo:LegalProcessPhase ;
+    icac-gufo:hasPhaseBeginPoint "2025-01-03T16:00:00Z"^^xsd:dateTimeStamp ;
+    icac-gufo:hasPhaseEndPoint "2025-01-10T14:00:00Z"^^xsd:dateTimeStamp ;
+    icac-gufo:phaseDuration "P7DT22H"^^xsd:duration ;
+    rdfs:label "Legal Process Investigation Phase 001"@en .
+
+# Evidence Phase Instance
+example:EvidencePhase001 rdf:type icac-gufo:EvidencePhase ;
+    icac-gufo:hasPhaseBeginPoint "2025-01-10T14:00:00Z"^^xsd:dateTimeStamp ;
+    icac-gufo:hasPhaseEndPoint "2025-01-25T17:00:00Z"^^xsd:dateTimeStamp ;
+    icac-gufo:phaseDuration "P15DT3H"^^xsd:duration ;
+    rdfs:label "Evidence Investigation Phase 001"@en .
+
+# Current Phase (Resolution)
+example:ResolutionPhase001 rdf:type icac-gufo:ResolutionPhase ;
+    icac-gufo:hasPhaseBeginPoint "2025-01-25T17:00:00Z"^^xsd:dateTimeStamp ;
+    rdfs:label "Resolution Investigation Phase 001"@en .
+
+# =============================================================================
+# PERSON INSTANCES WITH gUFO ROLE MODELING
+# =============================================================================
+
+# Base Persons (Kind instances)
+example:Detective_Smith rdf:type icac-gufo:Person ;
+    uco-core:name "Detective John Smith" ;
+    rdfs:label "Detective John Smith"@en .
+
+example:Analyst_Jones rdf:type icac-gufo:Person ;
+    uco-core:name "Analyst Sarah Jones" ;
+    rdfs:label "Analyst Sarah Jones"@en .
+
+example:Victim_Child rdf:type icac-gufo:Person ;
+    uco-core:name "Child Victim (pseudonym: Emma)" ;
+    rdfs:label "Child Victim Emma"@en .
+
+example:Suspect_Williams rdf:type icac-gufo:Person ;
+    uco-core:name "Suspect Robert Williams" ;
+    rdfs:label "Suspect Robert Williams"@en .
+
+example:Witness_Parent rdf:type icac-gufo:Person ;
+    uco-core:name "Parent Witness Mary Johnson" ;
+    rdfs:label "Parent Witness Mary Johnson"@en .
+
+# =============================================================================
+# ROLE INSTANCES WITH TEMPORAL BOUNDARIES
+# =============================================================================
+
+# Detective in Investigator Role
+example:InvestigatorRole001 rdf:type icac-gufo:InvestigatorRole ;
+    icac-gufo:hasRoleBeginPoint "2025-01-01T08:00:00Z"^^xsd:dateTimeStamp ;
+    uco-core:name "Detective Smith as Lead Investigator" ;
+    rdfs:label "Investigator Role 001"@en .
+
+# Analyst in Secondary Investigator Role
+example:InvestigatorRole002 rdf:type icac-gufo:InvestigatorRole ;
+    icac-gufo:hasRoleBeginPoint "2025-01-01T10:30:00Z"^^xsd:dateTimeStamp ;
+    uco-core:name "Analyst Jones as Secondary Investigator" ;
+    rdfs:label "Investigator Role 002"@en .
+
+# Child in Victim Role
+example:VictimRole001 rdf:type icac-gufo:VictimRole ;
+    icac-gufo:hasRoleBeginPoint "2025-01-01T08:00:00Z"^^xsd:dateTimeStamp ;
+    uco-core:name "Child Emma as Primary Victim" ;
+    rdfs:label "Victim Role 001"@en .
+
+# Suspect in Offender Role
+example:OffenderRole001 rdf:type icac-gufo:OffenderRole ;
+    icac-gufo:hasRoleBeginPoint "2025-01-03T16:00:00Z"^^xsd:dateTimeStamp ;
+    uco-core:name "Robert Williams as Suspected Offender" ;
+    rdfs:label "Offender Role 001"@en .
+
+# Parent in Witness Role
+example:WitnessRole001 rdf:type icac-gufo:WitnessRole ;
+    icac-gufo:hasRoleBeginPoint "2025-01-02T14:00:00Z"^^xsd:dateTimeStamp ;
+    uco-core:name "Mary Johnson as Parent Witness" ;
+    rdfs:label "Witness Role 001"@en .
+
+# Parent also becomes Informant (multiple roles)
+example:InformantRole001 rdf:type icac-gufo:InformantRole ;
+    icac-gufo:hasRoleBeginPoint "2025-01-15T11:00:00Z"^^xsd:dateTimeStamp ;
+    uco-core:name "Mary Johnson as Informant providing additional intelligence" ;
+    rdfs:label "Informant Role 001"@en .
+
+# =============================================================================
+# INVESTIGATION EVENTS (Concrete Occurrences)
+# =============================================================================
+
+# Cybertip Receipt Event
+example:ReceiveCybertipEvent001 rdf:type icac-gufo:ReceiveCybertipEvent ;
+    gufo:hasBeginPointInXSDDateTimeStamp "2025-01-01T08:00:00Z"^^xsd:dateTimeStamp ;
+    gufo:hasEndPointInXSDDateTimeStamp "2025-01-01T08:15:00Z"^^xsd:dateTimeStamp ;
+    uco-core:name "NCMEC Cybertip 12345 Receipt" ;
+    rdfs:label "Receive Cybertip Event 001"@en .
+
+# Cybertip Review Event
+example:ReviewCybertipEvent001 rdf:type icac-gufo:ReviewCybertipEvent ;
+    gufo:hasBeginPointInXSDDateTimeStamp "2025-01-01T10:30:00Z"^^xsd:dateTimeStamp ;
+    gufo:hasEndPointInXSDDateTimeStamp "2025-01-01T16:00:00Z"^^xsd:dateTimeStamp ;
+    uco-core:name "Cybertip Analysis and Initial Assessment" ;
+    rdfs:label "Review Cybertip Event 001"@en .
+
+# Search Warrant Event
+example:LegalProcessEvent001 rdf:type icac-gufo:LegalProcessEvent ;
+    gufo:hasBeginPointInXSDDateTimeStamp "2025-01-03T16:00:00Z"^^xsd:dateTimeStamp ;
+    gufo:hasEndPointInXSDDateTimeStamp "2025-01-03T18:30:00Z"^^xsd:dateTimeStamp ;
+    uco-core:name "Search Warrant Execution at Suspect Residence" ;
+    rdfs:label "Legal Process Event 001"@en .
+
+# Digital Evidence Review Event
+example:EvidenceReviewEvent001 rdf:type icac-gufo:EvidenceReviewEvent ;
+    gufo:hasBeginPointInXSDDateTimeStamp "2025-01-10T14:00:00Z"^^xsd:dateTimeStamp ;
+    gufo:hasEndPointInXSDDateTimeStamp "2025-01-25T17:00:00Z"^^xsd:dateTimeStamp ;
+    uco-core:name "Digital Forensics Analysis of Seized Devices" ;
+    rdfs:label "Evidence Review Event 001"@en .
+
+# Victim Rescue Event (future/planned)
+example:VictimRescueEvent001 rdf:type icac-gufo:VictimRescueEvent ;
+    uco-core:name "Planned Victim Support and Safety Measures" ;
+    rdfs:label "Victim Rescue Event 001"@en .
+
+# =============================================================================
+# INVESTIGATION LIFECYCLE SITUATIONS (States that Hold)
+# =============================================================================
+
+# Investigation Pending Situation (initial state)
+example:PendingSituation001 rdf:type icac-gufo:InvestigationPendingSituation ;
+    gufo:hasBeginPointInXSDDateTimeStamp "2025-01-01T08:00:00Z"^^xsd:dateTimeStamp ;
+    gufo:hasEndPointInXSDDateTimeStamp "2025-01-01T08:15:00Z"^^xsd:dateTimeStamp ;
+    uco-core:name "Investigation pending analyst assignment" ;
+    rdfs:label "Investigation Pending Situation 001"@en .
+
+# Investigation Active Situation (current state)
+example:ActiveSituation001 rdf:type icac-gufo:InvestigationActiveSituation ;
+    gufo:hasBeginPointInXSDDateTimeStamp "2025-01-01T08:15:00Z"^^xsd:dateTimeStamp ;
+    uco-core:name "Investigation actively progressing through phases" ;
+    rdfs:label "Investigation Active Situation 001"@en .
+
+# =============================================================================
+# CRIMINAL EVENTS WITH gUFO MODELING
+# =============================================================================
+
+# Base Criminal Event
+example:CSAMincident001 rdf:type icac-gufo:CSAMIncident ;
+    gufo:hasBeginPointInXSDDateTimeStamp "2024-12-15T00:00:00Z"^^xsd:dateTimeStamp ;
+    gufo:hasEndPointInXSDDateTimeStamp "2024-12-20T00:00:00Z"^^xsd:dateTimeStamp ;
+    uco-core:name "CSAM Distribution Incident via Social Media Platform" ;
+    rdfs:label "CSAM Incident 001"@en .
+
+# Grooming Event (related criminal activity)
+example:GroomingEvent001 rdf:type icac-gufo:GroomingSolicitation ;
+    gufo:hasBeginPointInXSDDateTimeStamp "2024-11-01T00:00:00Z"^^xsd:dateTimeStamp ;
+    gufo:hasEndPointInXSDDateTimeStamp "2024-12-15T00:00:00Z"^^xsd:dateTimeStamp ;
+    uco-core:name "Online Grooming Leading to CSAM Production" ;
+    rdfs:label "Grooming Event 001"@en .
+
+# =============================================================================
+# PHASE RELATIONSHIPS AND TRANSITIONS
+# =============================================================================
+
+# Investigation to Phase Relationships
+example:Investigation001 icac-gufo:inPhase example:ResolutionPhase001 .
+example:Investigation001 icac-gufo:hasPhase example:InitialPhase001 .
+example:Investigation001 icac-gufo:hasPhase example:AnalysisPhase001 .
+example:Investigation001 icac-gufo:hasPhase example:LegalProcessPhase001 .
+example:Investigation001 icac-gufo:hasPhase example:EvidencePhase001 .
+example:Investigation001 icac-gufo:hasPhase example:ResolutionPhase001 .
+
+# Phase Precedence Chain
+example:InitialPhase001 icac-gufo:precedesPhase example:AnalysisPhase001 .
+example:AnalysisPhase001 icac-gufo:precedesPhase example:LegalProcessPhase001 .
+example:LegalProcessPhase001 icac-gufo:precedesPhase example:EvidencePhase001 .
+example:EvidencePhase001 icac-gufo:precedesPhase example:ResolutionPhase001 .
+
+# =============================================================================
+# ROLE RELATIONSHIPS AND PARTICIPATION
+# =============================================================================
+
+# Person to Role Relationships
+example:Detective_Smith icac-gufo:playsRole example:InvestigatorRole001 .
+example:Analyst_Jones icac-gufo:playsRole example:InvestigatorRole002 .
+example:Victim_Child icac-gufo:playsRole example:VictimRole001 .
+example:Suspect_Williams icac-gufo:playsRole example:OffenderRole001 .
+example:Witness_Parent icac-gufo:playsRole example:WitnessRole001 .
+example:Witness_Parent icac-gufo:playsRole example:InformantRole001 .
+
+# Investigation to Role Relationships
+example:Investigation001 icac-gufo:hasRole example:InvestigatorRole001 .
+example:Investigation001 icac-gufo:hasRole example:InvestigatorRole002 .
+example:Investigation001 icac-gufo:hasRole example:VictimRole001 .
+example:Investigation001 icac-gufo:hasRole example:OffenderRole001 .
+example:Investigation001 icac-gufo:hasRole example:WitnessRole001 .
+example:Investigation001 icac-gufo:hasRole example:InformantRole001 .
+
+# Role Participation in Investigation
+example:InvestigatorRole001 icac-gufo:participatesInInvestigation example:Investigation001 .
+example:InvestigatorRole002 icac-gufo:participatesInInvestigation example:Investigation001 .
+example:VictimRole001 icac-gufo:participatesInInvestigation example:Investigation001 .
+example:OffenderRole001 icac-gufo:participatesInInvestigation example:Investigation001 .
+example:WitnessRole001 icac-gufo:participatesInInvestigation example:Investigation001 .
+example:InformantRole001 icac-gufo:participatesInInvestigation example:Investigation001 .
+
+# =============================================================================
+# EVENT-SITUATION RELATIONSHIPS
+# =============================================================================
+
+# Events Occurring in Situations
+example:ReceiveCybertipEvent001 icac-gufo:occursInSituation example:PendingSituation001 .
+example:ReviewCybertipEvent001 icac-gufo:occursInSituation example:ActiveSituation001 .
+example:LegalProcessEvent001 icac-gufo:occursInSituation example:ActiveSituation001 .
+example:EvidenceReviewEvent001 icac-gufo:occursInSituation example:ActiveSituation001 .
+
+# Events Creating Situations
+example:ReceiveCybertipEvent001 icac-gufo:createsSituation example:ActiveSituation001 .
+
+# Role Participation in Events
+example:InvestigatorRole001 icac-gufo:participatesInEvent example:ReceiveCybertipEvent001 .
+example:InvestigatorRole002 icac-gufo:participatesInEvent example:ReviewCybertipEvent001 .
+example:InvestigatorRole001 icac-gufo:participatesInEvent example:LegalProcessEvent001 .
+example:InvestigatorRole002 icac-gufo:participatesInEvent example:EvidenceReviewEvent001 .
+example:OffenderRole001 icac-gufo:participatesInEvent example:LegalProcessEvent001 .
+example:WitnessRole001 icac-gufo:participatesInEvent example:ReviewCybertipEvent001 . 

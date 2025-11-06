@@ -1,0 +1,271 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core#> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity#> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role#> .
+
+@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
+@prefix icac-specialized: <https://ontology.unifiedcyberontology.org/icac/specialized-units#> .
+@prefix icac-training: <https://ontology.unifiedcyberontology.org/icac/training#> .
+@prefix icac-multi: <https://ontology.unifiedcyberontology.org/icac/multi-jurisdiction#> .
+@prefix icac-forensics: <https://ontology.unifiedcyberontology.org/icac/forensics#> .
+
+@prefix ex: <https://example.org/icac/idaho-operation-unhinged#> .
+
+# =============================================================================
+# IDAHO OPERATION UNHINGED EXAMPLE
+# Demonstrating specialized units, K9 programs, and enhanced coordination
+# =============================================================================
+
+# Idaho ICAC Task Force
+ex:IdahoICAC rdf:type uco-identity:Organization ;
+    rdfs:label "Idaho Internet Crimes Against Children Task Force"@en ;
+    uco-core:name "Idaho ICAC Task Force" .
+
+# Operation Unhinged
+ex:OperationUnhinged rdf:type icac-specialized:OperationUnhinged ;
+    rdfs:label "Operation Unhinged"@en ;
+    icac-specialized:arrestCount 12 ;
+    icac-multi:operationName "Operation Unhinged" ;
+    icac-multi:operationPhase "completed" ;
+    icac-multi:operationDuration 30.0 ;
+    icac-multi:specializedUnitsDeployed 3 ;
+    uco-action:performer ex:IdahoICAC .
+
+# Operation Safe Online Summer (National Context)
+ex:OperationSafeOnlineSummer rdf:type icac-multi:OperationSafeOnlineSummerType ;
+    rdfs:label "Operation Safe Online Summer"@en ;
+    icac-multi:operationName "Operation Safe Online Summer" ;
+    icac-multi:taskForcesInvolved 61 ;
+    icac-multi:operationPhase "ongoing" ;
+    icac-multi:coordinationCenterLocation "National ICAC Coordination Center" .
+
+# Badger the ESD K9
+ex:BadgerTheESDK9 rdf:type icac-specialized:ElectronicStorageDeviceK9 ;
+    rdfs:label "Badger the ESD K9"@en ;
+    uco-core:name "Badger" ;
+    icac-specialized:hasCapability ex:TripleThreatCapability .
+
+# Triple Threat Capability
+ex:TripleThreatCapability rdf:type icac-specialized:TripleThreatCapability ;
+    rdfs:label "Triple Threat Capability"@en ;
+    rdfs:comment "Electronic storage device detection, community engagement, and officer wellness support" .
+
+# K9 Handler
+ex:K9Handler001 rdf:type icac-specialized:K9Handler ;
+    rdfs:label "K9 Handler"@en ;
+    icac-specialized:operatesK9 ex:BadgerTheESDK9 .
+
+# K9 Search Operations
+ex:K9SearchOp001 rdf:type icac-specialized:K9SearchOperation ;
+    rdfs:label "K9 Search Operation 1"@en ;
+    icac-specialized:searchWarrantsExecuted 8 ;
+    uco-action:performer ex:BadgerTheESDK9 .
+
+# Community Outreach Program
+ex:CommunityOutreachProgram rdf:type icac-specialized:CommunityOutreachProgram ;
+    rdfs:label "Idaho ICAC Community Outreach"@en ;
+    icac-specialized:eventCount 53 ;
+    icac-specialized:hasOutreachMetrics ex:OutreachMetrics .
+
+# Outreach Metrics
+ex:OutreachMetrics rdf:type icac-training:OutreachEventMetrics ;
+    rdfs:label "Community Outreach Metrics"@en ;
+    icac-training:outreachEventsCount 53 ;
+    icac-training:totalAttendeesReached 1390 .
+
+# Professional Training Metrics
+ex:ProfessionalTrainingMetrics rdf:type icac-training:ProfessionalTrainingMetrics ;
+    rdfs:label "Professional Training Metrics"@en ;
+    icac-training:professionalsTrainedCount 106 .
+
+# K9 Program Metrics
+ex:K9ProgramMetrics rdf:type icac-training:K9ProgramMetrics ;
+    rdfs:label "K9 Program Metrics"@en ;
+    icac-training:k9SearchWarrantsAssisted 8 ;
+    icac-training:k9PublicPresentations 7 .
+
+# Public Presentations
+ex:PublicPresentation001 rdf:type icac-specialized:PublicPresentation ;
+    rdfs:label "K9 Public Presentation 1"@en ;
+    uco-action:performer ex:BadgerTheESDK9 .
+
+ex:PublicPresentation002 rdf:type icac-specialized:PublicPresentation ;
+    rdfs:label "K9 Public Presentation 2"@en ;
+    uco-action:performer ex:BadgerTheESDK9 .
+
+ex:PublicPresentation003 rdf:type icac-specialized:PublicPresentation ;
+    rdfs:label "K9 Public Presentation 3"@en ;
+    uco-action:performer ex:BadgerTheESDK9 .
+
+ex:PublicPresentation004 rdf:type icac-specialized:PublicPresentation ;
+    rdfs:label "K9 Public Presentation 4"@en ;
+    uco-action:performer ex:BadgerTheESDK9 .
+
+ex:PublicPresentation005 rdf:type icac-specialized:PublicPresentation ;
+    rdfs:label "K9 Public Presentation 5"@en ;
+    uco-action:performer ex:BadgerTheESDK9 .
+
+ex:PublicPresentation006 rdf:type icac-specialized:PublicPresentation ;
+    rdfs:label "K9 Public Presentation 6"@en ;
+    uco-action:performer ex:BadgerTheESDK9 .
+
+ex:PublicPresentation007 rdf:type icac-specialized:PublicPresentation ;
+    rdfs:label "K9 Public Presentation 7"@en ;
+    uco-action:performer ex:BadgerTheESDK9 .
+
+# Officer Wellness Program
+ex:OfficerWellnessProgram rdf:type icac-specialized:OfficerWellnessProgram ;
+    rdfs:label "Idaho ICAC Officer Wellness Program"@en ;
+    rdfs:comment "Mental health and wellness support for ICAC officers" .
+
+# Therapy Dog Support
+ex:TherapyDogSupport rdf:type icac-specialized:TherapyDog ;
+    rdfs:label "Therapy Dog Support"@en ;
+    icac-specialized:providesWellnessSupport ex:ICACofficer001 .
+
+# ICAC Officer
+ex:ICACofficer001 rdf:type uco-identity:Person ;
+    rdfs:label "ICAC Officer 001"@en ;
+    uco-core:name "Officer Smith" .
+
+# Specialized Investigative Units
+ex:DigitalForensicsUnit rdf:type icac-specialized:DigitalForensicsUnit ;
+    rdfs:label "Idaho ICAC Digital Forensics Unit"@en ;
+    icac-specialized:participatesInOperation ex:OperationUnhinged .
+
+ex:CyberCrimeUnit rdf:type icac-specialized:CyberCrimeUnit ;
+    rdfs:label "Idaho ICAC Cyber Crime Unit"@en ;
+    icac-specialized:participatesInOperation ex:OperationUnhinged .
+
+ex:VictimServicesUnit rdf:type icac-specialized:VictimServicesUnit ;
+    rdfs:label "Idaho ICAC Victim Services Unit"@en ;
+    icac-specialized:participatesInOperation ex:OperationUnhinged .
+
+# K9-Assisted Forensics
+ex:K9AssistedForensics001 rdf:type icac-forensics:K9AssistedForensics ;
+    rdfs:label "K9 Assisted Forensic Acquisition"@en ;
+    icac-forensics:k9AssistanceProvided true ;
+    icac-forensics:detectionMethod "K9" ;
+    uco-action:performer ex:BadgerTheESDK9 .
+
+# Electronic Storage Device Detection
+ex:DeviceDetection001 rdf:type icac-forensics:ElectronicStorageDeviceDetection ;
+    rdfs:label "Electronic Storage Device Detection"@en ;
+    icac-forensics:detectionMethod "K9" ;
+    icac-forensics:detectionAccuracy 0.95 ;
+    uco-action:performer ex:BadgerTheESDK9 .
+
+# Hidden Device Recovery
+ex:HiddenDeviceRecovery001 rdf:type icac-forensics:HiddenDeviceRecovery ;
+    rdfs:label "Hidden Device Recovery Operation"@en ;
+    icac-forensics:devicesRecovered 5 ;
+    uco-action:performer ex:BadgerTheESDK9 .
+
+# Operation Metrics Tracking
+ex:OperationMetricsTracking rdf:type icac-multi:OperationMetricsTracking ;
+    rdfs:label "Operation Unhinged Metrics"@en ;
+    icac-multi:totalArrests 12 .
+
+# Coordinated Arrests
+ex:CoordinatedArrest001 rdf:type icac-specialized:CoordinatedArrest ;
+    rdfs:label "Coordinated Arrest 1"@en ;
+    uco-action:performer ex:IdahoICAC .
+
+ex:CoordinatedArrest002 rdf:type icac-specialized:CoordinatedArrest ;
+    rdfs:label "Coordinated Arrest 2"@en ;
+    uco-action:performer ex:IdahoICAC .
+
+ex:CoordinatedArrest003 rdf:type icac-specialized:CoordinatedArrest ;
+    rdfs:label "Coordinated Arrest 3"@en ;
+    uco-action:performer ex:IdahoICAC .
+
+ex:CoordinatedArrest004 rdf:type icac-specialized:CoordinatedArrest ;
+    rdfs:label "Coordinated Arrest 4"@en ;
+    uco-action:performer ex:IdahoICAC .
+
+ex:CoordinatedArrest005 rdf:type icac-specialized:CoordinatedArrest ;
+    rdfs:label "Coordinated Arrest 5"@en ;
+    uco-action:performer ex:IdahoICAC .
+
+ex:CoordinatedArrest006 rdf:type icac-specialized:CoordinatedArrest ;
+    rdfs:label "Coordinated Arrest 6"@en ;
+    uco-action:performer ex:IdahoICAC .
+
+ex:CoordinatedArrest007 rdf:type icac-specialized:CoordinatedArrest ;
+    rdfs:label "Coordinated Arrest 7"@en ;
+    uco-action:performer ex:IdahoICAC .
+
+ex:CoordinatedArrest008 rdf:type icac-specialized:CoordinatedArrest ;
+    rdfs:label "Coordinated Arrest 8"@en ;
+    uco-action:performer ex:IdahoICAC .
+
+ex:CoordinatedArrest009 rdf:type icac-specialized:CoordinatedArrest ;
+    rdfs:label "Coordinated Arrest 9"@en ;
+    uco-action:performer ex:IdahoICAC .
+
+ex:CoordinatedArrest010 rdf:type icac-specialized:CoordinatedArrest ;
+    rdfs:label "Coordinated Arrest 10"@en ;
+    uco-action:performer ex:IdahoICAC .
+
+ex:CoordinatedArrest011 rdf:type icac-specialized:CoordinatedArrest ;
+    rdfs:label "Coordinated Arrest 11"@en ;
+    uco-action:performer ex:IdahoICAC .
+
+ex:CoordinatedArrest012 rdf:type icac-specialized:CoordinatedArrest ;
+    rdfs:label "Coordinated Arrest 12"@en ;
+    uco-action:performer ex:IdahoICAC .
+
+# Community Partnerships
+ex:CommunityPartnership001 rdf:type icac-specialized:CommunityPartnership ;
+    rdfs:label "School District Partnership"@en ;
+    rdfs:comment "Partnership with local school districts for safety education" .
+
+ex:CommunityPartnership002 rdf:type icac-specialized:CommunityPartnership ;
+    rdfs:label "Parent Organization Partnership"@en ;
+    rdfs:comment "Partnership with parent organizations for awareness campaigns" .
+
+# Safety Education Events
+ex:SafetyEducationEvent001 rdf:type icac-specialized:SafetyEducationEvent ;
+    rdfs:label "School Safety Presentation"@en ;
+    icac-specialized:attendeeCount 45 ;
+    uco-action:performer ex:BadgerTheESDK9 .
+
+ex:SafetyEducationEvent002 rdf:type icac-specialized:SafetyEducationEvent ;
+    rdfs:label "Community Center Presentation"@en ;
+    icac-specialized:attendeeCount 32 ;
+    uco-action:performer ex:BadgerTheESDK9 .
+
+# Professional Training Events
+ex:ProfessionalTrainingEvent001 rdf:type icac-specialized:ProfessionalTrainingEvent ;
+    rdfs:label "Law Enforcement K9 Training"@en ;
+    icac-specialized:professionalsTrained 25 .
+
+ex:ProfessionalTrainingEvent002 rdf:type icac-specialized:ProfessionalTrainingEvent ;
+    rdfs:label "Digital Forensics Workshop"@en ;
+    icac-specialized:professionalsTrained 18 .
+
+ex:ProfessionalTrainingEvent003 rdf:type icac-specialized:ProfessionalTrainingEvent ;
+    rdfs:label "Victim Services Training"@en ;
+    icac-specialized:professionalsTrained 22 .
+
+ex:ProfessionalTrainingEvent004 rdf:type icac-specialized:ProfessionalTrainingEvent ;
+    rdfs:label "Multi-Agency Coordination Training"@en ;
+    icac-specialized:professionalsTrained 41 .
+
+# Operation Commander
+ex:OperationCommander rdf:type icac-specialized:OperationCommander ;
+    rdfs:label "Operation Unhinged Commander"@en ;
+    uco-action:performer ex:OperationUnhinged .
+
+# Wellness Coordinator
+ex:WellnessCoordinator rdf:type icac-specialized:WellnessCoordinator ;
+    rdfs:label "ICAC Wellness Coordinator"@en ;
+    uco-action:performer ex:OfficerWellnessProgram .
+
+# Community Liaison
+ex:CommunityLiaison rdf:type icac-specialized:CommunityLiaison ;
+    rdfs:label "Community Outreach Liaison"@en ;
+    uco-action:performer ex:CommunityOutreachProgram . 

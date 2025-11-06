@@ -1,0 +1,542 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity#> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable#> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role#> .
+@prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types#> .
+@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
+@prefix icac-sextortion: <https://ontology.unifiedcyberontology.org/icac/sextortion#> .
+
+# Ontology Declaration
+<https://ontology.unifiedcyberontology.org/icac/sextortion/0.1> rdf:type owl:Ontology ;
+    rdfs:label "ICAC Sextortion Ontology"@en ;
+    rdfs:comment "An ontology for representing sextortion incidents, progression patterns, and investigation approaches in Internet Crimes Against Children cases. Sextortion is online blackmail where offenders trick or coerce someone into sending sexual images, then threaten to share unless demands are met."@en ;
+    owl:versionIRI <https://ontology.unifiedcyberontology.org/icac/sextortion/0.1> ;
+    dcterms:creator "UCO Ontology Team" ;
+    dcterms:issued "2025-05-23"^^xsd:date ;
+    dcterms:modified "2025-05-23"^^xsd:date ;
+    owl:imports <https://ontology.unifiedcyberontology.org/uco/core> ,
+                <https://ontology.unifiedcyberontology.org/uco/identity> ,
+                <https://ontology.unifiedcyberontology.org/uco/observable> ,
+                <https://ontology.unifiedcyberontology.org/uco/action> ,
+                <https://ontology.unifiedcyberontology.org/uco/role> ,
+                <https://ontology.unifiedcyberontology.org/uco/types> ,
+                <https://ontology.unifiedcyberontology.org/icac/0.3> .
+
+# =============================================================================
+# SEXTORTION INCIDENT CLASSES (extending ICAC Core)
+# =============================================================================
+
+icac-sextortion:SextortionIncident rdf:type owl:Class ;
+    rdfs:label "Sextortion Incident"@en ;
+    rdfs:comment "Online blackmail incident where offender tricks or coerces someone into sending sexual images, then threatens to share unless demands are met. May involve demands for money, gift cards, or more graphic content."@en ;
+    rdfs:subClassOf icac:Sextortion .
+
+icac-sextortion:AgeDeceptionSextortion rdf:type owl:Class ;
+    rdfs:label "Age Deception Sextortion"@en ;
+    rdfs:comment "Sextortion incident involving offender lying about their age when interacting with children (e.g., posing as juvenile)."@en ;
+    rdfs:subClassOf icac-sextortion:SextortionIncident .
+
+icac-sextortion:InstantMessagingSextortion rdf:type owl:Class ;
+    rdfs:label "Instant Messaging Sextortion"@en ;
+    rdfs:comment "Sextortion conducted through instant messaging platforms with direct private communication."@en ;
+    rdfs:subClassOf icac-sextortion:SextortionIncident .
+
+icac-sextortion:SocialMediaSextortion rdf:type owl:Class ;
+    rdfs:label "Social Media Sextortion"@en ;
+    rdfs:comment "Sextortion conducted through social media platforms and networks."@en ;
+    rdfs:subClassOf icac-sextortion:SextortionIncident .
+
+# =============================================================================
+# SEXTORTION PROGRESSION PHASES (extending UCO Action)
+# =============================================================================
+
+icac-sextortion:SextortionProgression rdf:type owl:Class ;
+    rdfs:label "Sextortion Progression"@en ;
+    rdfs:comment "Sequential phases of sextortion from initial contact through exploitation."@en ;
+    rdfs:subClassOf uco-action:Action .
+
+icac-sextortion:InitialDeceptionPhase rdf:type owl:Class ;
+    rdfs:label "Initial Deception Phase"@en ;
+    rdfs:comment "First phase involving age deception and false identity establishment."@en ;
+    rdfs:subClassOf icac-sextortion:SextortionProgression .
+
+icac-sextortion:TrustBuildingPhase rdf:type owl:Class ;
+    rdfs:label "Trust Building Phase"@en ;
+    rdfs:comment "Phase focused on building trust and rapport with victim."@en ;
+    rdfs:subClassOf icac-sextortion:SextortionProgression .
+
+icac-sextortion:SexualSolicitationPhase rdf:type owl:Class ;
+    rdfs:label "Sexual Solicitation Phase"@en ;
+    rdfs:comment "Phase involving sexually explicit conversations and image solicitation."@en ;
+    rdfs:subClassOf icac-sextortion:SextortionProgression .
+
+icac-sextortion:ImageAcquisitionPhase rdf:type owl:Class ;
+    rdfs:label "Image Acquisition Phase"@en ;
+    rdfs:comment "Phase where intimate images are obtained from victims."@en ;
+    rdfs:subClassOf icac-sextortion:SextortionProgression .
+
+icac-sextortion:ExtortionPhase rdf:type owl:Class ;
+    rdfs:label "Extortion Phase"@en ;
+    rdfs:comment "Final phase involving threats and blackmail using obtained images."@en ;
+    rdfs:subClassOf icac-sextortion:SextortionProgression .
+
+# =============================================================================
+# DECEPTION TACTICS (extending UCO Action)
+# =============================================================================
+
+icac-sextortion:AgeDeceptionTactic rdf:type owl:Class ;
+    rdfs:label "Age Deception Tactic"@en ;
+    rdfs:comment "Tactic of lying about age when interacting with children (e.g., adult posing as juvenile)."@en ;
+    rdfs:subClassOf uco-action:Action .
+
+icac-sextortion:IdentityImpersonation rdf:type owl:Class ;
+    rdfs:label "Identity Impersonation"@en ;
+    rdfs:comment "Creating false identity or persona to deceive victims."@en ;
+    rdfs:subClassOf icac-sextortion:AgeDeceptionTactic .
+
+icac-sextortion:PeerImpersonation rdf:type owl:Class ;
+    rdfs:label "Peer Impersonation"@en ;
+    rdfs:comment "Posing as age-appropriate peer to gain victim trust."@en ;
+    rdfs:subClassOf icac-sextortion:IdentityImpersonation .
+
+icac-sextortion:FalseProfileCreation rdf:type owl:Class ;
+    rdfs:label "False Profile Creation"@en ;
+    rdfs:comment "Creating fake profiles on platforms with false age and personal information."@en ;
+    rdfs:subClassOf icac-sextortion:IdentityImpersonation .
+
+# =============================================================================
+# MANIPULATION TACTICS (extending UCO Action)
+# =============================================================================
+
+icac-sextortion:ManipulationTactic rdf:type owl:Class ;
+    rdfs:label "Manipulation Tactic"@en ;
+    rdfs:comment "Psychological manipulation technique used to control and exploit victims."@en ;
+    rdfs:subClassOf uco-action:Action .
+
+icac-sextortion:ProgressiveEscalation rdf:type owl:Class ;
+    rdfs:label "Progressive Escalation"@en ;
+    rdfs:comment "Gradual increase in sexual content and requests to avoid triggering victim resistance."@en ;
+    rdfs:subClassOf icac-sextortion:ManipulationTactic .
+
+icac-sextortion:VictimIsolation rdf:type owl:Class ;
+    rdfs:label "Victim Isolation"@en ;
+    rdfs:comment "Tactics to isolate victim from support systems and reporting mechanisms."@en ;
+    rdfs:subClassOf icac-sextortion:ManipulationTactic .
+
+icac-sextortion:EmotionalManipulation rdf:type owl:Class ;
+    rdfs:label "Emotional Manipulation"@en ;
+    rdfs:comment "Use of emotional tactics (false love, friendship, etc.) to control victim."@en ;
+    rdfs:subClassOf icac-sextortion:ManipulationTactic .
+
+# =============================================================================
+# THREAT MECHANISMS (extending UCO Action)
+# =============================================================================
+
+icac-sextortion:ThreatMechanism rdf:type owl:Class ;
+    rdfs:label "Threat Mechanism"@en ;
+    rdfs:comment "Specific method of threatening or coercing victims using obtained material."@en ;
+    rdfs:subClassOf uco-action:Action .
+
+icac-sextortion:ScreenshotThreat rdf:type owl:Class ;
+    rdfs:label "Screenshot Threat"@en ;
+    rdfs:comment "Threat to screenshot images when victim refuses demands (specific to WA case)."@en ;
+    rdfs:subClassOf icac-sextortion:ThreatMechanism .
+
+icac-sextortion:SharingThreat rdf:type owl:Class ;
+    rdfs:label "Sharing Threat"@en ;
+    rdfs:comment "Threat to share intimate images with contacts, family, or publicly."@en ;
+    rdfs:subClassOf icac-sextortion:ThreatMechanism .
+
+icac-sextortion:SocialMediaSharingThreat rdf:type owl:Class ;
+    rdfs:label "Social Media Sharing Threat"@en ;
+    rdfs:comment "Threat to post intimate images on social media platforms."@en ;
+    rdfs:subClassOf icac-sextortion:SharingThreat .
+
+icac-sextortion:ContactListThreat rdf:type owl:Class ;
+    rdfs:label "Contact List Threat"@en ;
+    rdfs:comment "Threat to send intimate images to victim's contact list."@en ;
+    rdfs:subClassOf icac-sextortion:SharingThreat .
+
+# =============================================================================
+# EXTORTION DEMANDS (extending UCO Observable)
+# =============================================================================
+
+icac-sextortion:ExtortionDemand rdf:type owl:Class ;
+    rdfs:label "Extortion Demand"@en ;
+    rdfs:comment "Specific demand made by sextortion offender using threat leverage."@en ;
+    rdfs:subClassOf uco-observable:ObservableObject .
+
+icac-sextortion:MonetaryDemand rdf:type owl:Class ;
+    rdfs:label "Monetary Demand"@en ;
+    rdfs:comment "Demand for money or financial payment."@en ;
+    rdfs:subClassOf icac-sextortion:ExtortionDemand .
+
+icac-sextortion:GiftCardDemand rdf:type owl:Class ;
+    rdfs:label "Gift Card Demand"@en ;
+    rdfs:comment "Demand for gift cards as form of payment."@en ;
+    rdfs:subClassOf icac-sextortion:ExtortionDemand .
+
+icac-sextortion:AdditionalContentDemand rdf:type owl:Class ;
+    rdfs:label "Additional Content Demand"@en ;
+    rdfs:comment "Demand for more graphic content or additional intimate images."@en ;
+    rdfs:subClassOf icac-sextortion:ExtortionDemand .
+
+icac-sextortion:PersonalMeetingDemand rdf:type owl:Class ;
+    rdfs:label "Personal Meeting Demand"@en ;
+    rdfs:comment "Demand for in-person meeting or physical contact."@en ;
+    rdfs:subClassOf icac-sextortion:ExtortionDemand .
+
+# =============================================================================
+# VICTIM RESPONSE PATTERNS (extending UCO Observable)
+# =============================================================================
+
+icac-sextortion:VictimResponse rdf:type owl:Class ;
+    rdfs:label "Victim Response"@en ;
+    rdfs:comment "Pattern of victim response to sextortion attempts."@en ;
+    rdfs:subClassOf uco-observable:ObservableObject .
+
+icac-sextortion:ComplianceResponse rdf:type owl:Class ;
+    rdfs:label "Compliance Response"@en ;
+    rdfs:comment "Victim complies with initial requests before recognizing threat."@en ;
+    rdfs:subClassOf icac-sextortion:VictimResponse .
+
+icac-sextortion:RefusalResponse rdf:type owl:Class ;
+    rdfs:label "Refusal Response"@en ;
+    rdfs:comment "Victim refuses demands triggering threat escalation (as in WA case)."@en ;
+    rdfs:subClassOf icac-sextortion:VictimResponse .
+
+icac-sextortion:SilentVictimization rdf:type owl:Class ;
+    rdfs:label "Silent Victimization"@en ;
+    rdfs:comment "Victim does not report due to shame, fear, or manipulation."@en ;
+    rdfs:subClassOf icac-sextortion:VictimResponse .
+
+icac-sextortion:ReportingResponse rdf:type owl:Class ;
+    rdfs:label "Reporting Response"@en ;
+    rdfs:comment "Victim reports incident to authorities or trusted adults."@en ;
+    rdfs:subClassOf icac-sextortion:VictimResponse .
+
+# =============================================================================
+# COMMUNICATION PATTERNS (extending UCO Observable)
+# =============================================================================
+
+icac-sextortion:SextortionCommunication rdf:type owl:Class ;
+    rdfs:label "Sextortion Communication"@en ;
+    rdfs:comment "Communication patterns specific to sextortion incidents."@en ;
+    rdfs:subClassOf uco-observable:Message .
+
+icac-sextortion:SexuallyExplicitConversation rdf:type owl:Class ;
+    rdfs:label "Sexually Explicit Conversation"@en ;
+    rdfs:comment "Conversation containing sexually explicit content directed at children."@en ;
+    rdfs:subClassOf icac-sextortion:SextortionCommunication .
+
+icac-sextortion:ImageSolicitationMessage rdf:type owl:Class ;
+    rdfs:label "Image Solicitation Message"@en ;
+    rdfs:comment "Message requesting intimate images from victim."@en ;
+    rdfs:subClassOf icac-sextortion:SextortionCommunication .
+
+icac-sextortion:ThreatMessage rdf:type owl:Class ;
+    rdfs:label "Threat Message"@en ;
+    rdfs:comment "Message containing explicit threats about sharing images."@en ;
+    rdfs:subClassOf icac-sextortion:SextortionCommunication .
+
+icac-sextortion:DemandMessage rdf:type owl:Class ;
+    rdfs:label "Demand Message"@en ;
+    rdfs:comment "Message making specific demands backed by threats."@en ;
+    rdfs:subClassOf icac-sextortion:SextortionCommunication .
+
+# =============================================================================
+# PLATFORM-SPECIFIC CHARACTERISTICS (extending UCO Observable)
+# =============================================================================
+
+icac-sextortion:InstantMessagingPlatform rdf:type owl:Class ;
+    rdfs:label "Instant Messaging Platform"@en ;
+    rdfs:comment "Digital platform used for instant messaging in sextortion incidents."@en ;
+    rdfs:subClassOf uco-observable:DigitalService .
+
+icac-sextortion:PrivateMessagingFeature rdf:type owl:Class ;
+    rdfs:label "Private Messaging Feature"@en ;
+    rdfs:comment "Platform feature enabling private direct communication."@en ;
+    rdfs:subClassOf uco-observable:ObservableObject .
+
+icac-sextortion:ImageSharingFeature rdf:type owl:Class ;
+    rdfs:label "Image Sharing Feature"@en ;
+    rdfs:comment "Platform feature enabling image sharing in private conversations."@en ;
+    rdfs:subClassOf uco-observable:ObservableObject .
+
+icac-sextortion:DisappearingMessageFeature rdf:type owl:Class ;
+    rdfs:label "Disappearing Message Feature"@en ;
+    rdfs:comment "Platform feature where messages automatically delete after viewing."@en ;
+    rdfs:subClassOf uco-observable:ObservableObject .
+
+# =============================================================================
+# INVESTIGATION ASPECTS (extending UCO Action)
+# =============================================================================
+
+icac-sextortion:SextortionInvestigation rdf:type owl:Class ;
+    rdfs:label "Sextortion Investigation"@en ;
+    rdfs:comment "Investigation specifically focused on sextortion incidents."@en ;
+    rdfs:subClassOf uco-action:Action .
+
+icac-sextortion:DeviceForensicAnalysis rdf:type owl:Class ;
+    rdfs:label "Device Forensic Analysis"@en ;
+    rdfs:comment "Forensic examination of seized devices for sextortion evidence."@en ;
+    rdfs:subClassOf icac-sextortion:SextortionInvestigation .
+
+icac-sextortion:ConversationReconstruction rdf:type owl:Class ;
+    rdfs:label "Conversation Reconstruction"@en ;
+    rdfs:comment "Reconstruction of conversation patterns and progression timelines."@en ;
+    rdfs:subClassOf icac-sextortion:SextortionInvestigation .
+
+icac-sextortion:VictimIdentification rdf:type owl:Class ;
+    rdfs:label "Victim Identification"@en ;
+    rdfs:comment "Process of identifying and locating sextortion victims."@en ;
+    rdfs:subClassOf icac-sextortion:SextortionInvestigation .
+
+# =============================================================================
+# SEXTORTION PROPERTIES
+# =============================================================================
+
+# Incident Characteristics
+icac-sextortion:victimCount rdf:type owl:DatatypeProperty ;
+    rdfs:label "victim count"@en ;
+    rdfs:comment "Number of victims involved in sextortion incident (e.g., 3 girls under 16)."@en ;
+    rdfs:domain icac-sextortion:SextortionIncident ;
+    rdfs:range xsd:nonNegativeInteger .
+
+icac-sextortion:victimAgeGroup rdf:type owl:DatatypeProperty ;
+    rdfs:label "victim age group"@en ;
+    rdfs:comment "Age group of victims (e.g., 'under 16', 'teens', 'preteens')."@en ;
+    rdfs:domain icac-sextortion:SextortionIncident ;
+    rdfs:range xsd:string .
+
+icac-sextortion:incidentDuration rdf:type owl:DatatypeProperty ;
+    rdfs:label "incident duration"@en ;
+    rdfs:comment "Duration of sextortion incident from initial contact to resolution."@en ;
+    rdfs:domain icac-sextortion:SextortionIncident ;
+    rdfs:range xsd:duration .
+
+# Deception Properties
+icac-sextortion:claimedAge rdf:type owl:DatatypeProperty ;
+    rdfs:label "claimed age"@en ;
+    rdfs:comment "False age claimed by offender during deception."@en ;
+    rdfs:domain icac-sextortion:AgeDeceptionTactic ;
+    rdfs:range xsd:nonNegativeInteger .
+
+icac-sextortion:actualAge rdf:type owl:DatatypeProperty ;
+    rdfs:label "actual age"@en ;
+    rdfs:comment "Actual age of offender (e.g., 20 in WA case)."@en ;
+    rdfs:domain icac-sextortion:AgeDeceptionTactic ;
+    rdfs:range xsd:nonNegativeInteger .
+
+icac-sextortion:falsePersonaType rdf:type owl:DatatypeProperty ;
+    rdfs:label "false persona type"@en ;
+    rdfs:comment "Type of false persona used (peer, romantic interest, authority figure)."@en ;
+    rdfs:domain icac-sextortion:IdentityImpersonation ;
+    rdfs:range xsd:string .
+
+# Progression Properties
+icac-sextortion:progressionStage rdf:type owl:DatatypeProperty ;
+    rdfs:label "progression stage"@en ;
+    rdfs:comment "Current stage in sextortion progression (1-5)."@en ;
+    rdfs:domain icac-sextortion:SextortionProgression ;
+    rdfs:range xsd:nonNegativeInteger .
+
+icac-sextortion:escalationSpeed rdf:type owl:DatatypeProperty ;
+    rdfs:label "escalation speed"@en ;
+    rdfs:comment "Speed of escalation from initial contact to exploitation (rapid, gradual, extended)."@en ;
+    rdfs:domain icac-sextortion:ProgressiveEscalation ;
+    rdfs:range xsd:string .
+
+# Threat Properties
+icac-sextortion:threatType rdf:type owl:DatatypeProperty ;
+    rdfs:label "threat type"@en ;
+    rdfs:comment "Type of threat made (screenshot, sharing, posting, contact family)."@en ;
+    rdfs:domain icac-sextortion:ThreatMechanism ;
+    rdfs:range xsd:string .
+
+icac-sextortion:threatSpecificity rdf:type owl:DatatypeProperty ;
+    rdfs:label "threat specificity"@en ;
+    rdfs:comment "How specific the threat was (vague, specific, detailed)."@en ;
+    rdfs:domain icac-sextortion:ThreatMechanism ;
+    rdfs:range xsd:string .
+
+icac-sextortion:threatFollowThrough rdf:type owl:DatatypeProperty ;
+    rdfs:label "threat follow through"@en ;
+    rdfs:comment "Whether offender followed through on threats."@en ;
+    rdfs:domain icac-sextortion:ThreatMechanism ;
+    rdfs:range xsd:boolean .
+
+# Demand Properties
+icac-sextortion:demandType rdf:type owl:DatatypeProperty ;
+    rdfs:label "demand type"@en ;
+    rdfs:comment "Type of demand made (money, gift cards, more content, meeting)."@en ;
+    rdfs:domain icac-sextortion:ExtortionDemand ;
+    rdfs:range xsd:string .
+
+icac-sextortion:monetaryAmount rdf:type owl:DatatypeProperty ;
+    rdfs:label "monetary amount"@en ;
+    rdfs:comment "Amount of money demanded in extortion."@en ;
+    rdfs:domain icac-sextortion:MonetaryDemand ;
+    rdfs:range xsd:decimal .
+
+icac-sextortion:giftCardType rdf:type owl:DatatypeProperty ;
+    rdfs:label "gift card type"@en ;
+    rdfs:comment "Type of gift cards demanded (iTunes, Steam, Amazon, etc.)."@en ;
+    rdfs:domain icac-sextortion:GiftCardDemand ;
+    rdfs:range xsd:string .
+
+# Communication Properties
+icac-sextortion:conversationLength rdf:type owl:DatatypeProperty ;
+    rdfs:label "conversation length"@en ;
+    rdfs:comment "Length of conversation in number of messages exchanged."@en ;
+    rdfs:domain icac-sextortion:SextortionCommunication ;
+    rdfs:range xsd:nonNegativeInteger .
+
+icac-sextortion:explicitnessLevel rdf:type owl:DatatypeProperty ;
+    rdfs:label "explicitness level"@en ;
+    rdfs:comment "Level of sexual explicitness (suggestive, explicit, graphic)."@en ;
+    rdfs:domain icac-sextortion:SexuallyExplicitConversation ;
+    rdfs:range xsd:string .
+
+icac-sextortion:imageType rdf:type owl:DatatypeProperty ;
+    rdfs:label "image type"@en ;
+    rdfs:comment "Type of images solicited (clothed, suggestive, nude, explicit)."@en ;
+    rdfs:domain icac-sextortion:ImageSolicitationMessage ;
+    rdfs:range xsd:string .
+
+# Investigation Properties
+icac-sextortion:deviceCount rdf:type owl:DatatypeProperty ;
+    rdfs:label "device count"@en ;
+    rdfs:comment "Number of devices seized for forensic examination (e.g., mobile phone and desktop)."@en ;
+    rdfs:domain icac-sextortion:DeviceForensicAnalysis ;
+    rdfs:range xsd:nonNegativeInteger .
+
+icac-sextortion:evidenceRecovered rdf:type owl:DatatypeProperty ;
+    rdfs:label "evidence recovered"@en ;
+    rdfs:comment "Whether evidence was successfully recovered from devices."@en ;
+    rdfs:domain icac-sextortion:DeviceForensicAnalysis ;
+    rdfs:range xsd:boolean .
+
+icac-sextortion:conversationCount rdf:type owl:DatatypeProperty ;
+    rdfs:label "conversation count"@en ;
+    rdfs:comment "Number of separate conversations identified in investigation."@en ;
+    rdfs:domain icac-sextortion:ConversationReconstruction ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# =============================================================================
+# SEXTORTION RELATIONSHIPS
+# =============================================================================
+
+# Incident Relationships
+icac-sextortion:involvesDeception rdf:type owl:ObjectProperty ;
+    rdfs:label "involves deception"@en ;
+    rdfs:comment "Links sextortion incident to deception tactics used."@en ;
+    rdfs:domain icac-sextortion:SextortionIncident ;
+    rdfs:range icac-sextortion:AgeDeceptionTactic .
+
+icac-sextortion:followsProgression rdf:type owl:ObjectProperty ;
+    rdfs:label "follows progression"@en ;
+    rdfs:comment "Links incident to its progression pattern."@en ;
+    rdfs:domain icac-sextortion:SextortionIncident ;
+    rdfs:range icac-sextortion:SextortionProgression .
+
+icac-sextortion:usesManipulation rdf:type owl:ObjectProperty ;
+    rdfs:label "uses manipulation"@en ;
+    rdfs:comment "Links incident to manipulation tactics employed."@en ;
+    rdfs:domain icac-sextortion:SextortionIncident ;
+    rdfs:range icac-sextortion:ManipulationTactic .
+
+icac-sextortion:employsThreat rdf:type owl:ObjectProperty ;
+    rdfs:label "employs threat"@en ;
+    rdfs:comment "Links incident to specific threat mechanisms used."@en ;
+    rdfs:domain icac-sextortion:SextortionIncident ;
+    rdfs:range icac-sextortion:ThreatMechanism .
+
+icac-sextortion:makesDemand rdf:type owl:ObjectProperty ;
+    rdfs:label "makes demand"@en ;
+    rdfs:comment "Links incident to extortion demands made."@en ;
+    rdfs:domain icac-sextortion:SextortionIncident ;
+    rdfs:range icac-sextortion:ExtortionDemand .
+
+# Progression Relationships
+icac-sextortion:nextPhase rdf:type owl:ObjectProperty ;
+    rdfs:label "next phase"@en ;
+    rdfs:comment "Links progression phase to the next phase in sequence."@en ;
+    rdfs:domain icac-sextortion:SextortionProgression ;
+    rdfs:range icac-sextortion:SextortionProgression .
+
+icac-sextortion:previousPhase rdf:type owl:ObjectProperty ;
+    rdfs:label "previous phase"@en ;
+    rdfs:comment "Links progression phase to the previous phase in sequence."@en ;
+    rdfs:domain icac-sextortion:SextortionProgression ;
+    rdfs:range icac-sextortion:SextortionProgression .
+
+icac-sextortion:triggersPhase rdf:type owl:ObjectProperty ;
+    rdfs:label "triggers phase"@en ;
+    rdfs:comment "Links victim response to the phase it triggers."@en ;
+    rdfs:domain icac-sextortion:VictimResponse ;
+    rdfs:range icac-sextortion:SextortionProgression .
+
+# Communication Relationships
+icac-sextortion:containsCommunication rdf:type owl:ObjectProperty ;
+    rdfs:label "contains communication"@en ;
+    rdfs:comment "Links sextortion incident to communications involved."@en ;
+    rdfs:domain icac-sextortion:SextortionIncident ;
+    rdfs:range icac-sextortion:SextortionCommunication .
+
+icac-sextortion:conductsOnPlatform rdf:type owl:ObjectProperty ;
+    rdfs:label "conducts on platform"@en ;
+    rdfs:comment "Links sextortion incident to digital platform used."@en ;
+    rdfs:domain icac-sextortion:SextortionIncident ;
+    rdfs:range icac-sextortion:InstantMessagingPlatform .
+
+icac-sextortion:utilizesFeature rdf:type owl:ObjectProperty ;
+    rdfs:label "utilizes feature"@en ;
+    rdfs:comment "Links incident to platform features exploited."@en ;
+    rdfs:domain icac-sextortion:SextortionIncident ;
+    rdfs:range uco-observable:ObservableObject .
+
+# Investigation Relationships
+icac-sextortion:investigatedBy rdf:type owl:ObjectProperty ;
+    rdfs:label "investigated by"@en ;
+    rdfs:comment "Links sextortion incident to investigation process."@en ;
+    rdfs:domain icac-sextortion:SextortionIncident ;
+    rdfs:range icac-sextortion:SextortionInvestigation .
+
+icac-sextortion:analyzesDevice rdf:type owl:ObjectProperty ;
+    rdfs:label "analyzes device"@en ;
+    rdfs:comment "Links forensic analysis to devices examined."@en ;
+    rdfs:domain icac-sextortion:DeviceForensicAnalysis ;
+    rdfs:range uco-observable:DigitalDevice .
+
+icac-sextortion:reconstructsConversation rdf:type owl:ObjectProperty ;
+    rdfs:label "reconstructs conversation"@en ;
+    rdfs:comment "Links investigation to conversations reconstructed."@en ;
+    rdfs:domain icac-sextortion:ConversationReconstruction ;
+    rdfs:range icac-sextortion:SextortionCommunication .
+
+icac-sextortion:identifiesVictim rdf:type owl:ObjectProperty ;
+    rdfs:label "identifies victim"@en ;
+    rdfs:comment "Links victim identification process to identified victims."@en ;
+    rdfs:domain icac-sextortion:VictimIdentification ;
+    rdfs:range uco-identity:Person .
+
+# Charge Relationships (connect to sentencing module)
+icac-sextortion:resultsinCharge rdf:type owl:ObjectProperty ;
+    rdfs:label "results in charge"@en ;
+    rdfs:comment "Links sextortion incident to resulting criminal charges."@en ;
+    rdfs:domain icac-sextortion:SextortionIncident ;
+    rdfs:range uco-observable:ObservableObject .
+
+icac-sextortion:providesEvidence rdf:type owl:ObjectProperty ;
+    rdfs:label "provides evidence"@en ;
+    rdfs:comment "Links sextortion investigation to evidence provided for prosecution."@en ;
+    rdfs:domain icac-sextortion:SextortionInvestigation ;
+    rdfs:range uco-observable:ObservableObject . 

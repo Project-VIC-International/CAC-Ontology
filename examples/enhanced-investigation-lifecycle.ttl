@@ -1,0 +1,241 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity#> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable#> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
+@prefix uco-tool: <https://ontology.unifiedcyberontology.org/uco/tool#> .
+@prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types#> .
+@prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
+@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
+@prefix icac-forensics: <https://ontology.unifiedcyberontology.org/icac/forensics#> .
+@prefix icac-detection: <https://ontology.unifiedcyberontology.org/icac/detection#> .
+@prefix icac-platforms: <https://ontology.unifiedcyberontology.org/icac/platforms#> .
+@prefix hotline: <https://ontology.unifiedcyberontology.org/hotlines/2025/core#> .
+
+# =============================================================================
+# ENHANCED ICAC INVESTIGATION LIFECYCLE EXAMPLE
+# Demonstrating integration of forensics, detection, and platforms ontologies
+# =============================================================================
+
+# Investigation
+icac:investigation-enhanced-001 rdf:type icac:ICACInvestigation ;
+    rdfs:label "Enhanced Multi-Platform CSAM Investigation"@en ;
+    rdfs:comment "Complete investigation lifecycle demonstrating forensics, detection, and platform integration."@en ;
+    case-investigation:hasReport icac:initial-cybertip-001 ;
+    icac:hasStep icac:step-001, icac:step-002, icac:step-003, icac:step-004, icac:step-005, icac:step-006, icac:step-007 .
+
+# =============================================================================
+# STEP 1: RECEIVE CYBERTIP WITH PLATFORM CONTEXT
+# =============================================================================
+
+icac:step-001 rdf:type icac:ReceiveCybertipAction ;
+    rdfs:label "Receive Enhanced Cybertip"@en ;
+    uco-core:startTime "2024-12-19T09:00:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2024-12-19T09:15:00Z"^^xsd:dateTime ;
+    uco-core:object icac:initial-cybertip-001 ;
+    icac:nextStep icac:step-002 .
+
+icac:initial-cybertip-001 rdf:type hotline:ESPReport ;
+    rdfs:label "Instagram CSAM Report"@en ;
+    hotline:reportedBy icac:esp-meta-001 ;
+    hotline:hasEvidence icac:evidence-image-001, icac:evidence-account-001 ;
+    icac-platforms:operatedBy icac:platform-instagram-001 .
+
+# Platform Context
+icac:platform-instagram-001 rdf:type icac-platforms:SocialMediaPlatform ;
+    rdfs:label "Instagram"@en ;
+    icac-platforms:operatedBy icac:esp-meta-001 ;
+    icac-platforms:platformType "social media" ;
+    icac-platforms:primaryUserBase "teens and adults" ;
+    icac-platforms:hasContentModerationCapability icac:moderation-capability-001 .
+
+icac:esp-meta-001 rdf:type icac-platforms:ElectronicServiceProvider ;
+    rdfs:label "Meta Platforms Inc."@en ;
+    icac-platforms:headquarteredIn "United States" ;
+    icac-platforms:operatesInJurisdiction "Global" .
+
+icac:moderation-capability-001 rdf:type icac-platforms:ContentModerationCapability ;
+    icac-platforms:moderationMethod "hybrid" ;
+    icac-platforms:csaiDetectionEnabled true ;
+    icac-platforms:hashMatchingEnabled true .
+
+# =============================================================================
+# STEP 2: AUTOMATED DETECTION AND CLASSIFICATION
+# =============================================================================
+
+icac:step-002 rdf:type icac-detection:AutomatedDetectionAction ;
+    rdfs:label "Automated CSAM Detection"@en ;
+    uco-core:startTime "2024-12-19T09:15:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2024-12-19T09:30:00Z"^^xsd:dateTime ;
+    uco-action:usesTool icac:detection-tool-001 ;
+    icac-detection:detectedContent icac:evidence-image-001 ;
+    icac-detection:detectionThreshold 0.85 ;
+    uco-core:result icac:detection-result-001 ;
+    icac:nextStep icac:step-003 .
+
+icac:detection-tool-001 rdf:type icac-detection:MachineLearningDetectionTool ;
+    rdfs:label "NCMEC Hash Matcher & ML Classifier"@en ;
+    icac-detection:modelVersion "v2.1.3" .
+
+icac:detection-result-001 rdf:type icac-detection:DetectionResult ;
+    icac-detection:confidenceScore 0.94 ;
+    icac-detection:sarClassification icac-detection:sar-4 .
+
+# Generated Hashes
+icac:step-002a rdf:type icac-detection:ContentHashingAction ;
+    rdfs:label "Generate Content Hashes"@en ;
+    uco-core:startTime "2024-12-19T09:20:00Z"^^xsd:dateTime ;
+    uco-core:object icac:evidence-image-001 ;
+    icac-detection:generatedHash icac:hash-photodna-001, icac:hash-md5-001 .
+
+icac:hash-photodna-001 rdf:type icac-detection:PhotoDNAHash ;
+    icac-detection:photoDNAValue "A1B2C3D4E5F6789012345678901234567890ABCD" .
+
+icac:hash-md5-001 rdf:type uco-types:Hash ;
+    uco-types:hashMethod "MD5" ;
+    uco-types:hashValue "d41d8cd98f00b204e9800998ecf8427e" .
+
+# =============================================================================
+# STEP 3: MANUAL CLASSIFICATION BY ANALYST
+# =============================================================================
+
+icac:step-003 rdf:type icac-detection:ManualClassificationAction ;
+    rdfs:label "Analyst Classification Review"@en ;
+    uco-core:startTime "2024-12-19T10:00:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2024-12-19T10:30:00Z"^^xsd:dateTime ;
+    icac-detection:reviewedBy icac:analyst-001 ;
+    uco-core:object icac:evidence-image-001 ;
+    icac-detection:reviewDecision "confirmed" ;
+    icac-detection:sarClassification icac-detection:sar-4 ;
+    icac-detection:copineClassification icac-detection:copine-8 ;
+    icac:nextStep icac:step-004 .
+
+icac:analyst-001 rdf:type uco-identity:Person ;
+    rdfs:label "Detective Sarah Johnson"@en .
+
+# =============================================================================
+# STEP 4: LEGAL PROCESS AND PLATFORM COOPERATION
+# =============================================================================
+
+icac:step-004 rdf:type icac:LegalProcessAction ;
+    rdfs:label "Request Platform Data Preservation"@en ;
+    uco-core:startTime "2024-12-19T11:00:00Z"^^xsd:dateTime ;
+    icac:targetsService icac:platform-instagram-001 ;
+    icac:legalInstrument icac:preservation-request-001 ;
+    uco-core:result icac:preservation-action-001 ;
+    icac:nextStep icac:step-005 .
+
+icac:preservation-request-001 rdf:type uco-observable:ObservableObject ;
+    rdfs:label "Emergency Data Preservation Request"@en .
+
+icac:preservation-action-001 rdf:type icac-platforms:DataPreservationAction ;
+    rdfs:label "Instagram Data Preservation"@en ;
+    uco-core:performer icac:esp-meta-001 ;
+    icac-platforms:preservationPeriod 90 ;
+    uco-core:object icac:evidence-account-001 .
+
+# =============================================================================
+# STEP 5: FORENSIC DEVICE ACQUISITION
+# =============================================================================
+
+icac:step-005 rdf:type icac-forensics:ForensicAcquisitionAction ;
+    rdfs:label "Mobile Device Forensic Acquisition"@en ;
+    uco-core:startTime "2024-12-20T09:00:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2024-12-20T15:00:00Z"^^xsd:dateTime ;
+    uco-action:usesTool icac:forensic-tool-001 ;
+    icac-forensics:acquisitionMethod "physical" ;
+    icac-forensics:writeBlockingUsed true ;
+    icac-forensics:evidenceSeized icac:seized-phone-001 ;
+    icac-forensics:forensicCopy icac:forensic-image-001 ;
+    icac:nextStep icac:step-006 .
+
+icac:forensic-tool-001 rdf:type icac-forensics:MobileForensicTool ;
+    rdfs:label "Cellebrite UFED Premium"@en .
+
+icac:seized-phone-001 rdf:type uco-observable:MobileDevice ;
+    rdfs:label "Suspect iPhone 13"@en ;
+    icac-forensics:evidenceLocation "suspect bedroom" ;
+    icac-forensics:caseExhibitNumber "2024-001-A" .
+
+icac:forensic-image-001 rdf:type icac-forensics:ForensicImage ;
+    rdfs:label "iPhone 13 Forensic Image"@en ;
+    icac-forensics:verificationHash icac:verification-hash-001 ;
+    icac-forensics:sourceHash icac:source-hash-001 .
+
+icac:verification-hash-001 rdf:type uco-types:Hash ;
+    uco-types:hashMethod "SHA256" ;
+    uco-types:hashValue "abc123def456789012345678901234567890abcdef123456789012345678901234" .
+
+icac:source-hash-001 rdf:type uco-types:Hash ;
+    uco-types:hashMethod "SHA256" ;
+    uco-types:hashValue "abc123def456789012345678901234567890abcdef123456789012345678901234" .
+
+# =============================================================================
+# STEP 6: CHAIN OF CUSTODY DOCUMENTATION
+# =============================================================================
+
+icac:step-006 rdf:type icac-forensics:ChainOfCustodyAction ;
+    rdfs:label "Evidence Transfer to Lab"@en ;
+    uco-core:startTime "2024-12-20T16:00:00Z"^^xsd:dateTime ;
+    icac-forensics:custodyTransferredFrom icac:officer-001 ;
+    icac-forensics:custodyTransferredTo icac:lab-analyst-001 ;
+    icac-forensics:custodyReason "forensic analysis" ;
+    uco-core:object icac:forensic-image-001 ;
+    icac:nextStep icac:step-007 .
+
+icac:officer-001 rdf:type uco-identity:Person ;
+    rdfs:label "Officer Mike Rodriguez"@en .
+
+icac:lab-analyst-001 rdf:type uco-identity:Person ;
+    rdfs:label "Forensic Analyst Lisa Chen"@en .
+
+# =============================================================================
+# STEP 7: RECOVERED EVIDENCE ANALYSIS
+# =============================================================================
+
+icac:step-007 rdf:type icac-forensics:MetadataExtractionAction ;
+    rdfs:label "Extract and Analyze Recovered Files"@en ;
+    uco-core:startTime "2024-12-21T09:00:00Z"^^xsd:dateTime ;
+    uco-action:usesTool icac:analysis-tool-001 ;
+    uco-core:object icac:forensic-image-001 ;
+    uco-core:result icac:recovered-files-001 .
+
+icac:analysis-tool-001 rdf:type uco-tool:AnalyticTool ;
+    rdfs:label "Autopsy Digital Forensics Platform"@en .
+
+icac:recovered-files-001 rdf:type icac-forensics:RecoveredFile ;
+    rdfs:label "Deleted Instagram Photos"@en ;
+    icac-forensics:recoveryMethod "unallocated space carving" ;
+    uco-core:hasFacet icac:file-metadata-001 .
+
+icac:file-metadata-001 rdf:type uco-observable:EXIFFacet ;
+    uco-observable:exifData [
+        uco-observable:dateTimeOriginal "2024-12-15T14:30:00Z"^^xsd:dateTime ;
+        uco-observable:gpsLatitude "40.7589"^^xsd:decimal ;
+        uco-observable:gpsLongitude "-73.9851"^^xsd:decimal
+    ] .
+
+# =============================================================================
+# EVIDENCE ITEMS
+# =============================================================================
+
+icac:evidence-image-001 rdf:type hotline:ImageEvidence ;
+    rdfs:label "Reported CSAM Image"@en ;
+    uco-core:hasFacet icac:image-facet-001 ;
+    icac-detection:sarClassification icac-detection:sar-4 ;
+    icac-detection:ageEstimate "approximately 12-14 years" .
+
+icac:image-facet-001 rdf:type uco-observable:ContentDataFacet ;
+    uco-observable:mimeType "image/jpeg" ;
+    uco-observable:sizeInBytes 2048576 .
+
+icac:evidence-account-001 rdf:type uco-observable:DigitalAccount ;
+    rdfs:label "Instagram Account @user123"@en ;
+    uco-core:hasFacet icac:account-facet-001 .
+
+icac:account-facet-001 rdf:type uco-observable:AccountFacet ;
+    uco-observable:accountIdentifier "@user123" ;
+    uco-observable:accountType "social_media" ;
+    uco-observable:isActive true . 

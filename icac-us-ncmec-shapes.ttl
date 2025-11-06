@@ -1,0 +1,801 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity#> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable#> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
+@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
+@prefix icacus: <https://ontology.unifiedcyberontology.org/icac/us/ncmec#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<https://ontology.unifiedcyberontology.org/icac/us-ncmec-shapes> rdf:type owl:Ontology ;
+    rdfs:label "ICAC US NCMEC SHACL Shapes"@en ;
+    rdfs:comment "SHACL shapes for validating ICAC US NCMEC ontology instances, covering NCMEC CyberTip reports, incident types, analysis processes, and investigation triggers."@en ;
+    owl:versionInfo "0.1.0" .
+
+# =============================================================================
+# NCMEC CYBERTIP REPORT SHAPES
+# =============================================================================
+
+icacus:NCMECCybertipReportShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:NCMECCybertipReport ;
+    rdfs:label "NCMEC Cybertip Report Shape"@en ;
+    rdfs:comment "Validation shape for NCMEC Cybertip report instances."@en ;
+    sh:property [
+        sh:path uco-core:name ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 5 ;
+        sh:maxLength 200 ;
+        rdfs:comment "Report name should be 5-200 characters when specified."@en ;
+    ] ;
+    sh:property [
+        sh:path uco-core:description ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 10 ;
+        sh:maxLength 5000 ;
+        rdfs:comment "Report description should be 10-5000 characters when specified."@en ;
+    ] ;
+    sh:property [
+        sh:path uco-core:createdTime ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        rdfs:comment "Report creation timestamp."@en ;
+    ] ;
+    sh:property [
+        sh:path icacus:hasNCMECIncidentType ;
+        sh:class icacus:NCMECIncidentType ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        rdfs:comment "Report must have exactly one NCMEC incident type."@en ;
+    ] .
+
+icacus:NCMECIncidentTypeShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:NCMECIncidentType ;
+    rdfs:label "NCMEC Incident Type Shape"@en ;
+    rdfs:comment "Validation shape for NCMEC incident type instances."@en ;
+    sh:property [
+        sh:path icacus:incidentCode ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ("CST" "OE" "CSAM" "CP" "MISC") ;
+        rdfs:comment "Incident code must be from the allowed NCMEC list."@en ;
+    ] ;
+    sh:property [
+        sh:path uco-core:name ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minLength 5 ;
+        sh:maxLength 100 ;
+        rdfs:comment "Incident type must have a name (5-100 characters)."@en ;
+    ] .
+
+icacus:ChildSexTraffickingIncidentShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:ChildSexTraffickingIncident ;
+    rdfs:label "Child Sex Trafficking Incident Shape"@en ;
+    rdfs:comment "Validation shape for child sex trafficking incident instances."@en ;
+    sh:property [
+        sh:path icacus:incidentCode ;
+        sh:hasValue "CST" ;
+        rdfs:comment "Child sex trafficking incidents must have CST code."@en ;
+    ] .
+
+icacus:ChildSexTourismIncidentShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:ChildSexTourismIncident ;
+    rdfs:label "Child Sex Tourism Incident Shape"@en ;
+    rdfs:comment "Validation shape for child sex tourism incident instances."@en ;
+    sh:property [
+        sh:path icacus:incidentCode ;
+        sh:hasValue "CST" ;
+        rdfs:comment "Child sex tourism incidents must have CST code."@en ;
+    ] .
+
+icacus:OnlineEnticementIncidentShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:OnlineEnticementIncident ;
+    rdfs:label "Online Enticement Incident Shape"@en ;
+    rdfs:comment "Validation shape for online enticement incident instances."@en ;
+    sh:property [
+        sh:path icacus:incidentCode ;
+        sh:hasValue "OE" ;
+        rdfs:comment "Online enticement incidents must have OE code."@en ;
+    ] .
+
+# =============================================================================
+# NCMEC REPORT ANNOTATION SHAPES
+# =============================================================================
+
+icacus:NCMECReportAnnotationShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:NCMECReportAnnotation ;
+    rdfs:label "NCMEC Report Annotation Shape"@en ;
+    rdfs:comment "Validation shape for NCMEC report annotation instances."@en ;
+    sh:property [
+        sh:path uco-core:name ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 3 ;
+        sh:maxLength 100 ;
+        rdfs:comment "Annotation name should be 3-100 characters when specified."@en ;
+    ] ;
+    sh:property [
+        sh:path uco-core:description ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 10 ;
+        sh:maxLength 500 ;
+        rdfs:comment "Annotation description should be 10-500 characters when specified."@en ;
+    ] .
+
+icacus:SextortionAnnotationShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:SextortionAnnotation ;
+    rdfs:label "Sextortion Annotation Shape"@en ;
+    rdfs:comment "Validation shape for sextortion annotation instances."@en ;
+    sh:property [
+        sh:path uco-core:name ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:pattern ".*[Ss]extortion.*" ;
+        rdfs:comment "Sextortion annotation name should contain 'sextortion'."@en ;
+    ] .
+
+icacus:CSAMSolicitationAnnotationShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:CSAMSolicitationAnnotation ;
+    rdfs:label "CSAM Solicitation Annotation Shape"@en ;
+    rdfs:comment "Validation shape for CSAM solicitation annotation instances."@en ;
+    sh:property [
+        sh:path uco-core:name ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:pattern ".*(CSAM|[Ss]olicitation).*" ;
+        rdfs:comment "CSAM solicitation annotation name should contain 'CSAM' or 'solicitation'."@en ;
+    ] .
+
+icacus:MinorToMinorInteractionAnnotationShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:MinorToMinorInteractionAnnotation ;
+    rdfs:label "Minor to Minor Interaction Annotation Shape"@en ;
+    rdfs:comment "Validation shape for minor to minor interaction annotation instances."@en ;
+    sh:property [
+        sh:path uco-core:name ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:pattern ".*[Mm]inor.*" ;
+        rdfs:comment "Minor to minor annotation name should contain 'minor'."@en ;
+    ] .
+
+icacus:SpamAnnotationShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:SpamAnnotation ;
+    rdfs:label "Spam Annotation Shape"@en ;
+    rdfs:comment "Validation shape for spam annotation instances."@en ;
+    sh:property [
+        sh:path uco-core:name ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:pattern ".*[Ss]pam.*" ;
+        rdfs:comment "Spam annotation name should contain 'spam'."@en ;
+    ] .
+
+# =============================================================================
+# CYBERTIP ANALYSIS SHAPES
+# =============================================================================
+
+icacus:CyberTipAnalysisShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:CyberTipAnalysis ;
+    rdfs:label "CyberTip Analysis Shape"@en ;
+    rdfs:comment "Validation shape for CyberTip analysis instances."@en ;
+    sh:property [
+        sh:path uco-core:startTime ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        rdfs:comment "Analysis must specify start time."@en ;
+    ] ;
+    sh:property [
+        sh:path uco-core:endTime ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        rdfs:comment "Analysis may specify end time."@en ;
+    ] ;
+    sh:property [
+        sh:path icacus:analysisConfidence ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ("high" "medium" "low") ;
+        rdfs:comment "Analysis confidence must be from the allowed list."@en ;
+    ] ;
+    sh:property [
+        sh:path icacus:analysisOf ;
+        sh:class icacus:NCMECCybertipReport ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        rdfs:comment "Analysis must be of exactly one NCMEC tip."@en ;
+    ] ;
+    sh:property [
+        sh:path uco-action:performer ;
+        sh:class uco-identity:Person ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        rdfs:comment "Analysis must specify performing analyst."@en ;
+    ] .
+
+icacus:PossessionIndicatorShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:PossessionIndicator ;
+    rdfs:label "Possession Indicator Shape"@en ;
+    rdfs:comment "Validation shape for possession indicator instances."@en ;
+    sh:property [
+        sh:path icacus:indicatorStrength ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ("strong" "moderate" "weak") ;
+        rdfs:comment "Indicator strength must be from the allowed list."@en ;
+    ] .
+
+icacus:TransferDetectionShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:TransferDetection ;
+    rdfs:label "Transfer Detection Shape"@en ;
+    rdfs:comment "Validation shape for transfer detection instances."@en ;
+    sh:property [
+        sh:path icacus:transferVolume ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.001 ;
+        sh:maxInclusive 100000.0 ;
+        rdfs:comment "Transfer volume must be between 0.001 and 100000 MB."@en ;
+    ] ;
+    sh:property [
+        sh:path icacus:transferFrequency ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ("single" "multiple" "ongoing") ;
+        rdfs:comment "Transfer frequency must be from the allowed list."@en ;
+    ] .
+
+icacus:AccountLinkingShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:AccountLinking ;
+    rdfs:label "Account Linking Shape"@en ;
+    rdfs:comment "Validation shape for account linking instances."@en ;
+    sh:property [
+        sh:path icacus:accountConfidence ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ("verified" "probable" "possible") ;
+        rdfs:comment "Account confidence must be from the allowed list."@en ;
+    ] ;
+    sh:property [
+        sh:path icacus:linkedToAccount ;
+        sh:class uco-observable:DigitalAccount ;
+        sh:minCount 1 ;
+        rdfs:comment "Account linking must link to at least one digital account."@en ;
+    ] .
+
+icacus:PhoneNumberTraceShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:PhoneNumberTrace ;
+    rdfs:label "Phone Number Trace Shape"@en ;
+    rdfs:comment "Validation shape for phone number trace instances."@en ;
+    sh:property [
+        sh:path icacus:phoneVerificationStatus ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ("verified" "unverified" "disconnected") ;
+        rdfs:comment "Phone verification status must be from the allowed list."@en ;
+    ] ;
+    sh:property [
+        sh:path icacus:tracedToPhone ;
+        sh:class uco-observable:PhoneNumber ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        rdfs:comment "Phone trace must trace to exactly one phone number."@en ;
+    ] .
+
+icacus:ContentIdentificationShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:ContentIdentification ;
+    rdfs:label "Content Identification Shape"@en ;
+    rdfs:comment "Validation shape for content identification instances."@en ;
+    sh:property [
+        sh:path icacus:identifiedContent ;
+        sh:class uco-observable:DigitalArtifact ;
+        sh:minCount 1 ;
+        rdfs:comment "Content identification must identify at least one digital artifact."@en ;
+    ] .
+
+# =============================================================================
+# PLATFORM COOPERATION SHAPES
+# =============================================================================
+
+icacus:PlatformCooperationShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:PlatformCooperation ;
+    rdfs:label "Platform Cooperation Shape"@en ;
+    rdfs:comment "Validation shape for platform cooperation instances."@en ;
+    sh:property [
+        sh:path icacus:platformResponseTime ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.1 ;
+        sh:maxInclusive 8760.0 ;
+        rdfs:comment "Platform response time must be between 0.1 and 8760 hours."@en ;
+    ] ;
+    sh:property [
+        sh:path icacus:cooperationLevel ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ("full" "partial" "limited" "none") ;
+        rdfs:comment "Cooperation level must be from the allowed list."@en ;
+    ] ;
+    sh:property [
+        sh:path icacus:dataProvided ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 5 ;
+        sh:in ("account_info" "user_data" "content" "metadata" "logs") ;
+        rdfs:comment "Data provided must be from the allowed list."@en ;
+    ] ;
+    sh:property [
+        sh:path icacus:involvesPlatform ;
+        sh:class uco-observable:DigitalService ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        rdfs:comment "Platform cooperation must involve exactly one digital service."@en ;
+    ] .
+
+# =============================================================================
+# INVESTIGATION TRIGGER SHAPES
+# =============================================================================
+
+icacus:InvestigationTriggerShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:InvestigationTrigger ;
+    rdfs:label "Investigation Trigger Shape"@en ;
+    rdfs:comment "Validation shape for investigation trigger instances."@en ;
+    sh:property [
+        sh:path uco-core:startTime ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        rdfs:comment "Investigation trigger must specify start time."@en ;
+    ] ;
+    sh:property [
+        sh:path icacus:triggerCriteria ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 5 ;
+        sh:in ("content_volume" "suspect_profile" "victim_age" "repeat_offender" "imminent_danger") ;
+        rdfs:comment "Trigger criteria must be from the allowed list."@en ;
+    ] ;
+    sh:property [
+        sh:path icacus:urgencyLevel ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ("immediate" "urgent" "routine") ;
+        rdfs:comment "Urgency level must be from the allowed list."@en ;
+    ] ;
+    sh:property [
+        sh:path icacus:referralJurisdiction ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ("federal" "state" "local" "international") ;
+        rdfs:comment "Referral jurisdiction must be from the allowed list."@en ;
+    ] ;
+    sh:property [
+        sh:path icacus:triggeredBy ;
+        sh:class icacus:NCMECCybertipReport ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        rdfs:comment "Investigation trigger must be triggered by exactly one NCMEC tip."@en ;
+    ] .
+
+icacus:TaskForceReferralShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:TaskForceReferral ;
+    rdfs:label "Task Force Referral Shape"@en ;
+    rdfs:comment "Validation shape for task force referral instances."@en ;
+    sh:property [
+        sh:path icacus:referralJurisdiction ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ("state" "local") ;
+        rdfs:comment "Task force referrals should be to state or local jurisdiction."@en ;
+    ] .
+
+icacus:LocalLawEnforcementReferralShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:LocalLawEnforcementReferral ;
+    rdfs:label "Local Law Enforcement Referral Shape"@en ;
+    rdfs:comment "Validation shape for local law enforcement referral instances."@en ;
+    sh:property [
+        sh:path icacus:referralJurisdiction ;
+        sh:hasValue "local" ;
+        rdfs:comment "Local law enforcement referrals must have local jurisdiction."@en ;
+    ] .
+
+icacus:FederalReferralShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:FederalReferral ;
+    rdfs:label "Federal Referral Shape"@en ;
+    rdfs:comment "Validation shape for federal referral instances."@en ;
+    sh:property [
+        sh:path icacus:referralJurisdiction ;
+        sh:hasValue "federal" ;
+        rdfs:comment "Federal referrals must have federal jurisdiction."@en ;
+    ] .
+
+# =============================================================================
+# TIP PROCESSING SHAPES
+# =============================================================================
+
+icacus:TipProcessingShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:TipProcessing ;
+    rdfs:label "Tip Processing Shape"@en ;
+    rdfs:comment "Validation shape for tip processing instances."@en ;
+    sh:property [
+        sh:path uco-core:startTime ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        rdfs:comment "Tip processing must specify start time."@en ;
+    ] ;
+    sh:property [
+        sh:path uco-core:endTime ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        rdfs:comment "Tip processing may specify end time."@en ;
+    ] ;
+    sh:property [
+        sh:path icacus:processingTime ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.1 ;
+        sh:maxInclusive 720.0 ;
+        rdfs:comment "Processing time must be between 0.1 and 720 hours (30 days)."@en ;
+    ] ;
+    sh:property [
+        sh:path icacus:processedTip ;
+        sh:class icacus:NCMECCybertipReport ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        rdfs:comment "Tip processing must process exactly one NCMEC tip."@en ;
+    ] .
+
+icacus:TipPrioritizationShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:TipPrioritization ;
+    rdfs:label "Tip Prioritization Shape"@en ;
+    rdfs:comment "Validation shape for tip prioritization instances."@en ;
+    sh:property [
+        sh:path icacus:priorityLevel ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ("critical" "high" "medium" "low") ;
+        rdfs:comment "Priority level must be specified from the allowed list."@en ;
+    ] .
+
+icacus:TipValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:TipValidation ;
+    rdfs:label "Tip Validation Shape"@en ;
+    rdfs:comment "Validation shape for tip validation instances."@en ;
+    sh:property [
+        sh:path icacus:validationStatus ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ("validated" "partially_validated" "not_validated") ;
+        rdfs:comment "Validation status must be specified from the allowed list."@en ;
+    ] .
+
+icacus:TipEnrichmentShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:TipEnrichment ;
+    rdfs:label "Tip Enrichment Shape"@en ;
+    rdfs:comment "Validation shape for tip enrichment instances."@en ;
+    sh:property [
+        sh:path icacus:enrichmentType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 5 ;
+        sh:in ("geographic" "demographic" "technical" "behavioral" "historical") ;
+        rdfs:comment "Enrichment type must be specified from the allowed list."@en ;
+    ] .
+
+# =============================================================================
+# CROSS-REFERENCE VALIDATION SHAPES
+# =============================================================================
+
+icacus:ReportIncidentTypeCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:NCMECCybertipReport ;
+    rdfs:label "Report Incident Type Cross Reference Shape"@en ;
+    rdfs:comment "Validates that NCMEC reports have appropriate incident types."@en ;
+    sh:sparql [
+        sh:message "NCMEC report should have valid incident type relationship."@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icacus" ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/icac/us/ncmec#"^^xsd:anyURI ;
+            ]
+        ] ;
+        sh:select """
+            SELECT $this WHERE {
+                $this a icacus:NCMECCybertipReport .
+                FILTER NOT EXISTS {
+                    $this icacus:hasNCMECIncidentType ?incidentType .
+                    ?incidentType a icacus:NCMECIncidentType .
+                }
+            }
+        """ ;
+    ] .
+
+icacus:AnalysisReportCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:CyberTipAnalysis ;
+    rdfs:label "Analysis Report Cross Reference Shape"@en ;
+    rdfs:comment "Validates that tip analysis references valid reports."@en ;
+    sh:sparql [
+        sh:message "Tip analysis should analyze valid NCMEC reports."@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icacus" ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/icac/us/ncmec#"^^xsd:anyURI ;
+            ]
+        ] ;
+        sh:select """
+            SELECT $this WHERE {
+                $this a icacus:CyberTipAnalysis .
+                FILTER NOT EXISTS {
+                    $this icacus:analysisOf ?report .
+                    ?report a icacus:NCMECCybertipReport .
+                }
+            }
+        """ ;
+    ] .
+
+icacus:TriggerInvestigationCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:InvestigationTrigger ;
+    rdfs:label "Trigger Investigation Cross Reference Shape"@en ;
+    rdfs:comment "Validates that investigation triggers result in investigations."@en ;
+    sh:sparql [
+        sh:message "Investigation trigger should result in actual investigation."@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icacus" ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/icac/us/ncmec#"^^xsd:anyURI ;
+            ] ;
+            sh:declare [
+                sh:prefix "icac" ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/icac#"^^xsd:anyURI ;
+            ]
+        ] ;
+        sh:select """
+            SELECT $this WHERE {
+                $this a icacus:InvestigationTrigger .
+                FILTER NOT EXISTS {
+                    $this icacus:resultedInInvestigation ?investigation .
+                    ?investigation a icac:Investigation .
+                }
+            }
+        """ ;
+    ] .
+
+icacus:PlatformCooperationCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:PlatformCooperation ;
+    rdfs:label "Platform Cooperation Cross Reference Shape"@en ;
+    rdfs:comment "Validates that platform cooperation involves digital services."@en ;
+    sh:sparql [
+        sh:message "Platform cooperation should involve digital services."@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icacus" ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/icac/us/ncmec#"^^xsd:anyURI ;
+            ] ;
+            sh:declare [
+                sh:prefix "uco-observable" ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/uco/observable#"^^xsd:anyURI ;
+            ]
+        ] ;
+        sh:select """
+            SELECT $this WHERE {
+                $this a icacus:PlatformCooperation .
+                FILTER NOT EXISTS {
+                    $this icacus:involvesPlatform ?platform .
+                    ?platform a uco-observable:DigitalService .
+                }
+            }
+        """ ;
+    ] .
+
+# =============================================================================
+# TEMPORAL VALIDATION SHAPES
+# =============================================================================
+
+icacus:TemporalValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:CyberTipAnalysis ,
+                   icacus:TipProcessing ,
+                   icacus:InvestigationTrigger ;
+    rdfs:label "Temporal Validation Shape"@en ;
+    rdfs:comment "Validates temporal consistency for NCMEC operations."@en ;
+    sh:sparql [
+        sh:message "Start time must be before end time when both are specified."@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "uco-core" ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/uco/core#"^^xsd:anyURI ;
+            ]
+        ] ;
+        sh:select """
+            SELECT $this WHERE {
+                $this uco-core:startTime ?start ;
+                      uco-core:endTime ?end .
+                FILTER (?start >= ?end)
+            }
+        """ ;
+    ] .
+
+icacus:ProcessingSequenceValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:InvestigationTrigger ;
+    rdfs:label "Processing Sequence Validation Shape"@en ;
+    rdfs:comment "Validates that investigation triggers occur after tip processing."@en ;
+    sh:sparql [
+        sh:message "Investigation trigger should occur after tip processing."@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icacus" ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/icac/us/ncmec#"^^xsd:anyURI ;
+            ] ;
+            sh:declare [
+                sh:prefix "uco-core" ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/uco/core#"^^xsd:anyURI ;
+            ]
+        ] ;
+        sh:select """
+            SELECT $this WHERE {
+                $this a icacus:InvestigationTrigger ;
+                      uco-core:startTime ?triggerTime ;
+                      icacus:triggeredBy ?tip .
+                ?processing icacus:processedTip ?tip ;
+                           uco-core:endTime ?processTime .
+                FILTER (?triggerTime < ?processTime)
+            }
+        """ ;
+    ] .
+
+# =============================================================================
+# DATA QUALITY SHAPES
+# =============================================================================
+
+icacus:DataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:NCMECCybertipReport ,
+                   icacus:CyberTipAnalysis ,
+                   icacus:InvestigationTrigger ,
+                   icacus:TipProcessing ,
+                   icacus:PlatformCooperation ;
+    rdfs:label "Data Quality Shape"@en ;
+    rdfs:comment "Validates data quality for NCMEC entities."@en ;
+    sh:property [
+        sh:path uco-core:createdTime ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        rdfs:comment "Creation time should be specified when available."@en ;
+    ] ;
+    sh:property [
+        sh:path uco-core:modifiedTime ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        rdfs:comment "Modification time should be specified when available."@en ;
+    ] .
+
+icacus:ConfidenceValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:CyberTipAnalysis ,
+                   icacus:AccountLinking ;
+    rdfs:label "Confidence Validation Shape"@en ;
+    rdfs:comment "Validates confidence level consistency."@en ;
+    sh:sparql [
+        sh:message "High confidence analysis should have supporting evidence."@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icacus" ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/icac/us/ncmec#"^^xsd:anyURI ;
+            ]
+        ] ;
+        sh:select """
+            SELECT $this WHERE {
+                $this icacus:analysisConfidence "high" .
+                FILTER NOT EXISTS {
+                    $this icacus:supportedBy ?cooperation .
+                    ?cooperation a icacus:PlatformCooperation .
+                }
+            }
+        """ ;
+    ] .
+
+icacus:UrgencyConsistencyValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:InvestigationTrigger ;
+    rdfs:label "Urgency Consistency Validation Shape"@en ;
+    rdfs:comment "Validates urgency level consistency with trigger criteria."@en ;
+    sh:sparql [
+        sh:message "Immediate urgency should have appropriate trigger criteria."@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icacus" ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/icac/us/ncmec#"^^xsd:anyURI ;
+            ]
+        ] ;
+        sh:select """
+            SELECT $this WHERE {
+                $this icacus:urgencyLevel "immediate" .
+                FILTER NOT EXISTS {
+                    $this icacus:triggerCriteria ?criteria .
+                    FILTER (?criteria IN ("imminent_danger", "victim_age"))
+                }
+            }
+        """ ;
+    ] .
+
+icacus:ProcessingTimeValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:TipProcessing ;
+    rdfs:label "Processing Time Validation Shape"@en ;
+    rdfs:comment "Validates processing time reasonableness."@en ;
+    sh:sparql [
+        sh:message "Processing time should be consistent with start and end times."@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icacus" ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/icac/us/ncmec#"^^xsd:anyURI ;
+            ] ;
+            sh:declare [
+                sh:prefix "uco-core" ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/uco/core#"^^xsd:anyURI ;
+            ]
+        ] ;
+        sh:select """
+            SELECT $this WHERE {
+                $this uco-core:startTime ?start ;
+                      uco-core:endTime ?end ;
+                      icacus:processingTime ?declaredTime .
+                BIND((?end - ?start) / 3600 AS ?actualHours)
+                FILTER (ABS(?actualHours - ?declaredTime) > 1.0)
+            }
+        """ ;
+    ] .
+
+icacus:CooperationLevelValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass icacus:PlatformCooperation ;
+    rdfs:label "Cooperation Level Validation Shape"@en ;
+    rdfs:comment "Validates cooperation level consistency with data provided."@en ;
+    sh:sparql [
+        sh:message "Full cooperation should provide comprehensive data."@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icacus" ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/icac/us/ncmec#"^^xsd:anyURI ;
+            ]
+        ] ;
+        sh:select """
+            SELECT $this WHERE {
+                $this icacus:cooperationLevel "full" .
+                FILTER NOT EXISTS {
+                    $this icacus:dataProvided ?data1 .
+                    $this icacus:dataProvided ?data2 .
+                    FILTER (?data1 != ?data2)
+                }
+            }
+        """ ;
+    ] . 

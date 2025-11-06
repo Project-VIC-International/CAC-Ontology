@@ -1,0 +1,253 @@
+# Find Platform Cooperation Analytics - Enhanced for ICAC v0.9.0
+# 
+# This query demonstrates the integration of forensics, detection, platforms, and social media evidence ontologies
+# by finding investigations that involve specific platform cooperation patterns,
+# detection results, forensic evidence, and cross-platform correlation.
+#
+# Returns comprehensive analytics on platform cooperation effectiveness,
+# detection accuracy, forensic evidence recovery success rates, and social media evidence patterns.
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core#>
+PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action#>
+PREFIX uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity#>
+PREFIX icac-core: <https://ontology.unifiedcyberontology.org/icac#>
+PREFIX icac-forensics: <https://ontology.unifiedcyberontology.org/icac/forensics#>
+PREFIX icac-detection: <https://ontology.unifiedcyberontology.org/icac/detection#>
+PREFIX icac-platforms: <https://ontology.unifiedcyberontology.org/icac/platforms#>
+PREFIX icac-taskforce: <https://ontology.unifiedcyberontology.org/icac/taskforce#>
+PREFIX icac-sentencing: <https://ontology.unifiedcyberontology.org/icac/sentencing#>
+PREFIX hotlines-core: <https://ontology.unifiedcyberontology.org/hotlines/2025/core#>
+
+SELECT DISTINCT
+    ?investigation
+    ?investigationLabel
+    ?platform
+    ?platformType
+    ?esp
+    ?espHeadquarters
+    ?detectionConfidence
+    ?sarClassification
+    ?forensicMethod
+    ?preservationPeriod
+    ?recoveredFiles
+    
+    # Enhanced Social Media Evidence Features
+    ?socialMediaEvidence
+    ?crossPlatformMatches
+    ?platformsInvestigated
+    ?deviceCorrelation
+    ?searchWarrantRequired
+    
+    # Task Force Coordination
+    ?taskForceInvolved
+    ?multiAgencyCoordination
+    ?legalProcessUsed
+    
+    # Cooperation Effectiveness Metrics
+    ?responseTimeFrame
+    ?emergencyDisclosureCapable
+    ?dataRetentionPeriod
+    
+WHERE {
+    # Main investigation
+    ?investigation rdf:type icac-core:ICACInvestigation ;
+                  rdfs:label ?investigationLabel ;
+                  icac-core:hasStep ?receiveStep .
+    
+    # Initial cybertip reception
+    ?receiveStep rdf:type icac-core:ReceiveCybertipAction ;
+                uco-core:object ?report .
+    
+    # Platform and ESP information
+    ?report hotlines-core:reportedBy ?esp .
+    ?platform icac-platforms:operatedBy ?esp ;
+             rdf:type ?platformClass ;
+             rdfs:label ?platformLabel ;
+             icac-platforms:platformType ?platformType .
+    
+    ?esp rdf:type icac-platforms:ElectronicServiceProvider ;
+        rdfs:label ?espLabel ;
+        icac-platforms:headquarteredIn ?espHeadquarters .
+    
+    # Detection information
+    OPTIONAL {
+        ?investigation icac-core:hasStep ?detectionStep .
+        ?detectionStep rdf:type icac-detection:AutomatedDetectionAction ;
+                      uco-core:result ?detectionResult .
+        
+        ?detectionResult icac-detection:confidenceScore ?detectionConfidence ;
+                        icac-detection:sarClassification ?sarClass .
+        
+        ?sarClass rdfs:label ?sarClassification .
+    }
+    
+    # Forensic acquisition information
+    OPTIONAL {
+        ?investigation icac-core:hasStep ?forensicStep .
+        ?forensicStep rdf:type icac-forensics:ForensicAcquisitionAction ;
+                     icac-forensics:acquisitionMethod ?forensicMethod .
+    }
+    
+    # Platform cooperation information
+    OPTIONAL {
+        ?investigation icac-core:hasStep ?legalStep .
+        ?legalStep rdf:type icac-core:LegalProcessAction ;
+                  uco-core:result ?preservationAction .
+        
+        ?preservationAction rdf:type icac-platforms:DataPreservationAction ;
+                           icac-platforms:preservationPeriod ?preservationPeriod .
+    }
+    
+    # Recovered evidence information
+    OPTIONAL {
+        ?investigation icac-core:hasStep ?analysisStep .
+        ?analysisStep rdf:type icac-forensics:MetadataExtractionAction ;
+                     uco-core:result ?recoveredEvidence .
+        
+        ?recoveredEvidence rdf:type icac-forensics:RecoveredFile ;
+                          rdfs:label ?recoveredFiles .
+    }
+    
+    # Enhanced Social Media Evidence Analysis
+    OPTIONAL {
+        SELECT ?investigation 
+               (COUNT(DISTINCT ?socialMedia) AS ?socialMediaEvidence)
+               (COUNT(DISTINCT ?crossPlatform) AS ?crossPlatformMatches)
+               (MAX(?platformCount) AS ?platformsInvestigated)
+               (COUNT(DISTINCT ?deviceCorr) AS ?deviceCorrelation)
+               (SAMPLE(?searchWarrant) AS ?searchWarrantRequired)
+        WHERE {
+            ?socialMedia rdf:type icac-platforms:SocialMediaEvidence ;
+                icac-platforms:foundOnSocialMedia true .
+            
+            OPTIONAL {
+                ?crossPlatform rdf:type icac-platforms:CrossPlatformEvidence ;
+                    icac-platforms:platformsInvestigated ?platformCount .
+            }
+            
+            OPTIONAL {
+                ?socialMedia icac-platforms:correlatesWithDevice ?deviceCorr .
+            }
+            
+            OPTIONAL {
+                ?socialMedia icac-platforms:searchWarrantRequired ?searchWarrant .
+            }
+        }
+        GROUP BY ?investigation
+    }
+    
+    # Task Force Coordination
+    OPTIONAL {
+        ?taskForceInvolved rdf:type icac-taskforce:ICACtaskForce ;
+            icac-taskforce:handledInvestigation ?investigation .
+        
+        OPTIONAL {
+            ?multiAgency rdf:type icac-platforms:PlatformInvestigationCoordination ;
+                icac-platforms:coordinatedBy ?taskForceInvolved .
+            BIND("COORDINATED" AS ?multiAgencyCoordination)
+        }
+    }
+    
+    # Legal Process Analysis
+    OPTIONAL {
+        ?evidence rdf:type icac-platforms:SocialMediaEvidence ;
+            icac-platforms:legalProcessUsed ?legalProcessUsed .
+    }
+    
+    # Platform Cooperation Capabilities
+    OPTIONAL {
+        ?platform icac-platforms:hasLegalComplianceCapability ?compliance .
+        ?compliance icac-platforms:responseTimeFrame ?responseTimeFrame ;
+                   icac-platforms:emergencyDisclosureCapable ?emergencyDisclosureCapable .
+    }
+    
+    OPTIONAL {
+        ?platform icac-platforms:hasDataRetentionPolicy ?retention .
+        ?retention icac-platforms:userDataRetentionPeriod ?dataRetentionPeriod .
+    }
+    
+    # Filter constraints (can be customized)
+    FILTER(?detectionConfidence >= 0.80 || !BOUND(?detectionConfidence))
+    FILTER(?preservationPeriod >= 30 || !BOUND(?preservationPeriod))
+    FILTER(?socialMediaEvidence > 0 || !BOUND(?socialMediaEvidence))
+    
+    # Bind display variables
+    BIND(COALESCE(?platformLabel, "Unknown Platform") as ?platform)
+}
+ORDER BY DESC(?detectionConfidence) DESC(?socialMediaEvidence) ?investigationLabel
+
+# Additional query for platform cooperation effectiveness metrics
+;
+
+SELECT 
+    ?platformType
+    (COUNT(DISTINCT ?investigation) AS ?investigationCount)
+    (AVG(?detectionConfidence) AS ?avgDetectionConfidence)
+    (AVG(?preservationPeriod) AS ?avgPreservationPeriod)
+    (AVG(?responseTimeFrame) AS ?avgResponseTime)
+    (AVG(?socialMediaEvidence) AS ?avgSocialMediaEvidence)
+    (AVG(?crossPlatformMatches) AS ?avgCrossPlatformMatches)
+    (AVG(?platformsInvestigated) AS ?avgPlatformsPerCase)
+    (AVG(CASE WHEN ?emergencyDisclosureCapable = true THEN 1.0 ELSE 0.0 END) AS ?emergencyCapabilityRate)
+    (AVG(CASE WHEN ?searchWarrantRequired = true THEN 1.0 ELSE 0.0 END) AS ?searchWarrantRequiredRate)
+    (AVG(?dataRetentionPeriod) AS ?avgDataRetentionDays)
+
+WHERE {
+    ?investigation rdf:type icac-core:ICACInvestigation .
+    
+    ?platform icac-platforms:platformType ?platformType .
+    
+    OPTIONAL {
+        ?detectionResult icac-detection:confidenceScore ?detectionConfidence .
+    }
+    
+    OPTIONAL {
+        ?preservationAction icac-platforms:preservationPeriod ?preservationPeriod .
+    }
+    
+    OPTIONAL {
+        ?compliance icac-platforms:responseTimeFrame ?responseTimeFrame ;
+                   icac-platforms:emergencyDisclosureCapable ?emergencyDisclosureCapable .
+    }
+    
+    OPTIONAL {
+        ?retention icac-platforms:userDataRetentionPeriod ?dataRetentionPeriod .
+    }
+    
+    # Social Media Evidence Metrics
+    OPTIONAL {
+        SELECT ?investigation 
+               (COUNT(DISTINCT ?socialMedia) AS ?socialMediaEvidence)
+               (COUNT(DISTINCT ?crossPlatform) AS ?crossPlatformMatches)
+               (MAX(?platformCount) AS ?platformsInvestigated)
+               (SAMPLE(?searchWarrant) AS ?searchWarrantRequired)
+        WHERE {
+            ?socialMedia rdf:type icac-platforms:SocialMediaEvidence ;
+                icac-platforms:foundOnSocialMedia true .
+            
+            OPTIONAL {
+                ?crossPlatform rdf:type icac-platforms:CrossPlatformEvidence ;
+                    icac-platforms:platformsInvestigated ?platformCount .
+            }
+            
+            OPTIONAL {
+                ?socialMedia icac-platforms:searchWarrantRequired ?searchWarrant .
+            }
+        }
+        GROUP BY ?investigation
+    }
+}
+GROUP BY ?platformType
+ORDER BY DESC(?avgDetectionConfidence) DESC(?investigationCount)
+
+# Expected results show:
+# 1. Investigation details with enhanced platform context and social media evidence
+# 2. Detection confidence and classification results with cross-platform correlation
+# 3. Forensic methods and evidence recovery with device-social media correlation
+# 4. Platform cooperation metrics including emergency capabilities and response times
+# 5. Task force coordination and multi-agency investigation support
+# 6. Cross-platform evidence analysis and search warrant requirements
+# 7. Effectiveness metrics by platform type showing cooperation patterns 

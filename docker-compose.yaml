@@ -1,0 +1,173 @@
+version: '3.8'
+
+services:
+  fuseki:
+    image: stain/jena-fuseki:4.10.0
+    container_name: icac_fuseki
+    ports:
+      - "3030:3030"
+    volumes:
+      - ./:/fuseki/load
+    environment:
+      # Load all 23 core ontology modules and shapes files
+      - FUSEKI_DATASET_1=--file=/fuseki/load/icac-core.ttl --file=/fuseki/load/hotlines-core.ttl --file=/fuseki/load/icac-us-ncmec.ttl --file=/fuseki/load/icac-international.ttl --file=/fuseki/load/icac-training.ttl --file=/fuseki/load/icac-prevention.ttl --file=/fuseki/load/icac-legal-harmonization.ttl --file=/fuseki/load/icac-production.ttl --file=/fuseki/load/icac-custodial.ttl --file=/fuseki/load/icac-grooming.ttl --file=/fuseki/load/icac-sextortion.ttl --file=/fuseki/load/icac-athletic-exploitation.ttl --file=/fuseki/load/icac-undercover.ttl --file=/fuseki/load/icac-physical-evidence.ttl --file=/fuseki/load/icac-tactical.ttl --file=/fuseki/load/icac-multi-jurisdiction.ttl --file=/fuseki/load/icac-stranger-abduction.ttl --file=/fuseki/load/icac-street-recruitment.ttl --file=/fuseki/load/icac-forensics.ttl --file=/fuseki/load/icac-detection.ttl --file=/fuseki/load/icac-platforms.ttl --file=/fuseki/load/icac-victim-impact.ttl --file=/fuseki/load/icac-taskforce.ttl --file=/fuseki/load/icac-sentencing.ttl --file=/fuseki/load/icac-specialized-units.ttl --file=/fuseki/load/icac-sex-offender-registry.ttl --file=/fuseki/load/icac-asset-forfeiture.ttl --file=/fuseki/load/icac-trafficking-shapes.ttl --file=/fuseki/load/icac-educational-exploitation.ttl --file=/fuseki/load/icac-educational-shapes.ttl --file=/fuseki/load/icac-athletic-exploitation-shapes.ttl --file=/fuseki/load/icac-ai-generated-content.ttl --file=/fuseki/load/icac-platform-infrastructure.ttl /icac
+      # Update these credentials for using in production
+      - ADMIN_PASSWORD=pw123
+      - FUSEKI_JVM_ARGS=-Xmx4g
+    restart: unless-stopped
+
+  pyshacl:
+    image: python:3.9-slim
+    container_name: icac_pyshacl
+    working_dir: /app
+    volumes:
+      - ./:/app/ontology/icac
+    command: >
+      sh -c "pip install pyshacl rdflib && \
+             echo '=== Core Ontology Validation ===' && \
+             echo 'Validating hotlines-core.ttl...' && \
+             pyshacl -s /app/ontology/icac/hotlines-core-shapes.ttl -d /app/ontology/icac/hotlines-core.ttl -f human && \
+             echo 'Validating icac-core.ttl...' && \
+             pyshacl -s /app/ontology/icac/icac-core-shapes.ttl -d /app/ontology/icac/icac-core.ttl -f human && \
+             echo 'Validating icac-forensics.ttl...' && \
+             pyshacl -s /app/ontology/icac/icac-forensics-shapes.ttl -d /app/ontology/icac/icac-forensics.ttl -f human && \
+             echo 'Validating icac-educational-exploitation.ttl...' && \
+             pyshacl -s /app/ontology/icac/icac-educational-shapes.ttl -d /app/ontology/icac/icac-educational-exploitation.ttl -f human && \
+             echo 'Validating icac-sex-trafficking.ttl...' && \
+             pyshacl -s /app/ontology/icac/icac-trafficking-shapes.ttl -d /app/ontology/icac/icac-sex-trafficking.ttl -f human && \
+             echo 'Validating icac-athletic-exploitation.ttl...' && \
+             pyshacl -s /app/ontology/icac/icac-athletic-exploitation-shapes.ttl -d /app/ontology/icac/icac-athletic-exploitation.ttl -f human && \
+             echo 'Validating icac-production.ttl...' && \
+             pyshacl -s /app/ontology/icac/icac-production-shapes.ttl -d /app/ontology/icac/icac-production.ttl -f human && \
+             echo 'Validating icac-custodial.ttl...' && \
+             pyshacl -s /app/ontology/icac/icac-custodial-shapes.ttl -d /app/ontology/icac/icac-custodial.ttl -f human && \
+             echo 'Validating icac-grooming.ttl...' && \
+             pyshacl -s /app/ontology/icac/icac-grooming-shapes.ttl -d /app/ontology/icac/icac-grooming.ttl -f human && \
+             echo 'Validating icac-sextortion.ttl...' && \
+             pyshacl -s /app/ontology/icac/icac-sextortion-shapes.ttl -d /app/ontology/icac/icac-sextortion.ttl -f human && \
+             echo 'Validating icac-victim-impact.ttl...' && \
+             pyshacl -s /app/ontology/icac/icac-victim-impact-shapes.ttl -d /app/ontology/icac/icac-victim-impact.ttl -f human && \
+             echo 'Validating icac-undercover.ttl...' && \
+             pyshacl -s /app/ontology/icac/icac-undercover-shapes.ttl -d /app/ontology/icac/icac-undercover.ttl -f human && \
+             echo 'Validating icac-specialized-units.ttl...' && \
+             pyshacl -s /app/ontology/icac/icac-specialized-units-shapes.ttl -d /app/ontology/icac/icac-specialized-units.ttl -f human && \
+             echo 'Validating icac-platforms.ttl...' && \
+             pyshacl -s /app/ontology/icac/icac-platforms-shapes.ttl -d /app/ontology/icac/icac-platforms.ttl -f human && \
+             echo 'Validating icac-detection.ttl...' && \
+             pyshacl -s /app/ontology/icac/icac-detection-shapes.ttl -d /app/ontology/icac/icac-detection.ttl -f human && \
+             echo 'Validating icac-sex-offender-registry.ttl...' && \
+             pyshacl -s /app/ontology/icac/icac-sex-offender-registry-shapes.ttl -d /app/ontology/icac/icac-sex-offender-registry.ttl -f human && \
+             echo 'Validating icac-ai-generated-content.ttl...' && \
+             pyshacl -s /app/ontology/icac/icac-ai-generated-content-shapes.ttl -d /app/ontology/icac/icac-ai-generated-content.ttl -f human && \
+             echo 'Validating icac-platform-infrastructure.ttl...' && \
+             pyshacl -s /app/ontology/icac/icac-platform-infrastructure-shapes.ttl -d /app/ontology/icac/icac-platform-infrastructure.ttl -f human && \
+             echo 'Validating icac-international.ttl...' && \
+             pyshacl -s /app/ontology/icac/icac-international-shapes.ttl -d /app/ontology/icac/icac-international.ttl -f human && \
+             echo 'Validating icac-training.ttl...' && \
+             pyshacl -s /app/ontology/icac/icac-training-shapes.ttl -d /app/ontology/icac/icac-training.ttl -f human && \
+             echo 'Validating icac-prevention.ttl...' && \
+             pyshacl -s /app/ontology/icac/icac-prevention-shapes.ttl -d /app/ontology/icac/icac-prevention.ttl -f human && \
+             echo 'Validating icac-legal-harmonization.ttl...' && \
+             pyshacl -s /app/ontology/icac/icac-legal-harmonization-shapes.ttl -d /app/ontology/icac/icac-legal-harmonization.ttl -f human && \
+             echo 'Validating icac-us-ncmec.ttl...' && \
+             pyshacl -s /app/ontology/icac/icac-us-ncmec-shapes.ttl -d /app/ontology/icac/icac-us-ncmec.ttl -f human && \
+             echo '' && \
+             echo '=== Basic Example Validation ===' && \
+             echo 'Validating hotline-lifecycle example...' && \
+             pyshacl -s /app/ontology/icac/hotlines-core-shapes.ttl -d /app/ontology/icac/examples/hotline-lifecycle.ttl -f human && \
+             echo 'Validating investigation-lifecycle example...' && \
+             pyshacl -s /app/ontology/icac/icac-core-shapes.ttl -d /app/ontology/icac/examples/investigation-lifecycle.ttl -f human && \
+             echo 'Validating enhanced-investigation-lifecycle example...' && \
+             pyshacl -s /app/ontology/icac/icac-forensics-shapes.ttl -d /app/ontology/icac/examples/enhanced-investigation-lifecycle.ttl -f human && \
+             echo '' && \
+             echo '=== Athletic Exploitation Validation ===' && \
+             echo 'Validating brooklyn-morton-october-2024 example...' && \
+             pyshacl -s /app/ontology/icac/icac-core-shapes.ttl -d /app/ontology/icac/examples/brooklyn-morton-october-2024-example.ttl -f human && \
+             echo '' && \
+             echo '=== Production Case Validation ===' && \
+             echo 'Validating rhode-island-production-case example...' && \
+             pyshacl -s /app/ontology/icac/icac-core-shapes.ttl -d /app/ontology/icac/examples/rhode-island-production-case.ttl -f human && \
+             echo 'Validating douglas-comprehensive-case example...' && \
+             pyshacl -s /app/ontology/icac/icac-core-shapes.ttl -d /app/ontology/icac/examples/douglas-comprehensive-case.ttl -f human && \
+             echo '' && \
+             echo '=== Multi-Jurisdictional Validation ===' && \
+             echo 'Validating arkansas-operation example...' && \
+             pyshacl -s /app/ontology/icac/icac-core-shapes.ttl -d /app/ontology/icac/examples/arkansas-operation-cyber-highway-safety-check-example.ttl -f human && \
+             echo 'Validating illinois-attorney-general-case example...' && \
+             pyshacl -s /app/ontology/icac/icac-core-shapes.ttl -d /app/ontology/icac/examples/illinois-attorney-general-case-example.ttl -f human && \
+             echo 'Validating international-coordination example...' && \
+             pyshacl -s /app/ontology/icac/icac-core-shapes.ttl -d /app/ontology/icac/examples/international-coordination-example.ttl -f human && \
+             echo '' && \
+             echo '=== Registry and Specialized Operations ===' && \
+             echo 'Validating sex-offender-registry-integration example...' && \
+             pyshacl -s /app/ontology/icac/icac-core-shapes.ttl -d /app/ontology/icac/examples/sex-offender-registry-integration-example.ttl -f human && \
+             echo 'Validating idaho-operation-unhinged example...' && \
+             pyshacl -s /app/ontology/icac/icac-core-shapes.ttl -d /app/ontology/icac/examples/idaho-operation-unhinged-example.ttl -f human && \
+             echo '' && \
+             echo '=== Interstate and Cross-Border Cases ===' && \
+             echo 'Validating buffalo-vermont-case example...' && \
+             pyshacl -s /app/ontology/icac/icac-core-shapes.ttl -d /app/ontology/icac/examples/buffalo-vermont-case-example.ttl -f human && \
+             echo 'Validating hartford-vermont-case example...' && \
+             pyshacl -s /app/ontology/icac/icac-core-shapes.ttl -d /app/ontology/icac/examples/hartford-vermont-case-example.ttl -f human && \
+             echo 'Validating vermont-case example...' && \
+             pyshacl -s /app/ontology/icac/icac-core-shapes.ttl -d /app/ontology/icac/examples/vermont-case-example.ttl -f human && \
+             echo '' && \
+             echo '=== Sextortion and Modern Threats ===' && \
+             echo 'Validating wa-sextortion-case example...' && \
+             pyshacl -s /app/ontology/icac/icac-core-shapes.ttl -d /app/ontology/icac/examples/wa-sextortion-case-example.ttl -f human && \
+             echo '' && \
+             echo '=== International Operations ===' && \
+             echo 'Validating operation-cumberland-ai-csam example...' && \
+             pyshacl -s /app/ontology/icac/icac-core-shapes.ttl -d /app/ontology/icac/examples/operation-cumberland-ai-csam-example.ttl -f human && \
+             echo 'Validating europol-kidflix-operation example...' && \
+             pyshacl -s /app/ontology/icac/icac-core-shapes.ttl -d /app/ontology/icac/examples/europol-kidflix-operation-example.ttl -f human && \
+             echo 'Validating sa-jacet-decade-operation example...' && \
+             pyshacl -s /app/ontology/icac/icac-core-shapes.ttl -d /app/ontology/icac/examples/sa-jacet-decade-operation-example.ttl -f human && \
+             echo '' && \
+             echo '=== Recent Brooklyn Cases ===' && \
+             echo 'Validating brooklyn-fiesco-november-2024 example...' && \
+             pyshacl -s /app/ontology/icac/icac-core-shapes.ttl -d /app/ontology/icac/examples/brooklyn-fiesco-november-2024-example.ttl -f human && \
+             echo 'Validating brooklyn-lee-december-2024 example...' && \
+             pyshacl -s /app/ontology/icac/icac-core-shapes.ttl -d /app/ontology/icac/examples/brooklyn-lee-december-2024-example.ttl -f human && \
+             echo 'Validating brooklyn-teacher-march-2025 example...' && \
+             pyshacl -s /app/ontology/icac/icac-core-shapes.ttl -d /app/ontology/icac/examples/brooklyn-teacher-march-2025-example.ttl -f human && \
+             echo 'Validating brooklyn-trafficking-april-2025 example...' && \
+             pyshacl -s /app/ontology/icac/icac-core-shapes.ttl -d /app/ontology/icac/examples/brooklyn-trafficking-april-2025-example.ttl -f human && \
+             echo 'Validating brooklyn-trafficking-ring example...' && \
+             pyshacl -s /app/ontology/icac/icac-core-shapes.ttl -d /app/ontology/icac/examples/brooklyn-trafficking-ring-example.ttl -f human && \
+             echo '' && \
+             echo '=== Validation Complete ===' && \
+             echo 'All ontologies and examples validated successfully!' && \
+             echo 'Sleeping to keep container alive for inspection if needed.' && sleep infinity"
+    restart: unless-stopped
+
+  robot:
+    image: obolibrary/robot:1.9.4
+    container_name: icac_robot
+    working_dir: /work
+    volumes:
+      - ./:/work
+    command: >
+      sh -c "echo 'ROBOT Framework ready for ontology processing...' && \
+             echo 'Available commands:' && \
+             echo '  robot validate *.ttl' && \
+             echo '  robot merge --input icac-core.ttl --input hotlines-core.ttl --output merged.ttl' && \
+             echo '  robot reason --input icac-core.ttl --reasoner hermit' && \
+             echo '  robot query --input icac-core.ttl --query queries/find_open_reports.rq' && \
+             echo 'Container ready for interactive use.' && sleep infinity"
+    restart: unless-stopped
+
+  graphdb:
+    image: ontotext/graphdb:10.0.2
+    container_name: icac_graphdb
+    ports:
+      - "7200:7200"
+    volumes:
+      - ./:/opt/graphdb/import
+      - graphdb_data:/opt/graphdb/home
+    environment:
+      - GDB_HEAP_SIZE=4g
+    restart: unless-stopped
+
+volumes:
+  graphdb_data: 

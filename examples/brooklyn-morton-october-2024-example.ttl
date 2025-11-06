@@ -1,0 +1,387 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/core#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/identity#> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/observable#> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/action#> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/role#> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/location#> .
+@prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
+@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
+@prefix icac-athletic: <https://ontology.unifiedcyberontology.org/icac/athletic#> .
+@prefix icac-educational: <https://ontology.unifiedcyberontology.org/icac/educational#> .
+@prefix icac-sentencing: <https://ontology.unifiedcyberontology.org/icac/sentencing#> .
+
+# =============================================================================
+# CASE METADATA
+# =============================================================================
+
+<https://example.org/case/brooklyn-morton-october-2024> rdf:type case-investigation:Investigation ;
+    rdfs:label "Brooklyn DA v. Nicolas Morton - Athletic Coaching Exploitation Case"@en ;
+    rdfs:comment "Brooklyn District Attorney case against Nicolas Morton for sexual exploitation of 7 teen baseball players while serving as travel team coach and head coach at The Packer Collegiate Institute, October 2024."@en ;
+    dcterms:identifier "Brooklyn-Morton-2024-10" ;
+    dcterms:created "2024-10-24"^^xsd:date ;
+    case-investigation:investigationStatus "Active" ;
+    uco-core:name "Brooklyn DA v. Nicolas Morton Athletic Coaching Case" .
+
+# =============================================================================
+# DEFENDANT
+# =============================================================================
+
+<https://example.org/person/nicolas-morton> rdf:type uco-identity:Person ;
+    rdfs:label "Nicolas Morton"@en ;
+    uco-core:name "Nicolas Morton" ;
+    uco-identity:birthDate "1993-01-01"^^xsd:date ;  # Approximate based on age 31 in 2024
+    uco-observable:age "31"^^xsd:nonNegativeInteger .
+
+<https://example.org/location/park-slope-brooklyn> rdf:type uco-location:Location ;
+    rdfs:label "Park Slope, Brooklyn"@en ;
+    uco-core:name "Park Slope, Brooklyn" ;
+    uco-location:locality "Brooklyn" ;
+    uco-location:region "New York" ;
+    uco-location:country "United States" .
+
+<https://example.org/person/nicolas-morton> uco-location:residenceOf <https://example.org/location/park-slope-brooklyn> .
+
+# =============================================================================
+# VICTIMS
+# =============================================================================
+
+<https://example.org/person/victim-1> rdf:type uco-identity:Person ;
+    rdfs:label "Victim 1 - Teen Baseball Player"@en ;
+    uco-core:name "Victim 1" ;
+    uco-observable:age "12"^^xsd:nonNegativeInteger .
+
+<https://example.org/person/victim-2> rdf:type uco-identity:Person ;
+    rdfs:label "Victim 2 - Teen Baseball Player"@en ;
+    uco-core:name "Victim 2" ;
+    uco-observable:age "13"^^xsd:nonNegativeInteger .
+
+<https://example.org/person/victim-3> rdf:type uco-identity:Person ;
+    rdfs:label "Victim 3 - Teen Baseball Player"@en ;
+    uco-core:name "Victim 3" ;
+    uco-observable:age "13"^^xsd:nonNegativeInteger .
+
+<https://example.org/person/victim-4> rdf:type uco-identity:Person ;
+    rdfs:label "Victim 4 - Teen Baseball Player"@en ;
+    uco-core:name "Victim 4" ;
+    uco-observable:age "14"^^xsd:nonNegativeInteger .
+
+<https://example.org/person/victim-5> rdf:type uco-identity:Person ;
+    rdfs:label "Victim 5 - Teen Baseball Player"@en ;
+    uco-core:name "Victim 5" ;
+    uco-observable:age "14"^^xsd:nonNegativeInteger .
+
+<https://example.org/person/victim-6> rdf:type uco-identity:Person ;
+    rdfs:label "Victim 6 - Teen Baseball Player"@en ;
+    uco-core:name "Victim 6" ;
+    uco-observable:age "12"^^xsd:nonNegativeInteger .
+
+<https://example.org/person/victim-7> rdf:type uco-identity:Person ;
+    rdfs:label "Victim 7 - Teen Baseball Player"@en ;
+    uco-core:name "Victim 7" ;
+    uco-observable:age "13"^^xsd:nonNegativeInteger .
+
+# =============================================================================
+# INSTITUTIONS AND TEAMS
+# =============================================================================
+
+<https://example.org/organization/packer-collegiate-institute> rdf:type uco-identity:Organization ;
+    rdfs:label "The Packer Collegiate Institute"@en ;
+    uco-core:name "The Packer Collegiate Institute" ;
+    uco-identity:organizationType "Educational Institution" .
+
+<https://example.org/organization/travel-baseball-team> rdf:type uco-identity:Organization ;
+    rdfs:label "Travel Baseball Team"@en ;
+    uco-core:name "Travel Baseball Team" ;
+    uco-identity:organizationType "Athletic Team" .
+
+<https://example.org/location/packer-gym> rdf:type uco-location:Location ;
+    rdfs:label "Packer Collegiate Institute Gymnasium"@en ;
+    uco-core:name "Packer Gym" ;
+    uco-location:locality "Brooklyn" ;
+    uco-location:region "New York" .
+
+<https://example.org/location/brooklyn-ballfields> rdf:type uco-location:Location ;
+    rdfs:label "Brooklyn Ballfields"@en ;
+    uco-core:name "Brooklyn Ballfields" ;
+    uco-location:locality "Brooklyn" ;
+    uco-location:region "New York" .
+
+# =============================================================================
+# COACHING ROLES
+# =============================================================================
+
+<https://example.org/role/travel-team-coach> rdf:type icac-athletic:TravelTeamCoachRole ;
+    rdfs:label "Travel Baseball Team Coach"@en ;
+    uco-core:name "Travel Team Coach" ;
+    icac-athletic:coachingExperience "5"^^xsd:decimal ;
+    icac-athletic:ageGroupCoached "12-14" ;
+    icac-athletic:teamSize "15"^^xsd:nonNegativeInteger .
+
+<https://example.org/role/packer-head-coach> rdf:type icac-athletic:SchoolAthleticCoachRole ;
+    rdfs:label "Packer Collegiate Institute Head Baseball Coach"@en ;
+    uco-core:name "Packer Head Coach" ;
+    icac-athletic:coachingExperience "5"^^xsd:decimal ;
+    icac-athletic:institutionalAffiliation "The Packer Collegiate Institute" ;
+    icac-athletic:ageGroupCoached "12-18" .
+
+<https://example.org/person/nicolas-morton> icac-athletic:holdsCoachingRole <https://example.org/role/travel-team-coach> .
+<https://example.org/person/nicolas-morton> icac-athletic:holdsCoachingRole <https://example.org/role/packer-head-coach> .
+
+# =============================================================================
+# TEAM MEMBERSHIPS
+# =============================================================================
+
+<https://example.org/person/victim-1> icac-athletic:playsOnTeam <https://example.org/organization/travel-baseball-team> .
+<https://example.org/person/victim-2> icac-athletic:playsOnTeam <https://example.org/organization/travel-baseball-team> .
+<https://example.org/person/victim-3> icac-athletic:playsOnTeam <https://example.org/organization/travel-baseball-team> .
+<https://example.org/person/victim-4> icac-athletic:playsOnTeam <https://example.org/organization/travel-baseball-team> .
+<https://example.org/person/victim-5> icac-athletic:playsOnTeam <https://example.org/organization/travel-baseball-team> .
+<https://example.org/person/victim-6> icac-athletic:playsOnTeam <https://example.org/organization/travel-baseball-team> .
+<https://example.org/person/victim-7> icac-athletic:playsOnTeam <https://example.org/organization/travel-baseball-team> .
+
+<https://example.org/person/nicolas-morton> icac-athletic:coachesTeam <https://example.org/organization/travel-baseball-team> .
+
+# =============================================================================
+# ATHLETIC COACHING EXPLOITATION
+# =============================================================================
+
+<https://example.org/exploitation/morton-athletic-coaching> rdf:type icac-athletic:DualCoachingRoleExploitation ;
+    rdfs:label "Morton Athletic Coaching Exploitation"@en ;
+    rdfs:comment "Nicolas Morton's exploitation of 7 teen baseball players using dual coaching authority from travel team and Packer Institute positions."@en ;
+    uco-core:startTime "2023-01-01T00:00:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2024-08-01T00:00:00Z"^^xsd:dateTime ;
+    icac-athletic:sportType "baseball" ;
+    icac-athletic:teamType "travel" ;
+    icac-athletic:practiceFrequency "3"^^xsd:decimal ;
+    icac-athletic:seasonDuration "18"^^xsd:decimal ;
+    icac-athletic:teamSize "7"^^xsd:nonNegativeInteger ;
+    icac-athletic:multipleRoles "2"^^xsd:nonNegativeInteger .
+
+<https://example.org/exploitation/morton-athletic-coaching> icac-athletic:exploitsAthleticAuthority <https://example.org/role/travel-team-coach> .
+<https://example.org/exploitation/morton-athletic-coaching> icac-athletic:exploitsAthleticAuthority <https://example.org/role/packer-head-coach> .
+
+# Target all victims
+<https://example.org/exploitation/morton-athletic-coaching> icac-athletic:targetsTeamMember <https://example.org/person/victim-1> .
+<https://example.org/exploitation/morton-athletic-coaching> icac-athletic:targetsTeamMember <https://example.org/person/victim-2> .
+<https://example.org/exploitation/morton-athletic-coaching> icac-athletic:targetsTeamMember <https://example.org/person/victim-3> .
+<https://example.org/exploitation/morton-athletic-coaching> icac-athletic:targetsTeamMember <https://example.org/person/victim-4> .
+<https://example.org/exploitation/morton-athletic-coaching> icac-athletic:targetsTeamMember <https://example.org/person/victim-5> .
+<https://example.org/exploitation/morton-athletic-coaching> icac-athletic:targetsTeamMember <https://example.org/person/victim-6> .
+<https://example.org/exploitation/morton-athletic-coaching> icac-athletic:targetsTeamMember <https://example.org/person/victim-7> .
+
+# =============================================================================
+# PHYSICAL TRAINING COERCION
+# =============================================================================
+
+<https://example.org/coercion/conditioning-exposure> rdf:type icac-athletic:ConditioningCoercion ;
+    rdfs:label "Conditioning Exercise Exposure Coercion"@en ;
+    rdfs:comment "Use of running and exhaustive drills with requirement to expose themselves to stop exercises."@en ;
+    icac-athletic:conditioningType "running_drills" ;
+    icac-athletic:exhaustionLevel "severe" .
+
+<https://example.org/coercion/exhaustion-compliance> rdf:type icac-athletic:ExhaustionBasedCoercion ;
+    rdfs:label "Physical Exhaustion Compliance Coercion"@en ;
+    rdfs:comment "Physical exhaustion to reduce resistance and force compliance with exposure demands."@en ;
+    icac-athletic:exhaustionLevel "extreme" .
+
+<https://example.org/exploitation/morton-athletic-coaching> icac-athletic:usesPhysicalTraining <https://example.org/coercion/conditioning-exposure> .
+<https://example.org/exploitation/morton-athletic-coaching> icac-athletic:usesPhysicalTraining <https://example.org/coercion/exhaustion-compliance> .
+
+# =============================================================================
+# TEAM DYNAMICS EXPLOITATION
+# =============================================================================
+
+<https://example.org/coercion/team-membership-threats> rdf:type icac-athletic:TeamMembershipCoercion ;
+    rdfs:label "Team Membership Threat Coercion"@en ;
+    rdfs:comment "Threats to cut players from team if they didn't comply with sexual demands."@en ;
+    icac-athletic:threatSpecificity "specific" .
+
+<https://example.org/coercion/material-benefits> rdf:type icac-athletic:MaterialBenefitCoercion ;
+    rdfs:label "Material Benefit Coercion"@en ;
+    rdfs:comment "Offering material benefits to players for sexual compliance."@en ;
+    icac-athletic:materialBenefitType "equipment_privileges" .
+
+<https://example.org/exploitation/morton-athletic-coaching> icac-athletic:employsConditioningCoercion <https://example.org/coercion/team-membership-threats> .
+<https://example.org/exploitation/morton-athletic-coaching> icac-athletic:employsConditioningCoercion <https://example.org/coercion/material-benefits> .
+
+# =============================================================================
+# SEXUAL EDUCATION EXPLOITATION
+# =============================================================================
+
+<https://example.org/exploitation/sexual-comments> rdf:type icac-athletic:SexualTopicGrooming ;
+    rdfs:label "Sexual Comments at Practice"@en ;
+    rdfs:comment "Consistent sexual comments made at nearly every practice session."@en ;
+    icac-athletic:sexualTopicFrequency "daily" ;
+    icac-athletic:discussionExplicitness "moderate" .
+
+<https://example.org/exploitation/masturbation-discussions> rdf:type icac-athletic:MasturbationDiscussionExploitation ;
+    rdfs:label "Masturbation Discussion Exploitation"@en ;
+    rdfs:comment "Extensive discussions about masturbation during athletic training."@en ;
+    icac-athletic:sexualTopicFrequency "weekly" ;
+    icac-athletic:discussionExplicitness "graphic" .
+
+<https://example.org/exploitation/pubic-hair-requests> rdf:type icac-athletic:PubicHairFocusedExploitation ;
+    rdfs:label "Pubic Hair Viewing Requests"@en ;
+    rdfs:comment "Repeated requests to see boys' pubic hair during training sessions."@en ;
+    icac-athletic:anatomyFocusType "pubic_hair" ;
+    icac-athletic:sexualTopicFrequency "weekly" .
+
+<https://example.org/exploitation/morton-athletic-coaching> icac-athletic:incorporatesSexualEducation <https://example.org/exploitation/sexual-comments> .
+<https://example.org/exploitation/morton-athletic-coaching> icac-athletic:incorporatesSexualEducation <https://example.org/exploitation/masturbation-discussions> .
+<https://example.org/exploitation/morton-athletic-coaching> icac-athletic:incorporatesSexualEducation <https://example.org/exploitation/pubic-hair-requests> .
+
+# =============================================================================
+# PHYSICAL CONTACT ESCALATION
+# =============================================================================
+
+<https://example.org/contact/genital-touching-over> rdf:type icac-athletic:TrainingBasedTouching ;
+    rdfs:label "Genital Touching Over Clothing"@en ;
+    rdfs:comment "Touching victims' genitals over clothing during athletic activities."@en ;
+    icac-athletic:contactEscalationPattern "gradual" .
+
+<https://example.org/contact/genital-touching-under> rdf:type icac-athletic:OverClothingToUnderClothingEscalation ;
+    rdfs:label "Genital Touching Under Clothing"@en ;
+    rdfs:comment "Escalation to touching victims' genitals under clothing during training."@en ;
+    icac-athletic:contactEscalationPattern "gradual" .
+
+<https://example.org/exploitation/morton-athletic-coaching> icac-athletic:escalatesPhysicalContact <https://example.org/contact/genital-touching-over> .
+<https://example.org/exploitation/morton-athletic-coaching> icac-athletic:escalatesPhysicalContact <https://example.org/contact/genital-touching-under> .
+
+# =============================================================================
+# FACILITY EXPLOITATION
+# =============================================================================
+
+<https://example.org/facility/gym-exploitation> rdf:type icac-athletic:GymExploitation ;
+    rdfs:label "Packer Gym Exploitation"@en ;
+    rdfs:comment "Exploitation occurring in Packer Collegiate Institute gymnasium during practices."@en ;
+    icac-athletic:facilityType "gym" .
+
+<https://example.org/facility/field-exploitation> rdf:type icac-athletic:AthleticFieldExploitation ;
+    rdfs:label "Brooklyn Ballfield Exploitation"@en ;
+    rdfs:comment "Exploitation occurring on Brooklyn ballfields during travel team practices."@en ;
+    icac-athletic:facilityType "field" .
+
+<https://example.org/exploitation/morton-athletic-coaching> icac-athletic:occursInFacility <https://example.org/location/packer-gym> .
+<https://example.org/exploitation/morton-athletic-coaching> icac-athletic:occursInFacility <https://example.org/location/brooklyn-ballfields> .
+
+# =============================================================================
+# DISCOVERY AND REPORTING
+# =============================================================================
+
+<https://example.org/discovery/parent-rumors> rdf:type icac-athletic:RumorCirculationDiscovery ;
+    rdfs:label "Parent Network Rumor Circulation"@en ;
+    rdfs:comment "Rumors started to circulate among players' parents in July 2024."@en ;
+    uco-core:startTime "2024-07-01T00:00:00Z"^^xsd:dateTime ;
+    icac-athletic:parentNetworkSize "10"^^xsd:nonNegativeInteger ;
+    icac-athletic:rumorCirculationDuration "30"^^xsd:decimal .
+
+<https://example.org/discovery/school-reporting> rdf:type icac-athletic:CommunityBasedReporting ;
+    rdfs:label "School Reporting"@en ;
+    rdfs:comment "Reports made to The Packer Collegiate Institute following parent rumors."@en ;
+    uco-core:startTime "2024-07-15T00:00:00Z"^^xsd:dateTime .
+
+<https://example.org/investigation/packer-investigation> rdf:type icac-athletic:SchoolBasedInvestigation ;
+    rdfs:label "Packer Institute Investigation"@en ;
+    rdfs:comment "Investigation initiated by The Packer Collegiate Institute."@en ;
+    uco-core:startTime "2024-07-20T00:00:00Z"^^xsd:dateTime ;
+    icac-athletic:institutionalResponseTime "5"^^xsd:decimal .
+
+<https://example.org/termination/morton-employment> rdf:type icac-athletic:InstitutionalEmploymentTermination ;
+    rdfs:label "Morton Employment Termination"@en ;
+    rdfs:comment "Nicolas Morton's employment termination from Packer Institute in August 2024."@en ;
+    uco-core:startTime "2024-08-01T00:00:00Z"^^xsd:dateTime ;
+    icac-athletic:employmentTerminationDelay "12"^^xsd:decimal .
+
+<https://example.org/exploitation/morton-athletic-coaching> icac-athletic:discoveredByParents <https://example.org/discovery/parent-rumors> .
+<https://example.org/discovery/parent-rumors> icac-athletic:circulatesRumors <https://example.org/discovery/parent-rumors> .
+<https://example.org/discovery/school-reporting> icac-athletic:reportsToInstitution <https://example.org/investigation/packer-investigation> .
+<https://example.org/investigation/packer-investigation> icac-athletic:resultsInTermination <https://example.org/termination/morton-employment> .
+
+# =============================================================================
+# CRIMINAL CHARGES
+# =============================================================================
+
+<https://example.org/charge/course-sexual-conduct-child-2nd> rdf:type icac-sentencing:CriminalCharge ;
+    rdfs:label "Course of Sexual Conduct Against a Child in the Second Degree"@en ;
+    uco-core:name "Course of Sexual Conduct Against a Child 2nd" ;
+    icac-sentencing:chargeClassification "Felony" ;
+    icac-sentencing:chargeDegree "Second Degree" .
+
+<https://example.org/charge/sexual-abuse-3rd> rdf:type icac-sentencing:CriminalCharge ;
+    rdfs:label "Sexual Abuse in the Third Degree"@en ;
+    uco-core:name "Sexual Abuse 3rd" ;
+    icac-sentencing:chargeClassification "Misdemeanor" ;
+    icac-sentencing:chargeDegree "Third Degree" .
+
+<https://example.org/charge/sexual-abuse-1st> rdf:type icac-sentencing:CriminalCharge ;
+    rdfs:label "Sexual Abuse in the First Degree"@en ;
+    uco-core:name "Sexual Abuse 1st" ;
+    icac-sentencing:chargeClassification "Felony" ;
+    icac-sentencing:chargeDegree "First Degree" .
+
+<https://example.org/charge/endangering-welfare-child> rdf:type icac-sentencing:CriminalCharge ;
+    rdfs:label "Endangering the Welfare of a Child"@en ;
+    uco-core:name "Endangering Welfare Child" ;
+    icac-sentencing:chargeClassification "Misdemeanor" .
+
+<https://example.org/charge/forcible-touching> rdf:type icac-sentencing:CriminalCharge ;
+    rdfs:label "Forcible Touching"@en ;
+    uco-core:name "Forcible Touching" ;
+    icac-sentencing:chargeClassification "Misdemeanor" .
+
+<https://example.org/charge/unlawful-imprisonment-2nd> rdf:type icac-sentencing:CriminalCharge ;
+    rdfs:label "Unlawful Imprisonment in the Second Degree"@en ;
+    uco-core:name "Unlawful Imprisonment 2nd" ;
+    icac-sentencing:chargeClassification "Misdemeanor" ;
+    icac-sentencing:chargeDegree "Second Degree" .
+
+# =============================================================================
+# INDICTMENT
+# =============================================================================
+
+<https://example.org/indictment/morton-20-count> rdf:type icac-sentencing:Indictment ;
+    rdfs:label "Morton 20-Count Indictment"@en ;
+    rdfs:comment "20-count indictment against Nicolas Morton for athletic coaching exploitation."@en ;
+    uco-core:name "Morton 20-Count Indictment" ;
+    dcterms:created "2024-10-24"^^xsd:date ;
+    icac-sentencing:totalChargeCount "20"^^xsd:nonNegativeInteger .
+
+# Link charges to indictment (simplified - would include all 20 counts)
+<https://example.org/indictment/morton-20-count> icac-sentencing:includesCharge <https://example.org/charge/course-sexual-conduct-child-2nd> .
+<https://example.org/indictment/morton-20-count> icac-sentencing:includesCharge <https://example.org/charge/sexual-abuse-3rd> .
+<https://example.org/indictment/morton-20-count> icac-sentencing:includesCharge <https://example.org/charge/sexual-abuse-1st> .
+<https://example.org/indictment/morton-20-count> icac-sentencing:includesCharge <https://example.org/charge/endangering-welfare-child> .
+<https://example.org/indictment/morton-20-count> icac-sentencing:includesCharge <https://example.org/charge/forcible-touching> .
+<https://example.org/indictment/morton-20-count> icac-sentencing:includesCharge <https://example.org/charge/unlawful-imprisonment-2nd> .
+
+# =============================================================================
+# BAIL CONDITIONS
+# =============================================================================
+
+<https://example.org/bail/morton-bail> rdf:type icac-sentencing:BailConditions ;
+    rdfs:label "Morton Bail Conditions"@en ;
+    rdfs:comment "Bail set at $75,000 cash or $150,000 bond for Nicolas Morton."@en ;
+    icac-sentencing:cashBailAmount "75000"^^xsd:decimal ;
+    icac-sentencing:bondAmount "150000"^^xsd:decimal ;
+    icac-sentencing:bailCurrency "USD" .
+
+# =============================================================================
+# CASE RELATIONSHIPS
+# =============================================================================
+
+<https://example.org/case/brooklyn-morton-october-2024> case-investigation:investigates <https://example.org/exploitation/morton-athletic-coaching> .
+<https://example.org/case/brooklyn-morton-october-2024> case-investigation:hasSubject <https://example.org/person/nicolas-morton> .
+
+# Link all victims to case
+<https://example.org/case/brooklyn-morton-october-2024> case-investigation:hasSubject <https://example.org/person/victim-1> .
+<https://example.org/case/brooklyn-morton-october-2024> case-investigation:hasSubject <https://example.org/person/victim-2> .
+<https://example.org/case/brooklyn-morton-october-2024> case-investigation:hasSubject <https://example.org/person/victim-3> .
+<https://example.org/case/brooklyn-morton-october-2024> case-investigation:hasSubject <https://example.org/person/victim-4> .
+<https://example.org/case/brooklyn-morton-october-2024> case-investigation:hasSubject <https://example.org/person/victim-5> .
+<https://example.org/case/brooklyn-morton-october-2024> case-investigation:hasSubject <https://example.org/person/victim-6> .
+<https://example.org/case/brooklyn-morton-october-2024> case-investigation:hasSubject <https://example.org/person/victim-7> . 

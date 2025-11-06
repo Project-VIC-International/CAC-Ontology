@@ -1,0 +1,293 @@
+@prefix : <https://ontology.caseontology.org/icac/examples/sex-offender-registry-integration#> .
+@prefix icac-core: <https://ontology.caseontology.org/icac/core#> .
+@prefix icac-multi: <https://ontology.caseontology.org/icac/multi-jurisdiction#> .
+@prefix icac-sentencing: <https://ontology.caseontology.org/icac/sentencing#> .
+@prefix icac-registry: <https://ontology.caseontology.org/icac/sex-offender-registry#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity#> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location#> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================================
+# SEX OFFENDER REGISTRY INTEGRATION WITH ICAC COMPLIANCE MONITORING
+# Demonstrating how registry data supports Arkansas-style compliance operations
+# =============================================================================
+
+# =============================================================================
+# STATE REGISTRY SYSTEM
+# =============================================================================
+
+:arkansas_sex_offender_registry rdf:type icac-registry:SexOffenderRegistry ;
+    rdfs:label "Arkansas Sex Offender Registry" ;
+    rdfs:comment "State registry system maintaining information about 12,000+ registered sex offenders" ;
+    icac-registry:managedBy :arkansas_registry_agency .
+
+:arkansas_registry_agency rdf:type icac-registry:RegistryAgency ;
+    rdfs:label "Arkansas Sex Offender Registry Unit" ;
+    rdfs:comment "State law enforcement unit responsible for maintaining registry" .
+
+:registry_public_website rdf:type icac-registry:PublicWebsite ;
+    rdfs:label "Arkansas Sex Offender Registry Website" ;
+    rdfs:comment "Public website for searching registered sex offenders in Arkansas" .
+
+# =============================================================================
+# REGISTERED SEX OFFENDER PROFILE
+# =============================================================================
+
+:offender_12345 rdf:type icac-registry:RegisteredSexOffender ;
+    rdfs:label "Registered Sex Offender 12345" ;
+    rdfs:comment "Sample registered sex offender for compliance monitoring demonstration" ;
+    icac-registry:fullName "John Doe Smith" ;
+    icac-registry:dateOfBirth "1975-08-15"^^xsd:date ;
+    icac-registry:race "White" ;
+    icac-registry:sex "Male" ;
+    icac-registry:tier "Tier II" ;
+    icac-registry:registeredIn :arkansas_sex_offender_registry ;
+    icac-registry:hasProfile :offender_profile_12345 ;
+    icac-registry:hasRegistrationRecord :registration_record_12345 ;
+    icac-registry:residesAt :primary_residence_12345 ;
+    icac-registry:employedAt :work_location_12345 ;
+    icac-registry:hasCompliance :compliance_history_12345 ;
+    icac-registry:hasAlias :alias_johnny_smith ;
+    icac-registry:hasOnlineIdentifier :online_identifier_jsmith .
+
+# =============================================================================
+# DETAILED OFFENDER PROFILE
+# =============================================================================
+
+:offender_profile_12345 rdf:type icac-registry:OffenderProfile ;
+    rdfs:label "Offender Profile 12345" ;
+    rdfs:comment "Comprehensive profile containing all required registration information" .
+
+:personal_identifiers_12345 rdf:type icac-registry:PersonalIdentifiers ;
+    rdfs:label "Personal Identifiers for Offender 12345" ;
+    icac-registry:socialSecurityNumber "***-**-1234" . # Restricted access
+
+:physical_description_12345 rdf:type icac-registry:PhysicalDescription ;
+    rdfs:label "Physical Description for Offender 12345" ;
+    icac-registry:height "6'0\"" ;
+    icac-registry:weight "180 lbs" ;
+    icac-registry:eyeColor "Brown" ;
+    icac-registry:hairColor "Black" .
+
+:identifying_mark_tattoo rdf:type icac-registry:IdentifyingMark ;
+    rdfs:label "Sleeve Tattoo Left Arm" ;
+    rdfs:comment "Distinctive tattoo covering left arm for identification" .
+
+:official_photograph_2024 rdf:type icac-registry:Photograph ;
+    rdfs:label "Official Photo 2024" ;
+    rdfs:comment "Most recent official photograph for registry" .
+
+# =============================================================================
+# REGISTRATION RECORD AND OFFENSE HISTORY
+# =============================================================================
+
+:registration_record_12345 rdf:type icac-registry:RegistrationRecord ;
+    rdfs:label "Registration Record 12345" ;
+    rdfs:comment "Official registration record and requirements" ;
+    icac-registry:registrationNumber "AR-SO-12345" ;
+    icac-registry:registrationDate "2018-03-15T00:00:00Z"^^xsd:dateTime ;
+    icac-registry:lastUpdate "2024-01-15T10:30:00Z"^^xsd:dateTime ;
+    icac-registry:lifetimeRegistration false ;
+    icac-registry:expirationDate "2038-03-15T00:00:00Z"^^xsd:dateTime ;
+    icac-registry:basedOnOffense :convicting_offense_2018 ;
+    icac-registry:verifiedBy :verification_check_jan_2024 .
+
+:convicting_offense_2018 rdf:type icac-registry:ConvictingOffense ;
+    rdfs:label "Convicting Offense 2018" ;
+    rdfs:comment "Sexual offense that resulted in registration requirement" ;
+    icac-registry:offenseDescription "Sexual Exploitation of a Minor" ;
+    icac-registry:convictionDate "2018-02-28"^^xsd:date ;
+    icac-registry:sentenceLength "5 years imprisonment, 10 years probation" .
+
+:victim_information_2018 rdf:type icac-registry:VictimInformation ;
+    rdfs:label "Victim Information" ;
+    rdfs:comment "Information about victims relevant to registration" ;
+    icac-registry:victimAge 14 ;
+    icac-registry:victimCount 1 ;
+    icac-registry:victimRelationship "known" .
+
+:court_order_registration rdf:type icac-registry:CourtOrder ;
+    rdfs:label "Court Order for Registration" ;
+    rdfs:comment "Court order mandating 20-year sex offender registration" .
+
+# =============================================================================
+# ADDRESS AND LOCATION INFORMATION
+# =============================================================================
+
+:primary_residence_12345 rdf:type icac-registry:PrimaryResidence ;
+    rdfs:label "Primary Residence" ;
+    rdfs:comment "Current registered address where offender resides" .
+
+:address_history_12345 rdf:type icac-registry:AddressHistory ;
+    rdfs:label "Address History for Offender 12345" ;
+    rdfs:comment "Historical record of all registered addresses" .
+
+:work_location_12345 rdf:type icac-registry:WorkLocation ;
+    rdfs:label "Work Location - Construction Company" ;
+    rdfs:comment "Current employment location" .
+
+:employment_info_12345 rdf:type icac-registry:EmploymentInformation ;
+    rdfs:label "Employment Information" ;
+    rdfs:comment "Current employment as construction worker" .
+
+# =============================================================================
+# VEHICLE AND DIGITAL PRESENCE
+# =============================================================================
+
+:registered_vehicle_12345 rdf:type icac-registry:RegisteredVehicle ;
+    rdfs:label "2019 Ford F-150" ;
+    rdfs:comment "Pickup truck registered to offender" .
+
+:alias_johnny_smith rdf:type icac-registry:Alias ;
+    rdfs:label "Johnny Smith" ;
+    rdfs:comment "Known alias used by offender" .
+
+:online_identifier_jsmith rdf:type icac-registry:OnlineIdentifier ;
+    rdfs:label "jsmith2024" ;
+    rdfs:comment "Email and online username" .
+
+# =============================================================================
+# RESTRICTIONS AND REQUIREMENTS
+# =============================================================================
+
+:geographic_restriction_schools rdf:type icac-registry:GeographicRestriction ;
+    rdfs:label "School Zone Restriction" ;
+    rdfs:comment "Prohibited from being within 1000 feet of schools" .
+
+:internet_restriction_minors rdf:type icac-registry:InternetRestriction ;
+    rdfs:label "Internet Contact Restriction" ;
+    rdfs:comment "Prohibited from contacting minors via internet" .
+
+:employment_restriction_children rdf:type icac-registry:EmploymentRestriction ;
+    rdfs:label "Employment with Children Restriction" ;
+    rdfs:comment "Prohibited from employment involving contact with minors" .
+
+# Add restrictions to offender
+:offender_12345 icac-registry:subjectToRestriction :geographic_restriction_schools ;
+    icac-registry:subjectToRestriction :internet_restriction_minors ;
+    icac-registry:subjectToRestriction :employment_restriction_children .
+
+# =============================================================================
+# COMPLIANCE MONITORING INTEGRATION
+# =============================================================================
+
+:compliance_history_12345 rdf:type icac-registry:ComplianceHistory ;
+    rdfs:label "Compliance History for Offender 12345" ;
+    rdfs:comment "Complete history of compliance with registration requirements" .
+
+:verification_check_jan_2024 rdf:type icac-registry:VerificationCheck ;
+    rdfs:label "Verification Check January 2024" ;
+    rdfs:comment "Official verification of registration information accuracy" ;
+    uco-core:startTime "2024-01-15T09:00:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2024-01-15T11:00:00Z"^^xsd:dateTime .
+
+# Integration with Arkansas Compliance Operation
+:arkansas_compliance_operation icac-multi:coordinatesComplianceChecks :compliance_visit_offender_12345 .
+
+:compliance_visit_offender_12345 rdf:type icac-multi:SexOffenderComplianceCheck ;
+    rdfs:label "Compliance Visit - Offender 12345" ;
+    rdfs:comment "Individual compliance check as part of statewide operation" ;
+    uco-core:startTime "2024-04-15T14:00:00Z"^^xsd:dateTime .
+
+# =============================================================================
+# REGISTRY STATUS TRACKING
+# =============================================================================
+
+:registration_status_active rdf:type icac-registry:RegistrationStatus ;
+    rdfs:label "Active Registration Status" ;
+    rdfs:comment "Current active status - compliant with all requirements" .
+
+:registration_update_march_2024 rdf:type icac-registry:RegistrationUpdate ;
+    rdfs:label "Registration Update March 2024" ;
+    rdfs:comment "Quarterly address verification update" ;
+    uco-core:startTime "2024-03-15T00:00:00Z"^^xsd:dateTime .
+
+# =============================================================================
+# NOTIFICATION SYSTEM INTEGRATION
+# =============================================================================
+
+:notification_tier_level_2 rdf:type icac-registry:NotificationTier ;
+    rdfs:label "Tier II Notification Level" ;
+    rdfs:comment "Medium risk classification requiring community notification" .
+
+:community_notification_2024 rdf:type icac-registry:CommunityNotification ;
+    rdfs:label "Community Notification 2024" ;
+    rdfs:comment "Annual community notification about registered offender" ;
+    uco-core:startTime "2024-01-30T00:00:00Z"^^xsd:dateTime .
+
+# =============================================================================
+# INTEGRATION WITH INVESTIGATION SYSTEM
+# =============================================================================
+
+# Linking registry to potential investigation triggers
+:registry_alert_address_change rdf:type icac-registry:RegistrationAlert ;
+    rdfs:label "Address Change Alert" ;
+    rdfs:comment "Alert generated when offender fails to report address change within required timeframe" .
+
+# Connection to existing ICAC investigation framework
+:potential_investigation_trigger rdf:type icac-core:Investigation ;
+    rdfs:label "Potential Investigation from Registry Alert" ;
+    rdfs:comment "Investigation triggered by registry compliance violation" .
+
+# =============================================================================
+# BULK COMPLIANCE OPERATION INTEGRATION
+# =============================================================================
+
+# Connecting to Arkansas-style large-scale operations
+:registry_operation_target_list rdf:type uco-core:UcoObject ;
+    rdfs:label "Registry Operation Target List" ;
+    rdfs:comment "List of 1,600+ registered offenders for compliance visits" .
+
+# Sample of additional offenders in bulk operation
+:offender_12346 rdf:type icac-registry:RegisteredSexOffender ;
+    rdfs:label "Registered Sex Offender 12346" ;
+    icac-registry:tier "Tier III" ;
+    icac-registry:registeredIn :arkansas_sex_offender_registry .
+
+:offender_12347 rdf:type icac-registry:RegisteredSexOffender ;
+    rdfs:label "Registered Sex Offender 12347" ;
+    icac-registry:tier "Tier I" ;
+    icac-registry:registeredIn :arkansas_sex_offender_registry .
+
+# Compliance checks for additional offenders
+:compliance_visit_offender_12346 rdf:type icac-multi:SexOffenderComplianceCheck ;
+    rdfs:label "Compliance Visit - Offender 12346" .
+
+:compliance_visit_offender_12347 rdf:type icac-multi:SexOffenderComplianceCheck ;
+    rdfs:label "Compliance Visit - Offender 12347" .
+
+# =============================================================================
+# REGISTRY ANALYTICS AND METRICS
+# =============================================================================
+
+:registry_metrics_2024 rdf:type uco-core:UcoObject ;
+    rdfs:label "Registry Metrics 2024" ;
+    rdfs:comment "Analytics on registry compliance and operations" .
+
+# Key metrics that registry system would support:
+# - Total registered offenders: 12,000+
+# - Compliance rate: 95%
+# - Quarterly verifications: 3,000
+# - Annual compliance visits: 1,600+
+# - Address changes: 400 monthly
+# - Non-compliance violations: 47 (Arkansas operation)
+# - Registry alerts generated: 150 monthly
+# - Community notifications: 500 annually
+
+# =============================================================================
+# INTEGRATION POINTS WITH EXISTING ICAC ONTOLOGIES
+# =============================================================================
+
+# Connection to sentencing ontology
+:offender_12345 icac-sentencing:sexOffenderRegistry true .
+
+# Connection to multi-jurisdictional operations
+:arkansas_compliance_operation icac-multi:complianceVisitsCount 1600 .
+
+# Connection to investigation lifecycle
+:registry_compliance_investigation rdf:type icac-core:Investigation ;
+    rdfs:label "Registry Compliance Investigation" ;
+    rdfs:comment "Investigation of registry compliance violations" . 

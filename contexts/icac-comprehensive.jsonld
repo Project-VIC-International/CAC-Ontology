@@ -1,0 +1,449 @@
+{
+  "@context": {
+    "@vocab": "https://ontology.unifiedcyberontology.org/icac#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "uco-core": "https://ontology.unifiedcyberontology.org/core#",
+    "uco-identity": "https://ontology.unifiedcyberontology.org/identity#",
+    "uco-observable": "https://ontology.unifiedcyberontology.org/observable#",
+    "uco-action": "https://ontology.unifiedcyberontology.org/action#",
+    "uco-role": "https://ontology.unifiedcyberontology.org/role#",
+    "uco-location": "https://ontology.unifiedcyberontology.org/location#",
+    "case-investigation": "https://ontology.caseontology.org/case/investigation#",
+    "hotlines": "https://ontology.unifiedcyberontology.org/hotlines/2025/core#",
+    "icac-athletic": "https://ontology.unifiedcyberontology.org/icac/athletic#",
+    "icac-production": "https://ontology.unifiedcyberontology.org/icac/production#",
+    "icac-custodial": "https://ontology.unifiedcyberontology.org/icac/custodial#",
+    "icac-grooming": "https://ontology.unifiedcyberontology.org/icac/grooming#",
+    "icac-sextortion": "https://ontology.unifiedcyberontology.org/icac/sextortion#",
+    "icac-forensics": "https://ontology.unifiedcyberontology.org/icac/forensics#",
+    "icac-sentencing": "https://ontology.unifiedcyberontology.org/icac/sentencing#",
+    "icac-victim-impact": "https://ontology.unifiedcyberontology.org/icac/victim-impact#",
+    "icac-specialized": "https://ontology.unifiedcyberontology.org/icac/specialized-units#",
+    "icac-platforms": "https://ontology.unifiedcyberontology.org/icac/platforms#",
+    "icac-detection": "https://ontology.unifiedcyberontology.org/icac/detection#",
+    "icac-registry": "https://ontology.unifiedcyberontology.org/icac/sex-offender-registry#",
+    "icac-ai": "https://ontology.unifiedcyberontology.org/icac/ai-generated-content#",
+    "icac-infrastructure": "https://ontology.unifiedcyberontology.org/icac/platform-infrastructure#",
+    "icac-international": "https://ontology.unifiedcyberontology.org/icac/international#",
+    "icac-training": "https://ontology.unifiedcyberontology.org/icac/training#",
+    "icac-prevention": "https://ontology.unifiedcyberontology.org/icac/prevention#",
+    "icac-legal": "https://ontology.unifiedcyberontology.org/icac/legal-harmonization#",
+    "icac-ncmec": "https://ontology.unifiedcyberontology.org/icac/us/ncmec#",
+
+    "ICACInvestigation": {
+      "@type": "@id"
+    },
+    "ChildSexualAbuseEvent": {
+      "@type": "@id"
+    },
+    "CSAMIncident": {
+      "@type": "@id"
+    },
+    "DigitallyGeneratedCSAMIncident": {
+      "@type": "@id"
+    },
+    "LiveStreamingCSA": {
+      "@type": "@id"
+    },
+    "GroomingSolicitation": {
+      "@type": "@id"
+    },
+    "Sextortion": {
+      "@type": "@id"
+    },
+    "VictimRole": {
+      "@type": "@id"
+    },
+    "OffenderRole": {
+      "@type": "@id"
+    },
+    "RescuerRole": {
+      "@type": "@id"
+    },
+
+    "HotlineReport": {
+      "@type": "@id",
+      "@context": {
+        "@vocab": "https://ontology.unifiedcyberontology.org/hotlines/2025/core#"
+      }
+    },
+    "PublicReport": {
+      "@type": "@id",
+      "@context": {
+        "@vocab": "https://ontology.unifiedcyberontology.org/hotlines/2025/core#"
+      }
+    },
+    "ESPReport": {
+      "@type": "@id",
+      "@context": {
+        "@vocab": "https://ontology.unifiedcyberontology.org/hotlines/2025/core#"
+      }
+    },
+    "EvidenceItem": {
+      "@type": "@id",
+      "@context": {
+        "@vocab": "https://ontology.unifiedcyberontology.org/hotlines/2025/core#"
+      }
+    },
+    "ImageEvidence": {
+      "@type": "@id",
+      "@context": {
+        "@vocab": "https://ontology.unifiedcyberontology.org/hotlines/2025/core#"
+      }
+    },
+    "VideoEvidence": {
+      "@type": "@id",
+      "@context": {
+        "@vocab": "https://ontology.unifiedcyberontology.org/hotlines/2025/core#"
+      }
+    },
+
+    "AthleticCoachingExploitation": {
+      "@type": "@id",
+      "@context": {
+        "@vocab": "https://ontology.unifiedcyberontology.org/icac/athletic#"
+      }
+    },
+    "DualCoachingRoleExploitation": {
+      "@type": "@id",
+      "@context": {
+        "@vocab": "https://ontology.unifiedcyberontology.org/icac/athletic#"
+      }
+    },
+    "PhysicalTrainingCoercion": {
+      "@type": "@id",
+      "@context": {
+        "@vocab": "https://ontology.unifiedcyberontology.org/icac/athletic#"
+      }
+    },
+    "TeamMembershipCoercion": {
+      "@type": "@id",
+      "@context": {
+        "@vocab": "https://ontology.unifiedcyberontology.org/icac/athletic#"
+      }
+    },
+
+    "ProductionOffense": {
+      "@type": "@id",
+      "@context": {
+        "@vocab": "https://ontology.unifiedcyberontology.org/icac/production#"
+      }
+    },
+    "CustodialRelationship": {
+      "@type": "@id",
+      "@context": {
+        "@vocab": "https://ontology.unifiedcyberontology.org/icac/custodial#"
+      }
+    },
+    "GroomingIncident": {
+      "@type": "@id",
+      "@context": {
+        "@vocab": "https://ontology.unifiedcyberontology.org/icac/grooming#"
+      }
+    },
+    "SextortionIncident": {
+      "@type": "@id",
+      "@context": {
+        "@vocab": "https://ontology.unifiedcyberontology.org/icac/sextortion#"
+      }
+    },
+
+    "VictimBranding": {
+      "@type": "@id",
+      "@context": {
+        "@vocab": "https://ontology.unifiedcyberontology.org/icac/trafficking#"
+      }
+    },
+    "TraffickerTattoo": {
+      "@type": "@id",
+      "@context": {
+        "@vocab": "https://ontology.unifiedcyberontology.org/icac/trafficking#"
+      }
+    },
+    "FacialBranding": {
+      "@type": "@id",
+      "@context": {
+        "@vocab": "https://ontology.unifiedcyberontology.org/icac/trafficking#"
+      }
+    },
+    "PhysicalViolenceControl": {
+      "@type": "@id",
+      "@context": {
+        "@vocab": "https://ontology.unifiedcyberontology.org/icac/trafficking#"
+      }
+    },
+    "WeaponBasedViolence": {
+      "@type": "@id",
+      "@context": {
+        "@vocab": "https://ontology.unifiedcyberontology.org/icac/trafficking#"
+      }
+    },
+    "WalkingTheTrack": {
+      "@type": "@id",
+      "@context": {
+        "@vocab": "https://ontology.unifiedcyberontology.org/icac/trafficking#"
+      }
+    },
+    "TextMessageRescueRequest": {
+      "@type": "@id",
+      "@context": {
+        "@vocab": "https://ontology.unifiedcyberontology.org/icac/trafficking#"
+      }
+    },
+    "MedicalConsequences": {
+      "@type": "@id",
+      "@context": {
+        "@vocab": "https://ontology.unifiedcyberontology.org/icac/trafficking#"
+      }
+    },
+
+    "ForensicAcquisitionAction": {
+      "@type": "@id",
+      "@context": {
+        "@vocab": "https://ontology.unifiedcyberontology.org/icac/forensics#"
+      }
+    },
+    "VictimImpactAssessment": {
+      "@type": "@id",
+      "@context": {
+        "@vocab": "https://ontology.unifiedcyberontology.org/icac/victim-impact#"
+      }
+    },
+    "CriminalCharge": {
+      "@type": "@id",
+      "@context": {
+        "@vocab": "https://ontology.unifiedcyberontology.org/icac/sentencing#"
+      }
+    },
+
+    "hasStep": {
+      "@type": "@id"
+    },
+    "nextStep": {
+      "@type": "@id"
+    },
+    "previousStep": {
+      "@type": "@id"
+    },
+    "involvesVictim": {
+      "@type": "@id"
+    },
+    "involvesOffender": {
+      "@type": "@id"
+    },
+    "usesChannel": {
+      "@type": "@id"
+    },
+    "producesArtifact": {
+      "@type": "@id"
+    },
+    "targetsService": {
+      "@type": "@id"
+    },
+    "legalInstrument": {
+      "@type": "@id"
+    },
+    "usesClassification": {
+      "@type": "@id"
+    },
+    "rescuedVictim": {
+      "@type": "@id"
+    },
+    "submittedTo": {
+      "@type": "@id"
+    },
+    "depictsChild": {
+      "@type": "@id"
+    },
+
+    "reportedBy": {
+      "@type": "@id"
+    },
+    "receivedBy": {
+      "@type": "@id"
+    },
+    "hasEvidence": {
+      "@type": "@id"
+    },
+    "intakeChannel": {
+      "@type": "@id"
+    },
+    "classification": {
+      "@type": "@id"
+    },
+    "status": {
+      "@type": "@id"
+    },
+    "triggersAction": {
+      "@type": "@id"
+    },
+    "forwardsTo": {
+      "@type": "@id"
+    },
+    "foundAtURL": {
+      "@type": "@id"
+    },
+    "linkedInvestigation": {
+      "@type": "@id"
+    },
+
+    "coachesTeam": {
+      "@type": "@id"
+    },
+    "playsOnTeam": {
+      "@type": "@id"
+    },
+    "holdsCoachingRole": {
+      "@type": "@id"
+    },
+    "exploitsAthleticAuthority": {
+      "@type": "@id"
+    },
+    "usesPhysicalTraining": {
+      "@type": "@id"
+    },
+    "occursInFacility": {
+      "@type": "@id"
+    },
+    "discoveredByParents": {
+      "@type": "@id"
+    },
+
+    "severityLevel": {
+      "@type": "xsd:integer"
+    },
+    "isAnonymous": {
+      "@type": "xsd:boolean"
+    },
+    "firstSeen": {
+      "@type": "xsd:dateTime"
+    },
+    "feedbackType": {
+      "@type": "xsd:string"
+    },
+    "sportType": {
+      "@type": "xsd:string"
+    },
+    "teamType": {
+      "@type": "xsd:string"
+    },
+    "practiceFrequency": {
+      "@type": "xsd:decimal"
+    },
+    "teamSize": {
+      "@type": "xsd:nonNegativeInteger"
+    },
+    "conditioningType": {
+      "@type": "xsd:string"
+    },
+    "exhaustionLevel": {
+      "@type": "xsd:string"
+    },
+    "threatSpecificity": {
+      "@type": "xsd:string"
+    },
+    "contactEscalationPattern": {
+      "@type": "xsd:string"
+    },
+
+    "brandingType": {
+      "@type": "xsd:string"
+    },
+    "tattooContent": {
+      "@type": "xsd:string"
+    },
+    "tattooLocation": {
+      "@type": "xsd:string"
+    },
+    "brandingVisibility": {
+      "@type": "xsd:string"
+    },
+    "violenceType": {
+      "@type": "xsd:string"
+    },
+    "weaponUsed": {
+      "@type": "xsd:string"
+    },
+    "injurySeverity": {
+      "@type": "xsd:string"
+    },
+    "medicalEmergency": {
+      "@type": "xsd:boolean"
+    },
+    "infectionType": {
+      "@type": "xsd:string"
+    },
+    "treatmentLocation": {
+      "@type": "xsd:string"
+    },
+    "treatmentDate": {
+      "@type": "xsd:dateTime"
+    },
+    "trackLocation": {
+      "@type": "xsd:string"
+    },
+    "solicitationHours": {
+      "@type": "xsd:decimal"
+    },
+    "emergencyContactMethod": {
+      "@type": "xsd:string"
+    },
+    "locationDetailsProvided": {
+      "@type": "xsd:string"
+    },
+    "hotelRoomNumber": {
+      "@type": "xsd:string"
+    },
+    "crossStateDistance": {
+      "@type": "xsd:decimal"
+    },
+
+    "brandedWith": {
+      "@type": "@id"
+    },
+    "forcedToReceive": {
+      "@type": "@id"
+    },
+    "subjectedToViolence": {
+      "@type": "@id"
+    },
+    "inflictedViolence": {
+      "@type": "@id"
+    },
+    "causedInjury": {
+      "@type": "@id"
+    },
+    "receivedTreatment": {
+      "@type": "@id"
+    },
+    "treatedFor": {
+      "@type": "@id"
+    },
+    "forcedToWalk": {
+      "@type": "@id"
+    },
+    "assignedToTrack": {
+      "@type": "@id"
+    },
+    "operatesOnTrack": {
+      "@type": "@id"
+    },
+    "sentRescueRequest": {
+      "@type": "@id"
+    },
+    "contactedForHelp": {
+      "@type": "@id"
+    },
+    "providedLocation": {
+      "@type": "@id"
+    },
+    "triggeredResponse": {
+      "@type": "@id"
+    }
+  }
+} 

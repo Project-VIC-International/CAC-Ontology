@@ -1,0 +1,73 @@
+# Query: Q7 find_rescue_chains
+# Purpose: Investigative analysis - trace successful rescues from report to victim
+# Parameters: ?from (dateTime), ?to (dateTime), ?limit (integer)
+# Security: TLP-RED content excluded by default
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX hotline: <https://ontology.unifiedcyberontology.org/hotlines/2025/core#>
+PREFIX icac: <https://ontology.unifiedcyberontology.org/icac/0.3#>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/core#>
+PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/observable#>
+PREFIX uco-confidentiality: <https://ontology.unifiedcyberontology.org/confidentiality#>
+
+SELECT DISTINCT ?report ?reportType ?reportTime ?reportOrg
+       ?investigation ?investigationStatus ?investigationOrg
+       ?forwardAction ?forwardTime ?forwardOrg
+       ?rescueAction ?rescueStartTime ?rescueEndTime ?rescueOrg # Added rescueEndTime
+       ?victim ?victimAge ?victimGender
+       ?evidenceCount ?daysToForward ?daysToRescue
+WHERE {
+    # Parameter defaults
+    VALUES (?from ?to ?limit) {
+        ("2025-01-01T00:00:00Z"^^xsd:dateTime "2025-12-31T23:59:59Z"^^xsd:dateTime 100)
+    }
+    
+    ?report a ?reportType ;
+            hotline:createdTime ?reportTime ;
+            hotline:receivedBy ?reportOrg ;
+            hotline:hasEvidence ?evidence .
+    
+    {
+        SELECT ?report (COUNT(?evidence) as ?evidenceCount)
+        WHERE {
+            ?report hotline:hasEvidence ?evidence .
+        }
+        GROUP BY ?report
+    }
+    
+    ?report hotline:triggersAction{1,6} ?forwardAction . # Path length limit
+    ?forwardAction a hotline:ForwardToLEAction ;
+                  hotline:startTime ?forwardTime ;
+                  hotline:forwardsTo ?forwardOrg .
+    
+    ?investigation a icac:ICACInvestigation ; # Changed from hotline:ICACInvestigation
+                  icac:hasReport ?report ; # Changed from hotline:hasReport
+                  icac:status ?investigationStatus ; # Changed from hotline:status
+                  icac:conductedBy ?investigationOrg ; # Changed from hotline:conductedBy
+                  icac:hasAction{1,6} ?rescueAction . # Path length limit
+    
+    ?rescueAction a icac:VictimRescueAction ; # Changed from hotline:VictimRescueAction
+                  icac:startTime ?rescueStartTime ; # Changed from hotline:startTime
+                  icac:performedBy ?rescueOrg . # Changed from hotline:performedBy
+    OPTIONAL { ?rescueAction icac:endTime ?rescueEndTime . } # Added endTime
+    ?rescueAction icac:rescuedVictim ?victim . # Changed from hotline:rescuedVictim
+    
+    ?victim icac:age ?victimAge ; # Changed from hotline:age
+            icac:gender ?victimGender . # Changed from hotline:gender
+    
+    BIND(DAYS(?forwardTime - ?reportTime) AS ?daysToForward)
+    BIND(DAYS(?rescueStartTime - ?reportTime) AS ?daysToRescue)
+    
+    FILTER(?rescueAction icac:outcome icac:outcome-success) # Changed from hotline:outcome-success
+    FILTER(?reportTime >= ?from && ?reportTime <= ?to)
+
+    # Security filter
+    FILTER NOT EXISTS {
+        ?report uco-confidentiality:TLP-RED ?whatever .
+        ?investigation uco-confidentiality:TLP-RED ?whatever .
+        ?victim uco-confidentiality:TLP-RED ?whatever .
+    }
+}
+ORDER BY DESC(?reportTime)
+LIMIT ?limit 

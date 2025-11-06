@@ -1,0 +1,411 @@
+# Gary Simon Teacher Case Example
+# This example demonstrates the ICAC educational exploitation ontology applied to the Gary Simon case
+# Based on Brooklyn DA press release: "Teacher Arraigned on Indictment Charging Him with Sexual Abuse of Two Students"
+
+@prefix : <https://ontology.caseontology.org/icac/examples/gary-simon-case/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
+@prefix icac: <https://ontology.caseontology.org/icac/> .
+@prefix icac-educational: <https://ontology.caseontology.org/icac/educational-exploitation/> .
+
+# =============================================================================
+# CASE INVESTIGATION
+# =============================================================================
+
+:gary-simon-investigation rdf:type icac-educational:EducationalInstitutionInvestigation ;
+    rdfs:label "Gary Simon Teacher Investigation"@en ;
+    rdfs:comment "Investigation of Gary Simon for sexual abuse of students at I.S. 218."@en ;
+    uco-core:name "Gary Simon Teacher Sexual Abuse Investigation" ;
+    icac-educational:investigatesExploitation :gary-simon-exploitation ;
+    icac-educational:collectsEvidence :written-harassment-evidence-1, :written-harassment-evidence-2, :victim-testimony-1, :victim-testimony-2, :witness-testimony-evidence ;
+    icac-educational:interviewsVictim :victim-1, :victim-2 ;
+    icac-educational:coordinatesWith :brooklyn-da-office, :nypd .
+
+# =============================================================================
+# EDUCATIONAL INSTITUTION
+# =============================================================================
+
+:is-218 rdf:type icac-educational:IntermediateSchool ;
+    rdfs:label "I.S. 218"@en ;
+    rdfs:comment "Intermediate School 218 where Gary Simon was employed as math teacher."@en ;
+    uco-core:name "Intermediate School 218" ;
+    icac-educational:institutionType "public" ;
+    icac-educational:gradeRange "6-8" ;
+    icac-educational:studentPopulation 800 ;
+    icac-educational:institutionLocation "Brooklyn, NY" ;
+    icac-educational:schoolAddress "1 Intermediate School 218, Brooklyn, NY" ;
+    icac-educational:hasVulnerability :classroom-isolation-vulnerability, :academic-power-vulnerability .
+
+# =============================================================================
+# PERPETRATOR AND ROLE
+# =============================================================================
+
+:gary-simon rdf:type uco-identity:Person ;
+    rdfs:label "Gary Simon"@en ;
+    rdfs:comment "59-year-old math teacher at I.S. 218 charged with sexual abuse of students."@en ;
+    uco-core:name "Gary Simon" ;
+    icac-educational:employedAt :is-218 ;
+    icac-educational:exploitsPosition :gary-simon-math-teacher-role .
+
+:gary-simon-math-teacher-role rdf:type icac-educational:MathTeacherRole ;
+    rdfs:label "Gary Simon Math Teacher Role"@en ;
+    rdfs:comment "Gary Simon's role as math teacher at I.S. 218."@en ;
+    icac-educational:subjectTaught "Mathematics" ;
+    icac-educational:gradeLevel "6-8" ;
+    icac-educational:educatorAge 59 ;
+    icac-educational:yearsOfExperience 25.0 ;
+    icac-educational:accessLevel "classroom_teacher" ;
+    icac-educational:employmentDuration 120 .
+
+# =============================================================================
+# VICTIMS
+# =============================================================================
+
+:victim-1 rdf:type uco-identity:Person ;
+    rdfs:label "Victim 1"@en ;
+    rdfs:comment "13-year-old female student victim of Gary Simon."@en ;
+    uco-core:name "Victim 1 (13-year-old)" ;
+    icac-educational:attendsInstitution :is-218 .
+
+:victim-2 rdf:type uco-identity:Person ;
+    rdfs:label "Victim 2"@en ;
+    rdfs:comment "12-year-old female student victim of Gary Simon."@en ;
+    uco-core:name "Victim 2 (12-year-old)" ;
+    icac-educational:attendsInstitution :is-218 .
+
+# =============================================================================
+# SCHOOL STAFF
+# =============================================================================
+
+:school-counselor rdf:type uco-identity:Person ;
+    rdfs:label "School Counselor"@en ;
+    rdfs:comment "School counselor who received victim disclosure."@en ;
+    uco-core:name "School Counselor" ;
+    icac-educational:employedAt :is-218 .
+
+:gym-teacher rdf:type uco-identity:Person ;
+    rdfs:label "Gym Teacher"@en ;
+    rdfs:comment "Physical education teacher who received victim disclosure."@en ;
+    uco-core:name "Gym Teacher" ;
+    icac-educational:employedAt :is-218 .
+
+:principal rdf:type uco-identity:Person ;
+    rdfs:label "School Principal"@en ;
+    rdfs:comment "Principal of I.S. 218 who was notified of allegations."@en ;
+    uco-core:name "I.S. 218 Principal" ;
+    icac-educational:employedAt :is-218 .
+
+# =============================================================================
+# LAW ENFORCEMENT AGENCIES
+# =============================================================================
+
+:brooklyn-da-office rdf:type uco-identity:Organization ;
+    rdfs:label "Brooklyn District Attorney's Office"@en ;
+    rdfs:comment "Brooklyn DA's office prosecuting the case."@en ;
+    uco-core:name "Brooklyn District Attorney's Office" .
+
+:nypd rdf:type uco-identity:Organization ;
+    rdfs:label "New York Police Department"@en ;
+    rdfs:comment "NYPD investigating the case."@en ;
+    uco-core:name "New York Police Department" .
+
+# =============================================================================
+# CLASSROOM LOCATIONS
+# =============================================================================
+
+:math-classroom rdf:type uco-location:Location ;
+    rdfs:label "Math Classroom"@en ;
+    rdfs:comment "Classroom where Gary Simon taught mathematics and exploitation occurred."@en ;
+    uco-core:name "Math Classroom - I.S. 218" .
+
+# =============================================================================
+# EXPLOITATION ACTIVITIES
+# =============================================================================
+
+:gary-simon-exploitation rdf:type icac-educational:ClassroomBasedExploitation, icac-educational:ImmediatePhysicalContactExploitation ;
+    rdfs:label "Gary Simon Classroom Exploitation"@en ;
+    rdfs:comment "Sexual exploitation of students by Gary Simon in classroom setting."@en ;
+    icac-educational:exploitationDuration 2 ;
+    icac-educational:victimCount 2 ;
+    icac-educational:exploitationMethod "physical" ;
+    icac-educational:exploitationLocation "classroom" ;
+    icac-educational:exploitsPosition :gary-simon-math-teacher-role ;
+    icac-educational:targetsVictim :intermediate-school-targeting ;
+    icac-educational:occursInContext :assignment-completion-context, :test-taking-context ;
+    icac-educational:involvesWrittenHarassment :assignment-harassment-1, :assignment-harassment-2 ;
+    icac-educational:involvesPhysicalContact :breast-touching-1, :breast-touching-2 ;
+    icac-educational:takesPlaceIn :math-classroom ;
+    icac-educational:resultsinCharge :sexual-abuse-first-degree-charge, :sexual-abuse-second-degree-charge, :forcible-touching-charge, :endangering-welfare-charge .
+
+# =============================================================================
+# VICTIM TARGETING
+# =============================================================================
+
+:intermediate-school-targeting rdf:type icac-educational:IntermediateSchoolTargeting ;
+    rdfs:label "Intermediate School Student Targeting"@en ;
+    rdfs:comment "Targeting of vulnerable intermediate school students."@en ;
+    icac-educational:targetAgeRange "12-13" ;
+    icac-educational:targetGender "female" ;
+    icac-educational:targetingMethod "classroom_access" ;
+    icac-educational:selectsVictim :victim-1, :victim-2 ;
+    icac-educational:exploitsVulnerability :academic-power-vulnerability, :classroom-isolation-vulnerability .
+
+# =============================================================================
+# ACADEMIC ACTIVITIES
+# =============================================================================
+
+:assignment-activity rdf:type uco-action:Action ;
+    rdfs:label "Assignment Activity"@en ;
+    rdfs:comment "Academic activity of completing assignments."@en ;
+    uco-core:name "Assignment Completion Activity" .
+
+:test-activity rdf:type uco-action:Action ;
+    rdfs:label "Test Activity"@en ;
+    rdfs:comment "Academic activity of taking tests."@en ;
+    uco-core:name "Test Taking Activity" .
+
+# =============================================================================
+# CLASSROOM EXPLOITATION CONTEXTS
+# =============================================================================
+
+:assignment-completion-context rdf:type icac-educational:AssignmentCompletionExploitation, icac-educational:ClassroomExploitationContext ;
+    rdfs:label "Assignment Completion Context"@en ;
+    rdfs:comment "Exploitation occurring while students completed assignments."@en ;
+    icac-educational:classroomNumber "Math Room" ;
+    icac-educational:academicActivity "assignment_completion" ;
+    icac-educational:timeOfDay "afternoon" ;
+    icac-educational:studentsPresent 0 ;
+    icac-educational:isolationLevel "alone" ;
+    icac-educational:duringActivity :assignment-activity ;
+    icac-educational:leveragesAcademicPower :academic-power-vulnerability .
+
+:test-taking-context rdf:type icac-educational:TestTakingExploitation, icac-educational:ClassroomExploitationContext ;
+    rdfs:label "Test Taking Context"@en ;
+    rdfs:comment "Exploitation occurring while students took tests."@en ;
+    icac-educational:classroomNumber "Math Room" ;
+    icac-educational:academicActivity "test_taking" ;
+    icac-educational:timeOfDay "afternoon" ;
+    icac-educational:studentsPresent 1 ;
+    icac-educational:isolationLevel "few_students" ;
+    icac-educational:duringActivity :test-activity ;
+    icac-educational:leveragesAcademicPower :academic-power-vulnerability .
+
+# =============================================================================
+# WRITTEN HARASSMENT
+# =============================================================================
+
+:assignment-harassment-1 rdf:type icac-educational:AssignmentHarassment, icac-educational:DegradingWrittenComments ;
+    rdfs:label "Assignment Harassment - Victim 1"@en ;
+    rdfs:comment "Written harassment on victim 1's assignment."@en ;
+    icac-educational:harassmentContent "you suck" ;
+    icac-educational:harassmentMedium "assignment" ;
+    icac-educational:harassmentFrequency "single_incident" ;
+    icac-educational:degradationLevel "moderate" ;
+    icac-educational:writtenOn :victim-1-assignment ;
+    icac-educational:degradesVictim :victim-1 ;
+    icac-educational:intimidatesStudent :victim-1 .
+
+:assignment-harassment-2 rdf:type icac-educational:AssignmentHarassment, icac-educational:DegradingWrittenComments ;
+    rdfs:label "Assignment Harassment - Victim 2"@en ;
+    rdfs:comment "Written harassment on victim 2's assignment."@en ;
+    icac-educational:harassmentContent "you suck" ;
+    icac-educational:harassmentMedium "assignment" ;
+    icac-educational:harassmentFrequency "single_incident" ;
+    icac-educational:degradationLevel "moderate" ;
+    icac-educational:writtenOn :victim-2-assignment ;
+    icac-educational:degradesVictim :victim-2 ;
+    icac-educational:intimidatesStudent :victim-2 .
+
+# =============================================================================
+# ACADEMIC MATERIALS
+# =============================================================================
+
+:victim-1-assignment rdf:type uco-observable:ObservableObject ;
+    rdfs:label "Victim 1 Assignment"@en ;
+    rdfs:comment "Math assignment completed by victim 1 with harassing comments."@en ;
+    uco-core:name "Victim 1 Math Assignment" .
+
+:victim-2-assignment rdf:type uco-observable:ObservableObject ;
+    rdfs:label "Victim 2 Assignment"@en ;
+    rdfs:comment "Math assignment completed by victim 2 with harassing comments."@en ;
+    uco-core:name "Victim 2 Math Assignment" .
+
+# =============================================================================
+# PHYSICAL CONTACT PATTERNS
+# =============================================================================
+
+:breast-touching-1 rdf:type icac-educational:BreastTouching, icac-educational:ImmediatePhysicalContact ;
+    rdfs:label "Breast Touching - Victim 1"@en ;
+    rdfs:comment "Inappropriate breast touching of victim 1."@en ;
+    icac-educational:contactType "inappropriate_touching" ;
+    icac-educational:bodyPartTouched "breasts" ;
+    icac-educational:contactDuration 3.0 ;
+    icac-educational:contactFrequency "single_incident" ;
+    icac-educational:touchesVictim :victim-1 .
+
+:breast-touching-2 rdf:type icac-educational:BreastTouching, icac-educational:ImmediatePhysicalContact ;
+    rdfs:label "Breast Touching - Victim 2"@en ;
+    rdfs:comment "Inappropriate breast touching of victim 2."@en ;
+    icac-educational:contactType "inappropriate_touching" ;
+    icac-educational:bodyPartTouched "breasts" ;
+    icac-educational:contactDuration 2.5 ;
+    icac-educational:contactFrequency "single_incident" ;
+    icac-educational:touchesVictim :victim-2 .
+
+# =============================================================================
+# VULNERABILITY FACTORS
+# =============================================================================
+
+:classroom-isolation-vulnerability rdf:type icac-educational:ClassroomIsolationVulnerability ;
+    rdfs:label "Classroom Isolation Vulnerability"@en ;
+    rdfs:comment "Vulnerability created when students are alone with teacher in classroom."@en .
+
+:academic-power-vulnerability rdf:type icac-educational:AcademicPowerVulnerability ;
+    rdfs:label "Academic Power Vulnerability"@en ;
+    rdfs:comment "Vulnerability created by teacher's power over student grades and academic success."@en .
+
+# =============================================================================
+# REPORTING MECHANISMS
+# =============================================================================
+
+:victim-1-disclosure rdf:type icac-educational:VictimDisclosureToStaff ;
+    rdfs:label "Victim 1 Disclosure"@en ;
+    rdfs:comment "Victim 1's disclosure to school counselor."@en ;
+    icac-educational:disclosureMethod "verbal" ;
+    icac-educational:disclosesTo :school-counselor ;
+    icac-educational:activatesMandatoryReporting :counselor-reporting .
+
+:victim-2-disclosure rdf:type icac-educational:VictimDisclosureToStaff ;
+    rdfs:label "Victim 2 Disclosure"@en ;
+    rdfs:comment "Victim 2's disclosure to gym teacher."@en ;
+    icac-educational:disclosureMethod "verbal" ;
+    icac-educational:disclosesTo :gym-teacher ;
+    icac-educational:activatesMandatoryReporting :gym-teacher-reporting .
+
+:counselor-reporting rdf:type icac-educational:CounselorReporting ;
+    rdfs:label "Counselor Reporting"@en ;
+    rdfs:comment "School counselor's mandatory reporting of victim 1's disclosure."@en ;
+    icac-educational:reportingDelay 0.5 ;
+    icac-educational:reportingStaffRole "counselor" ;
+    icac-educational:mandatoryReportingTriggered true ;
+    icac-educational:receivesReport :victim-1-disclosure ;
+    icac-educational:notifiesPrincipal :principal-notification .
+
+:gym-teacher-reporting rdf:type icac-educational:GymTeacherReporting ;
+    rdfs:label "Gym Teacher Reporting"@en ;
+    rdfs:comment "Gym teacher's reporting of victim 2's disclosure."@en ;
+    icac-educational:reportingDelay 0.25 ;
+    icac-educational:reportingStaffRole "gym_teacher" ;
+    icac-educational:mandatoryReportingTriggered true ;
+    icac-educational:receivesReport :victim-2-disclosure ;
+    icac-educational:notifiesPrincipal :principal-notification .
+
+:principal-notification rdf:type icac-educational:PrincipalNotification ;
+    rdfs:label "Principal Notification"@en ;
+    rdfs:comment "Principal's notification of sexual abuse allegations."@en ;
+    icac-educational:reportingStaffRole "principal" ;
+    icac-educational:triggersPoliceNotification :police-notification .
+
+:police-notification rdf:type icac-educational:PoliceNotification ;
+    rdfs:label "Police Notification"@en ;
+    rdfs:comment "Notification of police by school administration."@en ;
+    icac-educational:policeResponseTime 2.0 ;
+    icac-educational:reportingStaffRole "principal" .
+
+# =============================================================================
+# EVIDENCE
+# =============================================================================
+
+:written-harassment-evidence-1 rdf:type icac-educational:WrittenHarassmentEvidence ;
+    rdfs:label "Written Harassment Evidence - Victim 1"@en ;
+    rdfs:comment "Physical evidence of written harassment on victim 1's assignment."@en ;
+    icac-educational:writtenContent "you suck" ;
+    icac-educational:assignmentType "homework" ;
+    icac-educational:evidenceType "written_harassment" ;
+    icac-educational:evidenceLocation "victim_1_assignment" ;
+    icac-educational:documentsHarassment :assignment-harassment-1 .
+
+:written-harassment-evidence-2 rdf:type icac-educational:WrittenHarassmentEvidence ;
+    rdfs:label "Written Harassment Evidence - Victim 2"@en ;
+    rdfs:comment "Physical evidence of written harassment on victim 2's assignment."@en ;
+    icac-educational:writtenContent "you suck" ;
+    icac-educational:assignmentType "homework" ;
+    icac-educational:evidenceType "written_harassment" ;
+    icac-educational:evidenceLocation "victim_2_assignment" ;
+    icac-educational:documentsHarassment :assignment-harassment-2 .
+
+:victim-testimony-1 rdf:type icac-educational:VictimAccountEvidence ;
+    rdfs:label "Victim 1 Testimony"@en ;
+    rdfs:comment "Victim 1's account of sexual abuse by Gary Simon."@en ;
+    icac-educational:evidenceType "victim_testimony" ;
+    icac-educational:evidenceLocation "police_interview" .
+
+:victim-testimony-2 rdf:type icac-educational:VictimAccountEvidence ;
+    rdfs:label "Victim 2 Testimony"@en ;
+    rdfs:comment "Victim 2's account of sexual abuse by Gary Simon."@en ;
+    icac-educational:evidenceType "victim_testimony" ;
+    icac-educational:evidenceLocation "police_interview" .
+
+:witness-testimony-evidence rdf:type icac-educational:WitnessTestimonyEvidence ;
+    rdfs:label "Witness Testimony Evidence"@en ;
+    rdfs:comment "Testimony from school staff and other witnesses."@en ;
+    icac-educational:evidenceType "witness_testimony" ;
+    icac-educational:witnessesExploitation :gary-simon-exploitation .
+
+# =============================================================================
+# CRIMINAL CHARGES
+# =============================================================================
+
+:sexual-abuse-first-degree-charge rdf:type icac-educational:SexualAbuseFirstDegree ;
+    rdfs:label "Sexual Abuse First Degree Charge"@en ;
+    rdfs:comment "First degree sexual abuse charge against Gary Simon."@en ;
+    icac-educational:chargeDegree "first" ;
+    icac-educational:chargeCount 1 ;
+    icac-educational:maximumSentence 25.0 ;
+    icac-educational:chargesDefendant :gary-simon .
+
+:sexual-abuse-second-degree-charge rdf:type icac-educational:SexualAbuseSecondDegree ;
+    rdfs:label "Sexual Abuse Second Degree Charge"@en ;
+    rdfs:comment "Second degree sexual abuse charge against Gary Simon."@en ;
+    icac-educational:chargeDegree "second" ;
+    icac-educational:chargeCount 1 ;
+    icac-educational:maximumSentence 7.0 ;
+    icac-educational:chargesDefendant :gary-simon .
+
+:forcible-touching-charge rdf:type icac-educational:ForcibleTouchingCharge ;
+    rdfs:label "Forcible Touching Charge"@en ;
+    rdfs:comment "Forcible touching charge against Gary Simon."@en ;
+    icac-educational:chargeCount 2 ;
+    icac-educational:maximumSentence 1.0 ;
+    icac-educational:chargesDefendant :gary-simon .
+
+:endangering-welfare-charge rdf:type icac-educational:EndangeringWelfareOfChild ;
+    rdfs:label "Endangering Welfare of Child Charge"@en ;
+    rdfs:comment "Endangering welfare of child charge against Gary Simon."@en ;
+    icac-educational:chargeCount 2 ;
+    icac-educational:maximumSentence 4.0 ;
+    icac-educational:chargesDefendant :gary-simon .
+
+# =============================================================================
+# LEGAL PROCEEDINGS
+# =============================================================================
+
+:gary-simon-arraignment rdf:type uco-action:Action ;
+    rdfs:label "Gary Simon Arraignment"@en ;
+    rdfs:comment "Arraignment of Gary Simon on sexual abuse charges."@en ;
+    uco-core:name "Gary Simon Arraignment" .
+
+:bail-conditions rdf:type uco-action:Action ;
+    rdfs:label "Bail Conditions"@en ;
+    rdfs:comment "Bail conditions set for Gary Simon."@en ;
+    uco-core:name "Gary Simon Bail Conditions" ;
+    icac-educational:bailAmount 15000.0 ;
+    icac-educational:bondAmount 30000.0 . 

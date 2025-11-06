@@ -1,0 +1,299 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/core#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/identity#> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/action#> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/role#> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/location#> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/observable#> .
+@prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
+@prefix icac-core: <https://ontology.unifiedcyberontology.org/icac/core#> .
+@prefix icac-registry: <https://ontology.unifiedcyberontology.org/icac/sex-offender-registry#> .
+@prefix icac-forensics: <https://ontology.unifiedcyberontology.org/icac/forensics#> .
+@prefix icac-multi: <https://ontology.unifiedcyberontology.org/icac/multi-jurisdiction#> .
+@prefix icac-sentencing: <https://ontology.unifiedcyberontology.org/icac/sentencing#> .
+
+@base <https://ontology.unifiedcyberontology.org/icac/examples/palmisano-case#> .
+
+# =============================================================================
+# PALMISANO CASE EXAMPLE - LOUISIANA REGISTERED SEX OFFENDER
+# Based on DOJ Press Release: Fort Pierce Jury Convicts Louisiana Registered Sex Offender
+# Date: May 29, 2025
+# =============================================================================
+
+<> rdf:type owl:Ontology ;
+    rdfs:label "Nicolas James Palmisano Case Example"@en ;
+    rdfs:comment "Comprehensive example modeling the Nicolas James Palmisano case demonstrating registered sex offender recidivism, cross-state digital exploitation, and compliance-based arrest coordination."@en ;
+    owl:imports <https://ontology.unifiedcyberontology.org/icac/sex-offender-registry> .
+
+# =============================================================================
+# PERPETRATOR - REGISTERED SEX OFFENDER
+# =============================================================================
+
+palmisano-case:nicolas-james-palmisano rdf:type icac-registry:RecidivistSexOffender ;
+    rdfs:label "Nicolas James Palmisano"@en ;
+    rdfs:comment "45-year-old registered sex offender from Destrehan, Louisiana who reoffended with digital exploitation of Martin County, Florida minor."@en ;
+    uco-identity:birthDate "1979-01-01"^^xsd:date ; # Estimated based on age 45 in 2024
+    icac-registry:fullName "Nicolas James Palmisano" ;
+    icac-registry:race "White" ; # Estimated
+    icac-registry:sex "Male" ;
+    icac-registry:tier "Tier II" ; # Estimated based on prior juvenile offense
+    icac-registry:priorConvictionCount 1 ;
+    icac-registry:yearsBetweenOffenses 5.0 ; # 2019 conviction, released ~2023, 2024 new offense
+    icac-registry:sentenceServed "4 years prison" ;
+    icac-registry:mandatoryMinimumYears 35 ;
+    icac-registry:maximumSentenceYears "life" ;
+    icac-registry:lifetimeSupervision true ;
+    icac-registry:registeredIn palmisano-case:st-charles-parish-registry ;
+    icac-registry:hasRegistrationRecord palmisano-case:palmisano-registration-record ;
+    icac-registry:residesAt palmisano-case:destrehan-louisiana-residence ;
+    icac-registry:exhibitsRecidivism palmisano-case:palmisano-recidivism ;
+    icac-registry:involvesPattern palmisano-case:digital-recidivism-pattern .
+
+# =============================================================================
+# PRIOR CONVICTION AND REGISTRATION
+# =============================================================================
+
+palmisano-case:st-charles-parish-registry rdf:type icac-registry:SexOffenderRegistry ;
+    rdfs:label "St. Charles Parish Sex Offender Registry"@en ;
+    rdfs:comment "Louisiana sex offender registry managed by St. Charles Parish Sheriff's Office."@en ;
+    icac-registry:managedBy palmisano-case:st-charles-parish-sheriffs-office .
+
+palmisano-case:st-charles-parish-sheriffs-office rdf:type icac-registry:RegistryAgency ;
+    rdfs:label "St. Charles Parish Sheriff's Office"@en ;
+    rdfs:comment "Law enforcement agency responsible for maintaining sex offender registry in St. Charles Parish, Louisiana."@en ;
+    uco-location:address "St. Charles Parish, Louisiana" .
+
+palmisano-case:palmisano-registration-record rdf:type icac-registry:RegistrationRecord ;
+    rdfs:label "Palmisano Registration Record"@en ;
+    rdfs:comment "Official sex offender registration record for Nicolas James Palmisano in Louisiana."@en ;
+    icac-registry:registrationNumber "SCP-2023-001234" ; # Estimated
+    icac-registry:registrationDate "2023-06-01"^^xsd:date ; # Estimated upon release
+    icac-registry:registrationFrequency "annual" ;
+    icac-registry:lifetimeRegistration true ;
+    icac-registry:lastUpdate "2024-08-01"^^xsd:date ; # Date of annual review when arrested
+    icac-registry:basedOnOffense palmisano-case:prior-juvenile-offense .
+
+palmisano-case:prior-juvenile-offense rdf:type icac-registry:ConvictingOffense ;
+    rdfs:label "2019 St. Charles Parish Sexual Offense"@en ;
+    rdfs:comment "2019 conviction for sexual offenses involving a juvenile that triggered sex offender registration requirement."@en ;
+    icac-registry:offenseDescription "Sexual offenses involving a juvenile" ;
+    icac-registry:convictionDate "2019-03-15"^^xsd:date ; # Estimated
+    icac-registry:sentenceLength "4 years prison" ;
+    icac-registry:victimAge 14 ; # Estimated
+    icac-registry:victimCount 1 ;
+    icac-registry:victimRelationship "known" .
+
+palmisano-case:destrehan-louisiana-residence rdf:type icac-registry:RegisteredAddress ;
+    rdfs:label "Destrehan, Louisiana Residence"@en ;
+    rdfs:comment "Registered address of Nicolas James Palmisano in Destrehan, Louisiana."@en ;
+    uco-location:addressLine1 "Destrehan" ;
+    uco-location:administrativeArea "Louisiana" ;
+    uco-location:country "United States" .
+
+# =============================================================================
+# RECIDIVISM PATTERNS
+# =============================================================================
+
+palmisano-case:palmisano-recidivism rdf:type icac-registry:CrossStateRecidivism ;
+    rdfs:label "Palmisano Cross-State Recidivism"@en ;
+    rdfs:comment "Pattern of recidivism involving Louisiana registered offender targeting Florida minor."@en ;
+    icac-registry:recidivismPattern "cross_jurisdictional" ;
+    icac-registry:crossesStates palmisano-case:louisiana-location ;
+    icac-registry:crossesStates palmisano-case:florida-location .
+
+palmisano-case:digital-recidivism-pattern rdf:type icac-registry:DigitalRecidivismPattern ;
+    rdfs:label "Digital Exploitation Recidivism Pattern"@en ;
+    rdfs:comment "Pattern of repeat digital sexual exploitation using cellular phone communications."@en ;
+    icac-registry:exploitationDurationMonths 2.5 ; # February 22 - May 6, 2024
+    icac-registry:demonstratesAgeAwareness palmisano-case:age-aware-exploitation ;
+    icac-registry:involvesHighVolumeExploitation palmisano-case:high-volume-exploitation .
+
+palmisano-case:age-aware-exploitation rdf:type icac-registry:AgeAwareExploitation ;
+    rdfs:label "Age-Aware Continuing Exploitation"@en ;
+    rdfs:comment "Exploitation where Palmisano explicitly acknowledged victim was 15 years old but continued sending sexually explicit content."@en ;
+    icac-registry:victimAgeAcknowledged 15 ;
+    icac-registry:ageAcknowledgmentMethod "direct_communication" .
+
+palmisano-case:high-volume-exploitation rdf:type icac-registry:HighVolumeDigitalExploitation ;
+    rdfs:label "High Volume Digital Exploitation"@en ;
+    rdfs:comment "Thousands of sexually explicit messages and multiple multimedia files sent over 2+ month period."@en ;
+    icac-registry:messageCount 3000 ; # Estimated "thousands"
+    icac-registry:involvesBidirectionalExchange palmisano-case:bidirectional-content-exchange .
+
+palmisano-case:bidirectional-content-exchange rdf:type icac-registry:BidirectionalContentExchange ;
+    rdfs:label "Bidirectional Explicit Content Exchange"@en ;
+    rdfs:comment "Exchange where Palmisano both sent explicit content to victim and solicited/obtained explicit images from victim."@en ;
+    icac-registry:contentTypesSent "text, images, audio, video" ;
+    icac-registry:contentTypesReceived "images" .
+
+# =============================================================================
+# VICTIM AND LOCATIONS
+# =============================================================================
+
+palmisano-case:martin-county-minor rdf:type uco-identity:Person ;
+    rdfs:label "Martin County Minor Victim"@en ;
+    rdfs:comment "15-year-old minor victim from Martin County, Florida."@en ;
+    uco-identity:birthDate "2009-01-01"^^xsd:date ; # Estimated based on 15 years old in 2024
+    uco-location:address "Martin County, Florida" .
+
+palmisano-case:louisiana-location rdf:type uco-location:Location ;
+    rdfs:label "Louisiana Location"@en ;
+    uco-location:administrativeArea "Louisiana" ;
+    uco-location:country "United States" .
+
+palmisano-case:florida-location rdf:type uco-location:Location ;
+    rdfs:label "Florida Location"@en ;
+    uco-location:administrativeArea "Florida" ;
+    uco-location:country "United States" .
+
+# =============================================================================
+# INVESTIGATION AND DIGITAL EVIDENCE
+# =============================================================================
+
+palmisano-case:cross-state-investigation rdf:type icac-registry:CrossStateDigitalInvestigation ;
+    rdfs:label "Palmisano Cross-State Digital Investigation"@en ;
+    rdfs:comment "Investigation involving Louisiana registered sex offender targeting Florida minor using digital communications."@en ;
+    icac-registry:targetsCrossState palmisano-case:martin-county-minor ;
+    icac-registry:coordinatesBetweenAgencies palmisano-case:martin-county-sheriffs-office ;
+    icac-registry:coordinatesBetweenAgencies palmisano-case:fbi-fort-pierce ;
+    icac-registry:coordinatesBetweenAgencies palmisano-case:fbi-new-orleans .
+
+palmisano-case:martin-county-sheriffs-office rdf:type uco-identity:Organization ;
+    rdfs:label "Martin County Sheriff's Office"@en ;
+    rdfs:comment "Florida law enforcement agency that initiated investigation when minor had explicit images on cellular phone."@en ;
+    uco-location:address "Martin County, Florida" .
+
+palmisano-case:fbi-fort-pierce rdf:type uco-identity:Organization ;
+    rdfs:label "FBI Fort Pierce"@en ;
+    rdfs:comment "FBI field office that investigated the case and coordinated arrest with Louisiana authorities."@en ;
+    uco-location:address "Fort Pierce, Florida" .
+
+palmisano-case:fbi-new-orleans rdf:type uco-identity:Organization ;
+    rdfs:label "FBI New Orleans"@en ;
+    rdfs:comment "FBI field office that assisted with investigation coordination in Louisiana."@en ;
+    uco-location:address "New Orleans, Louisiana" .
+
+# =============================================================================
+# DIGITAL EVIDENCE RECOVERY
+# =============================================================================
+
+palmisano-case:victim-device-forensics rdf:type icac-registry:VictimDeviceForensics ;
+    rdfs:label "Victim Cellular Phone Forensics"@en ;
+    rdfs:comment "Forensic examination of Martin County minor's cellular phone that recovered messages, images, and recordings from Palmisano."@en ;
+    uco-core:startTime "2024-05-10T00:00:00Z"^^xsd:dateTime ; # Estimated
+    icac-registry:recoversEvidence palmisano-case:multi-modal-evidence .
+
+palmisano-case:multi-modal-evidence rdf:type icac-registry:MultiModalDigitalEvidence ;
+    rdfs:label "Multi-Modal Digital Evidence"@en ;
+    rdfs:comment "Digital evidence containing messages, images, and audio/video recordings exchanged between Palmisano and victim."@en ;
+    uco-core:description "Messages, images, and recordings from Palmisano's cellular number found on victim's phone" .
+
+palmisano-case:offender-device-search rdf:type icac-registry:OffenderDeviceSearchWarrant ;
+    rdfs:label "Palmisano Device Search Warrant"@en ;
+    rdfs:comment "Search warrant executed on Palmisano's residence in Louisiana that recovered his cellular phone containing explicit material exchanged with victim."@en ;
+    uco-core:startTime "2024-08-15T00:00:00Z"^^xsd:dateTime ; # Same day as arrest
+    icac-registry:executedAt palmisano-case:destrehan-louisiana-residence .
+
+# =============================================================================
+# COMPLIANCE-BASED ARREST COORDINATION
+# =============================================================================
+
+palmisano-case:compliance-arrest-coordination rdf:type icac-registry:ComplianceScheduleCoordination ;
+    rdfs:label "Palmisano Compliance Arrest Coordination"@en ;
+    rdfs:comment "Coordination between FBI investigation and St. Charles Parish Sheriff's Office to arrest Palmisano during his annual registration review."@en ;
+    icac-registry:coordinationTimeframe 30.0 ; # Estimated 30 days between investigation completion and arrest
+    uco-core:startTime "2024-07-15T00:00:00Z"^^xsd:dateTime ; # Estimated coordination planning
+    uco-core:endTime "2024-08-15T00:00:00Z"^^xsd:dateTime . # Arrest date
+
+palmisano-case:registration-review-arrest rdf:type icac-registry:RegistrationReviewArrest ;
+    rdfs:label "Annual Registration Review Arrest"@en ;
+    rdfs:comment "Arrest of Palmisano executed when he arrived at St. Charles Parish Sheriff's Office for his annual sex offender registration review and update."@en ;
+    uco-core:startTime "2024-08-15T09:00:00Z"^^xsd:dateTime ; # Estimated arrest time
+    icac-registry:arrestTiming "arrival" ;
+    icac-registry:complianceType "annual_review" ;
+    icac-registry:executedDuring palmisano-case:annual-registration-review .
+
+palmisano-case:annual-registration-review rdf:type icac-registry:AnnualRegistrationReview ;
+    rdfs:label "Palmisano Annual Registration Review August 2024"@en ;
+    rdfs:comment "Scheduled annual sex offender registration review and update appointment that was used as arrest opportunity."@en ;
+    uco-core:startTime "2024-08-15T09:00:00Z"^^xsd:dateTime ;
+    uco-action:performer palmisano-case:st-charles-parish-registry-officer .
+
+palmisano-case:st-charles-parish-registry-officer rdf:type icac-registry:RegistryOfficer ;
+    rdfs:label "St. Charles Parish Registry Officer"@en ;
+    rdfs:comment "Officer responsible for sex offender registration management at St. Charles Parish Sheriff's Office."@en .
+
+# =============================================================================
+# FEDERAL CHARGES AND SENTENCING
+# =============================================================================
+
+palmisano-case:federal-charges rdf:type icac-sentencing:FederalCharges ;
+    rdfs:label "Palmisano Federal Charges"@en ;
+    rdfs:comment "Federal charges against Nicolas James Palmisano for digital exploitation of Martin County minor."@en ;
+    icac-sentencing:chargeCount 5 .
+
+palmisano-case:attempted-enticement-charge rdf:type icac-sentencing:AttemptedEnticementOfMinor ;
+    rdfs:label "Attempted Enticement of Minor Charge"@en ;
+    rdfs:comment "Federal charge for attempted enticement of minor through digital communications."@en .
+
+palmisano-case:attempted-production-charge rdf:type icac-sentencing:AttemptedProductionOfCSAM ;
+    rdfs:label "Attempted Production of Visual Depictions Charge"@en ;
+    rdfs:comment "Federal charge for attempted production of visual depictions involving sexual exploitation of minor."@en .
+
+palmisano-case:receipt-csam-charge rdf:type icac-sentencing:ReceiptOfCSAM ;
+    rdfs:label "Receipt of Visual Depictions Charge"@en ;
+    rdfs:comment "Federal charge for receipt of visual depictions involving sexual exploitation of minor."@en .
+
+palmisano-case:transfer-obscene-material-charge rdf:type icac-sentencing:TransferOfObsceneMaterial ;
+    rdfs:label "Transfer of Obscene Material to Minor Charge"@en ;
+    rdfs:comment "Federal charge for transfer of obscene material to minor victim."@en .
+
+palmisano-case:offense-by-registered-offender-charge rdf:type icac-sentencing:OffenseByRegisteredSexOffender ;
+    rdfs:label "Offense by Registered Sex Offender Charge"@en ;
+    rdfs:comment "Federal charge enhanced due to registered sex offender status."@en .
+
+palmisano-case:sentencing-hearing rdf:type icac-sentencing:SentencingHearing ;
+    rdfs:label "Palmisano Sentencing Hearing"@en ;
+    rdfs:comment "Sentencing hearing scheduled for August 25, 2025 before U.S. District Judge Jose E. Martinez."@en ;
+    uco-core:startTime "2025-08-25T09:00:00Z"^^xsd:dateTime ;
+    icac-sentencing:presidedBy palmisano-case:judge-jose-martinez .
+
+palmisano-case:judge-jose-martinez rdf:type uco-identity:Person ;
+    rdfs:label "U.S. District Judge Jose E. Martinez"@en ;
+    rdfs:comment "Federal judge presiding over Palmisano sentencing in Southern District of Florida."@en .
+
+# =============================================================================
+# PROJECT SAFE CHILDHOOD INTEGRATION
+# =============================================================================
+
+palmisano-case:project-safe-childhood-case rdf:type icac-core:ProjectSafeChildhoodCase ;
+    rdfs:label "Palmisano Project Safe Childhood Case"@en ;
+    rdfs:comment "Case brought as part of Project Safe Childhood nationwide initiative to combat child sexual exploitation."@en ;
+    icac-core:caseType "digital_exploitation" ;
+    icac-core:investigatedBy palmisano-case:cross-state-investigation .
+
+# =============================================================================
+# RELATIONSHIPS AND INTEGRATION
+# =============================================================================
+
+# Linking investigation to registered offender
+palmisano-case:nicolas-james-palmisano icac-registry:triggersInvestigation palmisano-case:cross-state-investigation .
+
+# Linking compliance arrest to investigation
+palmisano-case:cross-state-investigation icac-registry:coordinatedWithCompliance palmisano-case:registration-review-arrest .
+
+# Linking charges to recidivist offender
+palmisano-case:federal-charges icac-sentencing:chargesOffender palmisano-case:nicolas-james-palmisano .
+
+# Victim device forensics relationships
+palmisano-case:martin-county-sheriffs-office uco-action:performer palmisano-case:victim-device-forensics .
+
+# Multi-agency coordination
+palmisano-case:registration-review-arrest uco-action:performer palmisano-case:fbi-fort-pierce .
+palmisano-case:registration-review-arrest uco-action:performer palmisano-case:st-charles-parish-sheriffs-office .
+
+# Evidence correlation
+palmisano-case:multi-modal-evidence uco-core:description "Contains evidence from cellular phone number associated with Palmisano" . 

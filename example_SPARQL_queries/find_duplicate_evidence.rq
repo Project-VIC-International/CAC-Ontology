@@ -1,0 +1,44 @@
+# Query: Q3 find_duplicate_evidence
+# Purpose: Operations dashboard - identify duplicate evidence across reports
+# Parameters: ?from (dateTime), ?to (dateTime), ?limit (integer)
+# Security: TLP-RED content excluded by default
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX hotline: <https://ontology.unifiedcyberontology.org/hotlines/2025/core#>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/core#>
+PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/observable#>
+PREFIX uco-confidentiality: <https://ontology.unifiedcyberontology.org/confidentiality#>
+
+SELECT ?hash ?hashMethod ?sampleArtifact ?firstSeen ?reportCount
+WHERE {
+    # Parameter defaults
+    VALUES (?from ?to ?limit) {
+        ("2025-01-01T00:00:00Z"^^xsd:dateTime "2025-12-31T23:59:59Z"^^xsd:dateTime 100)
+    }
+    
+    # Core evidence data
+    ?report hotline:hasEvidence ?evidence .
+    ?evidence uco-observable:hash ?hashObj ;
+              hotline:firstSeen ?firstSeen .
+    
+    ?hashObj uco-observable:hashValue ?hash ;
+             uco-observable:hashMethod ?hashMethod .
+    
+    # Sample artifact for preview
+    OPTIONAL {
+        ?evidence uco-observable:fileName ?sampleArtifact .
+    }
+    
+    # Date range filter
+    FILTER(?firstSeen >= ?from && ?firstSeen <= ?to)
+    
+    # Security filter
+    FILTER NOT EXISTS {
+        ?evidence uco-confidentiality:TLP-RED ?whatever .
+    }
+}
+GROUP BY ?hash ?hashMethod ?sampleArtifact ?firstSeen
+HAVING (COUNT(DISTINCT ?report) > 1)
+ORDER BY DESC(?firstSeen)
+LIMIT ?limit 

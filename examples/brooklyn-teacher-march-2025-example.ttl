@@ -1,0 +1,580 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/core#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/identity#> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/observable#> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/action#> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/role#> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/location#> .
+@prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
+@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
+@prefix icac-educational: <https://ontology.unifiedcyberontology.org/icac/educational#> .
+@prefix icac-grooming: <https://ontology.unifiedcyberontology.org/icac/grooming#> .
+@prefix icac-sentencing: <https://ontology.unifiedcyberontology.org/icac/sentencing#> .
+@prefix icac-platforms: <https://ontology.unifiedcyberontology.org/icac/platforms#> .
+@prefix : <https://example.org/brooklyn-teacher-march-2025/> .
+
+# =============================================================================
+# BROOKLYN TEACHER CASE - MARCH 19, 2025 SENTENCING
+# Winston Nguyen - Former Math Teacher at Saint Ann's School
+# =============================================================================
+
+# Main Investigation
+:brooklyn_teacher_investigation rdf:type icac-educational:EducationalInstitutionInvestigation ;
+    rdfs:label "Brooklyn Teacher Investigation - Winston Nguyen"@en ;
+    rdfs:comment "Investigation into former math teacher Winston Nguyen for soliciting sexual content from 6 students aged 13-15 via Snapchat impersonation."@en ;
+    uco-core:startTime "2024-05-01T00:00:00Z"^^xsd:dateTime ;
+    case-investigation:investigationStatus "completed" ;
+    icac-educational:investigatesNetwork :nguyen_exploitation_operation .
+
+# =============================================================================
+# DEFENDANT AND EDUCATOR ROLE
+# =============================================================================
+
+:winston_nguyen rdf:type uco-identity:Person ;
+    uco-identity:fullName "Winston Nguyen"@en ;
+    uco-identity:birthDate "1987-01-01"^^xsd:date ; # Age 38 in 2025
+    uco-location:hasLocation :harlem_residence ;
+    icac-educational:employedAt :saint_anns_school ;
+    icac-educational:exploitsPosition :math_teacher_role .
+
+:math_teacher_role rdf:type icac-educational:MathTeacherRole ;
+    rdfs:label "Math Teacher at Saint Ann's School"@en ;
+    icac-educational:employmentDuration 36.0 ; # Approximately 3 years
+    icac-educational:subjectTaught "Mathematics" ;
+    icac-educational:gradeLevel "High School" ;
+    icac-educational:accessLevel "direct_student_contact" .
+
+# =============================================================================
+# EDUCATIONAL INSTITUTIONS
+# =============================================================================
+
+:saint_anns_school rdf:type icac-educational:IndependentSchool ,
+                           icac-educational:EliteEducationalInstitution ;
+    rdfs:label "Saint Ann's School"@en ;
+    rdfs:comment "Elite independent school in Brooklyn Heights where Winston Nguyen was employed as math teacher."@en ;
+    icac-educational:institutionType "independent" ;
+    icac-educational:institutionLocation "Brooklyn Heights, New York" ;
+    icac-educational:institutionReputation "elite" ;
+    icac-educational:studentPopulation 1200 ;
+    uco-location:hasLocation :brooklyn_heights_location ;
+    icac-educational:hasVulnerability :trust_based_vulnerability ,
+                                     :privileged_environment_vulnerability .
+
+:brooklyn_independent_school_1 rdf:type icac-educational:IndependentSchool ,
+                                        icac-educational:EliteEducationalInstitution ;
+    rdfs:label "Brooklyn Independent School 1"@en ;
+    rdfs:comment "First of four elite Brooklyn independent schools from which victims were targeted."@en ;
+    icac-educational:institutionType "independent" ;
+    icac-educational:institutionLocation "Brooklyn, New York" ;
+    icac-educational:institutionReputation "elite" .
+
+:brooklyn_independent_school_2 rdf:type icac-educational:IndependentSchool ,
+                                        icac-educational:EliteEducationalInstitution ;
+    rdfs:label "Brooklyn Independent School 2"@en ;
+    rdfs:comment "Second of four elite Brooklyn independent schools from which victims were targeted."@en ;
+    icac-educational:institutionType "independent" ;
+    icac-educational:institutionLocation "Brooklyn, New York" ;
+    icac-educational:institutionReputation "elite" .
+
+:brooklyn_independent_school_3 rdf:type icac-educational:IndependentSchool ,
+                                        icac-educational:EliteEducationalInstitution ;
+    rdfs:label "Brooklyn Independent School 3"@en ;
+    rdfs:comment "Third of four elite Brooklyn independent schools from which victims were targeted."@en ;
+    icac-educational:institutionType "independent" ;
+    icac-educational:institutionLocation "Brooklyn, New York" ;
+    icac-educational:institutionReputation "elite" .
+
+:brooklyn_independent_school_4 rdf:type icac-educational:IndependentSchool ,
+                                        icac-educational:EliteEducationalInstitution ;
+    rdfs:label "Brooklyn Independent School 4"@en ;
+    rdfs:comment "Fourth of four elite Brooklyn independent schools from which victims were targeted."@en ;
+    icac-educational:institutionType "independent" ;
+    icac-educational:institutionLocation "Brooklyn, New York" ;
+    icac-educational:institutionReputation "elite" .
+
+# =============================================================================
+# LOCATIONS
+# =============================================================================
+
+:brooklyn_heights_location rdf:type uco-location:Location ;
+    uco-location:addressLine1 "Brooklyn Heights"@en ;
+    uco-location:locality "Brooklyn"@en ;
+    uco-location:administrativeArea "New York"@en ;
+    uco-location:country "United States"@en .
+
+:harlem_residence rdf:type uco-location:Location ;
+    uco-location:addressLine1 "Harlem Residence"@en ;
+    uco-location:locality "Manhattan"@en ;
+    uco-location:administrativeArea "New York"@en ;
+    uco-location:country "United States"@en .
+
+:brooklyn_location rdf:type uco-location:Location ;
+    uco-location:addressLine1 "Brooklyn"@en ;
+    uco-location:administrativeArea "New York"@en ;
+    uco-location:country "United States"@en .
+
+# =============================================================================
+# VICTIMS AND TARGETING
+# =============================================================================
+
+:victim_13_year_old_1 rdf:type uco-identity:Person ;
+    rdfs:label "13-Year-Old Victim 1"@en ;
+    uco-identity:birthDate "2011-01-01"^^xsd:date ; # 13 in 2024
+    icac-educational:attendsInstitution :brooklyn_independent_school_1 .
+
+:victim_13_year_old_2 rdf:type uco-identity:Person ;
+    rdfs:label "13-Year-Old Victim 2"@en ;
+    uco-identity:birthDate "2011-06-01"^^xsd:date ; # 13 in 2024
+    icac-educational:attendsInstitution :brooklyn_independent_school_2 .
+
+:victim_14_year_old_1 rdf:type uco-identity:Person ;
+    rdfs:label "14-Year-Old Victim 1"@en ;
+    uco-identity:birthDate "2010-01-01"^^xsd:date ; # 14 in 2024
+    icac-educational:attendsInstitution :brooklyn_independent_school_3 .
+
+:victim_14_year_old_2 rdf:type uco-identity:Person ;
+    rdfs:label "14-Year-Old Victim 2"@en ;
+    uco-identity:birthDate "2010-06-01"^^xsd:date ; # 14 in 2024
+    icac-educational:attendsInstitution :brooklyn_independent_school_4 .
+
+:victim_15_year_old_1 rdf:type uco-identity:Person ;
+    rdfs:label "15-Year-Old Victim 1"@en ;
+    uco-identity:birthDate "2009-01-01"^^xsd:date ; # 15 in 2024
+    icac-educational:attendsInstitution :brooklyn_independent_school_1 .
+
+:victim_15_year_old_2 rdf:type uco-identity:Person ;
+    rdfs:label "15-Year-Old Victim 2"@en ;
+    uco-identity:birthDate "2009-06-01"^^xsd:date ; # 15 in 2024
+    icac-educational:attendsInstitution :brooklyn_independent_school_2 .
+
+# =============================================================================
+# INSTITUTIONAL VULNERABILITIES
+# =============================================================================
+
+:trust_based_vulnerability rdf:type icac-educational:TrustBasedVulnerability ;
+    rdfs:label "Trust Based Vulnerability at Elite Schools"@en ;
+    rdfs:comment "Inherent trust relationship between educators and students in elite educational environments."@en .
+
+:privileged_environment_vulnerability rdf:type icac-educational:PrivilegedEnvironmentVulnerability ;
+    rdfs:label "Privileged Environment Vulnerability"@en ;
+    rdfs:comment "Vulnerability in elite educational environments where students may be less likely to report due to institutional reputation."@en .
+
+:authority_based_vulnerability rdf:type icac-educational:AuthorityBasedVulnerability ;
+    rdfs:label "Authority Based Vulnerability"@en ;
+    rdfs:comment "Power differential between math teacher and students creating exploitation vulnerability."@en .
+
+:access_based_vulnerability rdf:type icac-educational:AccessBasedVulnerability ;
+    rdfs:label "Access Based Vulnerability"@en ;
+    rdfs:comment "Teacher's privileged access to student information and contact details."@en .
+
+# =============================================================================
+# DIGITAL PLATFORMS AND ACCOUNTS
+# =============================================================================
+
+:snapchat_platform rdf:type icac-platforms:SnapchatPlatform ;
+    rdfs:label "Snapchat Platform"@en ;
+    rdfs:comment "Snapchat messaging application used for impersonation and exploitation."@en ;
+    icac-platforms:platformType "messaging" ;
+    icac-platforms:ephemeralContent true ;
+    icac-platforms:videoCapability true ;
+    icac-platforms:imageCapability true .
+
+:hunterkristoff_account rdf:type icac-platforms:SnapchatAccount ;
+    rdfs:label "hunterkristoff Snapchat Account"@en ;
+    rdfs:comment "First fake Snapchat account used by Winston Nguyen to impersonate teenage boy."@en ;
+    icac-platforms:username "hunterkristoff" ;
+    icac-platforms:accountType "fake" ;
+    icac-platforms:creationDate "2022-10-01T00:00:00Z"^^xsd:dateTime ;
+    icac-platforms:operatesOn :snapchat_platform .
+
+:haircutbongos_account rdf:type icac-platforms:SnapchatAccount ;
+    rdfs:label "haircutbongos Snapchat Account"@en ;
+    rdfs:comment "Second fake Snapchat account used by Winston Nguyen to impersonate teenage boy."@en ;
+    icac-platforms:username "haircutbongos" ;
+    icac-platforms:accountType "fake" ;
+    icac-platforms:creationDate "2022-10-15T00:00:00Z"^^xsd:dateTime ;
+    icac-platforms:operatesOn :snapchat_platform .
+
+# =============================================================================
+# EXPLOITATION OPERATION
+# =============================================================================
+
+:nguyen_exploitation_operation rdf:type icac-educational:TeacherStudentExploitation ,
+                                        icac-educational:CrossInstitutionalExploitation ,
+                                        icac-educational:PositionOfTrustExploitation ;
+    rdfs:label "Nguyen Cross-Institutional Exploitation Operation"@en ;
+    rdfs:comment "Systematic exploitation of 6 students from 4 elite Brooklyn independent schools using fake teenage personas on Snapchat."@en ;
+    icac-educational:exploitationDuration 19.0 ; # 19 months (October 2022 - May 2024)
+    icac-educational:victimCount 6 ;
+    icac-educational:institutionCount 4 ;
+    icac-educational:victimAgeRange "13-15" ;
+    uco-core:startTime "2022-10-01T00:00:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2024-05-31T00:00:00Z"^^xsd:dateTime ;
+    icac-educational:exploitsPosition :math_teacher_role ;
+    icac-educational:usesImpersonation :teenage_impersonation ,
+                                      :multiple_account_deception ;
+    icac-educational:communicatesVia :snapchat_platform .
+
+# =============================================================================
+# VICTIM TARGETING
+# =============================================================================
+
+:elite_school_targeting rdf:type icac-educational:EliteSchoolTargeting ,
+                                icac-educational:MultipleInstitutionTargeting ,
+                                icac-educational:AgeSpecificTargeting ;
+    rdfs:label "Elite Brooklyn Schools Targeting"@en ;
+    rdfs:comment "Systematic targeting of students aged 13-15 from four elite Brooklyn independent schools."@en ;
+    icac-educational:institutionCount 4 ;
+    icac-educational:victimAgeRange "13-15" ;
+    icac-grooming:institutionPrestige "elite" ;
+    icac-educational:targetsStudent :victim_13_year_old_1 ,
+                                   :victim_13_year_old_2 ,
+                                   :victim_14_year_old_1 ,
+                                   :victim_14_year_old_2 ,
+                                   :victim_15_year_old_1 ,
+                                   :victim_15_year_old_2 ;
+    icac-grooming:targetsInstitution :brooklyn_independent_school_1 ,
+                                    :brooklyn_independent_school_2 ,
+                                    :brooklyn_independent_school_3 ,
+                                    :brooklyn_independent_school_4 .
+
+# =============================================================================
+# DIGITAL IMPERSONATION
+# =============================================================================
+
+:teenage_impersonation rdf:type icac-educational:StudentImpersonation ,
+                               icac-educational:AgeDeception ;
+    rdfs:label "Teenage Boy Impersonation"@en ;
+    rdfs:comment "Impersonation of teenage boy to establish rapport and trust with victims."@en ;
+    icac-educational:impersonatedAge 16 ;
+    icac-educational:platformUsed "Snapchat" ;
+    icac-educational:accountUsername "hunterkristoff" .
+
+:multiple_account_deception rdf:type icac-educational:MultipleAccountDeception ;
+    rdfs:label "Multiple Account Deception Strategy"@en ;
+    rdfs:comment "Use of two fake Snapchat accounts to maintain deceptive teenage identity."@en ;
+    icac-educational:accountCount 2 ;
+    icac-educational:platformUsed "Snapchat" .
+
+# =============================================================================
+# GROOMING ACTIVITIES
+# =============================================================================
+
+:educator_grooming_operation rdf:type icac-grooming:EducatorGrooming ,
+                                     icac-grooming:PositionOfTrustGrooming ,
+                                     icac-grooming:PeerPersonaGrooming ,
+                                     icac-grooming:TeenageImpersonationGrooming ,
+                                     icac-grooming:MultipleAccountGrooming ,
+                                     icac-grooming:CrossInstitutionalGrooming ;
+    rdfs:label "Nguyen Educator Grooming Operation"@en ;
+    rdfs:comment "Comprehensive grooming operation leveraging educator position while impersonating teenage peer."@en ;
+    icac-grooming:groomingDuration 19.0 ; # 19 months
+    icac-grooming:victimCount 6 ;
+    icac-grooming:impersonatedRole "teenage_student" ;
+    icac-grooming:accountsUsed 2 ;
+    icac-grooming:institutionsTargeted 4 ;
+    icac-grooming:leveragesPosition :math_teacher_role ;
+    icac-grooming:targetsInstitution :saint_anns_school ,
+                                    :brooklyn_independent_school_1 ,
+                                    :brooklyn_independent_school_2 ,
+                                    :brooklyn_independent_school_3 ,
+                                    :brooklyn_independent_school_4 .
+
+:sexual_content_exchange rdf:type icac-grooming:SexualContentExchangeGrooming ,
+                                 icac-grooming:InitiatorContentSending ,
+                                 icac-grooming:ReciprocityGrooming ,
+                                 icac-grooming:NormalizationGrooming ,
+                                 icac-grooming:GraphicConversationGrooming ;
+    rdfs:label "Sexual Content Exchange Grooming"@en ;
+    rdfs:comment "Grooming involving sending nude images/videos to victims and soliciting sexual content in return."@en ;
+    icac-grooming:contentType "images_videos_text" ;
+    icac-grooming:initiationMethod "perpetrator_initiated" ;
+    icac-grooming:exchangesContent :nude_images_sent ,
+                                  :nude_videos_sent ,
+                                  :graphic_conversations .
+
+:elite_institution_targeting_grooming rdf:type icac-grooming:EliteInstitutionTargeting ,
+                                              icac-grooming:PrivilegedVictimTargeting ,
+                                              icac-grooming:ReputationBasedSilencing ;
+    rdfs:label "Elite Institution Targeting Grooming"@en ;
+    rdfs:comment "Targeting of privileged students from elite institutions who may be less likely to report."@en ;
+    icac-grooming:institutionPrestige "elite" ;
+    icac-grooming:exploitsReputation :saint_anns_school ,
+                                    :brooklyn_independent_school_1 ,
+                                    :brooklyn_independent_school_2 ,
+                                    :brooklyn_independent_school_3 ,
+                                    :brooklyn_independent_school_4 .
+
+# =============================================================================
+# SEXUAL PERFORMANCE SOLICITATION
+# =============================================================================
+
+:image_solicitation rdf:type icac-educational:ImageSolicitation ;
+    rdfs:label "Nude Image Solicitation"@en ;
+    rdfs:comment "Solicitation of nude images from 6 victims through fake teenage personas."@en ;
+    uco-core:startTime "2022-10-15T00:00:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2024-05-31T00:00:00Z"^^xsd:dateTime ;
+    icac-educational:solicitsFrom :victim_13_year_old_1 ,
+                                 :victim_13_year_old_2 ,
+                                 :victim_14_year_old_1 ,
+                                 :victim_14_year_old_2 ,
+                                 :victim_15_year_old_1 ,
+                                 :victim_15_year_old_2 .
+
+:video_solicitation rdf:type icac-educational:VideoSolicitation ;
+    rdfs:label "Sexual Performance Video Solicitation"@en ;
+    rdfs:comment "Solicitation of sexual performance videos from victims."@en ;
+    uco-core:startTime "2022-11-01T00:00:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2024-05-31T00:00:00Z"^^xsd:dateTime ;
+    icac-educational:solicitsFrom :victim_13_year_old_1 ,
+                                 :victim_13_year_old_2 ,
+                                 :victim_14_year_old_1 ,
+                                 :victim_14_year_old_2 ,
+                                 :victim_15_year_old_1 ,
+                                 :victim_15_year_old_2 .
+
+:graphic_conversation_solicitation rdf:type icac-educational:GraphicConversationSolicitation ;
+    rdfs:label "Graphic Sexual Conversation Solicitation"@en ;
+    rdfs:comment "Solicitation of graphic sexual conversations and descriptions from victims."@en ;
+    uco-core:startTime "2022-10-01T00:00:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2024-05-31T00:00:00Z"^^xsd:dateTime ;
+    icac-educational:solicitsFrom :victim_13_year_old_1 ,
+                                 :victim_13_year_old_2 ,
+                                 :victim_14_year_old_1 ,
+                                 :victim_14_year_old_2 ,
+                                 :victim_15_year_old_1 ,
+                                 :victim_15_year_old_2 .
+
+# =============================================================================
+# EVIDENCE
+# =============================================================================
+
+:ip_address_evidence rdf:type icac-educational:IPAddressEvidence ;
+    rdfs:label "IP Address Evidence"@en ;
+    rdfs:comment "IP addresses linking hunterkristoff and haircutbongos accounts to Winston Nguyen's Harlem residence."@en ;
+    icac-educational:linkedToLocation :harlem_residence ;
+    icac-educational:documentsExploitation :nguyen_exploitation_operation .
+
+:digital_communication_evidence rdf:type icac-educational:DigitalCommunicationEvidence ;
+    rdfs:label "Snapchat Communication Evidence"@en ;
+    rdfs:comment "Digital communications between Nguyen's fake accounts and victims including messages, images, and videos."@en ;
+    icac-educational:documentsExploitation :nguyen_exploitation_operation .
+
+:nude_images_sent rdf:type uco-observable:ObservableObject ;
+    rdfs:label "Nude Images Sent to Victims"@en ;
+    rdfs:comment "Nude images depicting teenage boy masturbating sent by Nguyen to victims."@en ;
+    uco-core:createdTime "2022-10-15T00:00:00Z"^^xsd:dateTime .
+
+:nude_videos_sent rdf:type uco-observable:ObservableObject ;
+    rdfs:label "Nude Videos Sent to Victims"@en ;
+    rdfs:comment "Videos depicting teenage boy masturbating sent by Nguyen to victims."@en ;
+    uco-core:createdTime "2022-10-20T00:00:00Z"^^xsd:dateTime .
+
+:graphic_conversations rdf:type uco-observable:ObservableObject ;
+    rdfs:label "Graphic Sexual Conversations"@en ;
+    rdfs:comment "Prolonged graphic sexual conversations between Nguyen and victims."@en ;
+    uco-core:createdTime "2022-10-01T00:00:00Z"^^xsd:dateTime .
+
+:victim_account_evidence rdf:type icac-educational:VictimAccountEvidence ;
+    rdfs:label "Victim Testimony Evidence"@en ;
+    rdfs:comment "Accounts from 6 victims describing exploitation experiences."@en ;
+    icac-educational:providedBy :victim_13_year_old_1 ,
+                               :victim_13_year_old_2 ,
+                               :victim_14_year_old_1 ,
+                               :victim_14_year_old_2 ,
+                               :victim_15_year_old_1 ,
+                               :victim_15_year_old_2 .
+
+:institutional_record_evidence rdf:type icac-educational:InstitutionalRecordEvidence ;
+    rdfs:label "Saint Ann's School Employment Records"@en ;
+    rdfs:comment "Employment records from Saint Ann's School documenting Nguyen's position and access."@en .
+
+# =============================================================================
+# LEGAL CHARGES
+# =============================================================================
+
+:use_of_child_charge rdf:type icac-educational:UseOfChildInSexualPerformance ;
+    rdfs:label "Use of Child in Sexual Performance Charge"@en ;
+    rdfs:comment "Charge for using child in sexual performance as sexually motivated felony."@en ;
+    icac-educational:resultsinCharge :nguyen_exploitation_operation .
+
+:endangering_welfare_charges rdf:type icac-educational:EndangeringWelfareOfChild ;
+    rdfs:label "Five Counts Endangering Welfare of Child"@en ;
+    rdfs:comment "Five counts of endangering the welfare of children through exploitation."@en ;
+    icac-educational:chargeCount 5 ;
+    icac-educational:resultsinCharge :nguyen_exploitation_operation .
+
+:sexually_motivated_felony rdf:type icac-educational:SexuallyMotivatedFelony ;
+    rdfs:label "Sexually Motivated Felony Enhancement"@en ;
+    rdfs:comment "Sexual motivation enhancement for use of child in sexual performance charge."@en .
+
+# =============================================================================
+# SENTENCING AND POST-CONVICTION REQUIREMENTS
+# =============================================================================
+
+:nguyen_sentencing rdf:type icac-sentencing:EducatorSentencing ,
+                           icac-sentencing:PositionOfTrustSentencing ,
+                           icac-sentencing:UseOfChildInSexualPerformanceSentencing ,
+                           icac-sentencing:EndangeringWelfareOfChildSentencing ,
+                           icac-sentencing:SexuallyMotivatedFelonySentencing ,
+                           icac-sentencing:InstitutionalImpactSentencing ,
+                           icac-sentencing:TrustViolationSentencing ,
+                           icac-sentencing:CommunityImpactSentencing ;
+    rdfs:label "Winston Nguyen Sentencing"@en ;
+    rdfs:comment "Seven years prison plus 10 years post-release supervision and sex offender registration for former math teacher."@en ;
+    icac-sentencing:sentenceLength 7.0 ; # 7 years prison
+    icac-sentencing:sentenceDate "2025-03-19T00:00:00Z"^^xsd:dateTime ;
+    icac-sentencing:educatorRole "math_teacher" ;
+    icac-sentencing:institutionType "elite_independent_school" ;
+    icac-sentencing:trustViolationSeverity "extreme" ;
+    icac-sentencing:communityImpactLevel "institutional" ;
+    icac-sentencing:victimTraumaSparing true ; # Guilty plea spared victims from testifying
+    icac-sentencing:involvesEducationalInstitution :saint_anns_school ;
+    icac-sentencing:enhancedForTrustViolation :trust_violation_sentencing ;
+    icac-sentencing:considersInstitutionalImpact :institutional_impact_sentencing ;
+    icac-sentencing:requiresPostConvictionRequirement :extended_supervision ,
+                                                     :sex_offender_registration ,
+                                                     :educational_employment_prohibition ,
+                                                     :digital_communication_restriction .
+
+:trust_violation_sentencing rdf:type icac-sentencing:TrustViolationSentencing ;
+    rdfs:label "Trust Violation Sentencing Enhancement"@en ;
+    rdfs:comment "Sentencing enhancement for extreme violation of public trust in educational role."@en ;
+    icac-sentencing:trustViolationSeverity "extreme" .
+
+:institutional_impact_sentencing rdf:type icac-sentencing:InstitutionalImpactSentencing ;
+    rdfs:label "Institutional Impact Sentencing Consideration"@en ;
+    rdfs:comment "Sentencing consideration of impact on Saint Ann's School and broader educational community."@en ;
+    icac-sentencing:communityImpactLevel "institutional" .
+
+# =============================================================================
+# POST-CONVICTION REQUIREMENTS
+# =============================================================================
+
+:extended_supervision rdf:type icac-sentencing:ExtendedPostReleaseSupervision ;
+    rdfs:label "10-Year Post-Release Supervision"@en ;
+    rdfs:comment "Extended 10-year supervision period following 7-year incarceration."@en ;
+    icac-sentencing:supervisionYears 10.0 .
+
+:sex_offender_registration rdf:type icac-sentencing:MandatorySexOffenderRegistration ;
+    rdfs:label "Mandatory Sex Offender Registration"@en ;
+    rdfs:comment "Mandatory registration as sex offender upon release from prison."@en ;
+    icac-sentencing:registrationDuration "lifetime" .
+
+:educational_employment_prohibition rdf:type icac-sentencing:EducationalEmploymentProhibition ;
+    rdfs:label "Educational Employment Prohibition"@en ;
+    rdfs:comment "Prohibition from employment in any educational institution."@en ;
+    icac-sentencing:employmentProhibitionScope "all_educational" ;
+    icac-sentencing:prohibitsEmploymentAt :saint_anns_school ,
+                                         :brooklyn_independent_school_1 ,
+                                         :brooklyn_independent_school_2 ,
+                                         :brooklyn_independent_school_3 ,
+                                         :brooklyn_independent_school_4 .
+
+:digital_communication_restriction rdf:type icac-sentencing:DigitalCommunicationRestriction ;
+    rdfs:label "Digital Communication with Minors Restriction"@en ;
+    rdfs:comment "Restrictions on digital communication with minors via social media and messaging platforms."@en ;
+    icac-sentencing:communicationRestrictionType "social_media" ;
+    icac-sentencing:restrictsAccessTo :snapchat_platform .
+
+# =============================================================================
+# LAW ENFORCEMENT AGENCIES
+# =============================================================================
+
+:brooklyn_da_special_victims rdf:type uco-identity:Organization ;
+    rdfs:label "Brooklyn DA Special Victims Bureau"@en ;
+    rdfs:comment "Brooklyn District Attorney's Office Special Victims Bureau prosecuting the case."@en .
+
+:kcda_detective_investigators rdf:type uco-identity:Organization ;
+    rdfs:label "KCDA Detective Investigators"@en ;
+    rdfs:comment "Kings County District Attorney Detective Investigators who investigated the case."@en .
+
+:da_digital_evidence_lab rdf:type uco-identity:Organization ;
+    rdfs:label "DA Digital Evidence Lab"@en ;
+    rdfs:comment "District Attorney's Digital Evidence Lab providing forensic analysis."@en .
+
+# =============================================================================
+# DIGITAL FORENSIC ANALYSTS
+# =============================================================================
+
+:sourov_talukder rdf:type uco-identity:Person ;
+    uco-identity:fullName "Sourov Talukder"@en ;
+    uco-role:hasRole :senior_digital_forensic_analyst_role .
+
+:richard_rojas rdf:type uco-identity:Person ;
+    uco-identity:fullName "Richard Rojas"@en ;
+    uco-role:hasRole :digital_forensic_analyst_role .
+
+:senior_digital_forensic_analyst_role rdf:type uco-role:Role ;
+    rdfs:label "Senior Digital Forensic Analyst"@en .
+
+:digital_forensic_analyst_role rdf:type uco-role:Role ;
+    rdfs:label "Digital Forensic Analyst"@en .
+
+# =============================================================================
+# PROSECUTION TEAM
+# =============================================================================
+
+:daniel_brian_newcombe rdf:type uco-identity:Person ;
+    uco-identity:fullName "Daniel Brian Newcombe"@en ;
+    uco-role:hasRole :senior_assistant_da_role .
+
+:kevin_odonnell rdf:type uco-identity:Person ;
+    uco-identity:fullName "Kevin O'Donnell"@en ;
+    uco-role:hasRole :deputy_bureau_chief_role .
+
+:olatokunbo_olaniyan rdf:type uco-identity:Person ;
+    uco-identity:fullName "Olatokunbo Olaniyan"@en ;
+    uco-role:hasRole :first_deputy_bureau_chief_role .
+
+:miss_gregory rdf:type uco-identity:Person ;
+    uco-identity:fullName "Miss Gregory"@en ;
+    uco-role:hasRole :bureau_chief_role .
+
+:senior_assistant_da_role rdf:type uco-role:Role ;
+    rdfs:label "Senior Assistant District Attorney"@en .
+
+:deputy_bureau_chief_role rdf:type uco-role:Role ;
+    rdfs:label "Deputy Bureau Chief"@en .
+
+:first_deputy_bureau_chief_role rdf:type uco-role:Role ;
+    rdfs:label "First Deputy Bureau Chief"@en .
+
+:bureau_chief_role rdf:type uco-role:Role ;
+    rdfs:label "Bureau Chief"@en .
+
+# =============================================================================
+# RELATIONSHIP LINKS
+# =============================================================================
+
+# Exploitation Relationships
+:nguyen_exploitation_operation icac-educational:involvesVictim :victim_13_year_old_1 ,
+                                                              :victim_13_year_old_2 ,
+                                                              :victim_14_year_old_1 ,
+                                                              :victim_14_year_old_2 ,
+                                                              :victim_15_year_old_1 ,
+                                                              :victim_15_year_old_2 .
+
+# Account Relationships
+:winston_nguyen icac-educational:sendsContent :nude_images_sent ,
+                                             :nude_videos_sent ,
+                                             :graphic_conversations .
+
+# Investigation Relationships
+:brooklyn_teacher_investigation icac-educational:investigatesNetwork :nguyen_exploitation_operation .
+
+# Evidence Relationships
+:digital_communication_evidence icac-educational:documentsExploitation :nguyen_exploitation_operation .
+:ip_address_evidence icac-educational:documentsExploitation :nguyen_exploitation_operation .
+
+# Institutional Vulnerability Relationships
+:saint_anns_school icac-educational:hasVulnerability :trust_based_vulnerability ,
+                                                    :authority_based_vulnerability ,
+                                                    :access_based_vulnerability ,
+                                                    :privileged_environment_vulnerability .
+
+# Sentencing Relationships
+:use_of_child_charge icac-educational:requiresRegistration :sex_offender_registration .
+:use_of_child_charge icac-educational:followedBySupervision :extended_supervision . 

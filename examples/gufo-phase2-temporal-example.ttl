@@ -1,0 +1,295 @@
+@prefix example: <http://ontology.icac.org/examples/gufo-phase2#> .
+@prefix icac-gufo: <https://ontology.unifiedcyberontology.org/icac/gufo#> .
+@prefix icac-temporal: <https://ontology.unifiedcyberontology.org/icac/temporal#> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# =============================================================================
+# PHASE 2 gUFO TEMPORAL ENHANCEMENT EXAMPLE
+# Complex Investigation Lifecycle with Suspension/Resumption and Multi-Jurisdiction Coordination
+# =============================================================================
+
+# =============================================================================
+# INVESTIGATION LIFECYCLE INSTANCE
+# =============================================================================
+
+# Investigation Lifecycle
+example:Lifecycle001 rdf:type icac-temporal:InvestigationLifecycle ;
+    uco-core:name "Complex Multi-Jurisdiction Investigation Lifecycle" ;
+    rdfs:label "Investigation Lifecycle 001"@en ;
+    gufo:hasBeginPointInXSDDateTimeStamp "2025-01-01T08:00:00Z"^^xsd:dateTimeStamp .
+
+# Main Investigation
+example:Investigation001 rdf:type icac-gufo:Investigation ;
+    uco-core:name "ICAC Investigation 2025-001 - Multi-Jurisdiction CSAM Distribution" ;
+    uco-core:description "Complex investigation involving CSAM distribution across multiple states with international coordination" ;
+    gufo:participatesIn example:Lifecycle001 ;
+    icac-temporal:StatuteOfLimitationsDeadline "2030-01-01T23:59:59Z"^^xsd:dateTimeStamp ;
+    rdfs:label "Multi-Jurisdiction Investigation 001"@en .
+
+# =============================================================================
+# INVESTIGATION PHASES WITH TEMPORAL CONSTRAINTS
+# =============================================================================
+
+# Initial Phase with Temporal Metrics
+example:InitialPhase001 rdf:type icac-gufo:InitialPhase ;
+    icac-gufo:hasPhaseBeginPoint "2025-01-01T08:00:00Z"^^xsd:dateTimeStamp ;
+    icac-gufo:hasPhaseEndPoint "2025-01-01T12:00:00Z"^^xsd:dateTimeStamp ;
+    icac-gufo:phaseDuration "PT4H"^^xsd:duration ;
+    icac-temporal:hasMinimumDuration "PT2H"^^xsd:duration ;
+    icac-temporal:hasMaximumDuration "PT8H"^^xsd:duration ;
+    icac-temporal:hasTypicalDuration "PT3H"^^xsd:duration ;
+    icac-temporal:urgencyLevel "4"^^xsd:integer ;
+    icac-temporal:phaseEfficiency "1.33"^^xsd:decimal ;  # 4h actual / 3h typical
+    icac-temporal:phaseCompletionRate "1.0"^^xsd:decimal ;
+    rdfs:label "Initial Phase 001"@en .
+
+# Analysis Phase (extended due to complexity)
+example:AnalysisPhase001 rdf:type icac-gufo:AnalysisPhase ;
+    icac-gufo:hasPhaseBeginPoint "2025-01-01T12:00:00Z"^^xsd:dateTimeStamp ;
+    icac-gufo:hasPhaseEndPoint "2025-01-05T16:00:00Z"^^xsd:dateTimeStamp ;
+    icac-gufo:phaseDuration "P4DT4H"^^xsd:duration ;
+    icac-temporal:hasMinimumDuration "P1D"^^xsd:duration ;
+    icac-temporal:hasMaximumDuration "P7D"^^xsd:duration ;
+    icac-temporal:hasTypicalDuration "P3D"^^xsd:duration ;
+    icac-temporal:urgencyLevel "3"^^xsd:integer ;
+    icac-temporal:phaseEfficiency "1.47"^^xsd:decimal ;  # 4.17d actual / 3d typical
+    icac-temporal:phaseCompletionRate "0.95"^^xsd:decimal ;
+    rdfs:label "Analysis Phase 001"@en .
+
+# Legal Process Phase with Legal Deadlines
+example:LegalProcessPhase001 rdf:type icac-gufo:LegalProcessPhase ;
+    icac-gufo:hasPhaseBeginPoint "2025-01-05T16:00:00Z"^^xsd:dateTimeStamp ;
+    icac-gufo:hasPhaseEndPoint "2025-01-15T14:00:00Z"^^xsd:dateTimeStamp ;
+    icac-gufo:phaseDuration "P9DT22H"^^xsd:duration ;
+    icac-temporal:hasLegalDeadline "2025-01-20T23:59:59Z"^^xsd:dateTimeStamp ;
+    icac-temporal:WarrantExpirationDate "2025-02-05T16:00:00Z"^^xsd:dateTimeStamp ;
+    icac-temporal:urgencyLevel "5"^^xsd:integer ;
+    icac-temporal:phaseEfficiency "0.71"^^xsd:decimal ;  # Efficient execution
+    icac-temporal:phaseCompletionRate "1.0"^^xsd:decimal ;
+    rdfs:label "Legal Process Phase 001"@en .
+
+# Evidence Phase (with suspension/resumption)
+example:EvidencePhase001 rdf:type icac-gufo:EvidencePhase ;
+    icac-gufo:hasPhaseBeginPoint "2025-01-15T14:00:00Z"^^xsd:dateTimeStamp ;
+    icac-gufo:hasPhaseEndPoint "2025-02-20T17:00:00Z"^^xsd:dateTimeStamp ;
+    icac-gufo:phaseDuration "P36DT3H"^^xsd:duration ;
+    icac-temporal:EvidencePreservationDeadline "2025-03-15T23:59:59Z"^^xsd:dateTimeStamp ;
+    icac-temporal:urgencyLevel "2"^^xsd:integer ;
+    icac-temporal:phaseEfficiency "1.8"^^xsd:decimal ;  # Extended due to complexity
+    icac-temporal:phaseCompletionRate "0.9"^^xsd:decimal ;
+    rdfs:label "Evidence Phase 001"@en .
+
+# Resolution Phase (current)
+example:ResolutionPhase001 rdf:type icac-gufo:ResolutionPhase ;
+    icac-gufo:hasPhaseBeginPoint "2025-02-20T17:00:00Z"^^xsd:dateTimeStamp ;
+    icac-temporal:urgencyLevel "3"^^xsd:integer ;
+    rdfs:label "Resolution Phase 001"@en .
+
+# =============================================================================
+# PHASE TRANSITION EVENTS WITH TEMPORAL MODELING
+# =============================================================================
+
+# Investigation Initiation
+example:InitiationEvent001 rdf:type icac-temporal:InitiationEvent ;
+    gufo:hasBeginPointInXSDDateTimeStamp "2025-01-01T08:00:00Z"^^xsd:dateTimeStamp ;
+    gufo:hasEndPointInXSDDateTimeStamp "2025-01-01T08:00:00Z"^^xsd:dateTimeStamp ;
+    icac-temporal:transitionsTo example:InitialPhase001 ;
+    uco-core:name "Investigation initiation upon NCMEC cybertip receipt" ;
+    rdfs:label "Initiation Event 001"@en .
+
+# Transition to Analysis
+example:AnalysisTransition001 rdf:type icac-temporal:AnalysisTransitionEvent ;
+    gufo:hasBeginPointInXSDDateTimeStamp "2025-01-01T12:00:00Z"^^xsd:dateTimeStamp ;
+    gufo:hasEndPointInXSDDateTimeStamp "2025-01-01T12:00:00Z"^^xsd:dateTimeStamp ;
+    icac-temporal:transitionsFrom example:InitialPhase001 ;
+    icac-temporal:transitionsTo example:AnalysisPhase001 ;
+    uco-core:name "Transition to analysis phase after initial assessment completion" ;
+    rdfs:label "Analysis Transition 001"@en .
+
+# Transition to Legal Process
+example:LegalTransition001 rdf:type icac-temporal:LegalProcessTransitionEvent ;
+    gufo:hasBeginPointInXSDDateTimeStamp "2025-01-05T16:00:00Z"^^xsd:dateTimeStamp ;
+    gufo:hasEndPointInXSDDateTimeStamp "2025-01-05T16:00:00Z"^^xsd:dateTimeStamp ;
+    icac-temporal:transitionsFrom example:AnalysisPhase001 ;
+    icac-temporal:transitionsTo example:LegalProcessPhase001 ;
+    uco-core:name "Transition to legal process phase upon identification of sufficient probable cause" ;
+    rdfs:label "Legal Process Transition 001"@en .
+
+# Transition to Evidence
+example:EvidenceTransition001 rdf:type icac-temporal:EvidenceTransitionEvent ;
+    gufo:hasBeginPointInXSDDateTimeStamp "2025-01-15T14:00:00Z"^^xsd:dateTimeStamp ;
+    gufo:hasEndPointInXSDDateTimeStamp "2025-01-15T14:00:00Z"^^xsd:dateTimeStamp ;
+    icac-temporal:transitionsFrom example:LegalProcessPhase001 ;
+    icac-temporal:transitionsTo example:EvidencePhase001 ;
+    uco-core:name "Transition to evidence phase after search warrant execution" ;
+    rdfs:label "Evidence Transition 001"@en .
+
+# Transition to Resolution
+example:ResolutionTransition001 rdf:type icac-temporal:ResolutionTransitionEvent ;
+    gufo:hasBeginPointInXSDDateTimeStamp "2025-02-20T17:00:00Z"^^xsd:dateTimeStamp ;
+    gufo:hasEndPointInXSDDateTimeStamp "2025-02-20T17:00:00Z"^^xsd:dateTimeStamp ;
+    icac-temporal:transitionsFrom example:EvidencePhase001 ;
+    icac-temporal:transitionsTo example:ResolutionPhase001 ;
+    uco-core:name "Transition to resolution phase after evidence analysis completion" ;
+    rdfs:label "Resolution Transition 001"@en .
+
+# =============================================================================
+# SUSPENSION AND RESUMPTION TEMPORAL PATTERNS
+# =============================================================================
+
+# Investigation Suspension (during Evidence Phase)
+example:SuspensionEvent001 rdf:type icac-temporal:SuspensionEvent ;
+    gufo:hasBeginPointInXSDDateTimeStamp "2025-01-25T10:00:00Z"^^xsd:dateTimeStamp ;
+    gufo:hasEndPointInXSDDateTimeStamp "2025-01-25T10:00:00Z"^^xsd:dateTimeStamp ;
+    icac-temporal:suspends example:Investigation001 ;
+    icac-temporal:createsSuspension example:SuspensionSituation001 ;
+    uco-core:name "Investigation suspended pending federal task force coordination" ;
+    rdfs:label "Suspension Event 001"@en .
+
+# Suspended Situation
+example:SuspensionSituation001 rdf:type icac-temporal:SuspendedSituation ;
+    gufo:hasBeginPointInXSDDateTimeStamp "2025-01-25T10:00:00Z"^^xsd:dateTimeStamp ;
+    gufo:hasEndPointInXSDDateTimeStamp "2025-02-05T14:00:00Z"^^xsd:dateTimeStamp ;
+    uco-core:name "Investigation suspended for federal coordination and resource allocation" ;
+    rdfs:label "Suspension Situation 001"@en .
+
+# Investigation Resumption
+example:ResumptionEvent001 rdf:type icac-temporal:ResumptionEvent ;
+    gufo:hasBeginPointInXSDDateTimeStamp "2025-02-05T14:00:00Z"^^xsd:dateTimeStamp ;
+    gufo:hasEndPointInXSDDateTimeStamp "2025-02-05T14:00:00Z"^^xsd:dateTimeStamp ;
+    icac-temporal:resumes example:Investigation001 ;
+    icac-temporal:terminatesSuspension example:SuspensionSituation001 ;
+    uco-core:name "Investigation resumed with federal task force support" ;
+    rdfs:label "Resumption Event 001"@en .
+
+# =============================================================================
+# MULTI-JURISDICTION COORDINATION SITUATION
+# =============================================================================
+
+# Multi-Jurisdiction Coordination Situation
+example:MultiJurisdictionSituation001 rdf:type icac-temporal:MultiJurisdictionCoordinationSituation ;
+    gufo:hasBeginPointInXSDDateTimeStamp "2025-01-05T16:00:00Z"^^xsd:dateTimeStamp ;
+    uco-core:name "Coordination across California, Texas, and Federal jurisdictions" ;
+    rdfs:label "Multi-Jurisdiction Coordination Situation 001"@en .
+
+# =============================================================================
+# INVESTIGATION TIME METRICS
+# =============================================================================
+
+# Investigation Time Metrics
+example:Investigation001 icac-temporal:hasTimeToFirstAction "PT4H"^^xsd:duration ;
+    icac-temporal:hasTimeToResolution "P50DT9H"^^xsd:duration ;
+    icac-temporal:hasActiveDuration "P39DT7H"^^xsd:duration ;
+    icac-temporal:hasSuspendedDuration "P11DT4H"^^xsd:duration .
+
+# =============================================================================
+# TEMPORAL EVENT DEPENDENCIES AND SEQUENCES
+# =============================================================================
+
+# Event Sequence for Search Warrant Execution
+example:SearchWarrantSequence001 rdf:type icac-temporal:EventSequence ;
+    gufo:hasBeginPointInXSDDateTimeStamp "2025-01-10T06:00:00Z"^^xsd:dateTimeStamp ;
+    gufo:hasEndPointInXSDDateTimeStamp "2025-01-10T18:00:00Z"^^xsd:dateTimeStamp ;
+    uco-core:name "Coordinated search warrant execution sequence across three locations" ;
+    rdfs:label "Search Warrant Event Sequence 001"@en .
+
+# Individual Search Events with Dependencies
+example:SearchEvent_Location1 rdf:type icac-gufo:LegalProcessEvent ;
+    gufo:hasBeginPointInXSDDateTimeStamp "2025-01-10T06:00:00Z"^^xsd:dateTimeStamp ;
+    gufo:hasEndPointInXSDDateTimeStamp "2025-01-10T10:00:00Z"^^xsd:dateTimeStamp ;
+    icac-temporal:hasConsequentEvent example:SearchEvent_Location2 ;
+    uco-core:name "Search warrant execution at primary suspect residence" ;
+    rdfs:label "Search Event Location 1"@en .
+
+example:SearchEvent_Location2 rdf:type icac-gufo:LegalProcessEvent ;
+    gufo:hasBeginPointInXSDDateTimeStamp "2025-01-10T10:30:00Z"^^xsd:dateTimeStamp ;
+    gufo:hasEndPointInXSDDateTimeStamp "2025-01-10T14:00:00Z"^^xsd:dateTimeStamp ;
+    icac-temporal:hasPrerequisiteEvent example:SearchEvent_Location1 ;
+    icac-temporal:hasParallelEvent example:SearchEvent_Location3 ;
+    uco-core:name "Search warrant execution at suspect workplace" ;
+    rdfs:label "Search Event Location 2"@en .
+
+example:SearchEvent_Location3 rdf:type icac-gufo:LegalProcessEvent ;
+    gufo:hasBeginPointInXSDDateTimeStamp "2025-01-10T11:00:00Z"^^xsd:dateTimeStamp ;
+    gufo:hasEndPointInXSDDateTimeStamp "2025-01-10T15:00:00Z"^^xsd:dateTimeStamp ;
+    icac-temporal:hasParallelEvent example:SearchEvent_Location2 ;
+    uco-core:name "Search warrant execution at secondary suspect residence" ;
+    rdfs:label "Search Event Location 3"@en .
+
+# =============================================================================
+# PARALLEL EVIDENCE COLLECTION SITUATION
+# =============================================================================
+
+# Parallel Evidence Collection
+example:ParallelEvidenceCollection001 rdf:type icac-temporal:ParallelEvidenceCollectionSituation ;
+    gufo:hasBeginPointInXSDDateTimeStamp "2025-01-15T14:00:00Z"^^xsd:dateTimeStamp ;
+    gufo:hasEndPointInXSDDateTimeStamp "2025-02-10T17:00:00Z"^^xsd:dateTimeStamp ;
+    uco-core:name "Parallel digital forensics analysis across multiple seized devices" ;
+    rdfs:label "Parallel Evidence Collection 001"@en .
+
+# =============================================================================
+# ROLE TEMPORAL DYNAMICS
+# =============================================================================
+
+# Role Transition - Analyst to Lead Investigator
+example:RoleEscalation001 rdf:type icac-temporal:RoleEscalation ;
+    gufo:hasBeginPointInXSDDateTimeStamp "2025-01-20T09:00:00Z"^^xsd:dateTimeStamp ;
+    gufo:hasEndPointInXSDDateTimeStamp "2025-01-20T09:00:00Z"^^xsd:dateTimeStamp ;
+    uco-core:name "Analyst Jones escalated to Lead Investigator due to expertise" ;
+    rdfs:label "Role Escalation 001"@en .
+
+# Simultaneous Role Situation
+example:SimultaneousRoles001 rdf:type icac-temporal:SimultaneousRoleSituation ;
+    gufo:hasBeginPointInXSDDateTimeStamp "2025-01-15T11:00:00Z"^^xsd:dateTimeStamp ;
+    uco-core:name "Parent witness also serving as informant providing ongoing intelligence" ;
+    rdfs:label "Simultaneous Role Situation 001"@en .
+
+# =============================================================================
+# URGENT RESCUE LIFECYCLE PATTERN
+# =============================================================================
+
+# Urgent Rescue Situation (hypothetical parallel case)
+example:UrgentRescueCase001 rdf:type icac-temporal:UrgentRescueLifecycle ;
+    gufo:hasBeginPointInXSDDateTimeStamp "2025-01-15T20:00:00Z"^^xsd:dateTimeStamp ;
+    gufo:hasEndPointInXSDDateTimeStamp "2025-01-16T08:00:00Z"^^xsd:dateTimeStamp ;
+    uco-core:name "Urgent child rescue operation - accelerated 12-hour lifecycle" ;
+    rdfs:label "Urgent Rescue Lifecycle 001"@en .
+
+# =============================================================================
+# TEMPORAL RELATIONSHIPS AND CONSTRAINTS
+# =============================================================================
+
+# Phase Precedence Chain
+example:InitialPhase001 icac-temporal:temporallyPrecedes example:AnalysisPhase001 .
+example:AnalysisPhase001 icac-temporal:temporallyPrecedes example:LegalProcessPhase001 .
+example:LegalProcessPhase001 icac-temporal:temporallyPrecedes example:EvidencePhase001 .
+example:EvidencePhase001 icac-temporal:temporallyPrecedes example:ResolutionPhase001 .
+
+# Temporal Overlaps
+example:LegalProcessPhase001 icac-temporal:temporallyOverlapsWith example:MultiJurisdictionSituation001 .
+example:EvidencePhase001 icac-temporal:temporallyContains example:SuspensionSituation001 .
+example:EvidencePhase001 icac-temporal:temporallyContains example:ParallelEvidenceCollection001 .
+
+# Event Triggering Transitions
+example:AnalysisTransition001 icac-temporal:triggersTransition example:LegalTransition001 .
+example:LegalTransition001 icac-temporal:triggersTransition example:EvidenceTransition001 .
+example:EvidenceTransition001 icac-temporal:triggersTransition example:ResolutionTransition001 .
+
+# Investigation Relationships
+example:Investigation001 icac-gufo:inPhase example:ResolutionPhase001 .
+example:Investigation001 icac-gufo:hasPhase example:InitialPhase001 .
+example:Investigation001 icac-gufo:hasPhase example:AnalysisPhase001 .
+example:Investigation001 icac-gufo:hasPhase example:LegalProcessPhase001 .
+example:Investigation001 icac-gufo:hasPhase example:EvidencePhase001 .
+example:Investigation001 icac-gufo:hasPhase example:ResolutionPhase001 .
+
+# Concurrent Investigation Relationship
+example:ConcurrentInvestigations001 rdf:type icac-temporal:ConcurrentInvestigationSituation ;
+    gufo:hasBeginPointInXSDDateTimeStamp "2025-01-15T20:00:00Z"^^xsd:dateTimeStamp ;
+    gufo:hasEndPointInXSDDateTimeStamp "2025-02-20T17:00:00Z"^^xsd:dateTimeStamp ;
+    uco-core:name "Investigation 001 running concurrently with urgent rescue case 001" ;
+    rdfs:label "Concurrent Investigation Situation 001"@en . 

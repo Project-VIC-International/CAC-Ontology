@@ -1,0 +1,279 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity#> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable#> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role#> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location#> .
+@prefix icac-taskforce: <https://ontology.unifiedcyberontology.org/icac/taskforce#> .
+@prefix icac-forensics: <https://ontology.unifiedcyberontology.org/icac/forensics#> .
+@prefix icac-international: <https://ontology.unifiedcyberontology.org/icac/international#> .
+@prefix icac-sentencing: <https://ontology.unifiedcyberontology.org/icac/sentencing#> .
+@prefix icac-asset-forfeiture: <https://ontology.unifiedcyberontology.org/icac/asset-forfeiture#> .
+
+# =============================================================================
+# SA JACET TASKFORCE ESTABLISHMENT AND STRUCTURE
+# =============================================================================
+
+:SA_JACET rdf:type icac-taskforce:JointAntiChildExploitationTeam ;
+    rdfs:label "South Australian Joint Anti Child Exploitation Team"@en ;
+    uco-core:name "SA JACET" ;
+    uco-core:description "Joint taskforce between AFP and South Australia Police for coordinated investigative response to child exploitation crimes" ;
+    uco-core:createdTime "2015-01-01T00:00:00Z"^^xsd:dateTime .
+
+:SA_JACET_CoLocation rdf:type icac-taskforce:CoLocatedTaskForce ;
+    rdfs:label "SA JACET Co-Location Arrangement"@en ;
+    uco-core:description "Co-location of AFP and South Australian investigators enabling rapid intelligence sharing" ;
+    icac-taskforce:hasTaskForce :SA_JACET .
+
+:AFP_SA_Partnership rdf:type icac-taskforce:StateFederalPartnership ;
+    rdfs:label "AFP-South Australia Police Partnership"@en ;
+    uco-core:description "Partnership between Australian Federal Police and South Australia Police for child exploitation investigations" .
+
+# =============================================================================
+# SA JACET INVESTIGATORS AND ROLES
+# =============================================================================
+
+:DetActSergt_Stephen_Hegarty rdf:type uco-identity:Person ;
+    uco-core:name "Detective Acting Sergeant Stephen Hegarty" ;
+    uco-core:description "Original member of SA JACET with decade of experience in child exploitation investigations" .
+
+:Hegarty_TaskForceRole rdf:type icac-taskforce:TaskForceInvestigator ;
+    uco-core:description "Original SA JACET investigator specializing in child exploitation cases" ;
+    uco-core:object :DetActSergt_Stephen_Hegarty .
+
+:ActAssistComm_Catherine_Hilliard rdf:type uco-identity:Person ;
+    uco-core:name "Acting Assistant Commissioner Catherine Hilliard" ;
+    uco-core:description "South Australia Police Acting Assistant Commissioner, Crime Service" .
+
+:Hilliard_CommandRole rdf:type icac-taskforce:TaskForceCommander ;
+    uco-core:description "Command oversight of SA JACET operations" ;
+    uco-core:object :ActAssistComm_Catherine_Hilliard .
+
+# =============================================================================
+# DECADE OF OPERATIONS: VICTIM IDENTIFICATION STATISTICS
+# =============================================================================
+
+:SA_JACET_VictimID_Process rdf:type icac-forensics:VictimIdentificationProcess ;
+    rdfs:label "SA JACET Decade-Long Victim Identification"@en ;
+    uco-core:description "Systematic identification and removal of child victims from exploitation over 10 years" ;
+    uco-core:startTime "2015-01-01T00:00:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2025-01-01T00:00:00Z"^^xsd:dateTime ;
+    icac-forensics:victimsIdentifiedCount 370 ;
+    icac-forensics:victimAgeRange "toddlers to teenagers" ;
+    icac-forensics:referralsReceived 677 ;
+    icac-forensics:arrestsResulting 654 .
+
+:Global_Victim_Geographic_Distribution rdf:type icac-forensics:VictimIdentificationProcess ;
+    rdfs:label "Global Victim Geographic Distribution"@en ;
+    uco-core:description "Geographic distribution of identified victims across multiple countries" ;
+    icac-forensics:victimGeographicOrigin "Australia" ;
+    icac-forensics:victimGeographicOrigin "United Kingdom" ;
+    icac-forensics:victimGeographicOrigin "United States" ;
+    icac-forensics:victimGeographicOrigin "Southeast Asia" ;
+    icac-forensics:victimGeographicOrigin "Philippines" .
+
+# =============================================================================
+# CURRENT FINANCIAL YEAR OPERATIONS (2024-25)
+# =============================================================================
+
+:FY2024_25_Operations rdf:type icac-forensics:VictimIdentificationProcess ;
+    rdfs:label "FY 2024-25 SA JACET Operations"@en ;
+    uco-core:description "Current financial year operations demonstrating ongoing effectiveness" ;
+    uco-core:startTime "2024-07-01T00:00:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2025-05-01T00:00:00Z"^^xsd:dateTime ;
+    icac-forensics:victimsIdentifiedCount 14 ;
+    icac-forensics:arrestsResulting 49 .
+
+# =============================================================================
+# SIGNIFICANT SENTENCING CASES
+# =============================================================================
+
+:Case_June2024_PhilippinesOperation rdf:type icac-sentencing:SolicitingExplicitMaterial ;
+    rdfs:label "June 2024 Philippines Solicitation Case"@en ;
+    uco-core:description "Soliciting sexually explicit material from 10 foreign children via social media platforms" ;
+    icac-international:victimGeographicOrigin "Philippines" .
+
+:June2024_MandatoryMinimum_Sentence rdf:type icac-sentencing:MandatoryMinimumSentencing ;
+    rdfs:label "First Mandatory Minimum Sentence in SA"@en ;
+    uco-core:description "First conviction in South Australia under mandatory minimum sentencing provisions for Commonwealth child sexual abuse offences" ;
+    icac-sentencing:prisonTermYears 23 ;
+    icac-sentencing:relatedCharge :Case_June2024_PhilippinesOperation ;
+    icac-sentencing:precedentSetting true .
+
+:Case_November2024_LiveStreaming rdf:type icac-sentencing:LiveStreamingOffense ;
+    rdfs:label "November 2024 Live Streaming Case"@en ;
+    uco-core:description "Live streaming of young children overseas abuse" ;
+    icac-international:victimGeographicOrigin "Philippines" .
+
+:November2024_Sentence rdf:type icac-sentencing:PrisonSentence ;
+    rdfs:label "November 2024 Live Streaming Sentence"@en ;
+    icac-sentencing:prisonTermYears 15 ;
+    icac-sentencing:nonParoleYears 9 ;
+    icac-sentencing:relatedCharge :Case_November2024_LiveStreaming .
+
+# =============================================================================
+# CRIMINAL ASSETS CONFISCATION TASKFORCE (CACT) OPERATIONS
+# =============================================================================
+
+:CACT_SA_Operations rdf:type icac-asset-forfeiture:CriminalAssetsConfiscationTaskforce ;
+    rdfs:label "CACT South Australia Operations"@en ;
+    uco-core:description "Criminal Assets Confiscation Taskforce operations targeting child exploitation offender assets in SA" .
+
+# November 2020 - First Non-Profit Offender Home Restraint
+:CACT_Nov2020_HomeRestraint rdf:type icac-asset-forfeiture:PropertyRestraintAction ;
+    rdfs:label "November 2020 Adelaide Home Restraint"@en ;
+    uco-core:description "First restraint of home of accused child sex offender not accused of profiting from crimes" ;
+    icac-asset-forfeiture:restraintDate "2020-11-01T00:00:00Z"^^xsd:dateTime ;
+    icac-asset-forfeiture:precedentSetting true ;
+    icac-asset-forfeiture:involvesTaskforce :CACT_SA_Operations .
+
+:Adelaide_Home_2020 rdf:type icac-asset-forfeiture:ResidentialProperty ;
+    rdfs:label "Adelaide Home (2020 Case)"@en ;
+    uco-core:description "Adelaide home of offender accused of ordering live distance child abuse" ;
+    uco-location:hasLocation "Adelaide, South Australia" .
+
+:CACT_Nov2020_Forfeiture rdf:type icac-asset-forfeiture:PartialForfeiture ;
+    rdfs:label "50% Property Value Forfeiture"@en ;
+    uco-core:description "Forfeiture of 50% of market value following conviction" ;
+    icac-asset-forfeiture:forfeiturePercentage 50.0 ;
+    icac-asset-forfeiture:targetedAsset :Adelaide_Home_2020 .
+
+# December 2024 - Recent Multi-Charge Case
+:CACT_Dec2024_HomeRestraint rdf:type icac-asset-forfeiture:PropertyRestraintAction ;
+    rdfs:label "December 2024 SA Home Restraint"@en ;
+    uco-core:description "Home restraint of SA man charged with 50+ offences relating to child abuse material transmission and production" ;
+    icac-asset-forfeiture:restraintDate "2024-12-01T00:00:00Z"^^xsd:dateTime ;
+    icac-asset-forfeiture:involvesTaskforce :CACT_SA_Operations .
+
+# =============================================================================
+# MULTI-STATE CACT OPERATIONS
+# =============================================================================
+
+# October 2020 - Belgian National in Sydney
+:CACT_Oct2020_Sydney rdf:type icac-asset-forfeiture:AssetForfeitureAction ;
+    rdfs:label "October 2020 Belgian National Sydney Case"@en ;
+    uco-core:description "First person to have assets restrained by CACT as part of child protection investigation - selling child abuse material" ;
+    icac-asset-forfeiture:estimatedValue 30000.00 ;
+    icac-asset-forfeiture:precedentSetting true .
+
+:Belgium_National_Assets rdf:type icac-asset-forfeiture:TechnicalEquipment ;
+    rdfs:label "Belgian National Technical Assets"@en ;
+    uco-core:description "Camera equipment, drone, and scuba diving gear forfeited" ;
+    icac-asset-forfeiture:equipmentType "camera equipment" ;
+    icac-asset-forfeiture:equipmentType "drone" ;
+    icac-asset-forfeiture:equipmentType "scuba diving gear" .
+
+:CACT_Sydney_FinancialAccounts rdf:type icac-asset-forfeiture:FinancialAccount ;
+    rdfs:label "Belgian National Bank Accounts"@en ;
+    uco-core:description "Funds in two bank accounts" ;
+    icac-asset-forfeiture:accountFunds 30000.00 .
+
+:NSW_SupremeCourt_Order rdf:type icac-asset-forfeiture:CompleteForfeiture ;
+    rdfs:label "NSW Supreme Court Forfeiture Order"@en ;
+    uco-core:description "Supreme Court of NSW ordered all property forfeited to Commonwealth" ;
+    icac-asset-forfeiture:courtJurisdiction "NSW" .
+
+# March 2024 - Northern Territory
+:CACT_Mar2024_NT rdf:type icac-asset-forfeiture:PropertyForfeitureAction ;
+    rdfs:label "March 2024 NT Home Restraint and Forfeiture"@en ;
+    uco-core:description "NT man convicted of online child abuse offences - home restrained then forfeited" ;
+    icac-asset-forfeiture:restraintDate "2024-03-01T00:00:00Z"^^xsd:dateTime ;
+    icac-asset-forfeiture:forfeitureDate "2024-06-01T00:00:00Z"^^xsd:dateTime ;
+    icac-asset-forfeiture:courtJurisdiction "NT" .
+
+# March 2025 - New South Wales
+:CACT_Mar2025_NSW rdf:type icac-asset-forfeiture:PropertyRestraintAction ;
+    rdfs:label "March 2025 NSW Home Restraint"@en ;
+    uco-core:description "NSW man charged with three offences relating to carriage service transmission, possession, and access of child abuse material" ;
+    icac-asset-forfeiture:restraintDate "2025-03-01T00:00:00Z"^^xsd:dateTime ;
+    icac-asset-forfeiture:courtJurisdiction "NSW" .
+
+# April 2025 - Victoria (Major Financial Case)
+:CACT_Apr2025_VIC rdf:type icac-asset-forfeiture:FinancialPenaltyAction ;
+    rdfs:label "April 2025 Geelong Major Financial Penalty"@en ;
+    uco-core:description "Geelong man ordered to pay benefits derived from child abuse material production and possession" ;
+    icac-asset-forfeiture:financialPenaltyAmount 850000.00 ;
+    icac-asset-forfeiture:courtJurisdiction "VIC" .
+
+:Geelong_ConsentOrder rdf:type icac-asset-forfeiture:ConsentOrder ;
+    rdfs:label "Geelong Consent Order"@en ;
+    uco-core:description "Victorian Court consent orders for financial penalty equal to benefits derived from offences" ;
+    icac-asset-forfeiture:financialPenaltyAmount 850000.00 .
+
+:Geelong_PropertyForfeiture rdf:type icac-asset-forfeiture:CompleteForfeiture ;
+    rdfs:label "Geelong Property and Vehicle Forfeiture"@en ;
+    uco-core:description "Forfeiture of vehicle proceeds and household items" .
+
+:Geelong_Vehicles rdf:type icac-asset-forfeiture:Vehicle ;
+    rdfs:label "Geelong Vehicles (Proceeds of Sale)"@en ;
+    uco-core:description "Proceeds from sale of two vehicles" .
+
+:Geelong_HouseholdItems rdf:type icac-asset-forfeiture:HouseholdItems ;
+    rdfs:label "Geelong Household Items"@en ;
+    uco-core:description "High-end televisions, audio-visual equipment, furniture and appliances" ;
+    icac-asset-forfeiture:itemCount 48 ;
+    icac-asset-forfeiture:equipmentType "high-end televisions" ;
+    icac-asset-forfeiture:equipmentType "audio-visual equipment" ;
+    icac-asset-forfeiture:equipmentType "furniture" ;
+    icac-asset-forfeiture:equipmentType "appliances" .
+
+:Geelong_CashFunds rdf:type icac-asset-forfeiture:FinancialAccount ;
+    rdfs:label "Geelong Cash Funds"@en ;
+    uco-core:description "Cash funds forfeited" ;
+    icac-asset-forfeiture:accountFunds 30000.00 .
+
+# =============================================================================
+# INTERNATIONAL COORDINATION WITH PHILIPPINES
+# =============================================================================
+
+:Philippines_LiveStream_Investigation rdf:type icac-international:LiveStreamingInvestigation ;
+    rdfs:label "Philippines Live Streaming Investigations"@en ;
+    uco-core:description "Multiple investigations involving live streaming of child abuse from Philippines to Australian offenders" .
+
+:Distance_Child_Abuse_Operations rdf:type icac-international:DistanceChildAbuse ;
+    rdfs:label "Distance Child Abuse Operations"@en ;
+    uco-core:description "Operations targeting Australian offenders ordering and instructing child abuse in Philippines" ;
+    icac-international:targetCountry "Philippines" ;
+    icac-international:sourceCountry "Australia" .
+
+:Philippines_Victim_Coordination rdf:type icac-international:OverseasVictimCoordination ;
+    rdfs:label "Philippines Victim Coordination"@en ;
+    uco-core:description "Coordination for identifying and assisting child victims in Philippines" ;
+    icac-international:partnerCountry "Philippines" .
+
+# =============================================================================
+# INVESTIGATION PROCESS CHARACTERISTICS
+# =============================================================================
+
+:Extended_Investigation_Timeline rdf:type icac-forensics:ExtendedInvestigationTimeline ;
+    rdfs:label "SA JACET Extended Investigation Model"@en ;
+    uco-core:description "Investigations spanning weeks, months, or years with continuous evidence review" ;
+    icac-forensics:investigationDuration "weeks to years" .
+
+:Continuous_Evidence_Review rdf:type icac-forensics:ImageAnalysisForVictimID ;
+    rdfs:label "Continuous Evidence Review Process"@en ;
+    uco-core:description "Ongoing review of seized images and videos to identify victims, prepare evidence, and investigate additional offending" .
+
+:Intelligence_Sharing rdf:type icac-taskforce:IntelligenceSharing ;
+    rdfs:label "Jurisdiction-Specific Intelligence Sharing"@en ;
+    uco-core:description "Co-location enables rapid sharing of jurisdiction-specific intelligence between AFP and SA Police" .
+
+# =============================================================================
+# CONNECTIONS TO BROADER NETWORKS
+# =============================================================================
+
+:ACCCE_Connection rdf:type icac-taskforce:InternationalTaskForceNetwork ;
+    rdfs:label "ACCCE Network Connection"@en ;
+    uco-core:description "SA JACET connection to AFP-led Australian Centre to Counter Child Exploitation" ;
+    uco-core:name "Australian Centre to Counter Child Exploitation" .
+
+:JACET_National_Network rdf:type icac-taskforce:InternationalTaskForceNetwork ;
+    rdfs:label "National JACET Network"@en ;
+    uco-core:description "JACET teams in most Australian states and territories providing coordinated national response" .
+
+:International_Network_Access rdf:type icac-international:InternationalPartnership ;
+    rdfs:label "AFP International Network Access"@en ;
+    uco-core:description "Through AFP involvement, JACET can reach into broad international network for cross-border investigations" . 

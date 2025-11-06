@@ -1,0 +1,354 @@
+# Bushwick Case Example
+# This example demonstrates the ICAC ontology modules applied to the Bushwick sex trafficking case
+# Based on Brooklyn DA press release: "Bushwick Man Indicted for Sex Trafficking Teenage Girls"
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
+@prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
+@prefix icac-core: <https://ontology.icac.org/icac/core/> .
+@prefix icac-sex-trafficking: <https://ontology.icac.org/icac/sex-trafficking/> .
+@prefix icac-undercover: <https://ontology.icac.org/icac/undercover/> .
+@prefix icac-recruitment: <https://ontology.icac.org/icac/recruitment-networks/> .
+@prefix ex: <https://example.org/bushwick-case/> .
+
+# =============================================================================
+# CASE INVESTIGATION
+# =============================================================================
+
+ex:bushwick-investigation a icac-core:Investigation ;
+    uco-core:name "Bushwick Sex Trafficking Investigation" ;
+    uco-core:description "Investigation into sex trafficking of teenage girls in Bushwick, Brooklyn" ;
+    icac-core:caseNumber "BKDA-2024-ST-001" ;
+    icac-core:investigationStatus "Indictment Filed" ;
+    icac-core:startDate "2024-01-15"^^xsd:date ;
+    icac-core:leadAgency "Brooklyn District Attorney's Office" ;
+    icac-core:jurisdiction "Kings County, New York" ;
+    uco-core:object ex:defendant-john-doe, ex:victim-jane-smith, ex:victim-mary-jones .
+
+# =============================================================================
+# DEFENDANT
+# =============================================================================
+
+ex:defendant-john-doe a uco-identity:Person ;
+    uco-core:name "John Doe" ;
+    uco-identity:birthDate "1985-03-15"^^xsd:date ;
+    uco-location:address ex:bushwick-address ;
+    icac-sex-trafficking:traffickerRole ex:primary-trafficker-role .
+
+ex:primary-trafficker-role a icac-sex-trafficking:TraffickerRole ;
+    icac-sex-trafficking:traffickerType "Primary Trafficker" ;
+    icac-sex-trafficking:operationScope "Local" ;
+    icac-sex-trafficking:victimCount 2 ;
+    icac-sex-trafficking:operationDuration "P6M"^^xsd:duration .
+
+ex:bushwick-address a uco-location:SimpleAddress ;
+    uco-location:street "123 Bushwick Avenue" ;
+    uco-location:locality "Brooklyn" ;
+    uco-location:region "NY" ;
+    uco-location:postalCode "11221" ;
+    uco-location:country "US" .
+
+# =============================================================================
+# VICTIMS
+# =============================================================================
+
+ex:victim-jane-smith a uco-identity:Person ;
+    uco-core:name "Jane Smith" ;
+    uco-identity:birthDate "2009-06-20"^^xsd:date ;
+    icac-sex-trafficking:victimRole ex:primary-victim-role ;
+    icac-recruitment:recruitmentRole ex:jane-recruitment-role ;
+    icac-recruitment:schoolAffiliation ex:local-high-school .
+
+ex:primary-victim-role a icac-sex-trafficking:VictimRole ;
+    icac-sex-trafficking:victimType "Minor Victim" ;
+    icac-sex-trafficking:ageAtExploitation 15 ;
+    icac-sex-trafficking:exploitationDuration "P4M"^^xsd:duration ;
+    icac-sex-trafficking:reportingMethod "School Social Worker" .
+
+ex:jane-recruitment-role a icac-recruitment:VictimRecruitmentRole ;
+    icac-recruitment:recruitmentMethod "Classmate Introduction" ;
+    icac-recruitment:recruiterRelationship "Peer Victim" ;
+    icac-recruitment:recruitmentLocation ex:local-high-school ;
+    icac-recruitment:vulnerabilityFactors "Social Isolation", "Economic Hardship" .
+
+ex:victim-mary-jones a uco-identity:Person ;
+    uco-core:name "Mary Jones" ;
+    uco-identity:birthDate "2009-08-10"^^xsd:date ;
+    icac-sex-trafficking:victimRole ex:secondary-victim-role ;
+    icac-recruitment:recruitmentRole ex:mary-recruitment-role ;
+    icac-recruitment:schoolAffiliation ex:local-high-school .
+
+ex:secondary-victim-role a icac-sex-trafficking:VictimRole ;
+    icac-sex-trafficking:victimType "Minor Victim" ;
+    icac-sex-trafficking:ageAtExploitation 15 ;
+    icac-sex-trafficking:exploitationDuration "P2M"^^xsd:duration ;
+    icac-sex-trafficking:reportingMethod "Peer Disclosure" .
+
+ex:mary-recruitment-role a icac-recruitment:VictimRecruitmentRole ;
+    icac-recruitment:recruitmentMethod "Peer Recruitment" ;
+    icac-recruitment:recruiterRelationship "Classmate" ;
+    icac-recruitment:recruitmentLocation ex:local-high-school ;
+    icac-recruitment:vulnerabilityFactors "Peer Pressure", "Family Issues" .
+
+# =============================================================================
+# EDUCATIONAL INSTITUTION
+# =============================================================================
+
+ex:local-high-school a icac-recruitment:EducationalInstitution ;
+    uco-core:name "Bushwick Community High School" ;
+    icac-recruitment:schoolType "Public High School" ;
+    icac-recruitment:studentPopulation 1200 ;
+    icac-recruitment:gradeRange "9-12" ;
+    icac-recruitment:socioeconomicLevel "Low Income" ;
+    uco-location:address ex:school-address ;
+    icac-recruitment:hasStaff ex:social-worker-smith .
+
+ex:school-address a uco-location:SimpleAddress ;
+    uco-location:street "456 Education Boulevard" ;
+    uco-location:locality "Brooklyn" ;
+    uco-location:region "NY" ;
+    uco-location:postalCode "11221" ;
+    uco-location:country "US" .
+
+ex:social-worker-smith a icac-recruitment:SchoolSocialWorker ;
+    uco-core:name "Sarah Smith" ;
+    icac-recruitment:staffRole "Licensed Social Worker" ;
+    icac-recruitment:yearsExperience 8 ;
+    icac-recruitment:mandatoryReporter true ;
+    icac-recruitment:specialization "Trauma-Informed Care" .
+
+# =============================================================================
+# RECRUITMENT NETWORK
+# =============================================================================
+
+ex:bushwick-recruitment-network a icac-recruitment:ClassmateRecruitmentNetwork ;
+    uco-core:name "Bushwick High School Recruitment Network" ;
+    icac-recruitment:networkSize 3 ;
+    icac-recruitment:victimRecruitersCount 1 ;
+    icac-recruitment:schoolsInvolved 1 ;
+    icac-recruitment:operationDuration "P6M"^^xsd:duration ;
+    icac-recruitment:networkMembers ex:victim-jane-smith, ex:victim-mary-jones, ex:defendant-john-doe ;
+    icac-recruitment:primarySchool ex:local-high-school .
+
+ex:classmate-introduction a icac-recruitment:ClassmateIntroduction ;
+    uco-core:name "Jane introduces Mary to trafficker" ;
+    icac-recruitment:introducer ex:victim-jane-smith ;
+    icac-recruitment:introducee ex:victim-mary-jones ;
+    icac-recruitment:targetPerson ex:defendant-john-doe ;
+    icac-recruitment:introductionDate "2024-02-15"^^xsd:date ;
+    icac-recruitment:introductionLocation ex:local-high-school ;
+    icac-recruitment:introductionMethod "In-Person Meeting" ;
+    icac-recruitment:successfulRecruitment true .
+
+ex:peer-recruitment-pattern a icac-recruitment:VictimMediatedRecruitment ;
+    uco-core:name "Victim-to-victim recruitment pattern" ;
+    icac-recruitment:victimRecruiter ex:victim-jane-smith ;
+    icac-recruitment:recruitedVictim ex:victim-mary-jones ;
+    icac-recruitment:recruitmentDate "2024-02-15"^^xsd:date ;
+    icac-recruitment:recruitmentSuccess true ;
+    icac-recruitment:recruitmentIncentive "Friendship and Protection" ;
+    icac-recruitment:coercionLevel "Moderate" .
+
+# =============================================================================
+# SCHOOL-BASED REPORTING
+# =============================================================================
+
+ex:school-disclosure a icac-recruitment:SchoolBasedReporting ;
+    uco-core:name "Victim disclosure to school social worker" ;
+    icac-recruitment:reportingVictim ex:victim-jane-smith ;
+    icac-recruitment:reportingStaff ex:social-worker-smith ;
+    icac-recruitment:reportingDate "2024-03-20"^^xsd:date ;
+    icac-recruitment:reportingMethod "Private Counseling Session" ;
+    icac-recruitment:reportingDelay "P1D"^^xsd:duration ;
+    icac-recruitment:mandatoryReportingTrigger true ;
+    icac-recruitment:reportingOutcome "Police Notification" .
+
+ex:social-worker-report a icac-recruitment:SocialWorkerReport ;
+    uco-core:name "Mandatory report to authorities" ;
+    icac-recruitment:reportingStaff ex:social-worker-smith ;
+    icac-recruitment:reportDate "2024-03-21"^^xsd:date ;
+    icac-recruitment:reportingAgency "NYPD Special Victims Unit" ;
+    icac-recruitment:reportType "Suspected Child Abuse" ;
+    icac-recruitment:urgencyLevel "High" ;
+    icac-recruitment:followUpRequired true .
+
+# =============================================================================
+# UNDERCOVER OPERATIONS
+# =============================================================================
+
+ex:website-monitoring-operation a icac-undercover:WebsiteAdvertisementResponse ;
+    uco-core:name "Backpage advertisement monitoring" ;
+    icac-undercover:operationType "Website Advertisement Response" ;
+    icac-undercover:websitePlatform "Backpage.com" ;
+    icac-undercover:advertisementURL "https://backpage.com/ad/12345" ;
+    icac-undercover:advertisementLiveTime "P2D"^^xsd:duration ;
+    icac-undercover:victimPhotoCount 3 ;
+    icac-undercover:responseTime "PT2H"^^xsd:duration ;
+    icac-undercover:operationDate "2024-03-25"^^xsd:date ;
+    icac-undercover:leadAgency "NYPD" .
+
+ex:apartment-sting-operation a icac-undercover:ApartmentStingOperation ;
+    uco-core:name "Bushwick apartment sting operation" ;
+    icac-undercover:operationType "Physical Location Sting" ;
+    icac-undercover:stingLocation ex:sting-apartment ;
+    icac-undercover:apartmentType "Residential" ;
+    icac-undercover:floorLevel 3 ;
+    icac-undercover:hasSecureExit true ;
+    icac-undercover:surveillanceTeamCount 6 ;
+    icac-undercover:operationDate "2024-03-28"^^xsd:date ;
+    icac-undercover:operationDuration "PT4H"^^xsd:duration ;
+    icac-undercover:arrestsMade 1 .
+
+ex:sting-apartment a uco-location:SimpleAddress ;
+    uco-location:street "789 Sting Street" ;
+    uco-location:locality "Brooklyn" ;
+    uco-location:region "NY" ;
+    uco-location:postalCode "11221" ;
+    uco-location:country "US" .
+
+ex:phone-instruction-monitoring a icac-undercover:PhoneInstructionMonitoring ;
+    uco-core:name "Phone communication interception" ;
+    icac-undercover:phoneNumberMonitored "+1-718-555-0123" ;
+    icac-undercover:instructionType "Client Communication Training" ;
+    icac-undercover:clientContactMethod "Text Messaging" ;
+    icac-undercover:monitoringDuration "P7D"^^xsd:duration ;
+    icac-undercover:instructionsIntercepted 15 ;
+    icac-undercover:evidenceCollected true .
+
+# =============================================================================
+# PRIVACY VIOLATION INVESTIGATION
+# =============================================================================
+
+ex:bathroom-violation-investigation a icac-undercover:PrivacyViolationInvestigation ;
+    uco-core:name "Forced undressing investigation" ;
+    icac-undercover:violationType "Forced Undressing" ;
+    icac-undercover:violationLocation "Bathroom" ;
+    icac-undercover:victim ex:victim-jane-smith ;
+    icac-undercover:perpetrator ex:defendant-john-doe ;
+    icac-undercover:violationDate "2024-02-20"^^xsd:date ;
+    icac-undercover:evidenceType "Victim Testimony" ;
+    icac-undercover:witnessPresent false .
+
+# =============================================================================
+# EVIDENCE COLLECTION
+# =============================================================================
+
+ex:victim-photo-evidence a icac-sex-trafficking:PhotographyEvidence ;
+    uco-core:name "Victim photographs from website" ;
+    icac-sex-trafficking:evidenceType "Digital Photography" ;
+    icac-sex-trafficking:victim ex:victim-jane-smith ;
+    icac-sex-trafficking:photographCount 3 ;
+    icac-sex-trafficking:platform "Backpage.com" ;
+    icac-sex-trafficking:collectionDate "2024-03-25"^^xsd:date ;
+    icac-sex-trafficking:evidenceStatus "Authenticated" .
+
+ex:instruction-evidence a icac-undercover:InstructionEvidence ;
+    uco-core:name "Phone instruction evidence" ;
+    icac-undercover:evidenceType "Communication Instructions" ;
+    icac-undercover:instructionContent "How to communicate with clients via text" ;
+    icac-undercover:instructionDate "2024-02-18"^^xsd:date ;
+    icac-undercover:evidenceSource "Phone Monitoring" ;
+    icac-undercover:evidenceStatus "Verified" .
+
+ex:violation-evidence a icac-undercover:ViolationEvidence ;
+    uco-core:name "Privacy violation evidence" ;
+    icac-undercover:evidenceType "Victim Testimony" ;
+    icac-undercover:violationType "Forced Undressing" ;
+    icac-undercover:violationLocation "Bathroom" ;
+    icac-undercover:evidenceDate "2024-03-21"^^xsd:date ;
+    icac-undercover:evidenceReliability "High" .
+
+# =============================================================================
+# VULNERABILITY ASSESSMENT
+# =============================================================================
+
+ex:jane-vulnerability-assessment a icac-recruitment:VulnerabilityAssessment ;
+    uco-core:name "Jane Smith vulnerability assessment" ;
+    icac-recruitment:assessedVictim ex:victim-jane-smith ;
+    icac-recruitment:vulnerabilityScore 8.5 ;
+    icac-recruitment:assessmentDate "2024-03-22"^^xsd:date ;
+    icac-recruitment:primaryFactors ex:social-isolation-factor, ex:economic-hardship-factor .
+
+ex:social-isolation-factor a icac-recruitment:SocialIsolationVulnerability ;
+    uco-core:name "Social isolation vulnerability" ;
+    icac-recruitment:isolationLevel "High" ;
+    icac-recruitment:friendshipCount 1 ;
+    icac-recruitment:familySupport "Limited" ;
+    icac-recruitment:communityConnection "Weak" .
+
+ex:economic-hardship-factor a icac-recruitment:EconomicVulnerabilityFactor ;
+    uco-core:name "Economic hardship vulnerability" ;
+    icac-recruitment:householdIncome "Below Poverty Line" ;
+    icac-recruitment:employmentStatus "Unemployed Family" ;
+    icac-recruitment:housingStability "Unstable" ;
+    icac-recruitment:financialStress "High" .
+
+ex:mary-vulnerability-assessment a icac-recruitment:VulnerabilityAssessment ;
+    uco-core:name "Mary Jones vulnerability assessment" ;
+    icac-recruitment:assessedVictim ex:victim-mary-jones ;
+    icac-recruitment:vulnerabilityScore 7.2 ;
+    icac-recruitment:assessmentDate "2024-03-22"^^xsd:date ;
+    icac-recruitment:primaryFactors ex:peer-pressure-factor, ex:family-issues-factor .
+
+ex:peer-pressure-factor a icac-recruitment:PeerPressureVulnerability ;
+    uco-core:name "Peer pressure vulnerability" ;
+    icac-recruitment:susceptibilityLevel "High" ;
+    icac-recruitment:peerInfluenceStrength "Strong" ;
+    icac-recruitment:resistanceCapacity "Low" ;
+    icac-recruitment:socialAcceptanceNeed "High" .
+
+ex:family-issues-factor a icac-recruitment:FamilyVulnerabilityFactor ;
+    uco-core:name "Family issues vulnerability" ;
+    icac-recruitment:familyStability "Unstable" ;
+    icac-recruitment:parentalSupervision "Limited" ;
+    icac-recruitment:domesticConflict "Present" ;
+    icac-recruitment:familyCommunication "Poor" .
+
+# =============================================================================
+# SCHOOL ENVIRONMENT FACTORS
+# =============================================================================
+
+ex:school-vulnerability-factor a icac-recruitment:SchoolVulnerabilityFactor ;
+    uco-core:name "School environment vulnerability" ;
+    icac-recruitment:school ex:local-high-school ;
+    icac-recruitment:attendanceRate 0.75 ;
+    icac-recruitment:academicPerformanceLevel "Below Average" ;
+    icac-recruitment:disciplinaryIssues true ;
+    icac-recruitment:socialWorkerAccess true ;
+    icac-recruitment:peerGroupInfluence "Negative" .
+
+# =============================================================================
+# CASE OUTCOMES
+# =============================================================================
+
+ex:case-outcome a icac-core:CaseOutcome ;
+    uco-core:name "Bushwick case indictment" ;
+    icac-core:investigation ex:bushwick-investigation ;
+    icac-core:outcomeType "Indictment" ;
+    icac-core:outcomeDate "2024-04-01"^^xsd:date ;
+    icac-core:charges "Sex Trafficking of Minors", "Promoting Prostitution" ;
+    icac-core:defendant ex:defendant-john-doe ;
+    icac-core:prosecutingAgency "Brooklyn District Attorney's Office" .
+
+# =============================================================================
+# INVESTIGATION METRICS
+# =============================================================================
+
+ex:investigation-metrics a icac-core:InvestigationMetrics ;
+    uco-core:name "Bushwick case investigation metrics" ;
+    icac-core:investigation ex:bushwick-investigation ;
+    icac-core:investigationDuration "P75D"^^xsd:duration ;
+    icac-core:evidenceItemsCollected 25 ;
+    icac-core:witnessesInterviewed 8 ;
+    icac-core:undercoverOperations 3 ;
+    icac-core:victimsRescued 2 ;
+    icac-core:arrestsMade 1 ;
+    icac-core:agenciesInvolved 3 .

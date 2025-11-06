@@ -1,0 +1,148 @@
+# Query: Q8 find_rescue_statistics - Enhanced for ICAC v0.9.0
+# Purpose: Management dashboard - victim rescue metrics and trends with specialized units support
+# Parameters: ?from (dateTime), ?to (dateTime), ?limit (integer), ?organizationURI (optional)
+# Security: TLP-RED content excluded by default
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core#>
+PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable#>
+PREFIX uco-confidentiality: <https://ontology.unifiedcyberontology.org/uco/confidentiality#>
+PREFIX hotlines-core: <https://ontology.unifiedcyberontology.org/hotlines/2025/core#>
+PREFIX icac-core: <https://ontology.unifiedcyberontology.org/icac#>
+PREFIX icac-multi: <https://ontology.unifiedcyberontology.org/icac/multi-jurisdiction#>
+PREFIX icac-specialized: <https://ontology.unifiedcyberontology.org/icac/specialized-units#>
+PREFIX icac-victim: <https://ontology.unifiedcyberontology.org/icac/victim-impact#>
+
+SELECT ?organization ?yearMonth
+       (COUNT(DISTINCT ?report) AS ?totalReportsLinkedToRescue)
+       (COUNT(DISTINCT ?rescueAction) AS ?rescueActionCount)
+       (COUNT(DISTINCT ?victim) AS ?rescuedVictimCount)
+       (AVG(?cycleTimeDays) AS ?avgCycleTimeDays)
+       (MIN(?cycleTimeDays) AS ?minCycleTimeDays)
+       (MAX(?cycleTimeDays) AS ?maxCycleTimeDays)
+       
+       # Enhanced rescue metrics
+       (COUNT(DISTINCT ?childRescueUnit) AS ?specializedUnitsInvolved)
+       (AVG(?emergencyResponseTime) AS ?avgEmergencyResponseTime)
+       (COUNT(DISTINCT ?multiStateRescue) AS ?multiStateRescueCount)
+       (COUNT(DISTINCT ?ongoingAbuse) AS ?ongoingAbuseCases)
+       
+WHERE {
+    # Parameter defaults
+    VALUES (?from ?to ?limit ?organizationURI) {
+        ("2025-01-01T00:00:00Z"^^xsd:dateTime "2025-12-31T23:59:59Z"^^xsd:dateTime 100 UNDEF)
+    }
+    
+    ?report hotlines-core:receivedBy ?organization ;
+            hotlines-core:createdTime ?reportTime ;
+            hotlines-core:triggersAction ?rescueAction .
+    
+    ?rescueAction a icac-core:VictimRescueAction ;
+                  uco-core:startTime ?rescueTime ;
+                  icac-core:rescuedVictim ?victim ;
+                  icac-core:outcome icac-core:outcome-success .
+
+    # Filter by specific organization if URI is provided
+    FILTER(!BOUND(?organizationURI) || (?organization = ?organizationURI))
+
+    # Group by YearMonth of rescue time for charting
+    BIND(STRDT(CONCAT(STR(YEAR(?rescueTime)), "-", 
+                     IF(MONTH(?rescueTime) < 10, "0", ""), 
+                     STR(MONTH(?rescueTime))), xsd:gYearMonth) AS ?yearMonth)
+    
+    # Calculate cycle time from report creation to rescue start
+    BIND((?rescueTime - ?reportTime) / (24 * 60 * 60) AS ?cycleTimeDays)
+    
+    FILTER(?rescueTime >= ?from && ?rescueTime <= ?to) # Filter by rescue time
+
+    # Enhanced rescue operations analysis
+    OPTIONAL {
+        ?childRescueUnit rdf:type icac-specialized:ChildRescueUnit ;
+            icac-specialized:participatedInRescue ?rescueAction .
+        
+        OPTIONAL {
+            ?childRescueUnit icac-specialized:emergencyResponseTime ?emergencyResponseTime .
+        }
+    }
+    
+    # Multi-state rescue coordination
+    OPTIONAL {
+        ?multiStateRescue rdf:type icac-multi:ChildRescueCoordination ;
+            icac-multi:rescueAction ?rescueAction ;
+            icac-multi:childrenRescued ?rescueCount .
+        FILTER(?rescueCount > 0)
+    }
+    
+    # Ongoing abuse rescue cases
+    OPTIONAL {
+        ?victim icac-victim:currentlyInDanger true .
+        BIND(?victim AS ?ongoingAbuse)
+    }
+
+    # Security filter
+    FILTER NOT EXISTS {
+        ?report uco-confidentiality:confidentialityLevel "TLP-RED" .
+    }
+    FILTER NOT EXISTS {
+        ?victim uco-confidentiality:confidentialityLevel "TLP-RED" .
+    }
+}
+GROUP BY ?organization ?yearMonth
+ORDER BY ?organization DESC(?yearMonth)
+LIMIT ?limit
+
+# Additional query for rescue operation effectiveness by specialized units
+;
+
+SELECT 
+    ?specializedUnitType
+    (COUNT(DISTINCT ?rescueAction) AS ?rescueOperations)
+    (COUNT(DISTINCT ?victim) AS ?victimsRescued)
+    (AVG(?emergencyResponseTime) AS ?avgResponseTime)
+    (MIN(?emergencyResponseTime) AS ?minResponseTime)
+    (MAX(?emergencyResponseTime) AS ?maxResponseTime)
+    (AVG(?cycleTime) AS ?avgCycleTime)
+    (COUNT(DISTINCT ?multiState) AS ?multiStateOperations)
+    
+WHERE {
+    # Parameter defaults for date range
+    VALUES (?from ?to) {
+        ("2025-01-01T00:00:00Z"^^xsd:dateTime "2025-12-31T23:59:59Z"^^xsd:dateTime)
+    }
+    
+    ?rescueAction rdf:type icac-core:VictimRescueAction ;
+                  uco-core:startTime ?rescueTime ;
+                  icac-core:rescuedVictim ?victim .
+    
+    ?specializedUnit rdf:type ?specializedUnitType ;
+        icac-specialized:participatedInRescue ?rescueAction .
+    
+    # Response time analysis
+    OPTIONAL {
+        ?specializedUnit icac-specialized:emergencyResponseTime ?emergencyResponseTime .
+    }
+    
+    # Cycle time from initial report
+    OPTIONAL {
+        ?report hotlines-core:triggersAction ?rescueAction ;
+                hotlines-core:createdTime ?reportTime .
+        BIND((?rescueTime - ?reportTime) / (24 * 60 * 60) AS ?cycleTime)
+    }
+    
+    # Multi-state operations
+    OPTIONAL {
+        ?multiState rdf:type icac-multi:ChildRescueCoordination ;
+            icac-multi:rescueAction ?rescueAction .
+    }
+    
+    FILTER(?rescueTime >= ?from && ?rescueTime <= ?to)
+    FILTER(?specializedUnitType IN (
+        icac-specialized:ChildRescueUnit,
+        icac-specialized:TacticalUnit,
+        icac-specialized:VictimServiceUnit,
+        icac-specialized:EmergencyResponseUnit
+    ))
+}
+GROUP BY ?specializedUnitType
+ORDER BY DESC(?victimsRescued) DESC(?rescueOperations) 

@@ -1,0 +1,148 @@
+@prefix example: <http://ontology.icac.org/examples/valdez-olivar-maryland-case#> .
+@prefix icac-core: <http://ontology.icac.org/icac-core#> .
+@prefix icac-taskforce: <http://ontology.icac.org/icac-taskforce#> .
+@prefix icac-specialized: <http://ontology.icac.org/icac-specialized-units#> .
+@prefix icac-sentencing: <http://ontology.icac.org/icac-sentencing#> .
+@prefix icac-forensics: <http://ontology.icac.org/icac-forensics#> .
+@prefix uco-core: <http://unifiedcyberontology.org/uco/core#> .
+@prefix uco-action: <http://unifiedcyberontology.org/uco/action#> .
+@prefix uco-identity: <http://unifiedcyberontology.org/uco/identity#> .
+@prefix uco-observable: <http://unifiedcyberontology.org/uco/observable#> .
+@prefix uco-role: <http://unifiedcyberontology.org/uco/role#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+# =============================================================================
+# MARYLAND CASE EXAMPLE: Edwin Antonio Valdez Olivar
+# Based on Maryland State Police Computer Crimes Unit Press Release 
+# Date: May 30, 2025
+# =============================================================================
+
+# =============================================================================
+# SUSPECT IDENTITY
+# =============================================================================
+
+example:EAValdezOlivar rdf:type uco-identity:Person ;
+    uco-core:name "Edwin Antonio Valdez Olivar"@en ;
+    uco-core:description "45-year-old Prince George's County resident charged with child pornography offenses"@en .
+
+# =============================================================================
+# MARYLAND ICAC TASK FORCE STRUCTURE
+# =============================================================================
+
+example:MarylandICACtaskForce rdf:type icac-taskforce:MarylandICACtaskForce ;
+    uco-core:name "Maryland Internet Crimes Against Children Task Force"@en ;
+    uco-core:description "Maryland ICAC Task Force coordinated by Maryland State Police Computer Crimes Unit"@en ;
+    icac-taskforce:dojGrantFunded true ;
+    icac-taskforce:nationalTaskForceNetwork true ;
+    icac-taskforce:hasMetrics example:MarylandICACtaskForceMetrics .
+
+example:MSPComputerCrimesUnit rdf:type icac-specialized:MarylandStatePoliceComputerCrimesUnit ;
+    uco-core:name "Maryland State Police Computer Crimes Unit"@en ;
+    uco-core:description "Maryland State Police unit coordinating the Maryland Internet Crimes Against Children Task Force"@en .
+
+example:CollegeParkBarrack rdf:type icac-specialized:CollegeParkBarrack ;
+    uco-core:name "Maryland State Police College Park Barrack"@en ;
+    uco-core:description "College Park barrack supporting computer crimes investigations"@en .
+
+example:PrinceGeorgesCountyPolice rdf:type icac-specialized:PrinceGeorgesCountyPolice ;
+    uco-core:name "Prince George's County Police Department"@en ;
+    uco-core:description "County police department supporting Maryland State Police computer crimes investigations"@en .
+
+# =============================================================================
+# FUNDING STRUCTURE
+# =============================================================================
+
+example:GovernorOfficeFunding rdf:type icac-taskforce:GovernorsOfficeCrimePreventionFunding ;
+    uco-core:name "Governor's Office for Crime Prevention and Policy Funding"@en ;
+    uco-core:description "State-level funding provided by Governor's Office for Crime Prevention and Policy for Maryland ICAC task force operations"@en .
+
+example:CombinedFunding rdf:type icac-taskforce:StateLocalFundingCombination ;
+    uco-core:name "Combined State-Federal ICAC Funding"@en ;
+    uco-core:description "Combined funding from Maryland Governor's Office and federal DOJ grants for task force operations"@en .
+
+# =============================================================================
+# CRIMINAL CHARGES 
+# =============================================================================
+
+example:CausingProductionCharge rdf:type icac-sentencing:CSAM_CausingProduction ;
+    uco-core:name "Causing Production of Child Sexual Abuse Material"@en ;
+    uco-core:description "Felony charge for causing production of CSAM"@en ;
+    icac-sentencing:chargeLevel "felony"@en ;
+    icac-sentencing:chargeCount 10 .
+
+example:AccessingViewingCharge rdf:type icac-sentencing:CSAM_AccessingAndViewing ;
+    uco-core:name "Accessing and Viewing Child Sexual Abuse Material"@en ;
+    uco-core:description "Felony charge for intentionally accessing and viewing CSAM"@en ;
+    icac-sentencing:chargeLevel "felony"@en ;
+    icac-sentencing:chargeCount 5 .
+
+example:ReceivingCellularCharge rdf:type icac-sentencing:CSAM_ReceivingOnCellularDevice ;
+    uco-core:name "Receiving CSAM on Cellular Device"@en ;
+    uco-core:description "Felony charge for receiving CSAM on cellular phone"@en ;
+    icac-sentencing:chargeLevel "felony"@en ;
+    icac-sentencing:chargeCount 5 .
+
+# =============================================================================
+# DIGITAL EVIDENCE
+# =============================================================================
+
+example:CellularPhone rdf:type uco-observable:MobileDevice ;
+    uco-core:name "Suspect Cellular Phone"@en ;
+    uco-core:description "Cellular phone containing digital evidence of child sexual abuse material"@en .
+
+example:CellularForensics rdf:type icac-forensics:MobileDeviceForensics ;
+    uco-core:name "Cellular Phone Forensic Analysis"@en ;
+    uco-core:description "Forensic analysis of cellular phone revealing child sexual abuse images"@en .
+
+# =============================================================================
+# INVESTIGATION COORDINATION
+# =============================================================================
+
+example:MarylandInvestigation rdf:type uco-action:Action ;
+    uco-core:name "Maryland Computer Crimes Investigation"@en ;
+    uco-core:description "Investigation conducted by Maryland State Police Computer Crimes Unit with Prince George's County Police support"@en .
+
+example:ArrestOperation rdf:type uco-action:Action ;
+    uco-core:name "Valdez Olivar Arrest Operation"@en ;
+    uco-core:description "Coordinated arrest operation involving Maryland State Police and county police"@en .
+
+# =============================================================================
+# PERFORMANCE METRICS
+# =============================================================================
+
+example:MarylandICACtaskForceMetrics rdf:type icac-taskforce:TaskForceMetrics ;
+    uco-core:name "Maryland ICAC Task Force Performance Metrics"@en ;
+    uco-core:description "Performance tracking for Maryland ICAC Task Force operations"@en .
+
+# =============================================================================
+# RELATIONSHIPS
+# =============================================================================
+
+# Task Force Coordination
+example:MarylandICACtaskForce icac-taskforce:partnersWith example:MSPComputerCrimesUnit .
+example:MarylandICACtaskForce icac-taskforce:partnersWith example:CollegeParkBarrack .
+example:MarylandICACtaskForce icac-taskforce:partnersWith example:PrinceGeorgesCountyPolice .
+
+# Funding Relationships
+example:MarylandICACtaskForce uco-core:object example:GovernorOfficeFunding .
+example:MarylandICACtaskForce uco-core:object example:CombinedFunding .
+
+# Investigation Relationships  
+example:MSPComputerCrimesUnit uco-action:performer example:MarylandInvestigation .
+example:PrinceGeorgesCountyPolice uco-action:performer example:MarylandInvestigation .
+example:MarylandInvestigation uco-action:object example:EAValdezOlivar .
+
+# Arrest Relationships
+example:ArrestOperation uco-action:object example:EAValdezOlivar .
+example:MSPComputerCrimesUnit uco-action:performer example:ArrestOperation .
+
+# Evidence Relationships
+example:CellularForensics uco-action:object example:CellularPhone .
+example:MarylandInvestigation uco-action:object example:CellularPhone .
+
+# Criminal Charge Relationships
+example:EAValdezOlivar uco-core:object example:CausingProductionCharge .
+example:EAValdezOlivar uco-core:object example:AccessingViewingCharge .
+example:EAValdezOlivar uco-core:object example:ReceivingCellularCharge . 

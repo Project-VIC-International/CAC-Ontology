@@ -1,0 +1,370 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity#> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location#> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable#> .
+@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
+@prefix icac-production: <https://ontology.unifiedcyberontology.org/icac/production#> .
+@prefix icac-custodial: <https://ontology.unifiedcyberontology.org/icac/custodial#> .
+@prefix icac-physical: <https://ontology.unifiedcyberontology.org/icac/physical#> .
+@prefix icac-sentencing: <https://ontology.unifiedcyberontology.org/icac/sentencing#> .
+@prefix icac-taskforce: <https://ontology.unifiedcyberontology.org/icac/taskforce#> .
+
+# =============================================================================
+# Hartford, Vermont Production Case Example
+# Case: Matthew Isaacs, charged with production of child sexual abuse materials
+# Demonstrates proposed ontology enhancements for:
+# - Image post-processing and digital modification
+# - Residential proximity access patterns  
+# - Identifying marks (tattoos) in evidence
+# - Conditions of release violations
+# - Project Safe Childhood integration
+# =============================================================================
+
+# Case Overview
+<https://example.org/cases/hartford-vermont-production> rdf:type icac-production:ProductionOffense ;
+    rdfs:label "Hartford Vermont Production Case"@en ;
+    icac-production:productionMethod "photography_with_modification" ;
+    icac-production:victimCount 1 ;
+    icac-production:producedAt <https://example.org/locations/hartford-apartment> ;
+    uco-core:startTime "2024-01-01T00:00:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2024-04-01T00:00:00Z"^^xsd:dateTime .
+
+# Perpetrator
+<https://example.org/persons/matthew-isaacs> rdf:type icac-production:Producer ;
+    rdfs:label "Matthew Isaacs"@en ;
+    uco-identity:hasName "Matthew Isaacs" ;
+    uco-identity:age 33 ;
+    uco-location:hasLocation <https://example.org/locations/hartford-apartment> .
+
+# Victim (anonymized)
+<https://example.org/persons/child-victim> rdf:type icac-production:ProductionVictim ;
+    rdfs:label "Child Victim"@en ;
+    uco-identity:age 5 ;
+    uco-location:hasLocation <https://example.org/locations/hartford-apartment-same-floor> .
+
+# Locations
+<https://example.org/locations/hartford-apartment> rdf:type uco-location:Location ;
+    rdfs:label "Hartford Apartment Building"@en ;
+    uco-location:hasLocationName "Hartford, Vermont Apartment" .
+
+<https://example.org/locations/hartford-apartment-same-floor> rdf:type uco-location:Location ;
+    rdfs:label "Same Floor Apartment"@en ;
+    uco-location:hasLocationName "Same Floor, Hartford Apartment Building" .
+
+# =============================================================================
+# PROPOSED ENHANCEMENT: RESIDENTIAL PROXIMITY ACCESS PATTERN
+# =============================================================================
+
+# Residential Proximity Access (NEW CLASS)
+<https://example.org/access/residential-proximity> rdf:type icac-custodial:ResidentialProximityAccess ;
+    rdfs:label "Residential Proximity Access"@en ;
+    icac-custodial:proximityType "same_floor" ;
+    icac-custodial:buildingType "apartment_building" ;
+    icac-custodial:accessFrequency "regular" .
+
+# Neighbor Relationship (NEW CLASS)
+<https://example.org/relationships/neighbor> rdf:type icac-custodial:NeighborRelationship ;
+    rdfs:label "Same Floor Neighbor Relationship"@en ;
+    icac-custodial:relationshipType "neighbor" ;
+    icac-custodial:residentialProximity "same_floor" ;
+    icac-custodial:familiarityLevel "acquainted" ;
+    icac-custodial:trustLevel "minimal" ;
+    icac-custodial:accessLevel "unsupervised_opportunity" .
+
+# Same Floor Access (NEW CLASS)
+<https://example.org/access/same-floor> rdf:type icac-custodial:SameFloorAccess ;
+    rdfs:label "Same Floor Access Opportunity"@en ;
+    icac-custodial:floorNumber "same" ;
+    icac-custodial:accessPattern "recurring" ;
+    icac-custodial:supervisionLevel "none" .
+
+# =============================================================================
+# PROPOSED ENHANCEMENT: IMAGE POST-PROCESSING AND DIGITAL MODIFICATION
+# =============================================================================
+
+# Original Photography
+<https://example.org/actions/initial-photography> rdf:type icac-production:RecordingAction ;
+    rdfs:label "Initial Photography of Abuse"@en ;
+    icac-production:recordingType "still_photography" ;
+    icac-production:targetArea "genitalia" ;
+    icac-production:recordingDevice <https://example.org/devices/mobile-phone> ;
+    uco-core:performer <https://example.org/persons/matthew-isaacs> ;
+    uco-core:object <https://example.org/persons/child-victim> .
+
+# Image Post-Processing (NEW CLASS)
+<https://example.org/actions/image-modification> rdf:type icac-production:ImagePostProcessing ;
+    rdfs:label "Digital Image Modification"@en ;
+    icac-production:modificationCount 5 ;
+    icac-production:modificationSoftware "mobile_photo_editor" ;
+    icac-production:originalImages <https://example.org/evidence/original-photos> ;
+    icac-production:modifiedImages <https://example.org/evidence/modified-photos> .
+
+# Text Overlay (NEW CLASS)
+<https://example.org/actions/text-overlay> rdf:type icac-production:TextOverlay ;
+    rdfs:label "Victim Name and Explicit Text Addition"@en ;
+    icac-production:textType "victim_name_and_slang" ;
+    icac-production:textContent "victim first name + slang term for vagina" ;
+    icac-production:textPlacement "overlay_on_image" ;
+    icac-production:textCount 2 .
+
+# Graphic Enhancement (NEW CLASS)
+<https://example.org/actions/graphic-enhancement> rdf:type icac-production:GraphicEnhancement ;
+    rdfs:label "Explicit Graphic Addition"@en ;
+    icac-production:graphicType "explicit_sexual_imagery" ;
+    icac-production:graphicDescription "erect penis pointed at child vaginal area" ;
+    icac-production:graphicPlacement "digitally_overlaid" ;
+    icac-production:graphicCount 1 .
+
+# =============================================================================
+# PROPOSED ENHANCEMENT: IDENTIFYING MARKS IN EVIDENCE
+# =============================================================================
+
+# Distinctive Tattoo (NEW CLASS)
+<https://example.org/evidence/distinctive-tattoo> rdf:type icac-physical:Tattoo ;
+    rdfs:label "Distinctive Arm Tattoo"@en ;
+    icac-physical:tattooLocation "arm" ;
+    icac-physical:tattooDescription "distinctive identifying design" ;
+    icac-physical:identificationValue "high" ;
+    icac-physical:evidenceType "photographic_identification" ;
+    icac-physical:visibleInEvidence true .
+
+# Body Part Location (NEW CLASS)
+<https://example.org/anatomy/arm-location> rdf:type icac-physical:BodyPartLocation ;
+    rdfs:label "Arm Location"@en ;
+    icac-physical:bodyPart "arm" ;
+    icac-physical:visibility "visible_in_photos" ;
+    icac-physical:identificationReliability "high" .
+
+# Identifying Mark Evidence (NEW CLASS)
+<https://example.org/evidence/identifying-mark> rdf:type icac-physical:IdentifyingMark ;
+    rdfs:label "Perpetrator Identifying Mark"@en ;
+    icac-physical:markType "tattoo" ;
+    icac-physical:identificationConfidence 0.95 ;
+    icac-physical:evidentialValue "perpetrator_identification" ;
+    icac-physical:visibleInContent true .
+
+# =============================================================================
+# PROPOSED ENHANCEMENT: CONDITIONS OF RELEASE VIOLATIONS
+# =============================================================================
+
+# Prior State Charges
+<https://example.org/charges/prior-state-charge> rdf:type icac-sentencing:StateCharge ;
+    rdfs:label "Vermont Lewd and Lascivious Conduct Charge"@en ;
+    icac-sentencing:chargeCode "Vermont_Lewd_Lascivious_Child" ;
+    icac-sentencing:chargeDescription "Lewd and Lascivious Conduct with a Child" ;
+    icac-sentencing:chargingJurisdiction "Vermont Superior Court" ;
+    icac-sentencing:chargeStatus "pending" .
+
+# Conditions of Release Status (NEW CLASS)
+<https://example.org/status/conditions-of-release> rdf:type icac-sentencing:PendingChargeStatus ;
+    rdfs:label "Conditions of Release Status"@en ;
+    icac-sentencing:releaseConditions "court_imposed_conditions" ;
+    icac-sentencing:statusAtTimeOfOffense "active" ;
+    icac-sentencing:priorChargeType "state_child_abuse" ;
+    icac-sentencing:complianceStatus "violated" .
+
+# Conditions of Release Violation (NEW CLASS)
+<https://example.org/violations/release-violation> rdf:type icac-sentencing:ConditionsOfReleaseViolation ;
+    rdfs:label "Federal Offense While on State Release"@en ;
+    icac-sentencing:violationType "new_federal_offense" ;
+    icac-sentencing:priorCharge <https://example.org/charges/prior-state-charge> ;
+    icac-sentencing:newOffense <https://example.org/cases/hartford-vermont-production> ;
+    icac-sentencing:aggravatingFactor true .
+
+# State to Federal Escalation (NEW CLASS)
+<https://example.org/escalations/state-to-federal> rdf:type icac-sentencing:StateToFederalEscalation ;
+    rdfs:label "State to Federal Charge Escalation"@en ;
+    icac-sentencing:stateCharge "Lewd and Lascivious Conduct" ;
+    icac-sentencing:federalCharge "Production of Child Sexual Abuse Materials" ;
+    icac-sentencing:escalationReason "federal_jurisdiction_production" ;
+    icac-sentencing:jurisdictionalComplexity "enhanced" .
+
+# =============================================================================
+# PROPOSED ENHANCEMENT: PROJECT SAFE CHILDHOOD INTEGRATION
+# =============================================================================
+
+# Project Safe Childhood Case (NEW CLASS)
+<https://example.org/initiatives/project-safe-childhood> rdf:type icac-taskforce:ProjectSafeChildhoodCase ;
+    rdfs:label "Project Safe Childhood Case"@en ;
+    icac-taskforce:initiativeName "Project Safe Childhood" ;
+    icac-taskforce:initiativeType "nationwide_federal" ;
+    icac-taskforce:caseCategory "production_offense" ;
+    icac-taskforce:federalInitiative true .
+
+# Federal Initiative Participation (NEW CLASS)
+<https://example.org/participation/federal-initiative> rdf:type icac-taskforce:FederalInitiativeParticipation ;
+    rdfs:label "Federal Initiative Participation"@en ;
+    icac-taskforce:participatingAgency "USAO Vermont" ;
+    icac-taskforce:supportingAgency "Homeland Security Investigations" ;
+    icac-taskforce:localAgency "Hartford Vermont Police Department" ;
+    icac-taskforce:initiativeScope "national" .
+
+# =============================================================================
+# FEDERAL CHARGES AND SENTENCING
+# =============================================================================
+
+# Federal Production Charge
+<https://example.org/charges/federal-production> rdf:type icac-sentencing:FederalCharge ;
+    rdfs:label "Production of Child Sexual Abuse Materials"@en ;
+    icac-sentencing:chargeCode "18_USC_2251" ;
+    icac-sentencing:chargeDescription "Production of child sexual abuse materials" ;
+    icac-sentencing:minimumSentence 180 ; # 15 years mandatory minimum
+    icac-sentencing:maximumSentence 360 ; # 30 years maximum
+    icac-sentencing:mandatoryMinimum true .
+
+# Enhanced Sentencing Factors
+<https://example.org/sentencing/enhanced-factors> rdf:type icac-sentencing:SentencingEnhancement ;
+    rdfs:label "Enhanced Sentencing Factors"@en ;
+    icac-sentencing:enhancementType "prior_state_charges" ;
+    icac-sentencing:enhancementFactor "conditions_of_release_violation" ;
+    icac-sentencing:enhancementSeverity "significant" ;
+    icac-sentencing:imageModification true ;
+    icac-sentencing:vulnerableVictim true .
+
+# =============================================================================
+# INVESTIGATION AND EVIDENCE
+# =============================================================================
+
+# Multi-Agency Investigation
+<https://example.org/investigations/hartford-investigation> rdf:type icac:Investigation ;
+    rdfs:label "Hartford Vermont Production Investigation"@en ;
+    icac:investigationType "production_offense" ;
+    icac:leadAgency "Hartford Vermont Police Department" ;
+    icac:federalAgency "Homeland Security Investigations" ;
+    icac:prosecutingOffice "USAO Vermont" .
+
+# Digital Evidence
+<https://example.org/evidence/modified-photos> rdf:type icac-production:ProducedImage ;
+    rdfs:label "Modified Abuse Photographs"@en ;
+    icac-production:imageCount 5 ;
+    icac-production:modificationType "text_and_graphic_overlay" ;
+    icac-production:evidenceValue "primary" ;
+    icac-production:perpetratorVisible true ;
+    icac-production:identifyingMarksVisible true .
+
+<https://example.org/evidence/original-photos> rdf:type icac-production:ProducedImage ;
+    rdfs:label "Original Abuse Photographs"@en ;
+    icac-production:imageCount 5 ;
+    icac-production:modificationType "none" ;
+    icac-production:captureMethod "mobile_phone_camera" .
+
+# Physical Evidence
+<https://example.org/devices/mobile-phone> rdf:type icac-physical:MobileRecordingDevice ;
+    rdfs:label "Perpetrator Mobile Phone"@en ;
+    icac-physical:deviceType "smartphone" ;
+    icac-physical:evidenceType "recording_device" ;
+    icac-physical:containsEvidence true .
+
+# =============================================================================
+# RELATIONSHIPS AND CONNECTIONS
+# =============================================================================
+
+# Access Pattern Relationships
+<https://example.org/persons/matthew-isaacs> icac-custodial:hasAccessPattern <https://example.org/access/residential-proximity> ;
+    icac-custodial:hasRelationshipWith <https://example.org/relationships/neighbor> .
+
+<https://example.org/relationships/neighbor> icac-custodial:enablesAccess <https://example.org/access/same-floor> ;
+    icac-custodial:involvesVictim <https://example.org/persons/child-victim> .
+
+# Production Process Relationships
+<https://example.org/actions/initial-photography> icac-production:resultsIn <https://example.org/evidence/original-photos> .
+
+<https://example.org/actions/image-modification> icac-production:processesOriginal <https://example.org/evidence/original-photos> ;
+    icac-production:produces <https://example.org/evidence/modified-photos> ;
+    icac-production:includesTextOverlay <https://example.org/actions/text-overlay> ;
+    icac-production:includesGraphicEnhancement <https://example.org/actions/graphic-enhancement> .
+
+# Evidence Relationships
+<https://example.org/evidence/modified-photos> icac-physical:containsIdentifyingMark <https://example.org/evidence/distinctive-tattoo> ;
+    icac-production:identifiesPerpetrator <https://example.org/persons/matthew-isaacs> .
+
+# Legal Process Relationships
+<https://example.org/charges/prior-state-charge> icac-sentencing:leadsToPendingStatus <https://example.org/status/conditions-of-release> .
+
+<https://example.org/status/conditions-of-release> icac-sentencing:violatedBy <https://example.org/violations/release-violation> .
+
+<https://example.org/violations/release-violation> icac-sentencing:triggersEscalation <https://example.org/escalations/state-to-federal> .
+
+# Initiative Relationships
+<https://example.org/cases/hartford-vermont-production> icac-taskforce:prosecutedUnder <https://example.org/initiatives/project-safe-childhood> ;
+    icac-taskforce:involvesParticipation <https://example.org/participation/federal-initiative> .
+
+# =============================================================================
+# PROPOSED NEW PROPERTIES FOR ENHANCEMENTS
+# =============================================================================
+
+# Residential Proximity Properties (NEW)
+icac-custodial:proximityType rdf:type owl:DatatypeProperty ;
+    rdfs:label "proximity type"@en ;
+    rdfs:comment "Type of residential proximity (same_floor, same_building, same_block, neighborhood)."@en ;
+    rdfs:domain icac-custodial:ResidentialProximityAccess ;
+    rdfs:range xsd:string .
+
+icac-custodial:residentialProximity rdf:type owl:DatatypeProperty ;
+    rdfs:label "residential proximity"@en ;
+    rdfs:comment "Level of residential proximity to victim."@en ;
+    rdfs:domain icac-custodial:NeighborRelationship ;
+    rdfs:range xsd:string .
+
+# Image Modification Properties (NEW)
+icac-production:modificationCount rdf:type owl:DatatypeProperty ;
+    rdfs:label "modification count"@en ;
+    rdfs:comment "Number of images that were digitally modified."@en ;
+    rdfs:domain icac-production:ImagePostProcessing ;
+    rdfs:range xsd:integer .
+
+icac-production:textType rdf:type owl:DatatypeProperty ;
+    rdfs:label "text type"@en ;
+    rdfs:comment "Type of text added to images (victim_name, explicit_language, threats)."@en ;
+    rdfs:domain icac-production:TextOverlay ;
+    rdfs:range xsd:string .
+
+icac-production:graphicType rdf:type owl:DatatypeProperty ;
+    rdfs:label "graphic type"@en ;
+    rdfs:comment "Type of graphic content added to images."@en ;
+    rdfs:domain icac-production:GraphicEnhancement ;
+    rdfs:range xsd:string .
+
+# Identifying Mark Properties (NEW)
+icac-physical:tattooLocation rdf:type owl:DatatypeProperty ;
+    rdfs:label "tattoo location"@en ;
+    rdfs:comment "Body location where tattoo is present."@en ;
+    rdfs:domain icac-physical:Tattoo ;
+    rdfs:range xsd:string .
+
+icac-physical:identificationConfidence rdf:type owl:DatatypeProperty ;
+    rdfs:label "identification confidence"@en ;
+    rdfs:comment "Confidence level in using mark for identification (0.0-1.0)."@en ;
+    rdfs:domain icac-physical:IdentifyingMark ;
+    rdfs:range xsd:decimal .
+
+# Conditions of Release Properties (NEW)
+icac-sentencing:releaseConditions rdf:type owl:DatatypeProperty ;
+    rdfs:label "release conditions"@en ;
+    rdfs:comment "Specific conditions imposed for pre-trial release."@en ;
+    rdfs:domain icac-sentencing:PendingChargeStatus ;
+    rdfs:range xsd:string .
+
+icac-sentencing:violationType rdf:type owl:DatatypeProperty ;
+    rdfs:label "violation type"@en ;
+    rdfs:comment "Type of conditions of release violation."@en ;
+    rdfs:domain icac-sentencing:ConditionsOfReleaseViolation ;
+    rdfs:range xsd:string .
+
+# Project Safe Childhood Properties (NEW)
+icac-taskforce:initiativeName rdf:type owl:DatatypeProperty ;
+    rdfs:label "initiative name"@en ;
+    rdfs:comment "Name of federal initiative under which case is prosecuted."@en ;
+    rdfs:domain icac-taskforce:ProjectSafeChildhoodCase ;
+    rdfs:range xsd:string .
+
+icac-taskforce:caseCategory rdf:type owl:DatatypeProperty ;
+    rdfs:label "case category"@en ;
+    rdfs:comment "Category of case within federal initiative framework."@en ;
+    rdfs:domain icac-taskforce:ProjectSafeChildhoodCase ;
+    rdfs:range xsd:string . 

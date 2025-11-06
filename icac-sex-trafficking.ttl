@@ -1,0 +1,439 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/core#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/identity#> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/observable#> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/action#> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/role#> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/location#> .
+@prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
+@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
+@prefix icac-trafficking: <https://ontology.unifiedcyberontology.org/icac/trafficking#> .
+@prefix icac-impact: <https://ontology.unifiedcyberontology.org/icac/victim-impact#> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix icac-gufo: <https://ontology.unifiedcyberontology.org/icac/gufo#> .
+
+# Ontology Declaration
+<https://ontology.unifiedcyberontology.org/icac/trafficking/0.1> rdf:type owl:Ontology ;
+    rdfs:label "ICAC Sex Trafficking Ontology"@en ;
+    rdfs:comment "Specialized ontology for modeling sex trafficking of minors and related criminal enterprises with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, organization structure modeling, and validation capabilities. Based on cases like Brooklyn DA v. Eight Defendants (2025)."@en ;
+    owl:versionIRI <https://ontology.unifiedcyberontology.org/icac/trafficking/0.1> ;
+    dcterms:creator "UCO Ontology Team" ;
+    dcterms:issued "2025-05-28"^^xsd:date ;
+    dcterms:modified "2025-01-03"^^xsd:date ;
+    owl:imports <https://ontology.unifiedcyberontology.org/core> ,
+                <https://ontology.caseontology.org/case> ,
+                <https://ontology.unifiedcyberontology.org/icac> ,
+                <http://purl.org/nemo/gufo> .
+
+# =============================================================================
+# TRAFFICKING ORGANIZATION STRUCTURE (gUFO Organization and Situation modeling)
+# =============================================================================
+
+# Trafficking Enterprises as gUFO Organizations
+icac-trafficking:TraffickingEnterprise rdf:type owl:Class ;
+    rdfs:label "Trafficking Enterprise"@en ;
+    rdfs:comment "Criminal organization engaged in systematic sex trafficking operations with multiple defendants and coordinated activities. Modeled as gUFO Organization."@en ;
+    rdfs:subClassOf uco-identity:Organization, gufo:Organization .
+
+icac-trafficking:TraffickingRing rdf:type owl:Class ;
+    rdfs:label "Trafficking Ring"@en ;
+    rdfs:comment "Coordinated group of traffickers operating across multiple jurisdictions with shared victims and resources (e.g., 8-defendant Brooklyn case). Modeled as specialized gUFO Organization."@en ;
+    rdfs:subClassOf icac-trafficking:TraffickingEnterprise .
+
+icac-trafficking:TraffickingCell rdf:type owl:Class ;
+    rdfs:label "Trafficking Cell"@en ;
+    rdfs:comment "Smaller operational unit within trafficking ring, often controlling specific victims or geographic areas. Modeled as specialized gUFO Organization."@en ;
+    rdfs:subClassOf icac-trafficking:TraffickingEnterprise .
+
+icac-trafficking:TraffickingHierarchy rdf:type owl:Class ;
+    rdfs:label "Trafficking Hierarchy"@en ;
+    rdfs:comment "Organizational structure within trafficking enterprise defining roles and authority levels."@en ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object .
+
+# Trafficking Enterprise Phases (gUFO Phase anti-rigid modeling)
+icac-trafficking:EstablishmentPhase rdf:type owl:Class, gufo:Phase ;
+    rdfs:label "Establishment Phase"@en ;
+    rdfs:comment "Initial phase of trafficking enterprise formation and recruitment setup."@en ;
+    rdfs:subClassOf icac-trafficking:TraffickingEnterprise .
+
+icac-trafficking:ExpansionPhase rdf:type owl:Class, gufo:Phase ;
+    rdfs:label "Expansion Phase"@en ;
+    rdfs:comment "Phase of trafficking enterprise growth, adding victims and locations."@en ;
+    rdfs:subClassOf icac-trafficking:TraffickingEnterprise .
+
+icac-trafficking:OperationalPhase rdf:type owl:Class, gufo:Phase ;
+    rdfs:label "Operational Phase"@en ;
+    rdfs:comment "Active operational phase of trafficking enterprise with established victim control."@en ;
+    rdfs:subClassOf icac-trafficking:TraffickingEnterprise .
+
+icac-trafficking:DisruptionPhase rdf:type owl:Class, gufo:Phase ;
+    rdfs:label "Disruption Phase"@en ;
+    rdfs:comment "Phase when trafficking enterprise faces law enforcement intervention."@en ;
+    rdfs:subClassOf icac-trafficking:TraffickingEnterprise .
+
+# Trafficking Enterprise Situations (gUFO Situation)
+icac-trafficking:TraffickingNetworkSituation rdf:type owl:Class ;
+    rdfs:label "Trafficking Network Situation"@en ;
+    rdfs:comment "Complex situation encompassing active trafficking network operations across multiple jurisdictions."@en ;
+    rdfs:subClassOf gufo:Situation .
+
+icac-trafficking:VictimControlSituation rdf:type owl:Class ;
+    rdfs:label "Victim Control Situation"@en ;
+    rdfs:comment "Ongoing situation of psychological and physical control maintained over trafficking victims."@en ;
+    rdfs:subClassOf gufo:Situation .
+
+# =============================================================================
+# TRAFFICKING ROLES (gUFO Role anti-rigid modeling)
+# =============================================================================
+
+# Trafficker Roles as gUFO Roles (anti-rigid)
+icac-trafficking:TraffickerRole rdf:type owl:Class, gufo:Role ;
+    rdfs:label "Trafficker Role"@en ;
+    rdfs:comment "Role of individual involved in sex trafficking operations. Modeled as anti-rigid gUFO Role."@en ;
+    rdfs:subClassOf uco-role:OffenderRole ;
+    owl:equivalentClass icac-gufo:OffenderRole .
+
+icac-trafficking:PrimaryTraffickerRole rdf:type owl:Class, gufo:Role ;
+    rdfs:label "Primary Trafficker Role"@en ;
+    rdfs:comment "Leading role in trafficking operation, often controlling multiple victims and coordinating activities. Modeled as anti-rigid gUFO Role."@en ;
+    rdfs:subClassOf icac-trafficking:TraffickerRole .
+
+icac-trafficking:AssociateTraffickerRole rdf:type owl:Class, gufo:Role ;
+    rdfs:label "Associate Trafficker Role"@en ;
+    rdfs:comment "Supporting role in trafficking operation, assisting primary traffickers. Modeled as anti-rigid gUFO Role."@en ;
+    rdfs:subClassOf icac-trafficking:TraffickerRole .
+
+icac-trafficking:TransportationFacilitatorRole rdf:type owl:Class, gufo:Role ;
+    rdfs:label "Transportation Facilitator Role"@en ;
+    rdfs:comment "Role focused on transporting victims between locations for trafficking purposes. Modeled as anti-rigid gUFO Role."@en ;
+    rdfs:subClassOf icac-trafficking:TraffickerRole .
+
+icac-trafficking:RecruitmentFacilitatorRole rdf:type owl:Class, gufo:Role ;
+    rdfs:label "Recruitment Facilitator Role"@en ;
+    rdfs:comment "Role focused on recruiting and grooming new victims for trafficking. Modeled as anti-rigid gUFO Role."@en ;
+    rdfs:subClassOf icac-trafficking:TraffickerRole .
+
+icac-trafficking:FinancialFacilitatorRole rdf:type owl:Class, gufo:Role ;
+    rdfs:label "Financial Facilitator Role"@en ;
+    rdfs:comment "Role managing financial aspects including collecting earnings and money laundering. Modeled as anti-rigid gUFO Role."@en ;
+    rdfs:subClassOf icac-trafficking:TraffickerRole .
+
+# =============================================================================
+# TRAFFICKING OPERATIONS (gUFO Event modeling)
+# =============================================================================
+
+# Trafficking Operations as gUFO Events
+icac-trafficking:TraffickingOperation rdf:type owl:Class ;
+    rdfs:label "Trafficking Operation"@en ;
+    rdfs:comment "Coordinated trafficking activity involving multiple perpetrators, victims, and locations. Modeled as gUFO Event."@en ;
+    rdfs:subClassOf uco-action:Action, gufo:Event ;
+    owl:equivalentClass icac-gufo:CriminalEvent .
+
+icac-trafficking:VictimTransportation rdf:type owl:Class ;
+    rdfs:label "Victim Transportation"@en ;
+    rdfs:comment "Transportation of trafficking victims between locations for commercial sexual exploitation. Modeled as gUFO Event."@en ;
+    rdfs:subClassOf icac-trafficking:TraffickingOperation .
+
+icac-trafficking:VictimRotation rdf:type owl:Class ;
+    rdfs:label "Victim Rotation"@en ;
+    rdfs:comment "Systematic movement of victims between different locations to avoid detection and maintain control. Modeled as gUFO Event."@en ;
+    rdfs:subClassOf icac-trafficking:VictimTransportation .
+
+icac-trafficking:VictimRecruitment rdf:type owl:Class ;
+    rdfs:label "Victim Recruitment"@en ;
+    rdfs:comment "Process of identifying, targeting, and acquiring new victims for trafficking operations. Modeled as gUFO Event."@en ;
+    rdfs:subClassOf icac-trafficking:TraffickingOperation .
+
+icac-trafficking:VictimControl rdf:type owl:Class ;
+    rdfs:label "Victim Control"@en ;
+    rdfs:comment "Methods used to maintain psychological and physical control over trafficking victims. Modeled as gUFO Event."@en ;
+    rdfs:subClassOf icac-trafficking:TraffickingOperation .
+
+icac-trafficking:CommercialSexualExploitation rdf:type owl:Class ;
+    rdfs:label "Commercial Sexual Exploitation"@en ;
+    rdfs:comment "Forced engagement in commercial sexual activities for the traffickers' profit. Modeled as gUFO Event."@en ;
+    rdfs:subClassOf icac-trafficking:TraffickingOperation .
+
+icac-trafficking:EarningsCollection rdf:type owl:Class ;
+    rdfs:label "Earnings Collection"@en ;
+    rdfs:comment "Collection of money earned through victim exploitation by trafficking operation. Modeled as gUFO Event."@en ;
+    rdfs:subClassOf icac-trafficking:TraffickingOperation .
+
+# =============================================================================
+# VICTIM CATEGORIES (gUFO Role anti-rigid modeling)
+# =============================================================================
+
+# Victim Roles as gUFO Roles (anti-rigid)
+icac-trafficking:TraffickingVictimRole rdf:type owl:Class, gufo:Role ;
+    rdfs:label "Trafficking Victim Role"@en ;
+    rdfs:comment "Role of person being exploited through sex trafficking. Modeled as anti-rigid gUFO Role."@en ;
+    rdfs:subClassOf uco-role:VictimRole ;
+    owl:equivalentClass icac-gufo:VictimRole .
+
+icac-trafficking:MinorTraffickingVictimRole rdf:type owl:Class, gufo:Role ;
+    rdfs:label "Minor Trafficking Victim Role"@en ;
+    rdfs:comment "Role of minor (under 18) being sex trafficked. Modeled as anti-rigid gUFO Role."@en ;
+    rdfs:subClassOf icac-trafficking:TraffickingVictimRole .
+
+icac-trafficking:AdultTraffickingVictimRole rdf:type owl:Class, gufo:Role ;
+    rdfs:label "Adult Trafficking Victim Role"@en ;
+    rdfs:comment "Role of adult being sex trafficked through force, fraud, or coercion. Modeled as anti-rigid gUFO Role."@en ;
+    rdfs:subClassOf icac-trafficking:TraffickingVictimRole .
+
+# Victim Profile Objects (gUFO Object)
+icac-trafficking:VictimVulnerabilityProfile rdf:type owl:Class ;
+    rdfs:label "Victim Vulnerability Profile"@en ;
+    rdfs:comment "Profile of factors that make individuals vulnerable to trafficking recruitment. Modeled as gUFO Object."@en ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object .
+
+icac-trafficking:RunawayVictimProfile rdf:type owl:Class ;
+    rdfs:label "Runaway Victim Profile"@en ;
+    rdfs:comment "Vulnerability profile for runaway or homeless youth targeted by traffickers."@en ;
+    rdfs:subClassOf icac-trafficking:VictimVulnerabilityProfile .
+
+icac-trafficking:AgingOutVictimProfile rdf:type owl:Class ;
+    rdfs:label "Aging Out Victim Profile"@en ;
+    rdfs:comment "Vulnerability profile for youth aging out of foster care system."@en ;
+    rdfs:subClassOf icac-trafficking:VictimVulnerabilityProfile .
+
+# =============================================================================
+# MULTI-JURISDICTIONAL OPERATIONS (gUFO Event and Situation modeling)
+# =============================================================================
+
+# Multi-Jurisdictional Events as gUFO Events
+icac-trafficking:MultiStateTraffickingConspiracy rdf:type owl:Class ;
+    rdfs:label "Multi-State Trafficking Conspiracy"@en ;
+    rdfs:comment "Criminal conspiracy spanning multiple states for trafficking operations (e.g., Brooklyn-North Carolina network). Modeled as gUFO Event."@en ;
+    rdfs:subClassOf icac-trafficking:TraffickingOperation .
+
+icac-trafficking:InterstateVictimTransport rdf:type owl:Class ;
+    rdfs:label "Interstate Victim Transport"@en ;
+    rdfs:comment "Transportation of trafficking victims across state lines for commercial sexual exploitation. Modeled as gUFO Event."@en ;
+    rdfs:subClassOf icac-trafficking:VictimTransportation .
+
+icac-trafficking:CrossJurisdictionalControl rdf:type owl:Class ;
+    rdfs:label "Cross-Jurisdictional Control"@en ;
+    rdfs:comment "Maintenance of victim control across multiple jurisdictions through coordinated trafficking network. Modeled as gUFO Event."@en ;
+    rdfs:subClassOf icac-trafficking:VictimControl .
+
+# Multi-Jurisdictional Situations (gUFO Situation)
+icac-trafficking:MultiJurisdictionalSituation rdf:type owl:Class ;
+    rdfs:label "Multi-Jurisdictional Situation"@en ;
+    rdfs:comment "Complex situation involving trafficking operations across multiple jurisdictions requiring coordinated law enforcement response."@en ;
+    rdfs:subClassOf gufo:Situation .
+
+# =============================================================================
+# RESCUE OPERATIONS (gUFO Event modeling)
+# =============================================================================
+
+# Rescue Operations as gUFO Events
+icac-trafficking:TraffickingVictimRescue rdf:type owl:Class ;
+    rdfs:label "Trafficking Victim Rescue"@en ;
+    rdfs:comment "Specialized rescue operation for trafficking victims involving multiple agencies and victim services. Modeled as gUFO Event."@en ;
+    rdfs:subClassOf uco-action:Action, gufo:Event .
+
+icac-trafficking:VictimEmergencyResponse rdf:type owl:Class ;
+    rdfs:label "Victim Emergency Response"@en ;
+    rdfs:comment "Emergency response to 911 calls from trafficking victims seeking help. Modeled as gUFO Event."@en ;
+    rdfs:subClassOf icac-trafficking:TraffickingVictimRescue .
+
+icac-trafficking:OngoingDangerResponse rdf:type owl:Class ;
+    rdfs:label "Ongoing Danger Response"@en ;
+    rdfs:comment "Response to situations where victims are identified as being in ongoing danger from traffickers. Modeled as gUFO Event."@en ;
+    rdfs:subClassOf icac-trafficking:TraffickingVictimRescue .
+
+icac-trafficking:VictimSafetyAssessment rdf:type owl:Class ;
+    rdfs:label "Victim Safety Assessment"@en ;
+    rdfs:comment "Assessment of victim safety and ongoing threats from trafficking network. Modeled as gUFO Event."@en ;
+    rdfs:subClassOf uco-action:Action, gufo:Event .
+
+# =============================================================================
+# gUFO TEMPORAL PROPERTIES
+# =============================================================================
+
+# Trafficking Enterprise Temporal Properties
+icac-trafficking:hasEnterpriseBeginPoint rdf:type owl:DatatypeProperty ;
+    rdfs:label "has enterprise begin point"@en ;
+    rdfs:comment "Temporal begin point for trafficking enterprise operations."@en ;
+    rdfs:subPropertyOf gufo:hasBeginPointInXSDDateTimeStamp ;
+    rdfs:domain gufo:Organization ;
+    rdfs:range xsd:dateTimeStamp .
+
+icac-trafficking:hasEnterpriseEndPoint rdf:type owl:DatatypeProperty ;
+    rdfs:label "has enterprise end point"@en ;
+    rdfs:comment "Temporal end point for trafficking enterprise operations."@en ;
+    rdfs:subPropertyOf gufo:hasEndPointInXSDDateTimeStamp ;
+    rdfs:domain gufo:Organization ;
+    rdfs:range xsd:dateTimeStamp .
+
+# Trafficking Phase Temporal Properties
+icac-trafficking:hasPhaseBeginPoint rdf:type owl:DatatypeProperty ;
+    rdfs:label "has phase begin point"@en ;
+    rdfs:comment "Temporal begin point for trafficking enterprise phase."@en ;
+    rdfs:subPropertyOf gufo:hasBeginPointInXSDDateTimeStamp ;
+    rdfs:domain gufo:Phase ;
+    rdfs:range xsd:dateTimeStamp .
+
+icac-trafficking:hasPhaseEndPoint rdf:type owl:DatatypeProperty ;
+    rdfs:label "has phase end point"@en ;
+    rdfs:comment "Temporal end point for trafficking enterprise phase."@en ;
+    rdfs:subPropertyOf gufo:hasEndPointInXSDDateTimeStamp ;
+    rdfs:domain gufo:Phase ;
+    rdfs:range xsd:dateTimeStamp .
+
+# Trafficking Role Temporal Properties
+icac-trafficking:hasRoleBeginPoint rdf:type owl:DatatypeProperty ;
+    rdfs:label "has role begin point"@en ;
+    rdfs:comment "Temporal begin point for trafficking role."@en ;
+    rdfs:subPropertyOf gufo:hasBeginPointInXSDDateTimeStamp ;
+    rdfs:domain gufo:Role ;
+    rdfs:range xsd:dateTimeStamp .
+
+icac-trafficking:hasRoleEndPoint rdf:type owl:DatatypeProperty ;
+    rdfs:label "has role end point"@en ;
+    rdfs:comment "Temporal end point for trafficking role."@en ;
+    rdfs:subPropertyOf gufo:hasEndPointInXSDDateTimeStamp ;
+    rdfs:domain gufo:Role ;
+    rdfs:range xsd:dateTimeStamp .
+
+# Duration Properties
+icac-trafficking:enterpriseDuration rdf:type owl:DatatypeProperty ;
+    rdfs:label "enterprise duration"@en ;
+    rdfs:comment "Duration of trafficking enterprise operations."@en ;
+    rdfs:domain gufo:Organization ;
+    rdfs:range xsd:duration .
+
+icac-trafficking:phaseDuration rdf:type owl:DatatypeProperty ;
+    rdfs:label "phase duration"@en ;
+    rdfs:comment "Duration of trafficking enterprise phase."@en ;
+    rdfs:domain gufo:Phase ;
+    rdfs:range xsd:duration .
+
+icac-trafficking:roleDuration rdf:type owl:DatatypeProperty ;
+    rdfs:label "role duration"@en ;
+    rdfs:comment "Duration of individual's trafficking role."@en ;
+    rdfs:domain gufo:Role ;
+    rdfs:range xsd:duration .
+
+# =============================================================================
+# TRAFFICKING ORGANIZATION PROPERTIES  
+# =============================================================================
+
+# Enterprise Structure Properties
+icac-trafficking:hasEnterprisePhase rdf:type owl:ObjectProperty ;
+    rdfs:label "has enterprise phase"@en ;
+    rdfs:comment "Links trafficking enterprise to its operational phases."@en ;
+    rdfs:domain gufo:Organization ;
+    rdfs:range gufo:Phase .
+
+icac-trafficking:transitionsToPhase rdf:type owl:ObjectProperty ;
+    rdfs:label "transitions to phase"@en ;
+    rdfs:comment "Links one enterprise phase to the next phase in sequence."@en ;
+    rdfs:domain gufo:Phase ;
+    rdfs:range gufo:Phase .
+
+icac-trafficking:hasHierarchyLevel rdf:type owl:DatatypeProperty ;
+    rdfs:label "has hierarchy level"@en ;
+    rdfs:comment "Numerical hierarchy level within trafficking enterprise (1=top level)."@en ;
+    rdfs:domain gufo:Role ;
+    rdfs:range xsd:integer .
+
+icac-trafficking:controlsVictim rdf:type owl:ObjectProperty ;
+    rdfs:label "controls victim"@en ;
+    rdfs:comment "Links trafficker role to victim role under their control."@en ;
+    rdfs:domain icac-trafficking:TraffickerRole ;
+    rdfs:range icac-trafficking:TraffickingVictimRole .
+
+icac-trafficking:operatesInJurisdiction rdf:type owl:ObjectProperty ;
+    rdfs:label "operates in jurisdiction"@en ;
+    rdfs:comment "Links trafficking organization to jurisdictions where it operates."@en ;
+    rdfs:domain gufo:Organization ;
+    rdfs:range uco-location:Location .
+
+# Victim Control Properties
+icac-trafficking:hasControlMethod rdf:type owl:ObjectProperty ;
+    rdfs:label "has control method"@en ;
+    rdfs:comment "Links victim control event to specific method used."@en ;
+    rdfs:domain icac-trafficking:VictimControl ;
+    rdfs:range uco-core:UcoObject .
+
+icac-trafficking:vulnerabilityExploited rdf:type owl:ObjectProperty ;
+    rdfs:label "vulnerability exploited"@en ;
+    rdfs:comment "Links victim recruitment to specific vulnerability profile exploited."@en ;
+    rdfs:domain icac-trafficking:VictimRecruitment ;
+    rdfs:range icac-trafficking:VictimVulnerabilityProfile .
+
+# Financial Properties  
+icac-trafficking:earningsAmount rdf:type owl:DatatypeProperty ;
+    rdfs:label "earnings amount"@en ;
+    rdfs:comment "Dollar amount collected from victim exploitation."@en ;
+    rdfs:domain icac-trafficking:EarningsCollection ;
+    rdfs:range xsd:decimal .
+
+icac-trafficking:earningsPeriod rdf:type owl:DatatypeProperty ;
+    rdfs:label "earnings period"@en ;
+    rdfs:comment "Time period over which earnings were collected."@en ;
+    rdfs:domain icac-trafficking:EarningsCollection ;
+    rdfs:range xsd:duration .
+
+# Transportation Properties
+icac-trafficking:originLocation rdf:type owl:ObjectProperty ;
+    rdfs:label "origin location"@en ;
+    rdfs:comment "Starting location for victim transportation event."@en ;
+    rdfs:domain icac-trafficking:VictimTransportation ;
+    rdfs:range uco-location:Location .
+
+icac-trafficking:destinationLocation rdf:type owl:ObjectProperty ;
+    rdfs:label "destination location"@en ;
+    rdfs:comment "Destination location for victim transportation event."@en ;
+    rdfs:domain icac-trafficking:VictimTransportation ;
+    rdfs:range uco-location:Location .
+
+icac-trafficking:transportationMethod rdf:type owl:ObjectProperty ;
+    rdfs:label "transportation method"@en ;
+    rdfs:comment "Method or vehicle used for victim transportation."@en ;
+    rdfs:domain icac-trafficking:VictimTransportation ;
+    rdfs:range uco-core:UcoObject .
+
+# Multi-Jurisdictional Properties
+icac-trafficking:crossesJurisdiction rdf:type owl:ObjectProperty ;
+    rdfs:label "crosses jurisdiction"@en ;
+    rdfs:comment "Links operation to jurisdictions crossed during execution."@en ;
+    rdfs:domain icac-trafficking:TraffickingOperation ;
+    rdfs:range uco-location:Location .
+
+icac-trafficking:requiresCoordination rdf:type owl:ObjectProperty ;
+    rdfs:label "requires coordination"@en ;
+    rdfs:comment "Links multi-jurisdictional situation to required coordination mechanisms."@en ;
+    rdfs:domain icac-trafficking:MultiJurisdictionalSituation ;
+    rdfs:range uco-core:UcoObject .
+
+# Situation Properties
+icac-trafficking:situationComplexity rdf:type owl:DatatypeProperty ;
+    rdfs:label "situation complexity"@en ;
+    rdfs:comment "Complexity level of trafficking situation (1-5 scale)."@en ;
+    rdfs:domain gufo:Situation ;
+    rdfs:range xsd:integer .
+
+icac-trafficking:involvesJurisdictionCount rdf:type owl:DatatypeProperty ;
+    rdfs:label "involves jurisdiction count"@en ;
+    rdfs:comment "Number of jurisdictions involved in trafficking situation."@en ;
+    rdfs:domain icac-trafficking:MultiJurisdictionalSituation ;
+    rdfs:range xsd:integer .
+
+icac-trafficking:involvesVictimCount rdf:type owl:DatatypeProperty ;
+    rdfs:label "involves victim count"@en ;
+    rdfs:comment "Number of victims involved in trafficking situation."@en ;
+    rdfs:domain gufo:Situation ;
+    rdfs:range xsd:integer .
+
+icac-trafficking:involvesTraffickerCount rdf:type owl:DatatypeProperty ;
+    rdfs:label "involves trafficker count"@en ;
+    rdfs:comment "Number of traffickers involved in trafficking situation."@en ;
+    rdfs:domain gufo:Situation ;
+    rdfs:range xsd:integer . 

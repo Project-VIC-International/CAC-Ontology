@@ -1,0 +1,62 @@
+# Query: Q5 find_open_reports
+# Purpose: Operations dashboard - active reports requiring attention
+# Parameters: ?from (dateTime), ?to (dateTime), ?limit (integer)
+# Security: TLP-RED content excluded by default
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX hotline: <https://ontology.unifiedcyberontology.org/hotlines/2025/core#>
+PREFIX icac: <https://ontology.unifiedcyberontology.org/icac/0.3#>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/core#>
+PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/observable#>
+PREFIX uco-confidentiality: <https://ontology.unifiedcyberontology.org/confidentiality#>
+
+SELECT ?report ?reportType ?status ?createdTime ?age ?evidenceCount ?priority
+WHERE {
+    # Parameter defaults
+    VALUES (?from ?to ?limit) {
+        ("2025-01-01T00:00:00Z"^^xsd:dateTime "2025-12-31T23:59:59Z"^^xsd:dateTime 100)
+    }
+    
+    # Core report data
+    ?report a ?reportType ;
+            hotline:status ?status ;
+            hotline:createdTime ?createdTime ;
+            hotline:hasEvidence ?evidence .
+    
+    # Status filter using VALUES for better performance
+    VALUES ?status { # Explicit open statuses
+        hotline:status-new
+        hotline:status-in-progress
+        hotline:status-in-review
+        hotline:status-forwarded # Considered open until explicitly closed by LEA side
+    }
+    
+    # Evidence count
+    {
+        SELECT ?report (COUNT(?evidence) as ?evidenceCount)
+        WHERE {
+            ?report hotline:hasEvidence ?evidence .
+        }
+        GROUP BY ?report
+    }
+    
+    # Calculate age in days
+    BIND((NOW() - ?createdTime) / "P1D"^^xsd:duration AS ?age)
+    
+    # Calculate priority based on age and evidence
+    BIND(
+        IF(?age > 7, "high",
+        IF(?age > 3, "medium", "low")) AS ?priority
+    )
+    
+    # Date range filter
+    FILTER(?createdTime >= ?from && ?createdTime <= ?to)
+    
+    # Security filter
+    FILTER NOT EXISTS {
+        ?report uco-confidentiality:TLP-RED ?whatever .
+    }
+}
+ORDER BY DESC(?age) # Show oldest open reports first
+LIMIT ?limit 

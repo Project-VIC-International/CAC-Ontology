@@ -1,0 +1,506 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/core#> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/observable#> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/action#> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/role#> .
+@prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
+@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
+@prefix icac-gufo: <https://ontology.unifiedcyberontology.org/icac/gufo#> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+
+# =============================================================================
+# ONTOLOGY DECLARATION
+# =============================================================================
+
+<https://ontology.unifiedcyberontology.org/icac/core/shapes/1.0> rdf:type owl:Ontology ;
+    rdfs:label "ICAC Core SHACL Shapes with gUFO Validation"@en ;
+    rdfs:comment "Comprehensive SHACL validation shapes for gUFO-enhanced ICAC core ontology, including anti-rigidity constraints, temporal validation, phase transitions, and foundational type compliance."@en ;
+    owl:imports <https://ontology.unifiedcyberontology.org/icac/gufo/1.0> ,
+                <http://purl.org/nemo/gufo> ,
+                <https://ontology.unifiedcyberontology.org/core> .
+
+# =============================================================================
+# gUFO INVESTIGATION VALIDATION
+# =============================================================================
+
+# Investigation Shape with gUFO Kind validation
+icac-gufo:InvestigationShape rdf:type sh:NodeShape ;
+    rdfs:label "gUFO Investigation Shape"@en ;
+    sh:targetClass icac-gufo:Investigation ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Kind ;
+        sh:minCount 1 ;
+        sh:message "Investigation must be typed as gUFO Kind"@en
+    ] ;
+    sh:property [
+        sh:path icac-gufo:inPhase ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class gufo:Phase ;
+        sh:message "Investigation must be in exactly one phase"@en
+    ] ;
+    sh:property [
+        sh:path icac-gufo:hasRole ;
+        sh:minCount 1 ;
+        sh:class gufo:Role ;
+        sh:message "Investigation must have at least one role"@en
+    ] .
+
+# =============================================================================
+# gUFO PHASE VALIDATION (Anti-Rigid Sortals)
+# =============================================================================
+
+# Base Phase Shape
+icac-gufo:PhaseShape rdf:type sh:NodeShape ;
+    rdfs:label "gUFO Phase Shape"@en ;
+    sh:targetClass gufo:Phase ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Phase ;
+        sh:minCount 1 ;
+        sh:message "Phase must be typed as gUFO Phase (anti-rigid sortal)"@en
+    ] ;
+    sh:property [
+        sh:path icac-gufo:hasPhaseBeginPoint ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Phase can have at most one begin point"@en
+    ] ;
+    sh:property [
+        sh:path icac-gufo:hasPhaseEndPoint ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Phase can have at most one end point"@en
+    ] ;
+    # Temporal consistency: begin must precede end
+    sh:sparql [
+        sh:message "Phase begin point must precede end point"@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icac-gufo" ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/icac/gufo#"^^xsd:anyURI
+            ]
+        ] ;
+        sh:select """
+            SELECT ?this
+            WHERE {
+                ?this icac-gufo:hasPhaseBeginPoint ?begin ;
+                      icac-gufo:hasPhaseEndPoint ?end .
+                FILTER (?begin >= ?end)
+            }
+        """
+    ] .
+
+# Specific Phase Shapes
+icac-gufo:InitialPhaseShape rdf:type sh:NodeShape ;
+    rdfs:label "Initial Phase Shape"@en ;
+    sh:targetClass icac-gufo:InitialPhase ;
+    sh:property [
+        sh:path icac-gufo:hasPhaseBeginPoint ;
+        sh:minCount 1 ;
+        sh:message "Initial phase must have begin point"@en
+    ] .
+
+icac-gufo:CompletedPhaseShape rdf:type sh:NodeShape ;
+    rdfs:label "Completed Phase Shape"@en ;
+    sh:targetClass icac-gufo:CompletedPhase ;
+    sh:property [
+        sh:path icac-gufo:hasPhaseEndPoint ;
+        sh:minCount 1 ;
+        sh:message "Completed phase must have end point"@en
+    ] .
+
+# Phase Transition Validation
+icac-gufo:PhaseTransitionShape rdf:type sh:NodeShape ;
+    rdfs:label "Phase Transition Shape"@en ;
+    sh:targetClass icac-gufo:Investigation ;
+    sh:sparql [
+        sh:message "Investigation phases must follow valid transition sequence"@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icac-gufo" ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/icac/gufo#"^^xsd:anyURI
+            ]
+        ] ;
+        sh:select """
+            SELECT ?this
+            WHERE {
+                ?this icac-gufo:hasPhase ?phase1 ;
+                      icac-gufo:hasPhase ?phase2 .
+                ?phase1 icac-gufo:precedesPhase ?phase2 ;
+                        icac-gufo:hasPhaseEndPoint ?end1 .
+                ?phase2 icac-gufo:hasPhaseBeginPoint ?begin2 .
+                FILTER (?end1 > ?begin2)
+            }
+        """
+    ] .
+
+# =============================================================================
+# gUFO ROLE VALIDATION (Anti-Rigid Sortals)
+# =============================================================================
+
+# Base Role Shape
+icac-gufo:RoleShape rdf:type sh:NodeShape ;
+    rdfs:label "gUFO Role Shape"@en ;
+    sh:targetClass gufo:Role ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Role ;
+        sh:minCount 1 ;
+        sh:message "Role must be typed as gUFO Role (anti-rigid sortal)"@en
+    ] ;
+    sh:property [
+        sh:path icac-gufo:hasRoleBeginPoint ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Role can have at most one begin point"@en
+    ] ;
+    sh:property [
+        sh:path icac-gufo:hasRoleEndPoint ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Role can have at most one end point"@en
+    ] ;
+    sh:property [
+        sh:path icac-gufo:participatesInInvestigation ;
+        sh:minCount 1 ;
+        sh:class icac-gufo:Investigation ;
+        sh:message "Role must participate in at least one investigation"@en
+    ] .
+
+# Specific Role Shapes
+icac-gufo:VictimRoleShape rdf:type sh:NodeShape ;
+    rdfs:label "Victim Role Shape"@en ;
+    sh:targetClass icac-gufo:VictimRole ;
+    sh:property [
+        sh:path icac-gufo:hasRoleBeginPoint ;
+        sh:minCount 1 ;
+        sh:message "Victim role must have begin point (when victimization started)"@en
+    ] .
+
+icac-gufo:OffenderRoleShape rdf:type sh:NodeShape ;
+    rdfs:label "Offender Role Shape"@en ;
+    sh:targetClass icac-gufo:OffenderRole ;
+    sh:property [
+        sh:path icac-gufo:hasRoleBeginPoint ;
+        sh:minCount 1 ;
+        sh:message "Offender role must have begin point (when offense started)"@en
+    ] .
+
+# Role Exclusivity Validation
+icac-gufo:RoleExclusivityShape rdf:type sh:NodeShape ;
+    rdfs:label "Role Exclusivity Shape"@en ;
+    sh:targetClass icac-gufo:Person ;
+    sh:sparql [
+        sh:message "Person cannot simultaneously be victim and offender in same investigation"@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icac-gufo" ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/icac/gufo#"^^xsd:anyURI
+            ]
+        ] ;
+        sh:select """
+            SELECT ?this
+            WHERE {
+                ?this icac-gufo:playsRole ?victimRole ;
+                      icac-gufo:playsRole ?offenderRole .
+                ?victimRole a icac-gufo:VictimRole ;
+                           icac-gufo:participatesInInvestigation ?investigation .
+                ?offenderRole a icac-gufo:OffenderRole ;
+                             icac-gufo:participatesInInvestigation ?investigation .
+            }
+        """
+    ] .
+
+# =============================================================================
+# gUFO EVENT VALIDATION
+# =============================================================================
+
+# Base Event Shape
+icac-gufo:EventShape rdf:type sh:NodeShape ;
+    rdfs:label "gUFO Event Shape"@en ;
+    sh:targetClass gufo:Event ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Event ;
+        sh:minCount 1 ;
+        sh:message "Event must be typed as gUFO Event"@en
+    ] ;
+    sh:property [
+        sh:path gufo:hasBeginPointInXSDDateTimeStamp ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Event can have at most one begin point"@en
+    ] ;
+    sh:property [
+        sh:path gufo:hasEndPointInXSDDateTimeStamp ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Event can have at most one end point"@en
+    ] .
+
+# Investigation Event Shapes
+icac-gufo:ReceiveCybertipEventShape rdf:type sh:NodeShape ;
+    rdfs:label "Receive Cybertip Event Shape"@en ;
+    sh:targetClass icac-gufo:ReceiveCybertipEvent ;
+    sh:property [
+        sh:path uco-core:hasFacet ;
+        sh:minCount 1 ;
+        sh:message "Receive cybertip event must have at least one facet"@en
+    ] ;
+    sh:property [
+        sh:path icac-gufo:occursInSituation ;
+        sh:class icac-gufo:InvestigationPendingSituation ;
+        sh:message "Receive cybertip should occur in pending situation"@en
+    ] .
+
+icac-gufo:ReviewCybertipEventShape rdf:type sh:NodeShape ;
+    rdfs:label "Review Cybertip Event Shape"@en ;
+    sh:targetClass icac-gufo:ReviewCybertipEvent ;
+    sh:property [
+        sh:path uco-action:performer ;
+        sh:minCount 1 ;
+        sh:class icac-gufo:InvestigatorRole ;
+        sh:message "Review cybertip event must have investigator performer"@en
+    ] .
+
+icac-gufo:VictimRescueEventShape rdf:type sh:NodeShape ;
+    rdfs:label "Victim Rescue Event Shape"@en ;
+    sh:targetClass icac-gufo:VictimRescueEvent ;
+    sh:property [
+        sh:path uco-action:performer ;
+        sh:minCount 1 ;
+        sh:class icac-gufo:RescuerRole ;
+        sh:message "Victim rescue event must have rescuer performer"@en
+    ] ;
+    sh:property [
+        sh:path icac-gufo:createsSituation ;
+        sh:class gufo:Situation ;
+        sh:message "Rescue event should create situation"@en
+    ] .
+
+# =============================================================================
+# gUFO SITUATION VALIDATION
+# =============================================================================
+
+# Base Situation Shape
+icac-gufo:SituationShape rdf:type sh:NodeShape ;
+    rdfs:label "gUFO Situation Shape"@en ;
+    sh:targetClass gufo:Situation ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Situation ;
+        sh:minCount 1 ;
+        sh:message "Situation must be typed as gUFO Situation"@en
+    ] .
+
+# Investigation Lifecycle Situation Shapes
+icac-gufo:InvestigationActiveSituationShape rdf:type sh:NodeShape ;
+    rdfs:label "Investigation Active Situation Shape"@en ;
+    sh:targetClass icac-gufo:InvestigationActiveSituation ;
+    sh:sparql [
+        sh:message "Active investigation situation must correspond to active phase"@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icac-gufo" ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/icac/gufo#"^^xsd:anyURI
+            ]
+        ] ;
+        sh:select """
+            SELECT ?this
+            WHERE {
+                ?this a icac-gufo:InvestigationActiveSituation .
+                ?investigation icac-gufo:inPhase ?phase .
+                FILTER NOT EXISTS {
+                    ?phase a icac-gufo:AnalysisPhase .
+                } FILTER NOT EXISTS {
+                    ?phase a icac-gufo:LegalProcessPhase .
+                } FILTER NOT EXISTS {
+                    ?phase a icac-gufo:EvidencePhase .
+                } FILTER NOT EXISTS {
+                    ?phase a icac-gufo:ResolutionPhase .
+                }
+            }
+        """
+    ] .
+
+# =============================================================================
+# CRIMINAL EVENT VALIDATION WITH gUFO
+# =============================================================================
+
+# Base Criminal Event Shape
+icac-gufo:ChildSexualAbuseEventShape rdf:type sh:NodeShape ;
+    rdfs:label "Child Sexual Abuse Event Shape"@en ;
+    sh:targetClass icac-gufo:ChildSexualAbuseEvent ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Kind ;
+        sh:minCount 1 ;
+        sh:message "Child Sexual Abuse Event must be gUFO Kind"@en
+    ] ;
+    sh:sparql [
+        sh:message "Criminal event must involve victim and offender roles"@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icac-gufo" ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/icac/gufo#"^^xsd:anyURI
+            ]
+        ] ;
+        sh:select """
+            SELECT ?this
+            WHERE {
+                ?this a icac-gufo:ChildSexualAbuseEvent .
+                FILTER NOT EXISTS {
+                    ?victimRole a icac-gufo:VictimRole ;
+                               icac-gufo:participatesInEvent ?this .
+                } FILTER NOT EXISTS {
+                    ?offenderRole a icac-gufo:OffenderRole ;
+                                 icac-gufo:participatesInEvent ?this .
+                }
+            }
+        """
+    ] .
+
+# Specific Criminal Event Shapes
+icac-gufo:CSAMIncidentShape rdf:type sh:NodeShape ;
+    rdfs:label "CSAM Incident Shape"@en ;
+    sh:targetClass icac-gufo:CSAMIncident ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:SubKind ;
+        sh:minCount 1 ;
+        sh:message "CSAM Incident must be gUFO SubKind"@en
+    ] ;
+    sh:property [
+        sh:path uco-core:hasFacet ;
+        sh:minCount 1 ;
+        sh:message "CSAM incident must have digital artifact facets"@en
+    ] .
+
+icac-gufo:GroomingSolicitationShape rdf:type sh:NodeShape ;
+    rdfs:label "Grooming Solicitation Shape"@en ;
+    sh:targetClass icac-gufo:GroomingSolicitation ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:SubKind ;
+        sh:minCount 1 ;
+        sh:message "Grooming Solicitation must be gUFO SubKind"@en
+    ] ;
+    sh:property [
+        sh:path icac-gufo:participatesInEvent ;
+        sh:minCount 2 ;
+        sh:message "Grooming must involve at least victim and offender"@en
+    ] .
+
+icac-gufo:SextortionShape rdf:type sh:NodeShape ;
+    rdfs:label "Sextortion Shape"@en ;
+    sh:targetClass icac-gufo:Sextortion ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:SubKind ;
+        sh:minCount 1 ;
+        sh:message "Sextortion must be gUFO SubKind"@en
+    ] .
+
+# =============================================================================
+# TEMPORAL CONSISTENCY VALIDATION
+# =============================================================================
+
+# Investigation Temporal Consistency
+icac-gufo:InvestigationTemporalConsistencyShape rdf:type sh:NodeShape ;
+    rdfs:label "Investigation Temporal Consistency Shape"@en ;
+    sh:targetClass icac-gufo:Investigation ;
+    sh:sparql [
+        sh:message "Investigation events must occur within phase timeframes"@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icac-gufo" ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/icac/gufo#"^^xsd:anyURI
+            ] , [
+                sh:prefix "gufo" ;
+                sh:namespace "http://purl.org/nemo/gufo#"^^xsd:anyURI
+            ]
+        ] ;
+        sh:select """
+            SELECT ?this
+            WHERE {
+                ?this icac-gufo:hasPhase ?phase .
+                ?phase icac-gufo:hasPhaseBeginPoint ?phaseBegin ;
+                       icac-gufo:hasPhaseEndPoint ?phaseEnd .
+                ?event icac-gufo:occursInSituation ?situation .
+                ?event gufo:hasBeginPointInXSDDateTimeStamp ?eventBegin .
+                FILTER (?eventBegin < ?phaseBegin || ?eventBegin > ?phaseEnd)
+            }
+        """
+    ] .
+
+# =============================================================================
+# FOUNDATIONAL TYPE COMPLIANCE
+# =============================================================================
+
+# gUFO Type Consistency Shape
+icac-gufo:FoundationalTypeConsistencyShape rdf:type sh:NodeShape ;
+    rdfs:label "gUFO Foundational Type Consistency Shape"@en ;
+    sh:targetNode icac-gufo:Investigation ;
+    sh:sparql [
+        sh:message "All gUFO entities must have proper foundational typing"@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "gufo" ;
+                sh:namespace "http://purl.org/nemo/gufo#"^^xsd:anyURI
+            ]
+        ] ;
+        sh:select """
+            SELECT ?entity
+            WHERE {
+                ?entity a gufo:Kind .
+                FILTER NOT EXISTS { ?entity a gufo:Object . }
+            } UNION {
+                ?entity a gufo:Phase .
+                FILTER NOT EXISTS { ?entity a gufo:AntiRigidType . }
+            } UNION {
+                ?entity a gufo:Role .
+                FILTER NOT EXISTS { ?entity a gufo:AntiRigidType . }
+            } UNION {
+                ?entity a gufo:Event .
+                FILTER NOT EXISTS { ?entity a gufo:Perdurant . }
+            } UNION {
+                ?entity a gufo:Situation .
+                FILTER NOT EXISTS { ?entity a gufo:SituationType . }
+            }
+        """
+    ] .
+
+# =============================================================================
+# CROSS-REFERENCE VALIDATION
+# =============================================================================
+
+# Investigation Completeness Shape
+icac-gufo:InvestigationCompletenessShape rdf:type sh:NodeShape ;
+    rdfs:label "Investigation Completeness Shape"@en ;
+    sh:targetClass icac-gufo:Investigation ;
+    sh:sparql [
+        sh:message "Investigation must have coherent role and event participation"@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icac-gufo" ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/icac/gufo#"^^xsd:anyURI
+            ]
+        ] ;
+        sh:select """
+            SELECT ?this
+            WHERE {
+                ?this icac-gufo:hasRole ?role .
+                ?role icac-gufo:participatesInInvestigation ?this .
+                FILTER NOT EXISTS {
+                    ?role icac-gufo:participatesInEvent ?event .
+                    ?event a gufo:Event .
+                }
+            }
+        """
+    ] . 

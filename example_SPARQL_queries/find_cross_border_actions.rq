@@ -1,0 +1,52 @@
+# Query: Q2 find_cross_border_actions
+# Purpose: Policy dashboard - cross-border information sharing metrics
+# Parameters: ?from (dateTime), ?to (dateTime), ?limit (integer)
+# Security: TLP-RED content excluded by default
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX hotline: <https://ontology.unifiedcyberontology.org/hotlines/2025/core#>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/core#>
+PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/observable#>
+PREFIX uco-confidentiality: <https://ontology.unifiedcyberontology.org/confidentiality#>
+
+SELECT ?sourceCountry ?targetCountry 
+       (COUNT(DISTINCT ?action) AS ?caseCount)
+       (COUNT(DISTINCT ?report) AS ?reportCount)
+       (AVG(?processingTime) AS ?avgProcessingTime)
+WHERE {
+    # Parameter defaults
+    VALUES (?from ?to ?limit) {
+        ("2025-01-01T00:00:00Z"^^xsd:dateTime "2025-12-31T23:59:59Z"^^xsd:dateTime 100)
+    }
+    
+    # Core report and action data
+    ?report hotline:receivedBy ?sourceOrg ;
+            hotline:triggersAction ?action ;
+            hotline:createdTime ?reportTime .
+    
+    ?sourceOrg hotline:countryCode ?sourceCountry .
+    
+    ?action a hotline:ForwardToLEAction ;
+            hotline:forwardsTo ?targetOrg ;
+            hotline:startTime ?actionTime .
+    
+    ?targetOrg hotline:countryCode ?targetCountry .
+    
+    # Calculate processing time
+    BIND((?actionTime - ?reportTime) / "P1D"^^xsd:duration AS ?processingTime)
+    
+    # Country filter
+    FILTER(?sourceCountry != ?targetCountry)
+    
+    # Date range filter
+    FILTER(?actionTime >= ?from && ?actionTime <= ?to)
+    
+    # Security filter
+    FILTER NOT EXISTS {
+        ?report uco-confidentiality:TLP-RED ?whatever .
+    }
+}
+GROUP BY ?sourceCountry ?targetCountry
+ORDER BY DESC(?caseCount)
+LIMIT ?limit 

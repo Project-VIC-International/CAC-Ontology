@@ -1,0 +1,514 @@
+# SPARQL Query: Comprehensive ICAC Case Analytics
+# This query demonstrates cross-ontology integration and analytics capabilities
+# across all 22 ICAC ontologies for complex investigation analysis
+# Updated for ICAC Ontology Family v0.9.0
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core#>
+PREFIX uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity#>
+PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action#>
+PREFIX icac-core: <https://ontology.unifiedcyberontology.org/icac#>
+PREFIX icac-undercover: <https://ontology.unifiedcyberontology.org/icac/undercover#>
+PREFIX icac-grooming: <https://ontology.unifiedcyberontology.org/icac/grooming#>
+PREFIX icac-physical: <https://ontology.unifiedcyberontology.org/icac/physical-evidence#>
+PREFIX icac-tactical: <https://ontology.unifiedcyberontology.org/icac/tactical#>
+PREFIX icac-multi: <https://ontology.unifiedcyberontology.org/icac/multi-jurisdiction#>
+PREFIX icac-sentencing: <https://ontology.unifiedcyberontology.org/icac/sentencing#>
+PREFIX icac-taskforce: <https://ontology.unifiedcyberontology.org/icac/taskforce#>
+PREFIX icac-platforms: <https://ontology.unifiedcyberontology.org/icac/platforms#>
+PREFIX icac-specialized: <https://ontology.unifiedcyberontology.org/icac/specialized-units#>
+PREFIX icac-registry: <https://ontology.unifiedcyberontology.org/icac/sex-offender-registry#>
+PREFIX icac-production: <https://ontology.unifiedcyberontology.org/icac/production#>
+PREFIX icac-victim: <https://ontology.unifiedcyberontology.org/icac/victim-impact#>
+PREFIX icac-international: <https://ontology.unifiedcyberontology.org/icac/international#>
+
+# =============================================================================
+# COMPREHENSIVE CASE ANALYSIS QUERY
+# Analyzes investigation complexity, outcomes, and operational effectiveness
+# =============================================================================
+
+SELECT DISTINCT
+    ?investigation
+    ?investigationLabel
+    ?subject
+    ?subjectLabel
+    ?victimCount
+    ?investigationDurationDays
+    
+    # Multi-jurisdictional Coordination
+    ?agencyCount
+    ?jurisdictionCount
+    ?coordinationMechanism
+    
+    # Undercover Operations
+    ?undercoverOperations
+    ?undercoverOutcome
+    ?undercoverDuration
+    
+    # Grooming Analysis
+    ?groomingBehaviors
+    ?groomingStage
+    ?groomingDuration
+    ?escalationRate
+    
+    # Physical Evidence
+    ?evidenceItems
+    ?criticalEvidence
+    ?digitalContentFound
+    
+    # Tactical Operations
+    ?tacticalOperations
+    ?tacticalOutcome
+    ?tacticalRiskLevel
+    
+    # Production Cases
+    ?productionOffense
+    ?productionMethod
+    ?sessionCount
+    
+    # Social Media Evidence
+    ?socialMediaEvidence
+    ?platformsInvestigated
+    ?crossPlatformMatch
+    
+    # Task Force Metrics
+    ?taskForceInvolved
+    ?cyberTipsSince2019
+    ?arrestsSince2019
+    
+    # Sex Offender Registry
+    ?registeredOffender
+    ?registrationStatus
+    ?complianceViolation
+    
+    # Legal Outcomes
+    ?chargeCount
+    ?sentenceLength
+    ?restitutionAmount
+    ?projectSafeChildhood
+    ?stateChargeClassification
+
+WHERE {
+    # Core Investigation
+    ?investigation rdf:type icac-core:ICACInvestigation ;
+        rdfs:label ?investigationLabel ;
+        icac-core:hasSubject ?subject ;
+        uco-core:startTime ?startTime ;
+        uco-core:endTime ?endTime .
+    
+    ?subject rdfs:label ?subjectLabel .
+    
+    # Calculate investigation duration
+    BIND((?endTime - ?startTime) / (24 * 60 * 60) AS ?investigationDurationDays)
+    
+    # Count victims
+    {
+        SELECT ?investigation (COUNT(DISTINCT ?victim) AS ?victimCount) WHERE {
+            ?investigation icac-core:hasVictim ?victim .
+        }
+        GROUP BY ?investigation
+    }
+    
+    # Multi-jurisdictional Analysis
+    OPTIONAL {
+        ?multiJurisInvestigation rdf:type icac-multi:MultiJurisdictionalInvestigation ;
+            icac-multi:agencyCount ?agencyCount ;
+            icac-multi:jurisdictionCount ?jurisdictionCount ;
+            icac-multi:coordinationMechanism ?coordinationMechanism .
+    }
+    
+    # Undercover Operations Analysis
+    OPTIONAL {
+        SELECT ?investigation 
+               (COUNT(DISTINCT ?undercoverOp) AS ?undercoverOperations)
+               (GROUP_CONCAT(DISTINCT ?undercoverOutcome; separator=", ") AS ?undercoverOutcome)
+               (AVG(?undercoverDur) AS ?undercoverDuration)
+        WHERE {
+            ?undercoverOp rdf:type icac-undercover:UndercoverOperation ;
+                icac-undercover:targetsSubject ?subject ;
+                icac-undercover:operationOutcome ?undercoverOutcome .
+            OPTIONAL { ?undercoverOp icac-undercover:infiltrationDuration ?undercoverDur }
+        }
+        GROUP BY ?investigation
+    }
+    
+    # Grooming Behavior Analysis
+    OPTIONAL {
+        SELECT ?investigation
+               (COUNT(DISTINCT ?groomingBehavior) AS ?groomingBehaviors)
+               (GROUP_CONCAT(DISTINCT ?groomingStage; separator=", ") AS ?groomingStage)
+               (AVG(?groomingDur) AS ?groomingDuration)
+               (AVG(?escalationRate) AS ?escalationRate)
+        WHERE {
+            ?groomingBehavior rdf:type icac-grooming:GroomingBehavior ;
+                icac-grooming:groomingStage ?groomingStage ;
+                icac-grooming:behaviorDuration ?groomingDur .
+            OPTIONAL {
+                ?groomingBehavior icac-grooming:exhibitsPattern ?pattern .
+                ?pattern icac-grooming:escalationRate ?escalationRate .
+            }
+        }
+        GROUP BY ?investigation
+    }
+    
+    # Physical Evidence Analysis
+    OPTIONAL {
+        SELECT ?investigation
+               (COUNT(DISTINCT ?evidence) AS ?evidenceItems)
+               (COUNT(DISTINCT ?criticalEv) AS ?criticalEvidence)
+               (COUNT(DISTINCT ?digitalContent) AS ?digitalContentFound)
+        WHERE {
+            ?evidence rdf:type icac-physical:PhysicalEvidence ;
+                icac-physical:associatedWithSubject ?subject .
+            OPTIONAL {
+                ?evidence icac-physical:evidentiarySignificance "critical" .
+                BIND(?evidence AS ?criticalEv)
+            }
+            OPTIONAL {
+                ?evidence icac-physical:digitalContentFound true .
+                BIND(?evidence AS ?digitalContent)
+            }
+        }
+        GROUP BY ?investigation
+    }
+    
+    # Tactical Operations Analysis
+    OPTIONAL {
+        SELECT ?investigation
+               (COUNT(DISTINCT ?tacticalOp) AS ?tacticalOperations)
+               (GROUP_CONCAT(DISTINCT ?tacticalOutcome; separator=", ") AS ?tacticalOutcome)
+               (GROUP_CONCAT(DISTINCT ?tacticalRiskLevel; separator=", ") AS ?tacticalRiskLevel)
+        WHERE {
+            ?tacticalOp rdf:type icac-tactical:TacticalOperation ;
+                icac-tactical:operationOutcome ?tacticalOutcome ;
+                icac-tactical:riskLevel ?tacticalRiskLevel .
+        }
+        GROUP BY ?investigation
+    }
+    
+    # Production Case Analysis
+    OPTIONAL {
+        ?productionOffense rdf:type icac-production:ProductionOffense ;
+            icac-production:productionMethod ?productionMethod ;
+            icac-production:sessionCount ?sessionCount .
+    }
+    
+    # Social Media Evidence Analysis
+    OPTIONAL {
+        SELECT ?investigation
+               (COUNT(DISTINCT ?socialMedia) AS ?socialMediaEvidence)
+               (MAX(?platformCount) AS ?platformsInvestigated)
+               (COUNT(DISTINCT ?crossPlatform) AS ?crossPlatformMatch)
+        WHERE {
+            ?socialMedia rdf:type icac-platforms:SocialMediaEvidence ;
+                icac-platforms:foundOnSocialMedia true .
+            OPTIONAL {
+                ?crossPlatform rdf:type icac-platforms:CrossPlatformEvidence ;
+                    icac-platforms:platformsInvestigated ?platformCount .
+            }
+        }
+        GROUP BY ?investigation
+    }
+    
+    # Task Force Analysis
+    OPTIONAL {
+        ?taskForceInvolved rdf:type icac-taskforce:ICACtaskForce ;
+            icac-taskforce:handledInvestigation ?investigation .
+        OPTIONAL {
+            ?taskForceInvolved icac-taskforce:hasMetrics ?cyberTipMetrics .
+            ?cyberTipMetrics icac-taskforce:cyberTipsSince2019 ?cyberTipsSince2019 .
+        }
+        OPTIONAL {
+            ?taskForceInvolved icac-taskforce:hasMetrics ?arrestMetrics .
+            ?arrestMetrics icac-taskforce:arrestsSince2019 ?arrestsSince2019 .
+        }
+    }
+    
+    # Sex Offender Registry Analysis
+    OPTIONAL {
+        ?subject icac-registry:hasRegistrationRecord ?registrationRecord .
+        BIND(true AS ?registeredOffender)
+        ?registrationRecord icac-registry:registrationStatus ?registrationStatus .
+        OPTIONAL {
+            ?registrationRecord icac-registry:complianceStatus "violation" .
+            BIND(true AS ?complianceViolation)
+        }
+    }
+    
+    # Legal Outcomes Analysis
+    OPTIONAL {
+        SELECT ?investigation
+               (COUNT(DISTINCT ?charge) AS ?chargeCount)
+               (MAX(?sentenceLength) AS ?sentenceLength)
+               (SUM(?restitutionAmount) AS ?restitutionAmount)
+               (SAMPLE(?projectSafeChildhood) AS ?projectSafeChildhood)
+               (GROUP_CONCAT(DISTINCT ?chargeClass; separator=", ") AS ?stateChargeClassification)
+        WHERE {
+            ?subject icac-sentencing:chargedWith ?charge .
+            OPTIONAL {
+                ?charge icac-sentencing:chargeClassification ?chargeClass .
+            }
+            OPTIONAL {
+                ?subject icac-sentencing:sentencedTo ?sentence .
+                ?sentence icac-sentencing:sentenceLength ?sentenceLength .
+            }
+            OPTIONAL {
+                ?subject icac-sentencing:sentencedTo ?penalty .
+                ?penalty icac-sentencing:restitutionAmount ?restitutionAmount .
+            }
+            OPTIONAL {
+                ?legalProceeding icac-sentencing:projectSafeChildhood ?projectSafeChildhood .
+            }
+        }
+        GROUP BY ?investigation
+    }
+}
+ORDER BY DESC(?investigationDurationDays) DESC(?sentenceLength)
+
+# =============================================================================
+# INVESTIGATION EFFECTIVENESS METRICS QUERY
+# Calculates key performance indicators across operational domains
+# =============================================================================
+
+;
+
+SELECT 
+    # Operational Success Rates
+    (AVG(CASE WHEN ?undercoverOutcome = "successful" THEN 1.0 ELSE 0.0 END) AS ?undercoverSuccessRate)
+    (AVG(CASE WHEN ?tacticalOutcome = "successful" THEN 1.0 ELSE 0.0 END) AS ?tacticalSuccessRate)
+    (AVG(CASE WHEN ?pleaBargainAccepted = true THEN 1.0 ELSE 0.0 END) AS ?pleaBargainRate)
+    
+    # Evidence Quality Metrics
+    (AVG(CASE WHEN ?evidenceSignificance = "critical" THEN 1.0 ELSE 0.0 END) AS ?criticalEvidenceRate)
+    (AVG(CASE WHEN ?digitalContentFound = true THEN 1.0 ELSE 0.0 END) AS ?digitalEvidenceRate)
+    (AVG(CASE WHEN ?foundOnSocialMedia = true THEN 1.0 ELSE 0.0 END) AS ?socialMediaEvidenceRate)
+    
+    # Grooming Pattern Analysis
+    (AVG(?patternConfidence) AS ?avgPatternConfidence)
+    (AVG(?escalationRate) AS ?avgEscalationRate)
+    
+    # Coordination Efficiency
+    (AVG(?agencyCount) AS ?avgAgencyCount)
+    (AVG(?coordinationComplexity) AS ?avgCoordinationComplexity)
+    
+    # Task Force Performance
+    (AVG(?cyberTipsSince2019) AS ?avgCyberTipsProcessed)
+    (AVG(?arrestsSince2019) AS ?avgArrestsMade)
+    (AVG(?partnerAgencyCount) AS ?avgPartnerAgencies)
+    
+    # Specialized Units Effectiveness
+    (AVG(CASE WHEN ?k9Assisted = true THEN 1.0 ELSE 0.0 END) AS ?k9AssistedRate)
+    (AVG(?communityEngagementEvents) AS ?avgCommunityEngagement)
+    
+    # Sentencing Outcomes
+    (AVG(?sentenceLength) AS ?avgSentenceLength)
+    (AVG(?restitutionAmount) AS ?avgRestitution)
+    (AVG(CASE WHEN ?projectSafeChildhood = true THEN 1.0 ELSE 0.0 END) AS ?projectSafeChildhoodRate)
+    (AVG(?maximumSentenceYears) AS ?avgMaximumSentence)
+
+WHERE {
+    # Undercover Operation Success
+    OPTIONAL {
+        ?undercoverOp rdf:type icac-undercover:UndercoverOperation ;
+            icac-undercover:operationOutcome ?undercoverOutcome .
+    }
+    
+    # Tactical Operation Success
+    OPTIONAL {
+        ?tacticalOp rdf:type icac-tactical:TacticalOperation ;
+            icac-tactical:operationOutcome ?tacticalOutcome .
+    }
+    
+    # Plea Bargain Acceptance
+    OPTIONAL {
+        ?pleaBargaining rdf:type icac-sentencing:PleaBargaining ;
+            icac-sentencing:pleaBargainAccepted ?pleaBargainAccepted .
+    }
+    
+    # Evidence Quality
+    OPTIONAL {
+        ?evidence rdf:type icac-physical:PhysicalEvidence ;
+            icac-physical:evidentiarySignificance ?evidenceSignificance ;
+            icac-physical:digitalContentFound ?digitalContentFound .
+    }
+    
+    # Social Media Evidence
+    OPTIONAL {
+        ?socialEvidence rdf:type icac-platforms:SocialMediaEvidence ;
+            icac-platforms:foundOnSocialMedia ?foundOnSocialMedia .
+    }
+    
+    # Grooming Pattern Analysis
+    OPTIONAL {
+        ?pattern rdf:type icac-grooming:GroomingPattern ;
+            icac-grooming:patternConfidence ?patternConfidence .
+        OPTIONAL { ?pattern icac-grooming:escalationRate ?escalationRate }
+    }
+    
+    # Multi-jurisdictional Coordination
+    OPTIONAL {
+        ?multiJuris rdf:type icac-multi:MultiJurisdictionalInvestigation ;
+            icac-multi:agencyCount ?agencyCount .
+        BIND((?agencyCount * ?agencyCount) AS ?coordinationComplexity)
+    }
+    
+    # Task Force Performance Metrics
+    OPTIONAL {
+        ?taskforce rdf:type icac-taskforce:ICACtaskForce ;
+            icac-taskforce:hasMetrics ?metrics .
+        ?metrics icac-taskforce:cyberTipsSince2019 ?cyberTipsSince2019 ;
+                 icac-taskforce:arrestsSince2019 ?arrestsSince2019 ;
+                 icac-taskforce:partnerAgencyCount ?partnerAgencyCount .
+    }
+    
+    # Specialized Units Performance
+    OPTIONAL {
+        ?k9Unit rdf:type icac-specialized:K9DetectionUnit ;
+            icac-specialized:k9AssistedSearches ?k9Assisted .
+        ?communityUnit rdf:type icac-specialized:CommunityEngagementUnit ;
+            icac-specialized:communityEvents ?communityEngagementEvents .
+    }
+    
+    # Sentencing Outcomes
+    OPTIONAL {
+        ?sentence rdf:type icac-sentencing:PrisonSentence ;
+            icac-sentencing:sentenceLength ?sentenceLength .
+    }
+    OPTIONAL {
+        ?penalty rdf:type icac-sentencing:MonetaryPenalty ;
+            icac-sentencing:restitutionAmount ?restitutionAmount .
+    }
+    OPTIONAL {
+        ?proceeding rdf:type icac-sentencing:LegalProceeding ;
+            icac-sentencing:projectSafeChildhood ?projectSafeChildhood .
+    }
+    OPTIONAL {
+        ?charge icac-sentencing:maximumSentenceYears ?maximumSentenceYears .
+    }
+}
+
+# =============================================================================
+# RISK FACTOR CORRELATION ANALYSIS WITH ENHANCED FEATURES
+# Identifies correlations between risk factors and investigation outcomes
+# =============================================================================
+
+;
+
+SELECT DISTINCT
+    ?riskProfile
+    ?groomingPatternConfidence
+    ?tacticalRiskLevel
+    ?weaponsPossible
+    ?suicidalRisk
+    ?victimCount
+    ?sentenceLength
+    ?enhancementApplied
+    ?productionOffense
+    ?socialMediaComplexity
+    ?registrationViolation
+    
+WHERE {
+    # Grooming Risk Assessment
+    ?groomingBehavior rdf:type icac-grooming:GroomingBehavior ;
+        icac-grooming:exhibitsPattern ?pattern .
+    ?pattern icac-grooming:patternConfidence ?groomingPatternConfidence .
+    
+    # Tactical Risk Assessment
+    ?threatAssessment rdf:type icac-tactical:ThreatAssessment ;
+        icac-tactical:threatLevel ?tacticalRiskLevel ;
+        icac-tactical:weaponsPossible ?weaponsPossible ;
+        icac-tactical:suicidalRisk ?suicidalRisk .
+    
+    # Case Outcomes
+    ?sentencingHearing rdf:type icac-sentencing:SentencingHearing ;
+        icac-sentencing:victimCount ?victimCount ;
+        icac-sentencing:enhancementApplied ?enhancementApplied .
+    
+    ?sentence rdf:type icac-sentencing:PrisonSentence ;
+        icac-sentencing:sentenceLength ?sentenceLength .
+    
+    # Production Offense Factor
+    OPTIONAL {
+        ?productionOffense rdf:type icac-production:ProductionOffense .
+        BIND("PRODUCTION" AS ?productionOffense)
+    }
+    
+    # Social Media Complexity
+    OPTIONAL {
+        ?crossPlatform rdf:type icac-platforms:CrossPlatformEvidence ;
+            icac-platforms:platformsInvestigated ?platformCount .
+        BIND(IF(?platformCount > 3, "HIGH_COMPLEXITY", "STANDARD") AS ?socialMediaComplexity)
+    }
+    
+    # Registration Violation Factor
+    OPTIONAL {
+        ?subject icac-registry:hasRegistrationRecord ?registration .
+        ?registration icac-registry:complianceStatus "violation" .
+        BIND("REGISTRY_VIOLATION" AS ?registrationViolation)
+    }
+    
+    # Create enhanced risk profile
+    BIND(CONCAT(?tacticalRiskLevel, "-", 
+                IF(?weaponsPossible, "ARMED", "UNARMED"), "-",
+                ?suicidalRisk, "-",
+                COALESCE(?productionOffense, "NON_PRODUCTION"), "-",
+                COALESCE(?socialMediaComplexity, "STANDARD"), "-",
+                COALESCE(?registrationViolation, "NO_VIOLATION")) AS ?riskProfile)
+    
+    # Filter for high-confidence patterns and significant sentences
+    FILTER(?groomingPatternConfidence > 0.8 && ?sentenceLength > 60)
+}
+ORDER BY DESC(?groomingPatternConfidence) DESC(?sentenceLength)
+
+# =============================================================================
+# MULTI-JURISDICTIONAL COORDINATION EFFECTIVENESS WITH TASK FORCE METRICS
+# Analyzes effectiveness of inter-agency coordination mechanisms
+# =============================================================================
+
+;
+
+SELECT 
+    ?coordinationMechanism
+    (COUNT(DISTINCT ?investigation) AS ?caseCount)
+    (AVG(?agencyCount) AS ?avgAgencies)
+    (AVG(?jurisdictionCount) AS ?avgJurisdictions)
+    (AVG(?sentenceLength) AS ?avgSentenceLength)
+    (AVG(?cyberTipsSince2019) AS ?avgCyberTipsProcessed)
+    (AVG(?arrestsSince2019) AS ?avgArrests)
+    (GROUP_CONCAT(DISTINCT ?challenge; separator=" | ") AS ?commonChallenges)
+    (AVG(?yearOverYearIncrease) AS ?avgGrowthRate)
+    
+WHERE {
+    ?investigation rdf:type icac-multi:MultiJurisdictionalInvestigation ;
+        icac-multi:coordinationMechanism ?coordinationMechanism ;
+        icac-multi:agencyCount ?agencyCount ;
+        icac-multi:jurisdictionCount ?jurisdictionCount .
+    
+    OPTIONAL {
+        ?investigation icac-multi:coordinationChallenges ?challenge .
+    }
+    
+    # Link to sentencing outcomes
+    OPTIONAL {
+        ?sentence rdf:type icac-sentencing:PrisonSentence ;
+            icac-sentencing:sentenceLength ?sentenceLength .
+    }
+    
+    # Link to task force performance
+    OPTIONAL {
+        ?taskforce icac-taskforce:handledInvestigation ?investigation ;
+                   icac-taskforce:hasMetrics ?metrics .
+        ?metrics icac-taskforce:cyberTipsSince2019 ?cyberTipsSince2019 ;
+                 icac-taskforce:arrestsSince2019 ?arrestsSince2019 .
+    }
+    
+    # Annual performance trends
+    OPTIONAL {
+        ?annualPerformance rdf:type icac-taskforce:AnnualPerformance ;
+            icac-taskforce:yearOverYearIncrease ?yearOverYearIncrease .
+    }
+}
+GROUP BY ?coordinationMechanism
+ORDER BY DESC(?avgSentenceLength) DESC(?caseCount) 

@@ -1,0 +1,618 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/core#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/identity#> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/action#> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/role#> .
+@prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
+@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
+@prefix icac-undercover: <https://ontology.unifiedcyberontology.org/icac/undercover#> .
+
+# =============================================================================
+# UNDERCOVER OPERATION SHAPES
+# =============================================================================
+
+icac-undercover:UndercoverOperationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-undercover:UndercoverOperation ;
+    rdfs:label "Undercover Operation Shape"@en ;
+    rdfs:comment "Validation shape for undercover operation instances."@en ;
+    sh:property [
+        sh:path icac-undercover:operationType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "online_investigation" "physical_surveillance" "sting_operation" "long_term_infiltration" "reactive_investigation" "proactive_investigation" "joint_operation" ) ;
+        sh:message "Undercover operation must specify operation type from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:operationStatus ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "planning" "active" "suspended" "completed" "terminated" "compromised" "under_review" ) ;
+        sh:message "Undercover operation must specify operation status from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:riskLevel ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "low" "moderate" "high" "extreme" "critical" "unacceptable" ) ;
+        sh:message "Undercover operation must specify risk level from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:operationDuration ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 1.0 ;
+        sh:maxInclusive 365.0 ;
+        sh:message "Operation duration must be between 1 and 365 days."@en
+    ] ;
+    sh:property [
+        sh:path uco-core:startTime ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Undercover operation may have a start time."@en
+    ] ;
+    sh:property [
+        sh:path uco-core:endTime ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Undercover operation may have an end time."@en
+    ] .
+
+icac-undercover:OnlineUndercoverOperationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-undercover:OnlineUndercoverOperation ;
+    rdfs:label "Online Undercover Operation Shape"@en ;
+    rdfs:comment "Validation shape for online undercover operation instances."@en ;
+    sh:property [
+        sh:path icac-undercover:platformsUsed ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 1 ;
+        sh:maxInclusive 20 ;
+        sh:message "Online undercover operation must use between 1 and 20 platforms."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:digitalFootprintManagement ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Online undercover operation must specify digital footprint management."@en
+    ] .
+
+# =============================================================================
+# UNDERCOVER IDENTITY SHAPES
+# =============================================================================
+
+icac-undercover:UndercoverIdentityShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-undercover:UndercoverIdentity ;
+    rdfs:label "Undercover Identity Shape"@en ;
+    rdfs:comment "Validation shape for undercover identity instances."@en ;
+    sh:property [
+        sh:path icac-undercover:identityType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "complete_fabrication" "partial_legend" "borrowed_identity" "enhanced_real_identity" "digital_only" "physical_and_digital" ) ;
+        sh:message "Undercover identity must specify identity type from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:identityComplexity ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "basic" "intermediate" "advanced" "comprehensive" "deep_cover" ) ;
+        sh:message "Undercover identity must specify identity complexity from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:backstoryDepth ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "minimal" "basic" "detailed" "comprehensive" "extensive" ) ;
+        sh:message "Undercover identity must specify backstory depth from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:documentationLevel ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "none" "basic" "standard" "enhanced" "complete" "official" ) ;
+        sh:message "Undercover identity must specify documentation level from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:identityLifespan ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 1.0 ;
+        sh:maxInclusive 1095.0 ;
+        sh:message "Identity lifespan must be between 1 and 1095 days (3 years)."@en
+    ] .
+
+icac-undercover:DigitalIdentityShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-undercover:DigitalIdentity ;
+    rdfs:label "Digital Identity Shape"@en ;
+    rdfs:comment "Validation shape for digital identity instances."@en ;
+    sh:property [
+        sh:path icac-undercover:socialMediaProfiles ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0 ;
+        sh:maxInclusive 15 ;
+        sh:message "Digital identity may have between 0 and 15 social media profiles."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:emailAccounts ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 1 ;
+        sh:maxInclusive 10 ;
+        sh:message "Digital identity must have between 1 and 10 email accounts."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:digitalHistoryDepth ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 30.0 ;
+        sh:maxInclusive 1095.0 ;
+        sh:message "Digital history depth must be between 30 and 1095 days."@en
+    ] .
+
+# =============================================================================
+# OPERATION PLANNING SHAPES
+# =============================================================================
+
+icac-undercover:OperationPlanShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-undercover:OperationPlan ;
+    rdfs:label "Operation Plan Shape"@en ;
+    rdfs:comment "Validation shape for operation plan instances."@en ;
+    sh:property [
+        sh:path icac-undercover:planningPhase ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "initial" "detailed" "tactical" "operational" "contingency" "final" ) ;
+        sh:message "Operation plan must specify planning phase from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:approvalLevel ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "supervisor" "unit_commander" "division_chief" "agency_head" "multi_agency" "federal" ) ;
+        sh:message "Operation plan must specify approval level from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:riskAssessmentCompleted ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Operation plan must specify if risk assessment is completed."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:legalReviewCompleted ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Operation plan must specify if legal review is completed."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:planRevision ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0 ;
+        sh:maxInclusive 20 ;
+        sh:message "Plan revision must be between 0 and 20."@en
+    ] .
+
+icac-undercover:RiskAssessmentShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-undercover:RiskAssessment ;
+    rdfs:label "Risk Assessment Shape"@en ;
+    rdfs:comment "Validation shape for risk assessment instances."@en ;
+    sh:property [
+        sh:path icac-undercover:riskCategory ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "officer_safety" "operation_security" "legal_liability" "public_safety" "evidence_integrity" "agency_reputation" ) ;
+        sh:message "Risk assessment must specify risk category from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:riskProbability ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "very_low" "low" "moderate" "high" "very_high" "certain" ) ;
+        sh:message "Risk assessment must specify risk probability from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:riskImpact ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "negligible" "minor" "moderate" "major" "severe" "catastrophic" ) ;
+        sh:message "Risk assessment must specify risk impact from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:mitigationStrategy ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "avoidance" "mitigation" "transfer" "acceptance" "monitoring" "contingency" ) ;
+        sh:message "Risk assessment must specify mitigation strategy from the allowed list."@en
+    ] .
+
+# =============================================================================
+# EVIDENCE COLLECTION SHAPES
+# =============================================================================
+
+icac-undercover:UndercoverEvidenceShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-undercover:UndercoverEvidence ;
+    rdfs:label "Undercover Evidence Shape"@en ;
+    rdfs:comment "Validation shape for undercover evidence instances."@en ;
+    sh:property [
+        sh:path icac-undercover:evidenceType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "digital_communication" "audio_recording" "video_recording" "photographic" "documentary" "physical_evidence" "testimonial" ) ;
+        sh:message "Undercover evidence must specify evidence type from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:collectionMethod ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "covert_recording" "screen_capture" "digital_preservation" "physical_seizure" "witness_statement" "surveillance" ) ;
+        sh:message "Undercover evidence must specify collection method from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:chainOfCustodyMaintained ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Undercover evidence must specify if chain of custody is maintained."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:evidenceAuthenticity ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "verified" "authenticated" "questionable" "compromised" "inadmissible" ) ;
+        sh:message "Undercover evidence must specify evidence authenticity from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:collectionDate ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Undercover evidence must specify collection date."@en
+    ] .
+
+icac-undercover:CovertRecordingShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-undercover:CovertRecording ;
+    rdfs:label "Covert Recording Shape"@en ;
+    rdfs:comment "Validation shape for covert recording instances."@en ;
+    sh:property [
+        sh:path icac-undercover:recordingType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "audio_only" "video_only" "audio_video" "screen_recording" "call_recording" "meeting_recording" ) ;
+        sh:message "Covert recording must specify recording type from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:recordingQuality ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "poor" "fair" "good" "excellent" "professional" ) ;
+        sh:message "Covert recording must specify recording quality from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:recordingDuration ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.1 ;
+        sh:maxInclusive 480.0 ;
+        sh:message "Recording duration must be between 0.1 and 480 minutes (8 hours)."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:consentRequired ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Covert recording must specify if consent is required."@en
+    ] .
+
+# =============================================================================
+# OPERATION MONITORING SHAPES
+# =============================================================================
+
+icac-undercover:OperationMonitoringShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-undercover:OperationMonitoring ;
+    rdfs:label "Operation Monitoring Shape"@en ;
+    rdfs:comment "Validation shape for operation monitoring instances."@en ;
+    sh:property [
+        sh:path icac-undercover:monitoringType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "real_time" "periodic" "event_driven" "continuous" "scheduled" "emergency" ) ;
+        sh:message "Operation monitoring must specify monitoring type from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:monitoringFrequency ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "constant" "hourly" "daily" "weekly" "as_needed" "critical_events" ) ;
+        sh:message "Operation monitoring must specify monitoring frequency from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:supervisorInvolved ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Operation monitoring must specify if supervisor is involved."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:escalationProtocol ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Operation monitoring must specify if escalation protocol exists."@en
+    ] .
+
+icac-undercover:SafetyProtocolShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-undercover:SafetyProtocol ;
+    rdfs:label "Safety Protocol Shape"@en ;
+    rdfs:comment "Validation shape for safety protocol instances."@en ;
+    sh:property [
+        sh:path icac-undercover:protocolType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "emergency_extraction" "panic_signal" "check_in_schedule" "backup_team" "medical_standby" "communication_protocol" ) ;
+        sh:message "Safety protocol must specify protocol type from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:activationTrigger ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "officer_request" "missed_check_in" "threat_detected" "operation_compromise" "medical_emergency" "automatic_trigger" ) ;
+        sh:message "Safety protocol must specify activation trigger from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:responseTime ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 1.0 ;
+        sh:maxInclusive 60.0 ;
+        sh:message "Safety protocol response time must be between 1 and 60 minutes."@en
+    ] .
+
+# =============================================================================
+# OPERATION TERMINATION SHAPES
+# =============================================================================
+
+icac-undercover:OperationTerminationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-undercover:OperationTermination ;
+    rdfs:label "Operation Termination Shape"@en ;
+    rdfs:comment "Validation shape for operation termination instances."@en ;
+    sh:property [
+        sh:path icac-undercover:terminationReason ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "objective_achieved" "evidence_sufficient" "operation_compromised" "safety_concern" "legal_issue" "resource_constraint" "time_limit" ) ;
+        sh:message "Operation termination must specify termination reason from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:terminationType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "planned" "emergency" "gradual" "immediate" "phased" "suspended" ) ;
+        sh:message "Operation termination must specify termination type from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:evidenceSecured ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Operation termination must specify if evidence is secured."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:identityRetirement ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Operation termination must specify if identity is retired."@en
+    ] ;
+    sh:property [
+        sh:path icac-undercover:terminationDate ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Operation termination must specify termination date."@en
+    ] .
+
+# =============================================================================
+# OBJECT PROPERTY SHAPES
+# =============================================================================
+
+icac-undercover:UsesIdentityShape rdf:type sh:PropertyShape ;
+    sh:path icac-undercover:usesIdentity ;
+    sh:name "uses identity" ;
+    sh:description "Links operation to undercover identity used" ;
+    sh:class icac-undercover:UndercoverIdentity ;
+    sh:minCount 1 .
+
+icac-undercover:FollowsPlanShape rdf:type sh:PropertyShape ;
+    sh:path icac-undercover:followsPlan ;
+    sh:name "follows plan" ;
+    sh:description "Links operation to operation plan followed" ;
+    sh:class icac-undercover:OperationPlan ;
+    sh:minCount 1 ;
+    sh:maxCount 1 .
+
+icac-undercover:CollectsEvidenceShape rdf:type sh:PropertyShape ;
+    sh:path icac-undercover:collectsEvidence ;
+    sh:name "collects evidence" ;
+    sh:description "Links operation to evidence collected" ;
+    sh:class icac-undercover:UndercoverEvidence ;
+    sh:minCount 0 .
+
+icac-undercover:ImplementsMonitoringShape rdf:type sh:PropertyShape ;
+    sh:path icac-undercover:implementsMonitoring ;
+    sh:name "implements monitoring" ;
+    sh:description "Links operation to monitoring protocols" ;
+    sh:class icac-undercover:OperationMonitoring ;
+    sh:minCount 1 .
+
+icac-undercover:ImplementsSafetyShape rdf:type sh:PropertyShape ;
+    sh:path icac-undercover:implementsSafety ;
+    sh:name "implements safety" ;
+    sh:description "Links operation to safety protocols" ;
+    sh:class icac-undercover:SafetyProtocol ;
+    sh:minCount 1 .
+
+icac-undercover:ResultsInTerminationShape rdf:type sh:PropertyShape ;
+    sh:path icac-undercover:resultsInTermination ;
+    sh:name "results in termination" ;
+    sh:description "Links operation to termination details" ;
+    sh:class icac-undercover:OperationTermination ;
+    sh:minCount 0 ;
+    sh:maxCount 1 .
+
+# =============================================================================
+# CROSS-REFERENCE VALIDATION SHAPES
+# =============================================================================
+
+icac-undercover:OperationCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-undercover:UndercoverOperation ;
+    rdfs:label "Operation Cross Reference Shape"@en ;
+    rdfs:comment "Validates cross-references between operation and related entities."@en ;
+    sh:sparql [
+        sh:message "Undercover operation must use at least one identity and follow a plan."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this a icac-undercover:UndercoverOperation .
+                FILTER NOT EXISTS {
+                    $this icac-undercover:usesIdentity ?identity ;
+                          icac-undercover:followsPlan ?plan .
+                }
+            }
+        """
+    ] .
+
+icac-undercover:PlanApprovalValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-undercover:OperationPlan ;
+    rdfs:label "Plan Approval Validation Shape"@en ;
+    rdfs:comment "Validates operation plan approval requirements."@en ;
+    sh:sparql [
+        sh:message "High-risk operations require higher approval levels."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                ?operation icac-undercover:followsPlan $this ;
+                          icac-undercover:riskLevel ?risk .
+                $this icac-undercover:approvalLevel ?approval .
+                FILTER (?risk IN ("high", "extreme", "critical") && ?approval IN ("supervisor", "unit_commander"))
+            }
+        """
+    ] .
+
+icac-undercover:EvidenceChainValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-undercover:UndercoverEvidence ;
+    rdfs:label "Evidence Chain Validation Shape"@en ;
+    rdfs:comment "Validates evidence chain of custody requirements."@en ;
+    sh:sparql [
+        sh:message "All undercover evidence must maintain chain of custody."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this a icac-undercover:UndercoverEvidence ;
+                      icac-undercover:chainOfCustodyMaintained false .
+            }
+        """
+    ] .
+
+# =============================================================================
+# TEMPORAL VALIDATION SHAPES
+# =============================================================================
+
+icac-undercover:TemporalValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-undercover:UndercoverOperation ;
+    rdfs:label "Temporal Validation Shape"@en ;
+    rdfs:comment "Validates temporal consistency in undercover operations."@en ;
+    sh:sparql [
+        sh:message "Start time must be before end time when both are specified."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this uco-core:startTime ?start ;
+                      uco-core:endTime ?end .
+                FILTER (?start >= ?end)
+            }
+        """
+    ] .
+
+icac-undercover:CollectionDateValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-undercover:UndercoverEvidence ;
+    rdfs:label "Collection Date Validation Shape"@en ;
+    rdfs:comment "Validates evidence collection date consistency."@en ;
+    sh:sparql [
+        sh:message "Evidence collection date should not be in the future."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-undercover:collectionDate ?date .
+                FILTER (?date > NOW())
+            }
+        """
+    ] .
+
+# =============================================================================
+# DATA QUALITY SHAPES
+# =============================================================================
+
+icac-undercover:DataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-undercover:UndercoverOperation ;
+    rdfs:label "Data Quality Shape"@en ;
+    rdfs:comment "Validates data quality for undercover operations."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 5 ;
+        sh:maxLength 200 ;
+        sh:message "Label should be between 5 and 200 characters when provided."@en
+    ] ;
+    sh:property [
+        sh:path rdfs:comment ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 10 ;
+        sh:maxLength 1000 ;
+        sh:message "Comment should be between 10 and 1000 characters when provided."@en
+    ] . 

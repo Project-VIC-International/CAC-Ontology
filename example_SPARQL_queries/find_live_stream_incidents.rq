@@ -1,0 +1,60 @@
+# Query: Q4 find_live_stream_incidents
+# Purpose: Operations dashboard - active live-stream CSA events
+# Parameters: ?from (dateTime), ?to (dateTime), ?limit (integer)
+# Security: TLP-RED content excluded by default
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX hotline: <https://ontology.unifiedcyberontology.org/hotlines/2025/core#>
+PREFIX icac: <https://ontology.unifiedcyberontology.org/icac/0.3#>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/core#>
+PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/observable#>
+PREFIX uco-confidentiality: <https://ontology.unifiedcyberontology.org/confidentiality#>
+
+SELECT ?incident ?platformName ?serviceName ?startTime ?duration ?reportCount
+WHERE {
+    # Parameter defaults
+    VALUES (?from ?to ?limit) {
+        ("2025-01-01T00:00:00Z"^^xsd:dateTime "2025-12-31T23:59:59Z"^^xsd:dateTime 100)
+    }
+    
+    # Core incident data
+    ?incident a icac:LiveStreamIncident ;
+             icac:startTime ?startTime ;
+             icac:usesChannel ?channel ;
+             hotline:triggersReport ?report .
+    
+    # Channel details
+    ?channel a icac:StreamingPlatformChannel ;
+             icac:platformName ?platformName .
+    
+    # Optional service name
+    OPTIONAL {
+        ?channel icac:serviceName ?serviceName .
+    }
+    
+    # Calculate duration
+    OPTIONAL {
+        ?incident icac:endTime ?endTime .
+        BIND((?endTime - ?startTime) / "PT1H"^^xsd:duration AS ?duration)
+    }
+    
+    # Report count
+    {
+        SELECT ?incident (COUNT(DISTINCT ?report) as ?reportCount)
+        WHERE {
+            ?incident hotline:triggersReport ?report .
+        }
+        GROUP BY ?incident
+    }
+    
+    # Date range filter
+    FILTER(?startTime >= ?from && ?startTime <= ?to)
+    
+    # Security filter
+    FILTER NOT EXISTS {
+        ?incident uco-confidentiality:TLP-RED ?whatever .
+    }
+}
+ORDER BY DESC(?startTime)
+LIMIT ?limit 

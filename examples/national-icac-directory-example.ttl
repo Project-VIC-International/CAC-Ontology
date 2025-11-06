@@ -1,0 +1,314 @@
+@prefix example: <http://ontology.icac.org/examples/national-icac-directory#> .
+@prefix icac-core: <http://ontology.icac.org/icac-core#> .
+@prefix icac-taskforce: <http://ontology.icac.org/icac-taskforce#> .
+@prefix uco-core: <http://unifiedcyberontology.org/uco/core#> .
+@prefix uco-identity: <http://unifiedcyberontology.org/uco/identity#> .
+@prefix uco-location: <http://unifiedcyberontology.org/uco/location#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# =============================================================================
+# NATIONAL ICAC TASK FORCE DIRECTORY (Based on icactaskforce.org)
+# =============================================================================
+
+example:NationalICACtaskForceDirectory_2025 rdf:type icac-taskforce:NationalICACtaskForceDirectory ;
+    icac-taskforce:totalTaskForces 61 ;
+    icac-taskforce:statesWithMultipleTaskForces 6 ;
+    icac-taskforce:nationalCoveragePercentage 100.0 ;
+    rdfs:label "National ICAC Task Force Directory 2025"@en ;
+    rdfs:comment "Complete directory of all 61 ICAC task forces in the United States as of 2025."@en .
+
+# =============================================================================
+# MARYLAND STATE POLICE HOST ORGANIZATION
+# =============================================================================
+
+example:MarylandStatePolice rdf:type icac-taskforce:StatePoliceHost ;
+    icac-taskforce:hostOrganizationType "state_police" ;
+    icac-taskforce:hostJurisdictionLevel "state" ;
+    icac-taskforce:organizationName "Maryland State Police" ;
+    uco-core:name "Maryland State Police" .
+
+example:MarylandTaskForce rdf:type icac-taskforce:StatewideTaskForce ;
+    icac-taskforce:coverageType "statewide" ;
+    icac-taskforce:jurisdictionPopulation 6177224 ; # Maryland population
+    icac-taskforce:hostedBy example:MarylandStatePolice ;
+    icac-taskforce:hasContactInformation example:MarylandContactInfo .
+
+example:MarylandContactInfo rdf:type icac-taskforce:TaskForceContactInformation ;
+    icac-taskforce:phoneNumber "410-694-4706" ;
+    icac-taskforce:emailAddress "msp.icac@maryland.gov" .
+
+# =============================================================================
+# CALIFORNIA MULTI-REGIONAL SYSTEM (5 Task Forces)
+# =============================================================================
+
+example:CaliforniaState rdf:type icac-taskforce:CaliforniaRegionalSystem ;
+    icac-taskforce:regionalTaskForceCount 5 ;
+    rdfs:label "California Multi-Regional ICAC System"@en .
+
+# Los Angeles Area Task Force
+example:LAPD rdf:type icac-taskforce:LocalPoliceHost ;
+    icac-taskforce:hostOrganizationType "local_police" ;
+    icac-taskforce:organizationName "Los Angeles Police Department" .
+
+example:LATaskForce rdf:type icac-taskforce:MetropolitanTaskForce ;
+    icac-taskforce:coverageType "metropolitan" ;
+    icac-taskforce:metropolitanArea "Los Angeles" ;
+    icac-taskforce:regionCovered "Los Angeles Area" ;
+    icac-taskforce:hostedBy example:LAPD ;
+    icac-taskforce:hasContactInformation example:LAContactInfo .
+
+example:LAContactInfo rdf:type icac-taskforce:TaskForceContactInformation ;
+    icac-taskforce:phoneNumber "562-254-0637" .
+
+# San Diego Area Task Force
+example:SanDiegoPD rdf:type icac-taskforce:LocalPoliceHost ;
+    icac-taskforce:organizationName "San Diego Police Department" .
+
+example:SanDiegoTaskForce rdf:type icac-taskforce:MetropolitanTaskForce ;
+    icac-taskforce:metropolitanArea "San Diego" ;
+    icac-taskforce:regionCovered "San Diego Area" ;
+    icac-taskforce:hostedBy example:SanDiegoPD ;
+    icac-taskforce:hasContactInformation example:SanDiegoContactInfo .
+
+example:SanDiegoContactInfo rdf:type icac-taskforce:TaskForceContactInformation ;
+    icac-taskforce:phoneNumber "858-495-4779" .
+
+# Fresno Area Task Force (County-based)
+example:FresnoCounySO rdf:type icac-taskforce:SheriffOfficeHost ;
+    icac-taskforce:hostOrganizationType "sheriff" ;
+    icac-taskforce:organizationName "Fresno County Sheriff's Office" .
+
+example:FresnoTaskForce rdf:type icac-taskforce:CountyBasedTaskForce ;
+    icac-taskforce:coverageType "county" ;
+    icac-taskforce:countyName "Fresno County" ;
+    icac-taskforce:regionCovered "Fresno Area" ;
+    icac-taskforce:hostedBy example:FresnoCounySO ;
+    icac-taskforce:hasContactInformation example:FresnoContactInfo .
+
+example:FresnoContactInfo rdf:type icac-taskforce:TaskForceContactInformation ;
+    icac-taskforce:phoneNumber "559-600-8144" .
+
+# California Regional Coordination
+example:CaliforniaRegionalCoordination rdf:type icac-taskforce:RegionalTaskForceCoordination ;
+    icac-taskforce:coordinationModel "peer_to_peer" ;
+    rdfs:label "California Regional Task Force Coordination"@en .
+
+# =============================================================================
+# TEXAS MULTI-REGIONAL SYSTEM (3 Task Forces)
+# =============================================================================
+
+example:TexasState rdf:type icac-taskforce:TexasRegionalSystem ;
+    icac-taskforce:regionalTaskForceCount 3 .
+
+# Texas Statewide (Attorney General)
+example:TexasAttorneyGeneral rdf:type icac-taskforce:AttorneyGeneralHost ;
+    icac-taskforce:hostOrganizationType "attorney_general" ;
+    icac-taskforce:hostJurisdictionLevel "state" ;
+    icac-taskforce:organizationName "Office of the Attorney General of Texas" .
+
+example:TexasStatewideTaskForce rdf:type icac-taskforce:StatewideTaskForce ;
+    icac-taskforce:coverageType "statewide" ;
+    icac-taskforce:hostedBy example:TexasAttorneyGeneral ;
+    icac-taskforce:hasContactInformation example:TexasStatewideContactInfo .
+
+example:TexasStatewideContactInfo rdf:type icac-taskforce:TaskForceContactInformation ;
+    icac-taskforce:phoneNumber "512-936-7863" .
+
+# Dallas Area Task Force
+example:DallasPD rdf:type icac-taskforce:LocalPoliceHost ;
+    icac-taskforce:organizationName "Dallas Police Department" .
+
+example:DallasTaskForce rdf:type icac-taskforce:MetropolitanTaskForce ;
+    icac-taskforce:metropolitanArea "Dallas-Fort Worth" ;
+    icac-taskforce:regionCovered "Dallas Area" ;
+    icac-taskforce:hostedBy example:DallasPD ;
+    icac-taskforce:hasContactInformation example:DallasContactInfo .
+
+example:DallasContactInfo rdf:type icac-taskforce:TaskForceContactInformation ;
+    icac-taskforce:phoneNumber "214-671-4200" .
+
+# Houston Area Task Force
+example:HoustonPD rdf:type icac-taskforce:LocalPoliceHost ;
+    icac-taskforce:organizationName "Houston Police Department" .
+
+example:HoustonTaskForce rdf:type icac-taskforce:MetropolitanTaskForce ;
+    icac-taskforce:metropolitanArea "Houston" ;
+    icac-taskforce:regionCovered "Houston Area" ;
+    icac-taskforce:hostedBy example:HoustonPD ;
+    icac-taskforce:hasContactInformation example:HoustonContactInfo .
+
+example:HoustonContactInfo rdf:type icac-taskforce:TaskForceContactInformation ;
+    icac-taskforce:phoneNumber "713-308-3251" .
+
+# =============================================================================
+# FLORIDA MULTI-REGIONAL SYSTEM (3 Task Forces)
+# =============================================================================
+
+example:FloridaState rdf:type icac-taskforce:FloridaRegionalSystem ;
+    icac-taskforce:regionalTaskForceCount 3 .
+
+# Florida Central (Osceola County)
+example:OsceolaSO rdf:type icac-taskforce:SheriffOfficeHost ;
+    icac-taskforce:organizationName "Osceola County Sheriff's Office" .
+
+example:FloridaCentralTaskForce rdf:type icac-taskforce:RegionalTaskForce ;
+    icac-taskforce:regionCovered "Central" ;
+    icac-taskforce:hostedBy example:OsceolaSO ;
+    icac-taskforce:hasContactInformation example:FloridaCentralContactInfo .
+
+example:FloridaCentralContactInfo rdf:type icac-taskforce:TaskForceContactInformation ;
+    icac-taskforce:phoneNumber "407-348-1100" .
+
+# Florida Southern (Broward County)
+example:BrowardSO rdf:type icac-taskforce:SheriffOfficeHost ;
+    icac-taskforce:organizationName "Broward County Sheriff's Office" .
+
+example:FloridaSouthernTaskForce rdf:type icac-taskforce:RegionalTaskForce ;
+    icac-taskforce:regionCovered "Southern" ;
+    icac-taskforce:hostedBy example:BrowardSO ;
+    icac-taskforce:hasContactInformation example:FloridaSouthernContactInfo .
+
+example:FloridaSouthernContactInfo rdf:type icac-taskforce:TaskForceContactInformation ;
+    icac-taskforce:phoneNumber "954-888-5321" .
+
+# Florida Northern (Gainesville PD)
+example:GainesvillePD rdf:type icac-taskforce:LocalPoliceHost ;
+    icac-taskforce:organizationName "Gainesville Police Department" .
+
+example:FloridaNorthernTaskForce rdf:type icac-taskforce:RegionalTaskForce ;
+    icac-taskforce:regionCovered "Northern" ;
+    icac-taskforce:hostedBy example:GainesvillePD ;
+    icac-taskforce:hasContactInformation example:FloridaNorthernContactInfo .
+
+example:FloridaNorthernContactInfo rdf:type icac-taskforce:TaskForceContactInformation ;
+    icac-taskforce:phoneNumber "352-393-7660" .
+
+# =============================================================================
+# MILITARY ICAC TASK FORCE
+# =============================================================================
+
+example:USMilitaryAgencies rdf:type icac-taskforce:TaskForceHostOrganization ;
+    icac-taskforce:hostOrganizationType "military" ;
+    icac-taskforce:hostJurisdictionLevel "federal" ;
+    icac-taskforce:organizationName "U.S. Military Agencies" .
+
+example:MilitaryTaskForce rdf:type icac-taskforce:MilitaryICACtaskForce ;
+    icac-taskforce:militaryBranches "Army, Navy, Air Force, Marines, Coast Guard, Space Force" ;
+    icac-taskforce:militaryJurisdiction "worldwide" ;
+    icac-taskforce:hostedBy example:USMilitaryAgencies ;
+    icac-taskforce:hasContactInformation example:MilitaryContactInfo .
+
+example:MilitaryContactInfo rdf:type icac-taskforce:TaskForceContactInformation ;
+    icac-taskforce:phoneNumber "571-225-6327" .
+
+# =============================================================================
+# STATE BUREAU EXAMPLES
+# =============================================================================
+
+# Georgia Bureau of Investigation
+example:GeorgiaBIA rdf:type icac-taskforce:StateBureauHost ;
+    icac-taskforce:hostOrganizationType "state_bureau" ;
+    icac-taskforce:organizationName "Georgia Bureau of Investigation" .
+
+example:GeorgiaTaskForce rdf:type icac-taskforce:StatewideTaskForce ;
+    icac-taskforce:hostedBy example:GeorgiaBIA ;
+    icac-taskforce:hasContactInformation example:GeorgiaContactInfo .
+
+example:GeorgiaContactInfo rdf:type icac-taskforce:TaskForceContactInformation ;
+    icac-taskforce:phoneNumber "404-270-8870" .
+
+# North Carolina State Bureau of Investigation
+example:NorthCarolinaSBI rdf:type icac-taskforce:StateBureauHost ;
+    icac-taskforce:organizationName "North Carolina State Bureau of Investigation" .
+
+example:NorthCarolinaTaskForce rdf:type icac-taskforce:StatewideTaskForce ;
+    icac-taskforce:hostedBy example:NorthCarolinaSBI ;
+    icac-taskforce:hasContactInformation example:NorthCarolinaContactInfo .
+
+example:NorthCarolinaContactInfo rdf:type icac-taskforce:TaskForceContactInformation ;
+    icac-taskforce:phoneNumber "984-204-2761" .
+
+# =============================================================================
+# DISTRICT ATTORNEY HOST EXAMPLES
+# =============================================================================
+
+# Pennsylvania (Delaware County DA)
+example:DelawareCountyDA rdf:type icac-taskforce:DistrictAttorneyHost ;
+    icac-taskforce:hostOrganizationType "district_attorney" ;
+    icac-taskforce:hostJurisdictionLevel "county" ;
+    icac-taskforce:organizationName "Delaware County District Attorney's Office" .
+
+example:PennsylvaniaTaskForce rdf:type icac-taskforce:CountyBasedTaskForce ;
+    icac-taskforce:countyName "Delaware County" ;
+    icac-taskforce:hostedBy example:DelawareCountyDA ;
+    icac-taskforce:hasContactInformation example:PennsylvaniaContactInfo .
+
+example:PennsylvaniaContactInfo rdf:type icac-taskforce:TaskForceContactInformation ;
+    icac-taskforce:phoneNumber "610-891-4717" .
+
+# =============================================================================
+# NATIONAL HOTLINE AND COMMUNICATION
+# =============================================================================
+
+example:NationalICACtHotline rdf:type icac-taskforce:NationalHotline ;
+    icac-taskforce:nationalHotlineNumber "877-798-7682" ;
+    icac-taskforce:hotlineType "general_contact" ;
+    rdfs:label "National ICAC Hotline"@en .
+
+# =============================================================================
+# DIRECTORY RELATIONSHIPS
+# =============================================================================
+
+# National directory includes all task forces
+example:NationalICACtaskForceDirectory_2025 icac-taskforce:includesTaskForce 
+    example:MarylandTaskForce,
+    example:LATaskForce,
+    example:SanDiegoTaskForce,
+    example:FresnoTaskForce,
+    example:TexasStatewideTaskForce,
+    example:DallasTaskForce,
+    example:HoustonTaskForce,
+    example:FloridaCentralTaskForce,
+    example:FloridaSouthernTaskForce,
+    example:FloridaNorthernTaskForce,
+    example:MilitaryTaskForce,
+    example:GeorgiaTaskForce,
+    example:NorthCarolinaTaskForce,
+    example:PennsylvaniaTaskForce .
+
+# Multi-regional state relationships
+example:CaliforniaState icac-taskforce:hasRegionalTaskForce 
+    example:LATaskForce,
+    example:SanDiegoTaskForce,
+    example:FresnoTaskForce .
+
+example:TexasState icac-taskforce:hasRegionalTaskForce 
+    example:TexasStatewideTaskForce,
+    example:DallasTaskForce,
+    example:HoustonTaskForce .
+
+example:FloridaState icac-taskforce:hasRegionalTaskForce 
+    example:FloridaCentralTaskForce,
+    example:FloridaSouthernTaskForce,
+    example:FloridaNorthernTaskForce .
+
+# California regional coordination
+example:LATaskForce icac-taskforce:coordinatesWith example:SanDiegoTaskForce .
+example:LATaskForce icac-taskforce:coordinatesWith example:FresnoTaskForce .
+example:SanDiegoTaskForce icac-taskforce:coordinatesWith example:FresnoTaskForce .
+
+# Texas regional coordination
+example:TexasStatewideTaskForce icac-taskforce:coordinatesWith example:DallasTaskForce .
+example:TexasStatewideTaskForce icac-taskforce:coordinatesWith example:HoustonTaskForce .
+example:DallasTaskForce icac-taskforce:coordinatesWith example:HoustonTaskForce .
+
+# Military coordination with civilian task forces
+example:MilitaryTaskForce icac-taskforce:coordinatesWithCivilian example:MarylandTaskForce .
+example:MilitaryTaskForce icac-taskforce:coordinatesWithCivilian example:TexasStatewideTaskForce .
+
+# National hotline accessibility
+example:MarylandTaskForce icac-taskforce:accessibleVia example:NationalICACtHotline .
+example:LATaskForce icac-taskforce:accessibleVia example:NationalICACtHotline .
+example:MilitaryTaskForce icac-taskforce:accessibleVia example:NationalICACtHotline . 

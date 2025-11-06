@@ -1,0 +1,135 @@
+# Query: Q1 find_automated_reports - Enhanced for ICAC v0.9.0
+# Purpose: Operations dashboard - reports from automated systems (ESP crawlers, etc.) with platform integration
+# Parameters: ?from (dateTime), ?to (dateTime), ?limit (integer)
+# Security: TLP-RED content excluded by default
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core#>
+PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable#>
+PREFIX uco-confidentiality: <https://ontology.unifiedcyberontology.org/uco/confidentiality#>
+PREFIX hotlines-core: <https://ontology.unifiedcyberontology.org/hotlines/2025/core#>
+PREFIX icac-platforms: <https://ontology.unifiedcyberontology.org/icac/platforms#>
+PREFIX icac-detection: <https://ontology.unifiedcyberontology.org/icac/detection#>
+
+SELECT DISTINCT ?report ?reporter ?softwareVersion ?vendorName 
+       ?intakeTime ?intakeChannel ?evidenceCount
+       
+       # Enhanced platform information
+       ?platformType ?esp ?detectionMethod ?confidenceScore
+       
+WHERE {
+    # Parameter defaults
+    VALUES (?from ?to ?limit) {
+        ("2025-01-01T00:00:00Z"^^xsd:dateTime "2025-12-31T23:59:59Z"^^xsd:dateTime 100)
+    }
+    
+    # Core report data
+    ?report a hotlines-core:ESPReport ;
+            hotlines-core:createdTime ?createdTime ;
+            hotlines-core:reportedBy ?reporter ;
+            hotlines-core:hasEvidence ?evidence .
+    
+    # Reporter details
+    ?reporter a hotlines-core:AutomatedReporterAgent ;
+              hotlines-core:softwareVersion ?softwareVersion ;
+              hotlines-core:vendorName ?vendorName .
+    
+    # Optional intake channel
+    OPTIONAL {
+        ?report hotlines-core:intakeChannel ?intakeChannel .
+    }
+    
+    # Evidence count subquery
+    {
+        SELECT ?report (COUNT(?evidence) as ?evidenceCount)
+        WHERE {
+            ?report hotlines-core:hasEvidence ?evidence .
+        }
+        GROUP BY ?report
+    }
+    
+    # Enhanced platform information
+    OPTIONAL {
+        ?reporter icac-platforms:operatedBy ?esp .
+        ?esp rdf:type icac-platforms:ElectronicServiceProvider .
+        
+        OPTIONAL {
+            ?platform icac-platforms:operatedBy ?esp ;
+                     icac-platforms:platformType ?platformType .
+        }
+    }
+    
+    # Detection information
+    OPTIONAL {
+        ?evidence icac-detection:detectedBy ?detectionMethod ;
+                 icac-detection:confidenceScore ?confidenceScore .
+    }
+    
+    # Human-friendly timestamp
+    BIND(STRDT(STR(?createdTime), "xsd:dateTime") AS ?intakeTime)
+    
+    # Status filter
+    VALUES ?status { hotlines-core:status-new hotlines-core:status-in-progress hotlines-core:status-in-review }
+    ?report hotlines-core:status ?status .
+    
+    # Date range filter
+    FILTER(?createdTime >= ?from && ?createdTime <= ?to)
+    
+    # Security filter
+    FILTER NOT EXISTS {
+        ?report uco-confidentiality:confidentialityLevel "TLP-RED" .
+    }
+}
+ORDER BY DESC(?createdTime) DESC(?confidenceScore)
+LIMIT ?limit
+
+# Additional query for automated reporting effectiveness by platform
+;
+
+SELECT 
+    ?platformType
+    ?vendorName
+    (COUNT(DISTINCT ?report) AS ?reportCount)
+    (AVG(?confidenceScore) AS ?avgConfidenceScore)
+    (AVG(?evidenceCount) AS ?avgEvidencePerReport)
+    (COUNT(DISTINCT ?esp) AS ?espCount)
+    
+WHERE {
+    VALUES (?from ?to) {
+        ("2025-01-01T00:00:00Z"^^xsd:dateTime "2025-12-31T23:59:59Z"^^xsd:dateTime)
+    }
+    
+    ?report a hotlines-core:ESPReport ;
+            hotlines-core:createdTime ?createdTime ;
+            hotlines-core:reportedBy ?reporter .
+    
+    ?reporter a hotlines-core:AutomatedReporterAgent ;
+              hotlines-core:vendorName ?vendorName ;
+              icac-platforms:operatedBy ?esp .
+    
+    ?platform icac-platforms:operatedBy ?esp ;
+             icac-platforms:platformType ?platformType .
+    
+    # Evidence count
+    {
+        SELECT ?report (COUNT(?evidence) as ?evidenceCount)
+        WHERE {
+            ?report hotlines-core:hasEvidence ?evidence .
+        }
+        GROUP BY ?report
+    }
+    
+    OPTIONAL {
+        ?report hotlines-core:hasEvidence ?evidence .
+        ?evidence icac-detection:confidenceScore ?confidenceScore .
+    }
+    
+    FILTER(?createdTime >= ?from && ?createdTime <= ?to)
+    
+    FILTER NOT EXISTS {
+        ?report uco-confidentiality:confidentialityLevel "TLP-RED" .
+    }
+}
+GROUP BY ?platformType ?vendorName
+ORDER BY DESC(?avgConfidenceScore) DESC(?reportCount) 

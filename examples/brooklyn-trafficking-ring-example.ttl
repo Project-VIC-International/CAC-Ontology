@@ -1,0 +1,435 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/core#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/identity#> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/observable#> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/action#> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/role#> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/location#> .
+@prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
+@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
+@prefix icac-trafficking: <https://ontology.unifiedcyberontology.org/icac/trafficking#> .
+@prefix icac-multi: <https://ontology.unifiedcyberontology.org/icac/multi-jurisdiction#> .
+@prefix icac-sentencing: <https://ontology.unifiedcyberontology.org/icac/sentencing#> .
+@prefix icac-impact: <https://ontology.unifiedcyberontology.org/icac/victim-impact#> .
+@prefix : <https://example.org/brooklyn-trafficking/> .
+
+# =============================================================================
+# BROOKLYN TRAFFICKING RING CASE EXAMPLE
+# Based on Brooklyn District Attorney Press Release (May 23, 2025)
+# Eight Individuals Indicted for Conspiracy and Sex Trafficking
+# =============================================================================
+
+# Main Investigation
+:brooklyn_trafficking_investigation rdf:type icac-trafficking:TraffickingInvestigation ;
+    rdfs:label "Brooklyn Multi-State Sex Trafficking Investigation"@en ;
+    rdfs:comment "Investigation into widespread, multi-state sex trafficking ring involving 8 defendants and multiple victims across Brooklyn and North Carolina."@en ;
+    uco-core:startTime "2022-07-01T00:00:00Z"^^xsd:dateTime ;
+    case-investigation:investigationStatus "prosecution_phase" ;
+    icac-trafficking:investigatesNetwork :brooklyn_trafficking_ring .
+
+# =============================================================================
+# TRAFFICKING ENTERPRISE STRUCTURE
+# =============================================================================
+
+:brooklyn_trafficking_ring rdf:type icac-trafficking:TraffickingRing ;
+    rdfs:label "Brooklyn-North Carolina Trafficking Ring"@en ;
+    rdfs:comment "Coordinated group of 8 traffickers (6 men, 2 women) operating across Brooklyn and North Carolina with shared victims and resources."@en ;
+    icac-trafficking:memberCount 8 ;
+    icac-trafficking:operationalDuration "P30M"^^xsd:duration ; # 30 months (July 2022 - ongoing 2025)
+    icac-trafficking:hasHierarchy :trafficking_hierarchy ;
+    icac-trafficking:conductsOperation :multi_state_trafficking_operation .
+
+:trafficking_hierarchy rdf:type icac-trafficking:TraffickingHierarchy ;
+    rdfs:label "Brooklyn Ring Hierarchy"@en ;
+    icac-trafficking:hierarchyLevels 3 .
+
+# =============================================================================
+# DEFENDANTS AND ROLES
+# =============================================================================
+
+# Primary Leaders
+:mylord_williams rdf:type uco-identity:Person ;
+    uco-identity:fullName "Mylord Williams"@en ;
+    uco-identity:birthDate "1999-01-01"^^xsd:date ; # Age 26 in 2025
+    uco-location:hasLocation :bronx_location ;
+    icac-trafficking:operatesEnterprise :brooklyn_trafficking_ring ;
+    icac-trafficking:participatesInConspiracy :trafficking_conspiracy ;
+    icac:leadsConspiracy :trafficking_conspiracy .
+
+:terrel_chery rdf:type uco-identity:Person ;
+    uco-identity:fullName "Terrel Chery"@en ;
+    uco-identity:birthDate "1998-01-01"^^xsd:date ; # Age 27 in 2025
+    uco-location:hasLocation :nassau_county_location ;
+    icac-trafficking:operatesEnterprise :brooklyn_trafficking_ring ;
+    icac-trafficking:participatesInConspiracy :trafficking_conspiracy .
+
+:kinard_oliver rdf:type uco-identity:Person ;
+    uco-identity:fullName "Kinard Oliver"@en ;
+    uco-identity:birthDate "1998-01-01"^^xsd:date ; # Age 27 in 2025
+    uco-location:hasLocation :brooklyn_location ;
+    icac-trafficking:participatesInEnterprise :brooklyn_trafficking_ring ;
+    icac-trafficking:participatesInConspiracy :trafficking_conspiracy .
+
+# Associate Members
+:layquan_highsmith rdf:type uco-identity:Person ;
+    uco-identity:fullName "Layquan Highsmith"@en ;
+    uco-identity:birthDate "1995-01-01"^^xsd:date ; # Age 30 in 2025
+    uco-location:hasLocation :brooklyn_location ;
+    icac-trafficking:participatesInEnterprise :brooklyn_trafficking_ring .
+
+:ronasia_robinson rdf:type uco-identity:Person ;
+    uco-identity:fullName "Ronasia Robinson"@en ;
+    uco-identity:birthDate "1994-01-01"^^xsd:date ; # Age 31 in 2025
+    uco-location:hasLocation :troy_ny_location ;
+    icac-trafficking:participatesInEnterprise :brooklyn_trafficking_ring .
+
+:tyshawn_crawford rdf:type uco-identity:Person ;
+    uco-identity:fullName "Tyshawn Crawford"@en ;
+    uco-identity:birthDate "1996-01-01"^^xsd:date ; # Age 29 in 2025
+    uco-location:hasLocation :brooklyn_location ;
+    icac-trafficking:participatesInEnterprise :brooklyn_trafficking_ring .
+
+:richard_baker rdf:type uco-identity:Person ;
+    uco-identity:fullName "Richard Baker"@en ;
+    uco-identity:birthDate "1980-01-01"^^xsd:date ; # Age 45 in 2025
+    uco-location:hasLocation :brooklyn_location ;
+    icac-trafficking:participatesInEnterprise :brooklyn_trafficking_ring .
+
+:eyecess_chapman rdf:type uco-identity:Person ;
+    uco-identity:fullName "Eyecess Chapman"@en ;
+    uco-identity:birthDate "2001-01-01"^^xsd:date ; # Age 24 in 2025
+    uco-location:hasLocation :brooklyn_location ;
+    icac-trafficking:participatesInEnterprise :brooklyn_trafficking_ring .
+
+# =============================================================================
+# LOCATIONS
+# =============================================================================
+
+:bronx_location rdf:type uco-location:Location ;
+    uco-location:addressLine1 "Bronx"@en ;
+    uco-location:administrativeArea "New York"@en ;
+    uco-location:country "United States"@en .
+
+:nassau_county_location rdf:type uco-location:Location ;
+    uco-location:addressLine1 "Nassau County"@en ;
+    uco-location:administrativeArea "New York"@en ;
+    uco-location:country "United States"@en .
+
+:brooklyn_location rdf:type uco-location:Location ;
+    uco-location:addressLine1 "Brooklyn"@en ;
+    uco-location:administrativeArea "New York"@en ;
+    uco-location:country "United States"@en .
+
+:crown_heights_location rdf:type uco-location:Location ;
+    uco-location:addressLine1 "Crown Heights"@en ;
+    uco-location:locality "Brooklyn"@en ;
+    uco-location:administrativeArea "New York"@en ;
+    uco-location:country "United States"@en .
+
+:east_new_york_location rdf:type uco-location:Location ;
+    uco-location:addressLine1 "East New York"@en ;
+    uco-location:locality "Brooklyn"@en ;
+    uco-location:administrativeArea "New York"@en ;
+    uco-location:country "United States"@en .
+
+:troy_ny_location rdf:type uco-location:Location ;
+    uco-location:addressLine1 "Troy"@en ;
+    uco-location:administrativeArea "New York"@en ;
+    uco-location:country "United States"@en .
+
+:wilmington_nc_location rdf:type uco-location:Location ;
+    uco-location:addressLine1 "Wilmington"@en ;
+    uco-location:administrativeArea "North Carolina"@en ;
+    uco-location:country "United States"@en .
+
+# =============================================================================
+# VICTIMS
+# =============================================================================
+
+:victim_1_minor_17 rdf:type uco-identity:Person ;
+    rdfs:label "Minor Victim 1 (Age 17)"@en ;
+    uco-identity:birthDate "2005-01-01"^^xsd:date ; # 17 in 2022
+    uco-location:hasLocation :crown_heights_location .
+
+:victim_2_minor_17 rdf:type uco-identity:Person ;
+    rdfs:label "Minor Victim 2 (Age 17)"@en ;
+    uco-identity:birthDate "2007-01-01"^^xsd:date ; # 17 in 2024
+    uco-location:hasLocation :brooklyn_location .
+
+:victim_3_minor_15 rdf:type uco-identity:Person ;
+    rdfs:label "Minor Victim 3 (Age 15)"@en ;
+    uco-identity:birthDate "2009-01-01"^^xsd:date ; # 15 in 2024
+    uco-location:hasLocation :brooklyn_location .
+
+:victim_4_minor_16 rdf:type uco-identity:Person ;
+    rdfs:label "Minor Victim 4 (Age 16)"@en ;
+    uco-identity:birthDate "2008-01-01"^^xsd:date ; # 16 in 2024
+    uco-location:hasLocation :brooklyn_location .
+
+:victim_5_adult_19 rdf:type uco-identity:Person ;
+    rdfs:label "Adult Victim (Age 19)"@en ;
+    uco-identity:birthDate "2005-11-01"^^xsd:date ; # 19 in 2024
+    uco-location:hasLocation :wilmington_nc_location .
+
+# =============================================================================
+# TRAFFICKING OPERATIONS
+# =============================================================================
+
+:multi_state_trafficking_operation rdf:type icac-trafficking:MultiStateTraffickingConspiracy ;
+    rdfs:label "Brooklyn-North Carolina Multi-State Trafficking Operation"@en ;
+    rdfs:comment "Coordinated trafficking operation spanning Brooklyn and North Carolina with systematic victim transportation and exploitation."@en ;
+    icac-trafficking:victimCount 5 ;
+    icac-trafficking:minorVictimCount 4 ;
+    icac-trafficking:adultVictimCount 1 ;
+    icac-trafficking:victimAgeRange "15-19" ;
+    icac-trafficking:jurisdictionsSpanned 2 ;
+    icac-trafficking:primaryOperationLocation "Brooklyn, NY" ;
+    icac-trafficking:involvesVictim :victim_1_minor_17 ,
+                                   :victim_2_minor_17 ,
+                                   :victim_3_minor_15 ,
+                                   :victim_4_minor_16 ,
+                                   :victim_5_adult_19 ;
+    icac-trafficking:coordinatesAcrossJurisdictions :interstate_coordination .
+
+# Specific Trafficking Incidents
+:crown_heights_trafficking_2022 rdf:type icac-trafficking:CommercialSexualExploitation ;
+    rdfs:label "Crown Heights Trafficking Incident (2022)"@en ;
+    rdfs:comment "Sex trafficking of 17-year-old girl in Crown Heights, Brooklyn during July-October 2022."@en ;
+    uco-core:startTime "2022-07-01T00:00:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2022-10-31T00:00:00Z"^^xsd:dateTime ;
+    icac-trafficking:exploitsVictim :victim_1_minor_17 ;
+    icac-trafficking:generatesEarnings :crown_heights_earnings ;
+    uco-location:hasLocation :crown_heights_location .
+
+:east_new_york_trafficking_2024 rdf:type icac-trafficking:CommercialSexualExploitation ;
+    rdfs:label "East New York Trafficking Incident (2024)"@en ;
+    rdfs:comment "Sex trafficking of 17-year-old victim in East New York, Brooklyn beginning February 2024."@en ;
+    uco-core:startTime "2024-02-01T00:00:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2024-08-31T00:00:00Z"^^xsd:dateTime ;
+    icac-trafficking:exploitsVictim :victim_2_minor_17 ;
+    icac-trafficking:generatesEarnings :east_new_york_earnings ;
+    uco-location:hasLocation :east_new_york_location .
+
+:nc_transportation_operation rdf:type icac-trafficking:InterstateVictimTransport ;
+    rdfs:label "North Carolina Transportation Operation"@en ;
+    rdfs:comment "Transportation of 15-year-old and 16-year-old victims to North Carolina for prostitution in October 2024."@en ;
+    uco-core:startTime "2024-10-01T00:00:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2024-10-31T00:00:00Z"^^xsd:dateTime ;
+    icac-trafficking:transportsVictim :victim_3_minor_15 ,
+                                      :victim_4_minor_16 ;
+    icac-trafficking:originatesFrom :brooklyn_location ;
+    icac-trafficking:destinationTo :wilmington_nc_location ;
+    icac-trafficking:transportationRoute "Brooklyn, NY to North Carolina various cities" .
+
+# =============================================================================
+# EARNINGS AND FINANCIAL EXPLOITATION
+# =============================================================================
+
+:crown_heights_earnings rdf:type icac-trafficking:EarningsCollection ;
+    rdfs:label "Crown Heights Earnings Collection"@en ;
+    rdfs:comment "Collection of all money earned by 17-year-old victim during July-October 2022 trafficking."@en ;
+    icac-trafficking:earningsRetentionRate 1.0 ; # 100% retained by traffickers
+    uco-core:startTime "2022-07-01T00:00:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2022-10-31T00:00:00Z"^^xsd:dateTime .
+
+:east_new_york_earnings rdf:type icac-trafficking:EarningsCollection ;
+    rdfs:label "East New York Earnings Collection"@en ;
+    rdfs:comment "Collection of all money earned by 17-year-old victim during February-August 2024 trafficking."@en ;
+    icac-trafficking:earningsRetentionRate 1.0 ; # 100% retained by traffickers
+    uco-core:startTime "2024-02-01T00:00:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2024-08-31T00:00:00Z"^^xsd:dateTime .
+
+# Williams and Chery collected all earnings from Crown Heights victim
+:mylord_williams icac-trafficking:collectsEarnings :crown_heights_earnings .
+:terrel_chery icac-trafficking:collectsEarnings :crown_heights_earnings .
+
+# Williams and Oliver collected earnings from East New York victim
+:mylord_williams icac-trafficking:collectsEarnings :east_new_york_earnings .
+:kinard_oliver icac-trafficking:collectsEarnings :east_new_york_earnings .
+
+# =============================================================================
+# VICTIM RESCUE AND EMERGENCY RESPONSE
+# =============================================================================
+
+:nc_911_call rdf:type icac-impact:NineOneOneCall ;
+    rdfs:label "Wilmington, NC 911 Call"@en ;
+    rdfs:comment "19-year-old woman called 911 in Wilmington, North Carolina, reporting being forced to engage in prostitution."@en ;
+    icac-impact:emergencyCallLocation "Wilmington, North Carolina" ;
+    icac-impact:reportedSituation "forced to engage in prostitution in Brooklyn and North Carolina" ;
+    uco-core:startTime "2024-11-01T00:00:00Z"^^xsd:dateTime .
+
+:wilmington_emergency_response rdf:type icac-impact:EmergencyResponse ;
+    rdfs:label "Wilmington Emergency Response"@en ;
+    rdfs:comment "Emergency response to 911 call from trafficking victim in Wilmington, NC."@en ;
+    icac-impact:responseTime 15.0 ; # 15 minutes response time
+    uco-core:startTime "2024-11-01T00:15:00Z"^^xsd:dateTime .
+
+:victim_extraction rdf:type icac-impact:VictimExtraction ;
+    rdfs:label "Victim Extraction from Trafficking Situation"@en ;
+    rdfs:comment "Immediate removal of 19-year-old victim from trafficking situation following 911 call."@en ;
+    icac-impact:extractionComplexity "moderate" ;
+    uco-core:startTime "2024-11-01T01:00:00Z"^^xsd:dateTime .
+
+:ongoing_danger_assessment rdf:type icac-impact:OngoingDangerAssessment ;
+    rdfs:label "Ongoing Danger Assessment for Rescued Victim"@en ;
+    rdfs:comment "Assessment revealed ongoing danger to victim from trafficking network operating across multiple states."@en ;
+    icac-impact:ongoingDangerLevel "high" .
+
+:safety_planning rdf:type icac-impact:VictimSafetyPlanning ;
+    rdfs:label "Multi-State Victim Safety Plan"@en ;
+    rdfs:comment "Comprehensive safety plan for victim protection given multi-state trafficking network threats."@en ;
+    icac-impact:safetyPlanType "comprehensive" .
+
+# Link emergency response chain
+:nc_911_call icac-impact:triggersResponse :wilmington_emergency_response .
+:wilmington_emergency_response icac-impact:resultsinExtraction :victim_extraction .
+:victim_extraction icac-impact:necessitatesAssessment :ongoing_danger_assessment .
+:ongoing_danger_assessment icac-impact:informsSafetyPlanning :safety_planning .
+
+# =============================================================================
+# CRIMINAL CONSPIRACY
+# =============================================================================
+
+:trafficking_conspiracy rdf:type icac:ConspiracyToCommitCSA ;
+    rdfs:label "Brooklyn Sex Trafficking Conspiracy"@en ;
+    rdfs:comment "Criminal conspiracy involving 8 defendants coordinating sex trafficking activities across Brooklyn and North Carolina from 2022-2025."@en ;
+    icac:conspiracyMemberCount 8 ;
+    icac:conspiracyDuration "P30M"^^xsd:duration ; # 30 months
+    uco-core:startTime "2022-07-01T00:00:00Z"^^xsd:dateTime ;
+    icac:resultsinIndictment :superseding_indictment .
+
+# =============================================================================
+# LEGAL PROCEEDINGS AND INDICTMENTS
+# =============================================================================
+
+:superseding_indictment rdf:type icac:MultiDefendantIndictment ;
+    rdfs:label "19-Count Superseding Indictment"@en ;
+    rdfs:comment "19-count superseding indictment charging 6 defendants variously with conspiracy, sex trafficking of a child, promoting prostitution and related charges."@en ;
+    icac:indictmentCounts 19 ;
+    uco-core:createdTime "2025-05-23T00:00:00Z"^^xsd:dateTime .
+
+:separate_indictment rdf:type icac:MultiDefendantIndictment ;
+    rdfs:label "5-Count Separate Indictment"@en ;
+    rdfs:comment "Separate 5-count indictment charging Williams and Chery for Crown Heights trafficking incident."@en ;
+    icac:indictmentCounts 5 ;
+    uco-core:createdTime "2025-05-23T00:00:00Z"^^xsd:dateTime .
+
+# =============================================================================
+# CRIMINAL CHARGES (Specific to Brooklyn Case)
+# =============================================================================
+
+:williams_trafficking_charges rdf:type icac-sentencing:SexTraffickingOfMinor ;
+    rdfs:label "Williams Sex Trafficking Charges"@en ;
+    rdfs:comment "Sex trafficking charges against Mylord Williams for multiple minor victims."@en ;
+    icac-sentencing:traffickingVictimCount 2 ; # Crown Heights victim + East New York victim
+    icac-sentencing:traffickingDuration 18.0 ; # 18 months across incidents
+    icac-sentencing:enterpriseRole "leader" .
+
+:chery_trafficking_charges rdf:type icac-sentencing:SexTraffickingOfMinor ;
+    rdfs:label "Chery Sex Trafficking Charges"@en ;
+    rdfs:comment "Sex trafficking charges against Terrel Chery for Crown Heights victim."@en ;
+    icac-sentencing:traffickingVictimCount 1 ;
+    icac-sentencing:traffickingDuration 4.0 ; # 4 months
+    icac-sentencing:enterpriseRole "organizer" .
+
+:promoting_prostitution_charges rdf:type icac-sentencing:PromotingProstitutionOfMinor ;
+    rdfs:label "Promoting Prostitution of Minor Charges"@en ;
+    rdfs:comment "Charges for promoting prostitution involving victims under 18."@en ;
+    icac-sentencing:commercialSexActCount 50 . # Estimated
+
+:conspiracy_charges rdf:type icac-sentencing:SexTraffickingConspiracy ;
+    rdfs:label "Sex Trafficking Conspiracy Charges"@en ;
+    rdfs:comment "Conspiracy charges for coordinated sex trafficking enterprise involving all 8 defendants."@en ;
+    icac-sentencing:coDefendantCount 8 .
+
+# =============================================================================
+# INTERSTATE COORDINATION
+# =============================================================================
+
+:interstate_coordination rdf:type icac-multi:InterstateCoordination ;
+    rdfs:label "Brooklyn-North Carolina Investigation Coordination"@en ;
+    rdfs:comment "Coordination between Brooklyn DA's office and North Carolina law enforcement for multi-state trafficking investigation."@en ;
+    icac-multi:coordinationComplexity "complex" ;
+    icac-multi:crossStateCommunication "secure_communications, joint_task_force, regular_briefings" .
+
+# =============================================================================
+# INVESTIGATION AGENCIES
+# =============================================================================
+
+:brooklyn_da_human_trafficking_unit rdf:type uco-identity:Organization ;
+    rdfs:label "Brooklyn DA Human Trafficking Unit"@en ;
+    rdfs:comment "Brooklyn District Attorney's Office Human Trafficking Unit led by Chief David Weiss."@en .
+
+:nypd_human_trafficking_squad rdf:type uco-identity:Organization ;
+    rdfs:label "NYPD Human Trafficking Squad"@en ;
+    rdfs:comment "NYPD citywide Human Trafficking Squad under Captain Maripily Clase."@en .
+
+:fbi_child_exploitation_task_force rdf:type uco-identity:Organization ;
+    rdfs:label "FBI-NYPD Child Exploitation Task Force"@en ;
+    rdfs:comment "Joint FBI-NYPD Child Exploitation and Human Trafficking Task Force."@en .
+
+:wilmington_pd rdf:type uco-identity:Organization ;
+    rdfs:label "Wilmington Police Department"@en ;
+    rdfs:comment "Wilmington, North Carolina Police Department - first responders to 911 call."@en .
+
+# =============================================================================
+# COURTROOM PROCEEDINGS
+# =============================================================================
+
+:arraignment_proceedings rdf:type uco-action:Action ;
+    rdfs:label "Brooklyn Supreme Court Arraignments"@en ;
+    rdfs:comment "Arraignments before Brooklyn Supreme Court Justice Danny Chun on May 22-23, 2025."@en ;
+    uco-core:startTime "2025-05-22T09:00:00Z"^^xsd:dateTime .
+
+# Bail Decisions
+:chery_remand rdf:type uco-observable:ObservableObject ;
+    rdfs:label "Chery Remanded Without Bail"@en ;
+    rdfs:comment "Terrel Chery remanded without bail due to flight risk and public safety concerns."@en .
+
+:williams_remand rdf:type uco-observable:ObservableObject ;
+    rdfs:label "Williams Remanded Without Bail"@en ;
+    rdfs:comment "Mylord Williams remanded without bail due to flight risk and public safety concerns."@en .
+
+:oliver_bail rdf:type uco-observable:ObservableObject ;
+    rdfs:label "Oliver Bail Set"@en ;
+    rdfs:comment "Kinard Oliver ordered held in lieu of $100,000 bail or $1 million bond."@en .
+
+# =============================================================================
+# EVIDENCE TYPES
+# =============================================================================
+
+:commercial_advertisements rdf:type icac-trafficking:VictimAdvertisement ;
+    rdfs:label "Commercial Sexual Advertisements"@en ;
+    rdfs:comment "Commercial sexual advertisements of trafficking victims posted by Williams and Chery."@en ;
+    icac-trafficking:documentsOperation :crown_heights_trafficking_2022 .
+
+:earnings_documentation rdf:type icac-trafficking:EarningsRecord ;
+    rdfs:label "Earnings Collection Documentation"@en ;
+    rdfs:comment "Financial records documenting collection of all money earned by victims."@en ;
+    icac-trafficking:documentsOperation :multi_state_trafficking_operation .
+
+:transportation_evidence rdf:type icac-trafficking:TransportationRecord ;
+    rdfs:label "Interstate Transportation Records"@en ;
+    rdfs:comment "Records of victim transportation between Brooklyn and North Carolina for trafficking purposes."@en ;
+    icac-trafficking:documentsOperation :nc_transportation_operation .
+
+:victim_text_help_request rdf:type icac-trafficking:CommunicationRecord ;
+    rdfs:label "Victim Text Message Help Request"@en ;
+    rdfs:comment "Text message from 17-year-old victim to friend asking for help, which led to NYPD response."@en ;
+    icac-trafficking:documentsOperation :east_new_york_trafficking_2024 .
+
+# =============================================================================
+# MULTI-AGENCY COORDINATION
+# =============================================================================
+
+:multi_agency_investigation rdf:type icac-trafficking:TraffickingInvestigation ;
+    rdfs:label "Multi-Agency Brooklyn Trafficking Investigation"@en ;
+    rdfs:comment "Coordinated investigation involving Brooklyn DA, NYPD, FBI, and North Carolina law enforcement."@en ;
+    icac-trafficking:requiresMultiAgencyResponse :agency_coordination ;
+    icac-trafficking:triggersRescue :victim_extraction .
+
+:agency_coordination rdf:type uco-action:Action ;
+    rdfs:label "Multi-Agency Response Coordination"@en ;
+    rdfs:comment "Coordination between multiple law enforcement agencies across state lines for trafficking investigation."@en . 

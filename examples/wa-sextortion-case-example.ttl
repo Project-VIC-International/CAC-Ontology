@@ -1,0 +1,316 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity#> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable#> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role#> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location#> .
+@prefix icac-taskforce: <https://ontology.unifiedcyberontology.org/icac/taskforce#> .
+@prefix icac-forensics: <https://ontology.unifiedcyberontology.org/icac/forensics#> .
+@prefix icac-international: <https://ontology.unifiedcyberontology.org/icac/international#> .
+@prefix icac-sentencing: <https://ontology.unifiedcyberontology.org/icac/sentencing#> .
+@prefix icac-sextortion: <https://ontology.unifiedcyberontology.org/icac/sextortion#> .
+
+# =============================================================================
+# WA SEXTORTION CASE OVERVIEW
+# =============================================================================
+
+:WA_Sextortion_Case rdf:type icac-sextortion:AgeDeceptionSextortion ;
+    rdfs:label "WA Man Sextortion Case - May 2025"@en ;
+    uco-core:description "20-year-old WA man charged for alleged sexual extortion of children using age deception on instant messaging platform" ;
+    uco-core:startTime "2024-10-01T00:00:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2025-04-02T00:00:00Z"^^xsd:dateTime ;
+    icac-sextortion:victimCount 3 ;
+    icac-sextortion:victimAgeGroup "under 16" ;
+    icac-sextortion:incidentDuration "P6M"^^xsd:duration .
+
+# =============================================================================
+# OFFENDER AND VICTIMS
+# =============================================================================
+
+:WA_Offender rdf:type uco-identity:Person ;
+    uco-core:name "WA Sextortion Suspect"@en ;
+    uco-core:description "20-year-old man from Carramar, WA" ;
+    uco-identity:birthDate "2005-01-01"^^xsd:date .
+
+:WA_Offender_Residence rdf:type uco-location:Location ;
+    uco-location:addressLine1 "Carramar"@en ;
+    uco-location:administrativeArea "Western Australia"@en ;
+    uco-location:country "Australia"@en .
+
+:Victim_1 rdf:type uco-identity:Person ;
+    uco-core:name "Victim 1"@en ;
+    uco-core:description "Girl under 16 who refused demands, triggering screenshot threats" ;
+    uco-identity:birthDate "2010-01-01"^^xsd:date .
+
+:Victim_2 rdf:type uco-identity:Person ;
+    uco-core:name "Victim 2"@en ;
+    uco-core:description "Girl under 16 who engaged in sexually explicit conversations" ;
+    uco-identity:birthDate "2009-01-01"^^xsd:date .
+
+:Victim_3 rdf:type uco-identity:Person ;
+    uco-core:name "Victim 3"@en ;
+    uco-core:description "Girl under 16 who engaged in sexually explicit conversations" ;
+    uco-identity:birthDate "2011-01-01"^^xsd:date .
+
+# =============================================================================
+# SEXTORTION PROGRESSION AND TACTICS
+# =============================================================================
+
+:Age_Deception_Tactic rdf:type icac-sextortion:AgeDeceptionTactic ;
+    rdfs:label "Age Deception on Instant Messaging"@en ;
+    uco-core:description "Lying about age when interacting with children on instant messaging platform" ;
+    icac-sextortion:actualAge 20 ;
+    icac-sextortion:claimedAge 16 ;
+    icac-sextortion:falsePersonaType "peer" .
+
+:False_Profile rdf:type icac-sextortion:FalseProfileCreation ;
+    rdfs:label "False Profile Creation"@en ;
+    uco-core:description "Created false profile on instant messaging platform with fake age information" .
+
+:Trust_Building rdf:type icac-sextortion:TrustBuildingPhase ;
+    rdfs:label "Trust Building Phase"@en ;
+    uco-core:description "Building rapport and trust with victims through false peer identity" ;
+    icac-sextortion:progressionStage 2 .
+
+:Sexual_Solicitation rdf:type icac-sextortion:SexualSolicitationPhase ;
+    rdfs:label "Sexual Solicitation Phase"@en ;
+    uco-core:description "Engaging in sexually explicit conversations with three girls under 16" ;
+    icac-sextortion:progressionStage 3 .
+
+:Image_Acquisition rdf:type icac-sextortion:ImageAcquisitionPhase ;
+    rdfs:label "Image Acquisition Phase"@en ;
+    uco-core:description "Manipulating victims into sending intimate images" ;
+    icac-sextortion:progressionStage 4 .
+
+:Extortion_Phase rdf:type icac-sextortion:ExtortionPhase ;
+    rdfs:label "Extortion Phase"@en ;
+    uco-core:description "Threatening to screenshot images when victim refused demands" ;
+    icac-sextortion:progressionStage 5 .
+
+# =============================================================================
+# SPECIFIC THREATS AND MANIPULATION
+# =============================================================================
+
+:Screenshot_Threat rdf:type icac-sextortion:ScreenshotThreat ;
+    rdfs:label "Screenshot Threat to Victim 1"@en ;
+    uco-core:description "Threatened to screenshot images sent by one girl when she refused his demands" ;
+    icac-sextortion:threatType "screenshot" ;
+    icac-sextortion:threatSpecificity "specific" ;
+    icac-sextortion:threatFollowThrough false .
+
+:Progressive_Escalation rdf:type icac-sextortion:ProgressiveEscalation ;
+    rdfs:label "Progressive Escalation Tactic"@en ;
+    uco-core:description "Gradual escalation from initial contact to sexually explicit conversations to image manipulation" ;
+    icac-sextortion:escalationSpeed "gradual" .
+
+:Additional_Content_Demand rdf:type icac-sextortion:AdditionalContentDemand ;
+    rdfs:label "Demand for More Images"@en ;
+    uco-core:description "Trying to manipulate victims into sending more intimate images after receiving initial content" ;
+    icac-sextortion:demandType "more content" .
+
+# =============================================================================
+# VICTIM RESPONSES
+# =============================================================================
+
+:Victim1_Refusal rdf:type icac-sextortion:RefusalResponse ;
+    rdfs:label "Victim 1 Refusal Response"@en ;
+    uco-core:description "Victim 1 refused demands, triggering threat escalation with screenshot threat" .
+
+:Victim2_Compliance rdf:type icac-sextortion:ComplianceResponse ;
+    rdfs:label "Victim 2 Compliance Response"@en ;
+    uco-core:description "Victim 2 initially complied with requests before recognizing the threat" .
+
+:Victim3_Compliance rdf:type icac-sextortion:ComplianceResponse ;
+    rdfs:label "Victim 3 Compliance Response"@en ;
+    uco-core:description "Victim 3 initially complied with requests before recognizing the threat" .
+
+# =============================================================================
+# COMMUNICATION PATTERNS
+# =============================================================================
+
+:Instant_Messaging_Platform rdf:type icac-sextortion:InstantMessagingPlatform ;
+    rdfs:label "Instant Messaging Platform"@en ;
+    uco-core:description "Digital platform used for instant messaging with private communication features" .
+
+:Sexually_Explicit_Conversations rdf:type icac-sextortion:SexuallyExplicitConversation ;
+    rdfs:label "Sexually Explicit Conversations"@en ;
+    uco-core:description "Conversations containing sexually explicit content directed at three girls under 16" ;
+    icac-sextortion:conversationLength 50 ;
+    icac-sextortion:explicitnessLevel "explicit" .
+
+:Image_Solicitation_Messages rdf:type icac-sextortion:ImageSolicitationMessage ;
+    rdfs:label "Image Solicitation Messages"@en ;
+    uco-core:description "Messages requesting intimate images from victims" ;
+    icac-sextortion:imageType "intimate" .
+
+:Threat_Messages rdf:type icac-sextortion:ThreatMessage ;
+    rdfs:label "Threat Messages"@en ;
+    uco-core:description "Messages containing explicit threats about screenshotting images" .
+
+# =============================================================================
+# INTERNATIONAL COORDINATION (NCMEC TO ACCCE)
+# =============================================================================
+
+:NCMEC_Report rdf:type icac-international:NCMECReporting ;
+    rdfs:label "NCMEC Report to ACCCE"@en ;
+    uco-core:description "Report from US National Center for Missing and Exploited Children regarding Australian user of instant messaging platform" ;
+    uco-core:startTime "2024-10-01T00:00:00Z"^^xsd:dateTime ;
+    icac-international:responseTimeInternational 24.0 .
+
+:US_Australia_Coordination rdf:type icac-international:USAustraliaCoordination ;
+    rdfs:label "US-Australia Coordination"@en ;
+    uco-core:description "Coordination between NCMEC and ACCCE for investigation of Australian suspect" .
+
+:ACCCE_Integration rdf:type icac-international:ACCCEIntegration ;
+    rdfs:label "ACCCE Integration"@en ;
+    uco-core:description "AFP-led Australian Centre to Counter Child Exploitation received and processed international report" .
+
+# =============================================================================
+# WA JACET INVESTIGATION
+# =============================================================================
+
+:WA_JACET_Team rdf:type icac-taskforce:WA_JACET ;
+    rdfs:label "Western Australia JACET"@en ;
+    uco-core:description "WA JACET comprising AFP and WA Police Force investigators" ;
+    icac-taskforce:establishmentDate "2020-01-01T00:00:00Z"^^xsd:dateTime ;
+    icac-taskforce:memberCount 10 ;
+    icac-taskforce:agencyCount 2 .
+
+:WA_AFP_Partnership rdf:type icac-taskforce:WA_AFP_Partnership ;
+    rdfs:label "WA-AFP Partnership"@en ;
+    uco-core:description "Joint release between AFP and Western Australia Police Force for this case" .
+
+:WA_Sextortion_Investigation rdf:type icac-sextortion:SextortionInvestigation ;
+    rdfs:label "WA Sextortion Investigation"@en ;
+    uco-core:description "Investigation conducted by WA JACET into sextortion incident" ;
+    uco-core:startTime "2024-10-01T00:00:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2025-04-30T00:00:00Z"^^xsd:dateTime .
+
+# =============================================================================
+# FORENSIC INVESTIGATION
+# =============================================================================
+
+:Search_Warrant_Execution rdf:type uco-action:Action ;
+    rdfs:label "Search Warrant Execution"@en ;
+    uco-core:description "Search warrant executed at Carramar home on 2 April 2025" ;
+    uco-core:startTime "2025-04-02T08:00:00Z"^^xsd:dateTime .
+
+:Device_Seizure rdf:type icac-forensics:ForensicAcquisitionAction ;
+    rdfs:label "Device Seizure"@en ;
+    uco-core:description "Seizure of mobile phone and desktop computer during search warrant execution" ;
+    icac-forensics:acquisitionMethod "physical" ;
+    icac-forensics:writeBlockingUsed true .
+
+:Mobile_Phone rdf:type uco-observable:MobileDevice ;
+    rdfs:label "Suspect Mobile Phone"@en ;
+    uco-core:description "Mobile phone seized from suspect's residence" .
+
+:Desktop_Computer rdf:type uco-observable:Computer ;
+    rdfs:label "Suspect Desktop Computer"@en ;
+    uco-core:description "Desktop computer seized from suspect's residence" .
+
+:Device_Forensic_Analysis rdf:type icac-sextortion:DeviceForensicAnalysis ;
+    rdfs:label "Device Forensic Analysis"@en ;
+    uco-core:description "Forensic examination of seized mobile phone and desktop computer" ;
+    icac-sextortion:deviceCount 2 ;
+    icac-sextortion:evidenceRecovered true .
+
+:Conversation_Reconstruction rdf:type icac-sextortion:ConversationReconstruction ;
+    rdfs:label "Conversation Reconstruction"@en ;
+    uco-core:description "Reconstruction of conversation patterns with three victims" ;
+    icac-sextortion:conversationCount 3 .
+
+:Victim_Identification_Process rdf:type icac-sextortion:VictimIdentification ;
+    rdfs:label "Victim Identification Process"@en ;
+    uco-core:description "Process of identifying and locating three child victims" .
+
+# =============================================================================
+# CRIMINAL CHARGES (WA Case Specific)
+# =============================================================================
+
+:CSAM_Transmission_Charge rdf:type icac-sentencing:CarriageServiceCSAMTransmission ;
+    rdfs:label "CSAM Transmission Charge"@en ;
+    uco-core:description "Use carriage service to cause child abuse material to be transmitted to himself, contrary to section 474.22(1)(a)(ii) Criminal Code (Cth)" ;
+    icac-sentencing:chargeCount 1 ;
+    icac-sentencing:maximumPenalty 15 ;
+    icac-sentencing:chargeStatute "474.22(1)(a)(ii) Criminal Code (Cth)" .
+
+:Indecent_Communication_Charge rdf:type icac-sentencing:CarriageServiceIndecentCommunication ;
+    rdfs:label "Indecent Communication Charges"@en ;
+    uco-core:description "Use carriage service to transmit indecent communication to person under 16 years, contrary to section 474.27A Criminal Code (Cth)" ;
+    icac-sentencing:chargeCount 2 ;
+    icac-sentencing:maximumPenalty 10 ;
+    icac-sentencing:chargeStatute "474.27A Criminal Code (Cth)" .
+
+:Sextortion_Related_Charge rdf:type icac-sentencing:SextortionCharge ;
+    rdfs:label "Sextortion Related Charges"@en ;
+    uco-core:description "Criminal charges specifically related to sextortion involving sexual extortion of children" .
+
+# =============================================================================
+# LEGAL PROCEEDINGS
+# =============================================================================
+
+:Perth_Magistrates_Court_Appearance rdf:type icac-sentencing:ArraignmentProceeding ;
+    rdfs:label "Perth Magistrates Court Appearance"@en ;
+    uco-core:description "Defendant scheduled to appear in Perth Magistrates Court on 23 May 2025" ;
+    uco-core:startTime "2025-05-23T09:00:00Z"^^xsd:dateTime .
+
+:Defendant_Charged rdf:type uco-action:Action ;
+    rdfs:label "Defendant Charged"@en ;
+    uco-core:description "20-year-old man charged on 30 April 2025 by WA JACET" ;
+    uco-core:startTime "2025-04-30T00:00:00Z"^^xsd:dateTime .
+
+# =============================================================================
+# RELATIONSHIPS
+# =============================================================================
+
+# Incident relationships
+:WA_Sextortion_Case icac-sextortion:involvesDeception :Age_Deception_Tactic ;
+    icac-sextortion:followsProgression :Trust_Building ;
+    icac-sextortion:followsProgression :Sexual_Solicitation ;
+    icac-sextortion:followsProgression :Image_Acquisition ;
+    icac-sextortion:followsProgression :Extortion_Phase ;
+    icac-sextortion:employsThreat :Screenshot_Threat ;
+    icac-sextortion:usesManipulation :Progressive_Escalation ;
+    icac-sextortion:makesDemand :Additional_Content_Demand ;
+    icac-sextortion:conductsOnPlatform :Instant_Messaging_Platform ;
+    icac-sextortion:containsCommunication :Sexually_Explicit_Conversations ;
+    icac-sextortion:containsCommunication :Image_Solicitation_Messages ;
+    icac-sextortion:containsCommunication :Threat_Messages .
+
+# Investigation relationships
+:WA_Sextortion_Case icac-sextortion:investigatedBy :WA_Sextortion_Investigation .
+:WA_Sextortion_Investigation icac-sextortion:analyzesDevice :Mobile_Phone ;
+    icac-sextortion:analyzesDevice :Desktop_Computer ;
+    icac-sextortion:reconstructsConversation :Sexually_Explicit_Conversations ;
+    icac-sextortion:identifiesVictim :Victim_1 ;
+    icac-sextortion:identifiesVictim :Victim_2 ;
+    icac-sextortion:identifiesVictim :Victim_3 .
+
+# International coordination relationships
+:NCMEC_Report icac-international:referredTo :ACCCE_Integration .
+:US_Australia_Coordination icac-international:coordinatesWith :WA_JACET_Team .
+
+# Charge relationships
+:WA_Sextortion_Case icac-sextortion:resultsinCharge :CSAM_Transmission_Charge ;
+    icac-sextortion:resultsinCharge :Indecent_Communication_Charge ;
+    icac-sextortion:resultsinCharge :Sextortion_Related_Charge .
+
+# Task force relationships
+:WA_JACET_Team icac-taskforce:conductedBy :WA_Sextortion_Investigation ;
+    icac-taskforce:handledInvestigation :WA_Sextortion_Case .
+
+# Victim response relationships
+:Victim1_Refusal icac-sextortion:triggersPhase :Extortion_Phase .
+:Screenshot_Threat uco-core:object :Victim_1 .
+
+# Evidence relationships
+:Device_Forensic_Analysis icac-forensics:evidenceSeized :Mobile_Phone ;
+    icac-forensics:evidenceSeized :Desktop_Computer .
+
+# Legal proceeding relationships
+:WA_Offender icac-sentencing:chargedWith :CSAM_Transmission_Charge ;
+    icac-sentencing:chargedWith :Indecent_Communication_Charge . 
