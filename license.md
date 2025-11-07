@@ -1,3 +1,7 @@
+   Project VIC International requests persons and organizations that use the Crimes Against Children ontology 
+   to send an email to cacontology@projectvic.org so that we have visibility of adoption trends and practices
+   which helps us measure the impact of the non-profit 501(c)3.    
+     
                                  Apache License
                            Version 2.0, January 2004
                         http://www.apache.org/licenses/
