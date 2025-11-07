@@ -1,0 +1,899 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/core#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/identity#> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/action#> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/role#> .
+@prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-custodial: <https://cacontology.projectvic.org/custodial#> .
+
+# gUFO Integration
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
+
+# Enhanced Ontology Declaration with gUFO Validation
+<https://cacontology.projectvic.org/custodial/shapes/0.2> rdf:type owl:Ontology ;
+    rdfs:label "CAC Custodial SHACL Shapes with gUFO Validation"@en ;
+    rdfs:comment "Comprehensive SHACL validation shapes for gUFO-enhanced ICAC custodial ontology, including anti-rigidity constraints, temporal validation, phase transitions, role validation, trust violation patterns, and foundational type compliance."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/custodial/shapes/0.2> ;
+    owl:imports <https://cacontology.projectvic.org/custodial/0.2> ,
+                <http://purl.org/nemo/gufo> ,
+                <https://ontology.unifiedcyberontology.org/uco/core> ;
+    owl:versionInfo "0.2 - gUFO Enhanced Validation"@en .
+
+# =============================================================================
+# gUFO CUSTODIAL RELATIONSHIP VALIDATION
+# =============================================================================
+
+# Custodial Relationship Shape with gUFO Kind validation
+icac-custodial:CustodialRelationshipGUFOShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-custodial:CustodialRelationship ;
+    rdfs:label "gUFO Custodial Relationship Shape"@en ;
+    rdfs:comment "Validates custodial relationship instances with gUFO foundational constraints."@en ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Kind ;
+        sh:minCount 1 ;
+        sh:message "Custodial relationship must be typed as gUFO Kind"@en
+    ] ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Object ;
+        sh:minCount 1 ;
+        sh:message "Custodial relationship must be typed as gUFO Object"@en
+    ] ;
+    sh:property [
+        sh:path icac-custodial:hasCustodyBeginPoint ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Custodial relationship can have at most one begin point"@en
+    ] ;
+    sh:property [
+        sh:path icac-custodial:hasCustodyEndPoint ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Custodial relationship can have at most one end point"@en
+    ] ;
+    sh:property [
+        sh:path icac-custodial:inCustodyPhase ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class gufo:Phase ;
+        sh:message "Custodial relationship must be in exactly one phase"@en
+    ] ;
+    # Temporal consistency: begin must precede end
+    sh:sparql [
+        sh:message "Custody begin point must precede end point"@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icac-custodial" ;
+                sh:namespace "https://cacontology.projectvic.org/custodial#"^^xsd:anyURI
+            ]
+        ] ;
+        sh:select """
+            SELECT ?this
+            WHERE {
+                ?this icac-custodial:hasCustodyBeginPoint ?begin ;
+                      icac-custodial:hasCustodyEndPoint ?end .
+                FILTER (?begin >= ?end)
+            }
+        """
+    ] .
+
+# Base Custodial Relationship Shape (maintaining existing validations)
+icac-custodial:CustodialRelationshipShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-custodial:CustodialRelationship ;
+    rdfs:label "Custodial Relationship Shape"@en ;
+    rdfs:comment "Validation shape for custodial relationship instances."@en ;
+    sh:property [
+        sh:path icac-custodial:relationshipType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "parent" "guardian" "babysitter" "teacher" "coach" "mentor" "caregiver" "family_friend" "relative" "foster_parent" "step_parent" "neighbor" ) ;
+        sh:message "Custodial relationship must specify type from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-custodial:trustLevel ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "none" "minimal" "moderate" "high" "complete" "absolute" ) ;
+        sh:message "Custodial relationship must specify trust level from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-custodial:accessLevel ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "none" "supervised" "limited_unsupervised" "unsupervised" "unrestricted" "unsupervised_opportunity" ) ;
+        sh:message "Custodial relationship must specify access level from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-custodial:relationshipDuration ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 50.0 ;
+        sh:message "Relationship duration must be between 0 and 50 years."@en
+    ] ;
+    sh:property [
+        sh:path uco-core:startTime ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Custodial relationship may have a start time."@en
+    ] ;
+    sh:property [
+        sh:path uco-core:endTime ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Custodial relationship may have an end time."@en
+    ] .
+
+icac-custodial:CaregiverRelationshipShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-custodial:CaregiverRelationship ;
+    rdfs:label "Caregiver Relationship Shape"@en ;
+    rdfs:comment "Validation shape for caregiver relationship instances."@en ;
+    sh:property [
+        sh:path icac-custodial:caregivingResponsibilities ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "full_care" "partial_care" "supervision" "transportation" "educational_support" "medical_care" "temporary_care" "emergency_care" ) ;
+        sh:message "Caregiver relationship must specify caregiving responsibilities from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-custodial:supervisionLevel ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "constant" "frequent" "periodic" "minimal" "none" "as_needed" ) ;
+        sh:message "Caregiver relationship must specify supervision level from the allowed list."@en
+    ] .
+
+icac-custodial:NeighborRelationshipShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-custodial:NeighborRelationship ;
+    rdfs:label "Neighbor Relationship Shape"@en ;
+    rdfs:comment "Validation shape for neighbor relationship instances."@en ;
+    sh:property [
+        sh:path icac-custodial:residentialProximity ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "same_building" "same_floor" "adjacent_unit" "same_block" "same_neighborhood" "nearby" ) ;
+        sh:message "Neighbor relationship must specify residential proximity from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-custodial:accessFrequency ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "daily" "weekly" "monthly" "occasional" "rare" "regular" "irregular" ) ;
+        sh:message "Access frequency must be from the allowed list."@en
+    ] .
+
+icac-custodial:ResidentialProximityAccessShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-custodial:ResidentialProximityAccess ;
+    rdfs:label "Residential Proximity Access Shape"@en ;
+    rdfs:comment "Validation shape for residential proximity access instances."@en ;
+    sh:property [
+        sh:path icac-custodial:proximityType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "same_floor" "same_building" "adjacent_building" "same_complex" "same_street" "same_block" ) ;
+        sh:message "Proximity access must specify proximity type from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-custodial:buildingType ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "apartment_building" "condominium" "townhouse" "single_family" "duplex" "mobile_home" "dormitory" ) ;
+        sh:message "Building type must be from the allowed list."@en
+    ] .
+
+# =============================================================================
+# gUFO POSITION OF TRUST VALIDATION (Anti-Rigid Roles)
+# =============================================================================
+
+# Position of Trust Shape with gUFO Role validation
+icac-custodial:PositionOfTrustGUFOShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-custodial:PositionOfTrust ;
+    rdfs:label "gUFO Position of Trust Shape"@en ;
+    rdfs:comment "Validates position of trust with gUFO anti-rigid role constraints."@en ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Role ;
+        sh:minCount 1 ;
+        sh:message "Position of trust must be typed as gUFO Role (anti-rigid sortal)"@en
+    ] ;
+    sh:property [
+        sh:path icac-custodial:hasRoleBeginPoint ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Position of trust can have at most one begin point"@en
+    ] ;
+    sh:property [
+        sh:path icac-custodial:hasRoleEndPoint ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Position of trust can have at most one end point"@en
+    ] ;
+    # Role temporal consistency
+    sh:sparql [
+        sh:message "Role begin point must precede end point"@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icac-custodial" ;
+                sh:namespace "https://cacontology.projectvic.org/custodial#"^^xsd:anyURI
+            ]
+        ] ;
+        sh:select """
+            SELECT ?this
+            WHERE {
+                ?this icac-custodial:hasRoleBeginPoint ?begin ;
+                      icac-custodial:hasRoleEndPoint ?end .
+                FILTER (?begin >= ?end)
+            }
+        """
+    ] .
+
+# Authority Figure Validation with gUFO Roles
+icac-custodial:AuthorityFigureGUFOShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-custodial:AuthorityFigure ;
+    rdfs:label "gUFO Authority Figure Shape"@en ;
+    rdfs:comment "Validates authority figures as anti-rigid gUFO roles."@en ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Role ;
+        sh:minCount 1 ;
+        sh:message "Authority figure must be typed as gUFO Role (anti-rigid sortal)"@en
+    ] .
+
+# =============================================================================
+# gUFO TRUST VIOLATION VALIDATION (Events)
+# =============================================================================
+
+# Trust Violation Shape with gUFO Event validation
+icac-custodial:TrustViolationGUFOShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-custodial:TrustViolation ;
+    rdfs:label "gUFO Trust Violation Shape"@en ;
+    rdfs:comment "Validates trust violations as gUFO events with temporal boundaries."@en ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Event ;
+        sh:minCount 1 ;
+        sh:message "Trust violation must be typed as gUFO Event"@en
+    ] ;
+    sh:property [
+        sh:path icac-custodial:hasViolationBeginPoint ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Trust violation can have at most one begin point"@en
+    ] ;
+    sh:property [
+        sh:path icac-custodial:hasViolationEndPoint ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Trust violation can have at most one end point"@en
+    ] ;
+    sh:property [
+        sh:path icac-custodial:perpetratedBy ;
+        sh:minCount 1 ;
+        sh:class icac-custodial:AuthorityFigure ;
+        sh:message "Trust violation must be perpetrated by authority figure"@en
+    ] ;
+    # Event temporal consistency
+    sh:sparql [
+        sh:message "Violation begin point must precede end point"@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icac-custodial" ;
+                sh:namespace "https://cacontology.projectvic.org/custodial#"^^xsd:anyURI
+            ]
+        ] ;
+        sh:select """
+            SELECT ?this
+            WHERE {
+                ?this icac-custodial:hasViolationBeginPoint ?begin ;
+                      icac-custodial:hasViolationEndPoint ?end .
+                FILTER (?begin >= ?end)
+            }
+        """
+    ] .
+
+# Trust Violation Pattern Validation
+icac-custodial:TrustViolationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-custodial:TrustViolation ;
+    rdfs:label "Trust Violation Shape"@en ;
+    rdfs:comment "Validation shape for trust violation instances."@en ;
+    sh:property [
+        sh:path icac-custodial:violationType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "exploitation" "abuse" "neglect" "abandonment" "betrayal" "manipulation" "coercion" ) ;
+        sh:message "Trust violation must specify violation type from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-custodial:violationSeverity ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "minor" "moderate" "severe" "extreme" "catastrophic" ) ;
+        sh:message "Trust violation must specify severity from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-custodial:trustLevelBefore ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "none" "minimal" "moderate" "high" "complete" "absolute" ) ;
+        sh:message "Trust level before violation must be from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-custodial:trustLevelAfter ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "none" "minimal" "moderate" "high" "complete" "absolute" ) ;
+        sh:message "Trust level after violation must be from the allowed list."@en
+    ] .
+
+# =============================================================================
+# gUFO CUSTODY PHASE VALIDATION (Anti-Rigid Phases)
+# =============================================================================
+
+# Custody Phase Shape with gUFO Phase validation
+icac-custodial:CustodyPhaseGUFOShape rdf:type sh:NodeShape ;
+    sh:targetClass gufo:Phase ;
+    rdfs:label "gUFO Custody Phase Shape"@en ;
+    rdfs:comment "Validates custody phases as anti-rigid gUFO phases."@en ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Phase ;
+        sh:minCount 1 ;
+        sh:message "Custody phase must be typed as gUFO Phase (anti-rigid sortal)"@en
+    ] ;
+    # Phase transition validation
+    sh:sparql [
+        sh:message "Custody phases must follow valid transition sequence"@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icac-custodial" ;
+                sh:namespace "https://cacontology.projectvic.org/custodial#"^^xsd:anyURI
+            ]
+        ] ;
+        sh:select """
+            SELECT ?this
+            WHERE {
+                ?relationship icac-custodial:hasCustodyPhase ?this ;
+                              icac-custodial:hasCustodyPhase ?nextPhase .
+                ?this icac-custodial:precedesCustodyPhase ?nextPhase ;
+                      icac-custodial:hasCustodyEndPoint ?end1 .
+                ?nextPhase icac-custodial:hasCustodyBeginPoint ?begin2 .
+                FILTER (?end1 > ?begin2)
+            }
+        """
+    ] .
+
+# Active Custody Phase Validation
+icac-custodial:ActiveCustodyPhaseShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-custodial:ActiveCustodyPhase ;
+    rdfs:label "Active Custody Phase Shape"@en ;
+    rdfs:comment "Validates active custody phases."@en ;
+    sh:property [
+        sh:path icac-custodial:hasCustodyBeginPoint ;
+        sh:minCount 1 ;
+        sh:message "Active custody phase must have begin point"@en
+    ] .
+
+# Terminated Custody Phase Validation
+icac-custodial:TerminatedCustodyPhaseShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-custodial:TerminatedCustodyPhase ;
+    rdfs:label "Terminated Custody Phase Shape"@en ;
+    rdfs:comment "Validates terminated custody phases."@en ;
+    sh:property [
+        sh:path icac-custodial:hasCustodyEndPoint ;
+        sh:minCount 1 ;
+        sh:message "Terminated custody phase must have end point"@en
+    ] .
+
+# =============================================================================
+# gUFO CUSTODIAL SITUATION VALIDATION
+# =============================================================================
+
+# Custodial Situation Shape with gUFO Situation validation
+icac-custodial:CustodialSituationGUFOShape rdf:type sh:NodeShape ;
+    sh:targetClass gufo:Situation ;
+    rdfs:label "gUFO Custodial Situation Shape"@en ;
+    rdfs:comment "Validates custodial situations with gUFO constraints."@en ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Situation ;
+        sh:minCount 1 ;
+        sh:message "Custodial situation must be typed as gUFO Situation"@en
+    ] .
+
+# Trust Breach Situation Validation
+icac-custodial:TrustBreachSituationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-custodial:TrustBreachSituation ;
+    rdfs:label "Trust Breach Situation Shape"@en ;
+    rdfs:comment "Validates trust breach situations."@en ;
+    sh:sparql [
+        sh:message "Trust breach situation must be created by trust violation event"@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icac-custodial" ;
+                sh:namespace "https://cacontology.projectvic.org/custodial#"^^xsd:anyURI
+            ]
+        ] ;
+        sh:select """
+            SELECT ?this
+            WHERE {
+                ?this a icac-custodial:TrustBreachSituation .
+                FILTER NOT EXISTS {
+                    ?violation a icac-custodial:TrustViolation ;
+                              icac-custodial:createsCustodialSituation ?this .
+                }
+            }
+        """
+    ] .
+
+# =============================================================================
+# gUFO FOUNDATIONAL TYPE COMPLIANCE
+# =============================================================================
+
+# gUFO Type Consistency Shape for Custodial Domain
+icac-custodial:CustodialFoundationalTypeShape rdf:type sh:NodeShape ;
+    sh:targetNode icac-custodial:CustodialRelationship ;
+    rdfs:label "Custodial gUFO Foundational Type Consistency Shape"@en ;
+    rdfs:comment "Validates proper gUFO foundational typing for custodial entities."@en ;
+    sh:sparql [
+        sh:message "All custodial gUFO entities must have proper foundational typing"@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "gufo" ;
+                sh:namespace "http://purl.org/nemo/gufo#"^^xsd:anyURI
+            ] , [
+                sh:prefix "icac-custodial" ;
+                sh:namespace "https://cacontology.projectvic.org/custodial#"^^xsd:anyURI
+            ]
+        ] ;
+        sh:select """
+            SELECT ?entity
+            WHERE {
+                ?entity a icac-custodial:CustodialRelationship .
+                FILTER NOT EXISTS { ?entity a gufo:Object . }
+            } UNION {
+                ?entity a icac-custodial:PositionOfTrust .
+                FILTER NOT EXISTS { ?entity a gufo:Role . }
+            } UNION {
+                ?entity a icac-custodial:TrustViolation .
+                FILTER NOT EXISTS { ?entity a gufo:Event . }
+            } UNION {
+                ?entity a icac-custodial:ActiveCustodyPhase .
+                FILTER NOT EXISTS { ?entity a gufo:Phase . }
+            }
+        """
+    ] .
+
+# =============================================================================
+# ROLE EXCLUSIVITY AND RELATIONSHIP VALIDATION
+# =============================================================================
+
+# Authority Role Exclusivity Validation
+icac-custodial:AuthorityRoleExclusivityShape rdf:type sh:NodeShape ;
+    sh:targetClass uco-identity:Person ;
+    rdfs:label "Authority Role Exclusivity Shape"@en ;
+    rdfs:comment "Validates authority role exclusivity constraints."@en ;
+    sh:sparql [
+        sh:message "Person cannot simultaneously hold conflicting authority roles in same custodial context"@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icac-custodial" ;
+                sh:namespace "https://cacontology.projectvic.org/custodial#"^^xsd:anyURI
+            ]
+        ] ;
+        sh:select """
+            SELECT ?this
+            WHERE {
+                ?this icac-custodial:hasAuthority ?role1 ;
+                      icac-custodial:hasAuthority ?role2 .
+                ?role1 a icac-custodial:Guardian .
+                ?role2 a icac-custodial:Teacher .
+                ?custodialRel1 icac-custodial:involvesCustodian ?this .
+                ?custodialRel2 icac-custodial:involvesCustodian ?this .
+                ?custodialRel1 icac-custodial:involvesChild ?child .
+                ?custodialRel2 icac-custodial:involvesChild ?child .
+                FILTER (?role1 != ?role2)
+            }
+        """
+    ] .
+
+# =============================================================================
+# TEMPORAL CONSISTENCY VALIDATION
+# =============================================================================
+
+# Custodial Temporal Consistency
+icac-custodial:CustodialTemporalConsistencyShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-custodial:CustodialRelationship ;
+    rdfs:label "Custodial Temporal Consistency Shape"@en ;
+    rdfs:comment "Validates temporal consistency across custodial relationships and events."@en ;
+    sh:sparql [
+        sh:message "Trust violations must occur within active custody timeframe"@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icac-custodial" ;
+                sh:namespace "https://cacontology.projectvic.org/custodial#"^^xsd:anyURI
+            ]
+        ] ;
+        sh:select """
+            SELECT ?this
+            WHERE {
+                ?this icac-custodial:hasCustodyBeginPoint ?custodyBegin ;
+                      icac-custodial:hasCustodyEndPoint ?custodyEnd .
+                ?violation icac-custodial:violatesRelationship ?this ;
+                          icac-custodial:hasViolationBeginPoint ?violationBegin .
+                FILTER (?violationBegin < ?custodyBegin || ?violationBegin > ?custodyEnd)
+            }
+        """
+    ] .
+
+# =============================================================================
+# CROSS-REFERENCE VALIDATION
+# =============================================================================
+
+# Custodial Cross Reference Validation
+icac-custodial:CustodialCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-custodial:CustodialRelationship ;
+    rdfs:label "Custodial Cross Reference Shape"@en ;
+    rdfs:comment "Validates cross-references between custodial relationships and related entities."@en ;
+    sh:sparql [
+        sh:message "Custodial relationship must involve both a custodian and a child."@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icac-custodial" ;
+                sh:namespace "https://cacontology.projectvic.org/custodial#"^^xsd:anyURI
+            ]
+        ] ;
+        sh:select """
+            SELECT ?this
+            WHERE {
+                ?this a icac-custodial:CustodialRelationship .
+                FILTER NOT EXISTS {
+                    ?this icac-custodial:involvesCustodian ?custodian ;
+                          icac-custodial:involvesChild ?child .
+                }
+            }
+        """
+    ] .
+
+# Trust Level Consistency Shape
+icac-custodial:TrustLevelConsistencyShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-custodial:TrustViolation ;
+    rdfs:label "Trust Level Consistency Shape"@en ;
+    rdfs:comment "Validates trust level consistency in violations."@en ;
+    sh:sparql [
+        sh:message "Trust level after violation should not be higher than before violation."@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icac-custodial" ;
+                sh:namespace "https://cacontology.projectvic.org/custodial#"^^xsd:anyURI
+            ]
+        ] ;
+        sh:select """
+            SELECT ?this
+            WHERE {
+                ?this icac-custodial:trustLevelBefore ?before ;
+                      icac-custodial:trustLevelAfter ?after .
+                FILTER (
+                    (?before = "none" && ?after IN ("minimal", "moderate", "high", "complete", "absolute")) ||
+                    (?before = "minimal" && ?after IN ("moderate", "high", "complete", "absolute")) ||
+                    (?before = "moderate" && ?after IN ("high", "complete", "absolute")) ||
+                    (?before = "high" && ?after IN ("complete", "absolute")) ||
+                    (?before = "complete" && ?after = "absolute")
+                )
+            }
+        """
+    ] .
+
+# =============================================================================
+# PARTICIPATION VALIDATION
+# =============================================================================
+
+# Custodial Participation Completeness Shape
+icac-custodial:CustodialParticipationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-custodial:CustodialRelationship ;
+    rdfs:label "Custodial Participation Shape"@en ;
+    rdfs:comment "Validates coherent participation in custodial relationships."@en ;
+    sh:sparql [
+        sh:message "Custodial relationship must have coherent role and event participation"@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icac-custodial" ;
+                sh:namespace "https://cacontology.projectvic.org/custodial#"^^xsd:anyURI
+            ] , [
+                sh:prefix "gufo" ;
+                sh:namespace "http://purl.org/nemo/gufo#"^^xsd:anyURI
+            ]
+        ] ;
+        sh:select """
+            SELECT ?this
+            WHERE {
+                ?this icac-custodial:involvesCustodian ?custodian .
+                ?custodian icac-custodial:hasAuthority ?authorityRole .
+                FILTER NOT EXISTS {
+                    ?authorityRole a gufo:Role .
+                }
+            }
+        """
+    ] .
+
+# =============================================================================
+# AUTHORITY POSITION SHAPES
+# =============================================================================
+
+icac-custodial:AuthorityPositionShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-custodial:AuthorityPosition ;
+    rdfs:label "Authority Position Shape"@en ;
+    rdfs:comment "Validation shape for authority position instances."@en ;
+    sh:property [
+        sh:path icac-custodial:positionType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "educational" "religious" "recreational" "medical" "legal" "social_services" "family" "community" ) ;
+        sh:message "Authority position must specify position type from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-custodial:authorityLevel ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "low" "moderate" "high" "absolute" "institutional" "legal" ) ;
+        sh:message "Authority position must specify authority level from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-custodial:positionDuration ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 50.0 ;
+        sh:message "Position duration must be between 0 and 50 years."@en
+    ] .
+
+icac-custodial:PositionOfTrustShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-custodial:PositionOfTrust ;
+    rdfs:label "Position of Trust Shape"@en ;
+    rdfs:comment "Validation shape for position of trust instances."@en ;
+    sh:property [
+        sh:path icac-custodial:trustBasis ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "institutional" "professional" "personal" "legal" "community" "religious" "educational" ) ;
+        sh:message "Position of trust must specify trust basis from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-custodial:trustScope ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "limited" "moderate" "broad" "comprehensive" "absolute" ) ;
+        sh:message "Position of trust must specify trust scope from the allowed list."@en
+    ] .
+
+# =============================================================================
+# BACKGROUND CHECK AND AUTHORIZATION SHAPES
+# =============================================================================
+
+icac-custodial:BackgroundCheckShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-custodial:BackgroundCheck ;
+    rdfs:label "Background Check Shape"@en ;
+    rdfs:comment "Validation shape for background check instances."@en ;
+    sh:property [
+        sh:path icac-custodial:checkType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "criminal_history" "employment_verification" "reference_check" "education_verification" "comprehensive" "basic" "enhanced" ) ;
+        sh:message "Background check must specify check type from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-custodial:checkResult ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "passed" "failed" "conditional" "pending" "incomplete" "expired" ) ;
+        sh:message "Background check must specify result from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-custodial:checkDate ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Background check must specify check date."@en
+    ] ;
+    sh:property [
+        sh:path icac-custodial:expirationDate ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Background check may have an expiration date."@en
+    ] .
+
+icac-custodial:AuthorizationProcessShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-custodial:AuthorizationProcess ;
+    rdfs:label "Authorization Process Shape"@en ;
+    rdfs:comment "Validation shape for authorization process instances."@en ;
+    sh:property [
+        sh:path icac-custodial:authorizationType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "employment" "volunteer" "contractor" "temporary" "emergency" "provisional" "full" ) ;
+        sh:message "Authorization process must specify authorization type from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-custodial:authorizationStatus ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "pending" "approved" "denied" "suspended" "revoked" "expired" "conditional" ) ;
+        sh:message "Authorization process must specify status from the allowed list."@en
+    ] .
+
+# =============================================================================
+# SUPERVISION FAILURE SHAPES
+# =============================================================================
+
+icac-custodial:SupervisionFailureShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-custodial:SupervisionFailure ;
+    rdfs:label "Supervision Failure Shape"@en ;
+    rdfs:comment "Validation shape for supervision failure instances."@en ;
+    sh:property [
+        sh:path icac-custodial:failureType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "inadequate_oversight" "absent_supervision" "negligent_supervision" "failed_monitoring" "policy_violation" "procedural_failure" ) ;
+        sh:message "Supervision failure must specify failure type from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-custodial:failureSeverity ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "minor" "moderate" "severe" "critical" "catastrophic" ) ;
+        sh:message "Supervision failure must specify severity from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-custodial:contributingFactors ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 10 ;
+        sh:maxLength 500 ;
+        sh:message "Contributing factors should be between 10 and 500 characters when provided."@en
+    ] .
+
+# =============================================================================
+# OBJECT PROPERTY SHAPES
+# =============================================================================
+
+icac-custodial:InvolvesCustodianShape rdf:type sh:PropertyShape ;
+    sh:path icac-custodial:involvesCustodian ;
+    sh:name "involves custodian" ;
+    sh:description "Links custodial relationship to custodian" ;
+    sh:class uco-identity:Person ;
+    sh:minCount 1 ;
+    sh:maxCount 1 .
+
+icac-custodial:InvolvesChildShape rdf:type sh:PropertyShape ;
+    sh:path icac-custodial:involvesChild ;
+    sh:name "involves child" ;
+    sh:description "Links custodial relationship to child" ;
+    sh:class uco-identity:Person ;
+    sh:minCount 1 ;
+    sh:maxCount 1 .
+
+icac-custodial:ViolatesPositionShape rdf:type sh:PropertyShape ;
+    sh:path icac-custodial:violatesPosition ;
+    sh:name "violates position" ;
+    sh:description "Links abuse to position of trust violated" ;
+    sh:class icac-custodial:PositionOfTrust ;
+    sh:minCount 0 .
+
+icac-custodial:RequiresAuthorizationShape rdf:type sh:PropertyShape ;
+    sh:path icac-custodial:requiresAuthorization ;
+    sh:name "requires authorization" ;
+    sh:description "Links position to required authorization" ;
+    sh:class icac-custodial:AuthorizationProcess ;
+    sh:minCount 0 .
+
+icac-custodial:SubjectToBackgroundCheckShape rdf:type sh:PropertyShape ;
+    sh:path icac-custodial:subjectToBackgroundCheck ;
+    sh:name "subject to background check" ;
+    sh:description "Links person to background check" ;
+    sh:class icac-custodial:BackgroundCheck ;
+    sh:minCount 0 .
+
+icac-custodial:ResultsInSupervisionFailureShape rdf:type sh:PropertyShape ;
+    sh:path icac-custodial:resultsInSupervisionFailure ;
+    sh:name "results in supervision failure" ;
+    sh:description "Links abuse to supervision failure" ;
+    sh:class icac-custodial:SupervisionFailure ;
+    sh:minCount 0 .
+
+# =============================================================================
+# TEMPORAL VALIDATION SHAPES
+# =============================================================================
+
+icac-custodial:TemporalValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-custodial:CustodialRelationship ;
+    rdfs:label "Temporal Validation Shape"@en ;
+    rdfs:comment "Validates temporal consistency in custodial relationships."@en ;
+    sh:sparql [
+        sh:message "Start time must be before end time when both are specified."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this uco-core:startTime ?start ;
+                      uco-core:endTime ?end .
+                FILTER (?start >= ?end)
+            }
+        """
+    ] .
+
+icac-custodial:BackgroundCheckValidityShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-custodial:BackgroundCheck ;
+    rdfs:label "Background Check Validity Shape"@en ;
+    rdfs:comment "Validates background check temporal consistency."@en ;
+    sh:sparql [
+        sh:message "Check date must be before expiration date when both are specified."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-custodial:checkDate ?checkDate ;
+                      icac-custodial:expirationDate ?expiration .
+                FILTER (?checkDate >= ?expiration)
+            }
+        """
+    ] .
+
+# =============================================================================
+# DATA QUALITY SHAPES
+# =============================================================================
+
+icac-custodial:DataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-custodial:CustodialRelationship ;
+    rdfs:label "Data Quality Shape"@en ;
+    rdfs:comment "Validates data quality for custodial relationships."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 5 ;
+        sh:maxLength 200 ;
+        sh:message "Label should be between 5 and 200 characters when provided."@en
+    ] ;
+    sh:property [
+        sh:path rdfs:comment ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 10 ;
+        sh:maxLength 1000 ;
+        sh:message "Comment should be between 10 and 1000 characters when provided."@en
+    ] . 

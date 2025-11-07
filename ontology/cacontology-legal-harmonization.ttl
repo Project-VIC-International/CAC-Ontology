@@ -1,0 +1,557 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core#> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity#> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location#> .
+
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-legal: <https://cacontology.projectvic.org/legal-harmonization#> .
+
+# =============================================================================
+# ICAC LEGAL HARMONIZATION ONTOLOGY
+# Enhanced with gUFO (gentle Unified Foundational Ontology) integration
+# =============================================================================
+
+<https://cacontology.projectvic.org/legal-harmonization> rdf:type owl:Ontology ;
+    rdfs:label "CAC Legal Harmonization Ontology"@en ;
+    rdfs:comment "An ontology for modeling international legal frameworks, policy harmonization, and CSAM legislation analysis across 196 countries based on ICMEC's Global Review. Enhanced with gUFO (gentle Unified Foundational Ontology) integration for improved semantic precision and validation capabilities."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/legal-harmonization/1.1> ;
+    owl:versionInfo "1.1.0" ;
+    owl:imports <http://purl.org/nemo/gufo#> .
+
+# =============================================================================
+# LEGAL FRAMEWORK ANALYSIS CLASSES (gUFO: Kind - legal documents/entities)
+# =============================================================================
+
+icac-legal:CSAMModelLaw rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "CSAM Model Law"@en ;
+    rdfs:comment "Model legislation for Child Sexual Abuse Material regulations."@en .
+
+icac-legal:GlobalLegalReview rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Global Legal Review"@en ;
+    rdfs:comment "Comprehensive review of child protection legislation across countries."@en .
+
+icac-legal:LegislativeAssessment rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Legislative Assessment"@en ;
+    rdfs:comment "Assessment of existing child protection legislation."@en .
+
+icac-legal:LegalFrameworkGap rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Legal Framework Gap"@en ;
+    rdfs:comment "Identified gap in legal framework coverage."@en .
+
+icac-legal:LegalCompliance rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Situation ;
+    rdf:type gufo:SituationType ;
+    rdfs:label "Legal Compliance"@en ;
+    rdfs:comment "Situation of compliance with international standards."@en .
+
+# =============================================================================
+# INTERNATIONAL LEGAL COOPERATION CLASSES (gUFO: Kind - legal instruments)
+# =============================================================================
+
+icac-legal:MutualLegalAssistance rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Mutual Legal Assistance"@en ;
+    rdfs:comment "Framework for mutual legal assistance between countries."@en .
+
+icac-legal:ExtraditionAgreement rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Extradition Agreement"@en ;
+    rdfs:comment "Agreement enabling extradition for child protection crimes."@en .
+
+icac-legal:JurisdictionalCoordination rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Jurisdictional Coordination"@en ;
+    rdfs:comment "Framework for coordinating across legal jurisdictions."@en .
+
+icac-legal:TreatyFramework rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Treaty Framework"@en ;
+    rdfs:comment "International treaty framework for child protection."@en .
+
+# =============================================================================
+# LEGAL PROCESS CLASSES (gUFO: EventType - legal processes)
+# =============================================================================
+
+icac-legal:PolicyHarmonization rdf:type owl:Class ;
+    rdfs:subClassOf uco-action:Action, gufo:Event ;
+    rdf:type gufo:EventType ;
+    rdfs:label "Policy Harmonization"@en ;
+    rdfs:comment "Process of harmonizing policies across jurisdictions."@en .
+
+icac-legal:InternationalLawEnforcement rdf:type owl:Class ;
+    rdfs:subClassOf uco-action:Action, gufo:Event ;
+    rdf:type gufo:EventType ;
+    rdfs:label "International Law Enforcement"@en ;
+    rdfs:comment "Law enforcement cooperation across international boundaries."@en .
+
+icac-legal:LegalReform rdf:type owl:Class ;
+    rdfs:subClassOf uco-action:Action, gufo:Event ;
+    rdf:type gufo:EventType ;
+    rdfs:label "Legal Reform"@en ;
+    rdfs:comment "Process of reforming child protection legislation."@en .
+
+icac-legal:PolicyDevelopment rdf:type owl:Class ;
+    rdfs:subClassOf uco-action:Action, gufo:Event ;
+    rdf:type gufo:EventType ;
+    rdfs:label "Policy Development"@en ;
+    rdfs:comment "Development of child protection policies."@en .
+
+icac-legal:LegislativeDrafting rdf:type owl:Class ;
+    rdfs:subClassOf uco-action:Action, gufo:Event ;
+    rdf:type gufo:EventType ;
+    rdfs:label "Legislative Drafting"@en ;
+    rdfs:comment "Process of drafting child protection legislation."@en .
+
+icac-legal:CapacityBuilding rdf:type owl:Class ;
+    rdfs:subClassOf uco-action:Action, gufo:Event ;
+    rdf:type gufo:EventType ;
+    rdfs:label "Legal Capacity Building"@en ;
+    rdfs:comment "Building legal capacity for child protection."@en .
+
+icac-legal:TechnicalAssistance rdf:type owl:Class ;
+    rdfs:subClassOf uco-action:Action, gufo:Event ;
+    rdf:type gufo:EventType ;
+    rdfs:label "Technical Assistance"@en ;
+    rdfs:comment "Technical assistance for legal framework development."@en .
+
+# =============================================================================
+# LEGISLATION TYPES AND CATEGORIES (gUFO: Kind - legal instruments)
+# =============================================================================
+
+icac-legal:CSAMCriminalization rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "CSAM Criminalization"@en ;
+    rdfs:comment "Legislation criminalizing child sexual abuse material."@en .
+
+icac-legal:OnlineGroomingLaw rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Online Grooming Law"@en ;
+    rdfs:comment "Legislation addressing online grooming behaviors."@en .
+
+icac-legal:ChildTraffickingLaw rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Child Trafficking Law"@en ;
+    rdfs:comment "Legislation addressing child trafficking crimes."@en .
+
+icac-legal:VictimProtectionLaw rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Victim Protection Law"@en ;
+    rdfs:comment "Legislation protecting child victims."@en .
+
+icac-legal:MandatoryReportingLaw rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Mandatory Reporting Law"@en ;
+    rdfs:comment "Legislation requiring mandatory reporting of child abuse."@en .
+
+# =============================================================================
+# LEGAL STANDARDS AND BENCHMARKS (gUFO: Kind - normative objects)
+# =============================================================================
+
+icac-legal:InternationalStandard rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "International Standard"@en ;
+    rdfs:comment "International standard for child protection legislation."@en .
+
+icac-legal:BestPractice rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Legal Best Practice"@en ;
+    rdfs:comment "Best practice in child protection legislation."@en .
+
+icac-legal:MinimumStandard rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Minimum Standard"@en ;
+    rdfs:comment "Minimum standard for child protection laws."@en .
+
+icac-legal:ComplianceBenchmark rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Compliance Benchmark"@en ;
+    rdfs:comment "Benchmark for measuring legal compliance."@en .
+
+# =============================================================================
+# ASSESSMENT AND METRICS CLASSES (gUFO: Kind - measurement objects)
+# =============================================================================
+
+icac-legal:LegalCoverageAssessment rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Legal Coverage Assessment"@en ;
+    rdfs:comment "Assessment of legal coverage for child protection."@en .
+
+icac-legal:ComplianceMetrics rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Compliance Metrics"@en ;
+    rdfs:comment "Metrics for measuring legal compliance."@en .
+
+icac-legal:HarmonizationProgress rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Harmonization Progress"@en ;
+    rdfs:comment "Progress measurement for policy harmonization."@en .
+
+icac-legal:LegalEffectiveness rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Legal Effectiveness"@en ;
+    rdfs:comment "Assessment of legal framework effectiveness."@en .
+
+# =============================================================================
+# REGIONAL AND NATIONAL CONTEXTS (gUFO: Kind - legal frameworks)
+# =============================================================================
+
+icac-legal:RegionalFramework rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Regional Framework"@en ;
+    rdfs:comment "Regional legal framework for child protection."@en .
+
+icac-legal:NationalLegislation rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "National Legislation"@en ;
+    rdfs:comment "National child protection legislation."@en .
+
+icac-legal:JurisdictionalVariation rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Jurisdictional Variation"@en ;
+    rdfs:comment "Variation in legal approaches across jurisdictions."@en .
+
+icac-legal:LegalSystemCompatibility rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Situation ;
+    rdf:type gufo:SituationType ;
+    rdfs:label "Legal System Compatibility"@en ;
+    rdfs:comment "Compatibility situation between different legal systems."@en .
+
+# =============================================================================
+# gUFO TEMPORAL PROPERTIES
+# =============================================================================
+
+# Temporal boundary properties (from gUFO)
+# Note: These are imported from gUFO but documented here for clarity
+
+# gufo:hasBeginPointInXSDDateTimeStamp - Start time for legal processes
+# gufo:hasEndPointInXSDDateTimeStamp - End time for legal processes
+
+# =============================================================================
+# gUFO QUALITY ASPECTS FOR LEGAL HARMONIZATION
+# =============================================================================
+
+# Legal Effectiveness and Impact Quality Aspects
+icac-legal:hasLegalEffectiveness rdf:type owl:DatatypeProperty ;
+    rdfs:label "has legal effectiveness"@en ;
+    rdfs:comment "Legal effectiveness assessment (ineffective, limited, moderate, effective, highly_effective) - gUFO quality aspect."@en ;
+    rdfs:domain [ owl:unionOf ( icac-legal:NationalLegislation icac-legal:RegionalFramework icac-legal:TreatyFramework ) ] ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+icac-legal:hasComplianceLevel rdf:type owl:DatatypeProperty ;
+    rdfs:label "has compliance level"@en ;
+    rdfs:comment "Compliance level assessment (0.0 to 1.0) - gUFO quality aspect."@en ;
+    rdfs:domain icac-legal:LegalCompliance ;
+    rdfs:range xsd:double ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+icac-legal:hasHarmonizationDegree rdf:type owl:DatatypeProperty ;
+    rdfs:label "has harmonization degree"@en ;
+    rdfs:comment "Harmonization degree across jurisdictions (minimal, partial, substantial, comprehensive, complete) - gUFO quality aspect."@en ;
+    rdfs:domain icac-legal:PolicyHarmonization ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+icac-legal:hasImplementationQuality rdf:type owl:DatatypeProperty ;
+    rdfs:label "has implementation quality"@en ;
+    rdfs:comment "Quality of legislation implementation (poor, fair, good, excellent, exemplary) - gUFO quality aspect."@en ;
+    rdfs:domain icac-legal:NationalLegislation ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+# Legal Coverage and Scope Quality Aspects
+icac-legal:hasCoverageCompleteness rdf:type owl:DatatypeProperty ;
+    rdfs:label "has coverage completeness"@en ;
+    rdfs:comment "Completeness of legal coverage (0.0 to 1.0) - gUFO quality aspect."@en ;
+    rdfs:domain icac-legal:LegalCoverageAssessment ;
+    rdfs:range xsd:double ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+icac-legal:hasGapSeverity rdf:type owl:DatatypeProperty ;
+    rdfs:label "has gap severity"@en ;
+    rdfs:comment "Severity level of legal framework gaps (minor, moderate, major, critical, systemic) - gUFO quality aspect."@en ;
+    rdfs:domain icac-legal:LegalFrameworkGap ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+icac-legal:hasLegalRobustness rdf:type owl:DatatypeProperty ;
+    rdfs:label "has legal robustness"@en ;
+    rdfs:comment "Robustness of legal framework (weak, moderate, strong, very_strong, comprehensive) - gUFO quality aspect."@en ;
+    rdfs:domain [ owl:unionOf ( icac-legal:NationalLegislation icac-legal:RegionalFramework ) ] ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+# International Cooperation Quality Aspects
+icac-legal:hasCooperationIntensity rdf:type owl:DatatypeProperty ;
+    rdfs:label "has cooperation intensity"@en ;
+    rdfs:comment "Intensity of international cooperation (minimal, moderate, substantial, intensive, comprehensive) - gUFO quality aspect."@en ;
+    rdfs:domain icac-legal:InternationalLawEnforcement ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+icac-legal:hasTreatyStrength rdf:type owl:DatatypeProperty ;
+    rdfs:label "has treaty strength"@en ;
+    rdfs:comment "Strength of treaty framework (weak, moderate, strong, binding, comprehensive) - gUFO quality aspect."@en ;
+    rdfs:domain icac-legal:TreatyFramework ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+icac-legal:hasExtraditionEfficiency rdf:type owl:DatatypeProperty ;
+    rdfs:label "has extradition efficiency"@en ;
+    rdfs:comment "Efficiency of extradition processes (0.0 to 1.0) - gUFO quality aspect."@en ;
+    rdfs:domain icac-legal:ExtraditionAgreement ;
+    rdfs:range xsd:double ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+# Reform and Development Quality Aspects
+icac-legal:hasReformUrgency rdf:type owl:DatatypeProperty ;
+    rdfs:label "has reform urgency"@en ;
+    rdfs:comment "Urgency level for legal reform (low, moderate, high, urgent, critical) - gUFO quality aspect."@en ;
+    rdfs:domain icac-legal:LegalReform ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+icac-legal:hasDevelopmentProgress rdf:type owl:DatatypeProperty ;
+    rdfs:label "has development progress"@en ;
+    rdfs:comment "Progress in policy development (0.0 to 1.0) - gUFO quality aspect."@en ;
+    rdfs:domain icac-legal:PolicyDevelopment ;
+    rdfs:range xsd:double ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+icac-legal:hasCapacityLevel rdf:type owl:DatatypeProperty ;
+    rdfs:label "has capacity level"@en ;
+    rdfs:comment "Legal capacity level (insufficient, basic, adequate, strong, advanced) - gUFO quality aspect."@en ;
+    rdfs:domain icac-legal:CapacityBuilding ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+# Assessment and Validation Quality Aspects
+icac-legal:hasAssessmentReliability rdf:type owl:DatatypeProperty ;
+    rdfs:label "has assessment reliability"@en ;
+    rdfs:comment "Reliability of legislative assessment (0.0 to 1.0) - gUFO quality aspect."@en ;
+    rdfs:domain icac-legal:LegislativeAssessment ;
+    rdfs:range xsd:double ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+icac-legal:hasStandardCompliance rdf:type owl:DatatypeProperty ;
+    rdfs:label "has standard compliance"@en ;
+    rdfs:comment "Compliance with international standards (non_compliant, partially_compliant, substantially_compliant, fully_compliant) - gUFO quality aspect."@en ;
+    rdfs:domain [ owl:unionOf ( icac-legal:InternationalStandard icac-legal:BestPractice ) ] ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+# Data Quality Aspects (Multi-domain)
+icac-legal:hasDataQuality rdf:type owl:DatatypeProperty ;
+    rdfs:label "has data quality"@en ;
+    rdfs:comment "Data quality assessment (poor, fair, good, excellent, validated) - gUFO quality aspect."@en ;
+    rdfs:domain [ 
+        owl:unionOf ( 
+            icac-legal:GlobalLegalReview 
+            icac-legal:LegislativeAssessment 
+            icac-legal:ComplianceMetrics 
+        ) 
+    ] ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+# =============================================================================
+# gUFO PARTICIPATION AND PART-WHOLE RELATIONSHIPS
+# =============================================================================
+
+# Participation relationships (from gUFO)
+icac-legal:participatesIn rdf:type owl:ObjectProperty ;
+    rdfs:label "participates in"@en ;
+    rdfs:comment "Links countries or organizations to legal harmonization activities they participate in - gUFO participation relation."@en ;
+    rdfs:domain [ owl:unionOf ( uco-location:Location uco-identity:Organization ) ] ;
+    rdfs:range [ owl:unionOf ( icac-legal:PolicyHarmonization icac-legal:InternationalLawEnforcement icac-legal:TechnicalAssistance ) ] ;
+    rdfs:subPropertyOf gufo:participatedIn .
+
+icac-legal:isAssessedBy rdf:type owl:ObjectProperty ;
+    rdfs:label "is assessed by"@en ;
+    rdfs:comment "Links legislation to assessment activities - gUFO participation relation."@en ;
+    rdfs:domain icac-legal:NationalLegislation ;
+    rdfs:range icac-legal:LegislativeAssessment ;
+    rdfs:subPropertyOf gufo:participatedIn .
+
+# Part-whole relationships for legal frameworks
+icac-legal:isComponentOf rdf:type owl:ObjectProperty ;
+    rdfs:label "is component of"@en ;
+    rdfs:comment "Links legislation to larger legal frameworks - gUFO part-whole relation."@en ;
+    rdfs:domain icac-legal:NationalLegislation ;
+    rdfs:range [ owl:unionOf ( icac-legal:RegionalFramework icac-legal:TreatyFramework ) ] ;
+    rdfs:subPropertyOf gufo:isComponentOf .
+
+# Qualified relations for complex legal situations
+icac-legal:standsInQualifiedCompliance rdf:type owl:ObjectProperty ;
+    rdfs:label "stands in qualified compliance"@en ;
+    rdfs:comment "Links entities to qualified compliance situations - gUFO qualified relation."@en ;
+    rdfs:domain [ owl:unionOf ( icac-legal:NationalLegislation uco-location:Location ) ] ;
+    rdfs:range gufo:ParticipationSituation .
+
+icac-legal:concernsLegalFramework rdf:type owl:ObjectProperty ;
+    rdfs:label "concerns legal framework"@en ;
+    rdfs:comment "Links compliance situations to the legal frameworks involved - gUFO qualified relation."@en ;
+    rdfs:domain gufo:ParticipationSituation ;
+    rdfs:range icac-legal:NationalLegislation .
+
+# =============================================================================
+# ORIGINAL PROPERTIES FOR LEGAL DATA
+# =============================================================================
+
+icac-legal:countriesAnalyzed rdf:type owl:DatatypeProperty ;
+    rdfs:domain icac-legal:GlobalLegalReview ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "countries analyzed"@en ;
+    rdfs:comment "Number of countries included in legal analysis."@en .
+
+icac-legal:legalAlignmentLevel rdf:type owl:DatatypeProperty ;
+    rdfs:domain icac-legal:LegalCompliance ;
+    rdfs:range xsd:string ;
+    rdfs:label "legal alignment level"@en ;
+    rdfs:comment "Level of alignment with international standards (none, partial, substantial, full)."@en .
+
+icac-legal:legislativeCompliance rdf:type owl:DatatypeProperty ;
+    rdfs:domain icac-legal:LegislativeAssessment ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "legislative compliance"@en ;
+    rdfs:comment "Compliance score with model legislation (0.0-1.0)."@en .
+
+icac-legal:policyGapSeverity rdf:type owl:DatatypeProperty ;
+    rdfs:domain icac-legal:LegalFrameworkGap ;
+    rdfs:range xsd:string ;
+    rdfs:label "policy gap severity"@en ;
+    rdfs:comment "Severity of identified policy gap (minor, moderate, major, critical)."@en .
+
+icac-legal:harmonizationProgress rdf:type owl:DatatypeProperty ;
+    rdfs:domain icac-legal:HarmonizationProgress ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "harmonization progress"@en ;
+    rdfs:comment "Progress toward policy harmonization (0.0-1.0)."@en .
+
+icac-legal:implementationStatus rdf:type owl:DatatypeProperty ;
+    rdfs:domain icac-legal:NationalLegislation ;
+    rdfs:range xsd:string ;
+    rdfs:label "implementation status"@en ;
+    rdfs:comment "Status of legislation implementation (drafted, enacted, enforced)."@en .
+
+icac-legal:effectivenessScore rdf:type owl:DatatypeProperty ;
+    rdfs:domain icac-legal:LegalEffectiveness ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "effectiveness score"@en ;
+    rdfs:comment "Effectiveness score of legal framework (0.0-1.0)."@en .
+
+icac-legal:coveragePercentage rdf:type owl:DatatypeProperty ;
+    rdfs:domain icac-legal:LegalCoverageAssessment ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "coverage percentage"@en ;
+    rdfs:comment "Percentage of legal coverage achieved (0.0-100.0)."@en .
+
+icac-legal:reformPriority rdf:type owl:DatatypeProperty ;
+    rdfs:domain icac-legal:LegalReform ;
+    rdfs:range xsd:string ;
+    rdfs:label "reform priority"@en ;
+    rdfs:comment "Priority level for legal reform (low, medium, high, urgent)."@en .
+
+icac-legal:legalSystemType rdf:type owl:DatatypeProperty ;
+    rdfs:domain icac-legal:NationalLegislation ;
+    rdfs:range xsd:string ;
+    rdfs:label "legal system type"@en ;
+    rdfs:comment "Type of legal system (common_law, civil_law, religious_law, mixed)."@en .
+
+# =============================================================================
+# ORIGINAL OBJECT PROPERTIES FOR LEGAL RELATIONSHIPS
+# =============================================================================
+
+icac-legal:appliesToCountry rdf:type owl:ObjectProperty ;
+    rdfs:domain icac-legal:NationalLegislation ;
+    rdfs:range uco-location:Location ;
+    rdfs:label "applies to country"@en ;
+    rdfs:comment "Country to which the legislation applies."@en .
+
+icac-legal:assessedBy rdf:type owl:ObjectProperty ;
+    rdfs:domain icac-legal:NationalLegislation ;
+    rdfs:range icac-legal:LegislativeAssessment ;
+    rdfs:label "assessed by"@en ;
+    rdfs:comment "Assessment conducted on the legislation."@en .
+
+icac-legal:identifiesGap rdf:type owl:ObjectProperty ;
+    rdfs:domain icac-legal:LegislativeAssessment ;
+    rdfs:range icac-legal:LegalFrameworkGap ;
+    rdfs:label "identifies gap"@en ;
+    rdfs:comment "Gap identified through assessment."@en .
+
+icac-legal:basedOnModel rdf:type owl:ObjectProperty ;
+    rdfs:domain icac-legal:NationalLegislation ;
+    rdfs:range icac-legal:CSAMModelLaw ;
+    rdfs:label "based on model"@en ;
+    rdfs:comment "Model law on which national legislation is based."@en .
+
+icac-legal:requiresReform rdf:type owl:ObjectProperty ;
+    rdfs:domain icac-legal:LegalFrameworkGap ;
+    rdfs:range icac-legal:LegalReform ;
+    rdfs:label "requires reform"@en ;
+    rdfs:comment "Legal reform required to address gap."@en .
+
+icac-legal:facilitatesCooperation rdf:type owl:ObjectProperty ;
+    rdfs:domain icac-legal:TreatyFramework ;
+    rdfs:range icac-legal:InternationalLawEnforcement ;
+    rdfs:label "facilitates cooperation"@en ;
+    rdfs:comment "International cooperation facilitated by treaty."@en .
+
+icac-legal:providesAssistance rdf:type owl:ObjectProperty ;
+    rdfs:domain icac-legal:TechnicalAssistance ;
+    rdfs:range icac-legal:PolicyDevelopment ;
+    rdfs:label "provides assistance"@en ;
+    rdfs:comment "Technical assistance provided for policy development."@en .
+
+icac-legal:measuredBy rdf:type owl:ObjectProperty ;
+    rdfs:domain icac-legal:LegalCompliance ;
+    rdfs:range icac-legal:ComplianceMetrics ;
+    rdfs:label "measured by"@en ;
+    rdfs:comment "Metrics used to measure compliance."@en .
+
+icac-legal:partOfFramework rdf:type owl:ObjectProperty ;
+    rdfs:domain icac-legal:NationalLegislation ;
+    rdfs:range icac-legal:RegionalFramework ;
+    rdfs:label "part of framework"@en ;
+    rdfs:comment "Regional framework of which legislation is part."@en .
+
+icac-legal:enablesExtradition rdf:type owl:ObjectProperty ;
+    rdfs:domain icac-legal:ExtraditionAgreement ;
+    rdfs:range icac-legal:InternationalLawEnforcement ;
+    rdfs:label "enables extradition"@en ;
+    rdfs:comment "Law enforcement action enabled by extradition agreement."@en . 

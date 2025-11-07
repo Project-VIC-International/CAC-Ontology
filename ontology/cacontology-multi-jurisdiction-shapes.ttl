@@ -1,0 +1,1318 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/core#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/identity#> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/action#> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/role#> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/location#> .
+@prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-multi: <https://cacontology.projectvic.org/multi-jurisdiction#> .
+
+# =============================================================================
+# ICAC MULTI-JURISDICTION SHACL SHAPES with gUFO INTEGRATION
+# Enhanced with comprehensive gUFO (gentle Unified Foundational Ontology) validation
+# =============================================================================
+
+<https://cacontology.projectvic.org/multi-jurisdiction-shapes> rdf:type owl:Ontology ;
+    rdfs:label "CAC Multi-Jurisdiction SHACL Shapes with gUFO Integration"@en ;
+    rdfs:comment "SHACL shapes for validating multi-jurisdictional operations with comprehensive gUFO foundational ontology integration for enhanced semantic precision and validation capabilities."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/multi-jurisdiction-shapes/1.1> ;
+    owl:versionInfo "1.1.0" ;
+    owl:imports <http://purl.org/nemo/gufo#> .
+
+# =============================================================================
+# gUFO TYPE CONSISTENCY VALIDATION SHAPES
+# =============================================================================
+
+icac-multi:MultiJurisdictionalEventTypeValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:MultiJurisdictionalInvestigation ;
+    rdfs:label "Multi-Jurisdictional Event Type Validation Shape"@en ;
+    rdfs:comment "Validates gUFO Event type consistency for multi-jurisdictional investigations."@en ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Event ;
+        sh:minCount 1 ;
+        sh:message "Multi-jurisdictional investigation must be typed as gUFO Event."@en
+    ] ;
+    sh:property [
+        sh:path rdfs:subClassOf ;
+        sh:hasValue gufo:Event ;
+        sh:minCount 0 ;
+        sh:message "Multi-jurisdictional investigation class should extend gUFO Event."@en
+    ] .
+
+icac-multi:CoordinationPhaseTypeValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass gufo:Phase ;
+    rdfs:label "Coordination Phase Type Validation Shape"@en ;
+    rdfs:comment "Validates gUFO Phase type consistency for coordination phases."@en ;
+    sh:sparql [
+        sh:message "Coordination phases must be properly typed as gUFO Phase and extend appropriate investigation classes."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this rdf:type gufo:Phase .
+                FILTER NOT EXISTS {
+                    $this rdf:type ?phaseClass .
+                    ?phaseClass rdfs:subClassOf icac-multi:MultiJurisdictionalInvestigation .
+                }
+            }
+        """
+    ] .
+
+icac-multi:OrganizationObjectTypeValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:LawEnforcementAgency ;
+    rdfs:label "Organization Object Type Validation Shape"@en ;
+    rdfs:comment "Validates gUFO Object type consistency for law enforcement organizations."@en ;
+    sh:property [
+        sh:path rdfs:subClassOf ;
+        sh:hasValue gufo:Object ;
+        sh:minCount 0 ;
+        sh:message "Law enforcement agency should extend gUFO Object."@en
+    ] .
+
+icac-multi:CoordinationRoleValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass gufo:Role ;
+    rdfs:label "Coordination Role Validation Shape"@en ;
+    rdfs:comment "Validates gUFO Role type consistency for coordination roles."@en ;
+    sh:sparql [
+        sh:message "Coordination roles must be properly typed as gUFO Role and extend UCO Role."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this rdf:type gufo:Role .
+                FILTER NOT EXISTS {
+                    $this rdfs:subClassOf uco-role:Role .
+                }
+            }
+        """
+    ] .
+
+icac-multi:SituationTypeValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass gufo:Situation ;
+    rdfs:label "Situation Type Validation Shape"@en ;
+    rdfs:comment "Validates gUFO Situation type consistency for coordination situations."@en ;
+    sh:property [
+        sh:path rdfs:subClassOf ;
+        sh:hasValue gufo:Situation ;
+        sh:minCount 0 ;
+        sh:message "Multi-jurisdictional situation should extend gUFO Situation."@en
+    ] .
+
+# =============================================================================
+# gUFO TEMPORAL CONSTRAINTS SHAPES
+# =============================================================================
+
+icac-multi:MultiJurisdictionalEventTemporalShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:MultiJurisdictionalInvestigation ;
+    rdfs:label "Multi-Jurisdictional Event Temporal Shape"@en ;
+    rdfs:comment "Validates gUFO temporal constraints for multi-jurisdictional events."@en ;
+    sh:sparql [
+        sh:message "gUFO Events must have consistent temporal boundaries with end after start."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this gufo:hasBeginPointInXSDDateTimeStamp ?start ;
+                      gufo:hasEndPointInXSDDateTimeStamp ?end .
+                FILTER (?end <= ?start)
+            }
+        """
+    ] .
+
+icac-multi:CoordinationPhaseTemporalShape rdf:type sh:NodeShape ;
+    sh:targetClass gufo:Phase ;
+    rdfs:label "Coordination Phase Temporal Shape"@en ;
+    rdfs:comment "Validates gUFO temporal constraints for coordination phases."@en ;
+    sh:property [
+        sh:path icac-multi:hasCoordinationPhaseBeginPoint ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Coordination phase may have begin point timestamp."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:hasCoordinationPhaseEndPoint ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Coordination phase may have end point timestamp."@en
+    ] ;
+    sh:sparql [
+        sh:message "Coordination phase end must be after begin when both are specified."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-multi:hasCoordinationPhaseBeginPoint ?start ;
+                      icac-multi:hasCoordinationPhaseEndPoint ?end .
+                FILTER (?end <= ?start)
+            }
+        """
+    ] .
+
+icac-multi:RoleTemporalShape rdf:type sh:NodeShape ;
+    sh:targetClass gufo:Role ;
+    rdfs:label "Role Temporal Shape"@en ;
+    rdfs:comment "Validates gUFO temporal constraints for coordination roles."@en ;
+    sh:property [
+        sh:path icac-multi:hasRoleBeginPoint ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Coordination role may have begin point timestamp."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:hasRoleEndPoint ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Coordination role may have end point timestamp."@en
+    ] ;
+    sh:sparql [
+        sh:message "Role end must be after begin when both are specified."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-multi:hasRoleBeginPoint ?start ;
+                      icac-multi:hasRoleEndPoint ?end .
+                FILTER (?end <= ?start)
+            }
+        """
+    ] .
+
+# =============================================================================
+# ENHANCED DOMAIN-SPECIFIC SHAPES WITH gUFO QUALITY ASPECTS
+# =============================================================================
+
+icac-multi:MultiJurisdictionalOperationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:MultiJurisdictionalOperation ;
+    rdfs:label "Multi-Jurisdictional Operation Shape"@en ;
+    rdfs:comment "Enhanced validation shape for multi-jurisdictional operation instances with gUFO quality aspects."@en ;
+    sh:property [
+        sh:path icac-multi:operationType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "joint_investigation" "task_force_operation" "cross_border_coordination" "federal_state_cooperation" "international_cooperation" "multi_agency_response" ) ;
+        sh:message "Multi-jurisdictional operation must specify operation type from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:jurisdictionCount ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 2 ;
+        sh:maxInclusive 50 ;
+        sh:message "Multi-jurisdictional operation must involve between 2 and 50 jurisdictions."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:leadAgency ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "federal" "state" "local" "international" "task_force" "joint_command" ) ;
+        sh:message "Multi-jurisdictional operation must specify lead agency type from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:coordinationLevel ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "minimal" "basic" "standard" "enhanced" "comprehensive" "full_integration" ) ;
+        sh:message "Multi-jurisdictional operation must specify coordination level from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:operationDuration ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 1.0 ;
+        sh:maxInclusive 1095.0 ;
+        sh:message "Operation duration must be between 1 and 1095 days (3 years)."@en
+    ] ;
+    sh:property [
+        sh:path uco-core:startTime ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Multi-jurisdictional operation may have a start time."@en
+    ] ;
+    sh:property [
+        sh:path uco-core:endTime ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Multi-jurisdictional operation may have an end time."@en
+    ] ;
+    # gUFO Quality Aspects for Multi-Jurisdictional Operations
+    sh:property [
+        sh:path icac-multi:hasCoordinationEffectiveness ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "ineffective" "limited" "moderate" "effective" "highly_effective" ) ;
+        sh:message "Coordination effectiveness must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:hasComplexityLevel ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "simple" "moderate" "complex" "highly_complex" "extremely_complex" ) ;
+        sh:message "Complexity level must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:hasSuccessRate ;
+        sh:datatype xsd:double ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Success rate must be between 0.0 and 1.0 (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:hasCoordinationIntensity ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "minimal" "low" "moderate" "high" "intensive" ) ;
+        sh:message "Coordination intensity must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:hasUnificationLevel ;
+        sh:datatype xsd:double ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Unification level must be between 0.0 and 1.0 (gUFO quality aspect)."@en
+    ] .
+
+icac-multi:CrossBorderOperationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:CrossBorderOperation ;
+    rdfs:label "Cross Border Operation Shape"@en ;
+    rdfs:comment "Validation shape for cross border operation instances."@en ;
+    sh:property [
+        sh:path icac-multi:borderType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "state_border" "national_border" "international_border" "tribal_boundary" "territorial_boundary" ) ;
+        sh:message "Cross border operation must specify border type from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:treatyBasis ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "mutual_legal_assistance" "extradition_treaty" "law_enforcement_cooperation" "bilateral_agreement" "multilateral_treaty" ) ;
+        sh:message "Treaty basis must be from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:legalFramework ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "domestic_law" "international_law" "treaty_law" "bilateral_agreement" "memorandum_understanding" ) ;
+        sh:message "Cross border operation must specify legal framework from the allowed list."@en
+    ] .
+
+# =============================================================================
+# JURISDICTION COORDINATION SHAPES
+# =============================================================================
+
+icac-multi:JurisdictionCoordinationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:JurisdictionCoordination ;
+    rdfs:label "Jurisdiction Coordination Shape"@en ;
+    rdfs:comment "Validation shape for jurisdiction coordination instances."@en ;
+    sh:property [
+        sh:path icac-multi:coordinationType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "information_sharing" "resource_sharing" "joint_operations" "parallel_investigations" "unified_command" "liaison_coordination" ) ;
+        sh:message "Jurisdiction coordination must specify coordination type from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:coordinationAgreement ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "formal_mou" "informal_agreement" "statutory_authority" "task_force_charter" "operational_protocol" "ad_hoc_arrangement" ) ;
+        sh:message "Jurisdiction coordination must specify coordination agreement from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:communicationProtocol ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "secure_channels" "encrypted_communication" "liaison_officers" "joint_command_center" "regular_briefings" "real_time_updates" ) ;
+        sh:message "Jurisdiction coordination must specify communication protocol from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:dataSharing ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Jurisdiction coordination must specify if data sharing is enabled."@en
+    ] .
+
+icac-multi:FederalStateCooperationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:FederalStateCooperation ;
+    rdfs:label "Federal State Cooperation Shape"@en ;
+    rdfs:comment "Validation shape for federal state cooperation instances."@en ;
+    sh:property [
+        sh:path icac-multi:federalAgency ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "fbi" "dhs" "ice" "dea" "atf" "usms" "postal_inspection" "secret_service" ) ;
+        sh:message "Federal state cooperation must specify federal agency from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:stateAgency ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "state_police" "attorney_general" "bureau_investigation" "icac_task_force" "local_police" "sheriff_office" ) ;
+        sh:message "Federal state cooperation must specify state agency from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:cooperationLevel ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "consultation" "assistance" "joint_operation" "task_force" "full_partnership" "federal_takeover" ) ;
+        sh:message "Federal state cooperation must specify cooperation level from the allowed list."@en
+    ] .
+
+# =============================================================================
+# INFORMATION SHARING SHAPES
+# =============================================================================
+
+icac-multi:InformationSharingShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:InformationSharing ;
+    rdfs:label "Information Sharing Shape"@en ;
+    rdfs:comment "Enhanced validation shape for information sharing instances with gUFO quality aspects."@en ;
+    sh:property [
+        sh:path icac-multi:sharingType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "intelligence_sharing" "evidence_sharing" "case_information" "suspect_information" "victim_information" "operational_intelligence" ) ;
+        sh:message "Information sharing must specify sharing type from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:classificationLevel ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "unclassified" "law_enforcement_sensitive" "confidential" "secret" "top_secret" "compartmented" ) ;
+        sh:message "Information sharing must specify classification level from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:sharingMechanism ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "secure_database" "encrypted_email" "liaison_officer" "formal_request" "intelligence_bulletin" "joint_briefing" ) ;
+        sh:message "Information sharing must specify sharing mechanism from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:reciprocityRequired ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Information sharing must specify if reciprocity is required."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:sharingDate ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Information sharing must specify sharing date."@en
+    ] ;
+    # gUFO Quality Aspects for Information Sharing
+    sh:property [
+        sh:path icac-multi:hasSharingEfficiency ;
+        sh:datatype xsd:double ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Sharing efficiency must be between 0.0 and 1.0 (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:hasSecurityLevel ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "low" "moderate" "high" "very_high" "maximum" ) ;
+        sh:message "Security level must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:hasTimeliness ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "delayed" "slow" "timely" "fast" "real_time" ) ;
+        sh:message "Timeliness must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:hasIntelligenceValue ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "minimal" "low" "moderate" "high" "critical" ) ;
+        sh:message "Intelligence value must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:hasActionability ;
+        sh:datatype xsd:double ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Actionability must be between 0.0 and 1.0 (gUFO quality aspect)."@en
+    ] .
+
+icac-multi:IntelligenceSharingShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:IntelligenceSharing ;
+    rdfs:label "Intelligence Sharing Shape"@en ;
+    rdfs:comment "Validation shape for intelligence sharing instances."@en ;
+    sh:property [
+        sh:path icac-multi:intelligenceType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "tactical_intelligence" "strategic_intelligence" "operational_intelligence" "threat_intelligence" "criminal_intelligence" "technical_intelligence" ) ;
+        sh:message "Intelligence sharing must specify intelligence type from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:sourceReliability ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "reliable" "usually_reliable" "fairly_reliable" "not_usually_reliable" "unreliable" "unknown" ) ;
+        sh:message "Intelligence sharing must specify source reliability from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:informationAccuracy ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "confirmed" "probably_true" "possibly_true" "doubtfully_true" "improbable" "cannot_be_judged" ) ;
+        sh:message "Intelligence sharing must specify information accuracy from the allowed list."@en
+    ] .
+
+# =============================================================================
+# RESOURCE SHARING SHAPES
+# =============================================================================
+
+icac-multi:ResourceSharingShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:ResourceSharing ;
+    rdfs:label "Resource Sharing Shape"@en ;
+    rdfs:comment "Enhanced validation shape for resource sharing instances with gUFO quality aspects."@en ;
+    sh:property [
+        sh:path icac-multi:resourceType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "personnel" "equipment" "facilities" "expertise" "funding" "technology" "vehicles" "aircraft" ) ;
+        sh:message "Resource sharing must specify resource type from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:sharingDuration ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 1.0 ;
+        sh:maxInclusive 365.0 ;
+        sh:message "Resource sharing duration must be between 1 and 365 days."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:costSharing ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "no_cost" "shared_cost" "reimbursable" "grant_funded" "federal_funded" "requesting_agency_pays" ) ;
+        sh:message "Resource sharing must specify cost sharing arrangement from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:resourceValue ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 10000000.0 ;
+        sh:message "Resource value must be between $0 and $10,000,000."@en
+    ] ;
+    # gUFO Quality Aspects for Resource Sharing
+    sh:property [
+        sh:path icac-multi:hasResourceUtilization ;
+        sh:datatype xsd:double ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Resource utilization must be between 0.0 and 1.0 (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:hasCostEffectiveness ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "poor" "fair" "good" "excellent" "optimal" ) ;
+        sh:message "Cost effectiveness must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:hasAvailability ;
+        sh:datatype xsd:double ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Availability must be between 0.0 and 1.0 (gUFO quality aspect)."@en
+    ] .
+
+icac-multi:PersonnelSharingShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:PersonnelSharing ;
+    rdfs:label "Personnel Sharing Shape"@en ;
+    rdfs:comment "Validation shape for personnel sharing instances."@en ;
+    sh:property [
+        sh:path icac-multi:personnelCount ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 1 ;
+        sh:maxInclusive 100 ;
+        sh:message "Personnel sharing must specify personnel count between 1 and 100."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:personnelType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "investigators" "analysts" "technical_specialists" "supervisors" "support_staff" "subject_matter_experts" ) ;
+        sh:message "Personnel sharing must specify personnel type from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:securityClearance ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "none_required" "public_trust" "confidential" "secret" "top_secret" "sci_access" ) ;
+        sh:message "Security clearance must be from the allowed list."@en
+    ] .
+
+# =============================================================================
+# LEGAL COORDINATION SHAPES
+# =============================================================================
+
+icac-multi:LegalCoordinationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:LegalCoordination ;
+    rdfs:label "Legal Coordination Shape"@en ;
+    rdfs:comment "Validation shape for legal coordination instances."@en ;
+    sh:property [
+        sh:path icac-multi:coordinationPurpose ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "venue_determination" "charge_coordination" "plea_negotiation" "sentencing_coordination" "asset_forfeiture" "extradition" ) ;
+        sh:message "Legal coordination must specify coordination purpose from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:prosecutorInvolvement ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Legal coordination must specify if prosecutor is involved."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:jurisdictionalIssues ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "none" "venue_conflicts" "double_jeopardy" "statute_limitations" "jurisdictional_overlap" "sovereignty_issues" ) ;
+        sh:message "Jurisdictional issues must be from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:resolutionMechanism ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "negotiation" "mediation" "arbitration" "court_determination" "administrative_ruling" "policy_guidance" ) ;
+        sh:message "Resolution mechanism must be from the allowed list."@en
+    ] .
+
+# =============================================================================
+# COMMUNICATION PROTOCOL SHAPES
+# =============================================================================
+
+icac-multi:CommunicationProtocolShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:CommunicationProtocol ;
+    rdfs:label "Communication Protocol Shape"@en ;
+    rdfs:comment "Validation shape for communication protocol instances."@en ;
+    sh:property [
+        sh:path icac-multi:protocolType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "formal_reporting" "informal_updates" "emergency_notification" "routine_briefing" "secure_messaging" "video_conference" ) ;
+        sh:message "Communication protocol must specify protocol type from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:frequency ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "real_time" "daily" "weekly" "bi_weekly" "monthly" "as_needed" "emergency_only" ) ;
+        sh:message "Communication protocol must specify frequency from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:securityLevel ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "open" "restricted" "confidential" "secret" "top_secret" "compartmented" ) ;
+        sh:message "Communication protocol must specify security level from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:participantCount ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 2 ;
+        sh:maxInclusive 50 ;
+        sh:message "Communication protocol must have between 2 and 50 participants."@en
+    ] .
+
+# =============================================================================
+# OBJECT PROPERTY SHAPES
+# =============================================================================
+
+icac-multi:InvolvesJurisdictionShape rdf:type sh:PropertyShape ;
+    sh:path icac-multi:involvesJurisdiction ;
+    sh:name "involves jurisdiction" ;
+    sh:description "Links operation to jurisdictions involved" ;
+    sh:class uco-location:Location ;
+    sh:minCount 2 .
+
+icac-multi:CoordinatesWithShape rdf:type sh:PropertyShape ;
+    sh:path icac-multi:coordinatesWith ;
+    sh:name "coordinates with" ;
+    sh:description "Links operation to coordination arrangements" ;
+    sh:class icac-multi:JurisdictionCoordination ;
+    sh:minCount 1 .
+
+icac-multi:SharesInformationShape rdf:type sh:PropertyShape ;
+    sh:path icac-multi:sharesInformation ;
+    sh:name "shares information" ;
+    sh:description "Links operation to information sharing activities" ;
+    sh:class icac-multi:InformationSharing ;
+    sh:minCount 0 .
+
+icac-multi:SharesResourcesShape rdf:type sh:PropertyShape ;
+    sh:path icac-multi:sharesResources ;
+    sh:name "shares resources" ;
+    sh:description "Links operation to resource sharing arrangements" ;
+    sh:class icac-multi:ResourceSharing ;
+    sh:minCount 0 .
+
+icac-multi:RequiresLegalCoordinationShape rdf:type sh:PropertyShape ;
+    sh:path icac-multi:requiresLegalCoordination ;
+    sh:name "requires legal coordination" ;
+    sh:description "Links operation to legal coordination needs" ;
+    sh:class icac-multi:LegalCoordination ;
+    sh:minCount 0 .
+
+icac-multi:UsesCommunicationProtocolShape rdf:type sh:PropertyShape ;
+    sh:path icac-multi:usesCommunicationProtocol ;
+    sh:name "uses communication protocol" ;
+    sh:description "Links operation to communication protocols" ;
+    sh:class icac-multi:CommunicationProtocol ;
+    sh:minCount 1 .
+
+# =============================================================================
+# CROSS-REFERENCE VALIDATION SHAPES
+# =============================================================================
+
+icac-multi:MultiJurisdictionalCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:MultiJurisdictionalOperation ;
+    rdfs:label "Multi-Jurisdictional Cross Reference Shape"@en ;
+    rdfs:comment "Validates cross-references between multi-jurisdictional operations and related entities."@en ;
+    sh:sparql [
+        sh:message "Multi-jurisdictional operation must involve at least two jurisdictions."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this a icac-multi:MultiJurisdictionalOperation ;
+                      icac-multi:jurisdictionCount ?count .
+                FILTER (?count < 2)
+            }
+        """
+    ] .
+
+icac-multi:CoordinationConsistencyShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:MultiJurisdictionalOperation ;
+    rdfs:label "Coordination Consistency Shape"@en ;
+    rdfs:comment "Validates coordination consistency in multi-jurisdictional operations."@en ;
+    sh:sparql [
+        sh:message "Operations with many jurisdictions should have enhanced coordination."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-multi:jurisdictionCount ?count ;
+                      icac-multi:coordinationLevel ?level .
+                FILTER (?count > 10 && ?level IN ("minimal", "basic"))
+            }
+        """
+    ] .
+
+icac-multi:ResourceSharingValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:ResourceSharing ;
+    rdfs:label "Resource Sharing Validation Shape"@en ;
+    rdfs:comment "Validates resource sharing arrangements."@en ;
+    sh:sparql [
+        sh:message "High-value resource sharing should have cost sharing arrangement."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-multi:resourceValue ?value ;
+                      icac-multi:costSharing "no_cost" .
+                FILTER (?value > 100000)
+            }
+        """
+    ] .
+
+# =============================================================================
+# TEMPORAL VALIDATION SHAPES
+# =============================================================================
+
+icac-multi:TemporalValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:MultiJurisdictionalOperation ;
+    rdfs:label "Temporal Validation Shape"@en ;
+    rdfs:comment "Validates temporal consistency in multi-jurisdictional operations."@en ;
+    sh:sparql [
+        sh:message "Start time must be before end time when both are specified."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this uco-core:startTime ?start ;
+                      uco-core:endTime ?end .
+                FILTER (?start >= ?end)
+            }
+        """
+    ] .
+
+icac-multi:SharingDateValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:InformationSharing ;
+    rdfs:label "Sharing Date Validation Shape"@en ;
+    rdfs:comment "Validates information sharing date consistency."@en ;
+    sh:sparql [
+        sh:message "Information sharing date should not be in the future."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-multi:sharingDate ?date .
+                FILTER (?date > NOW())
+            }
+        """
+    ] .
+
+# =============================================================================
+# DATA QUALITY SHAPES
+# =============================================================================
+
+icac-multi:DataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:MultiJurisdictionalOperation ;
+    rdfs:label "Data Quality Shape"@en ;
+    rdfs:comment "Validates data quality for multi-jurisdictional operations."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 5 ;
+        sh:maxLength 200 ;
+        sh:message "Label should be between 5 and 200 characters when provided."@en
+    ] ;
+    sh:property [
+        sh:path rdfs:comment ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 10 ;
+        sh:maxLength 1000 ;
+        sh:message "Comment should be between 10 and 1000 characters when provided."@en
+    ] .
+
+# =============================================================================
+# gUFO PARTICIPATION CONSTRAINT SHAPES
+# =============================================================================
+
+icac-multi:MultiJurisdictionalParticipationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:MultiJurisdictionalInvestigation ;
+    rdfs:label "Multi-Jurisdictional Participation Shape"@en ;
+    rdfs:comment "Validates gUFO participation constraints for multi-jurisdictional investigations."@en ;
+    sh:sparql [
+        sh:message "Multi-jurisdictional investigation must have at least 2 participating agencies (gUFO participation constraint)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this rdf:type icac-multi:MultiJurisdictionalInvestigation .
+                {
+                    SELECT $this (COUNT(DISTINCT ?agency) AS ?agencyCount)
+                    WHERE {
+                        $this icac-multi:involvesAgency ?agency .
+                    }
+                    GROUP BY $this
+                }
+                FILTER (?agencyCount < 2)
+            }
+        """
+    ] .
+
+icac-multi:TaskForceParticipationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:TaskForce ;
+    rdfs:label "Task Force Participation Shape"@en ;
+    rdfs:comment "Validates gUFO participation constraints for task forces."@en ;
+    sh:sparql [
+        sh:message "Task force must have at least 3 member agencies (gUFO participation constraint)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this rdf:type icac-multi:TaskForce .
+                $this icac-multi:memberAgencyCount ?count .
+                FILTER (?count < 3)
+            }
+        """
+    ] .
+
+icac-multi:InformationSharingParticipationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:InformationSharing ;
+    rdfs:label "Information Sharing Participation Shape"@en ;
+    rdfs:comment "Validates gUFO participation constraints for information sharing."@en ;
+    sh:sparql [
+        sh:message "Information sharing must involve at least 2 organizations (gUFO participation constraint)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this rdf:type icac-multi:InformationSharing .
+                {
+                    SELECT $this (COUNT(DISTINCT ?org) AS ?orgCount)
+                    WHERE {
+                        { $this icac-multi:sharesInformationWith ?org } UNION
+                        { ?org icac-multi:sharesInformationWith $this }
+                    }
+                    GROUP BY $this
+                }
+                FILTER (?orgCount < 1)
+            }
+        """
+    ] .
+
+# =============================================================================
+# gUFO PART-WHOLE RELATIONSHIP SHAPES
+# =============================================================================
+
+icac-multi:TaskForceCompositionShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:TaskForce ;
+    rdfs:label "Task Force Composition Shape"@en ;
+    rdfs:comment "Validates gUFO part-whole relationships for task force composition."@en ;
+    sh:sparql [
+        sh:message "Task force composition must include agencies from at least 2 different jurisdictional levels (gUFO part-whole constraint)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this rdf:type icac-multi:TaskForce .
+                {
+                    SELECT $this (COUNT(DISTINCT ?level) AS ?levelCount)
+                    WHERE {
+                        $this icac-multi:includesAgency ?agency .
+                        ?agency rdf:type ?agencyType .
+                        ?agencyType rdfs:subClassOf* icac-multi:LawEnforcementAgency .
+                        BIND(
+                            IF(?agencyType = icac-multi:FederalAgency, "federal",
+                            IF(?agencyType = icac-multi:StateAgency, "state",
+                            IF(?agencyType = icac-multi:LocalAgency, "local", "other"))) AS ?level
+                        )
+                    }
+                    GROUP BY $this
+                }
+                FILTER (?levelCount < 2)
+            }
+        """
+    ] .
+
+icac-multi:MultiAgencyOperationCompositionShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:MultiJurisdictionalInvestigation ;
+    rdfs:label "Multi-Agency Operation Composition Shape"@en ;
+    rdfs:comment "Validates gUFO part-whole relationships for multi-agency operations."@en ;
+    sh:sparql [
+        sh:message "Multi-agency operation must include agencies operating in different jurisdictions (gUFO part-whole constraint)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this rdf:type icac-multi:MultiJurisdictionalInvestigation .
+                {
+                    SELECT $this (COUNT(DISTINCT ?jurisdiction) AS ?jurisdictionCount)
+                    WHERE {
+                        $this icac-multi:involvesAgency ?agency .
+                        ?agency icac-multi:operatesInJurisdiction ?jurisdiction .
+                    }
+                    GROUP BY $this
+                }
+                FILTER (?jurisdictionCount < 2)
+            }
+        """
+    ] .
+
+icac-multi:CoordinationStructureCompositionShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:MultiJurisdictionalInvestigation ;
+    rdfs:label "Coordination Structure Composition Shape"@en ;
+    rdfs:comment "Validates gUFO part-whole relationships for coordination structures."@en ;
+    sh:sparql [
+        sh:message "Complex coordination must include designated lead agency and coordination roles (gUFO part-whole constraint)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this rdf:type icac-multi:MultiJurisdictionalInvestigation .
+                $this icac-multi:coordinationLevel ?level .
+                FILTER (?level IN ("enhanced", "comprehensive", "full_integration"))
+                FILTER NOT EXISTS { $this icac-multi:leadBy ?leadAgency }
+            }
+        """
+    ] .
+
+icac-multi:TaskForceShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:TaskForce ;
+    rdfs:label "Task Force Shape"@en ;
+    rdfs:comment "Enhanced validation shape for task force instances with gUFO quality aspects."@en ;
+    # gUFO Quality Aspects for Task Forces
+    sh:property [
+        sh:path icac-multi:hasOperationalReadiness ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "not_ready" "preparing" "ready" "fully_ready" "deployed" ) ;
+        sh:message "Operational readiness must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:hasCohesionLevel ;
+        sh:datatype xsd:double ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Cohesion level must be between 0.0 and 1.0 (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:hasExpertiseLevel ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "basic" "intermediate" "advanced" "expert" "specialized" ) ;
+        sh:message "Expertise level must be from allowed values (gUFO quality aspect)."@en
+    ] .
+
+icac-multi:LawEnforcementAgencyShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:LawEnforcementAgency ;
+    rdfs:label "Law Enforcement Agency Shape"@en ;
+    rdfs:comment "Enhanced validation shape for law enforcement agency instances with gUFO quality aspects."@en ;
+    # gUFO Quality Aspects for Law Enforcement Agencies
+    sh:property [
+        sh:path icac-multi:hasCapabilityLevel ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "limited" "basic" "standard" "advanced" "elite" ) ;
+        sh:message "Capability level must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:hasCooperationWillingness ;
+        sh:datatype xsd:double ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Cooperation willingness must be between 0.0 and 1.0 (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:hasResourceCapacity ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "insufficient" "limited" "adequate" "substantial" "extensive" ) ;
+        sh:message "Resource capacity must be from allowed values (gUFO quality aspect)."@en
+    ] .
+
+icac-multi:CoordinationRoleShape rdf:type sh:NodeShape ;
+    sh:targetClass gufo:Role ;
+    rdfs:label "Coordination Role Shape"@en ;
+    rdfs:comment "Enhanced validation shape for coordination roles with gUFO quality aspects."@en ;
+    # gUFO Quality Aspects for Coordination Roles
+    sh:property [
+        sh:path icac-multi:hasRoleEffectiveness ;
+        sh:datatype xsd:double ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Role effectiveness must be between 0.0 and 1.0 (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:hasAuthorityLevel ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "minimal" "limited" "moderate" "high" "complete" ) ;
+        sh:message "Authority level must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:hasResponsiveness ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "poor" "slow" "adequate" "good" "excellent" ) ;
+        sh:message "Responsiveness must be from allowed values (gUFO quality aspect)."@en
+    ] .
+
+# =============================================================================
+# gUFO QUALIFIED RELATION SHAPES
+# =============================================================================
+
+icac-multi:QualifiedCoordinationParticipationShape rdf:type sh:NodeShape ;
+    sh:targetClass gufo:ParticipationSituation ;
+    rdfs:label "Qualified Coordination Participation Shape"@en ;
+    rdfs:comment "Validates gUFO qualified participation situations in multi-jurisdictional coordination."@en ;
+    sh:sparql [
+        sh:message "Qualified coordination participation must involve appropriate roles and events (gUFO qualified relation)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this rdf:type gufo:ParticipationSituation .
+                $this gufo:standsInQualifiedParticipation ?role .
+                $this icac-multi:concernsCoordinationEvent ?event .
+                FILTER NOT EXISTS {
+                    ?role rdf:type* icac-multi:CoordinatingAgent .
+                    ?event rdf:type* icac-multi:MultiJurisdictionalInvestigation .
+                }
+            }
+        """
+    ] .
+
+# =============================================================================
+# ADVANCED gUFO BUSINESS RULES
+# =============================================================================
+
+icac-multi:HighComplexityCoordinationRule rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:MultiJurisdictionalInvestigation ;
+    rdfs:label "High Complexity Coordination Rule"@en ;
+    rdfs:comment "gUFO business rule: Highly complex operations require enhanced coordination mechanisms."@en ;
+    sh:sparql [
+        sh:message "Highly complex multi-jurisdictional operations must have enhanced or comprehensive coordination level (gUFO business rule)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-multi:hasComplexityLevel ?complexity .
+                $this icac-multi:coordinationLevel ?coordination .
+                FILTER (?complexity IN ("highly_complex", "extremely_complex"))
+                FILTER (?coordination IN ("minimal", "basic", "standard"))
+            }
+        """
+    ] .
+
+icac-multi:LargeScaleResourceSharingRule rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:ResourceSharing ;
+    rdfs:label "Large Scale Resource Sharing Rule"@en ;
+    rdfs:comment "gUFO business rule: Large-scale resource sharing requires high availability and cost effectiveness."@en ;
+    sh:sparql [
+        sh:message "High-value resource sharing must have good or better cost effectiveness (gUFO business rule)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-multi:resourceValue ?value .
+                $this icac-multi:hasCostEffectiveness ?effectiveness .
+                FILTER (?value > 500000)
+                FILTER (?effectiveness IN ("poor", "fair"))
+            }
+        """
+    ] .
+
+icac-multi:CriticalInformationSharingRule rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:InformationSharing ;
+    rdfs:label "Critical Information Sharing Rule"@en ;
+    rdfs:comment "gUFO business rule: Critical intelligence requires high security and real-time sharing."@en ;
+    sh:sparql [
+        sh:message "Critical intelligence sharing must have high security level and timely delivery (gUFO business rule)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-multi:hasIntelligenceValue "critical" .
+                $this icac-multi:hasSecurityLevel ?security .
+                $this icac-multi:hasTimeliness ?timeliness .
+                FILTER (?security IN ("low", "moderate"))
+                FILTER (?timeliness IN ("delayed", "slow"))
+            }
+        """
+    ] .
+
+icac-multi:TaskForceReadinessRule rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:TaskForce ;
+    rdfs:label "Task Force Readiness Rule"@en ;
+    rdfs:comment "gUFO business rule: Task forces with advanced expertise should have high operational readiness."@en ;
+    sh:sparql [
+        sh:message "Task forces with expert-level expertise must have ready or deployed operational status (gUFO business rule)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-multi:hasExpertiseLevel ?expertise .
+                $this icac-multi:hasOperationalReadiness ?readiness .
+                FILTER (?expertise IN ("expert", "specialized"))
+                FILTER (?readiness IN ("not_ready", "preparing"))
+            }
+        """
+    ] .
+
+icac-multi:CoordinationEffectivenessRule rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:MultiJurisdictionalInvestigation ;
+    rdfs:label "Coordination Effectiveness Rule"@en ;
+    rdfs:comment "gUFO business rule: Effective coordination should correlate with high success rates."@en ;
+    sh:sparql [
+        sh:message "Highly effective coordination should achieve success rates above 0.7 (gUFO business rule)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-multi:hasCoordinationEffectiveness "highly_effective" .
+                $this icac-multi:hasSuccessRate ?rate .
+                FILTER (?rate <= 0.7)
+            }
+        """
+    ] .
+
+icac-multi:InteragencyCooperationRule rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:LawEnforcementAgency ;
+    rdfs:label "Interagency Cooperation Rule"@en ;
+    rdfs:comment "gUFO business rule: Agencies with high cooperation willingness should have substantial resource capacity."@en ;
+    sh:sparql [
+        sh:message "Agencies with high cooperation willingness should maintain substantial resource capacity (gUFO business rule)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-multi:hasCooperationWillingness ?willingness .
+                $this icac-multi:hasResourceCapacity ?capacity .
+                FILTER (?willingness > 0.8)
+                FILTER (?capacity IN ("insufficient", "limited"))
+            }
+        """
+    ] .
+
+# =============================================================================
+# ENHANCED DATA QUALITY VALIDATION
+# =============================================================================
+
+icac-multi:MultiJurisdictionalDataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:MultiJurisdictionalInvestigation ;
+    rdfs:label "Multi-Jurisdictional Data Quality Shape"@en ;
+    rdfs:comment "Enhanced data quality validation for multi-jurisdictional operations with gUFO quality aspects."@en ;
+    sh:property [
+        sh:path icac-multi:hasDataQuality ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "poor" "fair" "good" "excellent" "validated" ) ;
+        sh:message "Data quality must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:hasDataCompleteness ;
+        sh:datatype xsd:double ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Data completeness must be between 0.0 and 1.0 (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:hasDataConsistency ;
+        sh:datatype xsd:double ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Data consistency must be between 0.0 and 1.0 (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-multi:hasValidationLevel ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "none" "basic" "standard" "comprehensive" "certified" ) ;
+        sh:message "Validation level must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:sparql [
+        sh:message "High-quality data should have good completeness and consistency (gUFO data quality rule)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-multi:hasDataQuality ?quality .
+                $this icac-multi:hasDataCompleteness ?completeness .
+                $this icac-multi:hasDataConsistency ?consistency .
+                FILTER (?quality IN ("excellent", "validated"))
+                FILTER (?completeness < 0.8 || ?consistency < 0.8)
+            }
+        """
+    ] ;
+    sh:sparql [
+        sh:message "Complex operations should have comprehensive validation (gUFO data quality rule)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-multi:hasComplexityLevel ?complexity .
+                $this icac-multi:hasValidationLevel ?validation .
+                FILTER (?complexity IN ("highly_complex", "extremely_complex"))
+                FILTER (?validation IN ("none", "basic"))
+            }
+        """
+    ] .
+
+# =============================================================================
+# ENHANCED CROSS-REFERENCE VALIDATION SHAPES WITH gUFO
+# =============================================================================
+
+icac-multi:MultiJurisdictionalCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:MultiJurisdictionalOperation ;
+    rdfs:label "Multi-Jurisdictional Cross Reference Shape"@en ;
+    rdfs:comment "Enhanced cross-reference validation with gUFO constraints for multi-jurisdictional operations."@en ;
+    sh:sparql [
+        sh:message "Multi-jurisdictional operation must involve at least two jurisdictions (enhanced gUFO validation)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this a icac-multi:MultiJurisdictionalOperation ;
+                      icac-multi:jurisdictionCount ?count .
+                FILTER (?count < 2)
+            }
+        """
+    ] ;
+    sh:sparql [
+        sh:message "gUFO Event typing must be consistent with temporal properties."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this rdf:type*/rdfs:subClassOf* gufo:Event .
+                FILTER NOT EXISTS {
+                    { $this gufo:hasBeginPointInXSDDateTimeStamp ?start } UNION
+                    { $this uco-core:startTime ?start }
+                }
+            }
+        """
+    ] .
+
+icac-multi:CoordinationConsistencyShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:MultiJurisdictionalOperation ;
+    rdfs:label "Coordination Consistency Shape"@en ;
+    rdfs:comment "Enhanced coordination consistency validation with gUFO quality aspects."@en ;
+    sh:sparql [
+        sh:message "Operations with many jurisdictions should have enhanced coordination with high effectiveness (gUFO quality consistency)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-multi:jurisdictionCount ?count ;
+                      icac-multi:coordinationLevel ?level ;
+                      icac-multi:hasCoordinationEffectiveness ?effectiveness .
+                FILTER (?count > 10 && ?level IN ("minimal", "basic"))
+                FILTER (?effectiveness IN ("ineffective", "limited"))
+            }
+        """
+    ] .
+
+icac-multi:ResourceSharingValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-multi:ResourceSharing ;
+    rdfs:label "Resource Sharing Validation Shape"@en ;
+    rdfs:comment "Enhanced resource sharing validation with gUFO quality constraints."@en ;
+    sh:sparql [
+        sh:message "High-value resource sharing should have excellent cost effectiveness and high utilization (gUFO quality validation)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-multi:resourceValue ?value ;
+                      icac-multi:hasCostEffectiveness ?effectiveness ;
+                      icac-multi:hasResourceUtilization ?utilization .
+                FILTER (?value > 100000)
+                FILTER (?effectiveness IN ("poor", "fair") || ?utilization < 0.6)
+            }
+        """
+    ] . 
