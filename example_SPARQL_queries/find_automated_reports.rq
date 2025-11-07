@@ -51,19 +51,19 @@ WHERE {
     
     # Enhanced platform information
     OPTIONAL {
-        ?reporter icac-platforms:operatedBy ?esp .
-        ?esp rdf:type icac-platforms:ElectronicServiceProvider .
+        ?reporter cacontology-platforms:operatedBy ?esp .
+        ?esp rdf:type cacontology-platforms:ElectronicServiceProvider .
         
         OPTIONAL {
-            ?platform icac-platforms:operatedBy ?esp ;
-                     icac-platforms:platformType ?platformType .
+            ?platform cacontology-platforms:operatedBy ?esp ;
+                     cacontology-platforms:platformType ?platformType .
         }
     }
     
     # Detection information
     OPTIONAL {
-        ?evidence icac-detection:detectedBy ?detectionMethod ;
-                 icac-detection:confidenceScore ?confidenceScore .
+        ?evidence cacontology-detection:detectedBy ?detectionMethod ;
+                 cacontology-detection:confidenceScore ?confidenceScore .
     }
     
     # Human-friendly timestamp
@@ -106,10 +106,10 @@ WHERE {
     
     ?reporter a hotlines-core:AutomatedReporterAgent ;
               hotlines-core:vendorName ?vendorName ;
-              icac-platforms:operatedBy ?esp .
+              cacontology-platforms:operatedBy ?esp .
     
-    ?platform icac-platforms:operatedBy ?esp ;
-             icac-platforms:platformType ?platformType .
+    ?platform cacontology-platforms:operatedBy ?esp ;
+             cacontology-platforms:platformType ?platformType .
     
     # Evidence count
     {
@@ -122,7 +122,7 @@ WHERE {
     
     OPTIONAL {
         ?report hotlines-core:hasEvidence ?evidence .
-        ?evidence icac-detection:confidenceScore ?confidenceScore .
+        ?evidence cacontology-detection:confidenceScore ?confidenceScore .
     }
     
     FILTER(?createdTime >= ?from && ?createdTime <= ?to)

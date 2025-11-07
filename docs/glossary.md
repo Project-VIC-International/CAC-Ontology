@@ -7,7 +7,8 @@
 - **CASE**: Cyber-investigation Analysis Standard Expression
 - **CSAM**: Child Sexual Abuse Material
 - **ESP**: Electronic Service Provider
-- **gUFO**: Unified Foundational Ontology (**NEW**)
+- **gUFO**: Unified Foundational Ontology
+- **CAC**: Crimes Against Children
 - **ICAC**: Internet Crimes Against Children
 - **ICMEC**: International Centre for Missing & Exploited Children
 - **ICCAM**: International Child Sexual Exploitation Image Database
@@ -31,7 +32,7 @@
 - **HotlineReport**: A report of potential child exploitation material
 - **EvidenceItem**: Digital evidence associated with a report
 - **HotlineAction**: An action taken in processing a report
-- **ICACInvestigation**: An investigation into child exploitation
+- **CACInvestigation**: An investigation into child exploitation
 - **AutomatedReporterAgent**: Software system that automatically generates reports
 - **HashFeedbackAction**: Action recording feedback on hash matches
 - **URLReference**: Reference to a URL containing potential CSAM

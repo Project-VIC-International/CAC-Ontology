@@ -18,8 +18,8 @@ def test_phase_1_deployment():
     
     # Check required files
     required_files = [
-        'ontology/cacontology-core.ttl',
-        'examples/gufo-phase1-example.ttl'
+        '../ontology/cacontology-core.ttl',
+        '../examples_knowledge_graphs/gufo-phase1-example.ttl'
     ]
     
     for file in required_files:
@@ -35,11 +35,11 @@ def test_phase_1_deployment():
         
         # Load core gUFO ontology
         g = rdflib.Graph()
-        g.parse('ontology/cacontology-core.ttl', format='turtle')
+        g.parse('../ontology/cacontology-core.ttl', format='turtle')
         print(f"✅ Loaded core ontology: {len(g)} triples")
         
         # Load Phase 1 example
-        g.parse('examples/gufo-phase1-example.ttl', format='turtle')
+        g.parse('../examples_knowledge_graphs/gufo-phase1-example.ttl', format='turtle')
         print(f"✅ Loaded with examples: {len(g)} triples")
         
         # Test basic gUFO queries
@@ -98,8 +98,8 @@ def test_phase_2_deployment():
     
     # Check required files
     required_files = [
-        'ontology/cacontology-temporal-gufo.ttl',
-        'examples/gufo-phase2-temporal-example.ttl'
+        '../ontology/cacontology-temporal-gufo.ttl',
+        '../examples_knowledge_graphs/gufo-phase2-temporal-example.ttl'
     ]
     
     for file in required_files:
@@ -115,9 +115,9 @@ def test_phase_2_deployment():
         
         # Load temporal framework
         g = rdflib.Graph()
-        g.parse('ontology/cacontology-core.ttl', format='turtle')
-        g.parse('ontology/cacontology-temporal-gufo.ttl', format='turtle')
-        g.parse('examples/gufo-phase2-temporal-example.ttl', format='turtle')
+        g.parse('../ontology/cacontology-core.ttl', format='turtle')
+        g.parse('../ontology/cacontology-temporal-gufo.ttl', format='turtle')
+        g.parse('../examples_knowledge_graphs/gufo-phase2-temporal-example.ttl', format='turtle')
         print(f"✅ Loaded temporal framework: {len(g)} triples")
         
         # Test temporal patterns
@@ -243,9 +243,8 @@ def test_advanced_analytics():
     
     # Check analytics files
     analytics_files = [
-        'queries/gufo-enhanced-analytics.rq',
-        'ai-integration-framework.py',
-        'gUFO-DEPLOYMENT-GUIDE.md'
+        '../example_SPARQL_queries/gufo-enhanced-analytics.rq',
+        '../analytics_demonstration/ai-integration-framework.py'
     ]
     
     for file in analytics_files:
@@ -255,15 +254,15 @@ def test_advanced_analytics():
             print(f"❌ {file} - Missing")
     
     # Test analytics queries
-    if os.path.exists('queries/gufo-enhanced-analytics.rq'):
-        with open('queries/gufo-enhanced-analytics.rq', 'r') as f:
+    if os.path.exists('../example_SPARQL_queries/gufo-enhanced-analytics.rq'):
+        with open('../example_SPARQL_queries/gufo-enhanced-analytics.rq', 'r') as f:
             content = f.read()
             query_count = content.count('SELECT')
             print(f"✅ Analytics queries: {query_count} SPARQL queries")
     
     # Test AI framework
-    if os.path.exists('ai-integration-framework.py'):
-        with open('ai-integration-framework.py', 'r') as f:
+    if os.path.exists('../analytics_demonstration/ai-integration-framework.py'):
+        with open('../analytics_demonstration/ai-integration-framework.py', 'r') as f:
             content = f.read()
             if 'class gUFOInvestigationAnalytics' in content:
                 print("✅ AI integration framework: Available")
@@ -278,7 +277,7 @@ def test_docker_integration():
     print("\n🚀 Testing Docker Integration")
     print("-" * 50)
     
-    if os.path.exists('docker-compose.yaml'):
+    if os.path.exists('docker-compose.yaml') or os.path.exists('../testing/docker-compose.yaml'):
         print("✅ docker-compose.yaml - Found")
         
         # Check for Docker
@@ -296,7 +295,7 @@ def test_docker_integration():
     else:
         print("❌ docker-compose.yaml - Missing")
     
-    if os.path.exists('DOCKER_README.md'):
+    if os.path.exists('DOCKER_README.md') or os.path.exists('../testing/DOCKER_README.md'):
         print("✅ Docker documentation - Found")
     
     return True
@@ -381,10 +380,10 @@ def main():
     
     print("\n📚 Next Steps:")
     print("1. Install dependencies: pip install rdflib pandas scikit-learn networkx")
-    print("2. Start Docker environment: docker-compose up -d")
-    print("3. Load data: python ai-integration-framework.py")
-    print("4. Run queries: Use queries/gufo-enhanced-analytics.rq")
-    print("5. Deploy to production: Follow gUFO-DEPLOYMENT-GUIDE.md")
+    print("2. Start Docker environment: cd testing && docker-compose up -d")
+    print("3. Load data: python analytics_demonstration/ai-integration-framework.py")
+    print("4. Run queries: Use example_SPARQL_queries/gufo-enhanced-analytics.rq")
+    print("5. Deploy to production: Follow project documentation")
 
 if __name__ == "__main__":
     main() 

@@ -1,4 +1,4 @@
-# ICAC Ontology Family - User Documentation
+# CAC Ontology Family - User Documentation
 One or more of these ontologies can be used to develop unique software applications for users that are then foundationally interoperable with other applications built on this family of ontologies.
 
 This family of ontologies seeks to implement semantically clear information models that reflect the information, information relationships, workflows, and events that a Crimes Against Children Investigator uses or may use in the future. Each ontology represents a unique application domain within investigators'and prosecutors' discourse. This family of ontologies seeks to be universal and it is heavily informed by public documentation in the form of press releses from law enforcement agencies and prosecutor's offices. Finally, this family of ontologies seeks to use modern language as much as possible to reflect the unifying efforts of the CAC community, but there may be language in these ontologies that are more reflective of a certain country when that language is still professionally used.
@@ -9,14 +9,14 @@ This family of ontologies seeks to implement semantically clear information mode
 - Basic understanding of RDF and ontologies
 - Familiarity with Turtle syntax
 - Understanding of UCO (Unified Cyber Ontology and CASE Ontology)
-- **NEW**: Understanding of gUFO (Unified Foundational Ontology) concepts
+- Understanding of gUFO (Unified Foundational Ontology) concepts
 - Python 3.9+ for validation tools
 
 ### Installation
 1. Clone the repository:
 ```bash
-git clone https://github.com/ucoProject/ontology-icac.git
-cd ontology-icac
+git clone https://github.com/Project-VIC-International/CAC-Ontology.git
+cd CAC-Ontology
 ```
 
 2. Install dependencies:
@@ -39,18 +39,18 @@ docker compose -f docker-compose.yaml up -d
 4. **NEW**: Load gUFO-enhanced ontologies:
 ```bash
 # Load core gUFO integration
-curl -X POST http://localhost:3030/icac/data \
-  --data-binary @icac-core-gufo.ttl \
+curl -X POST http://localhost:3030/cac/data \
+  --data-binary @cacontology-core-gufo.ttl \
   --header "Content-Type: text/turtle"
 
 # Load temporal framework
-curl -X POST http://localhost:3030/icac/data \
-  --data-binary @icac-temporal-gufo.ttl \
+curl -X POST http://localhost:3030/cac/data \
+  --data-binary @cacontology-temporal-gufo.ttl \
   --header "Content-Type: text/turtle"
 
 # Load integration strategy
-curl -X POST http://localhost:3030/icac/data \
-  --data-binary @icac-gufo-integration-strategy.ttl \
+curl -X POST http://localhost:3030/cac/data \
+  --data-binary @cacontology-gufo-integration-strategy.ttl \
   --header "Content-Type: text/turtle"
 ```
 
@@ -97,7 +97,7 @@ hotline:action-001 a hotline:ReportReviewAction ;
 
 ### 4. **NEW: gUFO-Enhanced Investigation Modeling**
 
-The ICAC ontology family now includes comprehensive gUFO integration for enhanced semantic precision and temporal modeling.
+The CAC ontology family now includes comprehensive gUFO integration for enhanced semantic precision and temporal modeling.
 
 #### 4.1 Investigation Phases with gUFO
 
@@ -620,7 +620,7 @@ hotline:action-004 a hotline:ForwardToLEAction ;
     hotline:endTime "2024-03-20T13:05:00Z"^^xsd:dateTime .
 ```
 
-### 5. ICAC Investigation Lifecycle
+### 5. CAC Investigation Lifecycle
 
 #### 5.1 Complete Investigation
 ```turtle
@@ -906,7 +906,7 @@ docker exec icac-pyshacl pyshacl -s *-shapes.ttl -d examples/*.ttl
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/core#> .
 @prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
 
-# ICAC investigation extends CASE investigation
+# CAC investigation extends CASE investigation
 icac:investigation-001 a icac:ICACInvestigation, case-investigation:Investigation ;
     uco-core:hasFacet [
         a uco-core:TimestampFacet ;

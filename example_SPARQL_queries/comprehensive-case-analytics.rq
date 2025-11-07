@@ -92,9 +92,9 @@ SELECT DISTINCT
 
 WHERE {
     # Core Investigation
-    ?investigation rdf:type icac-core:ICACInvestigation ;
+    ?investigation rdf:type cacontology-core:ICACInvestigation ;
         rdfs:label ?investigationLabel ;
-        icac-core:hasSubject ?subject ;
+        cacontology-core:hasSubject ?subject ;
         uco-core:startTime ?startTime ;
         uco-core:endTime ?endTime .
     
@@ -106,17 +106,17 @@ WHERE {
     # Count victims
     {
         SELECT ?investigation (COUNT(DISTINCT ?victim) AS ?victimCount) WHERE {
-            ?investigation icac-core:hasVictim ?victim .
+            ?investigation cacontology-core:hasVictim ?victim .
         }
         GROUP BY ?investigation
     }
     
     # Multi-jurisdictional Analysis
     OPTIONAL {
-        ?multiJurisInvestigation rdf:type icac-multi:MultiJurisdictionalInvestigation ;
-            icac-multi:agencyCount ?agencyCount ;
-            icac-multi:jurisdictionCount ?jurisdictionCount ;
-            icac-multi:coordinationMechanism ?coordinationMechanism .
+        ?multiJurisInvestigation rdf:type cacontology-multi:MultiJurisdictionalInvestigation ;
+            cacontology-multi:agencyCount ?agencyCount ;
+            cacontology-multi:jurisdictionCount ?jurisdictionCount ;
+            cacontology-multi:coordinationMechanism ?coordinationMechanism .
     }
     
     # Undercover Operations Analysis
@@ -126,10 +126,10 @@ WHERE {
                (GROUP_CONCAT(DISTINCT ?undercoverOutcome; separator=", ") AS ?undercoverOutcome)
                (AVG(?undercoverDur) AS ?undercoverDuration)
         WHERE {
-            ?undercoverOp rdf:type icac-undercover:UndercoverOperation ;
-                icac-undercover:targetsSubject ?subject ;
-                icac-undercover:operationOutcome ?undercoverOutcome .
-            OPTIONAL { ?undercoverOp icac-undercover:infiltrationDuration ?undercoverDur }
+            ?undercoverOp rdf:type cacontology-undercover:UndercoverOperation ;
+                cacontology-undercover:targetsSubject ?subject ;
+                cacontology-undercover:operationOutcome ?undercoverOutcome .
+            OPTIONAL { ?undercoverOp cacontology-undercover:infiltrationDuration ?undercoverDur }
         }
         GROUP BY ?investigation
     }
@@ -142,12 +142,12 @@ WHERE {
                (AVG(?groomingDur) AS ?groomingDuration)
                (AVG(?escalationRate) AS ?escalationRate)
         WHERE {
-            ?groomingBehavior rdf:type icac-grooming:GroomingBehavior ;
-                icac-grooming:groomingStage ?groomingStage ;
-                icac-grooming:behaviorDuration ?groomingDur .
+            ?groomingBehavior rdf:type cacontology-grooming:GroomingBehavior ;
+                cacontology-grooming:groomingStage ?groomingStage ;
+                cacontology-grooming:behaviorDuration ?groomingDur .
             OPTIONAL {
-                ?groomingBehavior icac-grooming:exhibitsPattern ?pattern .
-                ?pattern icac-grooming:escalationRate ?escalationRate .
+                ?groomingBehavior cacontology-grooming:exhibitsPattern ?pattern .
+                ?pattern cacontology-grooming:escalationRate ?escalationRate .
             }
         }
         GROUP BY ?investigation
@@ -160,14 +160,14 @@ WHERE {
                (COUNT(DISTINCT ?criticalEv) AS ?criticalEvidence)
                (COUNT(DISTINCT ?digitalContent) AS ?digitalContentFound)
         WHERE {
-            ?evidence rdf:type icac-physical:PhysicalEvidence ;
-                icac-physical:associatedWithSubject ?subject .
+            ?evidence rdf:type cacontology-physical:PhysicalEvidence ;
+                cacontology-physical:associatedWithSubject ?subject .
             OPTIONAL {
-                ?evidence icac-physical:evidentiarySignificance "critical" .
+                ?evidence cacontology-physical:evidentiarySignificance "critical" .
                 BIND(?evidence AS ?criticalEv)
             }
             OPTIONAL {
-                ?evidence icac-physical:digitalContentFound true .
+                ?evidence cacontology-physical:digitalContentFound true .
                 BIND(?evidence AS ?digitalContent)
             }
         }
@@ -181,18 +181,18 @@ WHERE {
                (GROUP_CONCAT(DISTINCT ?tacticalOutcome; separator=", ") AS ?tacticalOutcome)
                (GROUP_CONCAT(DISTINCT ?tacticalRiskLevel; separator=", ") AS ?tacticalRiskLevel)
         WHERE {
-            ?tacticalOp rdf:type icac-tactical:TacticalOperation ;
-                icac-tactical:operationOutcome ?tacticalOutcome ;
-                icac-tactical:riskLevel ?tacticalRiskLevel .
+            ?tacticalOp rdf:type cacontology-tactical:TacticalOperation ;
+                cacontology-tactical:operationOutcome ?tacticalOutcome ;
+                cacontology-tactical:riskLevel ?tacticalRiskLevel .
         }
         GROUP BY ?investigation
     }
     
     # Production Case Analysis
     OPTIONAL {
-        ?productionOffense rdf:type icac-production:ProductionOffense ;
-            icac-production:productionMethod ?productionMethod ;
-            icac-production:sessionCount ?sessionCount .
+        ?productionOffense rdf:type cacontology-production:ProductionOffense ;
+            cacontology-production:productionMethod ?productionMethod ;
+            cacontology-production:sessionCount ?sessionCount .
     }
     
     # Social Media Evidence Analysis
@@ -202,11 +202,11 @@ WHERE {
                (MAX(?platformCount) AS ?platformsInvestigated)
                (COUNT(DISTINCT ?crossPlatform) AS ?crossPlatformMatch)
         WHERE {
-            ?socialMedia rdf:type icac-platforms:SocialMediaEvidence ;
-                icac-platforms:foundOnSocialMedia true .
+            ?socialMedia rdf:type cacontology-platforms:SocialMediaEvidence ;
+                cacontology-platforms:foundOnSocialMedia true .
             OPTIONAL {
-                ?crossPlatform rdf:type icac-platforms:CrossPlatformEvidence ;
-                    icac-platforms:platformsInvestigated ?platformCount .
+                ?crossPlatform rdf:type cacontology-platforms:CrossPlatformEvidence ;
+                    cacontology-platforms:platformsInvestigated ?platformCount .
             }
         }
         GROUP BY ?investigation
@@ -214,25 +214,25 @@ WHERE {
     
     # Task Force Analysis
     OPTIONAL {
-        ?taskForceInvolved rdf:type icac-taskforce:ICACtaskForce ;
-            icac-taskforce:handledInvestigation ?investigation .
+        ?taskForceInvolved rdf:type cacontology-taskforce:ICACtaskForce ;
+            cacontology-taskforce:handledInvestigation ?investigation .
         OPTIONAL {
-            ?taskForceInvolved icac-taskforce:hasMetrics ?cyberTipMetrics .
-            ?cyberTipMetrics icac-taskforce:cyberTipsSince2019 ?cyberTipsSince2019 .
+            ?taskForceInvolved cacontology-taskforce:hasMetrics ?cyberTipMetrics .
+            ?cyberTipMetrics cacontology-taskforce:cyberTipsSince2019 ?cyberTipsSince2019 .
         }
         OPTIONAL {
-            ?taskForceInvolved icac-taskforce:hasMetrics ?arrestMetrics .
-            ?arrestMetrics icac-taskforce:arrestsSince2019 ?arrestsSince2019 .
+            ?taskForceInvolved cacontology-taskforce:hasMetrics ?arrestMetrics .
+            ?arrestMetrics cacontology-taskforce:arrestsSince2019 ?arrestsSince2019 .
         }
     }
     
     # Sex Offender Registry Analysis
     OPTIONAL {
-        ?subject icac-registry:hasRegistrationRecord ?registrationRecord .
+        ?subject cacontology-registry:hasRegistrationRecord ?registrationRecord .
         BIND(true AS ?registeredOffender)
-        ?registrationRecord icac-registry:registrationStatus ?registrationStatus .
+        ?registrationRecord cacontology-registry:registrationStatus ?registrationStatus .
         OPTIONAL {
-            ?registrationRecord icac-registry:complianceStatus "violation" .
+            ?registrationRecord cacontology-registry:complianceStatus "violation" .
             BIND(true AS ?complianceViolation)
         }
     }
@@ -246,20 +246,20 @@ WHERE {
                (SAMPLE(?projectSafeChildhood) AS ?projectSafeChildhood)
                (GROUP_CONCAT(DISTINCT ?chargeClass; separator=", ") AS ?stateChargeClassification)
         WHERE {
-            ?subject icac-sentencing:chargedWith ?charge .
+            ?subject cacontology-sentencing:chargedWith ?charge .
             OPTIONAL {
-                ?charge icac-sentencing:chargeClassification ?chargeClass .
+                ?charge cacontology-sentencing:chargeClassification ?chargeClass .
             }
             OPTIONAL {
-                ?subject icac-sentencing:sentencedTo ?sentence .
-                ?sentence icac-sentencing:sentenceLength ?sentenceLength .
+                ?subject cacontology-sentencing:sentencedTo ?sentence .
+                ?sentence cacontology-sentencing:sentenceLength ?sentenceLength .
             }
             OPTIONAL {
-                ?subject icac-sentencing:sentencedTo ?penalty .
-                ?penalty icac-sentencing:restitutionAmount ?restitutionAmount .
+                ?subject cacontology-sentencing:sentencedTo ?penalty .
+                ?penalty cacontology-sentencing:restitutionAmount ?restitutionAmount .
             }
             OPTIONAL {
-                ?legalProceeding icac-sentencing:projectSafeChildhood ?projectSafeChildhood .
+                ?legalProceeding cacontology-sentencing:projectSafeChildhood ?projectSafeChildhood .
             }
         }
         GROUP BY ?investigation
@@ -311,81 +311,81 @@ SELECT
 WHERE {
     # Undercover Operation Success
     OPTIONAL {
-        ?undercoverOp rdf:type icac-undercover:UndercoverOperation ;
-            icac-undercover:operationOutcome ?undercoverOutcome .
+        ?undercoverOp rdf:type cacontology-undercover:UndercoverOperation ;
+            cacontology-undercover:operationOutcome ?undercoverOutcome .
     }
     
     # Tactical Operation Success
     OPTIONAL {
-        ?tacticalOp rdf:type icac-tactical:TacticalOperation ;
-            icac-tactical:operationOutcome ?tacticalOutcome .
+        ?tacticalOp rdf:type cacontology-tactical:TacticalOperation ;
+            cacontology-tactical:operationOutcome ?tacticalOutcome .
     }
     
     # Plea Bargain Acceptance
     OPTIONAL {
-        ?pleaBargaining rdf:type icac-sentencing:PleaBargaining ;
-            icac-sentencing:pleaBargainAccepted ?pleaBargainAccepted .
+        ?pleaBargaining rdf:type cacontology-sentencing:PleaBargaining ;
+            cacontology-sentencing:pleaBargainAccepted ?pleaBargainAccepted .
     }
     
     # Evidence Quality
     OPTIONAL {
-        ?evidence rdf:type icac-physical:PhysicalEvidence ;
-            icac-physical:evidentiarySignificance ?evidenceSignificance ;
-            icac-physical:digitalContentFound ?digitalContentFound .
+        ?evidence rdf:type cacontology-physical:PhysicalEvidence ;
+            cacontology-physical:evidentiarySignificance ?evidenceSignificance ;
+            cacontology-physical:digitalContentFound ?digitalContentFound .
     }
     
     # Social Media Evidence
     OPTIONAL {
-        ?socialEvidence rdf:type icac-platforms:SocialMediaEvidence ;
-            icac-platforms:foundOnSocialMedia ?foundOnSocialMedia .
+        ?socialEvidence rdf:type cacontology-platforms:SocialMediaEvidence ;
+            cacontology-platforms:foundOnSocialMedia ?foundOnSocialMedia .
     }
     
     # Grooming Pattern Analysis
     OPTIONAL {
-        ?pattern rdf:type icac-grooming:GroomingPattern ;
-            icac-grooming:patternConfidence ?patternConfidence .
-        OPTIONAL { ?pattern icac-grooming:escalationRate ?escalationRate }
+        ?pattern rdf:type cacontology-grooming:GroomingPattern ;
+            cacontology-grooming:patternConfidence ?patternConfidence .
+        OPTIONAL { ?pattern cacontology-grooming:escalationRate ?escalationRate }
     }
     
     # Multi-jurisdictional Coordination
     OPTIONAL {
-        ?multiJuris rdf:type icac-multi:MultiJurisdictionalInvestigation ;
-            icac-multi:agencyCount ?agencyCount .
+        ?multiJuris rdf:type cacontology-multi:MultiJurisdictionalInvestigation ;
+            cacontology-multi:agencyCount ?agencyCount .
         BIND((?agencyCount * ?agencyCount) AS ?coordinationComplexity)
     }
     
     # Task Force Performance Metrics
     OPTIONAL {
-        ?taskforce rdf:type icac-taskforce:ICACtaskForce ;
-            icac-taskforce:hasMetrics ?metrics .
-        ?metrics icac-taskforce:cyberTipsSince2019 ?cyberTipsSince2019 ;
-                 icac-taskforce:arrestsSince2019 ?arrestsSince2019 ;
-                 icac-taskforce:partnerAgencyCount ?partnerAgencyCount .
+        ?taskforce rdf:type cacontology-taskforce:ICACtaskForce ;
+            cacontology-taskforce:hasMetrics ?metrics .
+        ?metrics cacontology-taskforce:cyberTipsSince2019 ?cyberTipsSince2019 ;
+                 cacontology-taskforce:arrestsSince2019 ?arrestsSince2019 ;
+                 cacontology-taskforce:partnerAgencyCount ?partnerAgencyCount .
     }
     
     # Specialized Units Performance
     OPTIONAL {
-        ?k9Unit rdf:type icac-specialized:K9DetectionUnit ;
-            icac-specialized:k9AssistedSearches ?k9Assisted .
-        ?communityUnit rdf:type icac-specialized:CommunityEngagementUnit ;
-            icac-specialized:communityEvents ?communityEngagementEvents .
+        ?k9Unit rdf:type cacontology-specialized:K9DetectionUnit ;
+            cacontology-specialized:k9AssistedSearches ?k9Assisted .
+        ?communityUnit rdf:type cacontology-specialized:CommunityEngagementUnit ;
+            cacontology-specialized:communityEvents ?communityEngagementEvents .
     }
     
     # Sentencing Outcomes
     OPTIONAL {
-        ?sentence rdf:type icac-sentencing:PrisonSentence ;
-            icac-sentencing:sentenceLength ?sentenceLength .
+        ?sentence rdf:type cacontology-sentencing:PrisonSentence ;
+            cacontology-sentencing:sentenceLength ?sentenceLength .
     }
     OPTIONAL {
-        ?penalty rdf:type icac-sentencing:MonetaryPenalty ;
-            icac-sentencing:restitutionAmount ?restitutionAmount .
+        ?penalty rdf:type cacontology-sentencing:MonetaryPenalty ;
+            cacontology-sentencing:restitutionAmount ?restitutionAmount .
     }
     OPTIONAL {
-        ?proceeding rdf:type icac-sentencing:LegalProceeding ;
-            icac-sentencing:projectSafeChildhood ?projectSafeChildhood .
+        ?proceeding rdf:type cacontology-sentencing:LegalProceeding ;
+            cacontology-sentencing:projectSafeChildhood ?projectSafeChildhood .
     }
     OPTIONAL {
-        ?charge icac-sentencing:maximumSentenceYears ?maximumSentenceYears .
+        ?charge cacontology-sentencing:maximumSentenceYears ?maximumSentenceYears .
     }
 }
 
@@ -411,41 +411,41 @@ SELECT DISTINCT
     
 WHERE {
     # Grooming Risk Assessment
-    ?groomingBehavior rdf:type icac-grooming:GroomingBehavior ;
-        icac-grooming:exhibitsPattern ?pattern .
-    ?pattern icac-grooming:patternConfidence ?groomingPatternConfidence .
+    ?groomingBehavior rdf:type cacontology-grooming:GroomingBehavior ;
+        cacontology-grooming:exhibitsPattern ?pattern .
+    ?pattern cacontology-grooming:patternConfidence ?groomingPatternConfidence .
     
     # Tactical Risk Assessment
-    ?threatAssessment rdf:type icac-tactical:ThreatAssessment ;
-        icac-tactical:threatLevel ?tacticalRiskLevel ;
-        icac-tactical:weaponsPossible ?weaponsPossible ;
-        icac-tactical:suicidalRisk ?suicidalRisk .
+    ?threatAssessment rdf:type cacontology-tactical:ThreatAssessment ;
+        cacontology-tactical:threatLevel ?tacticalRiskLevel ;
+        cacontology-tactical:weaponsPossible ?weaponsPossible ;
+        cacontology-tactical:suicidalRisk ?suicidalRisk .
     
     # Case Outcomes
-    ?sentencingHearing rdf:type icac-sentencing:SentencingHearing ;
-        icac-sentencing:victimCount ?victimCount ;
-        icac-sentencing:enhancementApplied ?enhancementApplied .
+    ?sentencingHearing rdf:type cacontology-sentencing:SentencingHearing ;
+        cacontology-sentencing:victimCount ?victimCount ;
+        cacontology-sentencing:enhancementApplied ?enhancementApplied .
     
-    ?sentence rdf:type icac-sentencing:PrisonSentence ;
-        icac-sentencing:sentenceLength ?sentenceLength .
+    ?sentence rdf:type cacontology-sentencing:PrisonSentence ;
+        cacontology-sentencing:sentenceLength ?sentenceLength .
     
     # Production Offense Factor
     OPTIONAL {
-        ?productionOffense rdf:type icac-production:ProductionOffense .
+        ?productionOffense rdf:type cacontology-production:ProductionOffense .
         BIND("PRODUCTION" AS ?productionOffense)
     }
     
     # Social Media Complexity
     OPTIONAL {
-        ?crossPlatform rdf:type icac-platforms:CrossPlatformEvidence ;
-            icac-platforms:platformsInvestigated ?platformCount .
+        ?crossPlatform rdf:type cacontology-platforms:CrossPlatformEvidence ;
+            cacontology-platforms:platformsInvestigated ?platformCount .
         BIND(IF(?platformCount > 3, "HIGH_COMPLEXITY", "STANDARD") AS ?socialMediaComplexity)
     }
     
     # Registration Violation Factor
     OPTIONAL {
-        ?subject icac-registry:hasRegistrationRecord ?registration .
-        ?registration icac-registry:complianceStatus "violation" .
+        ?subject cacontology-registry:hasRegistrationRecord ?registration .
+        ?registration cacontology-registry:complianceStatus "violation" .
         BIND("REGISTRY_VIOLATION" AS ?registrationViolation)
     }
     
@@ -481,33 +481,33 @@ SELECT
     (AVG(?yearOverYearIncrease) AS ?avgGrowthRate)
     
 WHERE {
-    ?investigation rdf:type icac-multi:MultiJurisdictionalInvestigation ;
-        icac-multi:coordinationMechanism ?coordinationMechanism ;
-        icac-multi:agencyCount ?agencyCount ;
-        icac-multi:jurisdictionCount ?jurisdictionCount .
+    ?investigation rdf:type cacontology-multi:MultiJurisdictionalInvestigation ;
+        cacontology-multi:coordinationMechanism ?coordinationMechanism ;
+        cacontology-multi:agencyCount ?agencyCount ;
+        cacontology-multi:jurisdictionCount ?jurisdictionCount .
     
     OPTIONAL {
-        ?investigation icac-multi:coordinationChallenges ?challenge .
+        ?investigation cacontology-multi:coordinationChallenges ?challenge .
     }
     
     # Link to sentencing outcomes
     OPTIONAL {
-        ?sentence rdf:type icac-sentencing:PrisonSentence ;
-            icac-sentencing:sentenceLength ?sentenceLength .
+        ?sentence rdf:type cacontology-sentencing:PrisonSentence ;
+            cacontology-sentencing:sentenceLength ?sentenceLength .
     }
     
     # Link to task force performance
     OPTIONAL {
-        ?taskforce icac-taskforce:handledInvestigation ?investigation ;
-                   icac-taskforce:hasMetrics ?metrics .
-        ?metrics icac-taskforce:cyberTipsSince2019 ?cyberTipsSince2019 ;
-                 icac-taskforce:arrestsSince2019 ?arrestsSince2019 .
+        ?taskforce cacontology-taskforce:handledInvestigation ?investigation ;
+                   cacontology-taskforce:hasMetrics ?metrics .
+        ?metrics cacontology-taskforce:cyberTipsSince2019 ?cyberTipsSince2019 ;
+                 cacontology-taskforce:arrestsSince2019 ?arrestsSince2019 .
     }
     
     # Annual performance trends
     OPTIONAL {
-        ?annualPerformance rdf:type icac-taskforce:AnnualPerformance ;
-            icac-taskforce:yearOverYearIncrease ?yearOverYearIncrease .
+        ?annualPerformance rdf:type cacontology-taskforce:AnnualPerformance ;
+            cacontology-taskforce:yearOverYearIncrease ?yearOverYearIncrease .
     }
 }
 GROUP BY ?coordinationMechanism

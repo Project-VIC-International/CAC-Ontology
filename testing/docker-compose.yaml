@@ -21,120 +21,120 @@ services:
     container_name: cacontology_pyshacl
     working_dir: /app
     volumes:
-      - ./:/app/ontology/icac
+      - ../:/app/cacontology
     command: >
       sh -c "pip install pyshacl rdflib && \
              echo '=== Core Ontology Validation ===' && \
              echo 'Validating ontology/cacontology-hotlines-core.ttl...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-hotlines-core-shapes.ttl -d /app/ontology/icac/ontology/cacontology-hotlines-core.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-hotlines-core-shapes.ttl -d /app/cacontology/ontology/cacontology-hotlines-core.ttl -f human && \
              echo 'Validating ontology/cacontology-core.ttl...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-core-shapes.ttl -d /app/ontology/icac/ontology/cacontology-core.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/ontology/cacontology-core.ttl -f human && \
              echo 'Validating cacontology-forensics.ttl...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-forensics-shapes.ttl -d /app/ontology/icac/ontology/cacontology-forensics.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-forensics-shapes.ttl -d /app/cacontology/ontology/cacontology-forensics.ttl -f human && \
              echo 'Validating cacontology-educational-exploitation.ttl...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-educational-shapes.ttl -d /app/ontology/icac/ontology/cacontology-educational-exploitation.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-educational-shapes.ttl -d /app/cacontology/ontology/cacontology-educational-exploitation.ttl -f human && \
              echo 'Validating cacontology-sex-trafficking.ttl...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-trafficking-shapes.ttl -d /app/ontology/icac/ontology/cacontology-sex-trafficking.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-trafficking-shapes.ttl -d /app/cacontology/ontology/cacontology-sex-trafficking.ttl -f human && \
              echo 'Validating cacontology-athletic-exploitation.ttl...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-athletic-exploitation-shapes.ttl -d /app/ontology/icac/ontology/cacontology-athletic-exploitation.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-athletic-exploitation-shapes.ttl -d /app/cacontology/ontology/cacontology-athletic-exploitation.ttl -f human && \
              echo 'Validating cacontology-production.ttl...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-production-shapes.ttl -d /app/ontology/icac/ontology/cacontology-production.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-production-shapes.ttl -d /app/cacontology/ontology/cacontology-production.ttl -f human && \
              echo 'Validating cacontology-custodial.ttl...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-custodial-shapes.ttl -d /app/ontology/icac/ontology/cacontology-custodial.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-custodial-shapes.ttl -d /app/cacontology/ontology/cacontology-custodial.ttl -f human && \
              echo 'Validating cacontology-grooming.ttl...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-grooming-shapes.ttl -d /app/ontology/icac/ontology/cacontology-grooming.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-grooming-shapes.ttl -d /app/cacontology/ontology/cacontology-grooming.ttl -f human && \
              echo 'Validating cacontology-sextortion.ttl...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-sextortion-shapes.ttl -d /app/ontology/icac/ontology/cacontology-sextortion.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-sextortion-shapes.ttl -d /app/cacontology/ontology/cacontology-sextortion.ttl -f human && \
              echo 'Validating cacontology-victim-impact.ttl...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-victim-impact-shapes.ttl -d /app/ontology/icac/ontology/cacontology-victim-impact.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-victim-impact-shapes.ttl -d /app/cacontology/ontology/cacontology-victim-impact.ttl -f human && \
              echo 'Validating cacontology-undercover.ttl...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-undercover-shapes.ttl -d /app/ontology/icac/ontology/cacontology-undercover.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-undercover-shapes.ttl -d /app/cacontology/ontology/cacontology-undercover.ttl -f human && \
              echo 'Validating cacontology-specialized-units.ttl...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-specialized-units-shapes.ttl -d /app/ontology/icac/ontology/cacontology-specialized-units.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-specialized-units-shapes.ttl -d /app/cacontology/ontology/cacontology-specialized-units.ttl -f human && \
              echo 'Validating cacontology-platforms.ttl...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-platforms-shapes.ttl -d /app/ontology/icac/ontology/cacontology-platforms.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-platforms-shapes.ttl -d /app/cacontology/ontology/cacontology-platforms.ttl -f human && \
              echo 'Validating cacontology-detection.ttl...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-detection-shapes.ttl -d /app/ontology/icac/ontology/cacontology-detection.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-detection-shapes.ttl -d /app/cacontology/ontology/cacontology-detection.ttl -f human && \
              echo 'Validating cacontology-sex-offender-registry.ttl...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-sex-offender-registry-shapes.ttl -d /app/ontology/icac/ontology/cacontology-sex-offender-registry.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-sex-offender-registry-shapes.ttl -d /app/cacontology/ontology/cacontology-sex-offender-registry.ttl -f human && \
              echo 'Validating cacontology-ai-generated-content.ttl...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-ai-generated-content-shapes.ttl -d /app/ontology/icac/ontology/cacontology-ai-generated-content.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-ai-generated-content-shapes.ttl -d /app/cacontology/ontology/cacontology-ai-generated-content.ttl -f human && \
              echo 'Validating cacontology-platform-infrastructure.ttl...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-platform-infrastructure-shapes.ttl -d /app/ontology/icac/ontology/cacontology-platform-infrastructure.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-platform-infrastructure-shapes.ttl -d /app/cacontology/ontology/cacontology-platform-infrastructure.ttl -f human && \
              echo 'Validating cacontology-international.ttl...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-international-shapes.ttl -d /app/ontology/icac/ontology/cacontology-international.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-international-shapes.ttl -d /app/cacontology/ontology/cacontology-international.ttl -f human && \
              echo 'Validating cacontology-training.ttl...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-training-shapes.ttl -d /app/ontology/icac/ontology/cacontology-training.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-training-shapes.ttl -d /app/cacontology/ontology/cacontology-training.ttl -f human && \
              echo 'Validating cacontology-prevention.ttl...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-prevention-shapes.ttl -d /app/ontology/icac/ontology/cacontology-prevention.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-prevention-shapes.ttl -d /app/cacontology/ontology/cacontology-prevention.ttl -f human && \
              echo 'Validating cacontology-legal-harmonization.ttl...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-legal-harmonization-shapes.ttl -d /app/ontology/icac/ontology/cacontology-legal-harmonization.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-legal-harmonization-shapes.ttl -d /app/cacontology/ontology/cacontology-legal-harmonization.ttl -f human && \
              echo 'Validating cacontology-us-ncmec.ttl...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-us-ncmec-shapes.ttl -d /app/ontology/icac/ontology/cacontology-us-ncmec.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-us-ncmec-shapes.ttl -d /app/cacontology/ontology/cacontology-us-ncmec.ttl -f human && \
              echo '' && \
              echo '=== Basic Example Validation ===' && \
              echo 'Validating hotline-lifecycle example...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-hotlines-core-shapes.ttl -d /app/ontology/icac/examples/hotline-lifecycle.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-hotlines-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/hotline-lifecycle.ttl -f human && \
              echo 'Validating investigation-lifecycle example...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-core-shapes.ttl -d /app/ontology/icac/examples/investigation-lifecycle.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/investigation-lifecycle.ttl -f human && \
              echo 'Validating enhanced-investigation-lifecycle example...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-forensics-shapes.ttl -d /app/ontology/icac/examples/enhanced-investigation-lifecycle.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-forensics-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/enhanced-investigation-lifecycle.ttl -f human && \
              echo '' && \
              echo '=== Athletic Exploitation Validation ===' && \
              echo 'Validating brooklyn-morton-october-2024 example...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-core-shapes.ttl -d /app/ontology/icac/examples/brooklyn-morton-october-2024-example.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/brooklyn-morton-october-2024-example.ttl -f human && \
              echo '' && \
              echo '=== Production Case Validation ===' && \
              echo 'Validating rhode-island-production-case example...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-core-shapes.ttl -d /app/ontology/icac/examples/rhode-island-production-case.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/rhode-island-production-case.ttl -f human && \
              echo 'Validating douglas-comprehensive-case example...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-core-shapes.ttl -d /app/ontology/icac/examples/douglas-comprehensive-case.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/douglas-comprehensive-case.ttl -f human && \
              echo '' && \
              echo '=== Multi-Jurisdictional Validation ===' && \
              echo 'Validating arkansas-operation example...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-core-shapes.ttl -d /app/ontology/icac/examples/arkansas-operation-cyber-highway-safety-check-example.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/arkansas-operation-cyber-highway-safety-check-example.ttl -f human && \
              echo 'Validating illinois-attorney-general-case example...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-core-shapes.ttl -d /app/ontology/icac/examples/illinois-attorney-general-case-example.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/illinois-attorney-general-case-example.ttl -f human && \
              echo 'Validating international-coordination example...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-core-shapes.ttl -d /app/ontology/icac/examples/international-coordination-example.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/international-coordination-example.ttl -f human && \
              echo '' && \
              echo '=== Registry and Specialized Operations ===' && \
              echo 'Validating sex-offender-registry-integration example...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-core-shapes.ttl -d /app/ontology/icac/examples/sex-offender-registry-integration-example.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/sex-offender-registry-integration-example.ttl -f human && \
              echo 'Validating idaho-operation-unhinged example...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-core-shapes.ttl -d /app/ontology/icac/examples/idaho-operation-unhinged-example.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/idaho-operation-unhinged-example.ttl -f human && \
              echo '' && \
              echo '=== Interstate and Cross-Border Cases ===' && \
              echo 'Validating buffalo-vermont-case example...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-core-shapes.ttl -d /app/ontology/icac/examples/buffalo-vermont-case-example.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/buffalo-vermont-case-example.ttl -f human && \
              echo 'Validating hartford-vermont-case example...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-core-shapes.ttl -d /app/ontology/icac/examples/hartford-vermont-case-example.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/hartford-vermont-case-example.ttl -f human && \
              echo 'Validating vermont-case example...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-core-shapes.ttl -d /app/ontology/icac/examples/vermont-case-example.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/vermont-case-example.ttl -f human && \
              echo '' && \
              echo '=== Sextortion and Modern Threats ===' && \
              echo 'Validating wa-sextortion-case example...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-core-shapes.ttl -d /app/ontology/icac/examples/wa-sextortion-case-example.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/wa-sextortion-case-example.ttl -f human && \
              echo '' && \
              echo '=== International Operations ===' && \
              echo 'Validating operation-cumberland-ai-csam example...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-core-shapes.ttl -d /app/ontology/icac/examples/operation-cumberland-ai-csam-example.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/operation-cumberland-ai-csam-example.ttl -f human && \
              echo 'Validating europol-kidflix-operation example...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-core-shapes.ttl -d /app/ontology/icac/examples/europol-kidflix-operation-example.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/europol-kidflix-operation-example.ttl -f human && \
              echo 'Validating sa-jacet-decade-operation example...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-core-shapes.ttl -d /app/ontology/icac/examples/sa-jacet-decade-operation-example.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/sa-jacet-decade-operation-example.ttl -f human && \
              echo '' && \
              echo '=== Recent Brooklyn Cases ===' && \
              echo 'Validating brooklyn-fiesco-november-2024 example...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-core-shapes.ttl -d /app/ontology/icac/examples/brooklyn-fiesco-november-2024-example.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/brooklyn-fiesco-november-2024-example.ttl -f human && \
              echo 'Validating brooklyn-lee-december-2024 example...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-core-shapes.ttl -d /app/ontology/icac/examples/brooklyn-lee-december-2024-example.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/brooklyn-lee-december-2024-example.ttl -f human && \
              echo 'Validating brooklyn-teacher-march-2025 example...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-core-shapes.ttl -d /app/ontology/icac/examples/brooklyn-teacher-march-2025-example.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/brooklyn-teacher-march-2025-example.ttl -f human && \
              echo 'Validating brooklyn-trafficking-april-2025 example...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-core-shapes.ttl -d /app/ontology/icac/examples/brooklyn-trafficking-april-2025-example.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/brooklyn-trafficking-april-2025-example.ttl -f human && \
              echo 'Validating brooklyn-trafficking-ring example...' && \
-             pyshacl -s /app/ontology/icac/ontology/cacontology-core-shapes.ttl -d /app/ontology/icac/examples/brooklyn-trafficking-ring-example.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/brooklyn-trafficking-ring-example.ttl -f human && \
              echo '' && \
              echo '=== Validation Complete ===' && \
              echo 'All ontologies and examples validated successfully!' && \
@@ -153,7 +153,7 @@ services:
              echo '  robot validate *.ttl' && \
              echo '  robot merge --input ontology/cacontology-core.ttl --input ontology/cacontology-hotlines-core.ttl --output merged.ttl' && \
              echo '  robot reason --input ontology/cacontology-core.ttl --reasoner hermit' && \
-             echo '  robot query --input ontology/cacontology-core.ttl --query queries/find_open_reports.rq' && \
+             echo '  robot query --input ontology/cacontology-core.ttl --query example_SPARQL_queries/find_open_reports.rq' && \
              echo 'Container ready for interactive use.' && sleep infinity"
     restart: unless-stopped
 

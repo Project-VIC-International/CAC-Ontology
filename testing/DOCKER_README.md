@@ -42,7 +42,7 @@ This Docker Compose environment provides a comprehensive development and validat
 
 ### Start All Services
 ```bash
-cd ontology/CAC
+cd testing
 docker-compose up -d
 ```
 
@@ -94,19 +94,19 @@ The pySHACL service validates examples in organized categories:
 ### ROBOT Framework Commands
 ```bash
 # Access ROBOT container
-docker exec -it CAC_robot bash
+docker exec -it cacontology_robot bash
 
 # Validate ontologies
 robot validate *.ttl
 
 # Merge ontologies
-robot merge --input cacontology-core.ttl --input hotlines-core.ttl --output merged.ttl
+robot merge --input ontology/cacontology-core.ttl --input ontology/cacontology-hotlines-core.ttl --output merged.ttl
 
 # Run reasoning
-robot reason --input cacontology-core.ttl --reasoner hermit
+robot reason --input ontology/cacontology-core.ttl --reasoner hermit
 
 # Execute SPARQL queries
-robot query --input cacontology-core.ttl --query queries/find_open_reports.rq
+robot query --input ontology/cacontology-core.ttl --query example_SPARQL_queries/find_open_reports.rq
 ```
 
 ### Fuseki SPARQL Queries
@@ -115,7 +115,7 @@ robot query --input cacontology-core.ttl --query queries/find_open_reports.rq
 open http://localhost:3030
 
 # Example SPARQL query for athletic coaching cases
-PREFIX cacontology-athletic: <https://ontology.unifiedcyberontology.org/CAC/athletic#>
+PREFIX cacontology-athletic: <https://cacontology.projectvic.org/athletic-exploitation#>
 SELECT ?exploitation ?sportType ?teamSize
 WHERE {
     ?exploitation a cacontology-athletic:AthleticCoachingExploitation ;
@@ -207,8 +207,8 @@ open http://localhost:3030
 ### 4. Advanced Processing
 ```bash
 # Use ROBOT for advanced operations
-docker exec -it CAC_robot bash
-robot validate your-new-ontology.ttl
+docker exec -it cacontology_robot bash
+robot validate ontology/your-new-ontology.ttl
 ```
 
 ## Troubleshooting
@@ -227,7 +227,7 @@ If you encounter memory issues with large datasets:
 docker-compose logs pyshacl | grep -A 10 "Validation Result"
 
 # Validate individual files
-docker exec CAC_pyshacl pyshacl -s /app/ontology/CAC/cacontology-core-shapes.ttl -d /app/ontology/CAC/your-file.ttl -f human
+docker exec cacontology_pyshacl pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/ontology/your-file.ttl -f human
 ```
 
 ### Port Conflicts

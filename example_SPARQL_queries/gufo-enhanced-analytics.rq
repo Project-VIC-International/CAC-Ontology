@@ -21,8 +21,8 @@ SELECT ?phase_type ?avg_duration ?efficiency_score ?case_count WHERE {
            (AVG(?efficiency) as ?efficiency_score)
            (COUNT(?phase) as ?case_count) WHERE {
       ?phase rdf:type ?phase_type ;
-             icac-gufo:phaseDuration ?duration ;
-             icac-temporal:phaseEfficiency ?efficiency .
+             cacontology-gufo:phaseDuration ?duration ;
+             cacontology-temporal:phaseEfficiency ?efficiency .
       
       # Convert duration to hours for analysis
       BIND(
@@ -33,9 +33,9 @@ SELECT ?phase_type ?avg_duration ?efficiency_score ?case_count WHERE {
       )
       
       FILTER(?phase_type IN (
-        icac-gufo:InitialPhase, icac-gufo:AnalysisPhase, 
-        icac-gufo:LegalProcessPhase, icac-gufo:EvidencePhase,
-        icac-gufo:ResolutionPhase
+        cacontology-gufo:InitialPhase, cacontology-gufo:AnalysisPhase, 
+        cacontology-gufo:LegalProcessPhase, cacontology-gufo:EvidencePhase,
+        cacontology-gufo:ResolutionPhase
       ))
     }
     GROUP BY ?phase_type
@@ -48,24 +48,24 @@ ORDER BY ?avg_duration
 # =============================================================================
 
 SELECT ?person ?conflicting_roles ?investigation ?conflict_severity WHERE {
-  ?person icac-gufo:playsRole ?role1 ;
-          icac-gufo:playsRole ?role2 .
+  ?person cacontology-gufo:playsRole ?role1 ;
+          cacontology-gufo:playsRole ?role2 .
   
-  ?role1 icac-gufo:participatesInInvestigation ?investigation .
-  ?role2 icac-gufo:participatesInInvestigation ?investigation .
+  ?role1 cacontology-gufo:participatesInInvestigation ?investigation .
+  ?role2 cacontology-gufo:participatesInInvestigation ?investigation .
   
   # Detect conflicting role combinations
   FILTER(
-    (?role1 = icac-gufo:VictimRole && ?role2 = icac-gufo:OffenderRole) ||
-    (?role1 = icac-gufo:OffenderRole && ?role2 = icac-gufo:VictimRole) ||
-    (?role1 = icac-gufo:InvestigatorRole && ?role2 = icac-gufo:OffenderRole) ||
-    (?role1 = icac-gufo:OffenderRole && ?role2 = icac-gufo:InvestigatorRole)
+    (?role1 = cacontology-gufo:VictimRole && ?role2 = cacontology-gufo:OffenderRole) ||
+    (?role1 = cacontology-gufo:OffenderRole && ?role2 = cacontology-gufo:VictimRole) ||
+    (?role1 = cacontology-gufo:InvestigatorRole && ?role2 = cacontology-gufo:OffenderRole) ||
+    (?role1 = cacontology-gufo:OffenderRole && ?role2 = cacontology-gufo:InvestigatorRole)
   )
   
   BIND(CONCAT(STR(?role1), " + ", STR(?role2)) as ?conflicting_roles)
   BIND(
-    IF(?role1 = icac-gufo:VictimRole && ?role2 = icac-gufo:OffenderRole, "CRITICAL",
-    IF(?role1 = icac-gufo:InvestigatorRole && ?role2 = icac-gufo:OffenderRole, "CRITICAL",
+    IF(?role1 = cacontology-gufo:VictimRole && ?role2 = cacontology-gufo:OffenderRole, "CRITICAL",
+    IF(?role1 = cacontology-gufo:InvestigatorRole && ?role2 = cacontology-gufo:OffenderRole, "CRITICAL",
     "HIGH")) as ?conflict_severity
   )
 }
@@ -81,12 +81,12 @@ SELECT ?pattern_type ?frequency ?avg_success_rate ?avg_total_duration WHERE {
            (AVG(?completion_rate) as ?avg_success_rate)
            (AVG(?total_duration) as ?avg_total_duration) WHERE {
       
-      ?inv rdf:type icac-gufo:Investigation ;
-           icac-temporal:hasTimeToResolution ?resolution_time ;
-           icac-temporal:hasActiveDuration ?active_time ;
-           icac-gufo:hasPhase ?phase .
+      ?inv rdf:type cacontology-gufo:Investigation ;
+           cacontology-temporal:hasTimeToResolution ?resolution_time ;
+           cacontology-temporal:hasActiveDuration ?active_time ;
+           cacontology-gufo:hasPhase ?phase .
       
-      ?phase icac-temporal:phaseCompletionRate ?completion_rate .
+      ?phase cacontology-temporal:phaseCompletionRate ?completion_rate .
       
       # Convert duration to days
       BIND(xsd:decimal(REPLACE(REPLACE(STR(?resolution_time), "P", ""), "D.*", "")) as ?total_duration)
@@ -109,16 +109,16 @@ ORDER BY ?avg_total_duration
 # =============================================================================
 
 SELECT ?investigation ?suspension_count ?total_suspended_days ?impact_score WHERE {
-  ?investigation rdf:type icac-gufo:Investigation ;
-                 icac-temporal:hasSuspendedDuration ?suspended_duration ;
-                 icac-temporal:hasActiveDuration ?active_duration ;
-                 icac-temporal:hasTimeToResolution ?total_duration .
+  ?investigation rdf:type cacontology-gufo:Investigation ;
+                 cacontology-temporal:hasSuspendedDuration ?suspended_duration ;
+                 cacontology-temporal:hasActiveDuration ?active_duration ;
+                 cacontology-temporal:hasTimeToResolution ?total_duration .
   
   # Count suspension events
   {
     SELECT ?investigation (COUNT(?suspension) as ?suspension_count) WHERE {
-      ?suspension rdf:type icac-temporal:SuspensionEvent ;
-                  icac-temporal:suspends ?investigation .
+      ?suspension rdf:type cacontology-temporal:SuspensionEvent ;
+                  cacontology-temporal:suspends ?investigation .
     }
     GROUP BY ?investigation
   }
@@ -148,14 +148,14 @@ SELECT ?coordination_type ?jurisdiction_count ?avg_coordination_duration ?succes
            (AVG(?duration_days) as ?avg_coordination_duration)
            (AVG(?completion_rate) as ?success_rate) WHERE {
       
-      ?situation rdf:type icac-temporal:MultiJurisdictionCoordinationSituation ;
+      ?situation rdf:type cacontology-temporal:MultiJurisdictionCoordinationSituation ;
                  gufo:hasBeginPointInXSDDateTimeStamp ?begin ;
                  gufo:hasEndPointInXSDDateTimeStamp ?end .
       
-      ?investigation icac-temporal:hasTimeToResolution ?total_time ;
-                     icac-gufo:hasPhase ?phase .
+      ?investigation cacontology-temporal:hasTimeToResolution ?total_time ;
+                     cacontology-gufo:hasPhase ?phase .
       
-      ?phase icac-temporal:phaseCompletionRate ?completion_rate .
+      ?phase cacontology-temporal:phaseCompletionRate ?completion_rate .
       
       # Calculate coordination duration
       BIND((xsd:dateTime(?end) - xsd:dateTime(?begin)) / xsd:dayTimeDuration("P1D") as ?duration_days)
@@ -192,28 +192,28 @@ SELECT ?role_type ?avg_role_duration ?escalation_frequency ?overlap_patterns WHE
            (COUNT(?overlap) as ?overlap_patterns) WHERE {
       
       ?role rdf:type ?role_type ;
-            icac-gufo:hasRoleBeginPoint ?begin ;
-            icac-gufo:hasRoleEndPoint ?end .
+            cacontology-gufo:hasRoleBeginPoint ?begin ;
+            cacontology-gufo:hasRoleEndPoint ?end .
       
       # Calculate role duration
       BIND((xsd:dateTime(?end) - xsd:dateTime(?begin)) / xsd:dayTimeDuration("P1D") as ?role_duration_days)
       
       # Check for role escalations
       OPTIONAL {
-        ?escalation rdf:type icac-temporal:RoleEscalation ;
-                    icac-temporal:involvesRole ?role .
+        ?escalation rdf:type cacontology-temporal:RoleEscalation ;
+                    cacontology-temporal:involvesRole ?role .
       }
       
       # Check for role overlaps
       OPTIONAL {
-        ?overlap rdf:type icac-temporal:SimultaneousRoleSituation ;
-                 icac-temporal:involvesRole ?role .
+        ?overlap rdf:type cacontology-temporal:SimultaneousRoleSituation ;
+                 cacontology-temporal:involvesRole ?role .
       }
       
       FILTER(?role_type IN (
-        icac-gufo:InvestigatorRole, icac-gufo:VictimRole, 
-        icac-gufo:OffenderRole, icac-gufo:WitnessRole,
-        icac-gufo:InformantRole, icac-gufo:RescuerRole
+        cacontology-gufo:InvestigatorRole, cacontology-gufo:VictimRole, 
+        cacontology-gufo:OffenderRole, cacontology-gufo:WitnessRole,
+        cacontology-gufo:InformantRole, cacontology-gufo:RescuerRole
       ))
     }
     GROUP BY ?role_type
@@ -226,14 +226,14 @@ ORDER BY DESC(?avg_role_duration)
 # =============================================================================
 
 SELECT ?investigation ?feature_vector ?predicted_risk_level WHERE {
-  ?investigation rdf:type icac-gufo:Investigation ;
-                 icac-temporal:hasTimeToResolution ?total_duration ;
-                 icac-temporal:urgencyLevel ?urgency .
+  ?investigation rdf:type cacontology-gufo:Investigation ;
+                 cacontology-temporal:hasTimeToResolution ?total_duration ;
+                 cacontology-temporal:urgencyLevel ?urgency .
   
   # Count phases
   {
     SELECT ?investigation (COUNT(?phase) as ?phase_count) WHERE {
-      ?investigation icac-gufo:hasPhase ?phase .
+      ?investigation cacontology-gufo:hasPhase ?phase .
     }
     GROUP BY ?investigation
   }
@@ -241,7 +241,7 @@ SELECT ?investigation ?feature_vector ?predicted_risk_level WHERE {
   # Count roles
   {
     SELECT ?investigation (COUNT(?role) as ?role_count) WHERE {
-      ?investigation icac-gufo:hasRole ?role .
+      ?investigation cacontology-gufo:hasRole ?role .
     }
     GROUP BY ?investigation
   }
@@ -249,7 +249,7 @@ SELECT ?investigation ?feature_vector ?predicted_risk_level WHERE {
   # Count events
   {
     SELECT ?investigation (COUNT(?event) as ?event_count) WHERE {
-      ?event icac-gufo:participatesInInvestigation ?investigation .
+      ?event cacontology-gufo:participatesInInvestigation ?investigation .
     }
     GROUP BY ?investigation
   }
@@ -257,8 +257,8 @@ SELECT ?investigation ?feature_vector ?predicted_risk_level WHERE {
   # Count suspensions
   {
     SELECT ?investigation (COUNT(?suspension) as ?suspension_count) WHERE {
-      ?suspension rdf:type icac-temporal:SuspensionEvent ;
-                  icac-temporal:suspends ?investigation .
+      ?suspension rdf:type cacontology-temporal:SuspensionEvent ;
+                  cacontology-temporal:suspends ?investigation .
     }
     GROUP BY ?investigation
   }
@@ -285,13 +285,13 @@ SELECT ?investigation ?feature_vector ?predicted_risk_level WHERE {
 # =============================================================================
 
 SELECT ?investigation ?event_chain_length ?parallel_events ?critical_path WHERE {
-  ?investigation rdf:type icac-gufo:Investigation .
+  ?investigation rdf:type cacontology-gufo:Investigation .
   
   # Count event dependencies
   {
     SELECT ?investigation (COUNT(?dependency) as ?event_chain_length) WHERE {
-      ?event icac-gufo:participatesInInvestigation ?investigation ;
-             icac-temporal:hasPrerequisiteEvent ?dependency .
+      ?event cacontology-gufo:participatesInInvestigation ?investigation ;
+             cacontology-temporal:hasPrerequisiteEvent ?dependency .
     }
     GROUP BY ?investigation
   }
@@ -299,8 +299,8 @@ SELECT ?investigation ?event_chain_length ?parallel_events ?critical_path WHERE 
   # Count parallel events
   {
     SELECT ?investigation (COUNT(?parallel) as ?parallel_events) WHERE {
-      ?event icac-gufo:participatesInInvestigation ?investigation ;
-             icac-temporal:hasParallelEvent ?parallel .
+      ?event cacontology-gufo:participatesInInvestigation ?investigation ;
+             cacontology-temporal:hasParallelEvent ?parallel .
     }
     GROUP BY ?investigation
   }
@@ -324,12 +324,12 @@ SELECT ?validation_type ?entity_count ?compliance_rate WHERE {
   {
     SELECT "Phase Modeling" as ?validation_type (COUNT(?phase) as ?entity_count) (1.0 as ?compliance_rate) WHERE {
       ?phase rdf:type gufo:Phase ;
-             rdfs:subClassOf icac-gufo:Investigation .
+             rdfs:subClassOf cacontology-gufo:Investigation .
     }
   } UNION {
     SELECT "Role Modeling" as ?validation_type (COUNT(?role) as ?entity_count) (1.0 as ?compliance_rate) WHERE {
       ?role rdf:type gufo:Role ;
-            rdfs:subClassOf icac-gufo:Person .
+            rdfs:subClassOf cacontology-gufo:Person .
     }
   } UNION {
     SELECT "Event Modeling" as ?validation_type (COUNT(?event) as ?entity_count) (1.0 as ?compliance_rate) WHERE {
@@ -354,28 +354,28 @@ SELECT ?success_pattern ?pattern_frequency ?avg_completion_rate ?key_factors WHE
            (AVG(?completion_rate) as ?avg_completion_rate)
            (GROUP_CONCAT(DISTINCT ?factor; separator=", ") as ?key_factors) WHERE {
       
-      ?inv rdf:type icac-gufo:Investigation ;
-           icac-gufo:hasPhase ?phase .
+      ?inv rdf:type cacontology-gufo:Investigation ;
+           cacontology-gufo:hasPhase ?phase .
       
-      ?phase icac-temporal:phaseCompletionRate ?completion_rate .
+      ?phase cacontology-temporal:phaseCompletionRate ?completion_rate .
       
       # Identify success factors
       OPTIONAL {
-        ?inv icac-temporal:urgencyLevel ?urgency .
+        ?inv cacontology-temporal:urgencyLevel ?urgency .
         FILTER(?urgency >= 4)
         BIND("High Urgency" as ?factor)
       }
       
       OPTIONAL {
-        ?inv icac-temporal:hasActiveDuration ?active_duration .
+        ?inv cacontology-temporal:hasActiveDuration ?active_duration .
         BIND(xsd:decimal(REPLACE(REPLACE(STR(?active_duration), "P", ""), "D.*", "")) as ?active_days)
         FILTER(?active_days <= 30)
         BIND("Fast Resolution" as ?factor)
       }
       
       OPTIONAL {
-        ?role icac-gufo:participatesInInvestigation ?inv .
-        ?role rdf:type icac-gufo:InformantRole .
+        ?role cacontology-gufo:participatesInInvestigation ?inv .
+        ?role rdf:type cacontology-gufo:InformantRole .
         BIND("Informant Support" as ?factor)
       }
       
