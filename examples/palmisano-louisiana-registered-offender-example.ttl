@@ -9,13 +9,13 @@
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/location#> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/observable#> .
 @prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
-@prefix icac-core: <https://ontology.unifiedcyberontology.org/icac/core#> .
-@prefix icac-registry: <https://ontology.unifiedcyberontology.org/icac/sex-offender-registry#> .
-@prefix icac-forensics: <https://ontology.unifiedcyberontology.org/icac/forensics#> .
-@prefix icac-multi: <https://ontology.unifiedcyberontology.org/icac/multi-jurisdiction#> .
-@prefix icac-sentencing: <https://ontology.unifiedcyberontology.org/icac/sentencing#> .
+@prefix cacontology-core: <https://cacontology.projectvic.org/core#> .
+@prefix cacontology-registry: <https://cacontology.projectvic.org/sex-offender-registry#> .
+@prefix cacontology-forensics: <https://cacontology.projectvic.org/forensics#> .
+@prefix cacontology-multi: <https://cacontology.projectvic.org/multi-jurisdiction#> .
+@prefix cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#> .
 
-@base <https://ontology.unifiedcyberontology.org/icac/examples/palmisano-case#> .
+@base <https://cacontology.projectvic.org/examples/palmisano-case#> .
 
 # =============================================================================
 # PALMISANO CASE EXAMPLE - LOUISIANA REGISTERED SEX OFFENDER
@@ -26,7 +26,7 @@
 <> rdf:type owl:Ontology ;
     rdfs:label "Nicolas James Palmisano Case Example"@en ;
     rdfs:comment "Comprehensive example modeling the Nicolas James Palmisano case demonstrating registered sex offender recidivism, cross-state digital exploitation, and compliance-based arrest coordination."@en ;
-    owl:imports <https://ontology.unifiedcyberontology.org/icac/sex-offender-registry> .
+    owl:imports <https://cacontology.projectvic.org/sex-offender-registry> .
 
 # =============================================================================
 # PERPETRATOR - REGISTERED SEX OFFENDER

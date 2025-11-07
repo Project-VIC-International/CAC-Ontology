@@ -7,13 +7,13 @@
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable#> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location#> .
-@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
-@prefix icac-undercover: <https://ontology.unifiedcyberontology.org/icac/undercover#> .
-@prefix icac-grooming: <https://ontology.unifiedcyberontology.org/icac/grooming#> .
-@prefix icac-physical: <https://ontology.unifiedcyberontology.org/icac/physical#> .
-@prefix icac-tactical: <https://ontology.unifiedcyberontology.org/icac/tactical#> .
-@prefix icac-multi: <https://ontology.unifiedcyberontology.org/icac/multi-jurisdiction#> .
-@prefix icac-sentencing: <https://ontology.unifiedcyberontology.org/icac/sentencing#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-undercover: <https://cacontology.projectvic.org/undercover#> .
+@prefix cacontology-grooming: <https://cacontology.projectvic.org/grooming#> .
+@prefix cacontology-physical: <https://cacontology.projectvic.org/physical#> .
+@prefix cacontology-tactical: <https://cacontology.projectvic.org/tactical#> .
+@prefix cacontology-multi: <https://cacontology.projectvic.org/multi-jurisdiction#> .
+@prefix cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#> .
 @prefix ex: <http://example.org/douglas-case#> .
 
 # =============================================================================
@@ -23,10 +23,10 @@
 # =============================================================================
 
 # Case Overview
-ex:DouglasCase rdf:type icac:Investigation ;
+ex:DouglasCase rdf:type cacontology:Investigation ;
     rdfs:label "United States v. Michael Gordon Douglas"@en ;
-    icac:caseNumber "CR-2024-001" ;
-    icac:investigationStatus "closed" ;
+    cacontology:caseNumber "CR-2024-001" ;
+    cacontology:investigationStatus "closed" ;
     uco-core:startTime "2024-01-15T08:00:00Z"^^xsd:dateTime ;
     uco-core:endTime "2024-11-20T17:30:00Z"^^xsd:dateTime .
 
@@ -37,7 +37,7 @@ ex:DouglasCase rdf:type icac:Investigation ;
 ex:MichaelDouglas rdf:type uco-identity:Person ;
     rdfs:label "Michael Gordon Douglas" ;
     uco-identity:birthDate "1985-03-12"^^xsd:date ;
-    icac:subjectRole icac:Suspect .
+    cacontology:subjectRole cacontology:Suspect .
 
 ex:VictimChild1 rdf:type icac-grooming:ChildVictim ;
     rdfs:label "Minor Victim 1" ;
@@ -283,8 +283,8 @@ ex:DefenseAttorney1 rdf:type icac-sentencing:DefenseAttorney ;
 # =============================================================================
 
 # Investigation Relationships
-ex:DouglasCase icac:hasSubject ex:MichaelDouglas ;
-    icac:hasVictim ex:VictimChild1, ex:VictimChild2 .
+ex:DouglasCase cacontology:hasSubject ex:MichaelDouglas ;
+    cacontology:hasVictim ex:VictimChild1, ex:VictimChild2 .
 
 # Undercover Operation Relationships
 ex:UndercoverOperation1 icac-undercover:evidenceCollected ex:GroomingMessage1 .

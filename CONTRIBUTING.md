@@ -1,16 +1,16 @@
-# Contributing to ICAC Ontology Family
+# Contributing to CAC Ontology Family
 
-This document provides guidelines for contributing to the ICAC ontology family. Please read it carefully before submitting any changes.
+This document provides guidelines for contributing to the CAC ontology family. Please read it carefully before submitting any changes.
 
 ## Project Structure
 
-The ICAC ontology family is organized into several modules:
+The CAC ontology family is organized into several modules:
 
-- `icac-core.ttl`: Core investigation classes and properties
-- `icac-core-shapes.ttl`: SHACL validation for core
+- `cacontology-core.ttl`: Core investigation classes and properties
+- `cacontology-core-shapes.ttl`: SHACL validation for core
 - `hotlines-core.ttl`: Hotline reporting classes and properties
 - `hotlines-core-shapes.ttl`: SHACL validation for hotlines
-- `icac-us-ncmec.ttl`: NCMEC-specific extensions
+- `cacontology-us-ncmec.ttl`: NCMEC-specific extensions
 - `contexts/`: JSON-LD context files
 - `examples/`: Example data files
 - `queries/`: SPARQL query examples
@@ -86,7 +86,7 @@ Update:
 ### Context Files
 JSON-LD context files are stored in the `contexts/` directory:
 - `hotlines-core.jsonld`: Context for hotline reporting
-- `icac-core.jsonld`: Context for ICAC investigations
+- `cacontology-core.jsonld`: Context for CAC investigations
 
 ### Generating Contexts
 Use rdf-toolkit to generate contexts:
@@ -110,7 +110,7 @@ Example:
 ```json
 {
   "@context": {
-    "@vocab": "https://ontology.unifiedcyberontology.org/hotlines/2025/core#",
+    "@vocab": "https://cacontology.projectvic.org/hotlines/2025/core#",
     "HotlineReport": {
       "@type": "@id"
     },

@@ -5,8 +5,8 @@
 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX hotline: <https://ontology.unifiedcyberontology.org/hotlines/2025/core#>
-PREFIX icac: <https://ontology.unifiedcyberontology.org/icac/0.3#>
+PREFIX cacontology-hotlines: <https://cacontology.projectvic.org/hotlines/2025/core#>
+PREFIX cacontology: <https://cacontology.projectvic.org/0.3#>
 PREFIX uco-core: <https://ontology.unifiedcyberontology.org/core#>
 PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/observable#>
 PREFIX uco-confidentiality: <https://ontology.unifiedcyberontology.org/confidentiality#>
@@ -20,23 +20,23 @@ WHERE {
     
     # Core report data
     ?report a ?reportType ;
-            hotline:status ?status ;
-            hotline:createdTime ?createdTime ;
-            hotline:hasEvidence ?evidence .
+            cacontology-hotlines:status ?status ;
+            cacontology-hotlines:createdTime ?createdTime ;
+            cacontology-hotlines:hasEvidence ?evidence .
     
     # Status filter using VALUES for better performance
     VALUES ?status { # Explicit open statuses
-        hotline:status-new
-        hotline:status-in-progress
-        hotline:status-in-review
-        hotline:status-forwarded # Considered open until explicitly closed by LEA side
+        cacontology-hotlines:status-new
+        cacontology-hotlines:status-in-progress
+        cacontology-hotlines:status-in-review
+        cacontology-hotlines:status-forwarded # Considered open until explicitly closed by LEA side
     }
     
     # Evidence count
     {
         SELECT ?report (COUNT(?evidence) as ?evidenceCount)
         WHERE {
-            ?report hotline:hasEvidence ?evidence .
+            ?report cacontology-hotlines:hasEvidence ?evidence .
         }
         GROUP BY ?report
     }

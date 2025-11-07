@@ -5,8 +5,8 @@
 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX hotline: <https://ontology.unifiedcyberontology.org/hotlines/2025/core#>
-PREFIX icac: <https://ontology.unifiedcyberontology.org/icac/0.3#>
+PREFIX cacontology-hotlines: <https://cacontology.projectvic.org/hotlines/2025/core#>
+PREFIX cacontology: <https://cacontology.projectvic.org/0.3#>
 PREFIX uco-core: <https://ontology.unifiedcyberontology.org/core#>
 PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/observable#>
 PREFIX uco-confidentiality: <https://ontology.unifiedcyberontology.org/confidentiality#>
@@ -24,42 +24,42 @@ WHERE {
     }
     
     ?report a ?reportType ;
-            hotline:createdTime ?reportTime ;
-            hotline:receivedBy ?reportOrg ;
-            hotline:hasEvidence ?evidence .
+            cacontology-hotlines:createdTime ?reportTime ;
+            cacontology-hotlines:receivedBy ?reportOrg ;
+            cacontology-hotlines:hasEvidence ?evidence .
     
     {
         SELECT ?report (COUNT(?evidence) as ?evidenceCount)
         WHERE {
-            ?report hotline:hasEvidence ?evidence .
+            ?report cacontology-hotlines:hasEvidence ?evidence .
         }
         GROUP BY ?report
     }
     
-    ?report hotline:triggersAction{1,6} ?forwardAction . # Path length limit
-    ?forwardAction a hotline:ForwardToLEAction ;
-                  hotline:startTime ?forwardTime ;
-                  hotline:forwardsTo ?forwardOrg .
+    ?report cacontology-hotlines:triggersAction{1,6} ?forwardAction . # Path length limit
+    ?forwardAction a cacontology-hotlines:ForwardToLEAction ;
+                  cacontology-hotlines:startTime ?forwardTime ;
+                  cacontology-hotlines:forwardsTo ?forwardOrg .
     
-    ?investigation a icac:ICACInvestigation ; # Changed from hotline:ICACInvestigation
-                  icac:hasReport ?report ; # Changed from hotline:hasReport
-                  icac:status ?investigationStatus ; # Changed from hotline:status
-                  icac:conductedBy ?investigationOrg ; # Changed from hotline:conductedBy
-                  icac:hasAction{1,6} ?rescueAction . # Path length limit
+    ?investigation a cacontology:ICACInvestigation ; # Changed from cacontology-hotlines:ICACInvestigation
+                  cacontology:hasReport ?report ; # Changed from cacontology-hotlines:hasReport
+                  cacontology:status ?investigationStatus ; # Changed from cacontology-hotlines:status
+                  cacontology:conductedBy ?investigationOrg ; # Changed from cacontology-hotlines:conductedBy
+                  cacontology:hasAction{1,6} ?rescueAction . # Path length limit
     
-    ?rescueAction a icac:VictimRescueAction ; # Changed from hotline:VictimRescueAction
-                  icac:startTime ?rescueStartTime ; # Changed from hotline:startTime
-                  icac:performedBy ?rescueOrg . # Changed from hotline:performedBy
-    OPTIONAL { ?rescueAction icac:endTime ?rescueEndTime . } # Added endTime
-    ?rescueAction icac:rescuedVictim ?victim . # Changed from hotline:rescuedVictim
+    ?rescueAction a cacontology:VictimRescueAction ; # Changed from cacontology-hotlines:VictimRescueAction
+                  cacontology:startTime ?rescueStartTime ; # Changed from cacontology-hotlines:startTime
+                  cacontology:performedBy ?rescueOrg . # Changed from cacontology-hotlines:performedBy
+    OPTIONAL { ?rescueAction cacontology:endTime ?rescueEndTime . } # Added endTime
+    ?rescueAction cacontology:rescuedVictim ?victim . # Changed from cacontology-hotlines:rescuedVictim
     
-    ?victim icac:age ?victimAge ; # Changed from hotline:age
-            icac:gender ?victimGender . # Changed from hotline:gender
+    ?victim cacontology:age ?victimAge ; # Changed from cacontology-hotlines:age
+            cacontology:gender ?victimGender . # Changed from cacontology-hotlines:gender
     
     BIND(DAYS(?forwardTime - ?reportTime) AS ?daysToForward)
     BIND(DAYS(?rescueStartTime - ?reportTime) AS ?daysToRescue)
     
-    FILTER(?rescueAction icac:outcome icac:outcome-success) # Changed from hotline:outcome-success
+    FILTER(?rescueAction cacontology:outcome cacontology:outcome-success) # Changed from cacontology-hotlines:outcome-success
     FILTER(?reportTime >= ?from && ?reportTime <= ?to)
 
     # Security filter

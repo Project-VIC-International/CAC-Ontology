@@ -1,17 +1,17 @@
 # Changelog
 
-All notable changes to the ICAC ontology family will be documented in this file.
+All notable changes to the CAC ontology family will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-### Added - gUFO Integration for ICAC Educational SHACL Validation Framework (January 3, 2025)
+### Added - gUFO Integration for CAC Educational SHACL Validation Framework (January 3, 2025)
 
-Comprehensive gUFO (g-Unified Foundational Ontology) integration for the ICAC Educational Exploitation validation framework, transforming basic SHACL validation to comprehensive foundational ontology validation with advanced temporal constraints, anti-rigidity modeling for educator roles and phases, and educational exploitation workflow validation for educator-perpetrated exploitation systems.
+Comprehensive gUFO (g-Unified Foundational Ontology) integration for the CAC Educational Exploitation validation framework, transforming basic SHACL validation to comprehensive foundational ontology validation with advanced temporal constraints, anti-rigidity modeling for educator roles and phases, and educational exploitation workflow validation for educator-perpetrated exploitation systems.
 
-#### Enhanced icac-educational-shapes.ttl - Comprehensive gUFO Validation Framework (1115 lines)
+#### Enhanced cacontology-educational-shapes.ttl - Comprehensive gUFO Validation Framework (1115 lines)
 
 **gUFO Educational Institution Validation (Objects/Organizations):**
 - **Educational Institutions**: EducationalInstitution, IndependentSchool, PublicSchool, PrivateSchool, EliteEducationalInstitution as gUFO Organizations with foundational constraints
@@ -115,7 +115,7 @@ Comprehensive gUFO (g-Unified Foundational Ontology) integration for the ICAC Ed
 - gUFO-compliant SHACL shapes ensuring foundational correctness for educational exploitation systems
 - Cross-temporal consistency validation preventing educational workflow inconsistencies
 - Complex educational business rule validation for institutional safeguarding workflows
-- Integration validation ensuring compatibility with existing ICAC framework modules and educational standards
+- Integration validation ensuring compatibility with existing CAC framework modules and educational standards
 
 ### Real-World Educational Impact:
 
@@ -141,16 +141,16 @@ Comprehensive gUFO (g-Unified Foundational Ontology) integration for the ICAC Ed
 - **Enhanced SHACL Validation**: 1115 lines with comprehensive gUFO validation shapes and educational business rules
 - **Foundational Compliance**: 100% adherence to gUFO principles and foundational distinctions for educational domain
 - **Temporal Framework**: Complete temporal modeling with gUFO begin/end points and duration tracking for educational workflows
-- **Cross-Module Integration**: Seamless integration with existing ICAC ontology modules and educational management systems
+- **Cross-Module Integration**: Seamless integration with existing CAC ontology modules and educational management systems
 - **Anti-Rigidity Modeling**: Proper modeling of educator roles and educational phases as anti-rigid sortals with temporal constraints
 
 **Based on**: gUFO (g-Unified Foundational Ontology) framework and comprehensive ontological engineering best practices for educational safeguarding systems and educator-perpetrated exploitation prevention workflows.
 
-### Added - gUFO Integration for ICAC Detection SHACL Validation Framework (January 3, 2025)
+### Added - gUFO Integration for CAC Detection SHACL Validation Framework (January 3, 2025)
 
-Comprehensive gUFO (g-Unified Foundational Ontology) integration for the ICAC Detection validation framework, transforming basic SHACL validation to comprehensive foundational ontology validation with advanced temporal constraints, anti-rigidity modeling, and detection workflow validation for content detection systems.
+Comprehensive gUFO (g-Unified Foundational Ontology) integration for the CAC Detection validation framework, transforming basic SHACL validation to comprehensive foundational ontology validation with advanced temporal constraints, anti-rigidity modeling, and detection workflow validation for content detection systems.
 
-#### Enhanced icac-detection-shapes.ttl - Comprehensive gUFO Validation Framework (983 lines)
+#### Enhanced cacontology-detection-shapes.ttl - Comprehensive gUFO Validation Framework (983 lines)
 
 **gUFO Detection Tool Validation (Objects):**
 - **Detection Tool Objects**: ContentHashingTool, MachineLearningDetectionTool, DatabaseMatchingTool, ManualReviewTool as gUFO Objects with foundational constraints
@@ -248,7 +248,7 @@ Comprehensive gUFO (g-Unified Foundational Ontology) integration for the ICAC De
 - gUFO-compliant SHACL shapes ensuring foundational correctness for detection systems
 - Cross-temporal consistency validation preventing detection workflow inconsistencies
 - Complex detection business rule validation for content detection workflows
-- Integration validation ensuring compatibility with existing ICAC framework modules
+- Integration validation ensuring compatibility with existing CAC framework modules
 
 ### Real-World Detection Impact:
 
@@ -274,16 +274,16 @@ Comprehensive gUFO (g-Unified Foundational Ontology) integration for the ICAC De
 - **Enhanced SHACL Validation**: 983 lines with comprehensive gUFO validation shapes and detection business rules
 - **Foundational Compliance**: 100% adherence to gUFO principles and foundational distinctions for detection domain
 - **Temporal Framework**: Complete temporal modeling with gUFO begin/end points and duration tracking for detection workflows
-- **Cross-Module Integration**: Seamless integration with existing ICAC ontology modules and detection systems
+- **Cross-Module Integration**: Seamless integration with existing CAC ontology modules and detection systems
 - **Anti-Rigidity Modeling**: Proper modeling of detection roles and phases as anti-rigid sortals with temporal constraints
 
 **Based on**: gUFO (g-Unified Foundational Ontology) framework and comprehensive ontological engineering best practices for content detection systems and CSAM identification workflows.
 
-### Added - gUFO Integration for ICAC Case Management Framework (January 3, 2025)
+### Added - gUFO Integration for CAC Case Management Framework (January 3, 2025)
 
-Comprehensive gUFO (g-Unified Foundational Ontology) integration for the ICAC Case Management ontology, bringing advanced ontological rigor and foundational modeling capabilities to case management operations and SHACL validation.
+Comprehensive gUFO (g-Unified Foundational Ontology) integration for the CAC Case Management ontology, bringing advanced ontological rigor and foundational modeling capabilities to case management operations and SHACL validation.
 
-#### Enhanced icac-case-management.ttl - Comprehensive gUFO Integration (1006 lines)
+#### Enhanced cacontology-case-management.ttl - Comprehensive gUFO Integration (1006 lines)
 
 **gUFO Foundation Classes Integration:**
 - **gUFO Events**: CaseManagementEvent, CaseInitiationEvent, CaseClosureEvent with temporal properties and participation modeling
@@ -310,7 +310,7 @@ Comprehensive gUFO (g-Unified Foundational Ontology) integration for the ICAC Ca
 - **Temporal Coherence**: Consistency checks for temporal ordering and non-overlapping constraints
 - **Foundational Type Compliance**: Adherence to gUFO foundational distinctions and constraints
 
-#### Enhanced icac-case-management-shapes.ttl - gUFO SHACL Validation Framework (557 lines)
+#### Enhanced cacontology-case-management-shapes.ttl - gUFO SHACL Validation Framework (557 lines)
 
 **gUFO Event Validation Shapes:**
 - **CaseManagementEventShape**: Validates proper event structure with mandatory participants and temporal properties
@@ -372,7 +372,7 @@ Comprehensive gUFO (g-Unified Foundational Ontology) integration for the ICAC Ca
 - gUFO-compliant SHACL shapes ensuring foundational correctness
 - Cross-temporal consistency validation preventing logical inconsistencies
 - Complex business rule validation for case management workflows
-- Integration validation ensuring compatibility with existing ICAC framework
+- Integration validation ensuring compatibility with existing CAC framework
 
 ### Real-World Impact:
 
@@ -399,48 +399,48 @@ Comprehensive gUFO (g-Unified Foundational Ontology) integration for the ICAC Ca
 - **Advanced SHACL Validation**: 557 lines with gUFO-compliant validation shapes and business rules
 - **Foundational Compliance**: 100% adherence to gUFO principles and foundational distinctions
 - **Temporal Framework**: Complete temporal modeling with beginning/end points and duration tracking
-- **Cross-Module Integration**: Seamless integration with existing ICAC ontology modules
+- **Cross-Module Integration**: Seamless integration with existing CAC ontology modules
 
 **Based on**: gUFO (g-Unified Foundational Ontology) framework and comprehensive ontological engineering best practices for case management operations.
 
-### Added - National ICAC Task Force Directory Framework (January 3, 2025)
+### Added - National CAC Task Force Directory Framework (January 3, 2025)
 
-Based on comprehensive analysis of the official ICAC Task Force Directory ([icactaskforce.org/TaskForceContacts](https://icactaskforce.org/TaskForceContacts)), this major enhancement addresses critical gaps in the ICAC ontology by implementing complete national task force infrastructure modeling. The enhancement provides semantic representation of all 61 ICAC task forces across the United States, territories, and military branches, enabling sophisticated coordination and resource optimization across the national ICAC network.
+Based on comprehensive analysis of the official CAC Task Force Directory ([CACtaskforce.org/TaskForceContacts](https://CACtaskforce.org/TaskForceContacts)), this major enhancement addresses critical gaps in the CAC ontology by implementing complete national task force infrastructure modeling. The enhancement provides semantic representation of all 61 CAC task forces across the United States, territories, and military branches, enabling sophisticated coordination and resource optimization across the national CAC network.
 
-#### Enhanced Task Force Module - `icac-taskforce.ttl` (51 new semantic elements):
+#### Enhanced Task Force Module - `cacontology-taskforce.ttl` (51 new semantic elements):
 
 **National Directory Framework (16 new classes):**
-- `NationalICACtaskForceDirectory` - Complete directory of all 61 ICAC task forces across United States, territories, and military branches
-- `TaskForceHostOrganization` - Organization that hosts and coordinates an ICAC task force
-- `TaskForceContactInformation` - Contact information for ICAC task force including phone, email, and website
+- `NationalCACtaskForceDirectory` - Complete directory of all 61 CAC task forces across United States, territories, and military branches
+- `TaskForceHostOrganization` - Organization that hosts and coordinates an CAC task force
+- `TaskForceContactInformation` - Contact information for CAC task force including phone, email, and website
 
 **Host Organization Types (8 classes):**
-- `StatePoliceHost` - State police agencies hosting ICAC task forces (Maryland State Police, Connecticut State Police, etc.)
-- `LocalPoliceHost` - Local police departments hosting ICAC task forces (Phoenix PD, Los Angeles PD, San Jose PD, etc.)
-- `SheriffOfficeHost` - County sheriff's offices hosting ICAC task forces (Fresno County SO, Broward County SO, etc.)
-- `StateBureauHost` - State bureaus of investigation hosting ICAC task forces (Georgia BIA, North Carolina SBI, etc.)
-- `AttorneyGeneralHost` - State attorney general offices hosting ICAC task forces (Idaho AG, Illinois AG, Texas AG, etc.)
-- `DistrictAttorneyHost` - District/county attorney offices hosting ICAC task forces (Delaware County DA, Cook County SA, etc.)
-- `StateAgencyHost` - Other state agencies hosting ICAC task forces (Delaware DOJ, Hawaii DOA, etc.)
-- `MilitaryICACtaskForce` - ICAC task force for U.S. Armed Forces military branches with specialized military jurisdiction
+- `StatePoliceHost` - State police agencies hosting CAC task forces (Maryland State Police, Connecticut State Police, etc.)
+- `LocalPoliceHost` - Local police departments hosting CAC task forces (Phoenix PD, Los Angeles PD, San Jose PD, etc.)
+- `SheriffOfficeHost` - County sheriff's offices hosting CAC task forces (Fresno County SO, Broward County SO, etc.)
+- `StateBureauHost` - State bureaus of investigation hosting CAC task forces (Georgia BIA, North Carolina SBI, etc.)
+- `AttorneyGeneralHost` - State attorney general offices hosting CAC task forces (Idaho AG, Illinois AG, Texas AG, etc.)
+- `DistrictAttorneyHost` - District/county attorney offices hosting CAC task forces (Delaware County DA, Cook County SA, etc.)
+- `StateAgencyHost` - Other state agencies hosting CAC task forces (Delaware DOJ, Hawaii DOA, etc.)
+- `MilitaryCACtaskForce` - CAC task force for U.S. Armed Forces military branches with specialized military jurisdiction
 
 **Multi-Regional State Systems (5 classes):**
-- `MultiRegionalState` - State with multiple ICAC task forces covering different geographic regions
+- `MultiRegionalState` - State with multiple CAC task forces covering different geographic regions
 - `RegionalTaskForceCoordination` - Coordination mechanism between multiple task forces within the same state
-- `CaliforniaRegionalSystem` - California's 5-region ICAC system (Fresno, Los Angeles, Sacramento, San Diego, San Jose areas)
-- `FloridaRegionalSystem` - Florida's 3-region ICAC system (Central, Northern, Southern regions)
-- `TexasRegionalSystem` - Texas's 3-region ICAC system (Statewide, Dallas, Houston areas)
+- `CaliforniaRegionalSystem` - California's 5-region CAC system (Fresno, Los Angeles, Sacramento, San Diego, San Jose areas)
+- `FloridaRegionalSystem` - Florida's 3-region CAC system (Central, Northern, Southern regions)
+- `TexasRegionalSystem` - Texas's 3-region CAC system (Statewide, Dallas, Houston areas)
 
 **Geographic Coverage Types (4 classes):**
-- `StatewideTaskForce` - ICAC task force with statewide jurisdiction and coordination responsibility
-- `RegionalTaskForce` - ICAC task force covering specific geographic region within a state
-- `MetropolitanTaskForce` - ICAC task force covering major metropolitan area (Los Angeles, Dallas, Houston, NYC)
-- `CountyBasedTaskForce` - ICAC task force hosted by and primarily serving specific county jurisdiction
+- `StatewideTaskForce` - CAC task force with statewide jurisdiction and coordination responsibility
+- `RegionalTaskForce` - CAC task force covering specific geographic region within a state
+- `MetropolitanTaskForce` - CAC task force covering major metropolitan area (Los Angeles, Dallas, Houston, NYC)
+- `CountyBasedTaskForce` - CAC task force hosted by and primarily serving specific county jurisdiction
 
 **Communication Infrastructure (4 classes):**
-- `TaskForceHotline` - Dedicated phone line for ICAC task force operations and reporting
-- `TaskForceWebsite` - Official website for ICAC task force with resources and information
-- `NationalHotline` - National ICAC hotline (877-798-7682) for general information and coordination
+- `TaskForceHotline` - Dedicated phone line for CAC task force operations and reporting
+- `TaskForceWebsite` - Official website for CAC task force with resources and information
+- `NationalHotline` - National CAC hotline (877-798-7682) for general information and coordination
 
 **Comprehensive Properties Framework (20 new properties):**
 - **National Directory Properties**: `totalTaskForces` (61 total), `statesWithMultipleTaskForces` (6 states), `nationalCoveragePercentage` (100%)
@@ -448,7 +448,7 @@ Based on comprehensive analysis of the official ICAC Task Force Directory ([icac
 - **Multi-Regional Properties**: `regionalTaskForceCount`, `regionCovered`, `coordinationModel`
 - **Geographic Coverage Properties**: `coverageType`, `jurisdictionPopulation`, `metropolitanArea`, `countyName`
 - **Contact Information Properties**: `phoneNumber`, `emailAddress`, `websiteURL`, `hotlineType`, `nationalHotlineNumber`
-- **Military ICAC Properties**: `militaryBranches`, `militaryJurisdiction`
+- **Military CAC Properties**: `militaryBranches`, `militaryJurisdiction`
 
 **Advanced Relationship Modeling (15 new relationships):**
 - **National Directory Relationships**: `includesTaskForce`, `hostedBy`, `hostsTaskForce`
@@ -460,7 +460,7 @@ Based on comprehensive analysis of the official ICAC Task Force Directory ([icac
 #### Real-World Modeling Capabilities:
 
 **Complete National Infrastructure:**
-- All 61 ICAC task forces across United States, territories, and military branches
+- All 61 CAC task forces across United States, territories, and military branches
 - 8 different host organization types with accurate classification
 - 6 multi-regional states with complex coordination patterns (CA: 5, FL: 3, TX: 3, NY: 2, VA: 2, IL: 2)
 - 100% US geographic coverage modeling
@@ -477,53 +477,53 @@ Based on comprehensive analysis of the official ICAC Task Force Directory ([icac
 - Metropolitan task forces for major metro areas (Los Angeles, Dallas-Fort Worth, Houston, etc.)
 - County-based task forces for specific county jurisdictions
 
-**Military ICAC Integration:**
+**Military CAC Integration:**
 - Specialized U.S. Armed Forces task force covering all military branches
 - Worldwide military jurisdiction modeling
 - Military-civilian task force coordination capabilities
 - Cross-jurisdictional military operation support
 
 **Communication Infrastructure:**
-- National ICAC hotline (877-798-7682) for general information and coordination
+- National CAC hotline (877-798-7682) for general information and coordination
 - Individual task force contact information (phone, email, website)
 - Hotline type classification (tip_line, general_contact, emergency, referral)
 - Communication routing and accessibility modeling
 
 #### Example Implementation:
 
-**File:** `examples/national-icac-directory-example.ttl` (186 triples)
+**File:** `examples/national-cacontology-directory-example.ttl` (186 triples)
 - Complete national directory modeling with all 61 task forces
-- 14 real task forces modeled with accurate contact information from icactaskforce.org
+- 14 real task forces modeled with accurate contact information from CACtaskforce.org
 - Multi-regional coordination patterns demonstrated across California, Florida, and Texas
-- Military ICAC integration with civilian task force coordination
+- Military CAC integration with civilian task force coordination
 - Communication infrastructure with national hotline and individual task force contacts
 - Host organization diversity across all 8 organization types
 
 #### Technical Validation:
 - **RDF/OWL Validation**: All 51 new semantic elements validated for syntactic and semantic correctness
 - **UCO/CASE Integration**: Full compatibility maintained with UCO/CASE ontology patterns
-- **Real-World Accuracy**: All data verified against official ICAC Task Force Directory
+- **Real-World Accuracy**: All data verified against official CAC Task Force Directory
 - **Example Validation**: 186 triples successfully parsed and validated
 
 #### Strategic Impact:
 - **National Coordination**: Complete framework for 61-task force national network coordination
 - **Resource Optimization**: Data-driven resource allocation and sharing across regions
 - **Communication Enhancement**: Comprehensive contact and hotline infrastructure modeling
-- **Military Integration**: Specialized military ICAC capabilities with civilian coordination
-- **Policy Support**: Data foundation for national ICAC policy and administrative decisions
+- **Military Integration**: Specialized military CAC capabilities with civilian coordination
+- **Policy Support**: Data foundation for national CAC policy and administrative decisions
 
 **Enhancement Statistics:**
 - **Total New Elements**: 51 (16 classes + 20 properties + 15 relationships)
 - **Ontology Expansion**: 25% increase in task force ontology capabilities
-- **Real-World Coverage**: 100% of US ICAC task force infrastructure
+- **Real-World Coverage**: 100% of US CAC task force infrastructure
 - **Example Complexity**: 186 triples across 14 real task forces
 - **Validation Status**: ✅ Complete technical and real-world validation
 
 ### Added - Maryland Valdez Olivar Case Enhancements (January 3, 2025)
 
-Based on analysis of Maryland State Police press release "Maryland State Police Arrest Prince George's County Man on Child Pornography Charges" (May 30, 2025) regarding Edwin Antonio Valdez Olivar, 45, this enhancement addresses minor gaps in the ICAC ontology to better represent Maryland's state police computer crimes unit structure, specific charge types, and state-level funding mechanisms.
+Based on analysis of Maryland State Police press release "Maryland State Police Arrest Prince George's County Man on Child Pornography Charges" (May 30, 2025) regarding Edwin Antonio Valdez Olivar, 45, this enhancement addresses minor gaps in the CAC ontology to better represent Maryland's state police computer crimes unit structure, specific charge types, and state-level funding mechanisms.
 
-#### Enhanced Specialized Units Module - `icac-specialized-units.ttl` (7 new classes):
+#### Enhanced Specialized Units Module - `cacontology-specialized-units.ttl` (7 new classes):
 
 **State Police Computer Crimes Framework:**
 - `StatePoliceComputerCrimesUnit` - State police unit specialized in computer crimes and digital investigations involving child exploitation
@@ -533,14 +533,14 @@ Based on analysis of Maryland State Police press release "Maryland State Police 
 - `CountyPoliceSupport` - County-level police department providing support to state computer crimes investigations
 - `PrinceGeorgesCountyPolice` - Prince George's County Police Department supporting Maryland State Police computer crimes investigations
 
-#### Enhanced Task Force Module - `icac-taskforce.ttl` (3 new classes):
+#### Enhanced Task Force Module - `cacontology-taskforce.ttl` (3 new classes):
 
-**Maryland ICAC Task Force Framework:**
-- `MarylandICACtaskForce` - Maryland state ICAC task force coordinated by Maryland State Police Computer Crimes Unit with Governor's Office for Crime Prevention and Policy funding
-- `GovernorsOfficeCrimePreventionFunding` - State-level funding provided by Governor's Office for Crime Prevention and Policy for ICAC task force operations
+**Maryland CAC Task Force Framework:**
+- `MarylandCACtaskForce` - Maryland state CAC task force coordinated by Maryland State Police Computer Crimes Unit with Governor's Office for Crime Prevention and Policy funding
+- `GovernorsOfficeCrimePreventionFunding` - State-level funding provided by Governor's Office for Crime Prevention and Policy for CAC task force operations
 - `StateLocalFundingCombination` - Combined funding from state Governor's Office and federal DOJ grants for task force operations
 
-#### Enhanced Sentencing Module - `icac-sentencing.ttl` (3 new classes):
+#### Enhanced Sentencing Module - `cacontology-sentencing.ttl` (3 new classes):
 
 **Maryland Case Specific Charges:**
 - `CSAM_CausingProduction` - Charge for causing or facilitating the production of child sexual abuse material, distinct from direct production
@@ -560,7 +560,7 @@ Based on analysis of Maryland State Police press release "Maryland State Police 
 - Multi-agency investigation and arrest coordination
 
 **Key Enhancement Areas:**
-- **Maryland-Specific Task Force Modeling**: Enhanced representation of Maryland ICAC Task Force structure
+- **Maryland-Specific Task Force Modeling**: Enhanced representation of Maryland CAC Task Force structure
 - **State Police Barrack Coordination**: Modeling of regional barrack support for computer crimes investigations
 - **Governor's Office Crime Prevention Funding**: State-level funding mechanism representation
 - **"Causing Production" Charge Specificity**: Distinction between causing and direct production charges
@@ -576,20 +576,20 @@ Based on analysis of Maryland State Police press release "Maryland State Police 
 
 ### Added - SHACL Validation Coverage Analysis (January 28, 2025)
 
-**CRITICAL FINDING**: Identified major validation gap in ICAC ontology project:
+**CRITICAL FINDING**: Identified major validation gap in CAC ontology project:
 - **Current Coverage**: 18.75% (6 of 32 modules)
 - **PRD Requirement**: ≥ 95% coverage
 - **Gap**: 76.25% coverage deficit
 - **Risk Level**: P0 Critical - Data quality and compliance risk
 
 **New SHACL Shapes Files Added (6 files, 3,000+ lines):**
-- `icac-athletic-exploitation-shapes.ttl` - Athletic coaching exploitation validation (400+ lines)
-- `icac-production-shapes.ttl` - CSAM production validation (350+ lines)
-- `icac-custodial-shapes.ttl` - Custodial relationships validation (300+ lines)
-- `icac-grooming-shapes.ttl` - Grooming patterns validation (450+ lines)
-- `icac-sextortion-shapes.ttl` - Sextortion incidents validation (400+ lines)
-- `icac-victim-impact-shapes.ttl` - Victim impact assessment validation (500+ lines)
-- `icac-undercover-shapes.ttl` - Undercover operations validation (450+ lines)
+- `cacontology-athletic-exploitation-shapes.ttl` - Athletic coaching exploitation validation (400+ lines)
+- `cacontology-production-shapes.ttl` - CSAM production validation (350+ lines)
+- `cacontology-custodial-shapes.ttl` - Custodial relationships validation (300+ lines)
+- `cacontology-grooming-shapes.ttl` - Grooming patterns validation (450+ lines)
+- `cacontology-sextortion-shapes.ttl` - Sextortion incidents validation (400+ lines)
+- `cacontology-victim-impact-shapes.ttl` - Victim impact assessment validation (500+ lines)
+- `cacontology-undercover-shapes.ttl` - Undercover operations validation (450+ lines)
 
 **Coverage Improvement:**
 - **Before**: 18.75% coverage (6 of 32 modules)
@@ -621,7 +621,7 @@ Based on analysis of Maryland State Police press release "Maryland State Police 
 **Educational Exploitation Module Enhancements**:
 - **New Institution Types**: Added `IntermediateSchool` and `MiddleSchool` classes for grades 6-8 contexts
 - **New Educator Roles**: Added `MathTeacherRole` and `GymTeacherRole` for subject-specific and physical education contexts
-- **Classroom-Based Exploitation**: New classes for `ClassroomBasedExploitation`, `AcademicActivityExploitation`, `ImmediatePhysicalContactExploitation`
+- **Classroom-Based Exploitation**: New classes for `ClassroomBasedExploitation`, `AcademCACtivityExploitation`, `ImmediatePhysicalContactExploitation`
 - **Written Harassment Framework**: Complete framework for `WrittenHarassment`, `AssignmentHarassment`, `DegradingWrittenComments`, `AcademicIntimidation`
 - **Classroom Exploitation Contexts**: `AssignmentCompletionExploitation`, `TestTakingExploitation`, `OneOnOneAcademicExploitation`, `AfterHoursClassroomExploitation`
 - **Physical Contact Patterns**: `ImmediatePhysicalContact`, `OpportunisticTouching`, `BreastTouching`, `ForcibleTouching`
@@ -634,7 +634,7 @@ Based on analysis of Maryland State Police press release "Maryland State Police 
 **New Properties**:
 - Institution properties: `gradeRange`, `schoolAddress`, `educatorAge`, `yearsOfExperience`
 - Harassment properties: `harassmentContent`, `harassmentMedium`, `harassmentFrequency`, `degradationLevel`
-- Classroom context properties: `classroomNumber`, `academicActivity`, `timeOfDay`, `studentsPresent`, `isolationLevel`
+- Classroom context properties: `classroomNumber`, `academCACtivity`, `timeOfDay`, `studentsPresent`, `isolationLevel`
 - Physical contact properties: `contactType`, `contactDuration`, `contactFrequency`, `bodyPartTouched`, `forceLevel`
 - Reporting properties: `reportingDelay`, `reportingStaffRole`, `disclosureMethod`, `mandatoryReportingTriggered`, `policeResponseTime`
 - Evidence properties: `writtenContent`, `assignmentType`, `evidenceLocation`
@@ -664,9 +664,9 @@ Based on analysis of Maryland State Police press release "Maryland State Police 
 
 ### Added - Palmisano Louisiana Registered Sex Offender Case Enhancements
 
-Based on analysis of Justice Department press release "Fort Pierce Jury Convicts a Louisiana Registered Sex Offender of Various Internet Sex Crimes Involving a Martin County Minor" (May 29, 2025) regarding Nicolas James Palmisano, 45, this enhancement significantly expands the ICAC Sex Offender Registry Ontology to address critical gaps in recidivism modeling, cross-state digital exploitation, and compliance-based arrest coordination.
+Based on analysis of Justice Department press release "Fort Pierce Jury Convicts a Louisiana Registered Sex Offender of Various Internet Sex Crimes Involving a Martin County Minor" (May 29, 2025) regarding Nicolas James Palmisano, 45, this enhancement significantly expands the CAC Sex Offender Registry Ontology to address critical gaps in recidivism modeling, cross-state digital exploitation, and compliance-based arrest coordination.
 
-#### Enhanced Sex Offender Registry Module - `icac-sex-offender-registry.ttl` (45 new semantic elements):
+#### Enhanced Sex Offender Registry Module - `cacontology-sex-offender-registry.ttl` (45 new semantic elements):
 
 **Recidivism and Repeat Offense Pattern Classes (7 classes):**
 - `RecidivistSexOffender` - Registered sex offender who has committed subsequent sexual offenses after initial conviction and registration
@@ -753,7 +753,7 @@ Based on analysis of Justice Department press release "Fort Pierce Jury Convicts
 **Enhancement Documentation:**
 - Complete technical analysis (`palmisano-louisiana-registered-offender-enhancement-summary.md`) with 6,000+ words
 - Real-world applications for law enforcement, prosecution, registry management, digital forensics
-- Integration patterns with existing ICAC framework modules
+- Integration patterns with existing CAC framework modules
 - Future enhancement opportunities including predictive analytics and international coordination
 
 #### Key Capabilities Added:
@@ -809,13 +809,13 @@ Based on analysis of Justice Department press release "Fort Pierce Jury Convicts
 - Cross-platform investigation frameworks
 - Bidirectional content analysis support
 
-### Integration with ICAC Framework:
+### Integration with CAC Framework:
 
 **Enhanced Module Connections:**
-- `icac-multi-jurisdiction.ttl` - Cross-state recidivism patterns integrate with multi-jurisdictional operations
-- `icac-forensics.ttl` - Victim device forensics and multi-modal evidence analysis enhancement
-- `icac-sentencing.ttl` - Federal sentencing enhancements for registered sex offender status
-- `icac-core.ttl` - Project Safe Childhood case integration and investigation lifecycle
+- `cacontology-multi-jurisdiction.ttl` - Cross-state recidivism patterns integrate with multi-jurisdictional operations
+- `cacontology-forensics.ttl` - Victim device forensics and multi-modal evidence analysis enhancement
+- `cacontology-sentencing.ttl` - Federal sentencing enhancements for registered sex offender status
+- `cacontology-core.ttl` - Project Safe Childhood case integration and investigation lifecycle
 
 **UCO/CASE Compatibility:**
 - All new classes extend existing UCO core concepts (UcoObject, Action, ObservableObject)
@@ -831,7 +831,7 @@ Based on analysis of Justice Department press release "Fort Pierce Jury Convicts
 
 Based on analysis of Brooklyn District Attorney press release (October 24, 2024) regarding Nicolas Morton indicted for sexual exploitation of 7 teen baseball players while serving as travel team coach and head coach at The Packer Collegiate Institute, the following major enhancements were implemented to address critical gaps in athletic coaching exploitation, physical training coercion, and team dynamics abuse:
 
-#### New Ontology Module - `icac-athletic-exploitation.ttl` (800+ lines):
+#### New Ontology Module - `cacontology-athletic-exploitation.ttl` (800+ lines):
 
 **Athletic Coaching Exploitation Core Classes:**
 - `AthleticCoachingExploitation` - Child sexual exploitation by athletic coaches using sports authority and team dynamics
@@ -990,7 +990,7 @@ Based on analysis of Brooklyn District Attorney press release (October 24, 2024)
 
 Based on analysis of Brooklyn District Attorney press release (November 22, 2024) regarding Christopher Fiesco sentenced to 14 years for stranger abduction and sexual assault of a 13-year-old boy, the following major enhancements were implemented to address critical gaps in stranger abduction patterns, weapon-based coercion, and disguise-based concealment:
 
-#### New Ontology Module - `icac-stranger-abduction.ttl` (700+ lines):
+#### New Ontology Module - `cacontology-stranger-abduction.ttl` (700+ lines):
 
 **Stranger Abduction Core Classes:**
 - `StrangerAbduction` - Abduction of child by unknown perpetrator without prior relationship
@@ -1161,7 +1161,7 @@ Based on analysis of Brooklyn District Attorney press release (November 22, 2024
 - Community awareness for suspicious activity reporting
 
 **Integration with Existing Modules:**
-- Seamless integration with existing 22-module ICAC ontology
+- Seamless integration with existing 22-module CAC ontology
 - Maintains UCO/CASE foundation compatibility
 - Extends grooming module with rapid escalation patterns
 - Enhances physical evidence and investigation modules
@@ -1173,7 +1173,7 @@ Based on analysis of Brooklyn District Attorney press release (November 22, 2024
 
 Based on analysis of Brooklyn District Attorney press release (December 18, 2024) regarding Deandre Lee sentenced to 10 years for attempted sex trafficking of a child, the following major enhancements were implemented to address critical gaps in street-based recruitment and rapid escalation trafficking patterns:
 
-#### New Ontology Module - `icac-street-recruitment.ttl` (1,000+ lines):
+#### New Ontology Module - `cacontology-street-recruitment.ttl` (1,000+ lines):
 
 **Street-Based Recruitment Core Classes:**
 - `StreetBasedRecruitment` - Trafficking recruitment in public spaces through direct physical approach
@@ -1255,7 +1255,7 @@ Based on analysis of Brooklyn District Attorney press release (December 18, 2024
 - `HighwayLocation` - Highway-adjacent locations for isolated exploitation
 - `VehicleLocation` - Vehicles as exploitation locations or transport to sites
 
-#### Enhanced Grooming Module - `icac-grooming.ttl`:
+#### Enhanced Grooming Module - `cacontology-grooming.ttl`:
 
 **Rapid Escalation Grooming Patterns:**
 - `RapidEscalationGrooming` - Accelerated timeline bypassing traditional relationship-building
@@ -1369,10 +1369,10 @@ Based on analysis of Brooklyn District Attorney press release (December 18, 2024
 ### Integration with Existing Modules:
 
 **Seamless Integration Points:**
-- **icac-sex-trafficking.ttl**: Street recruitment feeds into existing trafficking operations
-- **icac-grooming.ttl**: Rapid escalation extends existing grooming patterns
-- **icac-sentencing.ttl**: New sentencing patterns integrate with existing frameworks
-- **icac-victim-impact.ttl**: Victim agency enhances existing impact modeling
+- **cacontology-sex-trafficking.ttl**: Street recruitment feeds into existing trafficking operations
+- **cacontology-grooming.ttl**: Rapid escalation extends existing grooming patterns
+- **cacontology-sentencing.ttl**: New sentencing patterns integrate with existing frameworks
+- **cacontology-victim-impact.ttl**: Victim agency enhances existing impact modeling
 
 **Cross-Module Relationships:**
 - Street recruitment → Trafficking operations
@@ -1381,7 +1381,7 @@ Based on analysis of Brooklyn District Attorney press release (December 18, 2024
 - Victim resistance → Impact assessment
 - Geographic targeting → Investigation coordination
 
-The street recruitment enhancements address a critical gap in the ICAC ontology's coverage of modern trafficking recruitment patterns, particularly the shift from extended online grooming to opportunistic street-based recruitment with rapid escalation timelines. These enhancements significantly improve the framework's ability to model real-world trafficking cases and support comprehensive law enforcement, prosecution, and prevention efforts.
+The street recruitment enhancements address a critical gap in the CAC ontology's coverage of modern trafficking recruitment patterns, particularly the shift from extended online grooming to opportunistic street-based recruitment with rapid escalation timelines. These enhancements significantly improve the framework's ability to model real-world trafficking cases and support comprehensive law enforcement, prosecution, and prevention efforts.
 
 ## [1.4.0] - 2025-05-28
 
@@ -1389,7 +1389,7 @@ The street recruitment enhancements address a critical gap in the ICAC ontology'
 
 Based on analysis of Brooklyn District Attorney press release (March 19, 2025) regarding former teacher Winston Nguyen sentenced to seven years for exploiting students, the following major enhancements were implemented:
 
-#### New Ontology Module - `icac-educational-exploitation.ttl` (1,200+ lines):
+#### New Ontology Module - `cacontology-educational-exploitation.ttl` (1,200+ lines):
 
 **Educational Institution Classes:**
 - `EducationalInstitution` - Base class for all educational institutions
@@ -1446,7 +1446,7 @@ Based on analysis of Brooklyn District Attorney press release (March 19, 2025) r
 - `EndangeringWelfareOfChild` - Child endangerment charges
 - `SexuallyMotivatedFelony` - Sexual motivation enhancements
 
-#### Enhanced Grooming Module - `icac-grooming.ttl`:
+#### Enhanced Grooming Module - `cacontology-grooming.ttl`:
 
 **Educator-Specific Grooming Classes:**
 - `EducatorGrooming` - Grooming by educational personnel
@@ -1468,7 +1468,7 @@ Based on analysis of Brooklyn District Attorney press release (March 19, 2025) r
 - `PrivilegedVictimTargeting` - Targeting privileged students
 - `ReputationBasedSilencing` - Silencing based on institutional reputation
 
-#### Enhanced Sentencing Module - `icac-sentencing.ttl`:
+#### Enhanced Sentencing Module - `cacontology-sentencing.ttl`:
 
 **Educator-Specific Sentencing Classes:**
 - `EducatorSentencing` - Sentencing for educational personnel
@@ -1503,7 +1503,7 @@ Based on analysis of Brooklyn District Attorney press release (March 19, 2025) r
 - 7-year prison sentence plus 10-year supervision
 - Mandatory sex offender registration and educational employment prohibition
 
-#### SHACL Validation - `icac-educational-shapes.ttl` (400+ lines):
+#### SHACL Validation - `cacontology-educational-shapes.ttl` (400+ lines):
 
 **Validation Shapes:**
 - Educational institution validation
@@ -1542,7 +1542,7 @@ Based on analysis of Brooklyn District Attorney press release (March 19, 2025) r
 - Institutional impact considerations
 
 **Real-World Integration:**
-- Seamless integration with existing 22-module ICAC ontology
+- Seamless integration with existing 22-module CAC ontology
 - UCO/CASE foundation compatibility
 - Enhanced investigative analytics capabilities
 - Support for multi-institutional cases
@@ -1563,7 +1563,7 @@ The educational exploitation enhancements directly address sophisticated cases i
 ### Added - Vermont Case Analysis Implementation (Sophisticated Covert Production Enhancement)
 Complete implementation of Vermont case analysis recommendations based on Brian Bluto case involving sophisticated device concealment, 3+ year systematic bathroom surveillance, and international coordination. All high and medium priority recommendations from analysis-vermont-case-gaps.md have been implemented.
 
-#### Enhanced icac-production.ttl - Device Concealment and Private Space Surveillance
+#### Enhanced cacontology-production.ttl - Device Concealment and Private Space Surveillance
 - **Device Concealment Framework**: DeviceConcealment, PhysicalDeviceModification, ConcealmentContainer classes for sophisticated hiding techniques
 - **Private Space Surveillance**: PrivateSpaceSurveillance, BathroomSurveillance, BedroomSurveillance for high-expectation privacy violations
 - **Concealment Properties**: concealmentMethod (fabric_cut, false_bottom, hollow_object), modificationDescription, concealmentLocation
@@ -1571,14 +1571,14 @@ Complete implementation of Vermont case analysis recommendations based on Brian 
 - **Enhanced Systematic Abuse**: developmentalDocumentation tracking, victimAgeProgression ranges, systematicNature boolean indicators
 - **Extended Production Period**: Comprehensive framework for multi-year abuse documentation with victim development over time
 
-#### Enhanced icac-partnerships.ttl - Project Safe Childhood Integration
+#### Enhanced cacontology-partnerships.ttl - Project Safe Childhood Integration
 - **National Initiative Programs**: NationalInitiativeProgram, ProjectSafeChildhoodCase, FederalTaskForceProgram classes
 - **Federal Initiative Properties**: initiativeName (Project_Safe_Childhood, Operation_Avalanche), launchedDate, programScope
 - **Program Coordination**: leadAgency tracking (DOJ, DHS, FBI), casesProcessed counts, federal-state-local coordination
 - **Multi-Agency Framework**: Complete integration with Department of Justice initiatives and Homeland Security Investigations
 - **Task Force Coordination**: Enhanced federal task force program management and coordination capabilities
 
-#### Enhanced icac-international.ttl - Australian-US Cooperation Framework  
+#### Enhanced cacontology-international.ttl - Australian-US Cooperation Framework  
 - **Undercover Coordination**: undercoverCoordination boolean for international undercover operations
 - **Operation Context**: operationContext classification (undercover_investigation, direct_referral, joint_operation)
 - **Coordination Methods**: coordinationMethod types (formal_request, intelligence_sharing, joint_investigation)
@@ -1603,11 +1603,11 @@ Complete implementation of Vermont case analysis recommendations based on Brian 
 - **Physical Evidence Modification**: Equipment alteration and container modification for covert surveillance
 
 ### Implementation Results
-- **5 New Classes** in icac-production.ttl for device concealment and private space surveillance
-- **9 New Properties** in icac-production.ttl for concealment methods and privacy analysis
-- **3 New Classes** in icac-partnerships.ttl for national initiative program tracking
-- **5 New Properties** in icac-partnerships.ttl for federal program coordination
-- **3 New Properties + 2 Object Properties** in icac-international.ttl for Australian-US cooperation
+- **5 New Classes** in cacontology-production.ttl for device concealment and private space surveillance
+- **9 New Properties** in cacontology-production.ttl for concealment methods and privacy analysis
+- **3 New Classes** in cacontology-partnerships.ttl for national initiative program tracking
+- **5 New Properties** in cacontology-partnerships.ttl for federal program coordination
+- **3 New Properties + 2 Object Properties** in cacontology-international.ttl for Australian-US cooperation
 - **Complete Real-World Validation**: All enhancements validated against actual Vermont federal case
 
 ### Vermont Case Investigation Capabilities
@@ -1627,7 +1627,7 @@ Comprehensive enhancement based on analysis of Europol's "Stop Child Abuse" init
 
 #### New Ontology Modules
 
-**icac-ai-generated-content.ttl**: Complete AI-CSAM Framework
+**cacontology-ai-generated-content.ttl**: Complete AI-CSAM Framework
 - **AI Content Types**: AIGeneratedCSAM, DeepfakeCSAM, SyntheticMediaCSAM, HybridCSAM, AIAlteredCSAM with comprehensive generation classification
 - **Generation Processes**: AIContentGeneration, ModelTraining, ImageGeneration, VideoGeneration, FaceSwapping, AgeProgression
 - **Detection Systems**: AIContentDetection, SyntheticMediaAnalysis, DeepfakeDetection, ArtifactAnalysis, BiometricInconsistencyAnalysis
@@ -1636,7 +1636,7 @@ Comprehensive enhancement based on analysis of Europol's "Stop Child Abuse" init
 - **Legal Challenges**: Evidence admissibility, prosecution difficulty, legal framework gaps for AI-generated content
 - **Advanced Properties**: AI model classification, generation complexity, rendering quality, detection confidence, false positive rates
 
-**icac-partnerships.ttl**: Public-Private Partnership Framework
+**cacontology-partnerships.ttl**: Public-Private Partnership Framework
 - **Partnership Types**: PublicPrivatePartnership, MultiStakeholderInitiative, TechIndustryCooperation, NGOCoordination, CivilSocietyEngagement, AcademicPartnership
 - **Crowdsourcing Framework**: CrowdsourcingInvestigation, ObjectIdentificationRequest, GeolocationRequest, PublicTip, CommunityAnalysis, OSINTInvestigation
 - **Information Sharing**: InformationSharingFramework, DataSharingAgreement, TechnicalIntegration, HashSharingProtocol, IntelligenceSharing
@@ -1646,14 +1646,14 @@ Comprehensive enhancement based on analysis of Europol's "Stop Child Abuse" init
 
 #### Enhanced Existing Modules
 
-**icac-forensics.ttl Enhancements - Advanced Evidence Correlation**
+**cacontology-forensics.ttl Enhancements - Advanced Evidence Correlation**
 - **Cross-Platform Analysis**: CrossPlatformCorrelation, GeospatialCorrelation, TemporalPatternAnalysis for multi-platform evidence linking
 - **Behavioral Analysis**: BehavioralFingerprinting, CommunicationPatternAnalysis, NetworkTrafficAnalysis for user identification
 - **Machine Learning Integration**: MachineLearningCorrelation, RealTimeCorrelation, DatabaseIntelligenceIntegration
 - **Advanced Properties**: Platform correlation scores, behavioral fingerprint accuracy, ML model performance, real-time latency
 - **Network Analysis**: NetworkTrafficAnalysis, suspicious connection identification, data transfer volume analysis
 
-**icac-international.ttl Enhancements - Real-Time Intelligence Sharing**
+**cacontology-international.ttl Enhancements - Real-Time Intelligence Sharing**
 - **Real-Time Framework**: RealTimeIntelligenceSharing, InstantAlertSystem, LiveIntelligenceFeed, SecureCommunicationChannel
 - **Emergency Protocols**: EmergencyCoordinationProtocol, CrossBorderThreatAlert, GlobalTakedownCoordination
 - **Intelligence Fusion**: IntelligenceFusion, ThreatAssessmentSharing, OperationalSyncronization
@@ -1704,32 +1704,32 @@ This release significantly expands the ontology's capability to address modern t
 ## [1.2.0] - 2025-05-23
 
 ### Added - Large-Scale International Operations Framework (Kidflix/Europol Enhancement)
-Comprehensive enhancement of ICAC ontology modules to support large-scale international operations based on analysis of the Europol Kidflix operation involving nearly 2 million users and 23 countries.
+Comprehensive enhancement of CAC ontology modules to support large-scale international operations based on analysis of the Europol Kidflix operation involving nearly 2 million users and 23 countries.
 
 #### New Ontology Module
-- **icac-platform-infrastructure.ttl**: Complete infrastructure modeling for platform operations including server architecture, content delivery networks, payment processing, hosting providers, security systems, and takedown operations. Supports modeling of complex distributed infrastructure with cryptocurrency payment systems, anonymity layers, and geographic distribution strategies.
+- **cacontology-platform-infrastructure.ttl**: Complete infrastructure modeling for platform operations including server architecture, content delivery networks, payment processing, hosting providers, security systems, and takedown operations. Supports modeling of complex distributed infrastructure with cryptocurrency payment systems, anonymity layers, and geographic distribution strategies.
 
 #### Enhanced Existing Modules
 
-**icac-platforms.ttl Enhancements:**
+**cacontology-platforms.ttl Enhancements:**
 - Large-Scale Platform Operations: `LargeScalePlatformTakedown`, `PlatformOperation`, `MassUserDatabase`
 - User Scale Classification: Support for million+ user platforms with automated behavior analysis
 - User Analytics: `MassUserBehaviorAnalysis`, `UserRiskClassification`, `UserScaleClassification`
 - Properties for massive operations: `userCount`, `operationScale`, `millionPlusUsers`, `countriesInvolved`
 
-**icac-international.ttl Enhancements:**
+**cacontology-international.ttl Enhancements:**
 - Europol Framework: `EuropolOperation`, `EuropolCoordination`, `MultiCountryTakedown`
 - Global Operations: `GlobalPlatformTakedown`, `InternationalIntelligenceSharing`, `EuropeanCooperationFramework`
 - Large-Scale Coordination: `MassUserAnalysis`, `InternationalProsecution`, `GlobalInvestigativeTeam`
 - Properties: `europeanMemberStatesInvolved`, `usersAnalyzedMillions`, `evidenceVolumeInternational`
 
-**icac-forensics.ttl Enhancements:**
+**cacontology-forensics.ttl Enhancements:**
 - Mass Evidence Processing: `MassDigitalEvidenceProcessing`, `AutomatedContentAnalysis`, `DistributedForensicProcessing`
 - Advanced Analysis: `EvidenceTriageSystem`, `UserBehaviorForensics`, `ContentCorrelationAnalysis`
 - Scalable Systems: `ScalableHashAnalysis`, `InternationalEvidenceProcessing`
 - Properties: `evidenceVolumeTerabytes`, `filesProcessedMillions`, `automationPercentage`, `triageAccuracy`
 
-**icac-multi-jurisdiction.ttl Enhancements:**
+**cacontology-multi-jurisdiction.ttl Enhancements:**
 - Mass Prosecution: `MassProsecutionCoordination`, `InternationalProsecutionFramework`, `UserTriageProsecution`
 - Distributed Teams: `DistributedProsecutionTeam`, `AutomatedEvidenceDistribution`, `MassUserJurisdictionMapping`
 - Legal Harmonization: `CoordinatedCharging`, `InternationalLegalHarmonization`, `ProsecutionCapacityAnalysis`
@@ -1763,7 +1763,7 @@ This release significantly expands the ontology's capability to model modern lar
 ### Added - Sextortion Incident Modeling and WA JACET Case Integration
 Comprehensive sextortion ontology module and real-world case example based on Western Australia Joint Anti Child Exploitation Team (WA JACET) operations and Australian Federal Police press releases regarding sexual extortion of children through age deception and online blackmail.
 
-#### New icac-sextortion.ttl - Complete Sextortion Investigation Framework
+#### New cacontology-sextortion.ttl - Complete Sextortion Investigation Framework
 - **Sextortion Incident Classes**: SextortionIncident, AgeDeceptionSextortion, InstantMessagingSextortion, SocialMediaSextortion with specialized classification
 - **Progression Phase Model**: Sequential phases from InitialDeceptionPhase through TrustBuildingPhase, SexualSolicitationPhase, ImageAcquisitionPhase, to ExtortionPhase
 - **Deception Tactics Framework**: AgeDeceptionTactic, IdentityImpersonation, PeerImpersonation, FalseProfileCreation with age claims and persona types
@@ -1775,11 +1775,11 @@ Comprehensive sextortion ontology module and real-world case example based on We
 - **Platform-Specific Features**: InstantMessagingPlatform, PrivateMessagingFeature, ImageSharingFeature, DisappearingMessageFeature
 - **Investigation Framework**: SextortionInvestigation, DeviceForensicAnalysis, ConversationReconstruction, VictimIdentification
 
-#### Enhanced Integration with Existing ICAC Framework
+#### Enhanced Integration with Existing CAC Framework
 - **UCO/CASE Alignment**: All classes properly extend UCO core concepts (Action, Observable, Identity, Role)
-- **Task Force Integration**: Seamless connection with icac-taskforce.ttl for WA JACET operations
-- **International Coordination**: Integration with icac-international.ttl for NCMEC-ACCCE reporting workflows
-- **Sentencing Integration**: Connection with icac-sentencing.ttl for Australian Criminal Code charges
+- **Task Force Integration**: Seamless connection with cacontology-taskforce.ttl for WA JACET operations
+- **International Coordination**: Integration with cacontology-international.ttl for NCMEC-ACCCE reporting workflows
+- **Sentencing Integration**: Connection with cacontology-sentencing.ttl for Australian Criminal Code charges
 - **Forensics Integration**: Enhanced forensic examination capabilities for sextortion evidence
 
 #### New Example: wa-sextortion-case-example.ttl
@@ -1812,7 +1812,7 @@ Comprehensive sextortion ontology module and real-world case example based on We
 - **542-line Comprehensive Ontology**: Complete sextortion framework with detailed class hierarchies
 - **316-line Real-World Example**: Demonstrating all major sextortion concepts in actual case context
 - **UCO-Compliant Design**: Proper inheritance from UCO core classes with semantic alignment
-- **Cross-Module Integration**: Seamless integration with existing ICAC ontology modules
+- **Cross-Module Integration**: Seamless integration with existing CAC ontology modules
 - **Documentation Standards**: Comprehensive rdfs:comment and rdfs:label annotations for all concepts
 
 ### Updated Framework Capabilities
@@ -1826,7 +1826,7 @@ Comprehensive sextortion ontology module and real-world case example based on We
 ### Added - SA JACET Decade Operations and Asset Forfeiture Framework
 Based on Australian Federal Police SA JACET press release (May 15, 2025) regarding 10 years of joint operations achieving 370+ children removed from harm, 677 referrals, 654 arrests, and major asset forfeiture operations across Australia.
 
-#### New icac-asset-forfeiture.ttl - Criminal Assets Confiscation Taskforce (CACT) Operations
+#### New cacontology-asset-forfeiture.ttl - Criminal Assets Confiscation Taskforce (CACT) Operations
 - **Asset Forfeiture Actions**: PropertyRestraintAction, PropertyForfeitureAction, FinancialPenaltyAction, EquipmentSeizureAction
 - **CACT Operations**: CriminalAssetsConfiscationTaskforce, CACTInvestigation, AssetAssessmentAction
 - **Forfeiture Target Assets**: ResidentialProperty, TechnicalEquipment, FinancialAccount, Vehicle, HouseholdItems
@@ -1835,14 +1835,14 @@ Based on Australian Federal Police SA JACET press release (May 15, 2025) regardi
 - **Multi-State Coordination**: Operations across SA, NSW, NT, VIC with $850K+ financial penalties
 - **Property and Equipment**: Home restraints, technical equipment (cameras, drones), household items (48 items), vehicles
 
-#### Enhanced icac-taskforce.ttl - SA JACET Joint Operations Model
+#### Enhanced cacontology-taskforce.ttl - SA JACET Joint Operations Model
 - **JointAntiChildExploitationTeam**: Based on SA JACET 2015-2025 operational model
 - **CoLocatedTaskForce**: Co-location of AFP and State Police enabling rapid intelligence sharing
 - **StateFederalPartnership**: Partnership between Australian Federal Police and state agencies
 - **InternationalTaskForceNetwork**: JACET teams across states/territories connected to international partners
 - **Intelligence Sharing**: Jurisdiction-specific intelligence capabilities and co-location benefits
 
-#### Enhanced icac-forensics.ttl - Victim Identification at Scale
+#### Enhanced cacontology-forensics.ttl - Victim Identification at Scale
 - **VictimIdentificationProcess**: Systematic identification of 370+ victims over 10 years (toddlers to teenagers)
 - **ImageAnalysisForVictimID**: Analysis of seized images for victim identification and removal from exploitation
 - **CrossReferenceAnalysis**: Cross-referencing across multiple cases and international databases
@@ -1850,13 +1850,13 @@ Based on Australian Federal Police SA JACET press release (May 15, 2025) regardi
 - **Global Victim Statistics**: 677 referrals, 654 arrests, victims from Australia, UK, US, Southeast Asia, Philippines
 - **Victim Geographic Tracking**: victimGeographicOrigin, victimsIdentifiedCount, referralsReceived, arrestsResulting
 
-#### Enhanced icac-international.ttl - Philippines Live Streaming Operations
+#### Enhanced cacontology-international.ttl - Philippines Live Streaming Operations
 - **LiveStreamingInvestigation**: Cross-border live streaming of child abuse investigations
 - **DistanceChildAbuse**: Child abuse ordered and instructed remotely across international borders
 - **InstructedAbuseOperation**: Suspects ordering live child abuse viewed online from another country
 - **OverseasVictimCoordination**: Coordination for identifying and assisting victims in foreign countries
 
-#### Enhanced icac-sentencing.ttl - Mandatory Minimum Sentencing
+#### Enhanced cacontology-sentencing.ttl - Mandatory Minimum Sentencing
 - **MandatoryMinimumSentencing**: First conviction in SA under mandatory minimum provisions (23 years)
 - **CommonwealthChildAbuseOffense**: Offenses under Commonwealth law with mandatory minimums
 - **LiveStreamingOffense**: Live streaming offenses (15 years with 9-year non-parole)
@@ -1887,47 +1887,47 @@ Based on Australian Federal Police SA JACET press release (May 15, 2025) regardi
 
 ## [0.9.0] - 2024-12-XX
 
-### Added - Wisconsin ICAC Website Inspired Community Engagement and Education Enhancements
-Based on Wisconsin Department of Justice ICAC website analysis (https://www.wisdoj.gov/Pages/PublicSafety/internet-crimes-against-children.aspx) - Comprehensive community communication systems, multi-modal education delivery, and affiliate network management infrastructure.
+### Added - Wisconsin CAC Website Inspired Community Engagement and Education Enhancements
+Based on Wisconsin Department of Justice CAC website analysis (https://www.wisdoj.gov/Pages/PublicSafety/internet-crimes-against-children.aspx) - Comprehensive community communication systems, multi-modal education delivery, and affiliate network management infrastructure.
 
-#### Enhanced icac-prevention.ttl - Community Communication Systems
+#### Enhanced cacontology-prevention.ttl - Community Communication Systems
 - **Community Email Lists**: Parent & community email lists for ongoing safety updates and archived publication access
 - **Archive Publication Systems**: Knowledge repository systems for accessing archived educational publications and historical safety information
 - **FAQ Knowledge Bases**: Structured question and answer systems for Internet Crimes Against Children frequently asked questions
 - **Community Newsletter Systems**: Regular newsletter communication systems for ongoing community engagement and safety updates
 
-#### Enhanced icac-prevention.ttl - Multi-Modal Education Delivery Systems
+#### Enhanced cacontology-prevention.ttl - Multi-Modal Education Delivery Systems
 - **Podcast Education Series**: Audio-based educational content delivery system (Protect Kids Online PKO Podcast)
 - **Interactive Course Systems**: Interactive online safety course platforms with progression tracking and engagement features
 - **Course Completion Tracking**: Systems for tracking participant progress and completion rates in interactive safety courses
 - **Multimedia Education Content**: Educational content incorporating multiple media types including audio, video, and interactive elements
 - **Education Platform Integration**: Integration capabilities between different educational delivery platforms and content management systems
 
-#### Enhanced icac-prevention.ttl - Enhanced Community Engagement Metrics
+#### Enhanced cacontology-prevention.ttl - Enhanced Community Engagement Metrics
 - **Email List Engagement Metrics**: Metrics tracking email list subscription rates, open rates, and engagement patterns
 - **Podcast Engagement Metrics**: Metrics tracking podcast download rates, completion rates, and listener engagement
 - **FAQ Usage Metrics**: Metrics tracking FAQ access patterns, most searched questions, and help-seeking behaviors
 - **Interactive Course Metrics**: Metrics tracking course enrollment, completion rates, and learning effectiveness
 
-#### Enhanced icac-specialized-units.ttl - Affiliate Network Management
-- **ICAC Affiliate Organizations**: Formally affiliated organizations within the ICAC network for coordinated child protection efforts
-- **Affiliate Management Units**: Specialized units responsible for managing and coordinating ICAC affiliate relationships
+#### Enhanced cacontology-specialized-units.ttl - Affiliate Network Management
+- **CAC Affiliate Organizations**: Formally affiliated organizations within the CAC network for coordinated child protection efforts
+- **Affiliate Management Units**: Specialized units responsible for managing and coordinating CAC affiliate relationships
 - **Affiliate Coordination Centers**: Central coordination centers for managing affiliate organization activities and resource sharing
-- **Affiliate Resource Libraries**: Centralized libraries of resources available for sharing among ICAC affiliate organizations
-- **Inter-Affiliate Resource Sharing**: Resource sharing activities between different ICAC affiliate organizations
-- **Affiliate Joint Operations**: Joint operations conducted by multiple ICAC affiliate organizations
+- **Affiliate Resource Libraries**: Centralized libraries of resources available for sharing among CAC affiliate organizations
+- **Inter-Affiliate Resource Sharing**: Resource sharing activities between different CAC affiliate organizations
+- **Affiliate Joint Operations**: Joint operations conducted by multiple CAC affiliate organizations
 - **Affiliate Knowledge Sharing**: Knowledge sharing activities and best practice dissemination among affiliates
 
-#### Enhanced icac-specialized-units.ttl - Affiliate Services and Support
-- **Affiliate Support Services**: Support services provided to ICAC affiliate organizations
+#### Enhanced cacontology-specialized-units.ttl - Affiliate Services and Support
+- **Affiliate Support Services**: Support services provided to CAC affiliate organizations
 - **Affiliate Technical Assistance**: Technical assistance and support provided to affiliate organizations
 - **Affiliate Resource Allocation**: Allocation of resources to affiliate organizations based on needs and availability
 - **Affiliate Performance Assessment**: Assessment of affiliate organization performance and contribution to network goals
 
-#### Key Wisconsin ICAC Website Integration Features
-- **Modern Communication Infrastructure**: Email lists, newsletters, and archive systems reflecting current ICAC operations
+#### Key Wisconsin CAC Website Integration Features
+- **Modern Communication Infrastructure**: Email lists, newsletters, and archive systems reflecting current CAC operations
 - **Multi-Modal Education Delivery**: Podcast series, interactive courses, and multimedia content integration
-- **Affiliate Network Formalization**: Structured management of ICAC affiliate relationships and resource sharing
+- **Affiliate Network Formalization**: Structured management of CAC affiliate relationships and resource sharing
 - **Comprehensive Engagement Tracking**: Metrics for email engagement, podcast usage, FAQ access, and course completion
 - **Knowledge Repository Management**: Systems for managing archived educational materials and historical information
 - **Community Help-Seeking Support**: FAQ systems and resource access designed to facilitate community information needs
@@ -1944,14 +1944,14 @@ Based on Wisconsin Department of Justice ICAC website analysis (https://www.wisd
 - **18 New Classes** added across two ontologies for community engagement and affiliate management
 - **42+ New Properties** for communication tracking, education delivery, and affiliate coordination
 - **Semantic Integration** connecting community engagement with existing prevention and training frameworks
-- **Wisconsin ICAC Model**: Comprehensive representation of modern ICAC community engagement infrastructure
+- **Wisconsin CAC Model**: Comprehensive representation of modern CAC community engagement infrastructure
 
 ## [0.8.1] - 2024-12-XX
 
 ### Added - Illinois Attorney General Case Analysis and State-Level Prosecution Framework
-Based on Illinois Attorney General press release (October 5, 2023) regarding Robert L. Jones Macoupin County case - Comprehensive state-level prosecution modeling with Illinois-specific charge classifications, multi-agency coordination, ICAC task force historical metrics, and social media evidence integration.
+Based on Illinois Attorney General press release (October 5, 2023) regarding Robert L. Jones Macoupin County case - Comprehensive state-level prosecution modeling with Illinois-specific charge classifications, multi-agency coordination, CAC task force historical metrics, and social media evidence integration.
 
-#### Enhanced icac-sentencing.ttl - Illinois State Charge Classifications
+#### Enhanced cacontology-sentencing.ttl - Illinois State Charge Classifications
 - **Illinois Felony Classes**: Complete Illinois felony classification system (Class X, 1, 2, 3, 4) with specific penalty ranges
 - **Illinois-Specific CSAM Charges**: Illinois_DisseminationCSAM_Under13 (Class X, up to 30 years), Illinois_PossessionCSAM_Under13 (Class 1, up to 15 years), Illinois_FailureToRegister (Class 3, up to 7 years)
 - **Multi-Agency Prosecution Framework**: CoProsecution, StateAttorneyGeneralProsecution, CountyStateProsecution with lead/supporting prosecutor relationships
@@ -1959,15 +1959,15 @@ Based on Illinois Attorney General press release (October 5, 2023) regarding Rob
 - **Enhanced Charge Properties**: chargeCount, maximumSentenceYears, victimAgeAtOffense, evidenceFoundOnDevice, evidenceFoundOnSocialMedia
 - **Detention Framework**: PreTrialDetention, CourtScheduling, CountyJail with detention status tracking
 
-#### Enhanced icac-taskforce.ttl - ICAC Historical Performance Metrics
+#### Enhanced cacontology-taskforce.ttl - CAC Historical Performance Metrics
 - **Performance Metrics Classes**: TaskForceMetrics, HistoricalMetrics, CyberTipMetrics, ArrestMetrics, AnnualPerformance, NetworkPerformance, TrainingReachMetrics
-- **Illinois ICAC Framework**: IllinoisICACtaskForce with DOJ grant funding and national network integration (1 of 61)
+- **Illinois CAC Framework**: IllinoisCACtaskForce with DOJ grant funding and national network integration (1 of 61)
 - **Historical Performance Data**: cyberTipsSince2019 (35,000+), arrestsSince2019 (600+), arrestsSince2006 (1,990+), partnerAgencyCount (175+)
 - **Trend Analysis**: yearOverYearIncrease (26% in 2022), performance period tracking, annual reporting capabilities
 - **Partnership Framework**: FederalLawEnforcementPartner, LocalLawEnforcementPartner with multi-level coordination
 - **Training Reach Metrics**: professionalsTrained, parentsEducated, studentsEducated, teachersEducated with comprehensive education tracking
 
-#### Enhanced icac-platforms.ttl - Social Media Evidence Integration
+#### Enhanced cacontology-platforms.ttl - Social Media Evidence Integration
 - **Social Media Evidence Framework**: SocialMediaEvidence, SocialMediaAccount, CrossPlatformEvidence, SocialMediaPost, PrivateMessage, AccountMetadata
 - **Device Evidence Integration**: ElectronicDeviceEvidence, DeviceSocialMediaCorrelation, StoredSocialMediaContent, SocialMediaAppData
 - **Investigation Coordination**: PlatformInvestigationCoordination, SimultaneousSearchWarrant, DigitalEvidenceCorrelation
@@ -1976,14 +1976,14 @@ Based on Illinois Attorney General press release (October 5, 2023) regarding Rob
 - **Legal Process Integration**: searchWarrantRequired, legalProcessUsed, evidenceTimestamp, discoveryTimestamp
 
 #### New Examples and Documentation
-- **illinois-attorney-general-case-example.ttl**: Comprehensive 18+ section example modeling Robert L. Jones case with Illinois charge classifications, multi-agency prosecution, ICAC metrics, social media evidence, and sex offender registry integration
+- **illinois-attorney-general-case-example.ttl**: Comprehensive 18+ section example modeling Robert L. Jones case with Illinois charge classifications, multi-agency prosecution, CAC metrics, social media evidence, and sex offender registry integration
 - **Enhanced README.md**: Illinois-specific usage examples showcasing state prosecution, multi-agency coordination, and social media evidence
 - **Updated File Structure**: Integration of new illinois-attorney-general-case-example.ttl in examples directory
 
 ### Key Illinois Case Integration Features
 - **State vs Federal Prosecution Modeling**: Complete framework for state-level prosecution alongside existing federal capabilities
 - **Multi-Agency Coordination**: Co-prosecution between state Attorney General and county prosecutors with specialized bureau integration
-- **Historical ICAC Metrics**: Long-term performance tracking with 17+ year operational history (2006-2023)
+- **Historical CAC Metrics**: Long-term performance tracking with 17+ year operational history (2006-2023)
 - **Social Media Evidence Discovery**: Modern investigation patterns with device-social media correlation and cross-platform analysis
 - **Real-World Validation**: All enhancements based on actual Illinois Attorney General press release data and prosecution patterns
 
@@ -1996,9 +1996,9 @@ Based on Illinois Attorney General press release (October 5, 2023) regarding Rob
 ## [0.8.0] - 2024-12-XX
 
 ### Added - Sex Offender Registry Integration
-Comprehensive sex offender registry ontology providing complete semantic framework for registry data management and integration with existing ICAC compliance monitoring capabilities.
+Comprehensive sex offender registry ontology providing complete semantic framework for registry data management and integration with existing CAC compliance monitoring capabilities.
 
-#### New icac-sex-offender-registry.ttl - Complete Registry Data Model
+#### New cacontology-sex-offender-registry.ttl - Complete Registry Data Model
 - **Registry Core Classes**: Sex offender registry systems, registered offender profiles, and registration records
 - **Personal Identification**: Comprehensive demographics, physical descriptions, photographs, and identifying marks
 - **Address and Location Management**: Primary residence, temporary addresses, work locations, and address history
@@ -2008,11 +2008,11 @@ Comprehensive sex offender registry ontology providing complete semantic framewo
 - **Restrictions and Conditions**: Geographic, contact, internet, and employment restrictions management
 - **Registry Management**: Registry agencies, officers, systems, and public website administration
 - **Notification Systems**: Community notifications, registration alerts, and notification tier classifications
-- **Compliance Integration**: Direct integration with existing ICAC compliance monitoring operations
+- **Compliance Integration**: Direct integration with existing CAC compliance monitoring operations
 
 #### Enhanced Integration with Existing Framework
 - **Compliance Monitoring**: Seamless integration with Arkansas-style large-scale compliance operations (1,600+ visits)
-- **Investigation Workflows**: Direct connection to ICAC investigation lifecycle and case management
+- **Investigation Workflows**: Direct connection to CAC investigation lifecycle and case management
 - **Sentencing Integration**: Enhanced connection with existing sex offender registry requirements
 - **Alert Systems**: Registry alerts triggering potential investigations and compliance violations
 
@@ -2031,7 +2031,7 @@ Comprehensive sex offender registry ontology providing complete semantic framewo
 
 ### Integration Benefits
 - **Unified Data Model**: Single semantic framework for registry and compliance operations
-- **Investigation Triggers**: Registry alerts directly triggering ICAC investigations
+- **Investigation Triggers**: Registry alerts directly triggering CAC investigations
 - **Operational Efficiency**: Support for large-scale compliance operations like Arkansas model
 - **Cross-Reference Capability**: Direct links between registry data and investigation outcomes
 - **Analytics Support**: Comprehensive metrics and effectiveness measurement
@@ -2054,14 +2054,14 @@ Comprehensive sex offender registry ontology providing complete semantic framewo
 ### Added - Arkansas Operation Cyber Highway Safety Check Enhancements
 Based on Arkansas Department of Public Safety Operation "Cyber Highway Safety Check" (March-May 2024) - Large-scale operation achieving 42 arrests, 178 search warrants, 1,600+ compliance visits, 5 children rescued, and 2 multi-state trafficking cases.
 
-#### Enhanced icac-prevention.ttl - Modern Sextortion Education & QR Code Integration
+#### Enhanced cacontology-prevention.ttl - Modern Sextortion Education & QR Code Integration
 - **Sextortion Prevention Framework**: Comprehensive sextortion awareness and education programs
 - **Educational Poster Campaigns**: School-based poster distribution with QR code integration
 - **Discreet Access Systems**: QR code systems reducing bullying/shaming when seeking help (12+ age group)
 - **Age-Targeted Education**: Specialized education programs for students 12 years and older
 - **Enhanced Prevention Metrics**: Statewide campaign tracking (500 schools, 5,000 posters, 2,500 QR scans)
 
-#### Enhanced icac-multi-jurisdiction.ttl - Large-Scale Compliance & Trafficking Operations
+#### Enhanced cacontology-multi-jurisdiction.ttl - Large-Scale Compliance & Trafficking Operations
 - **Sex Offender Compliance Monitoring**: Support for 1,600+ compliance visit operations
 - **Multi-State Trafficking Investigations**: Child sex trafficking coordination across state boundaries
 - **Large-Scale Operations Framework**: Operations involving 100+ law enforcement actions
@@ -2069,7 +2069,7 @@ Based on Arkansas Department of Public Safety Operation "Cyber Highway Safety Ch
 - **Proactive Investigation Campaigns**: Framework for proactive vs reactive approaches
 - **Child Rescue Coordination**: Specialized coordination for rescuing children from ongoing abuse
 
-#### Enhanced icac-specialized-units.ttl - Seasonal Operations & Emergency Response
+#### Enhanced cacontology-specialized-units.ttl - Seasonal Operations & Emergency Response
 - **Seasonal Operations Framework**: Timing operations to seasonal cyber tip patterns (March-May)
 - **Child Rescue Units**: Specialized units for child rescue from ongoing abuse situations
 - **High-Volume Operations Management**: Units handling 100+ simultaneous operations
@@ -2110,7 +2110,7 @@ Based on Arkansas Department of Public Safety Operation "Cyber Highway Safety Ch
 ## [0.6.0] - 2024-12-XX
 
 ### Added - Idaho Operation Unhinged Enhancements
-- **icac-specialized-units.ttl** - NEW: Specialized Units & Advanced Capabilities
+- **cacontology-specialized-units.ttl** - NEW: Specialized Units & Advanced Capabilities
   - K9 detection programs for electronic storage devices
   - Officer wellness and mental health support programs
   - Specialized investigative units (cyber crime, digital forensics, undercover, tactical, victim services)
@@ -2119,19 +2119,19 @@ Based on Arkansas Department of Public Safety Operation "Cyber Highway Safety Ch
   - Triple threat K9 capabilities (detection, community engagement, officer wellness)
 
 ### Enhanced Existing Ontologies
-- **icac-training.ttl** - Enhanced Community Engagement Metrics
+- **cacontology-training.ttl** - Enhanced Community Engagement Metrics
   - Community engagement metrics tracking (53 events, 1,390 attendees)
   - Professional training metrics (106 professionals trained)
   - K9 program metrics (8 search warrants assisted, 7 public presentations)
   - Operational training effectiveness tracking
 
-- **icac-multi-jurisdiction.ttl** - Enhanced Operation Coordination
+- **cacontology-multi-jurisdiction.ttl** - Enhanced Operation Coordination
   - Named multi-jurisdictional operations support
-  - National coordinated operations (Operation Safe Online Summer across 61 ICAC Task Forces)
+  - National coordinated operations (Operation Safe Online Summer across 61 CAC Task Forces)
   - Coordinated arrest wave tracking
   - Operation metrics and effectiveness measurement
 
-- **icac-forensics.ttl** - Specialized Detection Methods
+- **cacontology-forensics.ttl** - Specialized Detection Methods
   - K9-assisted forensic processes
   - Electronic storage device detection capabilities
   - Hidden device recovery techniques
@@ -2160,7 +2160,7 @@ Based on Arkansas Department of Public Safety Operation "Cyber Highway Safety Ch
 ## [0.5.0] - 2025-05-28
 
 ### Added - International Coordination Framework
-- **icac-international.ttl** - Global Coordination & Cross-Border Operations
+- **cacontology-international.ttl** - Global Coordination & Cross-Border Operations
   - International partnerships framework (120+ countries support)
   - Cross-border investigations and global case tracking
   - Information sharing agreements and secure communication channels
@@ -2168,7 +2168,7 @@ Based on Arkansas Department of Public Safety Operation "Cyber Highway Safety Ch
   - International task forces and mutual legal assistance
   - Global metrics and effectiveness measurement
 
-- **icac-training.ttl** - Professional Development & Capacity Building
+- **cacontology-training.ttl** - Professional Development & Capacity Building
   - International training programs (155,000+ professionals trained)
   - Professional certification and competency assessment
   - Specialized training types (criminal justice, digital forensics, victim services)
@@ -2176,7 +2176,7 @@ Based on Arkansas Department of Public Safety Operation "Cyber Highway Safety Ch
   - Capacity building programs and mentorship frameworks
   - Global training reach and effectiveness metrics
 
-- **icac-prevention.ttl** - Prevention Programs & Education
+- **cacontology-prevention.ttl** - Prevention Programs & Education
   - Prevention frameworks (primary, secondary, tertiary prevention)
   - Education portals and school allegation protocols
   - Community outreach and public awareness campaigns
@@ -2184,7 +2184,7 @@ Based on Arkansas Department of Public Safety Operation "Cyber Highway Safety Ch
   - Technology-based prevention and digital safety programs
   - Prevention effectiveness and community engagement metrics
 
-- **icac-legal-harmonization.ttl** - International Legal Framework
+- **cacontology-legal-harmonization.ttl** - International Legal Framework
   - CSAM Model Law and global legal review (196 countries analyzed)
   - Policy harmonization and legal compliance assessment
   - International legal cooperation and treaty frameworks
@@ -2223,7 +2223,7 @@ Based on Arkansas Department of Public Safety Operation "Cyber Highway Safety Ch
 
 Based on analysis of Brooklyn District Attorney press release (April 11, 2025) regarding five individuals indicted for conspiracy and sex trafficking, the following major enhancements were implemented:
 
-#### New Trafficking Classes in `icac-sex-trafficking.ttl`:
+#### New Trafficking Classes in `cacontology-sex-trafficking.ttl`:
 
 **Victim Recruitment Enhancement:**
 - `PublicVenueRecruitment` - Recruitment at public venues (concerts, events)
@@ -2253,7 +2253,7 @@ Based on analysis of Brooklyn District Attorney press release (April 11, 2025) r
 - `USMarshalApprehension` - US Marshal Service apprehensions
 - `ExtraditionProcess` - Legal extradition processes
 
-#### New Victim Impact Classes in `icac-victim-impact.ttl`:
+#### New Victim Impact Classes in `cacontology-victim-impact.ttl`:
 
 **Hospital-Based Interventions:**
 - `HospitalIntervention` - Medical intervention and assessment
@@ -2375,7 +2375,7 @@ Based on analysis of Brooklyn District Attorney press release (April 11, 2025) r
 
 #### Enhanced SHACL Validation:
 
-**`icac-trafficking-shapes.ttl`** - Added 15+ new validation shapes for:
+**`cacontology-trafficking-shapes.ttl`** - Added 15+ new validation shapes for:
 - Public venue recruitment validation
 - Hotel operation constraints
 - Missing person recovery validation
@@ -2408,7 +2408,7 @@ These enhancements directly address sophisticated trafficking operations involvi
 - Multi-agency coordination across jurisdictions
 - Long-term victim reintegration and family reunification
 
-The enhancements maintain full compatibility with existing ICAC ontology modules while significantly expanding capabilities for modeling complex, multi-jurisdictional trafficking cases.
+The enhancements maintain full compatibility with existing CAC ontology modules while significantly expanding capabilities for modeling complex, multi-jurisdictional trafficking cases.
 
 ## [0.4.0] - 2025-05-28
 
@@ -2438,7 +2438,7 @@ The enhancements maintain full compatibility with existing ICAC ontology modules
 ## [0.3.0] - 2024-02-15
 
 ### Added
-- Initial public release of ICAC ontology family
+- Initial public release of CAC ontology family
 - Core investigation classes
 - Hotline reporting structure
 - Basic SHACL validation
@@ -2460,7 +2460,7 @@ The enhancements maintain full compatibility with existing ICAC ontology modules
 
 ### 764 Network Extremist Enterprise Case Enhancement
 
-**Major Addition**: New `icac-extremist-enterprises.ttl` module based on analysis of United States v. Prasan Nepal and Leonidas Varagiannis (18 U.S.C. § 2252A(g) - Child Exploitation Enterprise).
+**Major Addition**: New `cacontology-extremist-enterprises.ttl` module based on analysis of United States v. Prasan Nepal and Leonidas Varagiannis (18 U.S.C. § 2252A(g) - Child Exploitation Enterprise).
 
 #### New Ontology Module: Extremist Child Exploitation Enterprises
 - **46 new classes** across 10 major categories
@@ -2526,8 +2526,8 @@ The enhancements maintain full compatibility with existing ICAC ontology modules
 - International: `treatyMechanism`, `cooperationResponseTime`, `evidenceSharingVolume`, `disruptionEffectiveness`
 
 #### Files Added
-- `icac-extremist-enterprises.ttl` - Main ontology (545 triples)
-- `icac-extremist-enterprises-shapes.ttl` - SHACL validation (530 triples)
+- `cacontology-extremist-enterprises.ttl` - Main ontology (545 triples)
+- `cacontology-extremist-enterprises-shapes.ttl` - SHACL validation (530 triples)
 - `examples/764-network-extremist-enterprise-example.ttl` - Case example (255 triples)
 - `examples/764-network-case-enhancement-summary.md` - Comprehensive documentation
 
@@ -2552,7 +2552,7 @@ The enhancements maintain full compatibility with existing ICAC ontology modules
 ## Version 0.11.0 - Utah Operation Hive Strike Enhancement (2025-01-19)
 
 ### Added
-- **Named Operation Framework** in icac-multi-jurisdiction.ttl
+- **Named Operation Framework** in cacontology-multi-jurisdiction.ttl
   - `NamedOperation` - Operations with specific names and coordinated branding  
   - `StatewideOperation` - Operations covering entire state with multiple counties
   - `TaskForceHostedOperation` - Operations hosted by specific task forces
@@ -2564,7 +2564,7 @@ The enhancements maintain full compatibility with existing ICAC ontology modules
   - Properties: `operationName`, `operationBranding`, `operationDurationDays`, `statewideCoverage`, `agencyParticipantCount`, `agentParticipantCount`, `countiesInvolved`, `targetTypeCount`, `targetStrategy`, `chargeTypesDiversity`
   - Relationships: `hostedBy`, `coversState`, `spansCounties`, `utilizesCoordination`, `targetsOffenderType`, `deploysAgents`
 
-- **Social Media Undercover Operations** in icac-undercover.ttl
+- **Social Media Undercover Operations** in cacontology-undercover.ttl
   - `SocialMediaUndercoverOperation` - Operations on social media platforms
   - `MultiPlatformUndercoverOperation` - Operations across multiple platforms
   - `UndercoverChatInvestigation` - Chat-based undercover investigations
@@ -2577,7 +2577,7 @@ The enhancements maintain full compatibility with existing ICAC ontology modules
   - Properties: `socialMediaPlatformsUsed`, `chatPlatformType`, `communicationMethod`, `personaAge`, `personaGender`, `personaLocation`, `personaProfile`, `targetBehaviorType`, `meetingSolicitationAttempts`, `predatorContactAttempts`, `identificationSuccessRate`, `chatDurationHours`, `conversationCount`
   - Relationships: `conductedOnPlatform`, `utilizesPersona`, `targetsIndividual`, `involvesChatInvestigation`, `identifiesPredator`, `leadsToSolicitation`, `agentOperatesAs`, `generatesEvidence`
 
-- **Utah-Specific Legal Charges** in icac-sentencing.ttl
+- **Utah-Specific Legal Charges** in cacontology-sentencing.ttl
   - `Utah_SexualExploitationOfMinor` - Sexual exploitation under Utah Criminal Code
   - `Utah_DealingInHarmfulMaterialsToMinor` - Dealing harmful materials to minor
   - `Utah_EnticingAMinor` - Enticing a minor under Utah law
@@ -2592,7 +2592,7 @@ The enhancements maintain full compatibility with existing ICAC ontology modules
   - 5-county coverage (Davis, Salt Lake, Summit, Utah, Weber)
   - Social media minor persona operations (ages 13-15)
   - Dual-target approach (predators + CSAM distributors)
-  - Utah ICAC Task Force hosting
+  - Utah CAC Task Force hosting
   - Utah-specific legal charges
 
 - **Documentation**: utah-operation-hive-strike-enhancement-summary.md
@@ -2601,9 +2601,9 @@ The enhancements maintain full compatibility with existing ICAC ontology modules
   - Real-world applicability assessment
 
 ### Enhanced
-- **icac-multi-jurisdiction.ttl**: 591 triples (enhanced from original)
-- **icac-undercover.ttl**: 484 triples (enhanced with uco-location prefix)
-- **icac-sentencing.ttl**: 820 triples (enhanced with Utah charges)
+- **cacontology-multi-jurisdiction.ttl**: 591 triples (enhanced from original)
+- **cacontology-undercover.ttl**: 484 triples (enhanced with uco-location prefix)
+- **cacontology-sentencing.ttl**: 820 triples (enhanced with Utah charges)
 
 ### Technical
 - All files successfully validated with RDFLib
@@ -2625,7 +2625,7 @@ The enhancements maintain full compatibility with existing ICAC ontology modules
 
 Based on comprehensive analysis of Operation Restore Justice, a 5-day nationwide coordinated enforcement effort involving all 55 FBI field offices, resulting in 205 arrests and 115 child rescues.
 
-#### New Module: Law Enforcement Corruption (`icac-law-enforcement-corruption.ttl`)
+#### New Module: Law Enforcement Corruption (`cacontology-law-enforcement-corruption.ttl`)
 
 **Core Corruption Classes (25 new classes):**
 - `LawEnforcementCorruption` - Base corruption involving law enforcement personnel
@@ -2688,7 +2688,7 @@ Based on comprehensive analysis of Operation Restore Justice, a 5-day nationwide
 - `detectedBy` - Links corruption to detection method
 - `reportedBy` - Links corruption to reporting person
 
-#### Enhanced Multi-Jurisdictional Coordination (`icac-multi-jurisdiction.ttl`)
+#### Enhanced Multi-Jurisdictional Coordination (`cacontology-multi-jurisdiction.ttl`)
 
 **Nationwide Operation Framework (5 new classes):**
 - `NationwideOperation` - Operations coordinated across entire country
@@ -2722,7 +2722,7 @@ Based on comprehensive analysis of Operation Restore Justice, a 5-day nationwide
 - `enablesRapidResponse` - Links coordination to rapid response
 - `involvesFBIFieldOffice` - Links operation to FBI field offices
 
-#### Enhanced Community Outreach Effectiveness (`icac-prevention.ttl`)
+#### Enhanced Community Outreach Effectiveness (`cacontology-prevention.ttl`)
 
 **Community Outreach Effectiveness (6 new classes):**
 - `CommunityOutreachEffectiveness` - Measurement of outreach effectiveness
@@ -2797,9 +2797,9 @@ Based on comprehensive analysis of Operation Restore Justice, a 5-day nationwide
 #### Technical Validation
 
 **File Statistics:**
-- Enhanced `icac-multi-jurisdiction.ttl`: 690 triples (+99 new triples)
-- New `icac-law-enforcement-corruption.ttl`: 212 triples (new module)
-- Enhanced `icac-prevention.ttl`: 755 triples (+120 new triples)
+- Enhanced `cacontology-multi-jurisdiction.ttl`: 690 triples (+99 new triples)
+- New `cacontology-law-enforcement-corruption.ttl`: 212 triples (new module)
+- Enhanced `cacontology-prevention.ttl`: 755 triples (+120 new triples)
 - New `operation-restore-justice-example.ttl`: 230 triples (comprehensive example)
 - **Total Enhancement**: 1,887 triples across 4 files
 
@@ -2824,7 +2824,7 @@ All files successfully validate with RDFLib and maintain UCO/CASE foundation com
 
 Based on analysis of Department of Justice press release (May 28, 2025) regarding Michael Karl Geilenfeld sentenced to 210 years for sexually abusing boys at Haitian orphanage he founded, major enhancements implemented to address critical gaps in charitable organization exploitation, cross-border personal travel for exploitation, and long-term institutional control patterns:
 
-#### New Ontology Module - `icac-institutional-exploitation.ttl` (652 triples):
+#### New Ontology Module - `cacontology-institutional-exploitation.ttl` (652 triples):
 
 **Charitable and Care Institution Classes (7 classes):**
 - `CharitableOrganization` - Organizations operating for charitable or humanitarian purposes
@@ -2982,14 +2982,14 @@ Based on analysis of Department of Justice press release (May 28, 2025) regardin
 #### Integration with Existing Framework:
 
 **Enhanced Module Integration:**
-- **icac-international.ttl**: Cross-border personal travel patterns
-- **icac-prevention.ttl**: Project Safe Childhood integration
-- **icac-victim-impact.ttl**: Long-term trauma and testimony coordination
-- **icac-multi-jurisdiction.ttl**: International prosecution framework
+- **cacontology-international.ttl**: Cross-border personal travel patterns
+- **cacontology-prevention.ttl**: Project Safe Childhood integration
+- **cacontology-victim-impact.ttl**: Long-term trauma and testimony coordination
+- **cacontology-multi-jurisdiction.ttl**: International prosecution framework
 
 **UCO/CASE Compatibility:**
 - All 46 classes extend appropriate UCO base classes
-- Maintains semantic consistency with existing ICAC modules
+- Maintains semantic consistency with existing CAC modules
 - Follows established ontology engineering patterns
 - Complete property domain/range specifications
 
@@ -3009,7 +3009,7 @@ Based on analysis of Department of Justice press release (May 28, 2025) regardin
 
 ### Added - DOJ CEOS Federal Law Framework Enhancement
 
-#### New Module: icac-federal-law.ttl
+#### New Module: cacontology-federal-law.ttl
 **Purpose**: Comprehensive semantic framework for U.S. federal child exploitation and obscenity laws based on DOJ CEOS Citizens Guide.
 
 **Major Enhancement Areas**:
@@ -3063,7 +3063,7 @@ Based on analysis of Department of Justice press release (May 28, 2025) regardin
 **File**: examples/ceos-federal-law-enhancement-summary.md (6,500+ words)
 - Comprehensive analysis of DOJ CEOS Citizens Guide framework
 - Technical implementation details and real-world applications
-- Integration with existing ICAC ontology modules
+- Integration with existing CAC ontology modules
 - Federal law enforcement coordination and legal system integration
 - Strategic impact and future development opportunities
 
@@ -3078,14 +3078,14 @@ Based on analysis of Department of Justice press release (May 28, 2025) regardin
 
 #### Real-World Applications
 - **Federal Prosecutors**: Complete framework for federal charge selection and case building
-- **ICAC Task Forces**: Enhanced coordination with federal agencies and CEOS
+- **CAC Task Forces**: Enhanced coordination with federal agencies and CEOS
 - **International Cooperation**: Support for extraterritorial prosecution and cross-border evidence
 - **Policy Development**: Evidence-based federal law analysis and legislative support
 - **Law Enforcement Training**: Comprehensive federal law framework for professional development
 
 #### Integration Enhancements
 - **README.md**: Added DOJ CEOS Federal Law Framework to ontology modules and usage examples
-- **File Structure**: Updated with icac-federal-law.ttl and examples/ceos-federal-law-example.ttl
+- **File Structure**: Updated with cacontology-federal-law.ttl and examples/ceos-federal-law-example.ttl
 - **UCO/CASE Compatibility**: Full integration with existing UCO concepts and standards compliance
 
 **Total Enhancement**: 96 new semantic elements (39 classes + 40 properties + 17 relationships) representing major advancement in federal child exploitation law modeling.

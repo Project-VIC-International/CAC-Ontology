@@ -7,12 +7,12 @@
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location#> .
 @prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types#> .
-@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
-@prefix icac-platforms: <https://ontology.unifiedcyberontology.org/icac/platforms#> .
-@prefix icac-international: <https://ontology.unifiedcyberontology.org/icac/international#> .
-@prefix icac-forensics: <https://ontology.unifiedcyberontology.org/icac/forensics#> .
-@prefix icac-multi: <https://ontology.unifiedcyberontology.org/icac/multi-jurisdiction#> .
-@prefix icac-infrastructure: <https://ontology.unifiedcyberontology.org/icac/infrastructure#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-platforms: <https://cacontology.projectvic.org/platforms#> .
+@prefix cacontology-international: <https://cacontology.projectvic.org/international#> .
+@prefix cacontology-forensics: <https://cacontology.projectvic.org/forensics#> .
+@prefix cacontology-multi: <https://cacontology.projectvic.org/multi-jurisdiction#> .
+@prefix cacontology-infrastructure: <https://cacontology.projectvic.org/infrastructure#> .
 @prefix ex: <https://example.org/kb/> .
 
 # =============================================================================

@@ -6,8 +6,8 @@
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role#> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable#> .
-@prefix icac-core: <https://ontology.unifiedcyberontology.org/icac#> .
-@prefix icac-us: <https://ontology.unifiedcyberontology.org/icac/us/ncmec#> .
+@prefix cacontology-core: <https://cacontology.projectvic.org#> .
+@prefix cacontology-us: <https://cacontology.projectvic.org/us/ncmec#> .
 
 # Example Investigation
 icac-core:investigation-2024-001 rdf:type icac-core:ICACInvestigation ;

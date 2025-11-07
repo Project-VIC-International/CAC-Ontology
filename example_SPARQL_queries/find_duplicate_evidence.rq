@@ -5,7 +5,7 @@
 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX hotline: <https://ontology.unifiedcyberontology.org/hotlines/2025/core#>
+PREFIX cacontology-hotlines: <https://cacontology.projectvic.org/hotlines/2025/core#>
 PREFIX uco-core: <https://ontology.unifiedcyberontology.org/core#>
 PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/observable#>
 PREFIX uco-confidentiality: <https://ontology.unifiedcyberontology.org/confidentiality#>
@@ -18,9 +18,9 @@ WHERE {
     }
     
     # Core evidence data
-    ?report hotline:hasEvidence ?evidence .
+    ?report cacontology-hotlines:hasEvidence ?evidence .
     ?evidence uco-observable:hash ?hashObj ;
-              hotline:firstSeen ?firstSeen .
+              cacontology-hotlines:firstSeen ?firstSeen .
     
     ?hashObj uco-observable:hashValue ?hash ;
              uco-observable:hashMethod ?hashMethod .

@@ -8,11 +8,11 @@
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/action#> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/location#> .
 @prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
-@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
-@prefix icac-street: <https://ontology.unifiedcyberontology.org/icac/street#> .
-@prefix icac-grooming: <https://ontology.unifiedcyberontology.org/icac/grooming#> .
-@prefix icac-trafficking: <https://ontology.unifiedcyberontology.org/icac/trafficking#> .
-@prefix icac-sentencing: <https://ontology.unifiedcyberontology.org/icac/sentencing#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-street: <https://cacontology.projectvic.org/street#> .
+@prefix cacontology-grooming: <https://cacontology.projectvic.org/grooming#> .
+@prefix cacontology-trafficking: <https://cacontology.projectvic.org/trafficking#> .
+@prefix cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#> .
 @prefix ex: <https://example.org/brooklyn-lee-case#> .
 
 # =============================================================================
@@ -257,15 +257,15 @@ ex:AttemptedPromotingProstitution4thDegree rdf:type icac-trafficking:AttemptedPr
     rdfs:label "Attempted Promoting Prostitution 4th Degree"@en ;
     uco-core:description "Charge for attempted promoting prostitution in the fourth degree." .
 
-ex:ThirdDegreeRape rdf:type icac:SexualAssault ;
+ex:ThirdDegreeRape rdf:type cacontology:SexualAssault ;
     rdfs:label "Rape in the Third Degree"@en ;
     uco-core:description "Charge for third degree rape of 15-year-old victim." .
 
-ex:ThirdDegreeSexualAbuse rdf:type icac:SexualAssault ;
+ex:ThirdDegreeSexualAbuse rdf:type cacontology:SexualAssault ;
     rdfs:label "Sexual Abuse in the Third Degree"@en ;
     uco-core:description "Charge for third degree sexual abuse of victim." .
 
-ex:EndangeringWelfareOfChild rdf:type icac:EndangeringWelfareOfChild ;
+ex:EndangeringWelfareOfChild rdf:type cacontology:EndangeringWelfareOfChild ;
     rdfs:label "Endangering the Welfare of a Child"@en ;
     uco-core:description "Charge for endangering the welfare of a child." .
 

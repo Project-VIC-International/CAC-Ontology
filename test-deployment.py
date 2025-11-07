@@ -18,7 +18,7 @@ def test_phase_1_deployment():
     
     # Check required files
     required_files = [
-        'icac-core-gufo.ttl',
+        'ontology/cacontology-core.ttl',
         'examples/gufo-phase1-example.ttl'
     ]
     
@@ -35,7 +35,7 @@ def test_phase_1_deployment():
         
         # Load core gUFO ontology
         g = rdflib.Graph()
-        g.parse('icac-core-gufo.ttl', format='turtle')
+        g.parse('ontology/cacontology-core.ttl', format='turtle')
         print(f"✅ Loaded core ontology: {len(g)} triples")
         
         # Load Phase 1 example
@@ -44,11 +44,11 @@ def test_phase_1_deployment():
         
         # Test basic gUFO queries
         query = """
-        PREFIX icac-gufo: <https://ontology.unifiedcyberontology.org/icac/gufo#>
+        PREFIX cacontology-gufo: <https://cacontology.projectvic.org/gufo#>
         PREFIX gufo: <http://purl.org/nemo/gufo#>
         
         SELECT (COUNT(?phase) as ?phase_count) WHERE {
-            ?phase rdfs:subClassOf icac-gufo:Investigation ;
+            ?phase rdfs:subClassOf cacontology-gufo:Investigation ;
                    rdf:type gufo:Phase .
         }
         """
@@ -63,11 +63,11 @@ def test_phase_1_deployment():
         
         # Test role modeling
         role_query = """
-        PREFIX icac-gufo: <https://ontology.unifiedcyberontology.org/icac/gufo#>
+        PREFIX cacontology-gufo: <https://cacontology.projectvic.org/gufo#>
         PREFIX gufo: <http://purl.org/nemo/gufo#>
         
         SELECT (COUNT(?role) as ?role_count) WHERE {
-            ?role rdfs:subClassOf icac-gufo:Person ;
+            ?role rdfs:subClassOf cacontology-gufo:Person ;
                   rdf:type gufo:Role .
         }
         """
@@ -98,7 +98,7 @@ def test_phase_2_deployment():
     
     # Check required files
     required_files = [
-        'icac-temporal-gufo.ttl',
+        'ontology/cacontology-temporal-gufo.ttl',
         'examples/gufo-phase2-temporal-example.ttl'
     ]
     
@@ -115,17 +115,17 @@ def test_phase_2_deployment():
         
         # Load temporal framework
         g = rdflib.Graph()
-        g.parse('icac-core-gufo.ttl', format='turtle')
-        g.parse('icac-temporal-gufo.ttl', format='turtle')
+        g.parse('ontology/cacontology-core.ttl', format='turtle')
+        g.parse('ontology/cacontology-temporal-gufo.ttl', format='turtle')
         g.parse('examples/gufo-phase2-temporal-example.ttl', format='turtle')
         print(f"✅ Loaded temporal framework: {len(g)} triples")
         
         # Test temporal patterns
         query = """
-        PREFIX icac-temporal: <https://ontology.unifiedcyberontology.org/icac/temporal#>
+        PREFIX cacontology-temporal: <https://cacontology.projectvic.org/temporal#>
         
         SELECT (COUNT(?event) as ?transition_count) WHERE {
-            ?event rdfs:subClassOf icac-temporal:PhaseTransitionEvent .
+            ?event rdfs:subClassOf cacontology-temporal:PhaseTransitionEvent .
         }
         """
         
@@ -139,10 +139,10 @@ def test_phase_2_deployment():
         
         # Test suspension/resumption
         suspension_query = """
-        PREFIX icac-temporal: <https://ontology.unifiedcyberontology.org/icac/temporal#>
+        PREFIX cacontology-temporal: <https://cacontology.projectvic.org/temporal#>
         
         SELECT (COUNT(?suspension) as ?suspension_count) WHERE {
-            ?suspension rdf:type icac-temporal:SuspensionEvent .
+            ?suspension rdf:type cacontology-temporal:SuspensionEvent .
         }
         """
         
@@ -169,7 +169,7 @@ def test_phase_3_deployment():
     
     # Check required files
     required_files = [
-        'icac-gufo-integration-strategy.ttl',
+        'ontology/cacontology-gufo-integration-strategy.ttl',
         'examples/gufo-integration-summary.md'
     ]
     
@@ -186,12 +186,12 @@ def test_phase_3_deployment():
         
         # Load integration strategy
         g = rdflib.Graph()
-        g.parse('icac-gufo-integration-strategy.ttl', format='turtle')
+        g.parse('ontology/cacontology-gufo-integration-strategy.ttl', format='turtle')
         print(f"✅ Loaded integration strategy: {len(g)} triples")
         
         # Test module integration patterns
         query = """
-        PREFIX icac-strategy: <https://ontology.unifiedcyberontology.org/icac/gufo-strategy#>
+        PREFIX cacontology-strategy: <https://cacontology.projectvic.org/gufo-strategy#>
         
         SELECT (COUNT(?pattern) as ?pattern_count) WHERE {
             ?pattern rdfs:subClassOf owl:Class ;
@@ -210,10 +210,10 @@ def test_phase_3_deployment():
         
         # Test validation strategies
         validation_query = """
-        PREFIX icac-strategy: <https://ontology.unifiedcyberontology.org/icac/gufo-strategy#>
+        PREFIX cacontology-strategy: <https://cacontology.projectvic.org/gufo-strategy#>
         
         SELECT (COUNT(?validation) as ?validation_count) WHERE {
-            ?validation rdfs:subClassOf icac-strategy:ValidationStrategy .
+            ?validation rdfs:subClassOf cacontology-strategy:ValidationStrategy .
         }
         """
         

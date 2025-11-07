@@ -9,11 +9,11 @@
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/action#> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/location#> .
 @prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
-@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
-@prefix icac-abduction: <https://ontology.unifiedcyberontology.org/icac/abduction#> .
-@prefix icac-sentencing: <https://ontology.unifiedcyberontology.org/icac/sentencing#> .
-@prefix icac-physical: <https://ontology.unifiedcyberontology.org/icac/physical#> .
-@prefix fiesco-case: <https://ontology.unifiedcyberontology.org/icac/examples/fiesco-case#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-abduction: <https://cacontology.projectvic.org/abduction#> .
+@prefix cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#> .
+@prefix cacontology-physical: <https://cacontology.projectvic.org/physical#> .
+@prefix fiesco-case: <https://cacontology.projectvic.org/examples/fiesco-case#> .
 
 # =============================================================================
 # CHRISTOPHER FIESCO STRANGER ABDUCTION CASE EXAMPLE
@@ -34,7 +34,7 @@ fiesco-case:case-overview rdf:type uco-core:UcoObject ;
 fiesco-case:christopher-fiesco rdf:type uco-identity:Person ;
     rdfs:label "Christopher Fiesco"@en ;
     uco-core:name "Christopher Fiesco" ;
-    icac:age "29"^^xsd:nonNegativeInteger ;
+    cacontology:age "29"^^xsd:nonNegativeInteger ;
     uco-location:residenceLocation fiesco-case:east-flatbush-brooklyn ;
     rdfs:comment "29-year-old male perpetrator from East Flatbush, Brooklyn."@en .
 
@@ -44,8 +44,8 @@ fiesco-case:christopher-fiesco rdf:type uco-identity:Person ;
 
 fiesco-case:victim-13-year-old rdf:type uco-identity:Person ;
     rdfs:label "13-year-old Male Victim"@en ;
-    icac:age "13"^^xsd:nonNegativeInteger ;
-    icac:victimGender "male" ;
+    cacontology:age "13"^^xsd:nonNegativeInteger ;
+    cacontology:victimGender "male" ;
     rdfs:comment "13-year-old male victim of stranger abduction and sexual assault."@en .
 
 # =============================================================================
@@ -362,39 +362,39 @@ fiesco-case:immediate-disclosure icac-abduction:triggersInvestigation fiesco-cas
 # CRIMINAL CHARGES
 # =============================================================================
 
-fiesco-case:kidnapping-first-degree rdf:type icac:CriminalCharge ;
+fiesco-case:kidnapping-first-degree rdf:type cacontology:CriminalCharge ;
     rdfs:label "Kidnapping in the First Degree"@en ;
     rdfs:comment "Kidnapping charge for abducting child with intent to commit sexual offense."@en ;
-    icac:chargeDescription "Kidnapping in the First Degree" ;
-    icac:chargeJurisdiction "New York State" ;
-    icac:chargeSeverity "felony" .
+    cacontology:chargeDescription "Kidnapping in the First Degree" ;
+    cacontology:chargeJurisdiction "New York State" ;
+    cacontology:chargeSeverity "felony" .
 
-fiesco-case:criminal-sexual-act-first-degree rdf:type icac:CriminalCharge ;
+fiesco-case:criminal-sexual-act-first-degree rdf:type cacontology:CriminalCharge ;
     rdfs:label "Criminal Sexual Act in the First Degree"@en ;
     rdfs:comment "Sexual assault charge for forced sexual contact with child under 13."@en ;
-    icac:chargeDescription "Criminal Sexual Act in the First Degree" ;
-    icac:chargeJurisdiction "New York State" ;
-    icac:chargeSeverity "felony" .
+    cacontology:chargeDescription "Criminal Sexual Act in the First Degree" ;
+    cacontology:chargeJurisdiction "New York State" ;
+    cacontology:chargeSeverity "felony" .
 
-fiesco-case:sexual-abuse-first-degree rdf:type icac:CriminalCharge ;
+fiesco-case:sexual-abuse-first-degree rdf:type cacontology:CriminalCharge ;
     rdfs:label "Sexual Abuse in the First Degree"@en ;
     rdfs:comment "Sexual abuse charge for sexual contact with child by forcible compulsion."@en ;
-    icac:chargeDescription "Sexual Abuse in the First Degree" ;
-    icac:chargeJurisdiction "New York State" ;
-    icac:chargeSeverity "felony" .
+    cacontology:chargeDescription "Sexual Abuse in the First Degree" ;
+    cacontology:chargeJurisdiction "New York State" ;
+    cacontology:chargeSeverity "felony" .
 
-fiesco-case:endangering-welfare-child rdf:type icac:CriminalCharge ;
+fiesco-case:endangering-welfare-child rdf:type cacontology:CriminalCharge ;
     rdfs:label "Endangering the Welfare of a Child"@en ;
     rdfs:comment "Child endangerment charge for subjecting child to danger of physical injury."@en ;
-    icac:chargeDescription "Endangering the Welfare of a Child" ;
-    icac:chargeJurisdiction "New York State" ;
-    icac:chargeSeverity "misdemeanor" .
+    cacontology:chargeDescription "Endangering the Welfare of a Child" ;
+    cacontology:chargeJurisdiction "New York State" ;
+    cacontology:chargeSeverity "misdemeanor" .
 
 # Charge Relationships
-fiesco-case:christopher-fiesco icac:chargedWith fiesco-case:kidnapping-first-degree .
-fiesco-case:christopher-fiesco icac:chargedWith fiesco-case:criminal-sexual-act-first-degree .
-fiesco-case:christopher-fiesco icac:chargedWith fiesco-case:sexual-abuse-first-degree .
-fiesco-case:christopher-fiesco icac:chargedWith fiesco-case:endangering-welfare-child .
+fiesco-case:christopher-fiesco cacontology:chargedWith fiesco-case:kidnapping-first-degree .
+fiesco-case:christopher-fiesco cacontology:chargedWith fiesco-case:criminal-sexual-act-first-degree .
+fiesco-case:christopher-fiesco cacontology:chargedWith fiesco-case:sexual-abuse-first-degree .
+fiesco-case:christopher-fiesco cacontology:chargedWith fiesco-case:endangering-welfare-child .
 
 # Evidence Supporting Charges
 fiesco-case:abduction-scene-evidence icac-abduction:supportsCharge fiesco-case:kidnapping-first-degree .

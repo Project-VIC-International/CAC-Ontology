@@ -8,9 +8,9 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core#>
 PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable#>
 PREFIX uco-confidentiality: <https://ontology.unifiedcyberontology.org/uco/confidentiality#>
-PREFIX hotlines-core: <https://ontology.unifiedcyberontology.org/hotlines/2025/core#>
-PREFIX icac-platforms: <https://ontology.unifiedcyberontology.org/icac/platforms#>
-PREFIX icac-detection: <https://ontology.unifiedcyberontology.org/icac/detection#>
+PREFIX hotlines-core: <https://cacontology.projectvic.org/hotlines/2025/core#>
+PREFIX cacontology-platforms: <https://cacontology.projectvic.org/platforms#>
+PREFIX cacontology-detection: <https://cacontology.projectvic.org/detection#>
 
 SELECT DISTINCT ?report ?reporter ?softwareVersion ?vendorName 
        ?intakeTime ?intakeChannel ?evidenceCount

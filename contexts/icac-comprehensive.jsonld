@@ -1,6 +1,6 @@
 {
   "@context": {
-    "@vocab": "https://ontology.unifiedcyberontology.org/icac#",
+    "@vocab": "https://cacontology.projectvic.org#",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
@@ -14,26 +14,26 @@
     "uco-role": "https://ontology.unifiedcyberontology.org/role#",
     "uco-location": "https://ontology.unifiedcyberontology.org/location#",
     "case-investigation": "https://ontology.caseontology.org/case/investigation#",
-    "hotlines": "https://ontology.unifiedcyberontology.org/hotlines/2025/core#",
-    "icac-athletic": "https://ontology.unifiedcyberontology.org/icac/athletic#",
-    "icac-production": "https://ontology.unifiedcyberontology.org/icac/production#",
-    "icac-custodial": "https://ontology.unifiedcyberontology.org/icac/custodial#",
-    "icac-grooming": "https://ontology.unifiedcyberontology.org/icac/grooming#",
-    "icac-sextortion": "https://ontology.unifiedcyberontology.org/icac/sextortion#",
-    "icac-forensics": "https://ontology.unifiedcyberontology.org/icac/forensics#",
-    "icac-sentencing": "https://ontology.unifiedcyberontology.org/icac/sentencing#",
-    "icac-victim-impact": "https://ontology.unifiedcyberontology.org/icac/victim-impact#",
-    "icac-specialized": "https://ontology.unifiedcyberontology.org/icac/specialized-units#",
-    "icac-platforms": "https://ontology.unifiedcyberontology.org/icac/platforms#",
-    "icac-detection": "https://ontology.unifiedcyberontology.org/icac/detection#",
-    "icac-registry": "https://ontology.unifiedcyberontology.org/icac/sex-offender-registry#",
-    "icac-ai": "https://ontology.unifiedcyberontology.org/icac/ai-generated-content#",
-    "icac-infrastructure": "https://ontology.unifiedcyberontology.org/icac/platform-infrastructure#",
-    "icac-international": "https://ontology.unifiedcyberontology.org/icac/international#",
-    "icac-training": "https://ontology.unifiedcyberontology.org/icac/training#",
-    "icac-prevention": "https://ontology.unifiedcyberontology.org/icac/prevention#",
-    "icac-legal": "https://ontology.unifiedcyberontology.org/icac/legal-harmonization#",
-    "icac-ncmec": "https://ontology.unifiedcyberontology.org/icac/us/ncmec#",
+    "hotlines": "https://cacontology.projectvic.org/hotlines/core#",
+    "cacontology-athletic": "https://cacontology.projectvic.org/athletic#",
+    "cacontology-production": "https://cacontology.projectvic.org/production#",
+    "cacontology-custodial": "https://cacontology.projectvic.org/custodial#",
+    "cacontology-grooming": "https://cacontology.projectvic.org/grooming#",
+    "cacontology-sextortion": "https://cacontology.projectvic.org/sextortion#",
+    "cacontology-forensics": "https://cacontology.projectvic.org/forensics#",
+    "cacontology-sentencing": "https://cacontology.projectvic.org/sentencing#",
+    "cacontology-victim-impact": "https://cacontology.projectvic.org/victim-impact#",
+    "cacontology-specialized": "https://cacontology.projectvic.org/specialized-units#",
+    "cacontology-platforms": "https://cacontology.projectvic.org/platforms#",
+    "cacontology-detection": "https://cacontology.projectvic.org/detection#",
+    "cacontology-registry": "https://cacontology.projectvic.org/sex-offender-registry#",
+    "cacontology-ai": "https://cacontology.projectvic.org/ai-generated-content#",
+    "cacontology-infrastructure": "https://cacontology.projectvic.org/platform-infrastructure#",
+    "cacontology-international": "https://cacontology.projectvic.org/international#",
+    "cacontology-training": "https://cacontology.projectvic.org/training#",
+    "cacontology-prevention": "https://cacontology.projectvic.org/prevention#",
+    "cacontology-legal": "https://cacontology.projectvic.org/legal-harmonization#",
+    "cacontology-ncmec": "https://cacontology.projectvic.org/us/ncmec#",
 
     "ICACInvestigation": {
       "@type": "@id"
@@ -69,155 +69,155 @@
     "HotlineReport": {
       "@type": "@id",
       "@context": {
-        "@vocab": "https://ontology.unifiedcyberontology.org/hotlines/2025/core#"
+        "@vocab": "https://cacontology.projectvic.org/hotlines/2025/core#"
       }
     },
     "PublicReport": {
       "@type": "@id",
       "@context": {
-        "@vocab": "https://ontology.unifiedcyberontology.org/hotlines/2025/core#"
+        "@vocab": "https://cacontology.projectvic.org/hotlines/2025/core#"
       }
     },
     "ESPReport": {
       "@type": "@id",
       "@context": {
-        "@vocab": "https://ontology.unifiedcyberontology.org/hotlines/2025/core#"
+        "@vocab": "https://cacontology.projectvic.org/hotlines/2025/core#"
       }
     },
     "EvidenceItem": {
       "@type": "@id",
       "@context": {
-        "@vocab": "https://ontology.unifiedcyberontology.org/hotlines/2025/core#"
+        "@vocab": "https://cacontology.projectvic.org/hotlines/2025/core#"
       }
     },
     "ImageEvidence": {
       "@type": "@id",
       "@context": {
-        "@vocab": "https://ontology.unifiedcyberontology.org/hotlines/2025/core#"
+        "@vocab": "https://cacontology.projectvic.org/hotlines/2025/core#"
       }
     },
     "VideoEvidence": {
       "@type": "@id",
       "@context": {
-        "@vocab": "https://ontology.unifiedcyberontology.org/hotlines/2025/core#"
+        "@vocab": "https://cacontology.projectvic.org/hotlines/2025/core#"
       }
     },
 
     "AthleticCoachingExploitation": {
       "@type": "@id",
       "@context": {
-        "@vocab": "https://ontology.unifiedcyberontology.org/icac/athletic#"
+        "@vocab": "https://cacontology.projectvic.org/athletic#"
       }
     },
     "DualCoachingRoleExploitation": {
       "@type": "@id",
       "@context": {
-        "@vocab": "https://ontology.unifiedcyberontology.org/icac/athletic#"
+        "@vocab": "https://cacontology.projectvic.org/athletic#"
       }
     },
     "PhysicalTrainingCoercion": {
       "@type": "@id",
       "@context": {
-        "@vocab": "https://ontology.unifiedcyberontology.org/icac/athletic#"
+        "@vocab": "https://cacontology.projectvic.org/athletic#"
       }
     },
     "TeamMembershipCoercion": {
       "@type": "@id",
       "@context": {
-        "@vocab": "https://ontology.unifiedcyberontology.org/icac/athletic#"
+        "@vocab": "https://cacontology.projectvic.org/athletic#"
       }
     },
 
     "ProductionOffense": {
       "@type": "@id",
       "@context": {
-        "@vocab": "https://ontology.unifiedcyberontology.org/icac/production#"
+        "@vocab": "https://cacontology.projectvic.org/production#"
       }
     },
     "CustodialRelationship": {
       "@type": "@id",
       "@context": {
-        "@vocab": "https://ontology.unifiedcyberontology.org/icac/custodial#"
+        "@vocab": "https://cacontology.projectvic.org/custodial#"
       }
     },
     "GroomingIncident": {
       "@type": "@id",
       "@context": {
-        "@vocab": "https://ontology.unifiedcyberontology.org/icac/grooming#"
+        "@vocab": "https://cacontology.projectvic.org/grooming#"
       }
     },
     "SextortionIncident": {
       "@type": "@id",
       "@context": {
-        "@vocab": "https://ontology.unifiedcyberontology.org/icac/sextortion#"
+        "@vocab": "https://cacontology.projectvic.org/sextortion#"
       }
     },
 
     "VictimBranding": {
       "@type": "@id",
       "@context": {
-        "@vocab": "https://ontology.unifiedcyberontology.org/icac/trafficking#"
+        "@vocab": "https://cacontology.projectvic.org/trafficking#"
       }
     },
     "TraffickerTattoo": {
       "@type": "@id",
       "@context": {
-        "@vocab": "https://ontology.unifiedcyberontology.org/icac/trafficking#"
+        "@vocab": "https://cacontology.projectvic.org/trafficking#"
       }
     },
     "FacialBranding": {
       "@type": "@id",
       "@context": {
-        "@vocab": "https://ontology.unifiedcyberontology.org/icac/trafficking#"
+        "@vocab": "https://cacontology.projectvic.org/trafficking#"
       }
     },
     "PhysicalViolenceControl": {
       "@type": "@id",
       "@context": {
-        "@vocab": "https://ontology.unifiedcyberontology.org/icac/trafficking#"
+        "@vocab": "https://cacontology.projectvic.org/trafficking#"
       }
     },
     "WeaponBasedViolence": {
       "@type": "@id",
       "@context": {
-        "@vocab": "https://ontology.unifiedcyberontology.org/icac/trafficking#"
+        "@vocab": "https://cacontology.projectvic.org/trafficking#"
       }
     },
     "WalkingTheTrack": {
       "@type": "@id",
       "@context": {
-        "@vocab": "https://ontology.unifiedcyberontology.org/icac/trafficking#"
+        "@vocab": "https://cacontology.projectvic.org/trafficking#"
       }
     },
     "TextMessageRescueRequest": {
       "@type": "@id",
       "@context": {
-        "@vocab": "https://ontology.unifiedcyberontology.org/icac/trafficking#"
+        "@vocab": "https://cacontology.projectvic.org/trafficking#"
       }
     },
     "MedicalConsequences": {
       "@type": "@id",
       "@context": {
-        "@vocab": "https://ontology.unifiedcyberontology.org/icac/trafficking#"
+        "@vocab": "https://cacontology.projectvic.org/trafficking#"
       }
     },
 
     "ForensicAcquisitionAction": {
       "@type": "@id",
       "@context": {
-        "@vocab": "https://ontology.unifiedcyberontology.org/icac/forensics#"
+        "@vocab": "https://cacontology.projectvic.org/forensics#"
       }
     },
     "VictimImpactAssessment": {
       "@type": "@id",
       "@context": {
-        "@vocab": "https://ontology.unifiedcyberontology.org/icac/victim-impact#"
+        "@vocab": "https://cacontology.projectvic.org/victim-impact#"
       }
     },
     "CriminalCharge": {
       "@type": "@id",
       "@context": {
-        "@vocab": "https://ontology.unifiedcyberontology.org/icac/sentencing#"
+        "@vocab": "https://cacontology.projectvic.org/sentencing#"
       }
     },
 

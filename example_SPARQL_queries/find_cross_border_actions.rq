@@ -5,7 +5,7 @@
 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX hotline: <https://ontology.unifiedcyberontology.org/hotlines/2025/core#>
+PREFIX cacontology-hotlines: <https://cacontology.projectvic.org/hotlines/2025/core#>
 PREFIX uco-core: <https://ontology.unifiedcyberontology.org/core#>
 PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/observable#>
 PREFIX uco-confidentiality: <https://ontology.unifiedcyberontology.org/confidentiality#>
@@ -21,17 +21,17 @@ WHERE {
     }
     
     # Core report and action data
-    ?report hotline:receivedBy ?sourceOrg ;
-            hotline:triggersAction ?action ;
-            hotline:createdTime ?reportTime .
+    ?report cacontology-hotlines:receivedBy ?sourceOrg ;
+            cacontology-hotlines:triggersAction ?action ;
+            cacontology-hotlines:createdTime ?reportTime .
     
-    ?sourceOrg hotline:countryCode ?sourceCountry .
+    ?sourceOrg cacontology-hotlines:countryCode ?sourceCountry .
     
-    ?action a hotline:ForwardToLEAction ;
-            hotline:forwardsTo ?targetOrg ;
-            hotline:startTime ?actionTime .
+    ?action a cacontology-hotlines:ForwardToLEAction ;
+            cacontology-hotlines:forwardsTo ?targetOrg ;
+            cacontology-hotlines:startTime ?actionTime .
     
-    ?targetOrg hotline:countryCode ?targetCountry .
+    ?targetOrg cacontology-hotlines:countryCode ?targetCountry .
     
     # Calculate processing time
     BIND((?actionTime - ?reportTime) / "P1D"^^xsd:duration AS ?processingTime)

@@ -7,12 +7,12 @@
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location#> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable#> .
-@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
-@prefix icac-production: <https://ontology.unifiedcyberontology.org/icac/production#> .
-@prefix icac-custodial: <https://ontology.unifiedcyberontology.org/icac/custodial#> .
-@prefix icac-physical: <https://ontology.unifiedcyberontology.org/icac/physical#> .
-@prefix icac-sentencing: <https://ontology.unifiedcyberontology.org/icac/sentencing#> .
-@prefix icac-taskforce: <https://ontology.unifiedcyberontology.org/icac/taskforce#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-production: <https://cacontology.projectvic.org/production#> .
+@prefix cacontology-custodial: <https://cacontology.projectvic.org/custodial#> .
+@prefix cacontology-physical: <https://cacontology.projectvic.org/physical#> .
+@prefix cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#> .
+@prefix cacontology-taskforce: <https://cacontology.projectvic.org/taskforce#> .
 
 # =============================================================================
 # Hartford, Vermont Production Case Example
@@ -231,12 +231,12 @@
 # =============================================================================
 
 # Multi-Agency Investigation
-<https://example.org/investigations/hartford-investigation> rdf:type icac:Investigation ;
+<https://example.org/investigations/hartford-investigation> rdf:type cacontology:Investigation ;
     rdfs:label "Hartford Vermont Production Investigation"@en ;
-    icac:investigationType "production_offense" ;
-    icac:leadAgency "Hartford Vermont Police Department" ;
-    icac:federalAgency "Homeland Security Investigations" ;
-    icac:prosecutingOffice "USAO Vermont" .
+    cacontology:investigationType "production_offense" ;
+    cacontology:leadAgency "Hartford Vermont Police Department" ;
+    cacontology:federalAgency "Homeland Security Investigations" ;
+    cacontology:prosecutingOffice "USAO Vermont" .
 
 # Digital Evidence
 <https://example.org/evidence/modified-photos> rdf:type icac-production:ProducedImage ;

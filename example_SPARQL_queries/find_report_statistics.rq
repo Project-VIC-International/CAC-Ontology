@@ -5,8 +5,8 @@
 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX hotline: <https://ontology.unifiedcyberontology.org/hotlines/2025/core#>
-PREFIX icac: <https://ontology.unifiedcyberontology.org/icac/0.3#>
+PREFIX cacontology-hotlines: <https://cacontology.projectvic.org/hotlines/2025/core#>
+PREFIX cacontology: <https://cacontology.projectvic.org/0.3#>
 PREFIX uco-core: <https://ontology.unifiedcyberontology.org/core#>
 PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/observable#>
 PREFIX uco-confidentiality: <https://ontology.unifiedcyberontology.org/confidentiality#>
@@ -24,9 +24,9 @@ WHERE {
     }
     
     ?report a ?reportType ;
-            hotline:receivedBy ?organization ;
-            hotline:createdTime ?createdTime ;
-            hotline:hasEvidence ?evidence .
+            cacontology-hotlines:receivedBy ?organization ;
+            cacontology-hotlines:createdTime ?createdTime ;
+            cacontology-hotlines:hasEvidence ?evidence .
     
     # Filter by specific organization if URI is provided
     FILTER(!BOUND(?organizationURI) || (?organization = ?organizationURI))
@@ -34,24 +34,24 @@ WHERE {
     BIND(STRDT(CONCAT(STR(YEAR(?createdTime)), "-", STR(MONTH(?createdTime))), xsd:gYearMonth) AS ?yearMonth)
     
     OPTIONAL {
-        ?report hotline:status hotline:status-closed ;
-                hotline:closedAt ?closedTime .
+        ?report cacontology-hotlines:status cacontology-hotlines:status-closed ;
+                cacontology-hotlines:closedAt ?closedTime .
         BIND(DAYS(?closedTime - ?createdTime) AS ?processingTime) # Simpler duration for days
     }
     
     OPTIONAL {
-        ?report hotline:triggersAction ?crossBorderAction .
-        ?crossBorderAction a hotline:ForwardToLEAction .
-        ?organization hotline:countryCode ?sourceCountry .
-        ?crossBorderAction hotline:forwardsTo ?targetOrg .
-        ?targetOrg hotline:countryCode ?targetCountry .
+        ?report cacontology-hotlines:triggersAction ?crossBorderAction .
+        ?crossBorderAction a cacontology-hotlines:ForwardToLEAction .
+        ?organization cacontology-hotlines:countryCode ?sourceCountry .
+        ?crossBorderAction cacontology-hotlines:forwardsTo ?targetOrg .
+        ?targetOrg cacontology-hotlines:countryCode ?targetCountry .
         FILTER(?sourceCountry != ?targetCountry)
     }
     
     OPTIONAL {
-        ?report hotline:triggersAction ?rescueAction .
-        ?rescueAction a icac:VictimRescueAction ; # Assuming VictimRescueAction is in icac namespace
-                     hotline:outcome hotline:outcome-success .
+        ?report cacontology-hotlines:triggersAction ?rescueAction .
+        ?rescueAction a cacontology:VictimRescueAction ; # Assuming VictimRescueAction is in icac namespace
+                     cacontology-hotlines:outcome cacontology-hotlines:outcome-success .
     }
     
     FILTER(?createdTime >= ?from && ?createdTime <= ?to)

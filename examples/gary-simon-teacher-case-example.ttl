@@ -13,8 +13,8 @@
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
-@prefix icac: <https://ontology.caseontology.org/icac/> .
-@prefix icac-educational: <https://ontology.caseontology.org/icac/educational-exploitation/> .
+@prefix cacontology: <https://ontology.caseontology.org/icac/> .
+@prefix cacontology-educational: <https://ontology.caseontology.org/icac/educational-exploitation/> .
 
 # =============================================================================
 # CASE INVESTIGATION

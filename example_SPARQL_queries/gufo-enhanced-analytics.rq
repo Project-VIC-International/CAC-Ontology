@@ -4,8 +4,8 @@
 # Advanced SPARQL queries leveraging gUFO foundational ontology concepts
 # for enhanced investigation analytics and pattern recognition
 
-PREFIX icac-gufo: <https://ontology.unifiedcyberontology.org/icac/gufo#>
-PREFIX icac-temporal: <https://ontology.unifiedcyberontology.org/icac/temporal#>
+PREFIX cacontology-gufo: <https://cacontology.projectvic.org/gufo#>
+PREFIX cacontology-temporal: <https://cacontology.projectvic.org/temporal#>
 PREFIX gufo: <http://purl.org/nemo/gufo#>
 PREFIX uco-core: <https://ontology.unifiedcyberontology.org/core#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>

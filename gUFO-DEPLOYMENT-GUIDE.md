@@ -6,15 +6,15 @@
 
 ## 🎯 Executive Summary
 
-All 3 phases of gUFO (Unified Foundational Ontology) integration are **complete and ready for deployment**. This guide provides practical steps for rolling out the enhanced capabilities across law enforcement agencies and ICAC task forces.
+All 3 phases of gUFO (Unified Foundational Ontology) integration are **complete and ready for deployment**. This guide provides practical steps for rolling out the enhanced capabilities across law enforcement agencies and CAC task forces.
 
 ## ✅ Implementation Status
 
 | Phase | Status | Files | Completion |
 |-------|--------|-------|------------|
-| **Phase 1**: Core Investigation Modeling | ✅ **COMPLETE** | `icac-core-gufo.ttl`, `examples/gufo-phase1-example.ttl` | 100% |
-| **Phase 2**: Temporal Framework | ✅ **COMPLETE** | `icac-temporal-gufo.ttl`, `examples/gufo-phase2-temporal-example.ttl` | 100% |
-| **Phase 3**: Full Integration Strategy | ✅ **COMPLETE** | `icac-gufo-integration-strategy.ttl`, `examples/gufo-integration-summary.md` | 100% |
+| **Phase 1**: Core Investigation Modeling | ✅ **COMPLETE** | `cacontology-core-gufo.ttl`, `examples/gufo-phase1-example.ttl` | 100% |
+| **Phase 2**: Temporal Framework | ✅ **COMPLETE** | `cacontology-temporal-gufo.ttl`, `examples/gufo-phase2-temporal-example.ttl` | 100% |
+| **Phase 3**: Full Integration Strategy | ✅ **COMPLETE** | `cacontology-gufo-integration-strategy.ttl`, `examples/gufo-integration-summary.md` | 100% |
 
 **Total Implementation**: **🎯 100% COMPLETE**
 
@@ -26,18 +26,18 @@ All 3 phases of gUFO (Unified Foundational Ontology) integration are **complete 
 
 ```bash
 # 1. Load Core gUFO Integration
-curl -X POST http://localhost:3030/icac/data \
-  --data-binary @icac-core-gufo.ttl \
+curl -X POST http://localhost:3030/CAC/data \
+  --data-binary @cacontology-core-gufo.ttl \
   --header "Content-Type: text/turtle"
 
 # 2. Load Phase 1 Example
-curl -X POST http://localhost:3030/icac/data \
+curl -X POST http://localhost:3030/CAC/data \
   --data-binary @examples/gufo-phase1-example.ttl \
   --header "Content-Type: text/turtle"
 
 # 3. Test Core Functionality
-curl -X POST http://localhost:3030/icac/sparql \
-  --data "query=SELECT * WHERE { ?inv a icac-gufo:Investigation . ?inv icac-gufo:inPhase ?phase }"
+curl -X POST http://localhost:3030/CAC/sparql \
+  --data "query=SELECT * WHERE { ?inv a cacontology-gufo:Investigation . ?inv cacontology-gufo:inPhase ?phase }"
 ```
 
 ### 📊 Core Features Activated
@@ -57,7 +57,7 @@ curl -X POST http://localhost:3030/icac/sparql \
    - Concrete actions (`gufo:Event`) vs ongoing states (`gufo:Situation`)
 
 4. **Backward Compatibility**
-   - Full equivalence mappings to original ICAC classes
+   - Full equivalence mappings to original CAC classes
    - Parallel operation support
 
 ### 🎯 Deployment Validation
@@ -65,18 +65,18 @@ curl -X POST http://localhost:3030/icac/sparql \
 Run this SPARQL query to validate Phase 1 deployment:
 
 ```sparql
-PREFIX icac-gufo: <https://ontology.unifiedcyberontology.org/icac/gufo#>
+PREFIX cacontology-gufo: <https://ontology.unifiedcyberontology.org/CAC/gufo#>
 PREFIX gufo: <http://purl.org/nemo/gufo#>
 
 SELECT ?feature ?count WHERE {
   {
     SELECT "Investigation Phases" as ?feature (COUNT(?phase) as ?count) WHERE {
-      ?phase rdfs:subClassOf icac-gufo:Investigation ;
+      ?phase rdfs:subClassOf cacontology-gufo:Investigation ;
              rdf:type gufo:Phase .
     }
   } UNION {
     SELECT "Role Types" as ?feature (COUNT(?role) as ?count) WHERE {
-      ?role rdfs:subClassOf icac-gufo:Person ;
+      ?role rdfs:subClassOf cacontology-gufo:Person ;
             rdf:type gufo:Role .
     }
   } UNION {
@@ -100,12 +100,12 @@ SELECT ?feature ?count WHERE {
 
 ```bash
 # 1. Load Temporal Framework
-curl -X POST http://localhost:3030/icac/data \
-  --data-binary @icac-temporal-gufo.ttl \
+curl -X POST http://localhost:3030/CAC/data \
+  --data-binary @cacontology-temporal-gufo.ttl \
   --header "Content-Type: text/turtle"
 
 # 2. Load Complex Temporal Example
-curl -X POST http://localhost:3030/icac/data \
+curl -X POST http://localhost:3030/CAC/data \
   --data-binary @examples/gufo-phase2-temporal-example.ttl \
   --header "Content-Type: text/turtle"
 ```
@@ -131,13 +131,13 @@ curl -X POST http://localhost:3030/icac/data \
 
 ```sparql
 # Investigation Performance Analytics
-PREFIX icac-temporal: <https://ontology.unifiedcyberontology.org/icac/temporal#>
+PREFIX cacontology-temporal: <https://ontology.unifiedcyberontology.org/CAC/temporal#>
 
 SELECT ?investigation ?totalDuration ?activeDuration ?efficiency WHERE {
-  ?investigation icac-temporal:hasTimeToResolution ?totalDuration ;
-                 icac-temporal:hasActiveDuration ?activeDuration ;
-                 icac-gufo:hasPhase ?phase .
-  ?phase icac-temporal:phaseEfficiency ?efficiency .
+  ?investigation cacontology-temporal:hasTimeToResolution ?totalDuration ;
+                 cacontology-temporal:hasActiveDuration ?activeDuration ;
+                 cacontology-gufo:hasPhase ?phase .
+  ?phase cacontology-temporal:phaseEfficiency ?efficiency .
   FILTER (?efficiency > 1.0)  # Find inefficient phases
 }
 ORDER BY DESC(?efficiency)
@@ -183,12 +183,12 @@ done
 
 ```sparql
 # Comprehensive Integration Validation
-PREFIX icac-strategy: <https://ontology.unifiedcyberontology.org/icac/gufo-strategy#>
+PREFIX cacontology-strategy: <https://ontology.unifiedcyberontology.org/CAC/gufo-strategy#>
 
 SELECT ?module ?pattern ?validation WHERE {
-  ?module rdf:type icac-strategy:ModuleIntegrationStrategy ;
-          icac-strategy:hasIntegrationPattern ?pattern ;
-          icac-strategy:requiresValidation ?validation .
+  ?module rdf:type cacontology-strategy:ModuleIntegrationStrategy ;
+          cacontology-strategy:hasIntegrationPattern ?pattern ;
+          cacontology-strategy:requiresValidation ?validation .
 }
 ```
 
@@ -202,16 +202,16 @@ Create advanced analytical capabilities leveraging gUFO semantics:
 
 ```sparql
 # Pattern Recognition: Identify Investigation Efficiency Patterns
-PREFIX icac-temporal: <https://ontology.unifiedcyberontology.org/icac/temporal#>
-PREFIX icac-gufo: <https://ontology.unifiedcyberontology.org/icac/gufo#>
+PREFIX cacontology-temporal: <https://ontology.unifiedcyberontology.org/CAC/temporal#>
+PREFIX cacontology-gufo: <https://ontology.unifiedcyberontology.org/CAC/gufo#>
 
 SELECT ?pattern ?avg_efficiency ?case_count WHERE {
   {
     SELECT ?case_type (AVG(?efficiency) as ?avg_efficiency) (COUNT(?inv) as ?case_count) WHERE {
       ?inv rdf:type ?case_type ;
-           icac-gufo:hasPhase ?phase .
-      ?phase icac-temporal:phaseEfficiency ?efficiency .
-      FILTER (?case_type != icac-gufo:Investigation)  # Get specific types
+           cacontology-gufo:hasPhase ?phase .
+      ?phase cacontology-temporal:phaseEfficiency ?efficiency .
+      FILTER (?case_type != cacontology-gufo:Investigation)  # Get specific types
     }
     GROUP BY ?case_type
   }
@@ -231,27 +231,27 @@ def extract_investigation_features(graph):
     """Extract features from gUFO-enhanced investigation data"""
     query = """
     SELECT ?inv ?phase_count ?role_count ?event_count ?duration WHERE {
-      ?inv a icac-gufo:Investigation ;
-           icac-temporal:hasTimeToResolution ?duration .
+      ?inv a cacontology-gufo:Investigation ;
+           cacontology-temporal:hasTimeToResolution ?duration .
       
       # Count phases
       {
         SELECT ?inv (COUNT(?phase) as ?phase_count) WHERE {
-          ?inv icac-gufo:hasPhase ?phase .
+          ?inv cacontology-gufo:hasPhase ?phase .
         } GROUP BY ?inv
       }
       
       # Count roles  
       {
         SELECT ?inv (COUNT(?role) as ?role_count) WHERE {
-          ?inv icac-gufo:hasRole ?role .
+          ?inv cacontology-gufo:hasRole ?role .
         } GROUP BY ?inv
       }
       
       # Count events
       {
         SELECT ?inv (COUNT(?event) as ?event_count) WHERE {
-          ?event icac-gufo:participatesInInvestigation ?inv .
+          ?event cacontology-gufo:participatesInInvestigation ?inv .
         } GROUP BY ?inv
       }
     }
@@ -276,13 +276,13 @@ def train_efficiency_model(investigation_data):
 
 ```sparql
 # Risk Assessment: Identify High-Risk Investigation Patterns
-PREFIX icac-temporal: <https://ontology.unifiedcyberontology.org/icac/temporal#>
+PREFIX cacontology-temporal: <https://ontology.unifiedcyberontology.org/CAC/temporal#>
 
 SELECT ?risk_factor ?frequency ?avg_duration WHERE {
   {
     SELECT ?risk_type (COUNT(?inv) as ?frequency) (AVG(?duration) as ?avg_duration) WHERE {
-      ?inv icac-temporal:urgencyLevel ?urgency ;
-           icac-temporal:hasTimeToResolution ?duration .
+      ?inv cacontology-temporal:urgencyLevel ?urgency ;
+           cacontology-temporal:hasTimeToResolution ?duration .
       
       BIND(
         IF(?urgency >= 4, "High Urgency",
@@ -304,7 +304,7 @@ ORDER BY DESC(?frequency)
 
 ```bash
 # 1. Docker Environment (Recommended)
-cd ontology/icac
+cd ontology/CAC
 docker-compose up -d
 
 # Provides:
@@ -325,7 +325,7 @@ services:
     ports:
       - "3030:3030"
     volumes:
-      - ./ontology:/fuseki-base/databases/icac
+      - ./ontology:/fuseki-base/databases/CAC
       - ./config/fuseki-config.ttl:/fuseki/config.ttl
     environment:
       - ADMIN_PASSWORD=${FUSEKI_ADMIN_PASSWORD}
@@ -364,7 +364,7 @@ ANALYZE TABLE events;
 ## 📋 Deployment Checklist
 
 ### Phase 1 (Immediate - Week 1)
-- [ ] Load `icac-core-gufo.ttl`
+- [ ] Load `cacontology-core-gufo.ttl`
 - [ ] Load Phase 1 example data
 - [ ] Test investigation phase queries
 - [ ] Validate role conflict prevention
@@ -464,4 +464,4 @@ The gUFO integration is **production-ready** and provides:
 
 ---
 
-*Ready to revolutionize ICAC investigations with foundational ontology principles? Let's deploy! 🚀* 
+*Ready to revolutionize CAC investigations with foundational ontology principles? Let's deploy! 🚀* 

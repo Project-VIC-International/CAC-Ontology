@@ -5,8 +5,8 @@
 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX hotline: <https://ontology.unifiedcyberontology.org/hotlines/2025/core#>
-PREFIX icac: <https://ontology.unifiedcyberontology.org/icac/0.3#>
+PREFIX cacontology-hotlines: <https://cacontology.projectvic.org/hotlines/2025/core#>
+PREFIX cacontology: <https://cacontology.projectvic.org/0.3#>
 PREFIX uco-core: <https://ontology.unifiedcyberontology.org/core#>
 PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/observable#>
 PREFIX uco-confidentiality: <https://ontology.unifiedcyberontology.org/confidentiality#>
@@ -19,23 +19,23 @@ WHERE {
     }
     
     # Core incident data
-    ?incident a icac:LiveStreamIncident ;
-             icac:startTime ?startTime ;
-             icac:usesChannel ?channel ;
-             hotline:triggersReport ?report .
+    ?incident a cacontology:LiveStreamIncident ;
+             cacontology:startTime ?startTime ;
+             cacontology:usesChannel ?channel ;
+             cacontology-hotlines:triggersReport ?report .
     
     # Channel details
-    ?channel a icac:StreamingPlatformChannel ;
-             icac:platformName ?platformName .
+    ?channel a cacontology:StreamingPlatformChannel ;
+             cacontology:platformName ?platformName .
     
     # Optional service name
     OPTIONAL {
-        ?channel icac:serviceName ?serviceName .
+        ?channel cacontology:serviceName ?serviceName .
     }
     
     # Calculate duration
     OPTIONAL {
-        ?incident icac:endTime ?endTime .
+        ?incident cacontology:endTime ?endTime .
         BIND((?endTime - ?startTime) / "PT1H"^^xsd:duration AS ?duration)
     }
     
@@ -43,7 +43,7 @@ WHERE {
     {
         SELECT ?incident (COUNT(DISTINCT ?report) as ?reportCount)
         WHERE {
-            ?incident hotline:triggersReport ?report .
+            ?incident cacontology-hotlines:triggersReport ?report .
         }
         GROUP BY ?incident
     }

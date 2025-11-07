@@ -6,9 +6,9 @@
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
-@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
-@prefix icac-enterprises: <https://ontology.unifiedcyberontology.org/icac/extremist-enterprises#> .
-@prefix icac-international: <https://ontology.unifiedcyberontology.org/icac/international#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-enterprises: <https://cacontology.projectvic.org/extremist-enterprises#> .
+@prefix cacontology-international: <https://cacontology.projectvic.org/international#> .
 @prefix ex: <https://example.org/kb/> .
 
 # =============================================================================
@@ -375,14 +375,14 @@ ex:thessaloniki_greece_location rdf:type uco-location:Location ;
 # CRIMINAL CHARGES
 # =============================================================================
 
-ex:child_exploitation_enterprise_charge rdf:type icac:ChildExploitationEnterpriseCharge ;
+ex:child_exploitation_enterprise_charge rdf:type cacontology:ChildExploitationEnterpriseCharge ;
     rdfs:label "18 U.S.C. § 2252A(g) Child Exploitation Enterprise"@en ;
     rdfs:comment "Federal charge for operating criminal enterprise engaging in child exploitation with multiple participants and systematic operations."@en .
 
-ex:nepal_enterprise_charge rdf:type icac:ChildExploitationEnterpriseCharge ;
+ex:nepal_enterprise_charge rdf:type cacontology:ChildExploitationEnterpriseCharge ;
     rdfs:label "Nepal Enterprise Charge"@en ;
     rdfs:comment "Child exploitation enterprise charge against Prasan Nepal for leadership role in 764 network."@en .
 
-ex:varagiannis_enterprise_charge rdf:type icac:ChildExploitationEnterpriseCharge ;
+ex:varagiannis_enterprise_charge rdf:type cacontology:ChildExploitationEnterpriseCharge ;
     rdfs:label "Varagiannis Enterprise Charge"@en ;
     rdfs:comment "Child exploitation enterprise charge against Leonidas Varagiannis for leadership role in 764 network."@en . 
