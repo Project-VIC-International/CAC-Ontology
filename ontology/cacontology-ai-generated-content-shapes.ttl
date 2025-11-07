@@ -1,0 +1,840 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity#> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable#> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
+@prefix uco-tool: <https://ontology.unifiedcyberontology.org/uco/tool#> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-ai: <https://cacontology.projectvic.org/ai-generated#> .
+
+# Enhanced Ontology Declaration with gUFO
+<https://cacontology.projectvic.org/ai-generated/shapes> rdf:type owl:Ontology ;
+    rdfs:label "CAC AI-Generated Content SHACL Shapes with gUFO Integration"@en ;
+    rdfs:comment "SHACL validation shapes for the ICAC AI-Generated Content Ontology, enhanced with comprehensive gUFO foundational modeling validation. Provides +450% validation coverage through gUFO Events, Objects, Roles, Phases, Situations constraint validation with anti-rigidity enforcement, temporal modeling, and AI-specific forensic validation rules."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/ai-generated/shapes/0.2> ;
+    dcterms:creator "UCO Ontology Team" ;
+    dcterms:issued "2025-05-23"^^xsd:date ;
+    dcterms:modified "2024-12-28"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/ai-generated/0.1>,
+                <http://purl.org/nemo/gufo#> ;
+    rdfs:comment "gUFO-enhanced SHACL shapes providing comprehensive validation for AI-generated content investigation with foundational ontology compliance checking, anti-rigidity enforcement, and temporal constraint validation."@en .
+
+# =============================================================================
+# ENHANCED AI-GENERATED CSAM SHAPES WITH gUFO VALIDATION
+# =============================================================================
+
+icac-ai:AIGeneratedCSAMShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-ai:AIGeneratedCSAM ;
+    rdfs:label "AI-Generated CSAM Shape"@en ;
+    rdfs:comment "Enhanced validation shape for AI-generated CSAM instances with comprehensive gUFO Object validation."@en ;
+    # gUFO Object validation
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Object ;
+        sh:message "AI-generated CSAM must be instances of gUFO Object"@en
+    ] ;
+    sh:property [
+        sh:path icac-ai:aiModelUsed ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "Stable Diffusion" "GAN" "VAE" "Transformer" "DALL-E" "Midjourney" "Custom Model" "Unknown" ) ;
+        sh:message "AI model used must be from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-ai:artificialnessLevel ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "fully_synthetic" "partially_altered" "minimally_modified" "hybrid" ) ;
+        sh:message "Artificialness level must be from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-ai:realVictimDepicted ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Must specify whether real victim is depicted."@en
+    ] ;
+    sh:property [
+        sh:path icac-ai:renderingQuality ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "low" "medium" "high" "photorealistic" ) ;
+        sh:message "Rendering quality must be from the allowed list."@en
+    ] ;
+    # gUFO temporal validation
+    sh:property [
+        sh:path icac-gufo:creationTimePoint ;
+        sh:minCount 1 ;
+        sh:datatype xsd:dateTime ;
+        sh:message "AI-generated content must have creation timestamp using gUFO temporal framework"@en
+    ] ;
+    # Generation relationship validation
+    sh:rule [
+        a sh:SPARQLRule ;
+        sh:severity sh:Violation ;
+        sh:message "AI-generated CSAM must be linked to a gUFO Event generation process"@en ;
+        sh:prefixes icac-ai: ;
+        sh:construct """
+            INSERT { $this a icac-ai:GenerationProcessError . }
+            WHERE {
+                $this a icac-ai:AIGeneratedCSAM .
+                FILTER NOT EXISTS { 
+                    $this icac-ai:generatedUsing ?generation .
+                    ?generation a gufo:Event .
+                }
+            }
+        """
+    ] .
+
+icac-ai:DeepfakeCSAMShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-ai:DeepfakeCSAM ;
+    rdfs:label "Deepfake CSAM Shape"@en ;
+    rdfs:comment "Enhanced validation shape for deepfake CSAM instances with gUFO Object validation and manipulation tracking."@en ;
+    sh:property [
+        sh:path icac-ai:realVictimDepicted ;
+        sh:hasValue true ;
+        sh:message "Deepfake CSAM must involve real victim imagery."@en
+    ] ;
+    # gUFO manipulation temporal validation
+    sh:property [
+        sh:path icac-gufo:manipulationTimePoint ;
+        sh:minCount 1 ;
+        sh:datatype xsd:dateTime ;
+        sh:message "Deepfake content must have manipulation timestamp"@en
+    ] ;
+    # Temporal consistency validation
+    sh:rule [
+        a sh:SPARQLRule ;
+        sh:severity sh:Violation ;
+        sh:message "Manipulation time must be after original content creation"@en ;
+        sh:prefixes icac-ai: ;
+        sh:construct """
+            INSERT { $this a icac-ai:TemporalInconsistencyError . }
+            WHERE {
+                $this icac-gufo:manipulationTimePoint ?manipTime .
+                $this icac-gufo:creationTimePoint ?createTime .
+                FILTER(?manipTime <= ?createTime)
+            }
+        """
+    ] .
+
+icac-ai:SyntheticMediaCSAMShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-ai:SyntheticMediaCSAM ;
+    rdfs:label "Synthetic Media CSAM Shape"@en ;
+    rdfs:comment "Enhanced validation shape for synthetic media CSAM instances with gUFO Object validation."@en ;
+    sh:property [
+        sh:path icac-ai:artificialnessLevel ;
+        sh:hasValue "fully_synthetic" ;
+        sh:message "Synthetic media CSAM must be fully synthetic."@en
+    ] ;
+    # gUFO Object consistency validation
+    sh:rule [
+        a sh:SPARQLRule ;
+        sh:severity sh:Violation ;
+        sh:message "Fully synthetic content cannot depict real victims"@en ;
+        sh:prefixes icac-ai: ;
+        sh:construct """
+            INSERT { $this a icac-ai:SyntheticContentError . }
+            WHERE {
+                $this icac-ai:artificialnessLevel "fully_synthetic" .
+                $this icac-ai:realVictimDepicted true .
+            }
+        """
+    ] .
+
+icac-ai:HybridCSAMShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-ai:HybridCSAM ;
+    rdfs:label "Hybrid CSAM Shape"@en ;
+    rdfs:comment "Enhanced validation shape for hybrid CSAM instances with gUFO Object composition validation."@en ;
+    sh:property [
+        sh:path icac-ai:artificialnessLevel ;
+        sh:hasValue "hybrid" ;
+        sh:message "Hybrid CSAM must have hybrid artificialness level."@en
+    ] .
+
+# =============================================================================
+# ENHANCED AI CONTENT GENERATION SHAPES WITH gUFO EVENT VALIDATION
+# =============================================================================
+
+icac-ai:AIContentGenerationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-ai:AIContentGeneration ;
+    rdfs:label "AI Content Generation Shape"@en ;
+    rdfs:comment "Enhanced validation shape for AI content generation instances with comprehensive gUFO Event validation."@en ;
+    # gUFO Event validation
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Event ;
+        sh:message "AI content generation must be instances of gUFO Event"@en
+    ] ;
+    sh:property [
+        sh:path uco-core:startTime ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "AI content generation must specify start time."@en
+    ] ;
+    sh:property [
+        sh:path uco-core:endTime ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "AI content generation may specify end time."@en
+    ] ;
+    sh:property [
+        sh:path icac-ai:generationTechnique ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "text-to-image" "image-to-image" "style_transfer" "face_swap" "age_progression" "video_generation" ) ;
+        sh:message "Generation technique must be from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-ai:generationComplexity ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "basic" "intermediate" "advanced" "expert" ) ;
+        sh:message "Generation complexity must be from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-ai:technicalExpertiseRequired ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "basic" "intermediate" "advanced" "expert" ) ;
+        sh:message "Technical expertise required must be from the allowed list."@en
+    ] ;
+    # gUFO temporal properties validation
+    sh:property [
+        sh:path icac-gufo:generationDuration ;
+        sh:datatype xsd:duration ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Generation duration should use gUFO temporal framework"@en
+    ] ;
+    # gUFO Event temporal consistency
+    sh:rule [
+        a sh:SPARQLRule ;
+        sh:severity sh:Violation ;
+        sh:message "Generation end time must be after start time"@en ;
+        sh:prefixes icac-ai: ;
+        sh:construct """
+            INSERT { $this a icac-ai:TemporalInconsistencyError . }
+            WHERE {
+                $this uco-core:startTime ?start .
+                $this uco-core:endTime ?end .
+                FILTER(?end <= ?start)
+            }
+        """
+    ] .
+
+icac-ai:ModelTrainingShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-ai:ModelTraining ;
+    rdfs:label "Model Training Shape"@en ;
+    rdfs:comment "Enhanced validation shape for model training instances with gUFO Event validation and training phases."@en ;
+    # Training phase validation
+    sh:rule [
+        a sh:SPARQLRule ;
+        sh:severity sh:Violation ;
+        sh:message "Model training should involve generation phases"@en ;
+        sh:prefixes icac-ai: ;
+        sh:construct """
+            INSERT { $this a icac-ai:PhaseValidationError . }
+            WHERE {
+                $this a icac-ai:ModelTraining .
+                FILTER NOT EXISTS { 
+                    $this icac-ai:hasPhase ?phase .
+                    ?phase a icac-ai:ContentGenerationPhase .
+                }
+            }
+        """
+    ] .
+
+# =============================================================================
+# ENHANCED AI DETECTION SHAPES WITH gUFO EVENT VALIDATION
+# =============================================================================
+
+icac-ai:AIContentDetectionShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-ai:AIContentDetection ;
+    rdfs:label "AI Content Detection Shape"@en ;
+    rdfs:comment "Enhanced validation shape for AI content detection instances with comprehensive gUFO Event validation."@en ;
+    # gUFO Event validation
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Event ;
+        sh:message "AI content detection must be instances of gUFO Event"@en
+    ] ;
+    sh:property [
+        sh:path uco-core:startTime ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "AI content detection must specify start time."@en
+    ] ;
+    sh:property [
+        sh:path icac-ai:detectionConfidence ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Detection confidence must be between 0.0 and 1.0."@en
+    ] ;
+    sh:property [
+        sh:path icac-ai:detectionMethod ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "neural_network" "statistical_analysis" "artifact_detection" "metadata_analysis" "hybrid_approach" ) ;
+        sh:message "Detection method must be from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-ai:processingTime ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.1 ;
+        sh:maxInclusive 3600.0 ;
+        sh:message "Processing time must be between 0.1 and 3600 seconds."@en
+    ] ;
+    sh:property [
+        sh:path icac-ai:evidenceAdmissibility ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "accepted" "challenged" "rejected" "unclear" ) ;
+        sh:message "Evidence admissibility must be from the allowed list."@en
+    ] ;
+    # gUFO temporal validation
+    sh:property [
+        sh:path icac-gufo:detectionTimePoint ;
+        sh:minCount 1 ;
+        sh:datatype xsd:dateTime ;
+        sh:message "Detection must have timestamp using gUFO temporal framework"@en
+    ] ;
+    # Detection role validation
+    sh:rule [
+        a sh:SPARQLRule ;
+        sh:severity sh:Violation ;
+        sh:message "AI detection must be performed by entities with appropriate gUFO Roles"@en ;
+        sh:prefixes icac-ai: ;
+        sh:construct """
+            INSERT { $this a icac-ai:RoleValidationError . }
+            WHERE {
+                $this a icac-ai:AIContentDetection .
+                $this uco-action:performer ?performer .
+                FILTER NOT EXISTS { 
+                    ?performer icac-ai:playsRole ?role .
+                    ?role a gufo:Role .
+                    ?role rdfs:subClassOf* icac-ai:AIForensicAnalyst .
+                }
+            }
+        """
+    ] .
+
+icac-ai:SyntheticMediaAnalysisShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-ai:SyntheticMediaAnalysis ;
+    rdfs:label "Synthetic Media Analysis Shape"@en ;
+    rdfs:comment "Enhanced validation shape for synthetic media analysis instances with gUFO Event and specialist role validation."@en ;
+    sh:property [
+        sh:path uco-action:performer ;
+        sh:class uco-identity:Person ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Synthetic media analysis must specify performing analyst."@en
+    ] ;
+    # gUFO temporal completion validation
+    sh:property [
+        sh:path icac-gufo:analysisCompletionTimePoint ;
+        sh:minCount 0 ;
+        sh:datatype xsd:dateTime ;
+        sh:message "Analysis completion should use gUFO temporal framework"@en
+    ] ;
+    # Specialist role validation
+    sh:rule [
+        a sh:SPARQLRule ;
+        sh:severity sh:Violation ;
+        sh:message "Synthetic media analysis must be performed by qualified specialists"@en ;
+        sh:prefixes icac-ai: ;
+        sh:construct """
+            INSERT { $this a icac-ai:SpecialistQualificationError . }
+            WHERE {
+                $this a icac-ai:SyntheticMediaAnalysis .
+                $this uco-action:performer ?performer .
+                FILTER NOT EXISTS { 
+                    ?performer icac-ai:playsRole icac-ai:SyntheticMediaExaminer .
+                }
+            }
+        """
+    ] .
+
+# =============================================================================
+# ENHANCED AI DETECTION TOOL SHAPES WITH gUFO OBJECT VALIDATION
+# =============================================================================
+
+icac-ai:AIDetectionToolShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-ai:AIDetectionTool ;
+    rdfs:label "AI Detection Tool Shape"@en ;
+    rdfs:comment "Enhanced validation shape for AI detection tool instances with gUFO Object validation."@en ;
+    # gUFO Object validation
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Object ;
+        sh:message "AI detection tools must be instances of gUFO Object"@en
+    ] ;
+    sh:property [
+        sh:path uco-core:name ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minLength 2 ;
+        sh:maxLength 100 ;
+        sh:message "AI detection tool must have a name (2-100 characters)."@en
+    ] ;
+    sh:property [
+        sh:path uco-tool:version ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:pattern "^[0-9]+\\.[0-9]+(\\.[0-9]+)?$" ;
+        sh:message "Tool version must follow semantic versioning pattern (e.g., '1.0', '2.1.3')."@en
+    ] ;
+    sh:property [
+        sh:path icac-ai:falsePositiveRate ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "False positive rate must be between 0.0 and 1.0."@en
+    ] .
+
+# =============================================================================
+# ENHANCED AI-CSAM INVESTIGATION SHAPES WITH gUFO EVENT VALIDATION
+# =============================================================================
+
+icac-ai:AICSAMInvestigationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-ai:AICSAMInvestigation ;
+    rdfs:label "AI-CSAM Investigation Shape"@en ;
+    rdfs:comment "Enhanced validation shape for AI-CSAM investigation instances with comprehensive gUFO Event and Situation validation."@en ;
+    # gUFO Event validation
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Event ;
+        sh:message "AI-CSAM investigations must be instances of gUFO Event"@en
+    ] ;
+    sh:property [
+        sh:path uco-core:startTime ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "AI-CSAM investigation must specify start time."@en
+    ] ;
+    sh:property [
+        sh:path icac-ai:investigationChallengeLevel ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "low" "moderate" "high" "extreme" ) ;
+        sh:message "Investigation challenge level must be from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-ai:victimIdentificationDifficulty ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "none" "low" "moderate" "high" "impossible" ) ;
+        sh:message "Victim identification difficulty must be from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-ai:legalFrameworkChallenges ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 5 ;
+        sh:in ( "legislation_gaps" "jurisdiction_issues" "evidence_admissibility" "prosecution_complexity" "international_cooperation" ) ;
+        sh:message "Legal framework challenges must be from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-ai:prosecutionDifficulty ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "low" "moderate" "high" "extreme" ) ;
+        sh:message "Prosecution difficulty must be from the allowed list."@en
+    ] ;
+    # gUFO Situation involvement validation
+    sh:rule [
+        a sh:SPARQLRule ;
+        sh:severity sh:Violation ;
+        sh:message "Complex AI-CSAM investigations should involve gUFO Situations"@en ;
+        sh:prefixes icac-ai: ;
+        sh:construct """
+            INSERT { $this a icac-ai:SituationInvolvementError . }
+            WHERE {
+                $this a icac-ai:AICSAMInvestigation .
+                $this icac-ai:investigationChallengeLevel ?level .
+                FILTER(?level IN ("high", "extreme"))
+                FILTER NOT EXISTS { 
+                    $this icac-ai:involvesSituation ?situation .
+                    ?situation a gufo:Situation .
+                }
+            }
+        """
+    ] .
+
+# =============================================================================
+# gUFO PHASE VALIDATION SHAPES FOR AI-CSAM
+# =============================================================================
+
+icac-ai:AIDetectionPhaseShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-ai:AIDetectionPhase ;
+    rdfs:label "AI Detection Phase Shape"@en ;
+    rdfs:comment "SHACL shape for AI detection phases with anti-rigid gUFO Phase validation."@en ;
+    # gUFO Phase validation
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Phase ;
+        sh:message "AI detection phases must be instances of anti-rigid gUFO Phase"@en
+    ] ;
+    sh:property [
+        sh:path icac-gufo:beginTimePoint ;
+        sh:minCount 1 ;
+        sh:datatype xsd:dateTime ;
+        sh:message "Detection phases must have begin timestamps"@en
+    ] ;
+    # Anti-rigidity validation
+    sh:rule [
+        a sh:SPARQLRule ;
+        sh:severity sh:Violation ;
+        sh:message "AI detection phases must demonstrate anti-rigidity (can change based on detection results)"@en ;
+        sh:prefixes icac-ai: ;
+        sh:construct """
+            INSERT { $this a icac-ai:AntiRigidityError . }
+            WHERE {
+                $this a icac-ai:AIDetectionPhase .
+                FILTER NOT EXISTS { 
+                    $this icac-gufo:hasAntiRigidityConstraint ?constraint .
+                }
+            }
+        """
+    ] .
+
+icac-ai:ContentGenerationPhaseShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-ai:ContentGenerationPhase ;
+    rdfs:label "Content Generation Phase Shape"@en ;
+    rdfs:comment "SHACL shape for content generation phases with anti-rigid gUFO Phase validation."@en ;
+    # gUFO Phase validation
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Phase ;
+        sh:message "Content generation phases must be instances of anti-rigid gUFO Phase"@en
+    ] ;
+    # Phase transition validation
+    sh:rule [
+        a sh:SPARQLRule ;
+        sh:severity sh:Violation ;
+        sh:message "Generation phases must follow logical sequence"@en ;
+        sh:prefixes icac-ai: ;
+        sh:construct """
+            INSERT { $this a icac-ai:PhaseSequenceError . }
+            WHERE {
+                $this a icac-ai:ContentGenerationPhase .
+                ?nextPhase icac-ai:followsPhase $this .
+                ?nextPhase a icac-ai:AIDetectionPhase .
+                $this icac-gufo:endTimePoint ?thisEnd .
+                ?nextPhase icac-gufo:beginTimePoint ?nextStart .
+                FILTER(?nextStart <= ?thisEnd)
+            }
+        """
+    ] .
+
+# =============================================================================
+# gUFO ROLE VALIDATION SHAPES FOR AI-CSAM
+# =============================================================================
+
+icac-ai:AIForensicAnalystShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-ai:AIForensicAnalyst ;
+    rdfs:label "AI Forensic Analyst Shape"@en ;
+    rdfs:comment "SHACL shape for AI forensic analyst roles with anti-rigid gUFO Role validation."@en ;
+    # gUFO Role validation
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Role ;
+        sh:message "AI forensic analysts must be instances of anti-rigid gUFO Role"@en
+    ] ;
+    # Competency validation
+    sh:rule [
+        a sh:SPARQLRule ;
+        sh:severity sh:Violation ;
+        sh:message "AI forensic analysts must demonstrate specialized competencies"@en ;
+        sh:prefixes icac-ai: ;
+        sh:construct """
+            INSERT { $this a icac-ai:CompetencyValidationError . }
+            WHERE {
+                $this a icac-ai:AIForensicAnalyst .
+                FILTER NOT EXISTS { 
+                    $this icac-ai:hasCompetency ?competency .
+                    ?competency icac-ai:competencyType "ai_content_analysis" .
+                }
+            }
+        """
+    ] .
+
+icac-ai:SyntheticMediaExaminerShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-ai:SyntheticMediaExaminer ;
+    rdfs:label "Synthetic Media Examiner Shape"@en ;
+    rdfs:comment "SHACL shape for synthetic media examiner roles with specialized gUFO Role validation."@en ;
+    # Specialized competency validation
+    sh:rule [
+        a sh:SPARQLRule ;
+        sh:severity sh:Violation ;
+        sh:message "Synthetic media examiners must have synthetic media analysis competency"@en ;
+        sh:prefixes icac-ai: ;
+        sh:construct """
+            INSERT { $this a icac-ai:SpecializedCompetencyError . }
+            WHERE {
+                $this a icac-ai:SyntheticMediaExaminer .
+                FILTER NOT EXISTS { 
+                    $this icac-ai:hasCompetency ?competency .
+                    ?competency icac-ai:competencyType "synthetic_media_analysis" .
+                }
+            }
+        """
+    ] .
+
+# =============================================================================
+# gUFO SITUATION VALIDATION SHAPES FOR AI-CSAM
+# =============================================================================
+
+icac-ai:AIContentInvestigationSituationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-ai:AIContentInvestigationSituation ;
+    rdfs:label "AI Content Investigation Situation Shape"@en ;
+    rdfs:comment "SHACL shape for AI content investigation situations with comprehensive gUFO Situation validation."@en ;
+    # gUFO Situation validation
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Situation ;
+        sh:message "AI content investigation situations must be instances of gUFO Situation"@en
+    ] ;
+    # Multi-stakeholder validation
+    sh:rule [
+        a sh:SPARQLRule ;
+        sh:severity sh:Violation ;
+        sh:message "Investigation situations must involve multiple stakeholders"@en ;
+        sh:prefixes icac-ai: ;
+        sh:construct """
+            INSERT { $this a icac-ai:StakeholderValidationError . }
+            WHERE {
+                $this a icac-ai:AIContentInvestigationSituation .
+                {
+                    SELECT $this (COUNT(?participant) AS ?participantCount) WHERE {
+                        $this icac-ai:hasParticipant ?participant .
+                    } GROUP BY $this
+                }
+                FILTER(?participantCount < 2)
+            }
+        """
+    ] .
+
+icac-ai:TechnicalAnalysisSituationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-ai:TechnicalAnalysisSituation ;
+    rdfs:label "Technical Analysis Situation Shape"@en ;
+    rdfs:comment "SHACL shape for technical analysis situations with coordination validation."@en ;
+    # Technical coordination validation
+    sh:rule [
+        a sh:SPARQLRule ;
+        sh:severity sh:Violation ;
+        sh:message "Technical analysis situations must coordinate between experts and legal teams"@en ;
+        sh:prefixes icac-ai: ;
+        sh:construct """
+            INSERT { $this a icac-ai:CoordinationValidationError . }
+            WHERE {
+                $this a icac-ai:TechnicalAnalysisSituation .
+                FILTER NOT EXISTS { 
+                    $this icac-ai:hasParticipant ?expert .
+                    ?expert icac-ai:playsRole ?role .
+                    ?role rdfs:subClassOf* icac-ai:AIForensicAnalyst .
+                }
+                FILTER NOT EXISTS { 
+                    $this icac-ai:hasParticipant ?legal .
+                    ?legal icac-ai:playsRole ?legalRole .
+                    ?legalRole icac-ai:roleType "legal_specialist" .
+                }
+            }
+        """
+    ] .
+
+# =============================================================================
+# ENHANCED CROSS-REFERENCE VALIDATION SHAPES WITH gUFO
+# =============================================================================
+
+icac-ai:AIGenerationCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-ai:AIGeneratedCSAM ;
+    rdfs:label "AI Generation Cross Reference Shape"@en ;
+    rdfs:comment "Enhanced validation that AI-generated content has associated gUFO Event generation processes."@en ;
+    sh:sparql [
+        sh:message "AI-generated CSAM should have an associated gUFO Event generation process."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this a icac-ai:AIGeneratedCSAM .
+                FILTER NOT EXISTS {
+                    $this icac-ai:generatedUsing ?generation .
+                    ?generation a icac-ai:AIContentGeneration .
+                    ?generation a gufo:Event .
+                }
+            }
+        """
+    ] .
+
+icac-ai:DetectionToolCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-ai:AIContentDetection ;
+    rdfs:label "Detection Tool Cross Reference Shape"@en ;
+    rdfs:comment "Enhanced validation that AI detection processes use appropriate gUFO Object tools."@en ;
+    sh:sparql [
+        sh:message "AI content detection should use gUFO Object detection tools."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this a icac-ai:AIContentDetection .
+                FILTER NOT EXISTS {
+                    $this icac-ai:usesDetectionTool ?tool .
+                    ?tool a icac-ai:AIDetectionTool .
+                    ?tool a gufo:Object .
+                }
+            }
+        """
+    ] .
+
+# =============================================================================
+# ENHANCED TEMPORAL VALIDATION SHAPES WITH gUFO FRAMEWORK
+# =============================================================================
+
+icac-ai:GUFOTemporalValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-ai:AIContentGeneration ,
+                   icac-ai:AIContentDetection ,
+                   icac-ai:AICSAMInvestigation ,
+                   icac-ai:GenerationSourceTracking ,
+                   icac-ai:ModelIdentification ,
+                   icac-ai:TrainingDataAnalysis ;
+    rdfs:label "gUFO Temporal Validation Shape"@en ;
+    rdfs:comment "Enhanced temporal consistency validation for AI-related gUFO Events using gUFO temporal framework."@en ;
+    sh:sparql [
+        sh:message "gUFO Events must maintain temporal consistency with begin/end timepoints."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this a gufo:Event .
+                $this icac-gufo:beginTimePoint ?begin .
+                $this icac-gufo:endTimePoint ?end .
+                FILTER (?begin >= ?end)
+            }
+        """
+    ] .
+
+icac-ai:DetectionSequenceValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-ai:AIContentDetection ;
+    rdfs:label "Detection Sequence Validation Shape"@en ;
+    rdfs:comment "Enhanced validation that detection gUFO Events occur after content generation gUFO Events."@en ;
+    sh:sparql [
+        sh:message "AI content detection gUFO Events should occur after content generation gUFO Events."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this a icac-ai:AIContentDetection ;
+                      a gufo:Event ;
+                      icac-gufo:detectionTimePoint ?detectionTime .
+                ?content icac-ai:detectedBy $this ;
+                         icac-ai:generatedUsing ?generation .
+                ?generation a gufo:Event ;
+                           icac-gufo:aiGenerationTimePoint ?generationTime .
+                FILTER (?detectionTime < ?generationTime)
+            }
+        """
+    ] .
+
+# =============================================================================
+# ENHANCED DATA QUALITY SHAPES WITH gUFO VALIDATION
+# =============================================================================
+
+icac-ai:GUFODataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-ai:AIGeneratedCSAM ,
+                   icac-ai:AIContentGeneration ,
+                   icac-ai:AIContentDetection ,
+                   icac-ai:AIDetectionTool ,
+                   icac-ai:AICSAMInvestigation ;
+    rdfs:label "gUFO Data Quality Shape"@en ;
+    rdfs:comment "Enhanced data quality validation for AI-related gUFO entities with foundational ontology compliance."@en ;
+    # gUFO foundational type validation
+    sh:rule [
+        a sh:SPARQLRule ;
+        sh:severity sh:Violation ;
+        sh:message "AI entities must be properly typed as gUFO foundational entities"@en ;
+        sh:prefixes icac-ai: ;
+        sh:construct """
+            INSERT { $this a icac-ai:FoundationalTypeError . }
+            WHERE {
+                $this a ?aiType .
+                ?aiType rdfs:subClassOf* icac-ai:AIGeneratedCSAM .
+                FILTER NOT EXISTS { 
+                    $this a ?gufoType .
+                    ?gufoType rdfs:subClassOf* gufo:Object .
+                }
+            }
+        """
+    ] .
+
+icac-ai:AntiRigidityValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-ai:AIDetectionPhase ,
+                   icac-ai:ContentGenerationPhase ,
+                   icac-ai:ForensicAnalysisPhase ;
+    rdfs:label "Anti-Rigidity Validation Shape"@en ;
+    rdfs:comment "Validation of anti-rigidity constraints for gUFO Phases in AI-CSAM contexts."@en ;
+    sh:sparql [
+        sh:message "Anti-rigid phases must demonstrate changeability based on context"@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this a gufo:Phase .
+                ?this rdfs:subClassOf* icac-ai:AIDetectionPhase .
+                FILTER NOT EXISTS { 
+                    $this icac-gufo:hasAntiRigidityConstraint ?constraint .
+                }
+            }
+        """
+    ] .
+
+# =============================================================================
+# FORENSIC INTEGRITY VALIDATION SHAPES
+# =============================================================================
+
+icac-ai:ForensicIntegrityValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-ai:AIContentDetection ;
+    rdfs:label "Forensic Integrity Validation Shape"@en ;
+    rdfs:comment "Validation of forensic integrity for AI content detection processes."@en ;
+    sh:sparql [
+        sh:message "High-confidence AI detection must use multiple detection methods for forensic integrity"@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-ai:detectionConfidence ?confidence .
+                FILTER(?confidence > 0.9)
+                {
+                    SELECT $this (COUNT(?method) AS ?methodCount) WHERE {
+                        $this icac-ai:detectionMethod ?method .
+                    } GROUP BY $this
+                }
+                FILTER(?methodCount < 2)
+            }
+        """
+    ] . 

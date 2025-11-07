@@ -1,0 +1,518 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/core#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/identity#> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/action#> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/role#> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/location#> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/observable#> .
+@prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-corruption: <https://cacontology.projectvic.org/law-enforcement-corruption#> .
+
+# =============================================================================
+# ICAC LAW ENFORCEMENT CORRUPTION ONTOLOGY
+# Based on Operation Restore Justice cases involving law enforcement corruption
+# Enhanced with gUFO (gentle Unified Foundational Ontology) integration
+# =============================================================================
+
+<https://cacontology.projectvic.org/law-enforcement-corruption> rdf:type owl:Ontology ;
+    rdfs:label "CAC Law Enforcement Corruption Ontology"@en ;
+    rdfs:comment "Ontology for modeling law enforcement corruption and insider threats in child exploitation cases, including uniform-based production and officer trafficking. Enhanced with gUFO (gentle Unified Foundational Ontology) integration for improved semantic precision and validation capabilities."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/law-enforcement-corruption/1.1> ;
+    owl:versionInfo "1.1.0" ;
+    owl:imports <http://purl.org/nemo/gufo#> .
+
+# =============================================================================
+# LAW ENFORCEMENT CORRUPTION CLASSES (gUFO: EventType - criminal activities)
+# =============================================================================
+
+icac-corruption:LawEnforcementCorruption rdf:type owl:Class ;
+    rdfs:label "Law Enforcement Corruption"@en ;
+    rdfs:comment "Corruption involving law enforcement personnel in child exploitation activities."@en ;
+    rdfs:subClassOf uco-action:Action, gufo:Event ;
+    rdf:type gufo:EventType .
+
+icac-corruption:InsiderThreat rdf:type owl:Class ;
+    rdfs:label "Insider Threat"@en ;
+    rdfs:comment "Threat posed by individuals within law enforcement or military who exploit their position for criminal activity."@en ;
+    rdfs:subClassOf icac-corruption:LawEnforcementCorruption ;
+    rdf:type gufo:EventType .
+
+icac-corruption:UniformBasedExploitation rdf:type owl:Class ;
+    rdfs:label "Uniform Based Exploitation"@en ;
+    rdfs:comment "Exploitation activity conducted while wearing official law enforcement or military uniform for authority enhancement."@en ;
+    rdfs:subClassOf icac-corruption:InsiderThreat ;
+    rdf:type gufo:EventType .
+
+icac-corruption:PositionOfAuthorityAbuse rdf:type owl:Class ;
+    rdfs:label "Position of Authority Abuse"@en ;
+    rdfs:comment "Abuse of law enforcement or military position of authority for exploitation purposes."@en ;
+    rdfs:subClassOf icac-corruption:LawEnforcementCorruption ;
+    rdf:type gufo:EventType .
+
+icac-corruption:OfficerProducedCSAM rdf:type owl:Class ;
+    rdfs:label "Officer Produced CSAM"@en ;
+    rdfs:comment "Child sexual abuse material produced by law enforcement officers, often while in uniform."@en ;
+    rdfs:subClassOf icac-corruption:UniformBasedExploitation ;
+    rdf:type gufo:EventType .
+
+icac-corruption:OfficerChildTrafficking rdf:type owl:Class ;
+    rdfs:label "Officer Child Trafficking"@en ;
+    rdfs:comment "Child trafficking conducted by law enforcement officers using their position and authority."@en ;
+    rdfs:subClassOf icac-corruption:PositionOfAuthorityAbuse ;
+    rdf:type gufo:EventType .
+
+# =============================================================================
+# MILITARY AND LAW ENFORCEMENT ROLE CLASSES (gUFO: Role - anti-rigid relational)
+# =============================================================================
+
+icac-corruption:CorruptLawEnforcementOfficer rdf:type owl:Class ;
+    rdfs:label "Corrupt Law Enforcement Officer"@en ;
+    rdfs:comment "Law enforcement officer engaged in child exploitation activities."@en ;
+    rdfs:subClassOf uco-role:Role ;
+    rdf:type gufo:Role .
+
+icac-corruption:CorruptStateTrooper rdf:type owl:Class ;
+    rdfs:label "Corrupt State Trooper"@en ;
+    rdfs:comment "State trooper engaged in child exploitation activities while in uniform."@en ;
+    rdfs:subClassOf icac-corruption:CorruptLawEnforcementOfficer ;
+    rdf:type gufo:Role .
+
+icac-corruption:CorruptArmyReservist rdf:type owl:Class ;
+    rdfs:label "Corrupt Army Reservist"@en ;
+    rdfs:comment "Army reservist engaged in child exploitation activities while in military uniform."@en ;
+    rdfs:subClassOf icac-corruption:CorruptLawEnforcementOfficer ;
+    rdf:type gufo:Role .
+
+icac-corruption:CorruptMetropolitanPoliceDepartmentOfficer rdf:type owl:Class ;
+    rdfs:label "Corrupt Metropolitan Police Department Officer"@en ;
+    rdfs:comment "Former or current metropolitan police department officer engaged in child trafficking."@en ;
+    rdfs:subClassOf icac-corruption:CorruptLawEnforcementOfficer ;
+    rdf:type gufo:Role .
+
+icac-corruption:FormerLawEnforcementOfficer rdf:type owl:Class ;
+    rdfs:label "Former Law Enforcement Officer"@en ;
+    rdfs:comment "Former law enforcement officer using previous position and contacts for exploitation."@en ;
+    rdfs:subClassOf icac-corruption:CorruptLawEnforcementOfficer ;
+    rdf:type gufo:Role .
+
+# =============================================================================
+# UNIFORM AND EQUIPMENT EXPLOITATION CLASSES (gUFO: EventType)
+# =============================================================================
+
+icac-corruption:UniformEnhancedProduction rdf:type owl:Class ;
+    rdfs:label "Uniform Enhanced Production"@en ;
+    rdfs:comment "Production of CSAM enhanced by wearing official uniform to project authority."@en ;
+    rdfs:subClassOf icac-corruption:OfficerProducedCSAM ;
+    rdf:type gufo:EventType .
+
+icac-corruption:MilitaryUniformProduction rdf:type owl:Class ;
+    rdfs:label "Military Uniform Production"@en ;
+    rdfs:comment "Production of CSAM while wearing military uniform."@en ;
+    rdfs:subClassOf icac-corruption:UniformEnhancedProduction ;
+    rdf:type gufo:EventType .
+
+icac-corruption:PoliceUniformProduction rdf:type owl:Class ;
+    rdfs:label "Police Uniform Production"@en ;
+    rdfs:comment "Production of CSAM while wearing police uniform."@en ;
+    rdfs:subClassOf icac-corruption:UniformEnhancedProduction ;
+    rdf:type gufo:EventType .
+
+icac-corruption:AuthoritySymbolExploitation rdf:type owl:Class ;
+    rdfs:label "Authority Symbol Exploitation"@en ;
+    rdfs:comment "Use of badges, weapons, or other authority symbols to enhance exploitation."@en ;
+    rdfs:subClassOf icac-corruption:UniformBasedExploitation ;
+    rdf:type gufo:EventType .
+
+icac-corruption:BadgeDisplayedProduction rdf:type owl:Class ;
+    rdfs:label "Badge Displayed Production"@en ;
+    rdfs:comment "CSAM production where law enforcement badge is prominently displayed."@en ;
+    rdfs:subClassOf icac-corruption:AuthoritySymbolExploitation ;
+    rdf:type gufo:EventType .
+
+icac-corruption:OfficialVehicleExploitation rdf:type owl:Class ;
+    rdfs:label "Official Vehicle Exploitation"@en ;
+    rdfs:comment "Use of official law enforcement vehicles in exploitation activities."@en ;
+    rdfs:subClassOf icac-corruption:PositionOfAuthorityAbuse ;
+    rdf:type gufo:EventType .
+
+# =============================================================================
+# AUTHORITY ABUSE PATTERNS (gUFO: EventType)
+# =============================================================================
+
+icac-corruption:InvestigativeAuthorityAbuse rdf:type owl:Class ;
+    rdfs:label "Investigative Authority Abuse"@en ;
+    rdfs:comment "Abuse of investigative powers and access for exploitation purposes."@en ;
+    rdfs:subClassOf icac-corruption:PositionOfAuthorityAbuse ;
+    rdf:type gufo:EventType .
+
+icac-corruption:AccessPrivilegeAbuse rdf:type owl:Class ;
+    rdfs:label "Access Privilege Abuse"@en ;
+    rdfs:comment "Abuse of special access privileges granted to law enforcement personnel."@en ;
+    rdfs:subClassOf icac-corruption:InvestigativeAuthorityAbuse ;
+    rdf:type gufo:EventType .
+
+icac-corruption:DatabaseAccessAbuse rdf:type owl:Class ;
+    rdfs:label "Database Access Abuse"@en ;
+    rdfs:comment "Misuse of law enforcement database access for personal exploitation activities."@en ;
+    rdfs:subClassOf icac-corruption:AccessPrivilegeAbuse ;
+    rdf:type gufo:EventType .
+
+icac-corruption:InformationLeakage rdf:type owl:Class ;
+    rdfs:label "Information Leakage"@en ;
+    rdfs:comment "Leaking of law enforcement information to facilitate exploitation or trafficking."@en ;
+    rdfs:subClassOf icac-corruption:InvestigativeAuthorityAbuse ;
+    rdf:type gufo:EventType .
+
+icac-corruption:EvidenceManipulation rdf:type owl:Class ;
+    rdfs:label "Evidence Manipulation"@en ;
+    rdfs:comment "Manipulation or destruction of evidence to protect exploitation activities."@en ;
+    rdfs:subClassOf icac-corruption:InvestigativeAuthorityAbuse ;
+    rdf:type gufo:EventType .
+
+# =============================================================================
+# DETECTION AND INVESTIGATION CHALLENGES (gUFO: EventType)
+# =============================================================================
+
+icac-corruption:InsiderThreatDetection rdf:type owl:Class ;
+    rdfs:label "Insider Threat Detection"@en ;
+    rdfs:comment "Detection of corruption within law enforcement or military personnel."@en ;
+    rdfs:subClassOf uco-action:Action, gufo:Event ;
+    rdf:type gufo:EventType .
+
+icac-corruption:InternalAffairsInvestigation rdf:type owl:Class ;
+    rdfs:label "Internal Affairs Investigation"@en ;
+    rdfs:comment "Investigation by internal affairs department into officer corruption."@en ;
+    rdfs:subClassOf icac-corruption:InsiderThreatDetection ;
+    rdf:type gufo:EventType .
+
+icac-corruption:ExternalOversightInvestigation rdf:type owl:Class ;
+    rdfs:label "External Oversight Investigation"@en ;
+    rdfs:comment "Investigation by external agency into law enforcement corruption."@en ;
+    rdfs:subClassOf icac-corruption:InsiderThreatDetection ;
+    rdf:type gufo:EventType .
+
+icac-corruption:WhistleblowerReport rdf:type owl:Class ;
+    rdfs:label "Whistleblower Report"@en ;
+    rdfs:comment "Report by insider regarding corruption within law enforcement organization."@en ;
+    rdfs:subClassOf icac-corruption:InsiderThreatDetection ;
+    rdf:type gufo:EventType .
+
+icac-corruption:PublicIntegrityInvestigation rdf:type owl:Class ;
+    rdfs:label "Public Integrity Investigation"@en ;
+    rdfs:comment "Investigation into public integrity violations by law enforcement personnel."@en ;
+    rdfs:subClassOf icac-corruption:ExternalOversightInvestigation ;
+    rdf:type gufo:EventType .
+
+# =============================================================================
+# CORRUPTION PROPERTIES
+# =============================================================================
+
+icac-corruption:yearsOfService rdf:type owl:DatatypeProperty ;
+    rdfs:label "years of service"@en ;
+    rdfs:comment "Number of years the officer served before corruption was discovered."@en ;
+    rdfs:domain icac-corruption:CorruptLawEnforcementOfficer ;
+    rdfs:range xsd:nonNegativeInteger .
+
+icac-corruption:uniformType rdf:type owl:DatatypeProperty ;
+    rdfs:label "uniform type"@en ;
+    rdfs:comment "Type of uniform worn during exploitation (police, military, state_trooper, sheriff)."@en ;
+    rdfs:domain icac-corruption:UniformBasedExploitation ;
+    rdfs:range xsd:string .
+
+icac-corruption:authorityLevel rdf:type owl:DatatypeProperty ;
+    rdfs:label "authority level"@en ;
+    rdfs:comment "Level of authority held by corrupt officer (patrol, detective, supervisor, command)."@en ;
+    rdfs:domain icac-corruption:CorruptLawEnforcementOfficer ;
+    rdfs:range xsd:string .
+
+icac-corruption:accessLevel rdf:type owl:DatatypeProperty ;
+    rdfs:label "access level"@en ;
+    rdfs:comment "Level of system access held by corrupt officer (basic, elevated, administrative)."@en ;
+    rdfs:domain icac-corruption:AccessPrivilegeAbuse ;
+    rdfs:range xsd:string .
+
+icac-corruption:corruptionDuration rdf:type owl:DatatypeProperty ;
+    rdfs:label "corruption duration"@en ;
+    rdfs:comment "Duration of corrupt activities in months before detection."@en ;
+    rdfs:domain icac-corruption:LawEnforcementCorruption ;
+    rdfs:range xsd:nonNegativeInteger .
+
+icac-corruption:victimCount rdf:type owl:DatatypeProperty ;
+    rdfs:label "victim count"@en ;
+    rdfs:comment "Number of victims in corruption case."@en ;
+    rdfs:domain icac-corruption:LawEnforcementCorruption ;
+    rdfs:range xsd:nonNegativeInteger .
+
+icac-corruption:uniformDisplayed rdf:type owl:DatatypeProperty ;
+    rdfs:label "uniform displayed"@en ;
+    rdfs:comment "Whether uniform was prominently displayed during exploitation."@en ;
+    rdfs:domain icac-corruption:UniformBasedExploitation ;
+    rdfs:range xsd:boolean .
+
+icac-corruption:badgeVisible rdf:type owl:DatatypeProperty ;
+    rdfs:label "badge visible"@en ;
+    rdfs:comment "Whether law enforcement badge was visible during exploitation."@en ;
+    rdfs:domain icac-corruption:BadgeDisplayedProduction ;
+    rdfs:range xsd:boolean .
+
+icac-corruption:departmentAffiliation rdf:type owl:DatatypeProperty ;
+    rdfs:label "department affiliation"@en ;
+    rdfs:comment "Law enforcement department or military unit affiliation."@en ;
+    rdfs:domain icac-corruption:CorruptLawEnforcementOfficer ;
+    rdfs:range xsd:string .
+
+icac-corruption:employmentStatus rdf:type owl:DatatypeProperty ;
+    rdfs:label "employment status"@en ;
+    rdfs:comment "Employment status during corruption (active, reserve, retired, terminated)."@en ;
+    rdfs:domain icac-corruption:CorruptLawEnforcementOfficer ;
+    rdfs:range xsd:string .
+
+# =============================================================================
+# CORRUPTION RELATIONSHIPS
+# =============================================================================
+
+icac-corruption:exploitsPosition rdf:type owl:ObjectProperty ;
+    rdfs:label "exploits position"@en ;
+    rdfs:comment "Links corruption to position being exploited."@en ;
+    rdfs:domain icac-corruption:LawEnforcementCorruption ;
+    rdfs:range uco-role:Role .
+
+icac-corruption:wearsUniform rdf:type owl:ObjectProperty ;
+    rdfs:label "wears uniform"@en ;
+    rdfs:comment "Links exploitation to uniform worn during activity."@en ;
+    rdfs:domain icac-corruption:UniformBasedExploitation ;
+    rdfs:range uco-observable:ObservableObject .
+
+icac-corruption:displaysAuthority rdf:type owl:ObjectProperty ;
+    rdfs:label "displays authority"@en ;
+    rdfs:comment "Links exploitation to authority symbol displayed."@en ;
+    rdfs:domain icac-corruption:AuthoritySymbolExploitation ;
+    rdfs:range uco-observable:ObservableObject .
+
+icac-corruption:abusesAccess rdf:type owl:ObjectProperty ;
+    rdfs:label "abuses access"@en ;
+    rdfs:comment "Links corruption to system or information access being abused."@en ;
+    rdfs:domain icac-corruption:AccessPrivilegeAbuse ;
+    rdfs:range uco-observable:ObservableObject .
+
+icac-corruption:investigatedBy rdf:type owl:ObjectProperty ;
+    rdfs:label "investigated by"@en ;
+    rdfs:comment "Links corruption to investigating agency or unit."@en ;
+    rdfs:domain icac-corruption:LawEnforcementCorruption ;
+    rdfs:range uco-identity:Organization .
+
+icac-corruption:employsOfficer rdf:type owl:ObjectProperty ;
+    rdfs:label "employs officer"@en ;
+    rdfs:comment "Links law enforcement agency to corrupt officer."@en ;
+    rdfs:domain uco-identity:Organization ;
+    rdfs:range icac-corruption:CorruptLawEnforcementOfficer .
+
+icac-corruption:corruptsEvidence rdf:type owl:ObjectProperty ;
+    rdfs:label "corrupts evidence"@en ;
+    rdfs:comment "Links corruption to evidence that was manipulated or destroyed."@en ;
+    rdfs:domain icac-corruption:EvidenceManipulation ;
+    rdfs:range uco-observable:ObservableObject .
+
+icac-corruption:leaksInformation rdf:type owl:ObjectProperty ;
+    rdfs:label "leaks information"@en ;
+    rdfs:comment "Links corruption to information that was leaked."@en ;
+    rdfs:domain icac-corruption:InformationLeakage ;
+    rdfs:range uco-observable:ObservableObject .
+
+icac-corruption:detectedBy rdf:type owl:ObjectProperty ;
+    rdfs:label "detected by"@en ;
+    rdfs:comment "Links corruption to detection method or source."@en ;
+    rdfs:domain icac-corruption:LawEnforcementCorruption ;
+    rdfs:range icac-corruption:InsiderThreatDetection .
+
+icac-corruption:reportedBy rdf:type owl:ObjectProperty ;
+    rdfs:label "reported by"@en ;
+    rdfs:comment "Links corruption to person or entity that reported it."@en ;
+    rdfs:domain icac-corruption:WhistleblowerReport ;
+    rdfs:range uco-identity:Person .
+
+# =============================================================================
+# gUFO TEMPORAL PROPERTIES
+# =============================================================================
+
+# Temporal boundary properties (from gUFO)
+# Note: These are imported from gUFO but documented here for clarity
+
+# gufo:hasBeginPointInXSDDateTimeStamp - Start time for corruption events
+# gufo:hasEndPointInXSDDateTimeStamp - End time for corruption events
+
+# =============================================================================
+# gUFO QUALITY ASPECTS FOR LAW ENFORCEMENT CORRUPTION
+# =============================================================================
+
+# Corruption Severity and Impact Quality Aspects
+icac-corruption:hasCorruptionSeverity rdf:type owl:DatatypeProperty ;
+    rdfs:label "has corruption severity"@en ;
+    rdfs:comment "Corruption severity level assessment (minor, moderate, serious, severe, extreme) - gUFO quality aspect."@en ;
+    rdfs:domain icac-corruption:LawEnforcementCorruption ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+icac-corruption:hasAuthorityAbuseDegree rdf:type owl:DatatypeProperty ;
+    rdfs:label "has authority abuse degree"@en ;
+    rdfs:comment "Degree of authority abuse (minimal, moderate, extensive, systematic, comprehensive) - gUFO quality aspect."@en ;
+    rdfs:domain icac-corruption:PositionOfAuthorityAbuse ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+icac-corruption:hasCorruptionImpact rdf:type owl:DatatypeProperty ;
+    rdfs:label "has corruption impact"@en ;
+    rdfs:comment "Impact level of corruption on victims and system (low, moderate, high, severe, devastating) - gUFO quality aspect."@en ;
+    rdfs:domain icac-corruption:LawEnforcementCorruption ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+icac-corruption:hasVictimVulnerability rdf:type owl:DatatypeProperty ;
+    rdfs:label "has victim vulnerability"@en ;
+    rdfs:comment "Victim vulnerability exploitation level (0.0 to 1.0) - gUFO quality aspect."@en ;
+    rdfs:domain icac-corruption:LawEnforcementCorruption ;
+    rdfs:range xsd:double ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+# Authority Enhancement Quality Aspects
+icac-corruption:hasAuthorityEnhancementLevel rdf:type owl:DatatypeProperty ;
+    rdfs:label "has authority enhancement level"@en ;
+    rdfs:comment "Level of authority enhancement through uniform/symbols (minimal, moderate, significant, substantial, maximum) - gUFO quality aspect."@en ;
+    rdfs:domain icac-corruption:UniformBasedExploitation ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+icac-corruption:hasIntimidationFactor rdf:type owl:DatatypeProperty ;
+    rdfs:label "has intimidation factor"@en ;
+    rdfs:comment "Intimidation factor through position abuse (0.0 to 1.0) - gUFO quality aspect."@en ;
+    rdfs:domain icac-corruption:PositionOfAuthorityAbuse ;
+    rdfs:range xsd:double ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+icac-corruption:hasSymbolVisibility rdf:type owl:DatatypeProperty ;
+    rdfs:label "has symbol visibility"@en ;
+    rdfs:comment "Visibility level of authority symbols (hidden, subtle, visible, prominent, conspicuous) - gUFO quality aspect."@en ;
+    rdfs:domain icac-corruption:AuthoritySymbolExploitation ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+# Officer Corruption Quality Aspects
+icac-corruption:hasCorruptionDependency rdf:type owl:DatatypeProperty ;
+    rdfs:label "has corruption dependency"@en ;
+    rdfs:comment "Officer dependency on corrupt activities (low, moderate, high, complete, systemic) - gUFO quality aspect."@en ;
+    rdfs:domain icac-corruption:CorruptLawEnforcementOfficer ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+icac-corruption:hasPositionExploitationLevel rdf:type owl:DatatypeProperty ;
+    rdfs:label "has position exploitation level"@en ;
+    rdfs:comment "Level of position exploitation (0.0 to 1.0) - gUFO quality aspect."@en ;
+    rdfs:domain icac-corruption:CorruptLawEnforcementOfficer ;
+    rdfs:range xsd:double ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+icac-corruption:hasTrustBetrayalLevel rdf:type owl:DatatypeProperty ;
+    rdfs:label "has trust betrayal level"@en ;
+    rdfs:comment "Level of public trust betrayal (minimal, moderate, significant, severe, complete) - gUFO quality aspect."@en ;
+    rdfs:domain icac-corruption:CorruptLawEnforcementOfficer ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+# Detection and Investigation Quality Aspects
+icac-corruption:hasDetectionDifficulty rdf:type owl:DatatypeProperty ;
+    rdfs:label "has detection difficulty"@en ;
+    rdfs:comment "Difficulty level of detecting corruption (easy, moderate, difficult, very_difficult, nearly_impossible) - gUFO quality aspect."@en ;
+    rdfs:domain icac-corruption:InsiderThreat ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+icac-corruption:hasInvestigationComplexity rdf:type owl:DatatypeProperty ;
+    rdfs:label "has investigation complexity"@en ;
+    rdfs:comment "Complexity level of corruption investigation (simple, moderate, complex, highly_complex, extremely_complex) - gUFO quality aspect."@en ;
+    rdfs:domain icac-corruption:InsiderThreatDetection ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+icac-corruption:hasEvidenceIntegrity rdf:type owl:DatatypeProperty ;
+    rdfs:label "has evidence integrity"@en ;
+    rdfs:comment "Integrity level of evidence (0.0 to 1.0) - gUFO quality aspect."@en ;
+    rdfs:domain icac-corruption:InsiderThreatDetection ;
+    rdfs:range xsd:double ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+# Data Quality Aspects (Multi-domain)
+icac-corruption:hasDataQuality rdf:type owl:DatatypeProperty ;
+    rdfs:label "has data quality"@en ;
+    rdfs:comment "Data quality assessment (poor, fair, good, excellent, validated) - gUFO quality aspect."@en ;
+    rdfs:domain [ 
+        owl:unionOf ( 
+            icac-corruption:LawEnforcementCorruption 
+            icac-corruption:CorruptLawEnforcementOfficer 
+            icac-corruption:InsiderThreatDetection 
+        ) 
+    ] ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+icac-corruption:hasDataCompleteness rdf:type owl:DatatypeProperty ;
+    rdfs:label "has data completeness"@en ;
+    rdfs:comment "Data completeness measurement (0.0 to 1.0) - gUFO quality aspect."@en ;
+    rdfs:domain [ 
+        owl:unionOf ( 
+            icac-corruption:LawEnforcementCorruption 
+            icac-corruption:CorruptLawEnforcementOfficer 
+            icac-corruption:InsiderThreatDetection 
+        ) 
+    ] ;
+    rdfs:range xsd:double ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+icac-corruption:hasValidationLevel rdf:type owl:DatatypeProperty ;
+    rdfs:label "has validation level"@en ;
+    rdfs:comment "Validation thoroughness (none, basic, standard, comprehensive, full_verification) - gUFO quality aspect."@en ;
+    rdfs:domain [ 
+        owl:unionOf ( 
+            icac-corruption:LawEnforcementCorruption 
+            icac-corruption:CorruptLawEnforcementOfficer 
+            icac-corruption:InsiderThreatDetection 
+        ) 
+    ] ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf gufo:hasQuality .
+
+# =============================================================================
+# gUFO PARTICIPATION AND PART-WHOLE RELATIONSHIPS
+# =============================================================================
+
+# Participation relationships (from gUFO)
+icac-corruption:participatesIn rdf:type owl:ObjectProperty ;
+    rdfs:label "participates in"@en ;
+    rdfs:comment "Links an officer or organization to corruption activities they participate in - gUFO participation relation."@en ;
+    rdfs:domain [ owl:unionOf ( icac-corruption:CorruptLawEnforcementOfficer uco-identity:Organization ) ] ;
+    rdfs:range icac-corruption:LawEnforcementCorruption ;
+    rdfs:subPropertyOf gufo:participatedIn .
+
+icac-corruption:isDetectedBy rdf:type owl:ObjectProperty ;
+    rdfs:label "is detected by"@en ;
+    rdfs:comment "Links corruption to detection activities - gUFO participation relation."@en ;
+    rdfs:domain icac-corruption:LawEnforcementCorruption ;
+    rdfs:range icac-corruption:InsiderThreatDetection ;
+    rdfs:subPropertyOf gufo:participatedIn .
+
+# Qualified relations for corruption networks
+icac-corruption:standsInQualifiedCorruption rdf:type owl:ObjectProperty ;
+    rdfs:label "stands in qualified corruption"@en ;
+    rdfs:comment "Links entities to qualified corruption situations - gUFO qualified relation."@en ;
+    rdfs:domain [ owl:unionOf ( icac-corruption:CorruptLawEnforcementOfficer uco-identity:Organization ) ] ;
+    rdfs:range gufo:ParticipationSituation .
+
+icac-corruption:concernsCorruptOfficer rdf:type owl:ObjectProperty ;
+    rdfs:label "concerns corrupt officer"@en ;
+    rdfs:comment "Links corruption situations to the officers involved - gUFO qualified relation."@en ;
+    rdfs:domain gufo:ParticipationSituation ;
+    rdfs:range icac-corruption:CorruptLawEnforcementOfficer . 

@@ -48,9 +48,10 @@ temp/
 *.log
 
 # Ontology files (fetched from main repo)
-ontology/
+# ontology/  # Now tracked in this repo
 *.ttl
 !examples/*.ttl
+!ontology/*.ttl
 
 # Ontospy cache
 .ontospy_cache/

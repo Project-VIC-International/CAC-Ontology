@@ -1,0 +1,1611 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity#> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable#> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-partnerships: <https://cacontology.projectvic.org/partnerships#> .
+@prefix cacontology-partnerships-shapes: <https://cacontology.projectvic.org/partnerships/shapes#> .
+
+# =============================================================================
+# ICAC PARTNERSHIPS SHACL SHAPES with gUFO INTEGRATION
+# Enhanced with comprehensive gUFO (gentle Unified Foundational Ontology) validation
+# =============================================================================
+
+<https://cacontology.projectvic.org/partnerships-shapes> rdf:type owl:Ontology ;
+    rdfs:label "CAC Partnerships SHACL Shapes with gUFO Integration"@en ;
+    rdfs:comment "SHACL shapes for validating public-private partnerships with comprehensive gUFO foundational ontology integration for enhanced semantic precision and validation capabilities."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/partnerships-shapes/1.1> ;
+    owl:versionInfo "1.1.0" ;
+    owl:imports <http://purl.org/nemo/gufo#> .
+
+# =============================================================================
+# gUFO TYPE CONSISTENCY VALIDATION SHAPES
+# =============================================================================
+
+icac-partnerships-shapes:PartnershipOrganizationTypeValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:PublicPrivatePartnership ;
+    rdfs:label "Partnership Organization Type Validation Shape"@en ;
+    rdfs:comment "Validates gUFO Organization type consistency for partnerships."@en ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Organization ;
+        sh:minCount 1 ;
+        sh:message "Partnership must be typed as gUFO Organization."@en
+    ] ;
+    sh:property [
+        sh:path rdfs:subClassOf ;
+        sh:hasValue gufo:Organization ;
+        sh:minCount 0 ;
+        sh:message "Partnership class should extend gUFO Organization."@en
+    ] .
+
+icac-partnerships-shapes:CooperationEventTypeValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:TechnologyCooperation ;
+    rdfs:label "Cooperation Event Type Validation Shape"@en ;
+    rdfs:comment "Validates gUFO Event type consistency for cooperation events."@en ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Event ;
+        sh:minCount 1 ;
+        sh:message "Technology cooperation must be typed as gUFO Event."@en
+    ] ;
+    sh:sparql [
+        sh:message "Cooperation events must be properly typed as gUFO Event and extend UCO Action."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this rdf:type gufo:Event .
+                FILTER NOT EXISTS {
+                    $this rdf:type ?eventClass .
+                    ?eventClass rdfs:subClassOf* uco-action:Action .
+                }
+            }
+        """
+    ] .
+
+icac-partnerships-shapes:PartnershipPhaseTypeValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass gufo:Phase ;
+    rdfs:label "Partnership Phase Type Validation Shape"@en ;
+    rdfs:comment "Validates gUFO Phase type consistency for partnership phases."@en ;
+    sh:sparql [
+        sh:message "Partnership phases must be properly typed as gUFO Phase and extend partnership classes."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this rdf:type gufo:Phase .
+                FILTER NOT EXISTS {
+                    $this rdf:type ?phaseClass .
+                    ?phaseClass rdfs:subClassOf* icac-partnerships:PublicPrivatePartnership .
+                }
+            }
+        """
+    ] .
+
+icac-partnerships-shapes:PartnerRoleTypeValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass gufo:Role ;
+    rdfs:label "Partner Role Type Validation Shape"@en ;
+    rdfs:comment "Validates gUFO Role type consistency for partner roles."@en ;
+    sh:sparql [
+        sh:message "Partner roles must be properly typed as gUFO Role and extend UCO Role."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this rdf:type gufo:Role .
+                FILTER NOT EXISTS {
+                    $this rdfs:subClassOf* uco-role:Role .
+                }
+            }
+        """
+    ] .
+
+icac-partnerships-shapes:PartnershipObjectTypeValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:InformationSharingFramework ;
+    rdfs:label "Partnership Object Type Validation Shape"@en ;
+    rdfs:comment "Validates gUFO Object type consistency for partnership objects."@en ;
+    sh:property [
+        sh:path rdfs:subClassOf ;
+        sh:hasValue gufo:Object ;
+        sh:minCount 0 ;
+        sh:message "Information sharing framework should extend gUFO Object."@en
+    ] .
+
+icac-partnerships-shapes:PartnershipSituationTypeValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass gufo:Situation ;
+    rdfs:label "Partnership Situation Type Validation Shape"@en ;
+    rdfs:comment "Validates gUFO Situation type consistency for partnership situations."@en ;
+    sh:property [
+        sh:path rdfs:subClassOf ;
+        sh:hasValue gufo:Situation ;
+        sh:minCount 0 ;
+        sh:message "Partnership situation should extend gUFO Situation."@en
+    ] .
+
+# =============================================================================
+# gUFO TEMPORAL CONSTRAINTS SHAPES
+# =============================================================================
+
+icac-partnerships-shapes:PartnershipTemporalShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:PublicPrivatePartnership ;
+    rdfs:label "Partnership Temporal Shape"@en ;
+    rdfs:comment "Validates gUFO temporal constraints for partnerships."@en ;
+    sh:property [
+        sh:path icac-partnerships:hasPartnershipBeginPoint ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Partnership may have begin point timestamp."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:hasPartnershipEndPoint ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Partnership may have end point timestamp."@en
+    ] ;
+    sh:sparql [
+        sh:message "Partnership end must be after begin when both are specified (gUFO temporal constraint)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-partnerships:hasPartnershipBeginPoint ?start ;
+                      icac-partnerships:hasPartnershipEndPoint ?end .
+                FILTER (?end <= ?start)
+            }
+        """
+    ] .
+
+icac-partnerships-shapes:CooperationEventTemporalShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:TechnologyCooperation ;
+    rdfs:label "Cooperation Event Temporal Shape"@en ;
+    rdfs:comment "Validates gUFO temporal constraints for cooperation events."@en ;
+    sh:sparql [
+        sh:message "gUFO Events must have consistent temporal boundaries with end after start."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this gufo:hasBeginPointInXSDDateTimeStamp ?start ;
+                      gufo:hasEndPointInXSDDateTimeStamp ?end .
+                FILTER (?end <= ?start)
+            }
+        """
+    ] .
+
+icac-partnerships-shapes:PartnershipPhaseTemporalShape rdf:type sh:NodeShape ;
+    sh:targetClass gufo:Phase ;
+    rdfs:label "Partnership Phase Temporal Shape"@en ;
+    rdfs:comment "Validates gUFO temporal constraints for partnership phases."@en ;
+    sh:property [
+        sh:path icac-partnerships:hasPhaseBeginPoint ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Partnership phase may have begin point timestamp."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:hasPhaseEndPoint ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Partnership phase may have end point timestamp."@en
+    ] ;
+    sh:sparql [
+        sh:message "Phase end must be after begin when both are specified."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-partnerships:hasPhaseBeginPoint ?start ;
+                      icac-partnerships:hasPhaseEndPoint ?end .
+                FILTER (?end <= ?start)
+            }
+        """
+    ] .
+
+icac-partnerships-shapes:PartnerRoleTemporalShape rdf:type sh:NodeShape ;
+    sh:targetClass gufo:Role ;
+    rdfs:label "Partner Role Temporal Shape"@en ;
+    rdfs:comment "Validates gUFO temporal constraints for partner roles."@en ;
+    sh:property [
+        sh:path icac-partnerships:hasRoleBeginPoint ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Partner role may have begin point timestamp."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:hasRoleEndPoint ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Partner role may have end point timestamp."@en
+    ] ;
+    sh:sparql [
+        sh:message "Role end must be after begin when both are specified."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-partnerships:hasRoleBeginPoint ?start ;
+                      icac-partnerships:hasRoleEndPoint ?end .
+                FILTER (?end <= ?start)
+            }
+        """
+    ] .
+
+# =============================================================================
+# PUBLIC-PRIVATE PARTNERSHIP SHAPES
+# =============================================================================
+
+icac-partnerships-shapes:PublicPrivatePartnershipShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:PublicPrivatePartnership ;
+    rdfs:label "Public Private Partnership Shape"@en ;
+    rdfs:comment "Enhanced validation shape for public-private partnership instances with gUFO quality aspects."@en ;
+    sh:property [
+        sh:path icac-partnerships:partnerCount ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 2 ;
+        sh:maxInclusive 100 ;
+        sh:message "Partnership must have between 2 and 100 partners."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:partnershipScope ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "local" "national" "regional" "global" ) ;
+        sh:message "Partnership scope must be from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:partnershipDuration ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 1.0 ;
+        sh:maxInclusive 120.0 ;
+        sh:message "Partnership duration must be between 1 and 120 months."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:formalAgreement ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Partnership must specify if formal agreement exists."@en
+    ] ;
+    # gUFO Quality Aspects for Partnerships
+    sh:property [
+        sh:path icac-partnerships:hasPartnershipEffectiveness ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "ineffective" "limited" "moderate" "effective" "highly_effective" ) ;
+        sh:message "Partnership effectiveness must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:hasCoordinationLevel ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "minimal" "basic" "standard" "enhanced" "comprehensive" ) ;
+        sh:message "Coordination level must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:hasTrustLevel ;
+        sh:datatype xsd:double ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Trust level must be between 0.0 and 1.0 (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:hasCollaborationIntensity ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "low" "moderate" "high" "intensive" "fully_integrated" ) ;
+        sh:message "Collaboration intensity must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:hasSuccessRate ;
+        sh:datatype xsd:double ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Success rate must be between 0.0 and 1.0 (gUFO quality aspect)."@en
+    ] .
+
+icac-partnerships-shapes:MultiStakeholderInitiativeShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:MultiStakeholderInitiative ;
+    rdfs:label "Multi Stakeholder Initiative Shape"@en ;
+    rdfs:comment "Validation shape for multi-stakeholder initiative instances."@en ;
+    sh:property [
+        sh:path icac-partnerships:partnerCount ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 3 ;
+        sh:maxInclusive 50 ;
+        sh:message "Multi-stakeholder initiative must have between 3 and 50 partners."@en
+    ] .
+
+icac-partnerships-shapes:TechIndustryCooperationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:TechIndustryCooperation ;
+    rdfs:label "Tech Industry Cooperation Shape"@en ;
+    rdfs:comment "Validation shape for tech industry cooperation instances."@en ;
+    sh:property [
+        sh:path icac-partnerships:formalAgreement ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Tech industry cooperation must specify if formal agreement exists."@en
+    ] .
+
+# =============================================================================
+# NATIONAL INITIATIVE PROGRAM SHAPES
+# =============================================================================
+
+icac-partnerships-shapes:NationalInitiativeProgramShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:NationalInitiativeProgram ;
+    rdfs:label "National Initiative Program Shape"@en ;
+    rdfs:comment "Validation shape for national initiative program instances."@en ;
+    sh:property [
+        sh:path icac-partnerships:initiativeName ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minLength 3 ;
+        sh:maxLength 100 ;
+        sh:message "Initiative name must be between 3 and 100 characters."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:launchedDate ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "National initiative must have a launch date."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:programScope ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "federal" "state_coordination" "local_support" "multi_jurisdictional" ) ;
+        sh:message "Program scope must be from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:leadAgency ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "DOJ" "DHS" "FBI" "ICE" "USAO" "ATF" ) ;
+        sh:message "Lead agency must be from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:casesProcessed ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0 ;
+        sh:maxInclusive 10000 ;
+        sh:message "Cases processed must be between 0 and 10,000."@en
+    ] .
+
+icac-partnerships-shapes:ProjectSafeChildhoodCaseShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:ProjectSafeChildhoodCase ;
+    rdfs:label "Project Safe Childhood Case Shape"@en ;
+    rdfs:comment "Validation shape for Project Safe Childhood case instances."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 5 ;
+        sh:maxLength 200 ;
+        sh:message "Case label should be between 5 and 200 characters when provided."@en
+    ] .
+
+# =============================================================================
+# CROWDSOURCING INVESTIGATION SHAPES
+# =============================================================================
+
+icac-partnerships-shapes:CrowdsourcingInvestigationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:CrowdsourcingInvestigation ;
+    rdfs:label "Crowdsourcing Investigation Shape"@en ;
+    rdfs:comment "Enhanced validation shape for crowdsourcing investigation instances with gUFO quality aspects."@en ;
+    sh:property [
+        sh:path icac-partnerships:publicTipsReceived ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0 ;
+        sh:maxInclusive 100000 ;
+        sh:message "Public tips received must be between 0 and 100,000."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:crowdsourcingPlatform ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "website" "social_media" "forums" "mobile_app" "specialized_platform" ) ;
+        sh:message "Crowdsourcing platform must be from the allowed list."@en
+    ] ;
+    # gUFO Quality Aspects for Crowdsourcing
+    sh:property [
+        sh:path icac-partnerships:hasParticipationLevel ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "minimal" "low" "moderate" "high" "massive" ) ;
+        sh:message "Participation level must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:hasResponseQuality ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "poor" "fair" "good" "excellent" "exceptional" ) ;
+        sh:message "Response quality must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:hasEngagementEffectiveness ;
+        sh:datatype xsd:double ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Engagement effectiveness must be between 0.0 and 1.0 (gUFO quality aspect)."@en
+    ] .
+
+icac-partnerships-shapes:ObjectIdentificationRequestShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:ObjectIdentificationRequest ;
+    rdfs:label "Object Identification Request Shape"@en ;
+    rdfs:comment "Validation shape for object identification request instances."@en ;
+    sh:property [
+        sh:path icac-partnerships:objectsToIdentify ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 1 ;
+        sh:maxInclusive 1000 ;
+        sh:message "Objects to identify must be between 1 and 1,000."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:identificationSuccessRate ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Identification success rate must be between 0.0 and 1.0."@en
+    ] .
+
+icac-partnerships-shapes:GeolocationRequestShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:GeolocationRequest ;
+    rdfs:label "Geolocation Request Shape"@en ;
+    rdfs:comment "Validation shape for geolocation request instances."@en ;
+    sh:property [
+        sh:path icac-partnerships:objectsToIdentify ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 1 ;
+        sh:maxInclusive 500 ;
+        sh:message "Locations to identify must be between 1 and 500."@en
+    ] .
+
+icac-partnerships-shapes:CommunityAnalysisShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:CommunityAnalysis ;
+    rdfs:label "Community Analysis Shape"@en ;
+    rdfs:comment "Validation shape for community analysis instances."@en ;
+    sh:property [
+        sh:path icac-partnerships:volunteerHours ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 1.0 ;
+        sh:maxInclusive 10000.0 ;
+        sh:message "Volunteer hours must be between 1.0 and 10,000.0."@en
+    ] .
+
+# =============================================================================
+# INFORMATION SHARING FRAMEWORK SHAPES
+# =============================================================================
+
+icac-partnerships-shapes:InformationSharingFrameworkShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:InformationSharingFramework ;
+    rdfs:label "Information Sharing Framework Shape"@en ;
+    rdfs:comment "Enhanced validation shape for information sharing framework instances with gUFO quality aspects."@en ;
+    sh:property [
+        sh:path icac-partnerships:sharingFrequency ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "real_time" "daily" "weekly" "monthly" "on_demand" ) ;
+        sh:message "Sharing frequency must be from the allowed list."@en
+    ] ;
+    # gUFO Quality Aspects for Information Sharing
+    sh:property [
+        sh:path icac-partnerships:hasSharingEfficiency ;
+        sh:datatype xsd:double ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Sharing efficiency must be between 0.0 and 1.0 (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:hasSecurityLevel ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "basic" "standard" "enhanced" "high" "maximum" ) ;
+        sh:message "Security level must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:hasDataQuality ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "poor" "fair" "good" "excellent" "verified" ) ;
+        sh:message "Data quality must be from allowed values (gUFO quality aspect)."@en
+    ] .
+
+icac-partnerships-shapes:DataSharingAgreementShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:DataSharingAgreement ;
+    rdfs:label "Data Sharing Agreement Shape"@en ;
+    rdfs:comment "Validation shape for data sharing agreement instances."@en ;
+    sh:property [
+        sh:path icac-partnerships:dataSharingLevel ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "metadata_only" "hash_values" "intelligence_products" "full_data" ) ;
+        sh:message "Data sharing level must be from the allowed list."@en
+    ] .
+
+icac-partnerships-shapes:TechnicalIntegrationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:TechnicalIntegration ;
+    rdfs:label "Technical Integration Shape"@en ;
+    rdfs:comment "Validation shape for technical integration instances."@en ;
+    sh:property [
+        sh:path icac-partnerships:automationLevel ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "manual" "semi_automated" "fully_automated" ) ;
+        sh:message "Automation level must be from the allowed list."@en
+    ] .
+
+icac-partnerships-shapes:HashSharingProtocolShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:HashSharingProtocol ;
+    rdfs:label "Hash Sharing Protocol Shape"@en ;
+    rdfs:comment "Validation shape for hash sharing protocol instances."@en ;
+    sh:property [
+        sh:path icac-partnerships:hashDatabaseSize ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.1 ;
+        sh:maxInclusive 1000.0 ;
+        sh:message "Hash database size must be between 0.1 and 1,000.0 million entries."@en
+    ] .
+
+# =============================================================================
+# TECHNOLOGY COOPERATION SHAPES
+# =============================================================================
+
+icac-partnerships-shapes:TechnologyCooperationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:TechnologyCooperation ;
+    rdfs:label "Technology Cooperation Shape"@en ;
+    rdfs:comment "Enhanced validation shape for technology cooperation instances with gUFO quality aspects."@en ;
+    sh:property [
+        sh:path icac-partnerships:technologyMaturity ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "experimental" "pilot" "production" "mature" ) ;
+        sh:message "Technology maturity must be from the allowed list."@en
+    ] ;
+    # gUFO Quality Aspects for Technology Cooperation
+    sh:property [
+        sh:path icac-partnerships:hasInnovationLevel ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "incremental" "moderate" "significant" "breakthrough" "revolutionary" ) ;
+        sh:message "Innovation level must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:hasImplementationSpeed ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "slow" "moderate" "fast" "rapid" "immediate" ) ;
+        sh:message "Implementation speed must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:hasTechnicalReliability ;
+        sh:datatype xsd:double ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Technical reliability must be between 0.0 and 1.0 (gUFO quality aspect)."@en
+    ] .
+
+icac-partnerships-shapes:ContentDetectionCooperationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:ContentDetectionCooperation ;
+    rdfs:label "Content Detection Cooperation Shape"@en ;
+    rdfs:comment "Validation shape for content detection cooperation instances."@en ;
+    sh:property [
+        sh:path icac-partnerships:detectionAccuracy ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.5 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Detection accuracy must be between 0.5 and 1.0."@en
+    ] .
+
+icac-partnerships-shapes:PlatformMonitoringShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:PlatformMonitoring ;
+    rdfs:label "Platform Monitoring Shape"@en ;
+    rdfs:comment "Validation shape for platform monitoring instances."@en ;
+    sh:property [
+        sh:path icac-partnerships:platformsCovered ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 1 ;
+        sh:maxInclusive 1000 ;
+        sh:message "Platforms covered must be between 1 and 1,000."@en
+    ] .
+
+icac-partnerships-shapes:ToolDevelopmentShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:ToolDevelopment ;
+    rdfs:label "Tool Development Shape"@en ;
+    rdfs:comment "Validation shape for tool development instances."@en ;
+    sh:property [
+        sh:path icac-partnerships:developmentInvestment ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 10000.0 ;
+        sh:maxInclusive 100000000.0 ;
+        sh:message "Development investment must be between $10,000 and $100,000,000."@en
+    ] .
+
+# =============================================================================
+# COORDINATION MECHANISM SHAPES
+# =============================================================================
+
+icac-partnerships-shapes:CoordinationMechanismShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:CoordinationMechanism ;
+    rdfs:label "Coordination Mechanism Shape"@en ;
+    rdfs:comment "Validation shape for coordination mechanism instances."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 5 ;
+        sh:maxLength 200 ;
+        sh:message "Coordination mechanism label should be between 5 and 200 characters when provided."@en
+    ] .
+
+icac-partnerships-shapes:RegularMeetingShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:RegularMeeting ;
+    rdfs:label "Regular Meeting Shape"@en ;
+    rdfs:comment "Validation shape for regular meeting instances."@en ;
+    sh:property [
+        sh:path icac-partnerships:meetingFrequency ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "weekly" "monthly" "quarterly" "annual" "ad_hoc" ) ;
+        sh:message "Meeting frequency must be from the allowed list."@en
+    ] .
+
+icac-partnerships-shapes:EmergencyCoordinationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:EmergencyCoordination ;
+    rdfs:label "Emergency Coordination Shape"@en ;
+    rdfs:comment "Validation shape for emergency coordination instances."@en ;
+    sh:property [
+        sh:path icac-partnerships:responseTime ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.25 ;
+        sh:maxInclusive 72.0 ;
+        sh:message "Emergency response time must be between 0.25 and 72.0 hours."@en
+    ] .
+
+icac-partnerships-shapes:JointOperationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:JointOperation ;
+    rdfs:label "Joint Operation Shape"@en ;
+    rdfs:comment "Validation shape for joint operation instances."@en ;
+    sh:property [
+        sh:path icac-partnerships:operationSuccess ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Operation success rate must be between 0.0 and 1.0."@en
+    ] .
+
+# =============================================================================
+# PARTNER ROLE SHAPES
+# =============================================================================
+
+icac-partnerships-shapes:PartnerRoleShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:PartnerRole ;
+    rdfs:label "Partner Role Shape"@en ;
+    rdfs:comment "Enhanced validation shape for partner role instances with gUFO quality aspects."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 3 ;
+        sh:maxLength 100 ;
+        sh:message "Partner role label should be between 3 and 100 characters when provided."@en
+    ] ;
+    # gUFO Quality Aspects for Partner Roles
+    sh:property [
+        sh:path icac-partnerships:hasRoleEffectiveness ;
+        sh:datatype xsd:double ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Role effectiveness must be between 0.0 and 1.0 (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:hasCapabilityLevel ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "limited" "basic" "standard" "advanced" "expert" ) ;
+        sh:message "Capability level must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:hasCommitmentLevel ;
+        sh:datatype xsd:double ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Commitment level must be between 0.0 and 1.0 (gUFO quality aspect)."@en
+    ] .
+
+icac-partnerships-shapes:LawEnforcementPartnerShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:LawEnforcementPartner ;
+    rdfs:label "Law Enforcement Partner Shape"@en ;
+    rdfs:comment "Validation shape for law enforcement partner instances."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 3 ;
+        sh:maxLength 100 ;
+        sh:message "Law enforcement partner label should be between 3 and 100 characters when provided."@en
+    ] .
+
+icac-partnerships-shapes:TechnologyPartnerShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:TechnologyPartner ;
+    rdfs:label "Technology Partner Shape"@en ;
+    rdfs:comment "Validation shape for technology partner instances."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 3 ;
+        sh:maxLength 100 ;
+        sh:message "Technology partner label should be between 3 and 100 characters when provided."@en
+    ] .
+
+icac-partnerships-shapes:NGOPartnerShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:NGOPartner ;
+    rdfs:label "NGO Partner Shape"@en ;
+    rdfs:comment "Validation shape for NGO partner instances."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 3 ;
+        sh:maxLength 100 ;
+        sh:message "NGO partner label should be between 3 and 100 characters when provided."@en
+    ] .
+
+# =============================================================================
+# OBJECT PROPERTY SHAPES
+# =============================================================================
+
+icac-partnerships-shapes:IncludesPartnerShape rdf:type sh:PropertyShape ;
+    sh:path icac-partnerships:includesPartner ;
+    sh:name "includes partner" ;
+    sh:description "Links partnership to participating organizations" ;
+    sh:class uco-identity:Organization ;
+    sh:minCount 2 .
+
+icac-partnerships-shapes:HasRoleShape rdf:type sh:PropertyShape ;
+    sh:path icac-partnerships:hasRole ;
+    sh:name "has role" ;
+    sh:description "Links partner organization to their role in the partnership" ;
+    sh:class icac-partnerships:PartnerRole ;
+    sh:minCount 1 .
+
+icac-partnerships-shapes:CoordinatedByShape rdf:type sh:PropertyShape ;
+    sh:path icac-partnerships:coordinatedBy ;
+    sh:name "coordinated by" ;
+    sh:description "Links partnership activities to coordinating organization" ;
+    sh:class uco-identity:Organization ;
+    sh:minCount 1 .
+
+icac-partnerships-shapes:GovernedByShape rdf:type sh:PropertyShape ;
+    sh:path icac-partnerships:governedBy ;
+    sh:name "governed by" ;
+    sh:description "Links partnership to information sharing frameworks governing it" ;
+    sh:class icac-partnerships:InformationSharingFramework ;
+    sh:minCount 0 .
+
+icac-partnerships-shapes:SolicitsHelpShape rdf:type sh:PropertyShape ;
+    sh:path icac-partnerships:solicitsHelp ;
+    sh:name "solicits help" ;
+    sh:description "Links organization to crowdsourcing investigations they conduct" ;
+    sh:class icac-partnerships:CrowdsourcingInvestigation ;
+    sh:minCount 0 .
+
+icac-partnerships-shapes:ParticipatesInDevelopmentShape rdf:type sh:PropertyShape ;
+    sh:path icac-partnerships:participatesInDevelopment ;
+    sh:name "participates in development" ;
+    sh:description "Links technology partners to development projects they participate in" ;
+    sh:class icac-partnerships:ToolDevelopment ;
+    sh:minCount 0 .
+
+icac-partnerships-shapes:CoordinatedThroughShape rdf:type sh:PropertyShape ;
+    sh:path icac-partnerships:coordinatedThrough ;
+    sh:name "coordinated through" ;
+    sh:description "Links partnership activities to coordination mechanisms used" ;
+    sh:class icac-partnerships:CoordinationMechanism ;
+    sh:minCount 1 .
+
+# =============================================================================
+# CROSS-REFERENCE VALIDATION SHAPES
+# =============================================================================
+
+icac-partnerships-shapes:PartnershipConsistencyShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:PublicPrivatePartnership ;
+    rdfs:label "Partnership Consistency Shape"@en ;
+    rdfs:comment "Validates consistency between partnership characteristics and participating organizations."@en ;
+    sh:sparql [
+        sh:message "Partnership must include at least the minimum number of partners specified in partnerCount."@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icac-partnerships" ;
+                sh:namespace "https://cacontology.projectvic.org/partnerships#"^^xsd:anyURI ;
+            ]
+        ] ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-partnerships:partnerCount ?count .
+                {
+                    SELECT $this (COUNT(?partner) AS ?actualCount)
+                    WHERE {
+                        $this icac-partnerships:includesPartner ?partner .
+                    }
+                    GROUP BY $this
+                }
+                FILTER (?actualCount < ?count)
+            }
+        """
+    ] .
+
+icac-partnerships-shapes:TechCooperationValidityShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:TechIndustryCooperation ;
+    rdfs:label "Tech Cooperation Validity Shape"@en ;
+    rdfs:comment "Validates that tech industry cooperation includes at least one technology partner."@en ;
+    sh:sparql [
+        sh:message "Tech industry cooperation must include at least one technology partner."@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icac-partnerships" ;
+                sh:namespace "https://cacontology.projectvic.org/partnerships#"^^xsd:anyURI ;
+            ]
+        ] ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this a icac-partnerships:TechIndustryCooperation .
+                FILTER NOT EXISTS {
+                    $this icac-partnerships:includesPartner ?org .
+                    ?org icac-partnerships:hasRole icac-partnerships:TechnologyPartner .
+                }
+            }
+        """
+    ] .
+
+icac-partnerships-shapes:CrowdsourcingEffectivenessShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:ObjectIdentificationRequest ;
+    rdfs:label "Crowdsourcing Effectiveness Shape"@en ;
+    rdfs:comment "Validates crowdsourcing effectiveness metrics."@en ;
+    sh:sparql [
+        sh:message "Object identification requests with high success rates should have received public tips."@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icac-partnerships" ;
+                sh:namespace "https://cacontology.projectvic.org/partnerships#"^^xsd:anyURI ;
+            ]
+        ] ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-partnerships:identificationSuccessRate ?rate .
+                FILTER (?rate > 0.5)
+                FILTER NOT EXISTS {
+                    ?investigation icac-partnerships:generatesRequests $this ;
+                                   icac-partnerships:publicTipsReceived ?tips .
+                    FILTER (?tips > 0)
+                }
+            }
+        """
+    ] .
+
+# =============================================================================
+# DATA QUALITY SHAPES
+# =============================================================================
+
+icac-partnerships-shapes:DataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:PublicPrivatePartnership ;
+    rdfs:label "Data Quality Shape"@en ;
+    rdfs:comment "Validates data quality for partnership instances."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 5 ;
+        sh:maxLength 200 ;
+        sh:message "Partnership label should be between 5 and 200 characters when provided."@en
+    ] ;
+    sh:property [
+        sh:path rdfs:comment ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 10 ;
+        sh:maxLength 1000 ;
+        sh:message "Partnership comment should be between 10 and 1000 characters when provided."@en
+    ] .
+
+icac-partnerships-shapes:NationalInitiativeDataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:NationalInitiativeProgram ;
+    rdfs:label "National Initiative Data Quality Shape"@en ;
+    rdfs:comment "Validates data quality for national initiative program instances."@en ;
+    sh:sparql [
+        sh:message "National initiative programs should have realistic case processing numbers relative to their duration."@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "icac-partnerships" ;
+                sh:namespace "https://cacontology.projectvic.org/partnerships#"^^xsd:anyURI ;
+            ]
+        ] ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-partnerships:casesProcessed ?cases ;
+                      icac-partnerships:launchedDate ?launched .
+                BIND (NOW() AS ?now)
+                BIND ((?now - ?launched) / (365.25 * 24 * 60 * 60) AS ?yearsActive)
+                BIND (?cases / ?yearsActive AS ?casesPerYear)
+                FILTER (?casesPerYear > 5000)
+            }
+        """
+    ] .
+
+# =============================================================================
+# ENHANCED DOMAIN-SPECIFIC SHAPES WITH gUFO QUALITY ASPECTS
+# =============================================================================
+
+icac-partnerships-shapes:PublicPrivatePartnershipShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:PublicPrivatePartnership ;
+    rdfs:label "Public Private Partnership Shape"@en ;
+    rdfs:comment "Enhanced validation shape for public-private partnership instances with gUFO quality aspects."@en ;
+    sh:property [
+        sh:path icac-partnerships:partnerCount ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 2 ;
+        sh:maxInclusive 100 ;
+        sh:message "Partnership must have between 2 and 100 partners."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:partnershipScope ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "local" "national" "regional" "global" ) ;
+        sh:message "Partnership scope must be from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:partnershipDuration ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 1.0 ;
+        sh:maxInclusive 120.0 ;
+        sh:message "Partnership duration must be between 1 and 120 months."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:formalAgreement ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Partnership must specify if formal agreement exists."@en
+    ] ;
+    # gUFO Quality Aspects for Partnerships
+    sh:property [
+        sh:path icac-partnerships:hasPartnershipEffectiveness ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "ineffective" "limited" "moderate" "effective" "highly_effective" ) ;
+        sh:message "Partnership effectiveness must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:hasCoordinationLevel ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "minimal" "basic" "standard" "enhanced" "comprehensive" ) ;
+        sh:message "Coordination level must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:hasTrustLevel ;
+        sh:datatype xsd:double ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Trust level must be between 0.0 and 1.0 (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:hasCollaborationIntensity ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "low" "moderate" "high" "intensive" "fully_integrated" ) ;
+        sh:message "Collaboration intensity must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:hasSuccessRate ;
+        sh:datatype xsd:double ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Success rate must be between 0.0 and 1.0 (gUFO quality aspect)."@en
+    ] .
+
+icac-partnerships-shapes:TechnologyCooperationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:TechnologyCooperation ;
+    rdfs:label "Technology Cooperation Shape"@en ;
+    rdfs:comment "Enhanced validation shape for technology cooperation instances with gUFO quality aspects."@en ;
+    sh:property [
+        sh:path icac-partnerships:technologyMaturity ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "experimental" "pilot" "production" "mature" ) ;
+        sh:message "Technology maturity must be from the allowed list."@en
+    ] ;
+    # gUFO Quality Aspects for Technology Cooperation
+    sh:property [
+        sh:path icac-partnerships:hasInnovationLevel ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "incremental" "moderate" "significant" "breakthrough" "revolutionary" ) ;
+        sh:message "Innovation level must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:hasImplementationSpeed ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "slow" "moderate" "fast" "rapid" "immediate" ) ;
+        sh:message "Implementation speed must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:hasTechnicalReliability ;
+        sh:datatype xsd:double ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Technical reliability must be between 0.0 and 1.0 (gUFO quality aspect)."@en
+    ] .
+
+icac-partnerships-shapes:CrowdsourcingInvestigationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:CrowdsourcingInvestigation ;
+    rdfs:label "Crowdsourcing Investigation Shape"@en ;
+    rdfs:comment "Enhanced validation shape for crowdsourcing investigation instances with gUFO quality aspects."@en ;
+    sh:property [
+        sh:path icac-partnerships:publicTipsReceived ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0 ;
+        sh:maxInclusive 100000 ;
+        sh:message "Public tips received must be between 0 and 100,000."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:crowdsourcingPlatform ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "website" "social_media" "forums" "mobile_app" "specialized_platform" ) ;
+        sh:message "Crowdsourcing platform must be from the allowed list."@en
+    ] ;
+    # gUFO Quality Aspects for Crowdsourcing
+    sh:property [
+        sh:path icac-partnerships:hasParticipationLevel ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "minimal" "low" "moderate" "high" "massive" ) ;
+        sh:message "Participation level must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:hasResponseQuality ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "poor" "fair" "good" "excellent" "exceptional" ) ;
+        sh:message "Response quality must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:hasEngagementEffectiveness ;
+        sh:datatype xsd:double ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Engagement effectiveness must be between 0.0 and 1.0 (gUFO quality aspect)."@en
+    ] .
+
+icac-partnerships-shapes:InformationSharingFrameworkShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:InformationSharingFramework ;
+    rdfs:label "Information Sharing Framework Shape"@en ;
+    rdfs:comment "Enhanced validation shape for information sharing framework instances with gUFO quality aspects."@en ;
+    sh:property [
+        sh:path icac-partnerships:sharingFrequency ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "real_time" "daily" "weekly" "monthly" "on_demand" ) ;
+        sh:message "Sharing frequency must be from the allowed list."@en
+    ] ;
+    # gUFO Quality Aspects for Information Sharing
+    sh:property [
+        sh:path icac-partnerships:hasSharingEfficiency ;
+        sh:datatype xsd:double ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Sharing efficiency must be between 0.0 and 1.0 (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:hasSecurityLevel ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "basic" "standard" "enhanced" "high" "maximum" ) ;
+        sh:message "Security level must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:hasDataQuality ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "poor" "fair" "good" "excellent" "verified" ) ;
+        sh:message "Data quality must be from allowed values (gUFO quality aspect)."@en
+    ] .
+
+icac-partnerships-shapes:PartnerRoleShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:PartnerRole ;
+    rdfs:label "Partner Role Shape"@en ;
+    rdfs:comment "Enhanced validation shape for partner role instances with gUFO quality aspects."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 3 ;
+        sh:maxLength 100 ;
+        sh:message "Partner role label should be between 3 and 100 characters when provided."@en
+    ] ;
+    # gUFO Quality Aspects for Partner Roles
+    sh:property [
+        sh:path icac-partnerships:hasRoleEffectiveness ;
+        sh:datatype xsd:double ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Role effectiveness must be between 0.0 and 1.0 (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:hasCapabilityLevel ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "limited" "basic" "standard" "advanced" "expert" ) ;
+        sh:message "Capability level must be from allowed values (gUFO quality aspect)."@en
+    ] ;
+    sh:property [
+        sh:path icac-partnerships:hasCommitmentLevel ;
+        sh:datatype xsd:double ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "Commitment level must be between 0.0 and 1.0 (gUFO quality aspect)."@en
+    ] .
+
+# =============================================================================
+# gUFO PARTICIPATION CONSTRAINT SHAPES
+# =============================================================================
+
+icac-partnerships-shapes:PartnershipParticipationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:PublicPrivatePartnership ;
+    rdfs:label "Partnership Participation Shape"@en ;
+    rdfs:comment "Validates gUFO participation constraints for partnerships."@en ;
+    sh:sparql [
+        sh:message "Partnership must have at least 2 participating organizations (gUFO participation constraint)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this rdf:type icac-partnerships:PublicPrivatePartnership .
+                {
+                    SELECT $this (COUNT(DISTINCT ?partner) AS ?partnerCount)
+                    WHERE {
+                        $this icac-partnerships:includesPartner ?partner .
+                    }
+                    GROUP BY $this
+                }
+                FILTER (?partnerCount < 2)
+            }
+        """
+    ] .
+
+icac-partnerships-shapes:TechCooperationParticipationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:TechIndustryCooperation ;
+    rdfs:label "Tech Cooperation Participation Shape"@en ;
+    rdfs:comment "Validates gUFO participation constraints for technology cooperation."@en ;
+    sh:sparql [
+        sh:message "Tech cooperation must include at least one technology partner and one law enforcement partner (gUFO participation constraint)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this rdf:type icac-partnerships:TechIndustryCooperation .
+                FILTER NOT EXISTS {
+                    $this icac-partnerships:includesPartner ?techOrg .
+                    ?techOrg icac-partnerships:hasRole ?techRole .
+                    ?techRole rdf:type icac-partnerships:TechnologyPartner .
+                } ||
+                FILTER NOT EXISTS {
+                    $this icac-partnerships:includesPartner ?leOrg .
+                    ?leOrg icac-partnerships:hasRole ?leRole .
+                    ?leRole rdf:type icac-partnerships:LawEnforcementPartner .
+                }
+            }
+        """
+    ] .
+
+icac-partnerships-shapes:MultiStakeholderParticipationShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:MultiStakeholderInitiative ;
+    rdfs:label "Multi-Stakeholder Participation Shape"@en ;
+    rdfs:comment "Validates gUFO participation constraints for multi-stakeholder initiatives."@en ;
+    sh:sparql [
+        sh:message "Multi-stakeholder initiative must include at least 3 different types of partners (gUFO participation constraint)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this rdf:type icac-partnerships:MultiStakeholderInitiative .
+                {
+                    SELECT $this (COUNT(DISTINCT ?roleType) AS ?roleTypeCount)
+                    WHERE {
+                        $this icac-partnerships:includesPartner ?partner .
+                        ?partner icac-partnerships:hasRole ?role .
+                        ?role rdf:type ?roleType .
+                        ?roleType rdfs:subClassOf* icac-partnerships:PartnerRole .
+                    }
+                    GROUP BY $this
+                }
+                FILTER (?roleTypeCount < 3)
+            }
+        """
+    ] .
+
+# =============================================================================
+# gUFO PART-WHOLE RELATIONSHIP SHAPES
+# =============================================================================
+
+icac-partnerships-shapes:PartnershipCompositionShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:PublicPrivatePartnership ;
+    rdfs:label "Partnership Composition Shape"@en ;
+    rdfs:comment "Validates gUFO part-whole relationships for partnership composition."@en ;
+    sh:sparql [
+        sh:message "Partnership composition must include complementary organizational capabilities (gUFO part-whole constraint)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this rdf:type icac-partnerships:PublicPrivatePartnership .
+                $this icac-partnerships:includesPartner ?publicOrg .
+                ?publicOrg icac-partnerships:hasRole ?publicRole .
+                ?publicRole rdf:type icac-partnerships:LawEnforcementPartner .
+                FILTER NOT EXISTS {
+                    $this icac-partnerships:includesPartner ?privateOrg .
+                    ?privateOrg icac-partnerships:hasRole ?privateRole .
+                    ?privateRole rdf:type ?privateRoleType .
+                    ?privateRoleType rdfs:subClassOf* icac-partnerships:PartnerRole .
+                    FILTER (?privateRoleType != icac-partnerships:LawEnforcementPartner)
+                }
+            }
+        """
+    ] .
+
+icac-partnerships-shapes:TechnologyCooperationCompositionShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:TechnologyCooperation ;
+    rdfs:label "Technology Cooperation Composition Shape"@en ;
+    rdfs:comment "Validates gUFO part-whole relationships for technology cooperation composition."@en ;
+    sh:sparql [
+        sh:message "Technology cooperation must include both technical and operational components (gUFO part-whole constraint)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this rdf:type icac-partnerships:TechnologyCooperation .
+                FILTER NOT EXISTS {
+                    { ?partnership icac-partnerships:coordinatedThrough $this } UNION
+                    { ?framework icac-partnerships:enablesSharing $this }
+                }
+            }
+        """
+    ] .
+
+icac-partnerships-shapes:InformationSharingCompositionShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:InformationSharingFramework ;
+    rdfs:label "Information Sharing Composition Shape"@en ;
+    rdfs:comment "Validates gUFO part-whole relationships for information sharing composition."@en ;
+    sh:sparql [
+        sh:message "Information sharing framework must be composed of technical and legal components (gUFO part-whole constraint)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this rdf:type icac-partnerships:InformationSharingFramework .
+                FILTER NOT EXISTS {
+                    ?agreement rdf:type icac-partnerships:DataSharingAgreement .
+                    ?agreement rdfs:subClassOf* $this .
+                } &&
+                FILTER NOT EXISTS {
+                    ?technical rdf:type icac-partnerships:TechnicalIntegration .
+                    ?technical rdfs:subClassOf* $this .
+                }
+            }
+        """
+    ] .
+
+# =============================================================================
+# gUFO QUALIFIED RELATION SHAPES
+# =============================================================================
+
+icac-partnerships-shapes:QualifiedPartnershipParticipationShape rdf:type sh:NodeShape ;
+    sh:targetClass gufo:ParticipationSituation ;
+    rdfs:label "Qualified Partnership Participation Shape"@en ;
+    rdfs:comment "Validates gUFO qualified participation situations in partnerships."@en ;
+    sh:sparql [
+        sh:message "Qualified participation must involve appropriate partnership roles and organizations (gUFO qualified relation)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this rdf:type gufo:ParticipationSituation .
+                $this gufo:participatesIn ?partnership .
+                ?partnership rdf:type icac-partnerships:PublicPrivatePartnership .
+                FILTER NOT EXISTS {
+                    ?org icac-partnerships:hasRole ?role .
+                    ?role rdf:type ?roleType .
+                    ?roleType rdfs:subClassOf* icac-partnerships:PartnerRole .
+                }
+            }
+        """
+    ] .
+
+# =============================================================================
+# ADVANCED gUFO BUSINESS RULES
+# =============================================================================
+
+icac-partnerships-shapes:HighEffectivenessPartnershipRule rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:PublicPrivatePartnership ;
+    rdfs:label "High Effectiveness Partnership Rule"@en ;
+    rdfs:comment "Advanced gUFO business rule: Highly effective partnerships should have high trust and coordination levels."@en ;
+    sh:sparql [
+        sh:message "Highly effective partnerships must have high trust levels and enhanced coordination (gUFO business rule)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-partnerships:hasPartnershipEffectiveness "highly_effective" .
+                {
+                    FILTER NOT EXISTS {
+                        $this icac-partnerships:hasTrustLevel ?trust .
+                        FILTER (?trust >= 0.7)
+                    }
+                } UNION {
+                    FILTER NOT EXISTS {
+                        $this icac-partnerships:hasCoordinationLevel ?coord .
+                        FILTER (?coord IN ("enhanced", "comprehensive"))
+                    }
+                }
+            }
+        """
+    ] .
+
+icac-partnerships-shapes:TechnologyMaturityImplementationRule rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:TechnologyCooperation ;
+    rdfs:label "Technology Maturity Implementation Rule"@en ;
+    rdfs:comment "Advanced gUFO business rule: Mature technology should have fast implementation and high reliability."@en ;
+    sh:sparql [
+        sh:message "Mature technology cooperation must have fast implementation speed and high reliability (gUFO business rule)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-partnerships:technologyMaturity "mature" .
+                {
+                    FILTER NOT EXISTS {
+                        $this icac-partnerships:hasImplementationSpeed ?speed .
+                        FILTER (?speed IN ("fast", "rapid", "immediate"))
+                    }
+                } UNION {
+                    FILTER NOT EXISTS {
+                        $this icac-partnerships:hasTechnicalReliability ?reliability .
+                        FILTER (?reliability >= 0.8)
+                    }
+                }
+            }
+        """
+    ] .
+
+icac-partnerships-shapes:CrowdsourcingEffectivenessRule rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:CrowdsourcingInvestigation ;
+    rdfs:label "Crowdsourcing Effectiveness Rule"@en ;
+    rdfs:comment "Advanced gUFO business rule: High engagement effectiveness requires high participation and response quality."@en ;
+    sh:sparql [
+        sh:message "High engagement effectiveness requires high participation level and excellent response quality (gUFO business rule)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-partnerships:hasEngagementEffectiveness ?effectiveness .
+                FILTER (?effectiveness >= 0.8)
+                {
+                    FILTER NOT EXISTS {
+                        $this icac-partnerships:hasParticipationLevel ?participation .
+                        FILTER (?participation IN ("high", "massive"))
+                    }
+                } UNION {
+                    FILTER NOT EXISTS {
+                        $this icac-partnerships:hasResponseQuality ?quality .
+                        FILTER (?quality IN ("excellent", "exceptional"))
+                    }
+                }
+            }
+        """
+    ] .
+
+icac-partnerships-shapes:InformationSharingSecurityRule rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:InformationSharingFramework ;
+    rdfs:label "Information Sharing Security Rule"@en ;
+    rdfs:comment "Advanced gUFO business rule: High data quality requires enhanced security levels."@en ;
+    sh:sparql [
+        sh:message "Excellent or verified data quality requires enhanced or high security levels (gUFO business rule)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-partnerships:hasDataQuality ?quality .
+                FILTER (?quality IN ("excellent", "verified"))
+                FILTER NOT EXISTS {
+                    $this icac-partnerships:hasSecurityLevel ?security .
+                    FILTER (?security IN ("enhanced", "high", "maximum"))
+                }
+            }
+        """
+    ] .
+
+icac-partnerships-shapes:PartnerRoleCapabilityCommitmentRule rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:PartnerRole ;
+    rdfs:label "Partner Role Capability Commitment Rule"@en ;
+    rdfs:comment "Advanced gUFO business rule: High role effectiveness requires advanced capabilities and high commitment."@en ;
+    sh:sparql [
+        sh:message "High role effectiveness requires advanced capabilities and high commitment levels (gUFO business rule)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-partnerships:hasRoleEffectiveness ?effectiveness .
+                FILTER (?effectiveness >= 0.8)
+                {
+                    FILTER NOT EXISTS {
+                        $this icac-partnerships:hasCapabilityLevel ?capability .
+                        FILTER (?capability IN ("advanced", "expert"))
+                    }
+                } UNION {
+                    FILTER NOT EXISTS {
+                        $this icac-partnerships:hasCommitmentLevel ?commitment .
+                        FILTER (?commitment >= 0.7)
+                    }
+                }
+            }
+        """
+    ] .
+
+icac-partnerships-shapes:MultiStakeholderComplexityRule rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:MultiStakeholderInitiative ;
+    rdfs:label "Multi-Stakeholder Complexity Rule"@en ;
+    rdfs:comment "Advanced gUFO business rule: Multi-stakeholder initiatives with many partners need comprehensive coordination."@en ;
+    sh:sparql [
+        sh:message "Multi-stakeholder initiatives with 5+ partners need comprehensive coordination level (gUFO business rule)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this rdf:type icac-partnerships:MultiStakeholderInitiative .
+                {
+                    SELECT $this (COUNT(DISTINCT ?partner) AS ?partnerCount)
+                    WHERE {
+                        $this icac-partnerships:includesPartner ?partner .
+                    }
+                    GROUP BY $this
+                }
+                FILTER (?partnerCount >= 5)
+                FILTER NOT EXISTS {
+                    $this icac-partnerships:hasCoordinationLevel "comprehensive" .
+                }
+            }
+        """
+    ] .
+
+# =============================================================================
+# ENHANCED DATA QUALITY VALIDATION SHAPE
+# =============================================================================
+
+icac-partnerships-shapes:PartnershipDataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass icac-partnerships:PublicPrivatePartnership ;
+    rdfs:label "Partnership Data Quality Shape"@en ;
+    rdfs:comment "Enhanced data quality validation for partnerships with gUFO quality consistency rules."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 5 ;
+        sh:maxLength 200 ;
+        sh:message "Partnership label should be between 5 and 200 characters when provided."@en
+    ] ;
+    sh:property [
+        sh:path rdfs:comment ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 10 ;
+        sh:maxLength 1000 ;
+        sh:message "Partnership comment should be between 10 and 1000 characters when provided."@en
+    ] ;
+    # gUFO Quality Consistency Rules
+    sh:sparql [
+        sh:message "Partnership effectiveness and success rate should be consistent (gUFO quality consistency)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-partnerships:hasPartnershipEffectiveness ?effectiveness ;
+                      icac-partnerships:hasSuccessRate ?rate .
+                {
+                    FILTER (?effectiveness = "highly_effective" && ?rate < 0.7)
+                } UNION {
+                    FILTER (?effectiveness = "effective" && (?rate < 0.5 || ?rate > 0.8))
+                } UNION {
+                    FILTER (?effectiveness = "moderate" && (?rate < 0.3 || ?rate > 0.6))
+                } UNION {
+                    FILTER (?effectiveness = "limited" && ?rate > 0.4)
+                } UNION {
+                    FILTER (?effectiveness = "ineffective" && ?rate > 0.2)
+                }
+            }
+        """
+    ] ;
+    sh:sparql [
+        sh:message "Trust level and collaboration intensity should be correlated (gUFO quality consistency)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this icac-partnerships:hasTrustLevel ?trust ;
+                      icac-partnerships:hasCollaborationIntensity ?intensity .
+                {
+                    FILTER (?trust >= 0.8 && ?intensity NOT IN ("intensive", "fully_integrated"))
+                } UNION {
+                    FILTER (?trust <= 0.3 && ?intensity NOT IN ("low", "moderate"))
+                }
+            }
+        """
+    ] . 
