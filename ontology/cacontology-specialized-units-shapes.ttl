@@ -13,8 +13,8 @@
 # K9 DETECTION PROGRAM SHAPES
 # =============================================================================
 
-icac-specialized:K9DetectionProgramShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:K9DetectionProgram ;
+cacontology-specialized:K9DetectionProgramShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:K9DetectionProgram ;
     rdfs:label "K9 Detection Program Shape"@en ;
     rdfs:comment "Validation shape for K9 detection program instances."@en ;
     sh:property [
@@ -36,8 +36,8 @@ icac-specialized:K9DetectionProgramShape rdf:type sh:NodeShape ;
         sh:message "K9 detection program comment should be 10-500 characters when provided."@en
     ] .
 
-icac-specialized:DetectionDogShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:DetectionDog ;
+cacontology-specialized:DetectionDogShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:DetectionDog ;
     rdfs:label "Detection Dog Shape"@en ;
     rdfs:comment "Validation shape for detection dog instances."@en ;
     sh:property [
@@ -50,14 +50,14 @@ icac-specialized:DetectionDogShape rdf:type sh:NodeShape ;
         sh:message "Detection dog must have a name (2-50 characters)."@en
     ] ;
     sh:property [
-        sh:path icac-specialized:hasCapability ;
-        sh:class icac-specialized:TripleThreatCapability ;
+        sh:path cacontology-specialized:hasCapability ;
+        sh:class cacontology-specialized:TripleThreatCapability ;
         sh:minCount 0 ;
         sh:message "Detection dog capabilities must be valid TripleThreatCapability instances."@en
     ] .
 
-icac-specialized:K9SearchOperationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:K9SearchOperation ;
+cacontology-specialized:K9SearchOperationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:K9SearchOperation ;
     rdfs:label "K9 Search Operation Shape"@en ;
     rdfs:comment "Validation shape for K9 search operation instances."@en ;
     sh:property [
@@ -75,7 +75,7 @@ icac-specialized:K9SearchOperationShape rdf:type sh:NodeShape ;
         sh:message "K9 search operation may specify end time."@en
     ] ;
     sh:property [
-        sh:path icac-specialized:searchWarrantsExecuted ;
+        sh:path cacontology-specialized:searchWarrantsExecuted ;
         sh:datatype xsd:integer ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -88,8 +88,8 @@ icac-specialized:K9SearchOperationShape rdf:type sh:NodeShape ;
 # OFFICER WELLNESS PROGRAM SHAPES
 # =============================================================================
 
-icac-specialized:OfficerWellnessProgramShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:OfficerWellnessProgram ;
+cacontology-specialized:OfficerWellnessProgramShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:OfficerWellnessProgram ;
     rdfs:label "Officer Wellness Program Shape"@en ;
     rdfs:comment "Validation shape for officer wellness program instances."@en ;
     sh:property [
@@ -111,8 +111,8 @@ icac-specialized:OfficerWellnessProgramShape rdf:type sh:NodeShape ;
         sh:message "Program description should be 10-1000 characters when provided."@en
     ] .
 
-icac-specialized:TherapyDogShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:TherapyDog ;
+cacontology-specialized:TherapyDogShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:TherapyDog ;
     rdfs:label "Therapy Dog Shape"@en ;
     rdfs:comment "Validation shape for therapy dog instances."@en ;
     sh:property [
@@ -125,14 +125,14 @@ icac-specialized:TherapyDogShape rdf:type sh:NodeShape ;
         sh:message "Therapy dog must have a name (2-50 characters)."@en
     ] ;
     sh:property [
-        sh:path icac-specialized:providesWellnessSupport ;
+        sh:path cacontology-specialized:providesWellnessSupport ;
         sh:class uco-identity:Person ;
         sh:minCount 1 ;
         sh:message "Therapy dog must provide wellness support to at least one person."@en
     ] .
 
-icac-specialized:WellnessCheckShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:WellnessCheck ;
+cacontology-specialized:WellnessCheckShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:WellnessCheck ;
     rdfs:label "Wellness Check Shape"@en ;
     rdfs:comment "Validation shape for wellness check instances."@en ;
     sh:property [
@@ -154,8 +154,8 @@ icac-specialized:WellnessCheckShape rdf:type sh:NodeShape ;
 # SPECIALIZED INVESTIGATIVE UNIT SHAPES
 # =============================================================================
 
-icac-specialized:SpecializedInvestigativeUnitShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:SpecializedInvestigativeUnit ;
+cacontology-specialized:SpecializedInvestigativeUnitShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:SpecializedInvestigativeUnit ;
     rdfs:label "Specialized Investigative Unit Shape"@en ;
     rdfs:comment "Validation shape for specialized investigative unit instances."@en ;
     sh:property [
@@ -168,7 +168,7 @@ icac-specialized:SpecializedInvestigativeUnitShape rdf:type sh:NodeShape ;
         sh:message "Specialized unit must have a name (5-100 characters)."@en
     ] ;
     sh:property [
-        sh:path icac-specialized:operationalCapacity ;
+        sh:path cacontology-specialized:operationalCapacity ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -177,8 +177,8 @@ icac-specialized:SpecializedInvestigativeUnitShape rdf:type sh:NodeShape ;
         sh:message "Operational capacity must be between 1 and 1000 when specified."@en
     ] .
 
-icac-specialized:NamedOperationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:NamedOperation ;
+cacontology-specialized:NamedOperationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:NamedOperation ;
     rdfs:label "Named Operation Shape"@en ;
     rdfs:comment "Validation shape for named operation instances."@en ;
     sh:property [
@@ -205,7 +205,7 @@ icac-specialized:NamedOperationShape rdf:type sh:NodeShape ;
         sh:message "Named operation may specify end time."@en
     ] ;
     sh:property [
-        sh:path icac-specialized:arrestCount ;
+        sh:path cacontology-specialized:arrestCount ;
         sh:datatype xsd:integer ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -218,8 +218,8 @@ icac-specialized:NamedOperationShape rdf:type sh:NodeShape ;
 # COMMUNITY OUTREACH SHAPES
 # =============================================================================
 
-icac-specialized:CommunityOutreachProgramShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:CommunityOutreachProgram ;
+cacontology-specialized:CommunityOutreachProgramShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:CommunityOutreachProgram ;
     rdfs:label "Community Outreach Program Shape"@en ;
     rdfs:comment "Validation shape for community outreach program instances."@en ;
     sh:property [
@@ -232,7 +232,7 @@ icac-specialized:CommunityOutreachProgramShape rdf:type sh:NodeShape ;
         sh:message "Community outreach program must have a label (5-100 characters)."@en
     ] ;
     sh:property [
-        sh:path icac-specialized:eventCount ;
+        sh:path cacontology-specialized:eventCount ;
         sh:datatype xsd:integer ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -241,8 +241,8 @@ icac-specialized:CommunityOutreachProgramShape rdf:type sh:NodeShape ;
         sh:message "Event count must be between 0 and 1000."@en
     ] .
 
-icac-specialized:SafetyEducationEventShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:SafetyEducationEvent ;
+cacontology-specialized:SafetyEducationEventShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:SafetyEducationEvent ;
     rdfs:label "Safety Education Event Shape"@en ;
     rdfs:comment "Validation shape for safety education event instances."@en ;
     sh:property [
@@ -253,7 +253,7 @@ icac-specialized:SafetyEducationEventShape rdf:type sh:NodeShape ;
         sh:message "Safety education event must specify start time."@en
     ] ;
     sh:property [
-        sh:path icac-specialized:attendeeCount ;
+        sh:path cacontology-specialized:attendeeCount ;
         sh:datatype xsd:integer ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -262,8 +262,8 @@ icac-specialized:SafetyEducationEventShape rdf:type sh:NodeShape ;
         sh:message "Attendee count must be between 1 and 10000 when specified."@en
     ] .
 
-icac-specialized:ProfessionalTrainingEventShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:ProfessionalTrainingEvent ;
+cacontology-specialized:ProfessionalTrainingEventShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:ProfessionalTrainingEvent ;
     rdfs:label "Professional Training Event Shape"@en ;
     rdfs:comment "Validation shape for professional training event instances."@en ;
     sh:property [
@@ -274,7 +274,7 @@ icac-specialized:ProfessionalTrainingEventShape rdf:type sh:NodeShape ;
         sh:message "Professional training event must specify start time."@en
     ] ;
     sh:property [
-        sh:path icac-specialized:professionalsTrained ;
+        sh:path cacontology-specialized:professionalsTrained ;
         sh:datatype xsd:integer ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -287,12 +287,12 @@ icac-specialized:ProfessionalTrainingEventShape rdf:type sh:NodeShape ;
 # SEASONAL OPERATIONS SHAPES
 # =============================================================================
 
-icac-specialized:SeasonalOperationsUnitShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:SeasonalOperationsUnit ;
+cacontology-specialized:SeasonalOperationsUnitShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:SeasonalOperationsUnit ;
     rdfs:label "Seasonal Operations Unit Shape"@en ;
     rdfs:comment "Validation shape for seasonal operations unit instances."@en ;
     sh:property [
-        sh:path icac-specialized:operationSeason ;
+        sh:path cacontology-specialized:operationSeason ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -300,7 +300,7 @@ icac-specialized:SeasonalOperationsUnitShape rdf:type sh:NodeShape ;
         sh:message "Operation season must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-specialized:operationMonths ;
+        sh:path cacontology-specialized:operationMonths ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -308,7 +308,7 @@ icac-specialized:SeasonalOperationsUnitShape rdf:type sh:NodeShape ;
         sh:message "Operation months must be in format 'Month-Month' (e.g., 'March-May')."@en
     ] ;
     sh:property [
-        sh:path icac-specialized:seasonalEffectiveness ;
+        sh:path cacontology-specialized:seasonalEffectiveness ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -317,12 +317,12 @@ icac-specialized:SeasonalOperationsUnitShape rdf:type sh:NodeShape ;
         sh:message "Seasonal effectiveness must be between 0.0 and 1.0."@en
     ] .
 
-icac-specialized:SeasonalCyberTipPatternShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:SeasonalCyberTipPattern ;
+cacontology-specialized:SeasonalCyberTipPatternShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:SeasonalCyberTipPattern ;
     rdfs:label "Seasonal Cyber Tip Pattern Shape"@en ;
     rdfs:comment "Validation shape for seasonal cyber tip pattern instances."@en ;
     sh:property [
-        sh:path icac-specialized:cyberTipPatternType ;
+        sh:path cacontology-specialized:cyberTipPatternType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -334,12 +334,12 @@ icac-specialized:SeasonalCyberTipPatternShape rdf:type sh:NodeShape ;
 # CHILD RESCUE OPERATIONS SHAPES
 # =============================================================================
 
-icac-specialized:ChildRescueUnitShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:ChildRescueUnit ;
+cacontology-specialized:ChildRescueUnitShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:ChildRescueUnit ;
     rdfs:label "Child Rescue Unit Shape"@en ;
     rdfs:comment "Validation shape for child rescue unit instances."@en ;
     sh:property [
-        sh:path icac-specialized:rescueOperationsCount ;
+        sh:path cacontology-specialized:rescueOperationsCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -348,8 +348,8 @@ icac-specialized:ChildRescueUnitShape rdf:type sh:NodeShape ;
         sh:message "Rescue operations count must be between 0 and 10000."@en
     ] .
 
-icac-specialized:OngoingAbuseInvestigationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:OngoingAbuseInvestigation ;
+cacontology-specialized:OngoingAbuseInvestigationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:OngoingAbuseInvestigation ;
     rdfs:label "Ongoing Abuse Investigation Shape"@en ;
     rdfs:comment "Validation shape for ongoing abuse investigation instances."@en ;
     sh:property [
@@ -360,7 +360,7 @@ icac-specialized:OngoingAbuseInvestigationShape rdf:type sh:NodeShape ;
         sh:message "Ongoing abuse investigation must specify start time."@en
     ] ;
     sh:property [
-        sh:path icac-specialized:childrenInOngoingAbuse ;
+        sh:path cacontology-specialized:childrenInOngoingAbuse ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -369,8 +369,8 @@ icac-specialized:OngoingAbuseInvestigationShape rdf:type sh:NodeShape ;
         sh:message "Children in ongoing abuse must be between 0 and 1000."@en
     ] .
 
-icac-specialized:EmergencyResponseCoordinationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:EmergencyResponseCoordination ;
+cacontology-specialized:EmergencyResponseCoordinationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:EmergencyResponseCoordination ;
     rdfs:label "Emergency Response Coordination Shape"@en ;
     rdfs:comment "Validation shape for emergency response coordination instances."@en ;
     sh:property [
@@ -381,7 +381,7 @@ icac-specialized:EmergencyResponseCoordinationShape rdf:type sh:NodeShape ;
         sh:message "Emergency response coordination must specify start time."@en
     ] ;
     sh:property [
-        sh:path icac-specialized:emergencyResponseTime ;
+        sh:path cacontology-specialized:emergencyResponseTime ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -394,12 +394,12 @@ icac-specialized:EmergencyResponseCoordinationShape rdf:type sh:NodeShape ;
 # HIGH VOLUME OPERATIONS SHAPES
 # =============================================================================
 
-icac-specialized:HighVolumeOperationsUnitShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:HighVolumeOperationsUnit ;
+cacontology-specialized:HighVolumeOperationsUnitShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:HighVolumeOperationsUnit ;
     rdfs:label "High Volume Operations Unit Shape"@en ;
     rdfs:comment "Validation shape for high volume operations unit instances."@en ;
     sh:property [
-        sh:path icac-specialized:operationalCapacity ;
+        sh:path cacontology-specialized:operationalCapacity ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -408,12 +408,12 @@ icac-specialized:HighVolumeOperationsUnitShape rdf:type sh:NodeShape ;
         sh:message "High volume unit operational capacity must be between 100 and 10000."@en
     ] .
 
-icac-specialized:RapidResponseTeamShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:RapidResponseTeam ;
+cacontology-specialized:RapidResponseTeamShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:RapidResponseTeam ;
     rdfs:label "Rapid Response Team Shape"@en ;
     rdfs:comment "Validation shape for rapid response team instances."@en ;
     sh:property [
-        sh:path icac-specialized:rapidResponseTime ;
+        sh:path cacontology-specialized:rapidResponseTime ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -426,8 +426,8 @@ icac-specialized:RapidResponseTeamShape rdf:type sh:NodeShape ;
 # AFFILIATE MANAGEMENT SHAPES
 # =============================================================================
 
-icac-specialized:ICACAffiliateOrganizationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:ICACAffiliateOrganization ;
+cacontology-specialized:ICACAffiliateOrganizationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:ICACAffiliateOrganization ;
     rdfs:label "CAC Affiliate Organization Shape"@en ;
     rdfs:comment "Validation shape for ICAC affiliate organization instances."@en ;
     sh:property [
@@ -440,7 +440,7 @@ icac-specialized:ICACAffiliateOrganizationShape rdf:type sh:NodeShape ;
         sh:message "Affiliate organization must have a name (5-200 characters)."@en
     ] ;
     sh:property [
-        sh:path icac-specialized:affiliationLevel ;
+        sh:path cacontology-specialized:affiliationLevel ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -448,7 +448,7 @@ icac-specialized:ICACAffiliateOrganizationShape rdf:type sh:NodeShape ;
         sh:message "Affiliation level must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-specialized:affiliationStatus ;
+        sh:path cacontology-specialized:affiliationStatus ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -456,7 +456,7 @@ icac-specialized:ICACAffiliateOrganizationShape rdf:type sh:NodeShape ;
         sh:message "Affiliation status must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-specialized:resourceContributionLevel ;
+        sh:path cacontology-specialized:resourceContributionLevel ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -464,12 +464,12 @@ icac-specialized:ICACAffiliateOrganizationShape rdf:type sh:NodeShape ;
         sh:message "Resource contribution level must be from the allowed list."@en
     ] .
 
-icac-specialized:AffiliateResourceLibraryShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:AffiliateResourceLibrary ;
+cacontology-specialized:AffiliateResourceLibraryShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:AffiliateResourceLibrary ;
     rdfs:label "Affiliate Resource Library Shape"@en ;
     rdfs:comment "Validation shape for affiliate resource library instances."@en ;
     sh:property [
-        sh:path icac-specialized:resourceLibrarySize ;
+        sh:path cacontology-specialized:resourceLibrarySize ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -478,12 +478,12 @@ icac-specialized:AffiliateResourceLibraryShape rdf:type sh:NodeShape ;
         sh:message "Resource library size must be between 0 and 100000."@en
     ] .
 
-icac-specialized:InterAffiliateResourceSharingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:InterAffiliateResourceSharing ;
+cacontology-specialized:InterAffiliateResourceSharingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:InterAffiliateResourceSharing ;
     rdfs:label "Inter-Affiliate Resource Sharing Shape"@en ;
     rdfs:comment "Validation shape for inter-affiliate resource sharing instances."@en ;
     sh:property [
-        sh:path icac-specialized:resourceSharingFrequency ;
+        sh:path cacontology-specialized:resourceSharingFrequency ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -491,12 +491,12 @@ icac-specialized:InterAffiliateResourceSharingShape rdf:type sh:NodeShape ;
         sh:message "Resource sharing frequency must be from the allowed list."@en
     ] .
 
-icac-specialized:AffiliateResourceAllocationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:AffiliateResourceAllocation ;
+cacontology-specialized:AffiliateResourceAllocationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:AffiliateResourceAllocation ;
     rdfs:label "Affiliate Resource Allocation Shape"@en ;
     rdfs:comment "Validation shape for affiliate resource allocation instances."@en ;
     sh:property [
-        sh:path icac-specialized:resourceAllocationResponseTime ;
+        sh:path cacontology-specialized:resourceAllocationResponseTime ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -505,12 +505,12 @@ icac-specialized:AffiliateResourceAllocationShape rdf:type sh:NodeShape ;
         sh:message "Resource allocation response time must be between 1 and 720 hours (30 days)."@en
     ] .
 
-icac-specialized:AffiliateNetworkCoordinationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:AffiliateNetworkCoordination ;
+cacontology-specialized:AffiliateNetworkCoordinationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:AffiliateNetworkCoordination ;
     rdfs:label "Affiliate Network Coordination Shape"@en ;
     rdfs:comment "Validation shape for affiliate network coordination instances."@en ;
     sh:property [
-        sh:path icac-specialized:coordinationMeetingFrequency ;
+        sh:path cacontology-specialized:coordinationMeetingFrequency ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -522,12 +522,12 @@ icac-specialized:AffiliateNetworkCoordinationShape rdf:type sh:NodeShape ;
 # METRICS AND PERFORMANCE SHAPES
 # =============================================================================
 
-icac-specialized:AffiliateEngagementMetricsShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:AffiliateEngagementMetrics ;
+cacontology-specialized:AffiliateEngagementMetricsShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:AffiliateEngagementMetrics ;
     rdfs:label "Affiliate Engagement Metrics Shape"@en ;
     rdfs:comment "Validation shape for affiliate engagement metrics instances."@en ;
     sh:property [
-        sh:path icac-specialized:affiliateEngagementScore ;
+        sh:path cacontology-specialized:affiliateEngagementScore ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -536,12 +536,12 @@ icac-specialized:AffiliateEngagementMetricsShape rdf:type sh:NodeShape ;
         sh:message "Affiliate engagement score must be between 0.0 and 1.0."@en
     ] .
 
-icac-specialized:AffiliatePerformanceAssessmentShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:AffiliatePerformanceAssessment ;
+cacontology-specialized:AffiliatePerformanceAssessmentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:AffiliatePerformanceAssessment ;
     rdfs:label "Affiliate Performance Assessment Shape"@en ;
     rdfs:comment "Validation shape for affiliate performance assessment instances."@en ;
     sh:property [
-        sh:path icac-specialized:performanceScore ;
+        sh:path cacontology-specialized:performanceScore ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -550,8 +550,8 @@ icac-specialized:AffiliatePerformanceAssessmentShape rdf:type sh:NodeShape ;
         sh:message "Performance score must be between 0.0 and 1.0."@en
     ] .
 
-icac-specialized:AffiliateJointOperationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:AffiliateJointOperation ;
+cacontology-specialized:AffiliateJointOperationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:AffiliateJointOperation ;
     rdfs:label "Affiliate Joint Operation Shape"@en ;
     rdfs:comment "Validation shape for affiliate joint operation instances."@en ;
     sh:property [
@@ -562,7 +562,7 @@ icac-specialized:AffiliateJointOperationShape rdf:type sh:NodeShape ;
         sh:message "Affiliate joint operation must specify start time."@en
     ] ;
     sh:property [
-        sh:path icac-specialized:jointOperationCount ;
+        sh:path cacontology-specialized:jointOperationCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -575,8 +575,8 @@ icac-specialized:AffiliateJointOperationShape rdf:type sh:NodeShape ;
 # CROSS-REFERENCE VALIDATION SHAPES
 # =============================================================================
 
-icac-specialized:K9OperationCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:K9SearchOperation ;
+cacontology-specialized:K9OperationCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:K9SearchOperation ;
     rdfs:label "K9 Operation Cross Reference Shape"@en ;
     rdfs:comment "Validates cross-references between K9 operations and related entities."@en ;
     sh:sparql [
@@ -584,16 +584,16 @@ icac-specialized:K9OperationCrossReferenceShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-specialized:K9SearchOperation .
+                $this a cacontology-specialized:K9SearchOperation .
                 FILTER NOT EXISTS {
-                    ?dog icac-specialized:assistsInSearch $this .
+                    ?dog cacontology-specialized:assistsInSearch $this .
                 }
             }
         """
     ] .
 
-icac-specialized:WellnessProgramCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:OfficerWellnessProgram ;
+cacontology-specialized:WellnessProgramCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:OfficerWellnessProgram ;
     rdfs:label "Wellness Program Cross Reference Shape"@en ;
     rdfs:comment "Validates cross-references for officer wellness programs."@en ;
     sh:sparql [
@@ -601,18 +601,18 @@ icac-specialized:WellnessProgramCrossReferenceShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-specialized:OfficerWellnessProgram .
+                $this a cacontology-specialized:OfficerWellnessProgram .
                 FILTER NOT EXISTS {
-                    { ?check a icac-specialized:WellnessCheck } UNION
-                    { ?support a icac-specialized:MentalHealthSupport } UNION
-                    { ?therapy a icac-specialized:TherapyDog }
+                    { ?check a cacontology-specialized:WellnessCheck } UNION
+                    { ?support a cacontology-specialized:MentalHealthSupport } UNION
+                    { ?therapy a cacontology-specialized:TherapyDog }
                 }
             }
         """
     ] .
 
-icac-specialized:SpecializedUnitOperationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:SpecializedInvestigativeUnit ;
+cacontology-specialized:SpecializedUnitOperationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:SpecializedInvestigativeUnit ;
     rdfs:label "Specialized Unit Operation Shape"@en ;
     rdfs:comment "Validates that specialized units participate in operations."@en ;
     sh:sparql [
@@ -620,16 +620,16 @@ icac-specialized:SpecializedUnitOperationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-specialized:SpecializedInvestigativeUnit .
+                $this a cacontology-specialized:SpecializedInvestigativeUnit .
                 FILTER NOT EXISTS {
-                    $this icac-specialized:participatesInOperation ?operation .
+                    $this cacontology-specialized:participatesInOperation ?operation .
                 }
             }
         """
     ] .
 
-icac-specialized:AffiliateOrganizationValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:ICACAffiliateOrganization ;
+cacontology-specialized:AffiliateOrganizationValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:ICACAffiliateOrganization ;
     rdfs:label "Affiliate Organization Validation Shape"@en ;
     rdfs:comment "Validates affiliate organization relationships and status."@en ;
     sh:sparql [
@@ -637,12 +637,12 @@ icac-specialized:AffiliateOrganizationValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-specialized:ICACAffiliateOrganization ;
-                      icac-specialized:affiliationStatus "active" .
+                $this a cacontology-specialized:ICACAffiliateOrganization ;
+                      cacontology-specialized:affiliationStatus "active" .
                 FILTER NOT EXISTS {
-                    { $this icac-specialized:receivesResourceFrom ?sharing } UNION
-                    { $this icac-specialized:receivesSupportFrom ?support } UNION
-                    { $this icac-specialized:participatesInJointOperation ?operation }
+                    { $this cacontology-specialized:receivesResourceFrom ?sharing } UNION
+                    { $this cacontology-specialized:receivesSupportFrom ?support } UNION
+                    { $this cacontology-specialized:participatesInJointOperation ?operation }
                 }
             }
         """
@@ -652,14 +652,14 @@ icac-specialized:AffiliateOrganizationValidationShape rdf:type sh:NodeShape ;
 # TEMPORAL VALIDATION SHAPES
 # =============================================================================
 
-icac-specialized:TemporalValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:K9SearchOperation ,
-                   icac-specialized:NamedOperation ,
-                   icac-specialized:SafetyEducationEvent ,
-                   icac-specialized:ProfessionalTrainingEvent ,
-                   icac-specialized:OngoingAbuseInvestigation ,
-                   icac-specialized:EmergencyResponseCoordination ,
-                   icac-specialized:AffiliateJointOperation ;
+cacontology-specialized:TemporalValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:K9SearchOperation ,
+                   cacontology-specialized:NamedOperation ,
+                   cacontology-specialized:SafetyEducationEvent ,
+                   cacontology-specialized:ProfessionalTrainingEvent ,
+                   cacontology-specialized:OngoingAbuseInvestigation ,
+                   cacontology-specialized:EmergencyResponseCoordination ,
+                   cacontology-specialized:AffiliateJointOperation ;
     rdfs:label "Temporal Validation Shape"@en ;
     rdfs:comment "Validates temporal consistency for operations and events."@en ;
     sh:sparql [
@@ -674,8 +674,8 @@ icac-specialized:TemporalValidationShape rdf:type sh:NodeShape ;
         """
     ] .
 
-icac-specialized:SeasonalTimingValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:SeasonalOperationsUnit ;
+cacontology-specialized:SeasonalTimingValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:SeasonalOperationsUnit ;
     rdfs:label "Seasonal Timing Validation Shape"@en ;
     rdfs:comment "Validates seasonal operation timing consistency."@en ;
     sh:sparql [
@@ -683,8 +683,8 @@ icac-specialized:SeasonalTimingValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-specialized:operationSeason "spring_break" ;
-                      icac-specialized:operationMonths ?months .
+                $this cacontology-specialized:operationSeason "spring_break" ;
+                      cacontology-specialized:operationMonths ?months .
                 FILTER (!REGEX(?months, "March|April|May", "i"))
             }
         """
@@ -694,12 +694,12 @@ icac-specialized:SeasonalTimingValidationShape rdf:type sh:NodeShape ;
 # DATA QUALITY SHAPES
 # =============================================================================
 
-icac-specialized:DataQualityShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-specialized:K9DetectionProgram ,
-                   icac-specialized:OfficerWellnessProgram ,
-                   icac-specialized:SpecializedInvestigativeUnit ,
-                   icac-specialized:CommunityOutreachProgram ,
-                   icac-specialized:ICACAffiliateOrganization ;
+cacontology-specialized:DataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-specialized:K9DetectionProgram ,
+                   cacontology-specialized:OfficerWellnessProgram ,
+                   cacontology-specialized:SpecializedInvestigativeUnit ,
+                   cacontology-specialized:CommunityOutreachProgram ,
+                   cacontology-specialized:ICACAffiliateOrganization ;
     rdfs:label "Data Quality Shape"@en ;
     rdfs:comment "Validates data quality for specialized units entities."@en ;
     sh:property [

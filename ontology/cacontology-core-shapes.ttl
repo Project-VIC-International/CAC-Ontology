@@ -28,9 +28,9 @@
 # =============================================================================
 
 # Investigation Shape with gUFO Kind validation
-icac-gufo:InvestigationShape rdf:type sh:NodeShape ;
+cacontology-gufo:InvestigationShape rdf:type sh:NodeShape ;
     rdfs:label "gUFO Investigation Shape"@en ;
-    sh:targetClass icac-gufo:Investigation ;
+    sh:targetClass cacontology-gufo:Investigation ;
     sh:property [
         sh:path rdf:type ;
         sh:hasValue gufo:Kind ;
@@ -38,14 +38,14 @@ icac-gufo:InvestigationShape rdf:type sh:NodeShape ;
         sh:message "Investigation must be typed as gUFO Kind"@en
     ] ;
     sh:property [
-        sh:path icac-gufo:inPhase ;
+        sh:path cacontology-gufo:inPhase ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:class gufo:Phase ;
         sh:message "Investigation must be in exactly one phase"@en
     ] ;
     sh:property [
-        sh:path icac-gufo:hasRole ;
+        sh:path cacontology-gufo:hasRole ;
         sh:minCount 1 ;
         sh:class gufo:Role ;
         sh:message "Investigation must have at least one role"@en
@@ -56,7 +56,7 @@ icac-gufo:InvestigationShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # Base Phase Shape
-icac-gufo:PhaseShape rdf:type sh:NodeShape ;
+cacontology-gufo:PhaseShape rdf:type sh:NodeShape ;
     rdfs:label "gUFO Phase Shape"@en ;
     sh:targetClass gufo:Phase ;
     sh:property [
@@ -66,13 +66,13 @@ icac-gufo:PhaseShape rdf:type sh:NodeShape ;
         sh:message "Phase must be typed as gUFO Phase (anti-rigid sortal)"@en
     ] ;
     sh:property [
-        sh:path icac-gufo:hasPhaseBeginPoint ;
+        sh:path cacontology-gufo:hasPhaseBeginPoint ;
         sh:datatype xsd:dateTimeStamp ;
         sh:maxCount 1 ;
         sh:message "Phase can have at most one begin point"@en
     ] ;
     sh:property [
-        sh:path icac-gufo:hasPhaseEndPoint ;
+        sh:path cacontology-gufo:hasPhaseEndPoint ;
         sh:datatype xsd:dateTimeStamp ;
         sh:maxCount 1 ;
         sh:message "Phase can have at most one end point"@en
@@ -89,36 +89,36 @@ icac-gufo:PhaseShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT ?this
             WHERE {
-                ?this icac-gufo:hasPhaseBeginPoint ?begin ;
-                      icac-gufo:hasPhaseEndPoint ?end .
+                ?this cacontology-gufo:hasPhaseBeginPoint ?begin ;
+                      cacontology-gufo:hasPhaseEndPoint ?end .
                 FILTER (?begin >= ?end)
             }
         """
     ] .
 
 # Specific Phase Shapes
-icac-gufo:InitialPhaseShape rdf:type sh:NodeShape ;
+cacontology-gufo:InitialPhaseShape rdf:type sh:NodeShape ;
     rdfs:label "Initial Phase Shape"@en ;
-    sh:targetClass icac-gufo:InitialPhase ;
+    sh:targetClass cacontology-gufo:InitialPhase ;
     sh:property [
-        sh:path icac-gufo:hasPhaseBeginPoint ;
+        sh:path cacontology-gufo:hasPhaseBeginPoint ;
         sh:minCount 1 ;
         sh:message "Initial phase must have begin point"@en
     ] .
 
-icac-gufo:CompletedPhaseShape rdf:type sh:NodeShape ;
+cacontology-gufo:CompletedPhaseShape rdf:type sh:NodeShape ;
     rdfs:label "Completed Phase Shape"@en ;
-    sh:targetClass icac-gufo:CompletedPhase ;
+    sh:targetClass cacontology-gufo:CompletedPhase ;
     sh:property [
-        sh:path icac-gufo:hasPhaseEndPoint ;
+        sh:path cacontology-gufo:hasPhaseEndPoint ;
         sh:minCount 1 ;
         sh:message "Completed phase must have end point"@en
     ] .
 
 # Phase Transition Validation
-icac-gufo:PhaseTransitionShape rdf:type sh:NodeShape ;
+cacontology-gufo:PhaseTransitionShape rdf:type sh:NodeShape ;
     rdfs:label "Phase Transition Shape"@en ;
-    sh:targetClass icac-gufo:Investigation ;
+    sh:targetClass cacontology-gufo:Investigation ;
     sh:sparql [
         sh:message "Investigation phases must follow valid transition sequence"@en ;
         sh:prefixes [
@@ -130,11 +130,11 @@ icac-gufo:PhaseTransitionShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT ?this
             WHERE {
-                ?this icac-gufo:hasPhase ?phase1 ;
-                      icac-gufo:hasPhase ?phase2 .
-                ?phase1 icac-gufo:precedesPhase ?phase2 ;
-                        icac-gufo:hasPhaseEndPoint ?end1 .
-                ?phase2 icac-gufo:hasPhaseBeginPoint ?begin2 .
+                ?this cacontology-gufo:hasPhase ?phase1 ;
+                      cacontology-gufo:hasPhase ?phase2 .
+                ?phase1 cacontology-gufo:precedesPhase ?phase2 ;
+                        cacontology-gufo:hasPhaseEndPoint ?end1 .
+                ?phase2 cacontology-gufo:hasPhaseBeginPoint ?begin2 .
                 FILTER (?end1 > ?begin2)
             }
         """
@@ -145,7 +145,7 @@ icac-gufo:PhaseTransitionShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # Base Role Shape
-icac-gufo:RoleShape rdf:type sh:NodeShape ;
+cacontology-gufo:RoleShape rdf:type sh:NodeShape ;
     rdfs:label "gUFO Role Shape"@en ;
     sh:targetClass gufo:Role ;
     sh:property [
@@ -155,47 +155,47 @@ icac-gufo:RoleShape rdf:type sh:NodeShape ;
         sh:message "Role must be typed as gUFO Role (anti-rigid sortal)"@en
     ] ;
     sh:property [
-        sh:path icac-gufo:hasRoleBeginPoint ;
+        sh:path cacontology-gufo:hasRoleBeginPoint ;
         sh:datatype xsd:dateTimeStamp ;
         sh:maxCount 1 ;
         sh:message "Role can have at most one begin point"@en
     ] ;
     sh:property [
-        sh:path icac-gufo:hasRoleEndPoint ;
+        sh:path cacontology-gufo:hasRoleEndPoint ;
         sh:datatype xsd:dateTimeStamp ;
         sh:maxCount 1 ;
         sh:message "Role can have at most one end point"@en
     ] ;
     sh:property [
-        sh:path icac-gufo:participatesInInvestigation ;
+        sh:path cacontology-gufo:participatesInInvestigation ;
         sh:minCount 1 ;
-        sh:class icac-gufo:Investigation ;
+        sh:class cacontology-gufo:Investigation ;
         sh:message "Role must participate in at least one investigation"@en
     ] .
 
 # Specific Role Shapes
-icac-gufo:VictimRoleShape rdf:type sh:NodeShape ;
+cacontology-gufo:VictimRoleShape rdf:type sh:NodeShape ;
     rdfs:label "Victim Role Shape"@en ;
-    sh:targetClass icac-gufo:VictimRole ;
+    sh:targetClass cacontology-gufo:VictimRole ;
     sh:property [
-        sh:path icac-gufo:hasRoleBeginPoint ;
+        sh:path cacontology-gufo:hasRoleBeginPoint ;
         sh:minCount 1 ;
         sh:message "Victim role must have begin point (when victimization started)"@en
     ] .
 
-icac-gufo:OffenderRoleShape rdf:type sh:NodeShape ;
+cacontology-gufo:OffenderRoleShape rdf:type sh:NodeShape ;
     rdfs:label "Offender Role Shape"@en ;
-    sh:targetClass icac-gufo:OffenderRole ;
+    sh:targetClass cacontology-gufo:OffenderRole ;
     sh:property [
-        sh:path icac-gufo:hasRoleBeginPoint ;
+        sh:path cacontology-gufo:hasRoleBeginPoint ;
         sh:minCount 1 ;
         sh:message "Offender role must have begin point (when offense started)"@en
     ] .
 
 # Role Exclusivity Validation
-icac-gufo:RoleExclusivityShape rdf:type sh:NodeShape ;
+cacontology-gufo:RoleExclusivityShape rdf:type sh:NodeShape ;
     rdfs:label "Role Exclusivity Shape"@en ;
-    sh:targetClass icac-gufo:Person ;
+    sh:targetClass cacontology-gufo:Person ;
     sh:sparql [
         sh:message "Person cannot simultaneously be victim and offender in same investigation"@en ;
         sh:prefixes [
@@ -207,12 +207,12 @@ icac-gufo:RoleExclusivityShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT ?this
             WHERE {
-                ?this icac-gufo:playsRole ?victimRole ;
-                      icac-gufo:playsRole ?offenderRole .
-                ?victimRole a icac-gufo:VictimRole ;
-                           icac-gufo:participatesInInvestigation ?investigation .
-                ?offenderRole a icac-gufo:OffenderRole ;
-                             icac-gufo:participatesInInvestigation ?investigation .
+                ?this cacontology-gufo:playsRole ?victimRole ;
+                      cacontology-gufo:playsRole ?offenderRole .
+                ?victimRole a cacontology-gufo:VictimRole ;
+                           cacontology-gufo:participatesInInvestigation ?investigation .
+                ?offenderRole a cacontology-gufo:OffenderRole ;
+                             cacontology-gufo:participatesInInvestigation ?investigation .
             }
         """
     ] .
@@ -222,7 +222,7 @@ icac-gufo:RoleExclusivityShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # Base Event Shape
-icac-gufo:EventShape rdf:type sh:NodeShape ;
+cacontology-gufo:EventShape rdf:type sh:NodeShape ;
     rdfs:label "gUFO Event Shape"@en ;
     sh:targetClass gufo:Event ;
     sh:property [
@@ -245,41 +245,41 @@ icac-gufo:EventShape rdf:type sh:NodeShape ;
     ] .
 
 # Investigation Event Shapes
-icac-gufo:ReceiveCybertipEventShape rdf:type sh:NodeShape ;
+cacontology-gufo:ReceiveCybertipEventShape rdf:type sh:NodeShape ;
     rdfs:label "Receive Cybertip Event Shape"@en ;
-    sh:targetClass icac-gufo:ReceiveCybertipEvent ;
+    sh:targetClass cacontology-gufo:ReceiveCybertipEvent ;
     sh:property [
         sh:path uco-core:hasFacet ;
         sh:minCount 1 ;
         sh:message "Receive cybertip event must have at least one facet"@en
     ] ;
     sh:property [
-        sh:path icac-gufo:occursInSituation ;
-        sh:class icac-gufo:InvestigationPendingSituation ;
+        sh:path cacontology-gufo:occursInSituation ;
+        sh:class cacontology-gufo:InvestigationPendingSituation ;
         sh:message "Receive cybertip should occur in pending situation"@en
     ] .
 
-icac-gufo:ReviewCybertipEventShape rdf:type sh:NodeShape ;
+cacontology-gufo:ReviewCybertipEventShape rdf:type sh:NodeShape ;
     rdfs:label "Review Cybertip Event Shape"@en ;
-    sh:targetClass icac-gufo:ReviewCybertipEvent ;
+    sh:targetClass cacontology-gufo:ReviewCybertipEvent ;
     sh:property [
         sh:path uco-action:performer ;
         sh:minCount 1 ;
-        sh:class icac-gufo:InvestigatorRole ;
+        sh:class cacontology-gufo:InvestigatorRole ;
         sh:message "Review cybertip event must have investigator performer"@en
     ] .
 
-icac-gufo:VictimRescueEventShape rdf:type sh:NodeShape ;
+cacontology-gufo:VictimRescueEventShape rdf:type sh:NodeShape ;
     rdfs:label "Victim Rescue Event Shape"@en ;
-    sh:targetClass icac-gufo:VictimRescueEvent ;
+    sh:targetClass cacontology-gufo:VictimRescueEvent ;
     sh:property [
         sh:path uco-action:performer ;
         sh:minCount 1 ;
-        sh:class icac-gufo:RescuerRole ;
+        sh:class cacontology-gufo:RescuerRole ;
         sh:message "Victim rescue event must have rescuer performer"@en
     ] ;
     sh:property [
-        sh:path icac-gufo:createsSituation ;
+        sh:path cacontology-gufo:createsSituation ;
         sh:class gufo:Situation ;
         sh:message "Rescue event should create situation"@en
     ] .
@@ -289,7 +289,7 @@ icac-gufo:VictimRescueEventShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # Base Situation Shape
-icac-gufo:SituationShape rdf:type sh:NodeShape ;
+cacontology-gufo:SituationShape rdf:type sh:NodeShape ;
     rdfs:label "gUFO Situation Shape"@en ;
     sh:targetClass gufo:Situation ;
     sh:property [
@@ -300,9 +300,9 @@ icac-gufo:SituationShape rdf:type sh:NodeShape ;
     ] .
 
 # Investigation Lifecycle Situation Shapes
-icac-gufo:InvestigationActiveSituationShape rdf:type sh:NodeShape ;
+cacontology-gufo:InvestigationActiveSituationShape rdf:type sh:NodeShape ;
     rdfs:label "Investigation Active Situation Shape"@en ;
-    sh:targetClass icac-gufo:InvestigationActiveSituation ;
+    sh:targetClass cacontology-gufo:InvestigationActiveSituation ;
     sh:sparql [
         sh:message "Active investigation situation must correspond to active phase"@en ;
         sh:prefixes [
@@ -314,16 +314,16 @@ icac-gufo:InvestigationActiveSituationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT ?this
             WHERE {
-                ?this a icac-gufo:InvestigationActiveSituation .
-                ?investigation icac-gufo:inPhase ?phase .
+                ?this a cacontology-gufo:InvestigationActiveSituation .
+                ?investigation cacontology-gufo:inPhase ?phase .
                 FILTER NOT EXISTS {
-                    ?phase a icac-gufo:AnalysisPhase .
+                    ?phase a cacontology-gufo:AnalysisPhase .
                 } FILTER NOT EXISTS {
-                    ?phase a icac-gufo:LegalProcessPhase .
+                    ?phase a cacontology-gufo:LegalProcessPhase .
                 } FILTER NOT EXISTS {
-                    ?phase a icac-gufo:EvidencePhase .
+                    ?phase a cacontology-gufo:EvidencePhase .
                 } FILTER NOT EXISTS {
-                    ?phase a icac-gufo:ResolutionPhase .
+                    ?phase a cacontology-gufo:ResolutionPhase .
                 }
             }
         """
@@ -334,9 +334,9 @@ icac-gufo:InvestigationActiveSituationShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # Base Criminal Event Shape
-icac-gufo:ChildSexualAbuseEventShape rdf:type sh:NodeShape ;
+cacontology-gufo:ChildSexualAbuseEventShape rdf:type sh:NodeShape ;
     rdfs:label "Child Sexual Abuse Event Shape"@en ;
-    sh:targetClass icac-gufo:ChildSexualAbuseEvent ;
+    sh:targetClass cacontology-gufo:ChildSexualAbuseEvent ;
     sh:property [
         sh:path rdf:type ;
         sh:hasValue gufo:Kind ;
@@ -354,22 +354,22 @@ icac-gufo:ChildSexualAbuseEventShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT ?this
             WHERE {
-                ?this a icac-gufo:ChildSexualAbuseEvent .
+                ?this a cacontology-gufo:ChildSexualAbuseEvent .
                 FILTER NOT EXISTS {
-                    ?victimRole a icac-gufo:VictimRole ;
-                               icac-gufo:participatesInEvent ?this .
+                    ?victimRole a cacontology-gufo:VictimRole ;
+                               cacontology-gufo:participatesInEvent ?this .
                 } FILTER NOT EXISTS {
-                    ?offenderRole a icac-gufo:OffenderRole ;
-                                 icac-gufo:participatesInEvent ?this .
+                    ?offenderRole a cacontology-gufo:OffenderRole ;
+                                 cacontology-gufo:participatesInEvent ?this .
                 }
             }
         """
     ] .
 
 # Specific Criminal Event Shapes
-icac-gufo:CSAMIncidentShape rdf:type sh:NodeShape ;
+cacontology-gufo:CSAMIncidentShape rdf:type sh:NodeShape ;
     rdfs:label "CSAM Incident Shape"@en ;
-    sh:targetClass icac-gufo:CSAMIncident ;
+    sh:targetClass cacontology-gufo:CSAMIncident ;
     sh:property [
         sh:path rdf:type ;
         sh:hasValue gufo:SubKind ;
@@ -382,9 +382,9 @@ icac-gufo:CSAMIncidentShape rdf:type sh:NodeShape ;
         sh:message "CSAM incident must have digital artifact facets"@en
     ] .
 
-icac-gufo:GroomingSolicitationShape rdf:type sh:NodeShape ;
+cacontology-gufo:GroomingSolicitationShape rdf:type sh:NodeShape ;
     rdfs:label "Grooming Solicitation Shape"@en ;
-    sh:targetClass icac-gufo:GroomingSolicitation ;
+    sh:targetClass cacontology-gufo:GroomingSolicitation ;
     sh:property [
         sh:path rdf:type ;
         sh:hasValue gufo:SubKind ;
@@ -392,14 +392,14 @@ icac-gufo:GroomingSolicitationShape rdf:type sh:NodeShape ;
         sh:message "Grooming Solicitation must be gUFO SubKind"@en
     ] ;
     sh:property [
-        sh:path icac-gufo:participatesInEvent ;
+        sh:path cacontology-gufo:participatesInEvent ;
         sh:minCount 2 ;
         sh:message "Grooming must involve at least victim and offender"@en
     ] .
 
-icac-gufo:SextortionShape rdf:type sh:NodeShape ;
+cacontology-gufo:SextortionShape rdf:type sh:NodeShape ;
     rdfs:label "Sextortion Shape"@en ;
-    sh:targetClass icac-gufo:Sextortion ;
+    sh:targetClass cacontology-gufo:Sextortion ;
     sh:property [
         sh:path rdf:type ;
         sh:hasValue gufo:SubKind ;
@@ -412,9 +412,9 @@ icac-gufo:SextortionShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # Investigation Temporal Consistency
-icac-gufo:InvestigationTemporalConsistencyShape rdf:type sh:NodeShape ;
+cacontology-gufo:InvestigationTemporalConsistencyShape rdf:type sh:NodeShape ;
     rdfs:label "Investigation Temporal Consistency Shape"@en ;
-    sh:targetClass icac-gufo:Investigation ;
+    sh:targetClass cacontology-gufo:Investigation ;
     sh:sparql [
         sh:message "Investigation events must occur within phase timeframes"@en ;
         sh:prefixes [
@@ -429,10 +429,10 @@ icac-gufo:InvestigationTemporalConsistencyShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT ?this
             WHERE {
-                ?this icac-gufo:hasPhase ?phase .
-                ?phase icac-gufo:hasPhaseBeginPoint ?phaseBegin ;
-                       icac-gufo:hasPhaseEndPoint ?phaseEnd .
-                ?event icac-gufo:occursInSituation ?situation .
+                ?this cacontology-gufo:hasPhase ?phase .
+                ?phase cacontology-gufo:hasPhaseBeginPoint ?phaseBegin ;
+                       cacontology-gufo:hasPhaseEndPoint ?phaseEnd .
+                ?event cacontology-gufo:occursInSituation ?situation .
                 ?event gufo:hasBeginPointInXSDDateTimeStamp ?eventBegin .
                 FILTER (?eventBegin < ?phaseBegin || ?eventBegin > ?phaseEnd)
             }
@@ -444,9 +444,9 @@ icac-gufo:InvestigationTemporalConsistencyShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # gUFO Type Consistency Shape
-icac-gufo:FoundationalTypeConsistencyShape rdf:type sh:NodeShape ;
+cacontology-gufo:FoundationalTypeConsistencyShape rdf:type sh:NodeShape ;
     rdfs:label "gUFO Foundational Type Consistency Shape"@en ;
-    sh:targetNode icac-gufo:Investigation ;
+    sh:targetNode cacontology-gufo:Investigation ;
     sh:sparql [
         sh:message "All gUFO entities must have proper foundational typing"@en ;
         sh:prefixes [
@@ -481,9 +481,9 @@ icac-gufo:FoundationalTypeConsistencyShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # Investigation Completeness Shape
-icac-gufo:InvestigationCompletenessShape rdf:type sh:NodeShape ;
+cacontology-gufo:InvestigationCompletenessShape rdf:type sh:NodeShape ;
     rdfs:label "Investigation Completeness Shape"@en ;
-    sh:targetClass icac-gufo:Investigation ;
+    sh:targetClass cacontology-gufo:Investigation ;
     sh:sparql [
         sh:message "Investigation must have coherent role and event participation"@en ;
         sh:prefixes [
@@ -495,10 +495,10 @@ icac-gufo:InvestigationCompletenessShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT ?this
             WHERE {
-                ?this icac-gufo:hasRole ?role .
-                ?role icac-gufo:participatesInInvestigation ?this .
+                ?this cacontology-gufo:hasRole ?role .
+                ?role cacontology-gufo:participatesInInvestigation ?this .
                 FILTER NOT EXISTS {
-                    ?role icac-gufo:participatesInEvent ?event .
+                    ?role cacontology-gufo:participatesInEvent ?event .
                     ?event a gufo:Event .
                 }
             }

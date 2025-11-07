@@ -14,12 +14,12 @@
 # SEXTORTION INCIDENT SHAPES
 # =============================================================================
 
-icac-sextortion:SextortionIncidentShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-sextortion:SextortionIncident ;
+cacontology-sextortion:SextortionIncidentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:SextortionIncident ;
     rdfs:label "Sextortion Incident Shape"@en ;
     rdfs:comment "Validation shape for sextortion incident instances."@en ;
     sh:property [
-        sh:path icac-sextortion:incidentType ;
+        sh:path cacontology-sextortion:incidentType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -27,7 +27,7 @@ icac-sextortion:SextortionIncidentShape rdf:type sh:NodeShape ;
         sh:message "Sextortion incident must specify incident type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-sextortion:severityLevel ;
+        sh:path cacontology-sextortion:severityLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -35,7 +35,7 @@ icac-sextortion:SextortionIncidentShape rdf:type sh:NodeShape ;
         sh:message "Sextortion incident must specify severity level from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-sextortion:incidentDuration ;
+        sh:path cacontology-sextortion:incidentDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -44,7 +44,7 @@ icac-sextortion:SextortionIncidentShape rdf:type sh:NodeShape ;
         sh:message "Incident duration must be between 0 and 365 days."@en
     ] ;
     sh:property [
-        sh:path icac-sextortion:victimCount ;
+        sh:path cacontology-sextortion:victimCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -67,12 +67,12 @@ icac-sextortion:SextortionIncidentShape rdf:type sh:NodeShape ;
         sh:message "Sextortion incident may have an end time."@en
     ] .
 
-icac-sextortion:FinancialSextortionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-sextortion:FinancialSextortion ;
+cacontology-sextortion:FinancialSextortionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:FinancialSextortion ;
     rdfs:label "Financial Sextortion Shape"@en ;
     rdfs:comment "Validation shape for financial sextortion instances."@en ;
     sh:property [
-        sh:path icac-sextortion:demandAmount ;
+        sh:path cacontology-sextortion:demandAmount ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -81,7 +81,7 @@ icac-sextortion:FinancialSextortionShape rdf:type sh:NodeShape ;
         sh:message "Demand amount must be between $1 and $100,000."@en
     ] ;
     sh:property [
-        sh:path icac-sextortion:paymentMethod ;
+        sh:path cacontology-sextortion:paymentMethod ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -89,7 +89,7 @@ icac-sextortion:FinancialSextortionShape rdf:type sh:NodeShape ;
         sh:message "Payment method must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-sextortion:paymentFrequency ;
+        sh:path cacontology-sextortion:paymentFrequency ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -101,12 +101,12 @@ icac-sextortion:FinancialSextortionShape rdf:type sh:NodeShape ;
 # AGE DECEPTION SHAPES
 # =============================================================================
 
-icac-sextortion:AgeDeceptionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-sextortion:AgeDeception ;
+cacontology-sextortion:AgeDeceptionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:AgeDeception ;
     rdfs:label "Age Deception Shape"@en ;
     rdfs:comment "Validation shape for age deception instances."@en ;
     sh:property [
-        sh:path icac-sextortion:deceptionType ;
+        sh:path cacontology-sextortion:deceptionType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -114,7 +114,7 @@ icac-sextortion:AgeDeceptionShape rdf:type sh:NodeShape ;
         sh:message "Age deception must specify deception type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-sextortion:claimedAge ;
+        sh:path cacontology-sextortion:claimedAge ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -123,7 +123,7 @@ icac-sextortion:AgeDeceptionShape rdf:type sh:NodeShape ;
         sh:message "Claimed age must be between 10 and 25 years."@en
     ] ;
     sh:property [
-        sh:path icac-sextortion:actualAge ;
+        sh:path cacontology-sextortion:actualAge ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -132,7 +132,7 @@ icac-sextortion:AgeDeceptionShape rdf:type sh:NodeShape ;
         sh:message "Actual age must be between 18 and 80 years."@en
     ] ;
     sh:property [
-        sh:path icac-sextortion:deceptionEffectiveness ;
+        sh:path cacontology-sextortion:deceptionEffectiveness ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -140,12 +140,12 @@ icac-sextortion:AgeDeceptionShape rdf:type sh:NodeShape ;
         sh:message "Deception effectiveness must be from the allowed list."@en
     ] .
 
-icac-sextortion:PeerImpersonationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-sextortion:PeerImpersonation ;
+cacontology-sextortion:PeerImpersonationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:PeerImpersonation ;
     rdfs:label "Peer Impersonation Shape"@en ;
     rdfs:comment "Validation shape for peer impersonation instances."@en ;
     sh:property [
-        sh:path icac-sextortion:impersonationMethod ;
+        sh:path cacontology-sextortion:impersonationMethod ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -153,7 +153,7 @@ icac-sextortion:PeerImpersonationShape rdf:type sh:NodeShape ;
         sh:message "Peer impersonation must specify impersonation method from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-sextortion:targetAgeGroup ;
+        sh:path cacontology-sextortion:targetAgeGroup ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -165,12 +165,12 @@ icac-sextortion:PeerImpersonationShape rdf:type sh:NodeShape ;
 # EXTORTION TACTICS SHAPES
 # =============================================================================
 
-icac-sextortion:ExtortionTacticsShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-sextortion:ExtortionTactics ;
+cacontology-sextortion:ExtortionTacticsShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:ExtortionTactics ;
     rdfs:label "Extortion Tactics Shape"@en ;
     rdfs:comment "Validation shape for extortion tactics instances."@en ;
     sh:property [
-        sh:path icac-sextortion:tacticType ;
+        sh:path cacontology-sextortion:tacticType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -178,7 +178,7 @@ icac-sextortion:ExtortionTacticsShape rdf:type sh:NodeShape ;
         sh:message "Extortion tactics must specify tactic type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-sextortion:threatSpecificity ;
+        sh:path cacontology-sextortion:threatSpecificity ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -186,7 +186,7 @@ icac-sextortion:ExtortionTacticsShape rdf:type sh:NodeShape ;
         sh:message "Extortion tactics must specify threat specificity from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-sextortion:threatCredibility ;
+        sh:path cacontology-sextortion:threatCredibility ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -194,19 +194,19 @@ icac-sextortion:ExtortionTacticsShape rdf:type sh:NodeShape ;
         sh:message "Threat credibility must be from the allowed list."@en
     ] .
 
-icac-sextortion:ScreenshotThreatShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-sextortion:ScreenshotThreat ;
+cacontology-sextortion:ScreenshotThreatShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:ScreenshotThreat ;
     rdfs:label "Screenshot Threat Shape"@en ;
     rdfs:comment "Validation shape for screenshot threat instances."@en ;
     sh:property [
-        sh:path icac-sextortion:screenshotEvidence ;
+        sh:path cacontology-sextortion:screenshotEvidence ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Screenshot threat must specify if screenshot evidence exists."@en
     ] ;
     sh:property [
-        sh:path icac-sextortion:screenshotCount ;
+        sh:path cacontology-sextortion:screenshotCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -215,12 +215,12 @@ icac-sextortion:ScreenshotThreatShape rdf:type sh:NodeShape ;
         sh:message "Screenshot count must be between 1 and 100 when specified."@en
     ] .
 
-icac-sextortion:SocialMediaSharingThreatShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-sextortion:SocialMediaSharingThreat ;
+cacontology-sextortion:SocialMediaSharingThreatShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:SocialMediaSharingThreat ;
     rdfs:label "Social Media Sharing Threat Shape"@en ;
     rdfs:comment "Validation shape for social media sharing threat instances."@en ;
     sh:property [
-        sh:path icac-sextortion:targetPlatforms ;
+        sh:path cacontology-sextortion:targetPlatforms ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -229,7 +229,7 @@ icac-sextortion:SocialMediaSharingThreatShape rdf:type sh:NodeShape ;
         sh:message "Target platforms must be specified (3-200 characters)."@en
     ] ;
     sh:property [
-        sh:path icac-sextortion:contactListAccess ;
+        sh:path cacontology-sextortion:contactListAccess ;
         sh:datatype xsd:boolean ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -240,12 +240,12 @@ icac-sextortion:SocialMediaSharingThreatShape rdf:type sh:NodeShape ;
 # VICTIM RESPONSE SHAPES
 # =============================================================================
 
-icac-sextortion:VictimResponseShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-sextortion:VictimResponse ;
+cacontology-sextortion:VictimResponseShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:VictimResponse ;
     rdfs:label "Victim Response Shape"@en ;
     rdfs:comment "Validation shape for victim response instances."@en ;
     sh:property [
-        sh:path icac-sextortion:responseType ;
+        sh:path cacontology-sextortion:responseType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -253,7 +253,7 @@ icac-sextortion:VictimResponseShape rdf:type sh:NodeShape ;
         sh:message "Victim response must specify response type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-sextortion:responseSpeed ;
+        sh:path cacontology-sextortion:responseSpeed ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -261,7 +261,7 @@ icac-sextortion:VictimResponseShape rdf:type sh:NodeShape ;
         sh:message "Response speed must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-sextortion:emotionalImpact ;
+        sh:path cacontology-sextortion:emotionalImpact ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -269,12 +269,12 @@ icac-sextortion:VictimResponseShape rdf:type sh:NodeShape ;
         sh:message "Emotional impact must be from the allowed list."@en
     ] .
 
-icac-sextortion:ComplianceResponseShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-sextortion:ComplianceResponse ;
+cacontology-sextortion:ComplianceResponseShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:ComplianceResponse ;
     rdfs:label "Compliance Response Shape"@en ;
     rdfs:comment "Validation shape for compliance response instances."@en ;
     sh:property [
-        sh:path icac-sextortion:complianceLevel ;
+        sh:path cacontology-sextortion:complianceLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -282,7 +282,7 @@ icac-sextortion:ComplianceResponseShape rdf:type sh:NodeShape ;
         sh:message "Compliance response must specify compliance level from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-sextortion:complianceDuration ;
+        sh:path cacontology-sextortion:complianceDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -291,12 +291,12 @@ icac-sextortion:ComplianceResponseShape rdf:type sh:NodeShape ;
         sh:message "Compliance duration must be between 0 and 365 days."@en
     ] .
 
-icac-sextortion:ResistanceResponseShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-sextortion:ResistanceResponse ;
+cacontology-sextortion:ResistanceResponseShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:ResistanceResponse ;
     rdfs:label "Resistance Response Shape"@en ;
     rdfs:comment "Validation shape for resistance response instances."@en ;
     sh:property [
-        sh:path icac-sextortion:resistanceMethod ;
+        sh:path cacontology-sextortion:resistanceMethod ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -304,7 +304,7 @@ icac-sextortion:ResistanceResponseShape rdf:type sh:NodeShape ;
         sh:message "Resistance response must specify resistance method from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-sextortion:resistanceEffectiveness ;
+        sh:path cacontology-sextortion:resistanceEffectiveness ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -316,12 +316,12 @@ icac-sextortion:ResistanceResponseShape rdf:type sh:NodeShape ;
 # ESCALATION PATTERN SHAPES
 # =============================================================================
 
-icac-sextortion:EscalationPatternShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-sextortion:EscalationPattern ;
+cacontology-sextortion:EscalationPatternShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:EscalationPattern ;
     rdfs:label "Escalation Pattern Shape"@en ;
     rdfs:comment "Validation shape for escalation pattern instances."@en ;
     sh:property [
-        sh:path icac-sextortion:escalationType ;
+        sh:path cacontology-sextortion:escalationType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -329,7 +329,7 @@ icac-sextortion:EscalationPatternShape rdf:type sh:NodeShape ;
         sh:message "Escalation pattern must specify escalation type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-sextortion:escalationTrigger ;
+        sh:path cacontology-sextortion:escalationTrigger ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -337,7 +337,7 @@ icac-sextortion:EscalationPatternShape rdf:type sh:NodeShape ;
         sh:message "Escalation trigger must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-sextortion:escalationSpeed ;
+        sh:path cacontology-sextortion:escalationSpeed ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -345,12 +345,12 @@ icac-sextortion:EscalationPatternShape rdf:type sh:NodeShape ;
         sh:message "Escalation pattern must specify escalation speed from the allowed list."@en
     ] .
 
-icac-sextortion:ProgressiveEscalationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-sextortion:ProgressiveEscalation ;
+cacontology-sextortion:ProgressiveEscalationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:ProgressiveEscalation ;
     rdfs:label "Progressive Escalation Shape"@en ;
     rdfs:comment "Validation shape for progressive escalation instances."@en ;
     sh:property [
-        sh:path icac-sextortion:escalationStages ;
+        sh:path cacontology-sextortion:escalationStages ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -359,7 +359,7 @@ icac-sextortion:ProgressiveEscalationShape rdf:type sh:NodeShape ;
         sh:message "Progressive escalation must have between 2 and 10 escalation stages."@en
     ] ;
     sh:property [
-        sh:path icac-sextortion:stageProgression ;
+        sh:path cacontology-sextortion:stageProgression ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -371,12 +371,12 @@ icac-sextortion:ProgressiveEscalationShape rdf:type sh:NodeShape ;
 # INTERNATIONAL COORDINATION SHAPES
 # =============================================================================
 
-icac-sextortion:InternationalCoordinationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-sextortion:InternationalCoordination ;
+cacontology-sextortion:InternationalCoordinationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:InternationalCoordination ;
     rdfs:label "International Coordination Shape"@en ;
     rdfs:comment "Validation shape for international coordination instances."@en ;
     sh:property [
-        sh:path icac-sextortion:coordinationType ;
+        sh:path cacontology-sextortion:coordinationType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -384,7 +384,7 @@ icac-sextortion:InternationalCoordinationShape rdf:type sh:NodeShape ;
         sh:message "International coordination must specify coordination type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-sextortion:countriesInvolved ;
+        sh:path cacontology-sextortion:countriesInvolved ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -393,7 +393,7 @@ icac-sextortion:InternationalCoordinationShape rdf:type sh:NodeShape ;
         sh:message "International coordination must involve between 2 and 50 countries."@en
     ] ;
     sh:property [
-        sh:path icac-sextortion:coordinationEffectiveness ;
+        sh:path cacontology-sextortion:coordinationEffectiveness ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -405,43 +405,43 @@ icac-sextortion:InternationalCoordinationShape rdf:type sh:NodeShape ;
 # OBJECT PROPERTY SHAPES
 # =============================================================================
 
-icac-sextortion:InvolvesAgeDeceptionShape rdf:type sh:PropertyShape ;
-    sh:path icac-sextortion:involvesAgeDeception ;
+cacontology-sextortion:InvolvesAgeDeceptionShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-sextortion:involvesAgeDeception ;
     sh:name "involves age deception" ;
     sh:description "Links sextortion to age deception tactics used" ;
-    sh:class icac-sextortion:AgeDeception ;
+    sh:class cacontology-sextortion:AgeDeception ;
     sh:minCount 0 .
 
-icac-sextortion:UsesExtortionTacticsShape rdf:type sh:PropertyShape ;
-    sh:path icac-sextortion:usesExtortionTactics ;
+cacontology-sextortion:UsesExtortionTacticsShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-sextortion:usesExtortionTactics ;
     sh:name "uses extortion tactics" ;
     sh:description "Links sextortion to extortion tactics employed" ;
-    sh:class icac-sextortion:ExtortionTactics ;
+    sh:class cacontology-sextortion:ExtortionTactics ;
     sh:minCount 0 .
 
-icac-sextortion:TriggersVictimResponseShape rdf:type sh:PropertyShape ;
-    sh:path icac-sextortion:triggersVictimResponse ;
+cacontology-sextortion:TriggersVictimResponseShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-sextortion:triggersVictimResponse ;
     sh:name "triggers victim response" ;
     sh:description "Links sextortion to victim response patterns" ;
-    sh:class icac-sextortion:VictimResponse ;
+    sh:class cacontology-sextortion:VictimResponse ;
     sh:minCount 0 .
 
-icac-sextortion:FollowsEscalationPatternShape rdf:type sh:PropertyShape ;
-    sh:path icac-sextortion:followsEscalationPattern ;
+cacontology-sextortion:FollowsEscalationPatternShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-sextortion:followsEscalationPattern ;
     sh:name "follows escalation pattern" ;
     sh:description "Links sextortion to escalation patterns observed" ;
-    sh:class icac-sextortion:EscalationPattern ;
+    sh:class cacontology-sextortion:EscalationPattern ;
     sh:minCount 0 .
 
-icac-sextortion:RequiresInternationalCoordinationShape rdf:type sh:PropertyShape ;
-    sh:path icac-sextortion:requiresInternationalCoordination ;
+cacontology-sextortion:RequiresInternationalCoordinationShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-sextortion:requiresInternationalCoordination ;
     sh:name "requires international coordination" ;
     sh:description "Links sextortion to international coordination needs" ;
-    sh:class icac-sextortion:InternationalCoordination ;
+    sh:class cacontology-sextortion:InternationalCoordination ;
     sh:minCount 0 .
 
-icac-sextortion:TargetsVictimShape rdf:type sh:PropertyShape ;
-    sh:path icac-sextortion:targetsVictim ;
+cacontology-sextortion:TargetsVictimShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-sextortion:targetsVictim ;
     sh:name "targets victim" ;
     sh:description "Links sextortion to victim being targeted" ;
     sh:class uco-identity:Person ;
@@ -451,8 +451,8 @@ icac-sextortion:TargetsVictimShape rdf:type sh:PropertyShape ;
 # CROSS-REFERENCE VALIDATION SHAPES
 # =============================================================================
 
-icac-sextortion:SextortionCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-sextortion:SextortionIncident ;
+cacontology-sextortion:SextortionCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:SextortionIncident ;
     rdfs:label "Sextortion Cross Reference Shape"@en ;
     rdfs:comment "Validates cross-references between sextortion and related entities."@en ;
     sh:sparql [
@@ -460,17 +460,17 @@ icac-sextortion:SextortionCrossReferenceShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-sextortion:SextortionIncident .
+                $this a cacontology-sextortion:SextortionIncident .
                 FILTER NOT EXISTS {
-                    { $this icac-sextortion:targetsVictim ?victim } UNION
-                    { $this icac-sextortion:usesExtortionTactics ?tactic }
+                    { $this cacontology-sextortion:targetsVictim ?victim } UNION
+                    { $this cacontology-sextortion:usesExtortionTactics ?tactic }
                 }
             }
         """
     ] .
 
-icac-sextortion:AgeDeceptionValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-sextortion:AgeDeception ;
+cacontology-sextortion:AgeDeceptionValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:AgeDeception ;
     rdfs:label "Age Deception Validation Shape"@en ;
     rdfs:comment "Validates age deception consistency."@en ;
     sh:sparql [
@@ -478,15 +478,15 @@ icac-sextortion:AgeDeceptionValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-sextortion:claimedAge ?claimed ;
-                      icac-sextortion:actualAge ?actual .
+                $this cacontology-sextortion:claimedAge ?claimed ;
+                      cacontology-sextortion:actualAge ?actual .
                 FILTER (?claimed >= ?actual)
             }
         """
     ] .
 
-icac-sextortion:FinancialDemandValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-sextortion:FinancialSextortion ;
+cacontology-sextortion:FinancialDemandValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:FinancialSextortion ;
     rdfs:label "Financial Demand Validation Shape"@en ;
     rdfs:comment "Validates financial sextortion demands."@en ;
     sh:sparql [
@@ -494,10 +494,10 @@ icac-sextortion:FinancialDemandValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-sextortion:demandAmount ?amount .
+                $this cacontology-sextortion:demandAmount ?amount .
                 FILTER (?amount > 0)
                 FILTER NOT EXISTS {
-                    $this icac-sextortion:paymentMethod ?method .
+                    $this cacontology-sextortion:paymentMethod ?method .
                 }
             }
         """
@@ -507,8 +507,8 @@ icac-sextortion:FinancialDemandValidationShape rdf:type sh:NodeShape ;
 # TEMPORAL VALIDATION SHAPES
 # =============================================================================
 
-icac-sextortion:TemporalValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-sextortion:SextortionIncident ;
+cacontology-sextortion:TemporalValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:SextortionIncident ;
     rdfs:label "Temporal Validation Shape"@en ;
     rdfs:comment "Validates temporal consistency in sextortion incidents."@en ;
     sh:sparql [
@@ -523,8 +523,8 @@ icac-sextortion:TemporalValidationShape rdf:type sh:NodeShape ;
         """
     ] .
 
-icac-sextortion:ComplianceDurationValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-sextortion:ComplianceResponse ;
+cacontology-sextortion:ComplianceDurationValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:ComplianceResponse ;
     rdfs:label "Compliance Duration Validation Shape"@en ;
     rdfs:comment "Validates compliance duration consistency."@en ;
     sh:sparql [
@@ -532,8 +532,8 @@ icac-sextortion:ComplianceDurationValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-sextortion:complianceLevel "immediate" ;
-                      icac-sextortion:complianceDuration ?duration .
+                $this cacontology-sextortion:complianceLevel "immediate" ;
+                      cacontology-sextortion:complianceDuration ?duration .
                 FILTER (?duration > 7.0)
             }
         """
@@ -543,8 +543,8 @@ icac-sextortion:ComplianceDurationValidationShape rdf:type sh:NodeShape ;
 # DATA QUALITY SHAPES
 # =============================================================================
 
-icac-sextortion:DataQualityShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-sextortion:SextortionIncident ;
+cacontology-sextortion:DataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:SextortionIncident ;
     rdfs:label "Data Quality Shape"@en ;
     rdfs:comment "Validates data quality for sextortion incidents."@en ;
     sh:property [

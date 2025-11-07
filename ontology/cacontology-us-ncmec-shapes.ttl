@@ -7,7 +7,7 @@
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable#> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
-@prefix icacus: <https://cacontology.projectvic.org/us/ncmec#> .
+@prefix cacontology-us-ncmec: <https://cacontology.projectvic.org/us/ncmec#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 
 <https://cacontology.projectvic.org/us-ncmec-shapes> rdf:type owl:Ontology ;
@@ -19,8 +19,8 @@
 # NCMEC CYBERTIP REPORT SHAPES
 # =============================================================================
 
-icacus:NCMECCybertipReportShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:NCMECCybertipReport ;
+cacontology-us-ncmec:NCMECCybertipReportShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:NCMECCybertipReport ;
     rdfs:label "NCMEC Cybertip Report Shape"@en ;
     rdfs:comment "Validation shape for NCMEC Cybertip report instances."@en ;
     sh:property [
@@ -49,19 +49,19 @@ icacus:NCMECCybertipReportShape rdf:type sh:NodeShape ;
         rdfs:comment "Report creation timestamp."@en ;
     ] ;
     sh:property [
-        sh:path icacus:hasNCMECIncidentType ;
-        sh:class icacus:NCMECIncidentType ;
+        sh:path cacontology-us-ncmec:hasNCMECIncidentType ;
+        sh:class cacontology-us-ncmec:NCMECIncidentType ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         rdfs:comment "Report must have exactly one NCMEC incident type."@en ;
     ] .
 
-icacus:NCMECIncidentTypeShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:NCMECIncidentType ;
+cacontology-us-ncmec:NCMECIncidentTypeShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:NCMECIncidentType ;
     rdfs:label "NCMEC Incident Type Shape"@en ;
     rdfs:comment "Validation shape for NCMEC incident type instances."@en ;
     sh:property [
-        sh:path icacus:incidentCode ;
+        sh:path cacontology-us-ncmec:incidentCode ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -78,32 +78,32 @@ icacus:NCMECIncidentTypeShape rdf:type sh:NodeShape ;
         rdfs:comment "Incident type must have a name (5-100 characters)."@en ;
     ] .
 
-icacus:ChildSexTraffickingIncidentShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:ChildSexTraffickingIncident ;
+cacontology-us-ncmec:ChildSexTraffickingIncidentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:ChildSexTraffickingIncident ;
     rdfs:label "Child Sex Trafficking Incident Shape"@en ;
     rdfs:comment "Validation shape for child sex trafficking incident instances."@en ;
     sh:property [
-        sh:path icacus:incidentCode ;
+        sh:path cacontology-us-ncmec:incidentCode ;
         sh:hasValue "CST" ;
         rdfs:comment "Child sex trafficking incidents must have CST code."@en ;
     ] .
 
-icacus:ChildSexTourismIncidentShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:ChildSexTourismIncident ;
+cacontology-us-ncmec:ChildSexTourismIncidentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:ChildSexTourismIncident ;
     rdfs:label "Child Sex Tourism Incident Shape"@en ;
     rdfs:comment "Validation shape for child sex tourism incident instances."@en ;
     sh:property [
-        sh:path icacus:incidentCode ;
+        sh:path cacontology-us-ncmec:incidentCode ;
         sh:hasValue "CST" ;
         rdfs:comment "Child sex tourism incidents must have CST code."@en ;
     ] .
 
-icacus:OnlineEnticementIncidentShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:OnlineEnticementIncident ;
+cacontology-us-ncmec:OnlineEnticementIncidentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:OnlineEnticementIncident ;
     rdfs:label "Online Enticement Incident Shape"@en ;
     rdfs:comment "Validation shape for online enticement incident instances."@en ;
     sh:property [
-        sh:path icacus:incidentCode ;
+        sh:path cacontology-us-ncmec:incidentCode ;
         sh:hasValue "OE" ;
         rdfs:comment "Online enticement incidents must have OE code."@en ;
     ] .
@@ -112,8 +112,8 @@ icacus:OnlineEnticementIncidentShape rdf:type sh:NodeShape ;
 # NCMEC REPORT ANNOTATION SHAPES
 # =============================================================================
 
-icacus:NCMECReportAnnotationShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:NCMECReportAnnotation ;
+cacontology-us-ncmec:NCMECReportAnnotationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:NCMECReportAnnotation ;
     rdfs:label "NCMEC Report Annotation Shape"@en ;
     rdfs:comment "Validation shape for NCMEC report annotation instances."@en ;
     sh:property [
@@ -135,8 +135,8 @@ icacus:NCMECReportAnnotationShape rdf:type sh:NodeShape ;
         rdfs:comment "Annotation description should be 10-500 characters when specified."@en ;
     ] .
 
-icacus:SextortionAnnotationShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:SextortionAnnotation ;
+cacontology-us-ncmec:SextortionAnnotationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:SextortionAnnotation ;
     rdfs:label "Sextortion Annotation Shape"@en ;
     rdfs:comment "Validation shape for sextortion annotation instances."@en ;
     sh:property [
@@ -148,8 +148,8 @@ icacus:SextortionAnnotationShape rdf:type sh:NodeShape ;
         rdfs:comment "Sextortion annotation name should contain 'sextortion'."@en ;
     ] .
 
-icacus:CSAMSolicitationAnnotationShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:CSAMSolicitationAnnotation ;
+cacontology-us-ncmec:CSAMSolicitationAnnotationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:CSAMSolicitationAnnotation ;
     rdfs:label "CSAM Solicitation Annotation Shape"@en ;
     rdfs:comment "Validation shape for CSAM solicitation annotation instances."@en ;
     sh:property [
@@ -161,8 +161,8 @@ icacus:CSAMSolicitationAnnotationShape rdf:type sh:NodeShape ;
         rdfs:comment "CSAM solicitation annotation name should contain 'CSAM' or 'solicitation'."@en ;
     ] .
 
-icacus:MinorToMinorInteractionAnnotationShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:MinorToMinorInteractionAnnotation ;
+cacontology-us-ncmec:MinorToMinorInteractionAnnotationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:MinorToMinorInteractionAnnotation ;
     rdfs:label "Minor to Minor Interaction Annotation Shape"@en ;
     rdfs:comment "Validation shape for minor to minor interaction annotation instances."@en ;
     sh:property [
@@ -174,8 +174,8 @@ icacus:MinorToMinorInteractionAnnotationShape rdf:type sh:NodeShape ;
         rdfs:comment "Minor to minor annotation name should contain 'minor'."@en ;
     ] .
 
-icacus:SpamAnnotationShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:SpamAnnotation ;
+cacontology-us-ncmec:SpamAnnotationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:SpamAnnotation ;
     rdfs:label "Spam Annotation Shape"@en ;
     rdfs:comment "Validation shape for spam annotation instances."@en ;
     sh:property [
@@ -191,8 +191,8 @@ icacus:SpamAnnotationShape rdf:type sh:NodeShape ;
 # CYBERTIP ANALYSIS SHAPES
 # =============================================================================
 
-icacus:CyberTipAnalysisShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:CyberTipAnalysis ;
+cacontology-us-ncmec:CyberTipAnalysisShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:CyberTipAnalysis ;
     rdfs:label "CyberTip Analysis Shape"@en ;
     rdfs:comment "Validation shape for CyberTip analysis instances."@en ;
     sh:property [
@@ -210,7 +210,7 @@ icacus:CyberTipAnalysisShape rdf:type sh:NodeShape ;
         rdfs:comment "Analysis may specify end time."@en ;
     ] ;
     sh:property [
-        sh:path icacus:analysisConfidence ;
+        sh:path cacontology-us-ncmec:analysisConfidence ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -218,8 +218,8 @@ icacus:CyberTipAnalysisShape rdf:type sh:NodeShape ;
         rdfs:comment "Analysis confidence must be from the allowed list."@en ;
     ] ;
     sh:property [
-        sh:path icacus:analysisOf ;
-        sh:class icacus:NCMECCybertipReport ;
+        sh:path cacontology-us-ncmec:analysisOf ;
+        sh:class cacontology-us-ncmec:NCMECCybertipReport ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         rdfs:comment "Analysis must be of exactly one NCMEC tip."@en ;
@@ -232,12 +232,12 @@ icacus:CyberTipAnalysisShape rdf:type sh:NodeShape ;
         rdfs:comment "Analysis must specify performing analyst."@en ;
     ] .
 
-icacus:PossessionIndicatorShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:PossessionIndicator ;
+cacontology-us-ncmec:PossessionIndicatorShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:PossessionIndicator ;
     rdfs:label "Possession Indicator Shape"@en ;
     rdfs:comment "Validation shape for possession indicator instances."@en ;
     sh:property [
-        sh:path icacus:indicatorStrength ;
+        sh:path cacontology-us-ncmec:indicatorStrength ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -245,12 +245,12 @@ icacus:PossessionIndicatorShape rdf:type sh:NodeShape ;
         rdfs:comment "Indicator strength must be from the allowed list."@en ;
     ] .
 
-icacus:TransferDetectionShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:TransferDetection ;
+cacontology-us-ncmec:TransferDetectionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:TransferDetection ;
     rdfs:label "Transfer Detection Shape"@en ;
     rdfs:comment "Validation shape for transfer detection instances."@en ;
     sh:property [
-        sh:path icacus:transferVolume ;
+        sh:path cacontology-us-ncmec:transferVolume ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -259,7 +259,7 @@ icacus:TransferDetectionShape rdf:type sh:NodeShape ;
         rdfs:comment "Transfer volume must be between 0.001 and 100000 MB."@en ;
     ] ;
     sh:property [
-        sh:path icacus:transferFrequency ;
+        sh:path cacontology-us-ncmec:transferFrequency ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -267,12 +267,12 @@ icacus:TransferDetectionShape rdf:type sh:NodeShape ;
         rdfs:comment "Transfer frequency must be from the allowed list."@en ;
     ] .
 
-icacus:AccountLinkingShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:AccountLinking ;
+cacontology-us-ncmec:AccountLinkingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:AccountLinking ;
     rdfs:label "Account Linking Shape"@en ;
     rdfs:comment "Validation shape for account linking instances."@en ;
     sh:property [
-        sh:path icacus:accountConfidence ;
+        sh:path cacontology-us-ncmec:accountConfidence ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -280,18 +280,18 @@ icacus:AccountLinkingShape rdf:type sh:NodeShape ;
         rdfs:comment "Account confidence must be from the allowed list."@en ;
     ] ;
     sh:property [
-        sh:path icacus:linkedToAccount ;
+        sh:path cacontology-us-ncmec:linkedToAccount ;
         sh:class uco-observable:DigitalAccount ;
         sh:minCount 1 ;
         rdfs:comment "Account linking must link to at least one digital account."@en ;
     ] .
 
-icacus:PhoneNumberTraceShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:PhoneNumberTrace ;
+cacontology-us-ncmec:PhoneNumberTraceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:PhoneNumberTrace ;
     rdfs:label "Phone Number Trace Shape"@en ;
     rdfs:comment "Validation shape for phone number trace instances."@en ;
     sh:property [
-        sh:path icacus:phoneVerificationStatus ;
+        sh:path cacontology-us-ncmec:phoneVerificationStatus ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -299,19 +299,19 @@ icacus:PhoneNumberTraceShape rdf:type sh:NodeShape ;
         rdfs:comment "Phone verification status must be from the allowed list."@en ;
     ] ;
     sh:property [
-        sh:path icacus:tracedToPhone ;
+        sh:path cacontology-us-ncmec:tracedToPhone ;
         sh:class uco-observable:PhoneNumber ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         rdfs:comment "Phone trace must trace to exactly one phone number."@en ;
     ] .
 
-icacus:ContentIdentificationShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:ContentIdentification ;
+cacontology-us-ncmec:ContentIdentificationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:ContentIdentification ;
     rdfs:label "Content Identification Shape"@en ;
     rdfs:comment "Validation shape for content identification instances."@en ;
     sh:property [
-        sh:path icacus:identifiedContent ;
+        sh:path cacontology-us-ncmec:identifiedContent ;
         sh:class uco-observable:DigitalArtifact ;
         sh:minCount 1 ;
         rdfs:comment "Content identification must identify at least one digital artifact."@en ;
@@ -321,12 +321,12 @@ icacus:ContentIdentificationShape rdf:type sh:NodeShape ;
 # PLATFORM COOPERATION SHAPES
 # =============================================================================
 
-icacus:PlatformCooperationShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:PlatformCooperation ;
+cacontology-us-ncmec:PlatformCooperationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:PlatformCooperation ;
     rdfs:label "Platform Cooperation Shape"@en ;
     rdfs:comment "Validation shape for platform cooperation instances."@en ;
     sh:property [
-        sh:path icacus:platformResponseTime ;
+        sh:path cacontology-us-ncmec:platformResponseTime ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -335,7 +335,7 @@ icacus:PlatformCooperationShape rdf:type sh:NodeShape ;
         rdfs:comment "Platform response time must be between 0.1 and 8760 hours."@en ;
     ] ;
     sh:property [
-        sh:path icacus:cooperationLevel ;
+        sh:path cacontology-us-ncmec:cooperationLevel ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -343,7 +343,7 @@ icacus:PlatformCooperationShape rdf:type sh:NodeShape ;
         rdfs:comment "Cooperation level must be from the allowed list."@en ;
     ] ;
     sh:property [
-        sh:path icacus:dataProvided ;
+        sh:path cacontology-us-ncmec:dataProvided ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 5 ;
@@ -351,7 +351,7 @@ icacus:PlatformCooperationShape rdf:type sh:NodeShape ;
         rdfs:comment "Data provided must be from the allowed list."@en ;
     ] ;
     sh:property [
-        sh:path icacus:involvesPlatform ;
+        sh:path cacontology-us-ncmec:involvesPlatform ;
         sh:class uco-observable:DigitalService ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -362,8 +362,8 @@ icacus:PlatformCooperationShape rdf:type sh:NodeShape ;
 # INVESTIGATION TRIGGER SHAPES
 # =============================================================================
 
-icacus:InvestigationTriggerShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:InvestigationTrigger ;
+cacontology-us-ncmec:InvestigationTriggerShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:InvestigationTrigger ;
     rdfs:label "Investigation Trigger Shape"@en ;
     rdfs:comment "Validation shape for investigation trigger instances."@en ;
     sh:property [
@@ -374,7 +374,7 @@ icacus:InvestigationTriggerShape rdf:type sh:NodeShape ;
         rdfs:comment "Investigation trigger must specify start time."@en ;
     ] ;
     sh:property [
-        sh:path icacus:triggerCriteria ;
+        sh:path cacontology-us-ncmec:triggerCriteria ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 5 ;
@@ -382,7 +382,7 @@ icacus:InvestigationTriggerShape rdf:type sh:NodeShape ;
         rdfs:comment "Trigger criteria must be from the allowed list."@en ;
     ] ;
     sh:property [
-        sh:path icacus:urgencyLevel ;
+        sh:path cacontology-us-ncmec:urgencyLevel ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -390,7 +390,7 @@ icacus:InvestigationTriggerShape rdf:type sh:NodeShape ;
         rdfs:comment "Urgency level must be from the allowed list."@en ;
     ] ;
     sh:property [
-        sh:path icacus:referralJurisdiction ;
+        sh:path cacontology-us-ncmec:referralJurisdiction ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -398,19 +398,19 @@ icacus:InvestigationTriggerShape rdf:type sh:NodeShape ;
         rdfs:comment "Referral jurisdiction must be from the allowed list."@en ;
     ] ;
     sh:property [
-        sh:path icacus:triggeredBy ;
-        sh:class icacus:NCMECCybertipReport ;
+        sh:path cacontology-us-ncmec:triggeredBy ;
+        sh:class cacontology-us-ncmec:NCMECCybertipReport ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         rdfs:comment "Investigation trigger must be triggered by exactly one NCMEC tip."@en ;
     ] .
 
-icacus:TaskForceReferralShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:TaskForceReferral ;
+cacontology-us-ncmec:TaskForceReferralShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:TaskForceReferral ;
     rdfs:label "Task Force Referral Shape"@en ;
     rdfs:comment "Validation shape for task force referral instances."@en ;
     sh:property [
-        sh:path icacus:referralJurisdiction ;
+        sh:path cacontology-us-ncmec:referralJurisdiction ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -418,22 +418,22 @@ icacus:TaskForceReferralShape rdf:type sh:NodeShape ;
         rdfs:comment "Task force referrals should be to state or local jurisdiction."@en ;
     ] .
 
-icacus:LocalLawEnforcementReferralShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:LocalLawEnforcementReferral ;
+cacontology-us-ncmec:LocalLawEnforcementReferralShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:LocalLawEnforcementReferral ;
     rdfs:label "Local Law Enforcement Referral Shape"@en ;
     rdfs:comment "Validation shape for local law enforcement referral instances."@en ;
     sh:property [
-        sh:path icacus:referralJurisdiction ;
+        sh:path cacontology-us-ncmec:referralJurisdiction ;
         sh:hasValue "local" ;
         rdfs:comment "Local law enforcement referrals must have local jurisdiction."@en ;
     ] .
 
-icacus:FederalReferralShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:FederalReferral ;
+cacontology-us-ncmec:FederalReferralShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:FederalReferral ;
     rdfs:label "Federal Referral Shape"@en ;
     rdfs:comment "Validation shape for federal referral instances."@en ;
     sh:property [
-        sh:path icacus:referralJurisdiction ;
+        sh:path cacontology-us-ncmec:referralJurisdiction ;
         sh:hasValue "federal" ;
         rdfs:comment "Federal referrals must have federal jurisdiction."@en ;
     ] .
@@ -442,8 +442,8 @@ icacus:FederalReferralShape rdf:type sh:NodeShape ;
 # TIP PROCESSING SHAPES
 # =============================================================================
 
-icacus:TipProcessingShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:TipProcessing ;
+cacontology-us-ncmec:TipProcessingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:TipProcessing ;
     rdfs:label "Tip Processing Shape"@en ;
     rdfs:comment "Validation shape for tip processing instances."@en ;
     sh:property [
@@ -461,7 +461,7 @@ icacus:TipProcessingShape rdf:type sh:NodeShape ;
         rdfs:comment "Tip processing may specify end time."@en ;
     ] ;
     sh:property [
-        sh:path icacus:processingTime ;
+        sh:path cacontology-us-ncmec:processingTime ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -470,19 +470,19 @@ icacus:TipProcessingShape rdf:type sh:NodeShape ;
         rdfs:comment "Processing time must be between 0.1 and 720 hours (30 days)."@en ;
     ] ;
     sh:property [
-        sh:path icacus:processedTip ;
-        sh:class icacus:NCMECCybertipReport ;
+        sh:path cacontology-us-ncmec:processedTip ;
+        sh:class cacontology-us-ncmec:NCMECCybertipReport ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         rdfs:comment "Tip processing must process exactly one NCMEC tip."@en ;
     ] .
 
-icacus:TipPrioritizationShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:TipPrioritization ;
+cacontology-us-ncmec:TipPrioritizationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:TipPrioritization ;
     rdfs:label "Tip Prioritization Shape"@en ;
     rdfs:comment "Validation shape for tip prioritization instances."@en ;
     sh:property [
-        sh:path icacus:priorityLevel ;
+        sh:path cacontology-us-ncmec:priorityLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -490,12 +490,12 @@ icacus:TipPrioritizationShape rdf:type sh:NodeShape ;
         rdfs:comment "Priority level must be specified from the allowed list."@en ;
     ] .
 
-icacus:TipValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:TipValidation ;
+cacontology-us-ncmec:TipValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:TipValidation ;
     rdfs:label "Tip Validation Shape"@en ;
     rdfs:comment "Validation shape for tip validation instances."@en ;
     sh:property [
-        sh:path icacus:validationStatus ;
+        sh:path cacontology-us-ncmec:validationStatus ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -503,12 +503,12 @@ icacus:TipValidationShape rdf:type sh:NodeShape ;
         rdfs:comment "Validation status must be specified from the allowed list."@en ;
     ] .
 
-icacus:TipEnrichmentShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:TipEnrichment ;
+cacontology-us-ncmec:TipEnrichmentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:TipEnrichment ;
     rdfs:label "Tip Enrichment Shape"@en ;
     rdfs:comment "Validation shape for tip enrichment instances."@en ;
     sh:property [
-        sh:path icacus:enrichmentType ;
+        sh:path cacontology-us-ncmec:enrichmentType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 5 ;
@@ -520,8 +520,8 @@ icacus:TipEnrichmentShape rdf:type sh:NodeShape ;
 # CROSS-REFERENCE VALIDATION SHAPES
 # =============================================================================
 
-icacus:ReportIncidentTypeCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:NCMECCybertipReport ;
+cacontology-us-ncmec:ReportIncidentTypeCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:NCMECCybertipReport ;
     rdfs:label "Report Incident Type Cross Reference Shape"@en ;
     rdfs:comment "Validates that NCMEC reports have appropriate incident types."@en ;
     sh:sparql [
@@ -534,17 +534,17 @@ icacus:ReportIncidentTypeCrossReferenceShape rdf:type sh:NodeShape ;
         ] ;
         sh:select """
             SELECT $this WHERE {
-                $this a icacus:NCMECCybertipReport .
+                $this a cacontology-us-ncmec:NCMECCybertipReport .
                 FILTER NOT EXISTS {
-                    $this icacus:hasNCMECIncidentType ?incidentType .
-                    ?incidentType a icacus:NCMECIncidentType .
+                    $this cacontology-us-ncmec:hasNCMECIncidentType ?incidentType .
+                    ?incidentType a cacontology-us-ncmec:NCMECIncidentType .
                 }
             }
         """ ;
     ] .
 
-icacus:AnalysisReportCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:CyberTipAnalysis ;
+cacontology-us-ncmec:AnalysisReportCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:CyberTipAnalysis ;
     rdfs:label "Analysis Report Cross Reference Shape"@en ;
     rdfs:comment "Validates that tip analysis references valid reports."@en ;
     sh:sparql [
@@ -557,17 +557,17 @@ icacus:AnalysisReportCrossReferenceShape rdf:type sh:NodeShape ;
         ] ;
         sh:select """
             SELECT $this WHERE {
-                $this a icacus:CyberTipAnalysis .
+                $this a cacontology-us-ncmec:CyberTipAnalysis .
                 FILTER NOT EXISTS {
-                    $this icacus:analysisOf ?report .
-                    ?report a icacus:NCMECCybertipReport .
+                    $this cacontology-us-ncmec:analysisOf ?report .
+                    ?report a cacontology-us-ncmec:NCMECCybertipReport .
                 }
             }
         """ ;
     ] .
 
-icacus:TriggerInvestigationCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:InvestigationTrigger ;
+cacontology-us-ncmec:TriggerInvestigationCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:InvestigationTrigger ;
     rdfs:label "Trigger Investigation Cross Reference Shape"@en ;
     rdfs:comment "Validates that investigation triggers result in investigations."@en ;
     sh:sparql [
@@ -584,17 +584,17 @@ icacus:TriggerInvestigationCrossReferenceShape rdf:type sh:NodeShape ;
         ] ;
         sh:select """
             SELECT $this WHERE {
-                $this a icacus:InvestigationTrigger .
+                $this a cacontology-us-ncmec:InvestigationTrigger .
                 FILTER NOT EXISTS {
-                    $this icacus:resultedInInvestigation ?investigation .
+                    $this cacontology-us-ncmec:resultedInInvestigation ?investigation .
                     ?investigation a cacontology:Investigation .
                 }
             }
         """ ;
     ] .
 
-icacus:PlatformCooperationCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:PlatformCooperation ;
+cacontology-us-ncmec:PlatformCooperationCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:PlatformCooperation ;
     rdfs:label "Platform Cooperation Cross Reference Shape"@en ;
     rdfs:comment "Validates that platform cooperation involves digital services."@en ;
     sh:sparql [
@@ -611,9 +611,9 @@ icacus:PlatformCooperationCrossReferenceShape rdf:type sh:NodeShape ;
         ] ;
         sh:select """
             SELECT $this WHERE {
-                $this a icacus:PlatformCooperation .
+                $this a cacontology-us-ncmec:PlatformCooperation .
                 FILTER NOT EXISTS {
-                    $this icacus:involvesPlatform ?platform .
+                    $this cacontology-us-ncmec:involvesPlatform ?platform .
                     ?platform a uco-observable:DigitalService .
                 }
             }
@@ -624,10 +624,10 @@ icacus:PlatformCooperationCrossReferenceShape rdf:type sh:NodeShape ;
 # TEMPORAL VALIDATION SHAPES
 # =============================================================================
 
-icacus:TemporalValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:CyberTipAnalysis ,
-                   icacus:TipProcessing ,
-                   icacus:InvestigationTrigger ;
+cacontology-us-ncmec:TemporalValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:CyberTipAnalysis ,
+                   cacontology-us-ncmec:TipProcessing ,
+                   cacontology-us-ncmec:InvestigationTrigger ;
     rdfs:label "Temporal Validation Shape"@en ;
     rdfs:comment "Validates temporal consistency for NCMEC operations."@en ;
     sh:sparql [
@@ -647,8 +647,8 @@ icacus:TemporalValidationShape rdf:type sh:NodeShape ;
         """ ;
     ] .
 
-icacus:ProcessingSequenceValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:InvestigationTrigger ;
+cacontology-us-ncmec:ProcessingSequenceValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:InvestigationTrigger ;
     rdfs:label "Processing Sequence Validation Shape"@en ;
     rdfs:comment "Validates that investigation triggers occur after tip processing."@en ;
     sh:sparql [
@@ -665,10 +665,10 @@ icacus:ProcessingSequenceValidationShape rdf:type sh:NodeShape ;
         ] ;
         sh:select """
             SELECT $this WHERE {
-                $this a icacus:InvestigationTrigger ;
+                $this a cacontology-us-ncmec:InvestigationTrigger ;
                       uco-core:startTime ?triggerTime ;
-                      icacus:triggeredBy ?tip .
-                ?processing icacus:processedTip ?tip ;
+                      cacontology-us-ncmec:triggeredBy ?tip .
+                ?processing cacontology-us-ncmec:processedTip ?tip ;
                            uco-core:endTime ?processTime .
                 FILTER (?triggerTime < ?processTime)
             }
@@ -679,12 +679,12 @@ icacus:ProcessingSequenceValidationShape rdf:type sh:NodeShape ;
 # DATA QUALITY SHAPES
 # =============================================================================
 
-icacus:DataQualityShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:NCMECCybertipReport ,
-                   icacus:CyberTipAnalysis ,
-                   icacus:InvestigationTrigger ,
-                   icacus:TipProcessing ,
-                   icacus:PlatformCooperation ;
+cacontology-us-ncmec:DataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:NCMECCybertipReport ,
+                   cacontology-us-ncmec:CyberTipAnalysis ,
+                   cacontology-us-ncmec:InvestigationTrigger ,
+                   cacontology-us-ncmec:TipProcessing ,
+                   cacontology-us-ncmec:PlatformCooperation ;
     rdfs:label "Data Quality Shape"@en ;
     rdfs:comment "Validates data quality for NCMEC entities."@en ;
     sh:property [
@@ -702,9 +702,9 @@ icacus:DataQualityShape rdf:type sh:NodeShape ;
         rdfs:comment "Modification time should be specified when available."@en ;
     ] .
 
-icacus:ConfidenceValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:CyberTipAnalysis ,
-                   icacus:AccountLinking ;
+cacontology-us-ncmec:ConfidenceValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:CyberTipAnalysis ,
+                   cacontology-us-ncmec:AccountLinking ;
     rdfs:label "Confidence Validation Shape"@en ;
     rdfs:comment "Validates confidence level consistency."@en ;
     sh:sparql [
@@ -717,17 +717,17 @@ icacus:ConfidenceValidationShape rdf:type sh:NodeShape ;
         ] ;
         sh:select """
             SELECT $this WHERE {
-                $this icacus:analysisConfidence "high" .
+                $this cacontology-us-ncmec:analysisConfidence "high" .
                 FILTER NOT EXISTS {
-                    $this icacus:supportedBy ?cooperation .
-                    ?cooperation a icacus:PlatformCooperation .
+                    $this cacontology-us-ncmec:supportedBy ?cooperation .
+                    ?cooperation a cacontology-us-ncmec:PlatformCooperation .
                 }
             }
         """ ;
     ] .
 
-icacus:UrgencyConsistencyValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:InvestigationTrigger ;
+cacontology-us-ncmec:UrgencyConsistencyValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:InvestigationTrigger ;
     rdfs:label "Urgency Consistency Validation Shape"@en ;
     rdfs:comment "Validates urgency level consistency with trigger criteria."@en ;
     sh:sparql [
@@ -740,17 +740,17 @@ icacus:UrgencyConsistencyValidationShape rdf:type sh:NodeShape ;
         ] ;
         sh:select """
             SELECT $this WHERE {
-                $this icacus:urgencyLevel "immediate" .
+                $this cacontology-us-ncmec:urgencyLevel "immediate" .
                 FILTER NOT EXISTS {
-                    $this icacus:triggerCriteria ?criteria .
+                    $this cacontology-us-ncmec:triggerCriteria ?criteria .
                     FILTER (?criteria IN ("imminent_danger", "victim_age"))
                 }
             }
         """ ;
     ] .
 
-icacus:ProcessingTimeValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:TipProcessing ;
+cacontology-us-ncmec:ProcessingTimeValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:TipProcessing ;
     rdfs:label "Processing Time Validation Shape"@en ;
     rdfs:comment "Validates processing time reasonableness."@en ;
     sh:sparql [
@@ -769,15 +769,15 @@ icacus:ProcessingTimeValidationShape rdf:type sh:NodeShape ;
             SELECT $this WHERE {
                 $this uco-core:startTime ?start ;
                       uco-core:endTime ?end ;
-                      icacus:processingTime ?declaredTime .
+                      cacontology-us-ncmec:processingTime ?declaredTime .
                 BIND((?end - ?start) / 3600 AS ?actualHours)
                 FILTER (ABS(?actualHours - ?declaredTime) > 1.0)
             }
         """ ;
     ] .
 
-icacus:CooperationLevelValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icacus:PlatformCooperation ;
+cacontology-us-ncmec:CooperationLevelValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:PlatformCooperation ;
     rdfs:label "Cooperation Level Validation Shape"@en ;
     rdfs:comment "Validates cooperation level consistency with data provided."@en ;
     sh:sparql [
@@ -790,10 +790,10 @@ icacus:CooperationLevelValidationShape rdf:type sh:NodeShape ;
         ] ;
         sh:select """
             SELECT $this WHERE {
-                $this icacus:cooperationLevel "full" .
+                $this cacontology-us-ncmec:cooperationLevel "full" .
                 FILTER NOT EXISTS {
-                    $this icacus:dataProvided ?data1 .
-                    $this icacus:dataProvided ?data2 .
+                    $this cacontology-us-ncmec:dataProvided ?data1 .
+                    $this cacontology-us-ncmec:dataProvided ?data2 .
                     FILTER (?data1 != ?data2)
                 }
             }

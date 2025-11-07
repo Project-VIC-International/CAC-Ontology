@@ -13,8 +13,8 @@
 # TRAINING INFRASTRUCTURE SHAPES
 # =============================================================================
 
-icac-training:InternationalTrainingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:InternationalTraining ;
+cacontology-training:InternationalTrainingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:InternationalTraining ;
     rdfs:label "International Training Shape"@en ;
     rdfs:comment "Validation shape for international training instances."@en ;
     sh:property [
@@ -41,7 +41,7 @@ icac-training:InternationalTrainingShape rdf:type sh:NodeShape ;
         sh:message "International training may specify end time."@en
     ] ;
     sh:property [
-        sh:path icac-training:trainingReachCount ;
+        sh:path cacontology-training:trainingReachCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -50,7 +50,7 @@ icac-training:InternationalTrainingShape rdf:type sh:NodeShape ;
         sh:message "Training reach count must be between 1 and 100000 when specified."@en
     ] ;
     sh:property [
-        sh:path icac-training:trainingDuration ;
+        sh:path cacontology-training:trainingDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -59,7 +59,7 @@ icac-training:InternationalTrainingShape rdf:type sh:NodeShape ;
         sh:message "Training duration must be between 0.5 and 2000 hours."@en
     ] ;
     sh:property [
-        sh:path icac-training:participationRate ;
+        sh:path cacontology-training:participationRate ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -68,7 +68,7 @@ icac-training:InternationalTrainingShape rdf:type sh:NodeShape ;
         sh:message "Participation rate must be between 0.0 and 1.0."@en
     ] ;
     sh:property [
-        sh:path icac-training:completionRate ;
+        sh:path cacontology-training:completionRate ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -77,7 +77,7 @@ icac-training:InternationalTrainingShape rdf:type sh:NodeShape ;
         sh:message "Completion rate must be between 0.0 and 1.0."@en
     ] ;
     sh:property [
-        sh:path icac-training:trainingLanguage ;
+        sh:path cacontology-training:trainingLanguage ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 10 ;
@@ -86,8 +86,8 @@ icac-training:InternationalTrainingShape rdf:type sh:NodeShape ;
         sh:message "Training language should be 2-50 characters (up to 10 languages)."@en
     ] .
 
-icac-training:CapacityBuildingProgramShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:CapacityBuildingProgram ;
+cacontology-training:CapacityBuildingProgramShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:CapacityBuildingProgram ;
     rdfs:label "Capacity Building Program Shape"@en ;
     rdfs:comment "Validation shape for capacity building program instances."@en ;
     sh:property [
@@ -100,7 +100,7 @@ icac-training:CapacityBuildingProgramShape rdf:type sh:NodeShape ;
         sh:message "Capacity building program must have a name (5-200 characters)."@en
     ] ;
     sh:property [
-        sh:path icac-training:capacityLevel ;
+        sh:path cacontology-training:capacityLevel ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -108,8 +108,8 @@ icac-training:CapacityBuildingProgramShape rdf:type sh:NodeShape ;
         sh:message "Capacity level must be from the allowed list."@en
     ] .
 
-icac-training:ProfessionalCertificationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:ProfessionalCertification ;
+cacontology-training:ProfessionalCertificationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:ProfessionalCertification ;
     rdfs:label "Professional Certification Shape"@en ;
     rdfs:comment "Validation shape for professional certification instances."@en ;
     sh:property [
@@ -122,7 +122,7 @@ icac-training:ProfessionalCertificationShape rdf:type sh:NodeShape ;
         sh:message "Professional certification must have a name (5-200 characters)."@en
     ] ;
     sh:property [
-        sh:path icac-training:certificationStatus ;
+        sh:path cacontology-training:certificationStatus ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -130,7 +130,7 @@ icac-training:ProfessionalCertificationShape rdf:type sh:NodeShape ;
         sh:message "Certification status must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-training:certificationValidityPeriod ;
+        sh:path cacontology-training:certificationValidityPeriod ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -139,8 +139,8 @@ icac-training:ProfessionalCertificationShape rdf:type sh:NodeShape ;
         sh:message "Certification validity period must be between 1 and 120 months."@en
     ] .
 
-icac-training:TrainingModuleShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:TrainingModule ;
+cacontology-training:TrainingModuleShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:TrainingModule ;
     rdfs:label "Training Module Shape"@en ;
     rdfs:comment "Validation shape for training module instances."@en ;
     sh:property [
@@ -162,12 +162,12 @@ icac-training:TrainingModuleShape rdf:type sh:NodeShape ;
         sh:message "Training module description should be 10-1000 characters when specified."@en
     ] .
 
-icac-training:SkillsDevelopmentProgramShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:SkillsDevelopmentProgram ;
+cacontology-training:SkillsDevelopmentProgramShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:SkillsDevelopmentProgram ;
     rdfs:label "Skills Development Program Shape"@en ;
     rdfs:comment "Validation shape for skills development program instances."@en ;
     sh:property [
-        sh:path icac-training:capacityLevel ;
+        sh:path cacontology-training:capacityLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -175,8 +175,8 @@ icac-training:SkillsDevelopmentProgramShape rdf:type sh:NodeShape ;
         sh:message "Skills development program must specify capacity level."@en
     ] .
 
-icac-training:TrainingCurriculumShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:TrainingCurriculum ;
+cacontology-training:TrainingCurriculumShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:TrainingCurriculum ;
     rdfs:label "Training Curriculum Shape"@en ;
     rdfs:comment "Validation shape for training curriculum instances."@en ;
     sh:property [
@@ -193,12 +193,12 @@ icac-training:TrainingCurriculumShape rdf:type sh:NodeShape ;
 # TRAINING DELIVERY METHOD SHAPES
 # =============================================================================
 
-icac-training:OnlineTrainingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:OnlineTraining ;
+cacontology-training:OnlineTrainingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:OnlineTraining ;
     rdfs:label "Online Training Shape"@en ;
     rdfs:comment "Validation shape for online training instances."@en ;
     sh:property [
-        sh:path icac-training:trainingReachCount ;
+        sh:path cacontology-training:trainingReachCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -207,12 +207,12 @@ icac-training:OnlineTrainingShape rdf:type sh:NodeShape ;
         sh:message "Online training reach count must be between 1 and 100000 when specified."@en
     ] .
 
-icac-training:InPersonTrainingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:InPersonTraining ;
+cacontology-training:InPersonTrainingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:InPersonTraining ;
     rdfs:label "In-Person Training Shape"@en ;
     rdfs:comment "Validation shape for in-person training instances."@en ;
     sh:property [
-        sh:path icac-training:trainingReachCount ;
+        sh:path cacontology-training:trainingReachCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -221,12 +221,12 @@ icac-training:InPersonTrainingShape rdf:type sh:NodeShape ;
         sh:message "In-person training reach count must be between 1 and 1000 when specified."@en
     ] .
 
-icac-training:HybridTrainingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:HybridTraining ;
+cacontology-training:HybridTrainingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:HybridTraining ;
     rdfs:label "Hybrid Training Shape"@en ;
     rdfs:comment "Validation shape for hybrid training instances."@en ;
     sh:property [
-        sh:path icac-training:trainingReachCount ;
+        sh:path cacontology-training:trainingReachCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -235,12 +235,12 @@ icac-training:HybridTrainingShape rdf:type sh:NodeShape ;
         sh:message "Hybrid training reach count must be between 1 and 10000 when specified."@en
     ] .
 
-icac-training:MentorshipProgramShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:MentorshipProgram ;
+cacontology-training:MentorshipProgramShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:MentorshipProgram ;
     rdfs:label "Mentorship Program Shape"@en ;
     rdfs:comment "Validation shape for mentorship program instances."@en ;
     sh:property [
-        sh:path icac-training:trainingReachCount ;
+        sh:path cacontology-training:trainingReachCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -253,12 +253,12 @@ icac-training:MentorshipProgramShape rdf:type sh:NodeShape ;
 # SPECIALIZED TRAINING TYPE SHAPES
 # =============================================================================
 
-icac-training:CriminalJusticeTrainingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:CriminalJusticeTraining ;
+cacontology-training:CriminalJusticeTrainingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:CriminalJusticeTraining ;
     rdfs:label "Criminal Justice Training Shape"@en ;
     rdfs:comment "Validation shape for criminal justice training instances."@en ;
     sh:property [
-        sh:path icac-training:capacityLevel ;
+        sh:path cacontology-training:capacityLevel ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -266,12 +266,12 @@ icac-training:CriminalJusticeTrainingShape rdf:type sh:NodeShape ;
         sh:message "Criminal justice training should be intermediate, advanced, or expert level."@en
     ] .
 
-icac-training:ChildProtectionTrainingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:ChildProtectionTraining ;
+cacontology-training:ChildProtectionTrainingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:ChildProtectionTraining ;
     rdfs:label "Child Protection Training Shape"@en ;
     rdfs:comment "Validation shape for child protection training instances."@en ;
     sh:property [
-        sh:path icac-training:trainingDuration ;
+        sh:path cacontology-training:trainingDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -280,12 +280,12 @@ icac-training:ChildProtectionTrainingShape rdf:type sh:NodeShape ;
         sh:message "Child protection training duration should be between 2 and 200 hours."@en
     ] .
 
-icac-training:DigitalForensicsTrainingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:DigitalForensicsTraining ;
+cacontology-training:DigitalForensicsTrainingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:DigitalForensicsTraining ;
     rdfs:label "Digital Forensics Training Shape"@en ;
     rdfs:comment "Validation shape for digital forensics training instances."@en ;
     sh:property [
-        sh:path icac-training:capacityLevel ;
+        sh:path cacontology-training:capacityLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -293,12 +293,12 @@ icac-training:DigitalForensicsTrainingShape rdf:type sh:NodeShape ;
         sh:message "Digital forensics training must be intermediate, advanced, or expert level."@en
     ] .
 
-icac-training:InvestigationTrainingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:InvestigationTraining ;
+cacontology-training:InvestigationTrainingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:InvestigationTraining ;
     rdfs:label "Investigation Training Shape"@en ;
     rdfs:comment "Validation shape for investigation training instances."@en ;
     sh:property [
-        sh:path icac-training:trainingDuration ;
+        sh:path cacontology-training:trainingDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -307,12 +307,12 @@ icac-training:InvestigationTrainingShape rdf:type sh:NodeShape ;
         sh:message "Investigation training duration should be between 8 and 400 hours."@en
     ] .
 
-icac-training:LegalTrainingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:LegalTraining ;
+cacontology-training:LegalTrainingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:LegalTraining ;
     rdfs:label "Legal Training Shape"@en ;
     rdfs:comment "Validation shape for legal training instances."@en ;
     sh:property [
-        sh:path icac-training:capacityLevel ;
+        sh:path cacontology-training:capacityLevel ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -320,12 +320,12 @@ icac-training:LegalTrainingShape rdf:type sh:NodeShape ;
         sh:message "Legal training capacity level must be from the allowed list."@en
     ] .
 
-icac-training:VictimServiceTrainingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:VictimServiceTraining ;
+cacontology-training:VictimServiceTrainingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:VictimServiceTraining ;
     rdfs:label "Victim Service Training Shape"@en ;
     rdfs:comment "Validation shape for victim service training instances."@en ;
     sh:property [
-        sh:path icac-training:trainingDuration ;
+        sh:path cacontology-training:trainingDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -334,12 +334,12 @@ icac-training:VictimServiceTrainingShape rdf:type sh:NodeShape ;
         sh:message "Victim service training duration should be between 4 and 200 hours."@en
     ] .
 
-icac-training:HotlineTrainingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:HotlineTraining ;
+cacontology-training:HotlineTrainingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:HotlineTraining ;
     rdfs:label "Hotline Training Shape"@en ;
     rdfs:comment "Validation shape for hotline training instances."@en ;
     sh:property [
-        sh:path icac-training:trainingDuration ;
+        sh:path cacontology-training:trainingDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -352,8 +352,8 @@ icac-training:HotlineTrainingShape rdf:type sh:NodeShape ;
 # TRAINING OUTCOMES AND ASSESSMENT SHAPES
 # =============================================================================
 
-icac-training:TrainingCertificateShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:TrainingCertificate ;
+cacontology-training:TrainingCertificateShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:TrainingCertificate ;
     rdfs:label "Training Certificate Shape"@en ;
     rdfs:comment "Validation shape for training certificate instances."@en ;
     sh:property [
@@ -366,12 +366,12 @@ icac-training:TrainingCertificateShape rdf:type sh:NodeShape ;
         sh:message "Training certificate must have a name (5-200 characters)."@en
     ] .
 
-icac-training:CompetencyAssessmentShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:CompetencyAssessment ;
+cacontology-training:CompetencyAssessmentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:CompetencyAssessment ;
     rdfs:label "Competency Assessment Shape"@en ;
     rdfs:comment "Validation shape for competency assessment instances."@en ;
     sh:property [
-        sh:path icac-training:competencyLevel ;
+        sh:path cacontology-training:competencyLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -379,12 +379,12 @@ icac-training:CompetencyAssessmentShape rdf:type sh:NodeShape ;
         sh:message "Competency level must be from the allowed list."@en
     ] .
 
-icac-training:SkillsValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:SkillsValidation ;
+cacontology-training:SkillsValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:SkillsValidation ;
     rdfs:label "Skills Validation Shape"@en ;
     rdfs:comment "Validation shape for skills validation instances."@en ;
     sh:property [
-        sh:path icac-training:skillsAcquired ;
+        sh:path cacontology-training:skillsAcquired ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -393,8 +393,8 @@ icac-training:SkillsValidationShape rdf:type sh:NodeShape ;
         sh:message "Skills acquired must be described (10-1000 characters)."@en
     ] .
 
-icac-training:ContinuingEducationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:ContinuingEducation ;
+cacontology-training:ContinuingEducationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:ContinuingEducation ;
     rdfs:label "Continuing Education Shape"@en ;
     rdfs:comment "Validation shape for continuing education instances."@en ;
     sh:property [
@@ -407,8 +407,8 @@ icac-training:ContinuingEducationShape rdf:type sh:NodeShape ;
         sh:message "Continuing education must have a name (5-200 characters)."@en
     ] .
 
-icac-training:ProfessionalDevelopmentShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:ProfessionalDevelopment ;
+cacontology-training:ProfessionalDevelopmentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:ProfessionalDevelopment ;
     rdfs:label "Professional Development Shape"@en ;
     rdfs:comment "Validation shape for professional development instances."@en ;
     sh:property [
@@ -425,8 +425,8 @@ icac-training:ProfessionalDevelopmentShape rdf:type sh:NodeShape ;
 # TRAINING METRICS SHAPES
 # =============================================================================
 
-icac-training:TrainingMetricsShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:TrainingMetrics ;
+cacontology-training:TrainingMetricsShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:TrainingMetrics ;
     rdfs:label "Training Metrics Shape"@en ;
     rdfs:comment "Validation shape for training metrics instances."@en ;
     sh:property [
@@ -439,12 +439,12 @@ icac-training:TrainingMetricsShape rdf:type sh:NodeShape ;
         sh:message "Training metrics name should be 5-200 characters when specified."@en
     ] .
 
-icac-training:GlobalTrainingReachShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:GlobalTrainingReach ;
+cacontology-training:GlobalTrainingReachShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:GlobalTrainingReach ;
     rdfs:label "Global Training Reach Shape"@en ;
     rdfs:comment "Validation shape for global training reach instances."@en ;
     sh:property [
-        sh:path icac-training:professionalsTrained ;
+        sh:path cacontology-training:professionalsTrained ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -453,12 +453,12 @@ icac-training:GlobalTrainingReachShape rdf:type sh:NodeShape ;
         sh:message "Professionals trained must be between 1 and 1000000 when specified."@en
     ] .
 
-icac-training:TrainingEffectivenessShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:TrainingEffectiveness ;
+cacontology-training:TrainingEffectivenessShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:TrainingEffectiveness ;
     rdfs:label "Training Effectiveness Shape"@en ;
     rdfs:comment "Validation shape for training effectiveness instances."@en ;
     sh:property [
-        sh:path icac-training:trainingEffectiveness ;
+        sh:path cacontology-training:trainingEffectiveness ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -467,8 +467,8 @@ icac-training:TrainingEffectivenessShape rdf:type sh:NodeShape ;
         sh:message "Training effectiveness must be between 0.0 and 1.0."@en
     ] .
 
-icac-training:CapacityImpactShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:CapacityImpact ;
+cacontology-training:CapacityImpactShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:CapacityImpact ;
     rdfs:label "Capacity Impact Shape"@en ;
     rdfs:comment "Validation shape for capacity impact instances."@en ;
     sh:property [
@@ -481,8 +481,8 @@ icac-training:CapacityImpactShape rdf:type sh:NodeShape ;
         sh:message "Capacity impact name should be 5-200 characters when specified."@en
     ] .
 
-icac-training:CommunityEngagementMetricsShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:CommunityEngagementMetrics ;
+cacontology-training:CommunityEngagementMetricsShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:CommunityEngagementMetrics ;
     rdfs:label "Community Engagement Metrics Shape"@en ;
     rdfs:comment "Validation shape for community engagement metrics instances."@en ;
     sh:property [
@@ -495,12 +495,12 @@ icac-training:CommunityEngagementMetricsShape rdf:type sh:NodeShape ;
         sh:message "Community engagement metrics name should be 5-200 characters when specified."@en
     ] .
 
-icac-training:OutreachEventMetricsShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:OutreachEventMetrics ;
+cacontology-training:OutreachEventMetricsShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:OutreachEventMetrics ;
     rdfs:label "Outreach Event Metrics Shape"@en ;
     rdfs:comment "Validation shape for outreach event metrics instances."@en ;
     sh:property [
-        sh:path icac-training:outreachEventsCount ;
+        sh:path cacontology-training:outreachEventsCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -509,7 +509,7 @@ icac-training:OutreachEventMetricsShape rdf:type sh:NodeShape ;
         sh:message "Outreach events count must be between 1 and 10000 when specified."@en
     ] ;
     sh:property [
-        sh:path icac-training:totalAttendeesReached ;
+        sh:path cacontology-training:totalAttendeesReached ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -518,12 +518,12 @@ icac-training:OutreachEventMetricsShape rdf:type sh:NodeShape ;
         sh:message "Total attendees reached must be between 1 and 1000000 when specified."@en
     ] .
 
-icac-training:ProfessionalTrainingMetricsShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:ProfessionalTrainingMetrics ;
+cacontology-training:ProfessionalTrainingMetricsShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:ProfessionalTrainingMetrics ;
     rdfs:label "Professional Training Metrics Shape"@en ;
     rdfs:comment "Validation shape for professional training metrics instances."@en ;
     sh:property [
-        sh:path icac-training:professionalsTrainedCount ;
+        sh:path cacontology-training:professionalsTrainedCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -532,12 +532,12 @@ icac-training:ProfessionalTrainingMetricsShape rdf:type sh:NodeShape ;
         sh:message "Professionals trained count must be between 1 and 100000 when specified."@en
     ] .
 
-icac-training:K9ProgramMetricsShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:K9ProgramMetrics ;
+cacontology-training:K9ProgramMetricsShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:K9ProgramMetrics ;
     rdfs:label "K9 Program Metrics Shape"@en ;
     rdfs:comment "Validation shape for K9 program metrics instances."@en ;
     sh:property [
-        sh:path icac-training:k9SearchWarrantsAssisted ;
+        sh:path cacontology-training:k9SearchWarrantsAssisted ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -546,7 +546,7 @@ icac-training:K9ProgramMetricsShape rdf:type sh:NodeShape ;
         sh:message "K9 search warrants assisted must be between 1 and 10000 when specified."@en
     ] ;
     sh:property [
-        sh:path icac-training:k9PublicPresentations ;
+        sh:path cacontology-training:k9PublicPresentations ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -555,12 +555,12 @@ icac-training:K9ProgramMetricsShape rdf:type sh:NodeShape ;
         sh:message "K9 public presentations must be between 1 and 1000 when specified."@en
     ] .
 
-icac-training:OperationalTrainingMetricsShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:OperationalTrainingMetrics ;
+cacontology-training:OperationalTrainingMetricsShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:OperationalTrainingMetrics ;
     rdfs:label "Operational Training Metrics Shape"@en ;
     rdfs:comment "Validation shape for operational training metrics instances."@en ;
     sh:property [
-        sh:path icac-training:operationalDeploymentCount ;
+        sh:path cacontology-training:operationalDeploymentCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -569,7 +569,7 @@ icac-training:OperationalTrainingMetricsShape rdf:type sh:NodeShape ;
         sh:message "Operational deployment count must be between 1 and 10000 when specified."@en
     ] ;
     sh:property [
-        sh:path icac-training:trainingToOperationEffectiveness ;
+        sh:path cacontology-training:trainingToOperationEffectiveness ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -582,8 +582,8 @@ icac-training:OperationalTrainingMetricsShape rdf:type sh:NodeShape ;
 # CROSS-REFERENCE VALIDATION SHAPES
 # =============================================================================
 
-icac-training:TrainingDeliveryValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:InternationalTraining ;
+cacontology-training:TrainingDeliveryValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:InternationalTraining ;
     rdfs:label "Training Delivery Validation Shape"@en ;
     rdfs:comment "Validates that training programs have delivery mechanisms."@en ;
     sh:sparql [
@@ -591,17 +591,17 @@ icac-training:TrainingDeliveryValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-training:InternationalTraining .
+                $this a cacontology-training:InternationalTraining .
                 FILTER NOT EXISTS {
-                    $this icac-training:deliveredBy ?trainer .
-                    ?trainer a icac-training:InternationalTrainer .
+                    $this cacontology-training:deliveredBy ?trainer .
+                    ?trainer a cacontology-training:InternationalTrainer .
                 }
             }
         """
     ] .
 
-icac-training:CertificationValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:ProfessionalCertification ;
+cacontology-training:CertificationValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:ProfessionalCertification ;
     rdfs:label "Certification Validation Shape"@en ;
     rdfs:comment "Validates that certifications have certifying bodies."@en ;
     sh:sparql [
@@ -609,17 +609,17 @@ icac-training:CertificationValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-training:ProfessionalCertification .
+                $this a cacontology-training:ProfessionalCertification .
                 FILTER NOT EXISTS {
-                    $this icac-training:certifiedBy ?body .
-                    ?body a icac-training:CertificationBody .
+                    $this cacontology-training:certifiedBy ?body .
+                    ?body a cacontology-training:CertificationBody .
                 }
             }
         """
     ] .
 
-icac-training:CurriculumModuleValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:TrainingCurriculum ;
+cacontology-training:CurriculumModuleValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:TrainingCurriculum ;
     rdfs:label "Curriculum Module Validation Shape"@en ;
     rdfs:comment "Validates that curricula include training modules."@en ;
     sh:sparql [
@@ -627,17 +627,17 @@ icac-training:CurriculumModuleValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-training:TrainingCurriculum .
+                $this a cacontology-training:TrainingCurriculum .
                 FILTER NOT EXISTS {
-                    ?module icac-training:includedInCurriculum $this .
-                    ?module a icac-training:TrainingModule .
+                    ?module cacontology-training:includedInCurriculum $this .
+                    ?module a cacontology-training:TrainingModule .
                 }
             }
         """
     ] .
 
-icac-training:CapacityBuildingTargetValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:CapacityBuildingProgram ;
+cacontology-training:CapacityBuildingTargetValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:CapacityBuildingProgram ;
     rdfs:label "Capacity Building Target Validation Shape"@en ;
     rdfs:comment "Validates that capacity building programs have target organizations."@en ;
     sh:sparql [
@@ -645,9 +645,9 @@ icac-training:CapacityBuildingTargetValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-training:CapacityBuildingProgram .
+                $this a cacontology-training:CapacityBuildingProgram .
                 FILTER NOT EXISTS {
-                    $this icac-training:buildsCapacityFor ?org .
+                    $this cacontology-training:buildsCapacityFor ?org .
                     ?org a uco-identity:Organization .
                 }
             }
@@ -658,8 +658,8 @@ icac-training:CapacityBuildingTargetValidationShape rdf:type sh:NodeShape ;
 # TEMPORAL VALIDATION SHAPES
 # =============================================================================
 
-icac-training:TemporalValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:InternationalTraining ;
+cacontology-training:TemporalValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:InternationalTraining ;
     rdfs:label "Temporal Validation Shape"@en ;
     rdfs:comment "Validates temporal consistency for training programs."@en ;
     sh:sparql [
@@ -674,8 +674,8 @@ icac-training:TemporalValidationShape rdf:type sh:NodeShape ;
         """
     ] .
 
-icac-training:CertificationValidityValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:ProfessionalCertification ;
+cacontology-training:CertificationValidityValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:ProfessionalCertification ;
     rdfs:label "Certification Validity Validation Shape"@en ;
     rdfs:comment "Validates certification validity periods."@en ;
     sh:sparql [
@@ -683,8 +683,8 @@ icac-training:CertificationValidityValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-training:certificationStatus "active" ;
-                      icac-training:certificationValidityPeriod ?period .
+                $this cacontology-training:certificationStatus "active" ;
+                      cacontology-training:certificationValidityPeriod ?period .
                 FILTER (?period < 6.0)
             }
         """
@@ -694,11 +694,11 @@ icac-training:CertificationValidityValidationShape rdf:type sh:NodeShape ;
 # DATA QUALITY SHAPES
 # =============================================================================
 
-icac-training:DataQualityShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:InternationalTraining ,
-                   icac-training:CapacityBuildingProgram ,
-                   icac-training:ProfessionalCertification ,
-                   icac-training:TrainingMetrics ;
+cacontology-training:DataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:InternationalTraining ,
+                   cacontology-training:CapacityBuildingProgram ,
+                   cacontology-training:ProfessionalCertification ,
+                   cacontology-training:TrainingMetrics ;
     rdfs:label "Data Quality Shape"@en ;
     rdfs:comment "Validates data quality for training entities."@en ;
     sh:property [
@@ -716,8 +716,8 @@ icac-training:DataQualityShape rdf:type sh:NodeShape ;
         sh:message "Modification time should be specified when available."@en
     ] .
 
-icac-training:TrainingEffectivenessValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:InternationalTraining ;
+cacontology-training:TrainingEffectivenessValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:InternationalTraining ;
     rdfs:label "Training Effectiveness Validation Shape"@en ;
     rdfs:comment "Validates training effectiveness metrics."@en ;
     sh:sparql [
@@ -725,16 +725,16 @@ icac-training:TrainingEffectivenessValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-training:participationRate ?participation ;
-                      icac-training:completionRate ?completion .
+                $this cacontology-training:participationRate ?participation ;
+                      cacontology-training:completionRate ?completion .
                 FILTER (?completion > ?participation)
             }
         """
     ] .
 
-icac-training:CapacityLevelValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:DigitalForensicsTraining ,
-                   icac-training:CriminalJusticeTraining ;
+cacontology-training:CapacityLevelValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:DigitalForensicsTraining ,
+                   cacontology-training:CriminalJusticeTraining ;
     rdfs:label "Capacity Level Validation Shape"@en ;
     rdfs:comment "Validates capacity level requirements for specialized training."@en ;
     sh:sparql [
@@ -743,19 +743,19 @@ icac-training:CapacityLevelValidationShape rdf:type sh:NodeShape ;
             SELECT $this
             WHERE {
                 $this a ?trainingType ;
-                      icac-training:capacityLevel "basic" .
+                      cacontology-training:capacityLevel "basic" .
                 FILTER (?trainingType IN (
-                    icac-training:DigitalForensicsTraining,
-                    icac-training:CriminalJusticeTraining
+                    cacontology-training:DigitalForensicsTraining,
+                    cacontology-training:CriminalJusticeTraining
                 ))
             }
         """
     ] .
 
-icac-training:TrainingReachValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:OnlineTraining ,
-                   icac-training:InPersonTraining ,
-                   icac-training:HybridTraining ;
+cacontology-training:TrainingReachValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:OnlineTraining ,
+                   cacontology-training:InPersonTraining ,
+                   cacontology-training:HybridTraining ;
     rdfs:label "Training Reach Validation Shape"@en ;
     rdfs:comment "Validates training reach consistency by delivery method."@en ;
     sh:sparql [
@@ -763,15 +763,15 @@ icac-training:TrainingReachValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-training:InPersonTraining ;
-                      icac-training:trainingReachCount ?reach .
+                $this a cacontology-training:InPersonTraining ;
+                      cacontology-training:trainingReachCount ?reach .
                 FILTER (?reach > 1000)
             }
         """
     ] .
 
-icac-training:MetricsConsistencyValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:OutreachEventMetrics ;
+cacontology-training:MetricsConsistencyValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:OutreachEventMetrics ;
     rdfs:label "Metrics Consistency Validation Shape"@en ;
     rdfs:comment "Validates consistency between related metrics."@en ;
     sh:sparql [
@@ -779,15 +779,15 @@ icac-training:MetricsConsistencyValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-training:outreachEventsCount ?events ;
-                      icac-training:totalAttendeesReached ?attendees .
+                $this cacontology-training:outreachEventsCount ?events ;
+                      cacontology-training:totalAttendeesReached ?attendees .
                 FILTER (?attendees < ?events)
             }
         """
     ] .
 
-icac-training:CertificationStatusValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-training:ProfessionalCertification ;
+cacontology-training:CertificationStatusValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:ProfessionalCertification ;
     rdfs:label "Certification Status Validation Shape"@en ;
     rdfs:comment "Validates certification status consistency."@en ;
     sh:sparql [
@@ -795,7 +795,7 @@ icac-training:CertificationStatusValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-training:certificationStatus "active" ;
+                $this cacontology-training:certificationStatus "active" ;
                       uco-core:endTime ?endTime .
                 FILTER (?endTime < NOW())
             }

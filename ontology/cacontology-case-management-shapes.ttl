@@ -28,8 +28,8 @@
 # ENHANCED CASE MANAGEMENT SHAPES WITH gUFO OBJECT VALIDATION
 # =============================================================================
 
-icac-case:CaseManagementShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-case:CaseManagement ;
+cacontology-case:CaseManagementShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-case:CaseManagement ;
     rdfs:label "Case Management Shape"@en ;
     rdfs:comment "Enhanced validation shape for case management with comprehensive gUFO Object validation."@en ;
     # gUFO Object validation
@@ -40,7 +40,7 @@ icac-case:CaseManagementShape rdf:type sh:NodeShape ;
     ] ;
     # Case status validation with gUFO constraints
     sh:property [
-        sh:path icac-case:caseStatus ;
+        sh:path cacontology-case:caseStatus ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -49,7 +49,7 @@ icac-case:CaseManagementShape rdf:type sh:NodeShape ;
     ] ;
     # Case priority validation with gUFO Situation modeling
     sh:property [
-        sh:path icac-case:casePriority ;
+        sh:path cacontology-case:casePriority ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -58,7 +58,7 @@ icac-case:CaseManagementShape rdf:type sh:NodeShape ;
     ] ;
     # Current phase validation
     sh:property [
-        sh:path icac-case:currentPhase ;
+        sh:path cacontology-case:currentPhase ;
         sh:class gufo:Phase ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -69,15 +69,15 @@ icac-case:CaseManagementShape rdf:type sh:NodeShape ;
         a sh:SPARQLRule ;
         sh:severity sh:Violation ;
         sh:message "Case management must have proper gUFO Object properties"@en ;
-        sh:prefixes icac-case: ;
+        sh:prefixes cacontology-case: ;
         sh:construct """
-            INSERT { $this a icac-case:ObjectConsistencyError . }
+            INSERT { $this a cacontology-case:ObjectConsistencyError . }
             WHERE {
-                $this a icac-case:CaseManagement .
+                $this a cacontology-case:CaseManagement .
                 FILTER NOT EXISTS { 
                     $this a gufo:Object .
-                    $this icac-case:caseStatus ?status .
-                    $this icac-case:casePriority ?priority .
+                    $this cacontology-case:caseStatus ?status .
+                    $this cacontology-case:casePriority ?priority .
                 }
             }
         """
@@ -87,8 +87,8 @@ icac-case:CaseManagementShape rdf:type sh:NodeShape ;
 # ENHANCED CASE WORKFLOW SHAPES WITH gUFO EVENT VALIDATION
 # =============================================================================
 
-icac-case:CaseWorkflowShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-case:CaseWorkflow ;
+cacontology-case:CaseWorkflowShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-case:CaseWorkflow ;
     rdfs:label "Case Workflow Shape"@en ;
     rdfs:comment "Enhanced validation shape for case workflow with comprehensive gUFO Event validation."@en ;
     # gUFO Event validation
@@ -99,14 +99,14 @@ icac-case:CaseWorkflowShape rdf:type sh:NodeShape ;
     ] ;
     # Temporal validation using gUFO framework
     sh:property [
-        sh:path icac-gufo:workflowBeginTime ;
+        sh:path cacontology-gufo:workflowBeginTime ;
         sh:datatype xsd:dateTime ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Case workflow must specify begin time using gUFO temporal framework"@en
     ] ;
     sh:property [
-        sh:path icac-gufo:workflowEndTime ;
+        sh:path cacontology-gufo:workflowEndTime ;
         sh:datatype xsd:dateTime ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -114,7 +114,7 @@ icac-case:CaseWorkflowShape rdf:type sh:NodeShape ;
     ] ;
     # Workflow stage validation
     sh:property [
-        sh:path icac-case:workflowStage ;
+        sh:path cacontology-case:workflowStage ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -126,31 +126,31 @@ icac-case:CaseWorkflowShape rdf:type sh:NodeShape ;
         a sh:SPARQLRule ;
         sh:severity sh:Violation ;
         sh:message "Workflow end time must be after begin time"@en ;
-        sh:prefixes icac-case: ;
+        sh:prefixes cacontology-case: ;
         sh:construct """
-            INSERT { $this a icac-case:TemporalInconsistencyError . }
+            INSERT { $this a cacontology-case:TemporalInconsistencyError . }
             WHERE {
-                $this icac-gufo:workflowBeginTime ?begin .
-                $this icac-gufo:workflowEndTime ?end .
+                $this cacontology-gufo:workflowBeginTime ?begin .
+                $this cacontology-gufo:workflowEndTime ?end .
                 FILTER(?end <= ?begin)
             }
         """
     ] .
 
-icac-case:IntakeWorkflowShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-case:IntakeWorkflow ;
+cacontology-case:IntakeWorkflowShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-case:IntakeWorkflow ;
     rdfs:label "Intake Workflow Shape"@en ;
     rdfs:comment "Enhanced validation shape for intake workflow with gUFO Event validation and specialized temporal modeling."@en ;
     # Intake-specific temporal validation
     sh:property [
-        sh:path icac-gufo:intakeBeginTime ;
+        sh:path cacontology-gufo:intakeBeginTime ;
         sh:datatype xsd:dateTime ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Intake workflow must specify intake begin time"@en
     ] ;
     sh:property [
-        sh:path icac-gufo:triageCompletionTime ;
+        sh:path cacontology-gufo:triageCompletionTime ;
         sh:datatype xsd:dateTime ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -161,8 +161,8 @@ icac-case:IntakeWorkflowShape rdf:type sh:NodeShape ;
 # ENHANCED CASE ASSIGNMENT SHAPES WITH gUFO EVENT AND ROLE VALIDATION
 # =============================================================================
 
-icac-case:CaseAssignmentShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-case:CaseAssignment ;
+cacontology-case:CaseAssignmentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-case:CaseAssignment ;
     rdfs:label "Case Assignment Shape"@en ;
     rdfs:comment "Enhanced validation shape for case assignment with comprehensive gUFO Event validation and Role relationships."@en ;
     # gUFO Event validation
@@ -173,14 +173,14 @@ icac-case:CaseAssignmentShape rdf:type sh:NodeShape ;
     ] ;
     # Temporal validation using gUFO framework
     sh:property [
-        sh:path icac-gufo:assignmentBeginTime ;
+        sh:path cacontology-gufo:assignmentBeginTime ;
         sh:datatype xsd:dateTime ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Case assignment must specify begin time using gUFO temporal framework"@en
     ] ;
     sh:property [
-        sh:path icac-gufo:assignmentEndTime ;
+        sh:path cacontology-gufo:assignmentEndTime ;
         sh:datatype xsd:dateTime ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -188,7 +188,7 @@ icac-case:CaseAssignmentShape rdf:type sh:NodeShape ;
     ] ;
     # Assignment type validation with gUFO Role modeling
     sh:property [
-        sh:path icac-case:assignmentType ;
+        sh:path cacontology-case:assignmentType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -197,7 +197,7 @@ icac-case:CaseAssignmentShape rdf:type sh:NodeShape ;
     ] ;
     # Role assignment validation
     sh:property [
-        sh:path icac-case:assignedToRole ;
+        sh:path cacontology-case:assignedToRole ;
         sh:class gufo:Role ;
         sh:minCount 0 ;
         sh:message "Case assignment may specify assigned gUFO Role"@en
@@ -207,8 +207,8 @@ icac-case:CaseAssignmentShape rdf:type sh:NodeShape ;
 # gUFO PHASE VALIDATION SHAPES FOR CASE MANAGEMENT
 # =============================================================================
 
-icac-case:CaseInitiationPhaseShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-case:CaseInitiationPhase ;
+cacontology-case:CaseInitiationPhaseShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-case:CaseInitiationPhase ;
     rdfs:label "Case Initiation Phase Shape"@en ;
     rdfs:comment "SHACL shape for case initiation phases with anti-rigid gUFO Phase validation."@en ;
     # gUFO Phase validation
@@ -219,7 +219,7 @@ icac-case:CaseInitiationPhaseShape rdf:type sh:NodeShape ;
     ] ;
     # Phase temporal validation
     sh:property [
-        sh:path icac-gufo:phaseTransitionTime ;
+        sh:path cacontology-gufo:phaseTransitionTime ;
         sh:datatype xsd:dateTime ;
         sh:minCount 0 ;
         sh:message "Phase may specify transition times"@en
@@ -229,20 +229,20 @@ icac-case:CaseInitiationPhaseShape rdf:type sh:NodeShape ;
         a sh:SPARQLRule ;
         sh:severity sh:Violation ;
         sh:message "Case initiation phases must demonstrate anti-rigidity (duration varies based on case complexity)"@en ;
-        sh:prefixes icac-case: ;
+        sh:prefixes cacontology-case: ;
         sh:construct """
-            INSERT { $this a icac-case:AntiRigidityError . }
+            INSERT { $this a cacontology-case:AntiRigidityError . }
             WHERE {
-                $this a icac-case:CaseInitiationPhase .
+                $this a cacontology-case:CaseInitiationPhase .
                 FILTER NOT EXISTS { 
-                    $this icac-gufo:hasAntiRigidityConstraint ?constraint .
+                    $this cacontology-gufo:hasAntiRigidityConstraint ?constraint .
                 }
             }
         """
     ] .
 
-icac-case:ActiveInvestigationPhaseShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-case:ActiveInvestigationPhase ;
+cacontology-case:ActiveInvestigationPhaseShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-case:ActiveInvestigationPhase ;
     rdfs:label "Active Investigation Phase Shape"@en ;
     rdfs:comment "SHACL shape for active investigation phases with anti-rigid gUFO Phase validation."@en ;
     # Investigation phase validation
@@ -250,15 +250,15 @@ icac-case:ActiveInvestigationPhaseShape rdf:type sh:NodeShape ;
         a sh:SPARQLRule ;
         sh:severity sh:Violation ;
         sh:message "Active investigation phase should follow case initiation phase"@en ;
-        sh:prefixes icac-case: ;
+        sh:prefixes cacontology-case: ;
         sh:construct """
-            INSERT { $this a icac-case:PhaseSequenceError . }
+            INSERT { $this a cacontology-case:PhaseSequenceError . }
             WHERE {
-                $this a icac-case:ActiveInvestigationPhase .
-                ?caseManagement icac-case:currentPhase $this .
+                $this a cacontology-case:ActiveInvestigationPhase .
+                ?caseManagement cacontology-case:currentPhase $this .
                 FILTER NOT EXISTS { 
-                    ?caseManagement icac-case:previousPhase ?prev .
-                    ?prev a icac-case:CaseInitiationPhase .
+                    ?caseManagement cacontology-case:previousPhase ?prev .
+                    ?prev a cacontology-case:CaseInitiationPhase .
                 }
             }
         """
@@ -268,8 +268,8 @@ icac-case:ActiveInvestigationPhaseShape rdf:type sh:NodeShape ;
 # gUFO ROLE VALIDATION SHAPES FOR CASE MANAGEMENT
 # =============================================================================
 
-icac-case:CaseManagerRoleShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-case:CaseManagerRole ;
+cacontology-case:CaseManagerRoleShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-case:CaseManagerRole ;
     rdfs:label "Case Manager Role Shape"@en ;
     rdfs:comment "Enhanced validation shape for case manager roles with anti-rigid gUFO Role validation."@en ;
     # gUFO Role validation
@@ -283,14 +283,14 @@ icac-case:CaseManagerRoleShape rdf:type sh:NodeShape ;
         a sh:SPARQLRule ;
         sh:severity sh:Violation ;
         sh:message "Case manager roles must have appropriate management competency"@en ;
-        sh:prefixes icac-case: ;
+        sh:prefixes cacontology-case: ;
         sh:construct """
-            INSERT { $this a icac-case:RoleCompetencyError . }
+            INSERT { $this a cacontology-case:RoleCompetencyError . }
             WHERE {
-                $this a icac-case:CaseManagerRole .
+                $this a cacontology-case:CaseManagerRole .
                 FILTER NOT EXISTS { 
-                    $this icac-case:hasCompetency ?competency .
-                    ?competency icac-case:competencyType "case_management" .
+                    $this cacontology-case:hasCompetency ?competency .
+                    ?competency cacontology-case:competencyType "case_management" .
                 }
             }
         """
@@ -300,8 +300,8 @@ icac-case:CaseManagerRoleShape rdf:type sh:NodeShape ;
 # ENHANCED CASE DOCUMENTATION SHAPES WITH gUFO OBJECT VALIDATION
 # =============================================================================
 
-icac-case:CaseDocumentationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-case:CaseDocumentation ;
+cacontology-case:CaseDocumentationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-case:CaseDocumentation ;
     rdfs:label "Case Documentation Shape"@en ;
     rdfs:comment "Enhanced validation shape for case documentation with gUFO Object validation."@en ;
     # gUFO Object validation
@@ -312,7 +312,7 @@ icac-case:CaseDocumentationShape rdf:type sh:NodeShape ;
     ] ;
     # Document type validation
     sh:property [
-        sh:path icac-case:documentType ;
+        sh:path cacontology-case:documentType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -321,7 +321,7 @@ icac-case:CaseDocumentationShape rdf:type sh:NodeShape ;
     ] ;
     # Document status validation
     sh:property [
-        sh:path icac-case:documentStatus ;
+        sh:path cacontology-case:documentStatus ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -333,8 +333,8 @@ icac-case:CaseDocumentationShape rdf:type sh:NodeShape ;
 # ENHANCED CASE REVIEW SHAPES WITH gUFO EVENT VALIDATION
 # =============================================================================
 
-icac-case:CaseReviewShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-case:CaseReview ;
+cacontology-case:CaseReviewShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-case:CaseReview ;
     rdfs:label "Case Review Shape"@en ;
     rdfs:comment "Enhanced validation shape for case review with gUFO Event validation."@en ;
     # gUFO Event validation
@@ -345,14 +345,14 @@ icac-case:CaseReviewShape rdf:type sh:NodeShape ;
     ] ;
     # Review temporal validation
     sh:property [
-        sh:path icac-gufo:reviewBeginTime ;
+        sh:path cacontology-gufo:reviewBeginTime ;
         sh:datatype xsd:dateTime ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Case review must specify begin time"@en
     ] ;
     sh:property [
-        sh:path icac-gufo:reviewEndTime ;
+        sh:path cacontology-gufo:reviewEndTime ;
         sh:datatype xsd:dateTime ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -360,7 +360,7 @@ icac-case:CaseReviewShape rdf:type sh:NodeShape ;
     ] ;
     # Review type validation
     sh:property [
-        sh:path icac-case:reviewType ;
+        sh:path cacontology-case:reviewType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -372,8 +372,8 @@ icac-case:CaseReviewShape rdf:type sh:NodeShape ;
 # ENHANCED SPECIALIZED CASE MANAGEMENT SHAPES WITH gUFO SITUATION VALIDATION
 # =============================================================================
 
-icac-case:MultiJurisdictionalCaseManagementShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-case:MultiJurisdictionalCaseManagement ;
+cacontology-case:MultiJurisdictionalCaseManagementShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-case:MultiJurisdictionalCaseManagement ;
     rdfs:label "Multi Jurisdictional Case Management Shape"@en ;
     rdfs:comment "Enhanced validation shape for multi-jurisdictional case management with gUFO Situation validation."@en ;
     # gUFO Situation validation
@@ -387,15 +387,15 @@ icac-case:MultiJurisdictionalCaseManagementShape rdf:type sh:NodeShape ;
         a sh:SPARQLRule ;
         sh:severity sh:Violation ;
         sh:message "Multi-jurisdictional case management must involve multiple jurisdictions"@en ;
-        sh:prefixes icac-case: ;
+        sh:prefixes cacontology-case: ;
         sh:construct """
-            INSERT { $this a icac-case:JurisdictionCoordinationError . }
+            INSERT { $this a cacontology-case:JurisdictionCoordinationError . }
             WHERE {
-                $this a icac-case:MultiJurisdictionalCaseManagement .
+                $this a cacontology-case:MultiJurisdictionalCaseManagement .
                 {
                     SELECT $this (COUNT(?jurisdiction) AS ?jurisdictionCount) WHERE {
-                        $this icac-case:participatesInManagement ?jurisdiction .
-                        ?jurisdiction a icac-case:JurisdictionalEntity .
+                        $this cacontology-case:participatesInManagement ?jurisdiction .
+                        ?jurisdiction a cacontology-case:JurisdictionalEntity .
                     } GROUP BY $this
                 }
                 FILTER(?jurisdictionCount < 2)
@@ -407,8 +407,8 @@ icac-case:MultiJurisdictionalCaseManagementShape rdf:type sh:NodeShape ;
 # ENHANCED CROSS-REFERENCE VALIDATION SHAPES WITH gUFO
 # =============================================================================
 
-icac-case:CaseManagementCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-case:CaseManagement ;
+cacontology-case:CaseManagementCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-case:CaseManagement ;
     rdfs:label "Case Management Cross Reference Shape"@en ;
     rdfs:comment "Enhanced validation that case management involves appropriate gUFO foundational entities."@en ;
     sh:sparql [
@@ -416,11 +416,11 @@ icac-case:CaseManagementCrossReferenceShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-case:CaseManagement .
+                $this a cacontology-case:CaseManagement .
                 FILTER NOT EXISTS {
-                    { $this icac-case:hasAssignment ?assignment . ?assignment a gufo:Event . } UNION
-                    { $this icac-case:followsWorkflow ?workflow . ?workflow a gufo:Event . } UNION
-                    { $this icac-case:hasDocumentation ?doc . ?doc a gufo:Object . }
+                    { $this cacontology-case:hasAssignment ?assignment . ?assignment a gufo:Event . } UNION
+                    { $this cacontology-case:followsWorkflow ?workflow . ?workflow a gufo:Event . } UNION
+                    { $this cacontology-case:hasDocumentation ?doc . ?doc a gufo:Object . }
                 }
             }
         """
@@ -430,11 +430,11 @@ icac-case:CaseManagementCrossReferenceShape rdf:type sh:NodeShape ;
 # ENHANCED TEMPORAL VALIDATION SHAPES WITH gUFO FRAMEWORK
 # =============================================================================
 
-icac-case:GUFOTemporalValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-case:CaseWorkflow ,
-                   icac-case:CaseAssignment ,
-                   icac-case:CaseReview ,
-                   icac-case:CaseClosure ;
+cacontology-case:GUFOTemporalValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-case:CaseWorkflow ,
+                   cacontology-case:CaseAssignment ,
+                   cacontology-case:CaseReview ,
+                   cacontology-case:CaseClosure ;
     rdfs:label "gUFO Temporal Validation Shape"@en ;
     rdfs:comment "Enhanced temporal consistency validation for case management gUFO Events using gUFO temporal framework."@en ;
     sh:sparql [
@@ -444,10 +444,10 @@ icac-case:GUFOTemporalValidationShape rdf:type sh:NodeShape ;
             WHERE {
                 $this a gufo:Event .
                 {
-                    { $this icac-gufo:workflowBeginTime ?begin . $this icac-gufo:workflowEndTime ?end . } UNION
-                    { $this icac-gufo:assignmentBeginTime ?begin . $this icac-gufo:assignmentEndTime ?end . } UNION
-                    { $this icac-gufo:reviewBeginTime ?begin . $this icac-gufo:reviewEndTime ?end . } UNION
-                    { $this icac-gufo:closureBeginTime ?begin . $this icac-gufo:closureTime ?end . }
+                    { $this cacontology-gufo:workflowBeginTime ?begin . $this cacontology-gufo:workflowEndTime ?end . } UNION
+                    { $this cacontology-gufo:assignmentBeginTime ?begin . $this cacontology-gufo:assignmentEndTime ?end . } UNION
+                    { $this cacontology-gufo:reviewBeginTime ?begin . $this cacontology-gufo:reviewEndTime ?end . } UNION
+                    { $this cacontology-gufo:closureBeginTime ?begin . $this cacontology-gufo:closureTime ?end . }
                 }
                 FILTER (?begin >= ?end)
             }
@@ -458,12 +458,12 @@ icac-case:GUFOTemporalValidationShape rdf:type sh:NodeShape ;
 # ENHANCED DATA QUALITY SHAPES WITH gUFO VALIDATION
 # =============================================================================
 
-icac-case:GUFODataQualityShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-case:CaseManagement ,
-                   icac-case:CaseWorkflow ,
-                   icac-case:CaseAssignment ,
-                   icac-case:CaseDocumentation ,
-                   icac-case:CaseReview ;
+cacontology-case:GUFODataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-case:CaseManagement ,
+                   cacontology-case:CaseWorkflow ,
+                   cacontology-case:CaseAssignment ,
+                   cacontology-case:CaseDocumentation ,
+                   cacontology-case:CaseReview ;
     rdfs:label "gUFO Data Quality Shape"@en ;
     rdfs:comment "Enhanced data quality validation for case management gUFO entities with foundational ontology compliance."@en ;
     # gUFO foundational type validation
@@ -471,41 +471,41 @@ icac-case:GUFODataQualityShape rdf:type sh:NodeShape ;
         a sh:SPARQLRule ;
         sh:severity sh:Violation ;
         sh:message "Case management entities must be properly typed as gUFO foundational entities"@en ;
-        sh:prefixes icac-case: ;
+        sh:prefixes cacontology-case: ;
         sh:construct """
-            INSERT { $this a icac-case:FoundationalTypeError . }
+            INSERT { $this a cacontology-case:FoundationalTypeError . }
             WHERE {
                 {
                     $this a ?managementType .
-                    ?managementType rdfs:subClassOf* icac-case:CaseManagement .
+                    ?managementType rdfs:subClassOf* cacontology-case:CaseManagement .
                     FILTER NOT EXISTS { $this a gufo:Object . }
                 } UNION {
                     $this a ?workflowType .
-                    ?workflowType rdfs:subClassOf* icac-case:CaseWorkflow .
+                    ?workflowType rdfs:subClassOf* cacontology-case:CaseWorkflow .
                     FILTER NOT EXISTS { $this a gufo:Event . }
                 } UNION {
                     $this a ?assignmentType .
-                    ?assignmentType rdfs:subClassOf* icac-case:CaseAssignment .
+                    ?assignmentType rdfs:subClassOf* cacontology-case:CaseAssignment .
                     FILTER NOT EXISTS { $this a gufo:Event . }
                 } UNION {
                     $this a ?docType .
-                    ?docType rdfs:subClassOf* icac-case:CaseDocumentation .
+                    ?docType rdfs:subClassOf* cacontology-case:CaseDocumentation .
                     FILTER NOT EXISTS { $this a gufo:Object . }
                 } UNION {
                     $this a ?reviewType .
-                    ?reviewType rdfs:subClassOf* icac-case:CaseReview .
+                    ?reviewType rdfs:subClassOf* cacontology-case:CaseReview .
                     FILTER NOT EXISTS { $this a gufo:Event . }
                 }
             }
         """
     ] .
 
-icac-case:AntiRigidityValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-case:CaseInitiationPhase ,
-                   icac-case:ActiveInvestigationPhase ,
-                   icac-case:ProsecutionPreparationPhase ,
-                   icac-case:CourtProceedingsPhase ,
-                   icac-case:DispositionPhase ;
+cacontology-case:AntiRigidityValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-case:CaseInitiationPhase ,
+                   cacontology-case:ActiveInvestigationPhase ,
+                   cacontology-case:ProsecutionPreparationPhase ,
+                   cacontology-case:CourtProceedingsPhase ,
+                   cacontology-case:DispositionPhase ;
     rdfs:label "Anti-Rigidity Validation Shape"@en ;
     rdfs:comment "Validation of anti-rigidity constraints for gUFO Phases in case management contexts."@en ;
     sh:sparql [
@@ -515,14 +515,14 @@ icac-case:AntiRigidityValidationShape rdf:type sh:NodeShape ;
             WHERE {
                 $this a gufo:Phase .
                 {
-                    { $this a icac-case:CaseInitiationPhase . } UNION
-                    { $this a icac-case:ActiveInvestigationPhase . } UNION
-                    { $this a icac-case:ProsecutionPreparationPhase . } UNION
-                    { $this a icac-case:CourtProceedingsPhase . } UNION
-                    { $this a icac-case:DispositionPhase . }
+                    { $this a cacontology-case:CaseInitiationPhase . } UNION
+                    { $this a cacontology-case:ActiveInvestigationPhase . } UNION
+                    { $this a cacontology-case:ProsecutionPreparationPhase . } UNION
+                    { $this a cacontology-case:CourtProceedingsPhase . } UNION
+                    { $this a cacontology-case:DispositionPhase . }
                 }
                 FILTER NOT EXISTS { 
-                    $this icac-gufo:hasAntiRigidityConstraint ?constraint .
+                    $this cacontology-gufo:hasAntiRigidityConstraint ?constraint .
                 }
             }
         """
@@ -532,8 +532,8 @@ icac-case:AntiRigidityValidationShape rdf:type sh:NodeShape ;
 # CASE MANAGEMENT INTEGRITY VALIDATION SHAPES
 # =============================================================================
 
-icac-case:WorkflowIntegrityValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-case:CaseManagement ;
+cacontology-case:WorkflowIntegrityValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-case:CaseManagement ;
     rdfs:label "Workflow Integrity Validation Shape"@en ;
     rdfs:comment "Validation of workflow integrity for case management."@en ;
     sh:sparql [
@@ -541,16 +541,16 @@ icac-case:WorkflowIntegrityValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-case:CaseManagement .
+                $this a cacontology-case:CaseManagement .
                 {
                     SELECT $this (COUNT(?phase) AS ?phaseCount) WHERE {
-                        $this icac-case:currentPhase ?phase .
+                        $this cacontology-case:currentPhase ?phase .
                     } GROUP BY $this
                 }
                 FILTER(?phaseCount > 3)
                 FILTER NOT EXISTS {
-                    $this icac-case:hasEnhancedDocumentation ?documentation .
-                    ?documentation icac-case:documentationType "multi_phase_coordination" .
+                    $this cacontology-case:hasEnhancedDocumentation ?documentation .
+                    ?documentation cacontology-case:documentationType "multi_phase_coordination" .
                 }
             }
         """

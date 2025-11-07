@@ -17,19 +17,19 @@
 # gUFO PHASE VALIDATION SHAPES
 # =============================================================================
 
-icac-production:ProductionPhaseShape rdf:type sh:NodeShape ;
+cacontology-production:ProductionPhaseShape rdf:type sh:NodeShape ;
     sh:targetClass gufo:Phase ;
     rdfs:label "Production Phase Shape"@en ;
     rdfs:comment "gUFO-enhanced validation shape for production phases with anti-rigidity constraints."@en ;
     sh:property [
-        sh:path icac-production:hasProductionPhaseBeginPoint ;
+        sh:path cacontology-production:hasProductionPhaseBeginPoint ;
         sh:datatype xsd:dateTimeStamp ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Production phase must have exactly one begin point."@en
     ] ;
     sh:property [
-        sh:path icac-production:hasProductionPhaseEndPoint ;
+        sh:path cacontology-production:hasProductionPhaseEndPoint ;
         sh:datatype xsd:dateTimeStamp ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -45,8 +45,8 @@ icac-production:ProductionPhaseShape rdf:type sh:NodeShape ;
         ] ;
         sh:select """
             SELECT ?this WHERE {
-                ?this icac-production:hasProductionPhaseBeginPoint ?begin .
-                ?this icac-production:hasProductionPhaseEndPoint ?end .
+                ?this cacontology-production:hasProductionPhaseBeginPoint ?begin .
+                ?this cacontology-production:hasProductionPhaseEndPoint ?end .
                 FILTER(?begin >= ?end)
             }
         """
@@ -70,12 +70,12 @@ icac-production:ProductionPhaseShape rdf:type sh:NodeShape ;
         """
     ] .
 
-icac-production:ActiveProductionPhaseShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-production:ActiveProductionPhase ;
+cacontology-production:ActiveProductionPhaseShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-production:ActiveProductionPhase ;
     rdfs:label "Active Production Phase Shape"@en ;
     rdfs:comment "Validation for active production phase instances."@en ;
     sh:property [
-        sh:path icac-production:productionActivity ;
+        sh:path cacontology-production:productionActivity ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -87,19 +87,19 @@ icac-production:ActiveProductionPhaseShape rdf:type sh:NodeShape ;
 # gUFO ROLE VALIDATION SHAPES
 # =============================================================================
 
-icac-production:ProductionRoleShape rdf:type sh:NodeShape ;
+cacontology-production:ProductionRoleShape rdf:type sh:NodeShape ;
     sh:targetClass gufo:Role ;
     rdfs:label "Production Role Shape"@en ;
     rdfs:comment "gUFO-enhanced validation shape for production roles with anti-rigidity and temporal constraints."@en ;
     sh:property [
-        sh:path icac-production:hasRoleBeginPoint ;
+        sh:path cacontology-production:hasRoleBeginPoint ;
         sh:datatype xsd:dateTimeStamp ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Production role must have exactly one begin point."@en
     ] ;
     sh:property [
-        sh:path icac-production:hasRoleEndPoint ;
+        sh:path cacontology-production:hasRoleEndPoint ;
         sh:datatype xsd:dateTimeStamp ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -115,8 +115,8 @@ icac-production:ProductionRoleShape rdf:type sh:NodeShape ;
         ] ;
         sh:select """
             SELECT ?this WHERE {
-                ?this icac-production:hasRoleBeginPoint ?begin .
-                ?this icac-production:hasRoleEndPoint ?end .
+                ?this cacontology-production:hasRoleBeginPoint ?begin .
+                ?this cacontology-production:hasRoleEndPoint ?end .
                 FILTER(?begin >= ?end)
             }
         """
@@ -140,8 +140,8 @@ icac-production:ProductionRoleShape rdf:type sh:NodeShape ;
         """
     ] .
 
-icac-production:ProducerRoleConflictShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-production:Producer ;
+cacontology-production:ProducerRoleConflictShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-production:Producer ;
     rdfs:label "Producer Role Conflict Shape"@en ;
     rdfs:comment "Prevents conflicting roles from being assigned simultaneously."@en ;
     sh:sparql [
@@ -160,13 +160,13 @@ icac-production:ProducerRoleConflictShape rdf:type sh:NodeShape ;
             SELECT ?this WHERE {
                 ?entity gufo:playsRole ?this .
                 ?entity gufo:playsRole ?victimRole .
-                ?this a icac-production:Producer .
-                ?victimRole a icac-gufo:VictimRole .
-                ?this icac-production:hasRoleBeginPoint ?producerBegin .
-                ?victimRole icac-production:hasRoleBeginPoint ?victimBegin .
+                ?this a cacontology-production:Producer .
+                ?victimRole a cacontology-gufo:VictimRole .
+                ?this cacontology-production:hasRoleBeginPoint ?producerBegin .
+                ?victimRole cacontology-production:hasRoleBeginPoint ?victimBegin .
                 FILTER(?producerBegin <= ?victimBegin)
-                OPTIONAL { ?this icac-production:hasRoleEndPoint ?producerEnd }
-                OPTIONAL { ?victimRole icac-production:hasRoleEndPoint ?victimEnd }
+                OPTIONAL { ?this cacontology-production:hasRoleEndPoint ?producerEnd }
+                OPTIONAL { ?victimRole cacontology-production:hasRoleEndPoint ?victimEnd }
                 FILTER(
                     (!BOUND(?producerEnd) && !BOUND(?victimEnd)) ||
                     (!BOUND(?producerEnd) && ?victimBegin <= ?victimEnd) ||
@@ -182,7 +182,7 @@ icac-production:ProducerRoleConflictShape rdf:type sh:NodeShape ;
 # gUFO EVENT-SITUATION VALIDATION SHAPES  
 # =============================================================================
 
-icac-production:ProductionEventShape rdf:type sh:NodeShape ;
+cacontology-production:ProductionEventShape rdf:type sh:NodeShape ;
     sh:targetClass gufo:Event ;
     rdfs:label "Production Event Shape"@en ;
     rdfs:comment "gUFO validation for production events ensuring proper temporal modeling."@en ;
@@ -217,7 +217,7 @@ icac-production:ProductionEventShape rdf:type sh:NodeShape ;
         """
     ] .
 
-icac-production:ProductionSituationShape rdf:type sh:NodeShape ;
+cacontology-production:ProductionSituationShape rdf:type sh:NodeShape ;
     sh:targetClass gufo:Situation ;
     rdfs:label "Production Situation Shape"@en ;
     rdfs:comment "gUFO validation for production situations ensuring proper modeling of ongoing states."@en ;
@@ -253,12 +253,12 @@ icac-production:ProductionSituationShape rdf:type sh:NodeShape ;
 # PRODUCTION OFFENSE SHAPES
 # =============================================================================
 
-icac-production:ProductionOffenseShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-production:ProductionOffense ;
+cacontology-production:ProductionOffenseShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-production:ProductionOffense ;
     rdfs:label "Production Offense Shape"@en ;
     rdfs:comment "Validation shape for CSAM production offense instances."@en ;
     sh:property [
-        sh:path icac-production:productionMethod ;
+        sh:path cacontology-production:productionMethod ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -266,7 +266,7 @@ icac-production:ProductionOffenseShape rdf:type sh:NodeShape ;
         sh:message "Production offense must specify exactly one production method from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-production:sessionCount ;
+        sh:path cacontology-production:sessionCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -275,7 +275,7 @@ icac-production:ProductionOffenseShape rdf:type sh:NodeShape ;
         sh:message "Session count must be between 1 and 1000 when specified."@en
     ] ;
     sh:property [
-        sh:path icac-production:victimCount ;
+        sh:path cacontology-production:victimCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -284,7 +284,7 @@ icac-production:ProductionOffenseShape rdf:type sh:NodeShape ;
         sh:message "Production offense must specify victim count between 1 and 50."@en
     ] ;
     sh:property [
-        sh:path icac-production:durationMinutes ;
+        sh:path cacontology-production:durationMinutes ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -307,12 +307,12 @@ icac-production:ProductionOffenseShape rdf:type sh:NodeShape ;
         sh:message "Production offense may have an end time."@en
     ] .
 
-icac-production:LiveProductionEventShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-production:LiveProductionEvent ;
+cacontology-production:LiveProductionEventShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-production:LiveProductionEvent ;
     rdfs:label "Live Production Event Shape"@en ;
     rdfs:comment "Validation shape for live production event instances."@en ;
     sh:property [
-        sh:path icac-production:streamingPlatform ;
+        sh:path cacontology-production:streamingPlatform ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -321,7 +321,7 @@ icac-production:LiveProductionEventShape rdf:type sh:NodeShape ;
         sh:message "Live production event must specify streaming platform (2-100 characters)."@en
     ] ;
     sh:property [
-        sh:path icac-production:viewerCount ;
+        sh:path cacontology-production:viewerCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -330,12 +330,12 @@ icac-production:LiveProductionEventShape rdf:type sh:NodeShape ;
         sh:message "Viewer count must be between 1 and 10000 when specified."@en
     ] .
 
-icac-production:ExtendedProductionOperationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-production:ExtendedProductionOperation ;
+cacontology-production:ExtendedProductionOperationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-production:ExtendedProductionOperation ;
     rdfs:label "Extended Production Operation Shape"@en ;
     rdfs:comment "Validation shape for extended production operation instances."@en ;
     sh:property [
-        sh:path icac-production:operationDuration ;
+        sh:path cacontology-production:operationDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -344,7 +344,7 @@ icac-production:ExtendedProductionOperationShape rdf:type sh:NodeShape ;
         sh:message "Extended operation duration must be between 7 days and 10 years."@en
     ] ;
     sh:property [
-        sh:path icac-production:totalSessions ;
+        sh:path cacontology-production:totalSessions ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -357,12 +357,12 @@ icac-production:ExtendedProductionOperationShape rdf:type sh:NodeShape ;
 # PRODUCER ROLE SHAPES
 # =============================================================================
 
-icac-production:ProducerShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-production:Producer ;
+cacontology-production:ProducerShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-production:Producer ;
     rdfs:label "Producer Shape"@en ;
     rdfs:comment "Validation shape for producer role instances."@en ;
     sh:property [
-        sh:path icac-production:productionExperience ;
+        sh:path cacontology-production:productionExperience ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -371,7 +371,7 @@ icac-production:ProducerShape rdf:type sh:NodeShape ;
         sh:message "Production experience must be between 0 and 50 years."@en
     ] ;
     sh:property [
-        sh:path icac-production:technicalSkillLevel ;
+        sh:path cacontology-production:technicalSkillLevel ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -379,12 +379,12 @@ icac-production:ProducerShape rdf:type sh:NodeShape ;
         sh:message "Technical skill level must be from the allowed list."@en
     ] .
 
-icac-production:PrimaryProducerShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-production:PrimaryProducer ;
+cacontology-production:PrimaryProducerShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-production:PrimaryProducer ;
     rdfs:label "Primary Producer Shape"@en ;
     rdfs:comment "Validation shape for primary producer instances."@en ;
     sh:property [
-        sh:path icac-production:leadershipRole ;
+        sh:path cacontology-production:leadershipRole ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -392,12 +392,12 @@ icac-production:PrimaryProducerShape rdf:type sh:NodeShape ;
         sh:message "Primary producer must have leadership role set to true."@en
     ] .
 
-icac-production:FacilitatorShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-production:Facilitator ;
+cacontology-production:FacilitatorShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-production:Facilitator ;
     rdfs:label "Facilitator Shape"@en ;
     rdfs:comment "Validation shape for facilitator role instances."@en ;
     sh:property [
-        sh:path icac-production:facilitationType ;
+        sh:path cacontology-production:facilitationType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -409,12 +409,12 @@ icac-production:FacilitatorShape rdf:type sh:NodeShape ;
 # EQUIPMENT AND TECHNICAL SHAPES
 # =============================================================================
 
-icac-production:ProductionEquipmentShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-production:ProductionEquipment ;
+cacontology-production:ProductionEquipmentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-production:ProductionEquipment ;
     rdfs:label "Production Equipment Shape"@en ;
     rdfs:comment "Validation shape for production equipment instances."@en ;
     sh:property [
-        sh:path icac-production:equipmentType ;
+        sh:path cacontology-production:equipmentType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -422,7 +422,7 @@ icac-production:ProductionEquipmentShape rdf:type sh:NodeShape ;
         sh:message "Equipment must specify type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-production:equipmentCondition ;
+        sh:path cacontology-production:equipmentCondition ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -430,12 +430,12 @@ icac-production:ProductionEquipmentShape rdf:type sh:NodeShape ;
         sh:message "Equipment condition must be from the allowed list."@en
     ] .
 
-icac-production:RecordingDeviceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-production:RecordingDevice ;
+cacontology-production:RecordingDeviceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-production:RecordingDevice ;
     rdfs:label "Recording Device Shape"@en ;
     rdfs:comment "Validation shape for recording device instances."@en ;
     sh:property [
-        sh:path icac-production:recordingQuality ;
+        sh:path cacontology-production:recordingQuality ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -443,7 +443,7 @@ icac-production:RecordingDeviceShape rdf:type sh:NodeShape ;
         sh:message "Recording quality must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-production:storageCapacity ;
+        sh:path cacontology-production:storageCapacity ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -456,12 +456,12 @@ icac-production:RecordingDeviceShape rdf:type sh:NodeShape ;
 # LOCATION AND ENVIRONMENT SHAPES
 # =============================================================================
 
-icac-production:ProductionLocationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-production:ProductionLocation ;
+cacontology-production:ProductionLocationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-production:ProductionLocation ;
     rdfs:label "Production Location Shape"@en ;
     rdfs:comment "Validation shape for production location instances."@en ;
     sh:property [
-        sh:path icac-production:locationType ;
+        sh:path cacontology-production:locationType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -469,7 +469,7 @@ icac-production:ProductionLocationShape rdf:type sh:NodeShape ;
         sh:message "Production location must specify type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-production:privacyLevel ;
+        sh:path cacontology-production:privacyLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -477,7 +477,7 @@ icac-production:ProductionLocationShape rdf:type sh:NodeShape ;
         sh:message "Production location must specify privacy level from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-production:accessControl ;
+        sh:path cacontology-production:accessControl ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -489,12 +489,12 @@ icac-production:ProductionLocationShape rdf:type sh:NodeShape ;
 # IMAGE POST-PROCESSING SHAPES
 # =============================================================================
 
-icac-production:ImagePostProcessingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-production:ImagePostProcessing ;
+cacontology-production:ImagePostProcessingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-production:ImagePostProcessing ;
     rdfs:label "Image Post-Processing Shape"@en ;
     rdfs:comment "Validation shape for image post-processing instances."@en ;
     sh:property [
-        sh:path icac-production:modificationCount ;
+        sh:path cacontology-production:modificationCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -503,7 +503,7 @@ icac-production:ImagePostProcessingShape rdf:type sh:NodeShape ;
         sh:message "Image post-processing must specify modification count between 1 and 1000."@en
     ] ;
     sh:property [
-        sh:path icac-production:modificationSoftware ;
+        sh:path cacontology-production:modificationSoftware ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -512,12 +512,12 @@ icac-production:ImagePostProcessingShape rdf:type sh:NodeShape ;
         sh:message "Modification software must be specified (2-100 characters)."@en
     ] .
 
-icac-production:TextOverlayShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-production:TextOverlay ;
+cacontology-production:TextOverlayShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-production:TextOverlay ;
     rdfs:label "Text Overlay Shape"@en ;
     rdfs:comment "Validation shape for text overlay instances."@en ;
     sh:property [
-        sh:path icac-production:textType ;
+        sh:path cacontology-production:textType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -525,7 +525,7 @@ icac-production:TextOverlayShape rdf:type sh:NodeShape ;
         sh:message "Text overlay must specify text type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-production:textPlacement ;
+        sh:path cacontology-production:textPlacement ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -537,54 +537,54 @@ icac-production:TextOverlayShape rdf:type sh:NodeShape ;
 # OBJECT PROPERTY SHAPES
 # =============================================================================
 
-icac-production:ProducesContentShape rdf:type sh:PropertyShape ;
-    sh:path icac-production:producesContent ;
+cacontology-production:ProducesContentShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-production:producesContent ;
     sh:name "produces content" ;
     sh:description "Links producer to content they create" ;
     sh:class uco-core:UcoObject ;
     sh:minCount 0 .
 
-icac-production:UsesEquipmentShape rdf:type sh:PropertyShape ;
-    sh:path icac-production:usesEquipment ;
+cacontology-production:UsesEquipmentShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-production:usesEquipment ;
     sh:name "uses equipment" ;
     sh:description "Links production to equipment used" ;
-    sh:class icac-production:ProductionEquipment ;
+    sh:class cacontology-production:ProductionEquipment ;
     sh:minCount 0 .
 
-icac-production:ProducedAtShape rdf:type sh:PropertyShape ;
-    sh:path icac-production:producedAt ;
+cacontology-production:ProducedAtShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-production:producedAt ;
     sh:name "produced at" ;
     sh:description "Links production to location where it occurred" ;
     sh:class uco-location:Location ;
     sh:minCount 0 .
 
-icac-production:FacilitatesProductionShape rdf:type sh:PropertyShape ;
-    sh:path icac-production:facilitatesProduction ;
+cacontology-production:FacilitatesProductionShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-production:facilitatesProduction ;
     sh:name "facilitates production" ;
     sh:description "Links facilitator to production they assist" ;
-    sh:class icac-production:ProductionOffense ;
+    sh:class cacontology-production:ProductionOffense ;
     sh:minCount 0 .
 
-icac-production:ModifiesImagesShape rdf:type sh:PropertyShape ;
-    sh:path icac-production:modifiesImages ;
+cacontology-production:ModifiesImagesShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-production:modifiesImages ;
     sh:name "modifies images" ;
     sh:description "Links post-processing to image modification" ;
     sh:class uco-core:UcoObject ;
     sh:minCount 0 .
 
-icac-production:OverlaysTextShape rdf:type sh:PropertyShape ;
-    sh:path icac-production:overlaysText ;
+cacontology-production:OverlaysTextShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-production:overlaysText ;
     sh:name "overlays text" ;
     sh:description "Links text overlay to image modification" ;
-    sh:class icac-production:ImagePostProcessing ;
+    sh:class cacontology-production:ImagePostProcessing ;
     sh:minCount 0 .
 
 # =============================================================================
 # CROSS-REFERENCE VALIDATION SHAPES
 # =============================================================================
 
-icac-production:ProductionCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-production:ProductionOffense ;
+cacontology-production:ProductionCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-production:ProductionOffense ;
     rdfs:label "Production Cross Reference Shape"@en ;
     rdfs:comment "Validates cross-references between production and related entities."@en ;
     sh:sparql [
@@ -592,17 +592,17 @@ icac-production:ProductionCrossReferenceShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-production:ProductionOffense .
+                $this a cacontology-production:ProductionOffense .
                 FILTER NOT EXISTS {
-                    { ?producer icac-production:producesContent $this } UNION
-                    { ?facilitator icac-production:facilitatesProduction $this }
+                    { ?producer cacontology-production:producesContent $this } UNION
+                    { ?facilitator cacontology-production:facilitatesProduction $this }
                 }
             }
         """
     ] .
 
-icac-production:EquipmentUsageValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-production:ProductionOffense ;
+cacontology-production:EquipmentUsageValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-production:ProductionOffense ;
     rdfs:label "Equipment Usage Validation Shape"@en ;
     rdfs:comment "Validates that production offenses have appropriate equipment."@en ;
     sh:sparql [
@@ -610,12 +610,12 @@ icac-production:EquipmentUsageValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-production:ProductionOffense ;
-                      icac-production:productionMethod ?method .
+                $this a cacontology-production:ProductionOffense ;
+                      cacontology-production:productionMethod ?method .
                 FILTER (?method IN ("direct_recording", "video_recording", "live_streaming"))
                 FILTER NOT EXISTS {
-                    $this icac-production:usesEquipment ?equipment .
-                    ?equipment a icac-production:RecordingDevice .
+                    $this cacontology-production:usesEquipment ?equipment .
+                    ?equipment a cacontology-production:RecordingDevice .
                 }
             }
         """
@@ -625,8 +625,8 @@ icac-production:EquipmentUsageValidationShape rdf:type sh:NodeShape ;
 # TEMPORAL VALIDATION SHAPES
 # =============================================================================
 
-icac-production:TemporalValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-production:ProductionOffense ;
+cacontology-production:TemporalValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-production:ProductionOffense ;
     rdfs:label "Temporal Validation Shape"@en ;
     rdfs:comment "Validates temporal consistency in production offenses."@en ;
     sh:sparql [
@@ -641,8 +641,8 @@ icac-production:TemporalValidationShape rdf:type sh:NodeShape ;
         """
     ] .
 
-icac-production:ExtendedOperationValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-production:ExtendedProductionOperation ;
+cacontology-production:ExtendedOperationValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-production:ExtendedProductionOperation ;
     rdfs:label "Extended Operation Validation Shape"@en ;
     rdfs:comment "Validates extended production operation consistency."@en ;
     sh:sparql [
@@ -650,8 +650,8 @@ icac-production:ExtendedOperationValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-production:operationDuration ?duration ;
-                      icac-production:totalSessions ?sessions .
+                $this cacontology-production:operationDuration ?duration ;
+                      cacontology-production:totalSessions ?sessions .
                 FILTER (?sessions > (?duration * 10))
             }
         """
@@ -661,8 +661,8 @@ icac-production:ExtendedOperationValidationShape rdf:type sh:NodeShape ;
 # DATA QUALITY SHAPES
 # =============================================================================
 
-icac-production:DataQualityShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-production:ProductionOffense ;
+cacontology-production:DataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-production:ProductionOffense ;
     rdfs:label "Data Quality Shape"@en ;
     rdfs:comment "Validates data quality for production offenses."@en ;
     sh:property [

@@ -22,12 +22,12 @@
 # FORENSIC IMAGE AND DIGITAL EVIDENCE SHAPES
 # =============================================================================
 
-icac-forensics:ForensicImageExtendedShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-forensics:ForensicImage ;
+cacontology-forensics:ForensicImageExtendedShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:ForensicImage ;
     rdfs:label "Forensic Image Extended Shape"@en ;
     rdfs:comment "Extended validation shape for forensic image instances with comprehensive digital evidence requirements."@en ;
     sh:property [
-        sh:path icac-forensics:acquisitionMethod ;
+        sh:path cacontology-forensics:acquisitionMethod ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -35,7 +35,7 @@ icac-forensics:ForensicImageExtendedShape rdf:type sh:NodeShape ;
         sh:message "Forensic image must specify acquisition method from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-forensics:writeBlockingUsed ;
+        sh:path cacontology-forensics:writeBlockingUsed ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -58,12 +58,12 @@ icac-forensics:ForensicImageExtendedShape rdf:type sh:NodeShape ;
         sh:message "Forensic image must specify creation time."@en
     ] .
 
-icac-forensics:RecoveredFileExtendedShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-forensics:RecoveredFile ;
+cacontology-forensics:RecoveredFileExtendedShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:RecoveredFile ;
     rdfs:label "Recovered File Extended Shape"@en ;
     rdfs:comment "Extended validation shape for recovered file instances."@en ;
     sh:property [
-        sh:path icac-forensics:recoveryMethod ;
+        sh:path cacontology-forensics:recoveryMethod ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -107,8 +107,8 @@ icac-forensics:RecoveredFileExtendedShape rdf:type sh:NodeShape ;
 # MOBILE FORENSIC TOOL SHAPES
 # =============================================================================
 
-icac-forensics:MobileForensicToolExtendedShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-forensics:MobileForensicTool ;
+cacontology-forensics:MobileForensicToolExtendedShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:MobileForensicTool ;
     rdfs:label "Mobile Forensic Tool Extended Shape"@en ;
     rdfs:comment "Extended validation shape for mobile forensic tool instances."@en ;
     sh:property [
@@ -134,12 +134,12 @@ icac-forensics:MobileForensicToolExtendedShape rdf:type sh:NodeShape ;
 # FORENSIC ACQUISITION ACTION EXTENDED SHAPES
 # =============================================================================
 
-icac-forensics:ForensicAcquisitionActionExtendedShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-forensics:ForensicAcquisitionAction ;
+cacontology-forensics:ForensicAcquisitionActionExtendedShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:ForensicAcquisitionAction ;
     rdfs:label "Forensic Acquisition Action Extended Shape"@en ;
     rdfs:comment "Extended validation shape for forensic acquisition action instances."@en ;
     sh:property [
-        sh:path icac-forensics:acquisitionMethod ;
+        sh:path cacontology-forensics:acquisitionMethod ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -147,7 +147,7 @@ icac-forensics:ForensicAcquisitionActionExtendedShape rdf:type sh:NodeShape ;
         sh:message "Forensic acquisition must specify acquisition method from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-forensics:writeBlockingUsed ;
+        sh:path cacontology-forensics:writeBlockingUsed ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -172,8 +172,8 @@ icac-forensics:ForensicAcquisitionActionExtendedShape rdf:type sh:NodeShape ;
 # EVIDENCE VERIFICATION ACTION EXTENDED SHAPES
 # =============================================================================
 
-icac-forensics:EvidenceVerificationActionExtendedShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-forensics:EvidenceVerificationAction ;
+cacontology-forensics:EvidenceVerificationActionExtendedShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:EvidenceVerificationAction ;
     rdfs:label "Evidence Verification Action Extended Shape"@en ;
     rdfs:comment "Extended validation shape for evidence verification action instances."@en ;
     sh:property [
@@ -195,12 +195,12 @@ icac-forensics:EvidenceVerificationActionExtendedShape rdf:type sh:NodeShape ;
 # MASS DIGITAL EVIDENCE PROCESSING SHAPES
 # =============================================================================
 
-icac-forensics:MassDigitalEvidenceProcessingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-forensics:MassDigitalEvidenceProcessing ;
+cacontology-forensics:MassDigitalEvidenceProcessingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:MassDigitalEvidenceProcessing ;
     rdfs:label "Mass Digital Evidence Processing Shape"@en ;
     rdfs:comment "Validation shape for mass digital evidence processing instances."@en ;
     sh:property [
-        sh:path icac-forensics:evidenceVolumeTerabytes ;
+        sh:path cacontology-forensics:evidenceVolumeTerabytes ;
         sh:datatype xsd:decimal ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -209,7 +209,7 @@ icac-forensics:MassDigitalEvidenceProcessingShape rdf:type sh:NodeShape ;
         sh:message "Evidence volume must be between 0.001 and 10000 terabytes."@en
     ] ;
     sh:property [
-        sh:path icac-forensics:filesProcessedMillions ;
+        sh:path cacontology-forensics:filesProcessedMillions ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -218,7 +218,7 @@ icac-forensics:MassDigitalEvidenceProcessingShape rdf:type sh:NodeShape ;
         sh:message "Files processed must be between 0.001 and 1000 million."@en
     ] ;
     sh:property [
-        sh:path icac-forensics:processingTimeframeDays ;
+        sh:path cacontology-forensics:processingTimeframeDays ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -234,12 +234,12 @@ icac-forensics:MassDigitalEvidenceProcessingShape rdf:type sh:NodeShape ;
         sh:message "Mass processing must specify start time."@en
     ] .
 
-icac-forensics:AutomatedContentAnalysisShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-forensics:AutomatedContentAnalysis ;
+cacontology-forensics:AutomatedContentAnalysisShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:AutomatedContentAnalysis ;
     rdfs:label "Automated Content Analysis Shape"@en ;
     rdfs:comment "Validation shape for automated content analysis instances."@en ;
     sh:property [
-        sh:path icac-forensics:automationPercentage ;
+        sh:path cacontology-forensics:automationPercentage ;
         sh:datatype xsd:decimal ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -248,7 +248,7 @@ icac-forensics:AutomatedContentAnalysisShape rdf:type sh:NodeShape ;
         sh:message "Automation percentage must be between 0.0 and 100.0."@en
     ] ;
     sh:property [
-        sh:path icac-forensics:processingSpeed ;
+        sh:path cacontology-forensics:processingSpeed ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -257,7 +257,7 @@ icac-forensics:AutomatedContentAnalysisShape rdf:type sh:NodeShape ;
         sh:message "Processing speed must be between 1.0 and 1000000.0 files per hour."@en
     ] ;
     sh:property [
-        sh:path icac-forensics:falsePositiveRate ;
+        sh:path cacontology-forensics:falsePositiveRate ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -266,12 +266,12 @@ icac-forensics:AutomatedContentAnalysisShape rdf:type sh:NodeShape ;
         sh:message "False positive rate must be between 0.0 and 1.0."@en
     ] .
 
-icac-forensics:EvidenceTriageSystemShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-forensics:EvidenceTriageSystem ;
+cacontology-forensics:EvidenceTriageSystemShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:EvidenceTriageSystem ;
     rdfs:label "Evidence Triage System Shape"@en ;
     rdfs:comment "Validation shape for evidence triage system instances."@en ;
     sh:property [
-        sh:path icac-forensics:triageAccuracy ;
+        sh:path cacontology-forensics:triageAccuracy ;
         sh:datatype xsd:decimal ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -280,7 +280,7 @@ icac-forensics:EvidenceTriageSystemShape rdf:type sh:NodeShape ;
         sh:message "Triage accuracy must be between 0.0 and 1.0."@en
     ] ;
     sh:property [
-        sh:path icac-forensics:priorityClassification ;
+        sh:path cacontology-forensics:priorityClassification ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -288,12 +288,12 @@ icac-forensics:EvidenceTriageSystemShape rdf:type sh:NodeShape ;
         sh:message "Priority classification must be from the allowed list."@en
     ] .
 
-icac-forensics:ScalableHashAnalysisShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-forensics:ScalableHashAnalysis ;
+cacontology-forensics:ScalableHashAnalysisShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:ScalableHashAnalysis ;
     rdfs:label "Scalable Hash Analysis Shape"@en ;
     rdfs:comment "Validation shape for scalable hash analysis instances."@en ;
     sh:property [
-        sh:path icac-forensics:hashDatabaseSize ;
+        sh:path cacontology-forensics:hashDatabaseSize ;
         sh:datatype xsd:decimal ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -302,7 +302,7 @@ icac-forensics:ScalableHashAnalysisShape rdf:type sh:NodeShape ;
         sh:message "Hash database size must be between 0.001 and 10000 million entries."@en
     ] ;
     sh:property [
-        sh:path icac-forensics:hashMatchesFound ;
+        sh:path cacontology-forensics:hashMatchesFound ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -315,12 +315,12 @@ icac-forensics:ScalableHashAnalysisShape rdf:type sh:NodeShape ;
 # VICTIM IDENTIFICATION PROCESS SHAPES
 # =============================================================================
 
-icac-forensics:VictimIdentificationProcessShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-forensics:VictimIdentificationProcess ;
+cacontology-forensics:VictimIdentificationProcessShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:VictimIdentificationProcess ;
     rdfs:label "Victim Identification Process Shape"@en ;
     rdfs:comment "Validation shape for victim identification process instances."@en ;
     sh:property [
-        sh:path icac-forensics:victimsIdentifiedCount ;
+        sh:path cacontology-forensics:victimsIdentifiedCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -329,7 +329,7 @@ icac-forensics:VictimIdentificationProcessShape rdf:type sh:NodeShape ;
         sh:message "Victims identified count must be between 0 and 10000."@en
     ] ;
     sh:property [
-        sh:path icac-forensics:victimGeographicOrigin ;
+        sh:path cacontology-forensics:victimGeographicOrigin ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -338,7 +338,7 @@ icac-forensics:VictimIdentificationProcessShape rdf:type sh:NodeShape ;
         sh:message "Victim geographic origin should be 2-100 characters when provided."@en
     ] ;
     sh:property [
-        sh:path icac-forensics:victimAgeRange ;
+        sh:path cacontology-forensics:victimAgeRange ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -353,8 +353,8 @@ icac-forensics:VictimIdentificationProcessShape rdf:type sh:NodeShape ;
         sh:message "Victim identification process must specify start time."@en
     ] .
 
-icac-forensics:ImageAnalysisForVictimIDShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-forensics:ImageAnalysisForVictimID ;
+cacontology-forensics:ImageAnalysisForVictimIDShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:ImageAnalysisForVictimID ;
     rdfs:label "Image Analysis for Victim ID Shape"@en ;
     rdfs:comment "Validation shape for image analysis for victim identification instances."@en ;
     sh:property [
@@ -375,12 +375,12 @@ icac-forensics:ImageAnalysisForVictimIDShape rdf:type sh:NodeShape ;
 # SPECIALIZED DETECTION SHAPES
 # =============================================================================
 
-icac-forensics:K9AssistedForensicsShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-forensics:K9AssistedForensics ;
+cacontology-forensics:K9AssistedForensicsShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:K9AssistedForensics ;
     rdfs:label "K9 Assisted Forensics Shape"@en ;
     rdfs:comment "Validation shape for K9 assisted forensics instances."@en ;
     sh:property [
-        sh:path icac-forensics:k9AssistanceProvided ;
+        sh:path cacontology-forensics:k9AssistanceProvided ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -394,12 +394,12 @@ icac-forensics:K9AssistedForensicsShape rdf:type sh:NodeShape ;
         sh:message "K9 assisted forensics must specify start time."@en
     ] .
 
-icac-forensics:ElectronicStorageDeviceDetectionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-forensics:ElectronicStorageDeviceDetection ;
+cacontology-forensics:ElectronicStorageDeviceDetectionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:ElectronicStorageDeviceDetection ;
     rdfs:label "Electronic Storage Device Detection Shape"@en ;
     rdfs:comment "Validation shape for electronic storage device detection instances."@en ;
     sh:property [
-        sh:path icac-forensics:detectionMethod ;
+        sh:path cacontology-forensics:detectionMethod ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -407,7 +407,7 @@ icac-forensics:ElectronicStorageDeviceDetectionShape rdf:type sh:NodeShape ;
         sh:message "Detection method must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-forensics:detectionAccuracy ;
+        sh:path cacontology-forensics:detectionAccuracy ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -416,12 +416,12 @@ icac-forensics:ElectronicStorageDeviceDetectionShape rdf:type sh:NodeShape ;
         sh:message "Detection accuracy must be between 0.0 and 1.0."@en
     ] .
 
-icac-forensics:HiddenDeviceRecoveryShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-forensics:HiddenDeviceRecovery ;
+cacontology-forensics:HiddenDeviceRecoveryShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:HiddenDeviceRecovery ;
     rdfs:label "Hidden Device Recovery Shape"@en ;
     rdfs:comment "Validation shape for hidden device recovery instances."@en ;
     sh:property [
-        sh:path icac-forensics:devicesRecovered ;
+        sh:path cacontology-forensics:devicesRecovered ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -441,8 +441,8 @@ icac-forensics:HiddenDeviceRecoveryShape rdf:type sh:NodeShape ;
 # CORRELATION ANALYSIS SHAPES
 # =============================================================================
 
-icac-forensics:CrossPlatformCorrelationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-forensics:CrossPlatformCorrelation ;
+cacontology-forensics:CrossPlatformCorrelationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:CrossPlatformCorrelation ;
     rdfs:label "Cross Platform Correlation Shape"@en ;
     rdfs:comment "Validation shape for cross platform correlation instances."@en ;
     sh:property [
@@ -459,8 +459,8 @@ icac-forensics:CrossPlatformCorrelationShape rdf:type sh:NodeShape ;
         sh:message "Cross platform correlation must specify at least one analysis tool."@en
     ] .
 
-icac-forensics:TemporalPatternAnalysisShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-forensics:TemporalPatternAnalysis ;
+cacontology-forensics:TemporalPatternAnalysisShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:TemporalPatternAnalysis ;
     rdfs:label "Temporal Pattern Analysis Shape"@en ;
     rdfs:comment "Validation shape for temporal pattern analysis instances."@en ;
     sh:property [
@@ -478,8 +478,8 @@ icac-forensics:TemporalPatternAnalysisShape rdf:type sh:NodeShape ;
         sh:message "Temporal pattern analysis may specify end time."@en
     ] .
 
-icac-forensics:BehavioralFingerprintingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-forensics:BehavioralFingerprinting ;
+cacontology-forensics:BehavioralFingerprintingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:BehavioralFingerprinting ;
     rdfs:label "Behavioral Fingerprinting Shape"@en ;
     rdfs:comment "Validation shape for behavioral fingerprinting instances."@en ;
     sh:property [
@@ -494,22 +494,22 @@ icac-forensics:BehavioralFingerprintingShape rdf:type sh:NodeShape ;
 # OBJECT PROPERTY SHAPES
 # =============================================================================
 
-icac-forensics:UsesForensicToolShape rdf:type sh:PropertyShape ;
+cacontology-forensics:UsesForensicToolShape rdf:type sh:PropertyShape ;
     sh:path uco-action:usesTool ;
     sh:name "uses forensic tool" ;
     sh:description "Links forensic actions to tools used" ;
     sh:class uco-tool:Tool ;
     sh:minCount 1 .
 
-icac-forensics:ProducesForensicImageShape rdf:type sh:PropertyShape ;
-    sh:path icac-forensics:forensicCopy ;
+cacontology-forensics:ProducesForensicImageShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-forensics:forensicCopy ;
     sh:name "produces forensic image" ;
     sh:description "Links acquisition to forensic image produced" ;
-    sh:class icac-forensics:ForensicImage ;
+    sh:class cacontology-forensics:ForensicImage ;
     sh:minCount 1 .
 
-icac-forensics:HasVerificationHashShape rdf:type sh:PropertyShape ;
-    sh:path icac-forensics:verificationHash ;
+cacontology-forensics:HasVerificationHashShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-forensics:verificationHash ;
     sh:name "has verification hash" ;
     sh:description "Links forensic artifacts to verification hashes" ;
     sh:class uco-core:UcoObject ;
@@ -519,8 +519,8 @@ icac-forensics:HasVerificationHashShape rdf:type sh:PropertyShape ;
 # CROSS-REFERENCE VALIDATION SHAPES
 # =============================================================================
 
-icac-forensics:ForensicAcquisitionCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-forensics:ForensicAcquisitionAction ;
+cacontology-forensics:ForensicAcquisitionCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:ForensicAcquisitionAction ;
     rdfs:label "Forensic Acquisition Cross Reference Shape"@en ;
     rdfs:comment "Validates cross-references between forensic acquisition and related entities."@en ;
     sh:sparql [
@@ -528,18 +528,18 @@ icac-forensics:ForensicAcquisitionCrossReferenceShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-forensics:ForensicAcquisitionAction .
+                $this a cacontology-forensics:ForensicAcquisitionAction .
                 FILTER NOT EXISTS {
                     $this uco-action:usesTool ?tool ;
-                          icac-forensics:evidenceSeized ?evidence ;
-                          icac-forensics:forensicCopy ?copy .
+                          cacontology-forensics:evidenceSeized ?evidence ;
+                          cacontology-forensics:forensicCopy ?copy .
                 }
             }
         """
     ] .
 
-icac-forensics:WriteBlockingValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-forensics:ForensicAcquisitionAction ;
+cacontology-forensics:WriteBlockingValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:ForensicAcquisitionAction ;
     rdfs:label "Write Blocking Validation Shape"@en ;
     rdfs:comment "Validates write blocking usage in forensic acquisitions."@en ;
     sh:sparql [
@@ -547,14 +547,14 @@ icac-forensics:WriteBlockingValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-forensics:acquisitionMethod "physical" ;
-                      icac-forensics:writeBlockingUsed false .
+                $this cacontology-forensics:acquisitionMethod "physical" ;
+                      cacontology-forensics:writeBlockingUsed false .
             }
         """
     ] .
 
-icac-forensics:MassProcessingValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-forensics:MassDigitalEvidenceProcessing ;
+cacontology-forensics:MassProcessingValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:MassDigitalEvidenceProcessing ;
     rdfs:label "Mass Processing Validation Shape"@en ;
     rdfs:comment "Validates mass digital evidence processing consistency."@en ;
     sh:sparql [
@@ -562,8 +562,8 @@ icac-forensics:MassProcessingValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-forensics:evidenceVolumeTerabytes ?volume ;
-                      icac-forensics:processingTimeframeDays ?days .
+                $this cacontology-forensics:evidenceVolumeTerabytes ?volume ;
+                      cacontology-forensics:processingTimeframeDays ?days .
                 FILTER (?volume > 100.0 && ?days < 30)
             }
         """
@@ -573,8 +573,8 @@ icac-forensics:MassProcessingValidationShape rdf:type sh:NodeShape ;
 # TEMPORAL VALIDATION SHAPES
 # =============================================================================
 
-icac-forensics:TemporalValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-forensics:ForensicAcquisitionAction ;
+cacontology-forensics:TemporalValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:ForensicAcquisitionAction ;
     rdfs:label "Temporal Validation Shape"@en ;
     rdfs:comment "Validates temporal consistency in forensic actions."@en ;
     sh:sparql [
@@ -589,8 +589,8 @@ icac-forensics:TemporalValidationShape rdf:type sh:NodeShape ;
         """
     ] .
 
-icac-forensics:VerificationTimingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-forensics:EvidenceVerificationAction ;
+cacontology-forensics:VerificationTimingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:EvidenceVerificationAction ;
     rdfs:label "Verification Timing Shape"@en ;
     rdfs:comment "Validates evidence verification timing."@en ;
     sh:sparql [
@@ -598,8 +598,8 @@ icac-forensics:VerificationTimingShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                ?acquisition icac-forensics:forensicCopy ?image .
-                ?image icac-forensics:verificationHash ?hash .
+                ?acquisition cacontology-forensics:forensicCopy ?image .
+                ?image cacontology-forensics:verificationHash ?hash .
                 $this uco-core:object ?hash ;
                       uco-core:startTime ?verificationTime .
                 ?acquisition uco-core:startTime ?acquisitionTime .
@@ -612,10 +612,10 @@ icac-forensics:VerificationTimingShape rdf:type sh:NodeShape ;
 # DATA QUALITY SHAPES
 # =============================================================================
 
-icac-forensics:DataQualityShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-forensics:ForensicAcquisitionAction ,
-                   icac-forensics:ForensicImage ,
-                   icac-forensics:MassDigitalEvidenceProcessing ;
+cacontology-forensics:DataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:ForensicAcquisitionAction ,
+                   cacontology-forensics:ForensicImage ,
+                   cacontology-forensics:MassDigitalEvidenceProcessing ;
     rdfs:label "Data Quality Shape"@en ;
     rdfs:comment "Validates data quality for forensic entities."@en ;
     sh:property [

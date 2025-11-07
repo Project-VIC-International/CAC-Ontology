@@ -12,10 +12,10 @@
 # TRAFFICKING ENTERPRISE SHAPES
 # =============================================================================
 
-icac-trafficking:TraffickingEnterpriseShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:TraffickingEnterprise ;
+cacontology-trafficking:TraffickingEnterpriseShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:TraffickingEnterprise ;
     sh:property [
-        sh:path icac-trafficking:memberCount ;
+        sh:path cacontology-trafficking:memberCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -23,28 +23,28 @@ icac-trafficking:TraffickingEnterpriseShape rdf:type sh:NodeShape ;
         sh:message "Trafficking enterprise must have at least 2 members."@en ;
     ] ;
     sh:property [
-        sh:path icac-trafficking:operationalDuration ;
+        sh:path cacontology-trafficking:operationalDuration ;
         sh:datatype xsd:duration ;
         sh:maxCount 1 ;
         sh:message "Trafficking enterprise can have at most one operational duration."@en ;
     ] ;
     sh:property [
-        sh:path icac-trafficking:hasHierarchy ;
-        sh:class icac-trafficking:TraffickingHierarchy ;
+        sh:path cacontology-trafficking:hasHierarchy ;
+        sh:class cacontology-trafficking:TraffickingHierarchy ;
         sh:maxCount 1 ;
         sh:message "Trafficking enterprise can have at most one hierarchy structure."@en ;
     ] .
 
-icac-trafficking:TraffickingRingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:TraffickingRing ;
+cacontology-trafficking:TraffickingRingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:TraffickingRing ;
     sh:property [
-        sh:path icac-trafficking:memberCount ;
+        sh:path cacontology-trafficking:memberCount ;
         sh:minInclusive 3 ; # Rings typically have more members than basic enterprises
         sh:message "Trafficking ring must have at least 3 members."@en ;
     ] ;
     sh:property [
-        sh:path icac-trafficking:conductsOperation ;
-        sh:class icac-trafficking:TraffickingOperation ;
+        sh:path cacontology-trafficking:conductsOperation ;
+        sh:class cacontology-trafficking:TraffickingOperation ;
         sh:minCount 1 ;
         sh:message "Trafficking ring must conduct at least one operation."@en ;
     ] .
@@ -53,10 +53,10 @@ icac-trafficking:TraffickingRingShape rdf:type sh:NodeShape ;
 # TRAFFICKING OPERATION SHAPES
 # =============================================================================
 
-icac-trafficking:TraffickingOperationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:TraffickingOperation ;
+cacontology-trafficking:TraffickingOperationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:TraffickingOperation ;
     sh:property [
-        sh:path icac-trafficking:victimCount ;
+        sh:path cacontology-trafficking:victimCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -64,7 +64,7 @@ icac-trafficking:TraffickingOperationShape rdf:type sh:NodeShape ;
         sh:message "Trafficking operation must have at least one victim."@en ;
     ] ;
     sh:property [
-        sh:path icac-trafficking:involvesVictim ;
+        sh:path cacontology-trafficking:involvesVictim ;
         sh:class uco-identity:Person ;
         sh:minCount 1 ; # Must link to actual victim persons
         sh:message "Trafficking operation must involve at least one victim person."@en ;
@@ -76,10 +76,10 @@ icac-trafficking:TraffickingOperationShape rdf:type sh:NodeShape ;
         sh:message "Trafficking operation can have at most one start time."@en ;
     ] .
 
-icac-trafficking:MultiStateTraffickingConspiracyShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:MultiStateTraffickingConspiracy ;
+cacontology-trafficking:MultiStateTraffickingConspiracyShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:MultiStateTraffickingConspiracy ;
     sh:property [
-        sh:path icac-trafficking:jurisdictionsSpanned ;
+        sh:path cacontology-trafficking:jurisdictionsSpanned ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -87,7 +87,7 @@ icac-trafficking:MultiStateTraffickingConspiracyShape rdf:type sh:NodeShape ;
         sh:message "Multi-state trafficking conspiracy must span at least 2 jurisdictions."@en ;
     ] ;
     sh:property [
-        sh:path icac-trafficking:coordinatesAcrossJurisdictions ;
+        sh:path cacontology-trafficking:coordinatesAcrossJurisdictions ;
         sh:class uco-action:Action ;
         sh:minCount 1 ;
         sh:message "Multi-state conspiracy must have coordination mechanism."@en ;
@@ -97,40 +97,40 @@ icac-trafficking:MultiStateTraffickingConspiracyShape rdf:type sh:NodeShape ;
 # VICTIM-RELATED SHAPES
 # =============================================================================
 
-icac-trafficking:VictimTransportationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:VictimTransportation ;
+cacontology-trafficking:VictimTransportationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:VictimTransportation ;
     sh:property [
-        sh:path icac-trafficking:transportsVictim ;
+        sh:path cacontology-trafficking:transportsVictim ;
         sh:class uco-identity:Person ;
         sh:minCount 1 ;
         sh:message "Victim transportation must involve at least one victim."@en ;
     ] ;
     sh:property [
-        sh:path icac-trafficking:originatesFrom ;
+        sh:path cacontology-trafficking:originatesFrom ;
         sh:class uco-location:Location ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Victim transportation must have exactly one origin location."@en ;
     ] ;
     sh:property [
-        sh:path icac-trafficking:destinationTo ;
+        sh:path cacontology-trafficking:destinationTo ;
         sh:class uco-location:Location ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Victim transportation must have exactly one destination location."@en ;
     ] .
 
-icac-trafficking:CommercialSexualExploitationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:CommercialSexualExploitation ;
+cacontology-trafficking:CommercialSexualExploitationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:CommercialSexualExploitation ;
     sh:property [
-        sh:path icac-trafficking:exploitsVictim ;
+        sh:path cacontology-trafficking:exploitsVictim ;
         sh:class uco-identity:Person ;
         sh:minCount 1 ;
         sh:message "Commercial sexual exploitation must involve at least one victim."@en ;
     ] ;
     sh:property [
-        sh:path icac-trafficking:generatesEarnings ;
-        sh:class icac-trafficking:EarningsCollection ;
+        sh:path cacontology-trafficking:generatesEarnings ;
+        sh:class cacontology-trafficking:EarningsCollection ;
         sh:minCount 1 ;
         sh:message "Commercial sexual exploitation must generate earnings."@en ;
     ] .
@@ -139,10 +139,10 @@ icac-trafficking:CommercialSexualExploitationShape rdf:type sh:NodeShape ;
 # FINANCIAL SHAPES
 # =============================================================================
 
-icac-trafficking:EarningsCollectionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:EarningsCollection ;
+cacontology-trafficking:EarningsCollectionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:EarningsCollection ;
     sh:property [
-        sh:path icac-trafficking:earningsRetentionRate ;
+        sh:path cacontology-trafficking:earningsRetentionRate ;
         sh:datatype xsd:decimal ;
         sh:maxCount 1 ;
         sh:minInclusive 0.0 ;
@@ -150,7 +150,7 @@ icac-trafficking:EarningsCollectionShape rdf:type sh:NodeShape ;
         sh:message "Earnings retention rate must be between 0.0 and 1.0."@en ;
     ] ;
     sh:property [
-        sh:path icac-trafficking:estimatedEarnings ;
+        sh:path cacontology-trafficking:estimatedEarnings ;
         sh:datatype xsd:decimal ;
         sh:maxCount 1 ;
         sh:minInclusive 0.0 ;
@@ -161,10 +161,10 @@ icac-trafficking:EarningsCollectionShape rdf:type sh:NodeShape ;
 # EMERGENCY RESPONSE SHAPES
 # =============================================================================
 
-icac-trafficking:TraffickingVictimRescueShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:TraffickingVictimRescue ;
+cacontology-trafficking:TraffickingVictimRescueShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:TraffickingVictimRescue ;
     sh:property [
-        sh:path icac-trafficking:rescuesVictim ;
+        sh:path cacontology-trafficking:rescuesVictim ;
         sh:class uco-identity:Person ;
         sh:minCount 1 ;
         sh:message "Trafficking victim rescue must rescue at least one victim."@en ;
@@ -181,11 +181,11 @@ icac-trafficking:TraffickingVictimRescueShape rdf:type sh:NodeShape ;
 # INVESTIGATION SHAPES
 # =============================================================================
 
-icac-trafficking:TraffickingInvestigationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:TraffickingInvestigation ;
+cacontology-trafficking:TraffickingInvestigationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:TraffickingInvestigation ;
     sh:property [
-        sh:path icac-trafficking:investigatesNetwork ;
-        sh:class icac-trafficking:TraffickingEnterprise ;
+        sh:path cacontology-trafficking:investigatesNetwork ;
+        sh:class cacontology-trafficking:TraffickingEnterprise ;
         sh:minCount 1 ;
         sh:message "Trafficking investigation must investigate at least one trafficking enterprise."@en ;
     ] ;
@@ -200,10 +200,10 @@ icac-trafficking:TraffickingInvestigationShape rdf:type sh:NodeShape ;
 # VICTIM BRANDING SHAPES (Brooklyn "Blue Cheese" Case)
 # =============================================================================
 
-icac-trafficking:VictimBrandingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:VictimBranding ;
+cacontology-trafficking:VictimBrandingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:VictimBranding ;
     sh:property [
-        sh:path icac-trafficking:brandingType ;
+        sh:path cacontology-trafficking:brandingType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -211,17 +211,17 @@ icac-trafficking:VictimBrandingShape rdf:type sh:NodeShape ;
         sh:message "Branding type must be one of: tattoo, scar, burn_mark, cutting, piercing."@en ;
     ] ;
     sh:property [
-        sh:path icac-trafficking:brandingVisibility ;
+        sh:path cacontology-trafficking:brandingVisibility ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ("highly_visible" "moderately_visible" "concealed") ;
         sh:message "Branding visibility must be one of: highly_visible, moderately_visible, concealed."@en ;
     ] .
 
-icac-trafficking:TraffickerTattooShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:TraffickerTattoo ;
+cacontology-trafficking:TraffickerTattooShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:TraffickerTattoo ;
     sh:property [
-        sh:path icac-trafficking:tattooContent ;
+        sh:path cacontology-trafficking:tattooContent ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -229,7 +229,7 @@ icac-trafficking:TraffickerTattooShape rdf:type sh:NodeShape ;
         sh:message "Trafficker tattoo must have content (name, nickname, or symbol)."@en ;
     ] ;
     sh:property [
-        sh:path icac-trafficking:tattooLocation ;
+        sh:path cacontology-trafficking:tattooLocation ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -237,15 +237,15 @@ icac-trafficking:TraffickerTattooShape rdf:type sh:NodeShape ;
         sh:message "Tattoo location must be specified from valid body locations."@en ;
     ] .
 
-icac-trafficking:FacialBrandingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:FacialBranding ;
+cacontology-trafficking:FacialBrandingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:FacialBranding ;
     sh:property [
-        sh:path icac-trafficking:tattooLocation ;
+        sh:path cacontology-trafficking:tattooLocation ;
         sh:hasValue "face" ;
         sh:message "Facial branding must have tattoo location as 'face'."@en ;
     ] ;
     sh:property [
-        sh:path icac-trafficking:brandingVisibility ;
+        sh:path cacontology-trafficking:brandingVisibility ;
         sh:hasValue "highly_visible" ;
         sh:message "Facial branding must be highly visible."@en ;
     ] .
@@ -254,27 +254,27 @@ icac-trafficking:FacialBrandingShape rdf:type sh:NodeShape ;
 # PHYSICAL VIOLENCE SHAPES
 # =============================================================================
 
-icac-trafficking:PhysicalViolenceControlShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:PhysicalViolenceControl ;
+cacontology-trafficking:PhysicalViolenceControlShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:PhysicalViolenceControl ;
     sh:property [
-        sh:path icac-trafficking:violenceType ;
+        sh:path cacontology-trafficking:violenceType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:in ("punching" "kicking" "stabbing" "burning" "choking" "hair_pulling" "slapping") ;
         sh:message "Violence type must be specified from valid types."@en ;
     ] ;
     sh:property [
-        sh:path icac-trafficking:injurySeverity ;
+        sh:path cacontology-trafficking:injurySeverity ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ("minor" "moderate" "severe" "life_threatening") ;
         sh:message "Injury severity must be one of: minor, moderate, severe, life_threatening."@en ;
     ] .
 
-icac-trafficking:WeaponBasedViolenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:WeaponBasedViolence ;
+cacontology-trafficking:WeaponBasedViolenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:WeaponBasedViolence ;
     sh:property [
-        sh:path icac-trafficking:weaponUsed ;
+        sh:path cacontology-trafficking:weaponUsed ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -282,21 +282,21 @@ icac-trafficking:WeaponBasedViolenceShape rdf:type sh:NodeShape ;
         sh:message "Weapon used must be specified from valid weapon types."@en ;
     ] ;
     sh:property [
-        sh:path icac-trafficking:injurySeverity ;
+        sh:path cacontology-trafficking:injurySeverity ;
         sh:in ("moderate" "severe" "life_threatening") ;
         sh:message "Weapon-based violence typically causes moderate to life-threatening injuries."@en ;
     ] .
 
-icac-trafficking:SeizureInducingViolenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:SeizureInducingViolence ;
+cacontology-trafficking:SeizureInducingViolenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:SeizureInducingViolence ;
     sh:property [
-        sh:path icac-trafficking:medicalEmergency ;
+        sh:path cacontology-trafficking:medicalEmergency ;
         sh:datatype xsd:boolean ;
         sh:hasValue true ;
         sh:message "Seizure-inducing violence must cause medical emergency."@en ;
     ] ;
     sh:property [
-        sh:path icac-trafficking:injurySeverity ;
+        sh:path cacontology-trafficking:injurySeverity ;
         sh:in ("severe" "life_threatening") ;
         sh:message "Seizure-inducing violence must cause severe or life-threatening injuries."@en ;
     ] .
@@ -305,8 +305,8 @@ icac-trafficking:SeizureInducingViolenceShape rdf:type sh:NodeShape ;
 # MEDICAL CONSEQUENCES SHAPES
 # =============================================================================
 
-icac-trafficking:MedicalConsequencesShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:MedicalConsequences ;
+cacontology-trafficking:MedicalConsequencesShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:MedicalConsequences ;
     sh:property [
         sh:path uco-core:startTime ;
         sh:datatype xsd:dateTime ;
@@ -314,10 +314,10 @@ icac-trafficking:MedicalConsequencesShape rdf:type sh:NodeShape ;
         sh:message "Medical consequences can have at most one onset time."@en ;
     ] .
 
-icac-trafficking:ExploitationRelatedInfectionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:ExploitationRelatedInfection ;
+cacontology-trafficking:ExploitationRelatedInfectionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:ExploitationRelatedInfection ;
     sh:property [
-        sh:path icac-trafficking:infectionType ;
+        sh:path cacontology-trafficking:infectionType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -325,17 +325,17 @@ icac-trafficking:ExploitationRelatedInfectionShape rdf:type sh:NodeShape ;
         sh:message "Infection type must be specified as viral, bacterial, fungal, or parasitic."@en ;
     ] .
 
-icac-trafficking:HospitalTreatmentShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:HospitalTreatment ;
+cacontology-trafficking:HospitalTreatmentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:HospitalTreatment ;
     sh:property [
-        sh:path icac-trafficking:treatmentDate ;
+        sh:path cacontology-trafficking:treatmentDate ;
         sh:datatype xsd:dateTime ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Hospital treatment must have exactly one treatment date."@en ;
     ] ;
     sh:property [
-        sh:path icac-trafficking:treatmentLocation ;
+        sh:path cacontology-trafficking:treatmentLocation ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -347,10 +347,10 @@ icac-trafficking:HospitalTreatmentShape rdf:type sh:NodeShape ;
 # STREET OPERATIONS SHAPES
 # =============================================================================
 
-icac-trafficking:WalkingTheTrackShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:WalkingTheTrack ;
+cacontology-trafficking:WalkingTheTrackShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:WalkingTheTrack ;
     sh:property [
-        sh:path icac-trafficking:trackLocation ;
+        sh:path cacontology-trafficking:trackLocation ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -358,16 +358,16 @@ icac-trafficking:WalkingTheTrackShape rdf:type sh:NodeShape ;
         sh:message "Walking the track must specify track location."@en ;
     ] ;
     sh:property [
-        sh:path icac-trafficking:operatesOnTrack ;
+        sh:path cacontology-trafficking:operatesOnTrack ;
         sh:class uco-location:Location ;
         sh:minCount 1 ;
         sh:message "Walking the track must operate on at least one location."@en ;
     ] .
 
-icac-trafficking:StreetSolicitationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:StreetSolicitation ;
+cacontology-trafficking:StreetSolicitationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:StreetSolicitation ;
     sh:property [
-        sh:path icac-trafficking:solicitationHours ;
+        sh:path cacontology-trafficking:solicitationHours ;
         sh:datatype xsd:decimal ;
         sh:maxCount 1 ;
         sh:minInclusive 0.0 ;
@@ -379,10 +379,10 @@ icac-trafficking:StreetSolicitationShape rdf:type sh:NodeShape ;
 # EMERGENCY COMMUNICATION SHAPES
 # =============================================================================
 
-icac-trafficking:VictimEmergencyCommunicationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:VictimEmergencyCommunication ;
+cacontology-trafficking:VictimEmergencyCommunicationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:VictimEmergencyCommunication ;
     sh:property [
-        sh:path icac-trafficking:emergencyContactMethod ;
+        sh:path cacontology-trafficking:emergencyContactMethod ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -396,24 +396,24 @@ icac-trafficking:VictimEmergencyCommunicationShape rdf:type sh:NodeShape ;
         sh:message "Emergency communication can have at most one start time."@en ;
     ] .
 
-icac-trafficking:TextMessageRescueRequestShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:TextMessageRescueRequest ;
+cacontology-trafficking:TextMessageRescueRequestShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:TextMessageRescueRequest ;
     sh:property [
-        sh:path icac-trafficking:emergencyContactMethod ;
+        sh:path cacontology-trafficking:emergencyContactMethod ;
         sh:hasValue "text_message" ;
         sh:message "Text message rescue request must use text_message contact method."@en ;
     ] ;
     sh:property [
-        sh:path icac-trafficking:contactedForHelp ;
+        sh:path cacontology-trafficking:contactedForHelp ;
         sh:class uco-identity:Person ;
         sh:minCount 1 ;
         sh:message "Text message rescue request must contact at least one person for help."@en ;
     ] .
 
-icac-trafficking:LocationDetailSharingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:LocationDetailSharing ;
+cacontology-trafficking:LocationDetailSharingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:LocationDetailSharing ;
     sh:property [
-        sh:path icac-trafficking:locationDetailsProvided ;
+        sh:path cacontology-trafficking:locationDetailsProvided ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -421,17 +421,17 @@ icac-trafficking:LocationDetailSharingShape rdf:type sh:NodeShape ;
         sh:message "Location detail sharing must provide specific location information."@en ;
     ] ;
     sh:property [
-        sh:path icac-trafficking:providedLocation ;
+        sh:path cacontology-trafficking:providedLocation ;
         sh:class uco-location:Location ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Location detail sharing must reference exactly one location."@en ;
     ] .
 
-icac-trafficking:CrossStateRescueRequestShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:CrossStateRescueRequest ;
+cacontology-trafficking:CrossStateRescueRequestShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:CrossStateRescueRequest ;
     sh:property [
-        sh:path icac-trafficking:crossStateDistance ;
+        sh:path cacontology-trafficking:crossStateDistance ;
         sh:datatype xsd:decimal ;
         sh:maxCount 1 ;
         sh:minInclusive 0.0 ;
@@ -442,20 +442,20 @@ icac-trafficking:CrossStateRescueRequestShape rdf:type sh:NodeShape ;
 # EVIDENCE SHAPES
 # =============================================================================
 
-icac-trafficking:TraffickingEvidenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:TraffickingEvidence ;
+cacontology-trafficking:TraffickingEvidenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:TraffickingEvidence ;
     sh:property [
-        sh:path icac-trafficking:documentsOperation ;
-        sh:class icac-trafficking:TraffickingOperation ;
+        sh:path cacontology-trafficking:documentsOperation ;
+        sh:class cacontology-trafficking:TraffickingOperation ;
         sh:minCount 1 ;
         sh:message "Trafficking evidence must document at least one trafficking operation."@en ;
     ] .
 
-icac-trafficking:VictimAdvertisementShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:VictimAdvertisement ;
+cacontology-trafficking:VictimAdvertisementShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:VictimAdvertisement ;
     sh:property [
-        sh:path icac-trafficking:documentsOperation ;
-        sh:class icac-trafficking:CommercialSexualExploitation ;
+        sh:path cacontology-trafficking:documentsOperation ;
+        sh:class cacontology-trafficking:CommercialSexualExploitation ;
         sh:minCount 1 ;
         sh:message "Victim advertisement must document commercial sexual exploitation."@en ;
     ] .
@@ -465,8 +465,8 @@ icac-trafficking:VictimAdvertisementShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # Ensure victim count consistency
-icac-trafficking:VictimCountConsistencyShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:TraffickingOperation ;
+cacontology-trafficking:VictimCountConsistencyShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:TraffickingOperation ;
     sh:sparql [
         sh:message "Total victim count must equal sum of minor and adult victim counts."@en ;
         sh:prefixes [
@@ -477,9 +477,9 @@ icac-trafficking:VictimCountConsistencyShape rdf:type sh:NodeShape ;
         ] ;
         sh:select """
             SELECT $this WHERE {
-                $this icac-trafficking:victimCount ?total .
-                OPTIONAL { $this icac-trafficking:minorVictimCount ?minors }
-                OPTIONAL { $this icac-trafficking:adultVictimCount ?adults }
+                $this cacontology-trafficking:victimCount ?total .
+                OPTIONAL { $this cacontology-trafficking:minorVictimCount ?minors }
+                OPTIONAL { $this cacontology-trafficking:adultVictimCount ?adults }
                 BIND(COALESCE(?minors, 0) + COALESCE(?adults, 0) AS ?sum)
                 FILTER(?total != ?sum)
             }
@@ -487,8 +487,8 @@ icac-trafficking:VictimCountConsistencyShape rdf:type sh:NodeShape ;
     ] .
 
 # Ensure duration consistency for operations
-icac-trafficking:DurationConsistencyShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:TraffickingOperation ;
+cacontology-trafficking:DurationConsistencyShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:TraffickingOperation ;
     sh:sparql [
         sh:message "End time must be after start time for trafficking operations."@en ;
         sh:prefixes [
@@ -507,8 +507,8 @@ icac-trafficking:DurationConsistencyShape rdf:type sh:NodeShape ;
     ] .
 
 # Ensure minimum age constraints for trafficking victims
-icac-trafficking:VictimAgeConsistencyShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:TraffickingOperation ;
+cacontology-trafficking:VictimAgeConsistencyShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:TraffickingOperation ;
     sh:sparql [
         sh:message "Minor victim count must be 0 if operation involves only adult victims."@en ;
         sh:prefixes [
@@ -523,8 +523,8 @@ icac-trafficking:VictimAgeConsistencyShape rdf:type sh:NodeShape ;
         ] ;
         sh:select """
             SELECT $this WHERE {
-                $this icac-trafficking:minorVictimCount ?minorCount .
-                $this icac-trafficking:involvesVictim ?victim .
+                $this cacontology-trafficking:minorVictimCount ?minorCount .
+                $this cacontology-trafficking:involvesVictim ?victim .
                 ?victim uco-identity:birthDate ?birthDate .
                 BIND(YEAR(NOW()) - YEAR(?birthDate) AS ?age)
                 FILTER(?minorCount > 0 && ?age >= 18)
@@ -536,12 +536,12 @@ icac-trafficking:VictimAgeConsistencyShape rdf:type sh:NodeShape ;
 # VICTIM RECRUITMENT VALIDATION SHAPES (April 2025 Enhancement)
 # =============================================================================
 
-icac-trafficking-shapes:PublicVenueRecruitmentShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:PublicVenueRecruitment ;
+cacontology-trafficking-shapes:PublicVenueRecruitmentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:PublicVenueRecruitment ;
     rdfs:label "Public Venue Recruitment Shape"@en ;
     rdfs:comment "Validation shape for public venue recruitment of trafficking victims."@en ;
     sh:property [
-        sh:path icac-trafficking:recruitmentVenue ;
+        sh:path cacontology-trafficking:recruitmentVenue ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -549,19 +549,19 @@ icac-trafficking-shapes:PublicVenueRecruitmentShape rdf:type sh:NodeShape ;
         sh:message "Public venue recruitment must specify venue type."@en
     ] ;
     sh:property [
-        sh:path icac-trafficking:recruitedAt ;
+        sh:path cacontology-trafficking:recruitedAt ;
         sh:class uco-location:Location ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Public venue recruitment must specify recruitment location."@en
     ] .
 
-icac-trafficking-shapes:WeaponDisplayRecruitmentShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:WeaponDisplayRecruitment ;
+cacontology-trafficking-shapes:WeaponDisplayRecruitmentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:WeaponDisplayRecruitment ;
     rdfs:label "Weapon Display Recruitment Shape"@en ;
     rdfs:comment "Validation shape for recruitment involving weapon display."@en ;
     sh:property [
-        sh:path icac-trafficking:weaponDisplayed ;
+        sh:path cacontology-trafficking:weaponDisplayed ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -569,20 +569,20 @@ icac-trafficking-shapes:WeaponDisplayRecruitmentShape rdf:type sh:NodeShape ;
         sh:message "Weapon display recruitment must specify weapon type."@en
     ] .
 
-icac-trafficking:ImmediateTransportationRecruitmentShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:ImmediateTransportationRecruitment ;
+cacontology-trafficking:ImmediateTransportationRecruitmentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:ImmediateTransportationRecruitment ;
     rdfs:label "Immediate Transportation Recruitment Shape"@en ;
     rdfs:comment "Validation shape for recruitment followed by immediate transportation."@en ;
     sh:property [
-        sh:path icac-trafficking:recruitmentToTransportTime ;
+        sh:path cacontology-trafficking:recruitmentToTransportTime ;
         sh:datatype xsd:decimal ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 180.0 ; # Maximum 3 hours
         sh:message "Recruitment to transport time must be between 0 and 180 minutes."@en
     ] ;
     sh:property [
-        sh:path icac-trafficking:followedByTransport ;
-        sh:class icac-trafficking:VictimTransportation ;
+        sh:path cacontology-trafficking:followedByTransport ;
+        sh:class cacontology-trafficking:VictimTransportation ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Immediate transportation recruitment must link to transportation."@en
@@ -592,30 +592,30 @@ icac-trafficking:ImmediateTransportationRecruitmentShape rdf:type sh:NodeShape ;
 # HOTEL-BASED OPERATIONS VALIDATION SHAPES
 # =============================================================================
 
-icac-trafficking-shapes:HotelBasedOperationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:HotelBasedOperation ;
+cacontology-trafficking-shapes:HotelBasedOperationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:HotelBasedOperation ;
     rdfs:label "Hotel Based Operation Shape"@en ;
     rdfs:comment "Validation shape for hotel-based trafficking operations."@en ;
     sh:property [
-        sh:path icac-trafficking:hotelChain ;
+        sh:path cacontology-trafficking:hotelChain ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Hotel based operation must specify hotel chain or brand."@en
     ] ;
     sh:property [
-        sh:path icac-trafficking:operatesInHotel ;
+        sh:path cacontology-trafficking:operatesInHotel ;
         sh:class uco-location:Location ;
         sh:minCount 1 ;
         sh:message "Hotel based operation must specify at least one hotel location."@en
     ] .
 
-icac-trafficking-shapes:MultiHotelNetworkShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:MultiHotelNetwork ;
+cacontology-trafficking-shapes:MultiHotelNetworkShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:MultiHotelNetwork ;
     rdfs:label "Multi-Hotel Network Shape"@en ;
     rdfs:comment "Validation shape for multi-hotel trafficking networks."@en ;
     sh:property [
-        sh:path icac-trafficking:hotelCount ;
+        sh:path cacontology-trafficking:hotelCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minInclusive 2 ; # Must be multiple hotels
         sh:minCount 1 ;
@@ -623,7 +623,7 @@ icac-trafficking-shapes:MultiHotelNetworkShape rdf:type sh:NodeShape ;
         sh:message "Multi-hotel network must have at least 2 hotels."@en
     ] ;
     sh:property [
-        sh:path icac-trafficking:cityCount ;
+        sh:path cacontology-trafficking:cityCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minInclusive 1 ;
         sh:minCount 1 ;
@@ -631,19 +631,19 @@ icac-trafficking-shapes:MultiHotelNetworkShape rdf:type sh:NodeShape ;
         sh:message "Multi-hotel network must specify number of cities."@en
     ] .
 
-icac-trafficking-shapes:HotelEmergencyCallShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:HotelEmergencyCall ;
+cacontology-trafficking-shapes:HotelEmergencyCallShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:HotelEmergencyCall ;
     rdfs:label "Hotel Emergency Call Shape"@en ;
     rdfs:comment "Validation shape for emergency calls made from hotel rooms."@en ;
     sh:property [
-        sh:path icac-impact:hotelPhoneUsed ;
+        sh:path cacontology-impact:hotelPhoneUsed ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Hotel emergency call must specify if hotel phone was used."@en
     ] ;
     sh:property [
-        sh:path icac-impact:emergencyCallLocation ;
+        sh:path cacontology-impact:emergencyCallLocation ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -654,24 +654,24 @@ icac-trafficking-shapes:HotelEmergencyCallShape rdf:type sh:NodeShape ;
 # MISSING PERSON INTEGRATION VALIDATION SHAPES
 # =============================================================================
 
-icac-trafficking-shapes:MissingPersonTraffickingVictimShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:MissingPersonTraffickingVictim ;
+cacontology-trafficking-shapes:MissingPersonTraffickingVictimShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:MissingPersonTraffickingVictim ;
     rdfs:label "Missing Person Trafficking Victim Shape"@en ;
     rdfs:comment "Validation shape for trafficking victims previously reported missing."@en ;
     sh:property [
-        sh:path icac-trafficking:missingPersonReportDate ;
+        sh:path cacontology-trafficking:missingPersonReportDate ;
         sh:datatype xsd:dateTime ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Missing person trafficking victim must have report date."@en
     ] .
 
-icac-trafficking-shapes:MissingPersonRecoveryShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:MissingPersonRecovery ;
+cacontology-trafficking-shapes:MissingPersonRecoveryShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:MissingPersonRecovery ;
     rdfs:label "Missing Person Recovery Shape"@en ;
     rdfs:comment "Validation shape for missing person recovery operations."@en ;
     sh:property [
-        sh:path icac-trafficking:missingDuration ;
+        sh:path cacontology-trafficking:missingDuration ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minInclusive 1 ; # At least 1 day missing
         sh:maxInclusive 3650 ; # Maximum 10 years
@@ -680,7 +680,7 @@ icac-trafficking-shapes:MissingPersonRecoveryShape rdf:type sh:NodeShape ;
         sh:message "Missing duration must be between 1 and 3650 days."@en
     ] ;
     sh:property [
-        sh:path icac-trafficking:recoveryMethod ;
+        sh:path cacontology-trafficking:recoveryMethod ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -692,12 +692,12 @@ icac-trafficking-shapes:MissingPersonRecoveryShape rdf:type sh:NodeShape ;
 # TRANSPORTATION HUB INTERVENTION VALIDATION SHAPES
 # =============================================================================
 
-icac-trafficking-shapes:TransportationHubInterventionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:TransportationHubIntervention ;
+cacontology-trafficking-shapes:TransportationHubInterventionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:TransportationHubIntervention ;
     rdfs:label "Transportation Hub Intervention Shape"@en ;
     rdfs:comment "Validation shape for transportation hub interventions."@en ;
     sh:property [
-        sh:path icac-trafficking:transportationHubType ;
+        sh:path cacontology-trafficking:transportationHubType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -705,31 +705,31 @@ icac-trafficking-shapes:TransportationHubInterventionShape rdf:type sh:NodeShape
         sh:message "Transportation hub type must be specified from valid options."@en
     ] .
 
-icac-trafficking-shapes:BusTerminalInterventionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:BusTerminalIntervention ;
+cacontology-trafficking-shapes:BusTerminalInterventionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:BusTerminalIntervention ;
     rdfs:label "Bus Terminal Intervention Shape"@en ;
     rdfs:comment "Validation shape for bus terminal interventions."@en ;
     sh:property [
-        sh:path icac-trafficking:ticketDestination ;
+        sh:path cacontology-trafficking:ticketDestination ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Bus terminal intervention must specify ticket destination."@en
     ] .
 
-icac-trafficking-shapes:VictimDisclosureAtTransportHubShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:VictimDisclosureAtTransportHub ;
+cacontology-trafficking-shapes:VictimDisclosureAtTransportHubShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:VictimDisclosureAtTransportHub ;
     rdfs:label "Victim Disclosure at Transport Hub Shape"@en ;
     rdfs:comment "Validation shape for victim disclosures at transportation hubs."@en ;
     sh:property [
-        sh:path icac-impact:disclosureVoluntary ;
+        sh:path cacontology-impact:disclosureVoluntary ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Victim disclosure must specify if voluntary."@en
     ] ;
     sh:property [
-        sh:path icac-trafficking:disclosedTo ;
+        sh:path cacontology-trafficking:disclosedTo ;
         sh:class uco-identity:Organization ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -740,31 +740,31 @@ icac-trafficking-shapes:VictimDisclosureAtTransportHubShape rdf:type sh:NodeShap
 # FUGITIVE OPERATIONS VALIDATION SHAPES
 # =============================================================================
 
-icac-trafficking-shapes:InterstateFlightFromProsecutionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:InterstateFlightFromProsecution ;
+cacontology-trafficking-shapes:InterstateFlightFromProsecutionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:InterstateFlightFromProsecution ;
     rdfs:label "Interstate Flight from Prosecution Shape"@en ;
     rdfs:comment "Validation shape for interstate flight from prosecution."@en ;
     sh:property [
-        sh:path icac-trafficking:flightDestination ;
+        sh:path cacontology-trafficking:flightDestination ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Interstate flight must specify destination state or location."@en
     ] ;
     sh:property [
-        sh:path icac-trafficking:fledTo ;
+        sh:path cacontology-trafficking:fledTo ;
         sh:class uco-location:Location ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Interstate flight must specify destination location."@en
     ] .
 
-icac-trafficking-shapes:USMarshalApprehensionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:USMarshalApprehension ;
+cacontology-trafficking-shapes:USMarshalApprehensionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:USMarshalApprehension ;
     rdfs:label "US Marshal Apprehension Shape"@en ;
     rdfs:comment "Validation shape for US Marshal apprehension operations."@en ;
     sh:property [
-        sh:path icac-trafficking:apprehensionAgency ;
+        sh:path cacontology-trafficking:apprehensionAgency ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -772,12 +772,12 @@ icac-trafficking-shapes:USMarshalApprehensionShape rdf:type sh:NodeShape ;
         sh:message "Apprehension agency must include 'US Marshal'."@en
     ] .
 
-icac-trafficking-shapes:ExtraditionProcessShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-trafficking:ExtraditionProcess ;
+cacontology-trafficking-shapes:ExtraditionProcessShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-trafficking:ExtraditionProcess ;
     rdfs:label "Extradition Process Shape"@en ;
     rdfs:comment "Validation shape for extradition processes."@en ;
     sh:property [
-        sh:path icac-trafficking:extraditionDuration ;
+        sh:path cacontology-trafficking:extraditionDuration ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minInclusive 1 ; # At least 1 day
         sh:maxInclusive 365 ; # Maximum 1 year
@@ -786,7 +786,7 @@ icac-trafficking-shapes:ExtraditionProcessShape rdf:type sh:NodeShape ;
         sh:message "Extradition duration must be between 1 and 365 days."@en
     ] ;
     sh:property [
-        sh:path icac-trafficking:extraditedfrom ;
+        sh:path cacontology-trafficking:extraditedfrom ;
         sh:class uco-location:Location ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -797,19 +797,19 @@ icac-trafficking-shapes:ExtraditionProcessShape rdf:type sh:NodeShape ;
 # HOSPITAL INTERVENTION VALIDATION SHAPES
 # =============================================================================
 
-icac-trafficking-shapes:HospitalInterventionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-impact:HospitalIntervention ;
+cacontology-trafficking-shapes:HospitalInterventionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:HospitalIntervention ;
     rdfs:label "Hospital Intervention Shape"@en ;
     rdfs:comment "Validation shape for hospital interventions with trafficking victims."@en ;
     sh:property [
-        sh:path icac-impact:hospitalName ;
+        sh:path cacontology-impact:hospitalName ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Hospital intervention must specify hospital name."@en
     ] ;
     sh:property [
-        sh:path icac-impact:admissionReason ;
+        sh:path cacontology-impact:admissionReason ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -817,19 +817,19 @@ icac-trafficking-shapes:HospitalInterventionShape rdf:type sh:NodeShape ;
         sh:message "Admission reason must be specified from valid options."@en
     ] ;
     sh:property [
-        sh:path icac-impact:hospitalStayDuration ;
+        sh:path cacontology-impact:hospitalStayDuration ;
         sh:datatype xsd:decimal ;
         sh:minInclusive 0.1 ; # Minimum 2.4 hours
         sh:maxInclusive 365.0 ; # Maximum 1 year
         sh:message "Hospital stay duration must be between 0.1 and 365 days."@en
     ] .
 
-icac-trafficking-shapes:VictimTransportationAssistanceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-impact:VictimTransportationAssistance ;
+cacontology-trafficking-shapes:VictimTransportationAssistanceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:VictimTransportationAssistance ;
     rdfs:label "Victim Transportation Assistance Shape"@en ;
     rdfs:comment "Validation shape for victim transportation assistance."@en ;
     sh:property [
-        sh:path icac-impact:transportationType ;
+        sh:path cacontology-impact:transportationType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -837,7 +837,7 @@ icac-trafficking-shapes:VictimTransportationAssistanceShape rdf:type sh:NodeShap
         sh:message "Transportation type must be specified from valid options."@en
     ] ;
     sh:property [
-        sh:path icac-impact:transportationDestination ;
+        sh:path cacontology-impact:transportationDestination ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -848,12 +848,12 @@ icac-trafficking-shapes:VictimTransportationAssistanceShape rdf:type sh:NodeShap
 # MULTI-AGENCY RESPONSE VALIDATION SHAPES
 # =============================================================================
 
-icac-trafficking-shapes:MultiAgencyVictimResponseShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-impact:MultiAgencyVictimResponse ;
+cacontology-trafficking-shapes:MultiAgencyVictimResponseShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:MultiAgencyVictimResponse ;
     rdfs:label "Multi-Agency Victim Response Shape"@en ;
     rdfs:comment "Validation shape for multi-agency victim response coordination."@en ;
     sh:property [
-        sh:path icac-impact:agencyCount ;
+        sh:path cacontology-impact:agencyCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minInclusive 2 ; # Must be multiple agencies
         sh:maxInclusive 20 ; # Reasonable maximum
@@ -862,19 +862,19 @@ icac-trafficking-shapes:MultiAgencyVictimResponseShape rdf:type sh:NodeShape ;
         sh:message "Multi-agency response must involve 2-20 agencies."@en
     ] ;
     sh:property [
-        sh:path icac-impact:coordinatedBy ;
+        sh:path cacontology-impact:coordinatedBy ;
         sh:class uco-identity:Organization ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Multi-agency response must specify coordinating agency."@en
     ] .
 
-icac-trafficking-shapes:InterstateVictimServicesShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-impact:InterstateVictimServices ;
+cacontology-trafficking-shapes:InterstateVictimServicesShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:InterstateVictimServices ;
     rdfs:label "Interstate Victim Services Shape"@en ;
     rdfs:comment "Validation shape for interstate victim services coordination."@en ;
     sh:property [
-        sh:path icac-impact:jurisdictionsInvolved ;
+        sh:path cacontology-impact:jurisdictionsInvolved ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minInclusive 2 ; # Must be interstate
         sh:maxInclusive 10 ; # Reasonable maximum
@@ -887,43 +887,43 @@ icac-trafficking-shapes:InterstateVictimServicesShape rdf:type sh:NodeShape ;
 # VICTIM REINTEGRATION VALIDATION SHAPES
 # =============================================================================
 
-icac-trafficking-shapes:VictimReintegrationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-impact:VictimReintegration ;
+cacontology-trafficking-shapes:VictimReintegrationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:VictimReintegration ;
     rdfs:label "Victim Reintegration Shape"@en ;
     rdfs:comment "Validation shape for victim reintegration processes."@en ;
     sh:property [
-        sh:path icac-impact:reintegrationDuration ;
+        sh:path cacontology-impact:reintegrationDuration ;
         sh:datatype xsd:decimal ;
         sh:minInclusive 1.0 ; # Minimum 1 month
         sh:maxInclusive 60.0 ; # Maximum 5 years
         sh:message "Reintegration duration must be between 1 and 60 months."@en
     ] .
 
-icac-trafficking-shapes:FamilyReunificationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-impact:FamilyReunification ;
+cacontology-trafficking-shapes:FamilyReunificationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:FamilyReunification ;
     rdfs:label "Family Reunification Shape"@en ;
     rdfs:comment "Validation shape for family reunification processes."@en ;
     sh:property [
-        sh:path icac-impact:familyContactEstablished ;
+        sh:path cacontology-impact:familyContactEstablished ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Family reunification must specify if contact established."@en
     ] .
 
-icac-trafficking-shapes:HometownReturnShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-impact:HometownReturn ;
+cacontology-trafficking-shapes:HometownReturnShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:HometownReturn ;
     rdfs:label "Hometown Return Shape"@en ;
     rdfs:comment "Validation shape for hometown return processes."@en ;
     sh:property [
-        sh:path icac-impact:hometownLocation ;
+        sh:path cacontology-impact:hometownLocation ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Hometown return must specify hometown location."@en
     ] ;
     sh:property [
-        sh:path icac-impact:returnsTo ;
+        sh:path cacontology-impact:returnsTo ;
         sh:class uco-location:Location ;
         sh:minCount 1 ;
         sh:maxCount 1 ;

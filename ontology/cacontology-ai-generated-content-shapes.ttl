@@ -30,8 +30,8 @@
 # ENHANCED AI-GENERATED CSAM SHAPES WITH gUFO VALIDATION
 # =============================================================================
 
-icac-ai:AIGeneratedCSAMShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-ai:AIGeneratedCSAM ;
+cacontology-ai:AIGeneratedCSAMShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-ai:AIGeneratedCSAM ;
     rdfs:label "AI-Generated CSAM Shape"@en ;
     rdfs:comment "Enhanced validation shape for AI-generated CSAM instances with comprehensive gUFO Object validation."@en ;
     # gUFO Object validation
@@ -41,7 +41,7 @@ icac-ai:AIGeneratedCSAMShape rdf:type sh:NodeShape ;
         sh:message "AI-generated CSAM must be instances of gUFO Object"@en
     ] ;
     sh:property [
-        sh:path icac-ai:aiModelUsed ;
+        sh:path cacontology-ai:aiModelUsed ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -49,7 +49,7 @@ icac-ai:AIGeneratedCSAMShape rdf:type sh:NodeShape ;
         sh:message "AI model used must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-ai:artificialnessLevel ;
+        sh:path cacontology-ai:artificialnessLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -57,14 +57,14 @@ icac-ai:AIGeneratedCSAMShape rdf:type sh:NodeShape ;
         sh:message "Artificialness level must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-ai:realVictimDepicted ;
+        sh:path cacontology-ai:realVictimDepicted ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Must specify whether real victim is depicted."@en
     ] ;
     sh:property [
-        sh:path icac-ai:renderingQuality ;
+        sh:path cacontology-ai:renderingQuality ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -73,7 +73,7 @@ icac-ai:AIGeneratedCSAMShape rdf:type sh:NodeShape ;
     ] ;
     # gUFO temporal validation
     sh:property [
-        sh:path icac-gufo:creationTimePoint ;
+        sh:path cacontology-gufo:creationTimePoint ;
         sh:minCount 1 ;
         sh:datatype xsd:dateTime ;
         sh:message "AI-generated content must have creation timestamp using gUFO temporal framework"@en
@@ -83,31 +83,31 @@ icac-ai:AIGeneratedCSAMShape rdf:type sh:NodeShape ;
         a sh:SPARQLRule ;
         sh:severity sh:Violation ;
         sh:message "AI-generated CSAM must be linked to a gUFO Event generation process"@en ;
-        sh:prefixes icac-ai: ;
+        sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a icac-ai:GenerationProcessError . }
+            INSERT { $this a cacontology-ai:GenerationProcessError . }
             WHERE {
-                $this a icac-ai:AIGeneratedCSAM .
+                $this a cacontology-ai:AIGeneratedCSAM .
                 FILTER NOT EXISTS { 
-                    $this icac-ai:generatedUsing ?generation .
+                    $this cacontology-ai:generatedUsing ?generation .
                     ?generation a gufo:Event .
                 }
             }
         """
     ] .
 
-icac-ai:DeepfakeCSAMShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-ai:DeepfakeCSAM ;
+cacontology-ai:DeepfakeCSAMShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-ai:DeepfakeCSAM ;
     rdfs:label "Deepfake CSAM Shape"@en ;
     rdfs:comment "Enhanced validation shape for deepfake CSAM instances with gUFO Object validation and manipulation tracking."@en ;
     sh:property [
-        sh:path icac-ai:realVictimDepicted ;
+        sh:path cacontology-ai:realVictimDepicted ;
         sh:hasValue true ;
         sh:message "Deepfake CSAM must involve real victim imagery."@en
     ] ;
     # gUFO manipulation temporal validation
     sh:property [
-        sh:path icac-gufo:manipulationTimePoint ;
+        sh:path cacontology-gufo:manipulationTimePoint ;
         sh:minCount 1 ;
         sh:datatype xsd:dateTime ;
         sh:message "Deepfake content must have manipulation timestamp"@en
@@ -117,23 +117,23 @@ icac-ai:DeepfakeCSAMShape rdf:type sh:NodeShape ;
         a sh:SPARQLRule ;
         sh:severity sh:Violation ;
         sh:message "Manipulation time must be after original content creation"@en ;
-        sh:prefixes icac-ai: ;
+        sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a icac-ai:TemporalInconsistencyError . }
+            INSERT { $this a cacontology-ai:TemporalInconsistencyError . }
             WHERE {
-                $this icac-gufo:manipulationTimePoint ?manipTime .
-                $this icac-gufo:creationTimePoint ?createTime .
+                $this cacontology-gufo:manipulationTimePoint ?manipTime .
+                $this cacontology-gufo:creationTimePoint ?createTime .
                 FILTER(?manipTime <= ?createTime)
             }
         """
     ] .
 
-icac-ai:SyntheticMediaCSAMShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-ai:SyntheticMediaCSAM ;
+cacontology-ai:SyntheticMediaCSAMShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-ai:SyntheticMediaCSAM ;
     rdfs:label "Synthetic Media CSAM Shape"@en ;
     rdfs:comment "Enhanced validation shape for synthetic media CSAM instances with gUFO Object validation."@en ;
     sh:property [
-        sh:path icac-ai:artificialnessLevel ;
+        sh:path cacontology-ai:artificialnessLevel ;
         sh:hasValue "fully_synthetic" ;
         sh:message "Synthetic media CSAM must be fully synthetic."@en
     ] ;
@@ -142,22 +142,22 @@ icac-ai:SyntheticMediaCSAMShape rdf:type sh:NodeShape ;
         a sh:SPARQLRule ;
         sh:severity sh:Violation ;
         sh:message "Fully synthetic content cannot depict real victims"@en ;
-        sh:prefixes icac-ai: ;
+        sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a icac-ai:SyntheticContentError . }
+            INSERT { $this a cacontology-ai:SyntheticContentError . }
             WHERE {
-                $this icac-ai:artificialnessLevel "fully_synthetic" .
-                $this icac-ai:realVictimDepicted true .
+                $this cacontology-ai:artificialnessLevel "fully_synthetic" .
+                $this cacontology-ai:realVictimDepicted true .
             }
         """
     ] .
 
-icac-ai:HybridCSAMShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-ai:HybridCSAM ;
+cacontology-ai:HybridCSAMShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-ai:HybridCSAM ;
     rdfs:label "Hybrid CSAM Shape"@en ;
     rdfs:comment "Enhanced validation shape for hybrid CSAM instances with gUFO Object composition validation."@en ;
     sh:property [
-        sh:path icac-ai:artificialnessLevel ;
+        sh:path cacontology-ai:artificialnessLevel ;
         sh:hasValue "hybrid" ;
         sh:message "Hybrid CSAM must have hybrid artificialness level."@en
     ] .
@@ -166,8 +166,8 @@ icac-ai:HybridCSAMShape rdf:type sh:NodeShape ;
 # ENHANCED AI CONTENT GENERATION SHAPES WITH gUFO EVENT VALIDATION
 # =============================================================================
 
-icac-ai:AIContentGenerationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-ai:AIContentGeneration ;
+cacontology-ai:AIContentGenerationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-ai:AIContentGeneration ;
     rdfs:label "AI Content Generation Shape"@en ;
     rdfs:comment "Enhanced validation shape for AI content generation instances with comprehensive gUFO Event validation."@en ;
     # gUFO Event validation
@@ -191,7 +191,7 @@ icac-ai:AIContentGenerationShape rdf:type sh:NodeShape ;
         sh:message "AI content generation may specify end time."@en
     ] ;
     sh:property [
-        sh:path icac-ai:generationTechnique ;
+        sh:path cacontology-ai:generationTechnique ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -199,7 +199,7 @@ icac-ai:AIContentGenerationShape rdf:type sh:NodeShape ;
         sh:message "Generation technique must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-ai:generationComplexity ;
+        sh:path cacontology-ai:generationComplexity ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -207,7 +207,7 @@ icac-ai:AIContentGenerationShape rdf:type sh:NodeShape ;
         sh:message "Generation complexity must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-ai:technicalExpertiseRequired ;
+        sh:path cacontology-ai:technicalExpertiseRequired ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -216,7 +216,7 @@ icac-ai:AIContentGenerationShape rdf:type sh:NodeShape ;
     ] ;
     # gUFO temporal properties validation
     sh:property [
-        sh:path icac-gufo:generationDuration ;
+        sh:path cacontology-gufo:generationDuration ;
         sh:datatype xsd:duration ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -227,9 +227,9 @@ icac-ai:AIContentGenerationShape rdf:type sh:NodeShape ;
         a sh:SPARQLRule ;
         sh:severity sh:Violation ;
         sh:message "Generation end time must be after start time"@en ;
-        sh:prefixes icac-ai: ;
+        sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a icac-ai:TemporalInconsistencyError . }
+            INSERT { $this a cacontology-ai:TemporalInconsistencyError . }
             WHERE {
                 $this uco-core:startTime ?start .
                 $this uco-core:endTime ?end .
@@ -238,8 +238,8 @@ icac-ai:AIContentGenerationShape rdf:type sh:NodeShape ;
         """
     ] .
 
-icac-ai:ModelTrainingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-ai:ModelTraining ;
+cacontology-ai:ModelTrainingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-ai:ModelTraining ;
     rdfs:label "Model Training Shape"@en ;
     rdfs:comment "Enhanced validation shape for model training instances with gUFO Event validation and training phases."@en ;
     # Training phase validation
@@ -247,14 +247,14 @@ icac-ai:ModelTrainingShape rdf:type sh:NodeShape ;
         a sh:SPARQLRule ;
         sh:severity sh:Violation ;
         sh:message "Model training should involve generation phases"@en ;
-        sh:prefixes icac-ai: ;
+        sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a icac-ai:PhaseValidationError . }
+            INSERT { $this a cacontology-ai:PhaseValidationError . }
             WHERE {
-                $this a icac-ai:ModelTraining .
+                $this a cacontology-ai:ModelTraining .
                 FILTER NOT EXISTS { 
-                    $this icac-ai:hasPhase ?phase .
-                    ?phase a icac-ai:ContentGenerationPhase .
+                    $this cacontology-ai:hasPhase ?phase .
+                    ?phase a cacontology-ai:ContentGenerationPhase .
                 }
             }
         """
@@ -264,8 +264,8 @@ icac-ai:ModelTrainingShape rdf:type sh:NodeShape ;
 # ENHANCED AI DETECTION SHAPES WITH gUFO EVENT VALIDATION
 # =============================================================================
 
-icac-ai:AIContentDetectionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-ai:AIContentDetection ;
+cacontology-ai:AIContentDetectionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-ai:AIContentDetection ;
     rdfs:label "AI Content Detection Shape"@en ;
     rdfs:comment "Enhanced validation shape for AI content detection instances with comprehensive gUFO Event validation."@en ;
     # gUFO Event validation
@@ -282,7 +282,7 @@ icac-ai:AIContentDetectionShape rdf:type sh:NodeShape ;
         sh:message "AI content detection must specify start time."@en
     ] ;
     sh:property [
-        sh:path icac-ai:detectionConfidence ;
+        sh:path cacontology-ai:detectionConfidence ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -291,7 +291,7 @@ icac-ai:AIContentDetectionShape rdf:type sh:NodeShape ;
         sh:message "Detection confidence must be between 0.0 and 1.0."@en
     ] ;
     sh:property [
-        sh:path icac-ai:detectionMethod ;
+        sh:path cacontology-ai:detectionMethod ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -299,7 +299,7 @@ icac-ai:AIContentDetectionShape rdf:type sh:NodeShape ;
         sh:message "Detection method must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-ai:processingTime ;
+        sh:path cacontology-ai:processingTime ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -308,7 +308,7 @@ icac-ai:AIContentDetectionShape rdf:type sh:NodeShape ;
         sh:message "Processing time must be between 0.1 and 3600 seconds."@en
     ] ;
     sh:property [
-        sh:path icac-ai:evidenceAdmissibility ;
+        sh:path cacontology-ai:evidenceAdmissibility ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -317,7 +317,7 @@ icac-ai:AIContentDetectionShape rdf:type sh:NodeShape ;
     ] ;
     # gUFO temporal validation
     sh:property [
-        sh:path icac-gufo:detectionTimePoint ;
+        sh:path cacontology-gufo:detectionTimePoint ;
         sh:minCount 1 ;
         sh:datatype xsd:dateTime ;
         sh:message "Detection must have timestamp using gUFO temporal framework"@en
@@ -327,23 +327,23 @@ icac-ai:AIContentDetectionShape rdf:type sh:NodeShape ;
         a sh:SPARQLRule ;
         sh:severity sh:Violation ;
         sh:message "AI detection must be performed by entities with appropriate gUFO Roles"@en ;
-        sh:prefixes icac-ai: ;
+        sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a icac-ai:RoleValidationError . }
+            INSERT { $this a cacontology-ai:RoleValidationError . }
             WHERE {
-                $this a icac-ai:AIContentDetection .
+                $this a cacontology-ai:AIContentDetection .
                 $this uco-action:performer ?performer .
                 FILTER NOT EXISTS { 
-                    ?performer icac-ai:playsRole ?role .
+                    ?performer cacontology-ai:playsRole ?role .
                     ?role a gufo:Role .
-                    ?role rdfs:subClassOf* icac-ai:AIForensicAnalyst .
+                    ?role rdfs:subClassOf* cacontology-ai:AIForensicAnalyst .
                 }
             }
         """
     ] .
 
-icac-ai:SyntheticMediaAnalysisShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-ai:SyntheticMediaAnalysis ;
+cacontology-ai:SyntheticMediaAnalysisShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-ai:SyntheticMediaAnalysis ;
     rdfs:label "Synthetic Media Analysis Shape"@en ;
     rdfs:comment "Enhanced validation shape for synthetic media analysis instances with gUFO Event and specialist role validation."@en ;
     sh:property [
@@ -355,7 +355,7 @@ icac-ai:SyntheticMediaAnalysisShape rdf:type sh:NodeShape ;
     ] ;
     # gUFO temporal completion validation
     sh:property [
-        sh:path icac-gufo:analysisCompletionTimePoint ;
+        sh:path cacontology-gufo:analysisCompletionTimePoint ;
         sh:minCount 0 ;
         sh:datatype xsd:dateTime ;
         sh:message "Analysis completion should use gUFO temporal framework"@en
@@ -365,14 +365,14 @@ icac-ai:SyntheticMediaAnalysisShape rdf:type sh:NodeShape ;
         a sh:SPARQLRule ;
         sh:severity sh:Violation ;
         sh:message "Synthetic media analysis must be performed by qualified specialists"@en ;
-        sh:prefixes icac-ai: ;
+        sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a icac-ai:SpecialistQualificationError . }
+            INSERT { $this a cacontology-ai:SpecialistQualificationError . }
             WHERE {
-                $this a icac-ai:SyntheticMediaAnalysis .
+                $this a cacontology-ai:SyntheticMediaAnalysis .
                 $this uco-action:performer ?performer .
                 FILTER NOT EXISTS { 
-                    ?performer icac-ai:playsRole icac-ai:SyntheticMediaExaminer .
+                    ?performer cacontology-ai:playsRole cacontology-ai:SyntheticMediaExaminer .
                 }
             }
         """
@@ -382,8 +382,8 @@ icac-ai:SyntheticMediaAnalysisShape rdf:type sh:NodeShape ;
 # ENHANCED AI DETECTION TOOL SHAPES WITH gUFO OBJECT VALIDATION
 # =============================================================================
 
-icac-ai:AIDetectionToolShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-ai:AIDetectionTool ;
+cacontology-ai:AIDetectionToolShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-ai:AIDetectionTool ;
     rdfs:label "AI Detection Tool Shape"@en ;
     rdfs:comment "Enhanced validation shape for AI detection tool instances with gUFO Object validation."@en ;
     # gUFO Object validation
@@ -410,7 +410,7 @@ icac-ai:AIDetectionToolShape rdf:type sh:NodeShape ;
         sh:message "Tool version must follow semantic versioning pattern (e.g., '1.0', '2.1.3')."@en
     ] ;
     sh:property [
-        sh:path icac-ai:falsePositiveRate ;
+        sh:path cacontology-ai:falsePositiveRate ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -423,8 +423,8 @@ icac-ai:AIDetectionToolShape rdf:type sh:NodeShape ;
 # ENHANCED AI-CSAM INVESTIGATION SHAPES WITH gUFO EVENT VALIDATION
 # =============================================================================
 
-icac-ai:AICSAMInvestigationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-ai:AICSAMInvestigation ;
+cacontology-ai:AICSAMInvestigationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-ai:AICSAMInvestigation ;
     rdfs:label "AI-CSAM Investigation Shape"@en ;
     rdfs:comment "Enhanced validation shape for AI-CSAM investigation instances with comprehensive gUFO Event and Situation validation."@en ;
     # gUFO Event validation
@@ -441,7 +441,7 @@ icac-ai:AICSAMInvestigationShape rdf:type sh:NodeShape ;
         sh:message "AI-CSAM investigation must specify start time."@en
     ] ;
     sh:property [
-        sh:path icac-ai:investigationChallengeLevel ;
+        sh:path cacontology-ai:investigationChallengeLevel ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -449,7 +449,7 @@ icac-ai:AICSAMInvestigationShape rdf:type sh:NodeShape ;
         sh:message "Investigation challenge level must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-ai:victimIdentificationDifficulty ;
+        sh:path cacontology-ai:victimIdentificationDifficulty ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -457,7 +457,7 @@ icac-ai:AICSAMInvestigationShape rdf:type sh:NodeShape ;
         sh:message "Victim identification difficulty must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-ai:legalFrameworkChallenges ;
+        sh:path cacontology-ai:legalFrameworkChallenges ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 5 ;
@@ -465,7 +465,7 @@ icac-ai:AICSAMInvestigationShape rdf:type sh:NodeShape ;
         sh:message "Legal framework challenges must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-ai:prosecutionDifficulty ;
+        sh:path cacontology-ai:prosecutionDifficulty ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -477,15 +477,15 @@ icac-ai:AICSAMInvestigationShape rdf:type sh:NodeShape ;
         a sh:SPARQLRule ;
         sh:severity sh:Violation ;
         sh:message "Complex AI-CSAM investigations should involve gUFO Situations"@en ;
-        sh:prefixes icac-ai: ;
+        sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a icac-ai:SituationInvolvementError . }
+            INSERT { $this a cacontology-ai:SituationInvolvementError . }
             WHERE {
-                $this a icac-ai:AICSAMInvestigation .
-                $this icac-ai:investigationChallengeLevel ?level .
+                $this a cacontology-ai:AICSAMInvestigation .
+                $this cacontology-ai:investigationChallengeLevel ?level .
                 FILTER(?level IN ("high", "extreme"))
                 FILTER NOT EXISTS { 
-                    $this icac-ai:involvesSituation ?situation .
+                    $this cacontology-ai:involvesSituation ?situation .
                     ?situation a gufo:Situation .
                 }
             }
@@ -496,8 +496,8 @@ icac-ai:AICSAMInvestigationShape rdf:type sh:NodeShape ;
 # gUFO PHASE VALIDATION SHAPES FOR AI-CSAM
 # =============================================================================
 
-icac-ai:AIDetectionPhaseShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-ai:AIDetectionPhase ;
+cacontology-ai:AIDetectionPhaseShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-ai:AIDetectionPhase ;
     rdfs:label "AI Detection Phase Shape"@en ;
     rdfs:comment "SHACL shape for AI detection phases with anti-rigid gUFO Phase validation."@en ;
     # gUFO Phase validation
@@ -507,7 +507,7 @@ icac-ai:AIDetectionPhaseShape rdf:type sh:NodeShape ;
         sh:message "AI detection phases must be instances of anti-rigid gUFO Phase"@en
     ] ;
     sh:property [
-        sh:path icac-gufo:beginTimePoint ;
+        sh:path cacontology-gufo:beginTimePoint ;
         sh:minCount 1 ;
         sh:datatype xsd:dateTime ;
         sh:message "Detection phases must have begin timestamps"@en
@@ -517,20 +517,20 @@ icac-ai:AIDetectionPhaseShape rdf:type sh:NodeShape ;
         a sh:SPARQLRule ;
         sh:severity sh:Violation ;
         sh:message "AI detection phases must demonstrate anti-rigidity (can change based on detection results)"@en ;
-        sh:prefixes icac-ai: ;
+        sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a icac-ai:AntiRigidityError . }
+            INSERT { $this a cacontology-ai:AntiRigidityError . }
             WHERE {
-                $this a icac-ai:AIDetectionPhase .
+                $this a cacontology-ai:AIDetectionPhase .
                 FILTER NOT EXISTS { 
-                    $this icac-gufo:hasAntiRigidityConstraint ?constraint .
+                    $this cacontology-gufo:hasAntiRigidityConstraint ?constraint .
                 }
             }
         """
     ] .
 
-icac-ai:ContentGenerationPhaseShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-ai:ContentGenerationPhase ;
+cacontology-ai:ContentGenerationPhaseShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-ai:ContentGenerationPhase ;
     rdfs:label "Content Generation Phase Shape"@en ;
     rdfs:comment "SHACL shape for content generation phases with anti-rigid gUFO Phase validation."@en ;
     # gUFO Phase validation
@@ -544,15 +544,15 @@ icac-ai:ContentGenerationPhaseShape rdf:type sh:NodeShape ;
         a sh:SPARQLRule ;
         sh:severity sh:Violation ;
         sh:message "Generation phases must follow logical sequence"@en ;
-        sh:prefixes icac-ai: ;
+        sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a icac-ai:PhaseSequenceError . }
+            INSERT { $this a cacontology-ai:PhaseSequenceError . }
             WHERE {
-                $this a icac-ai:ContentGenerationPhase .
-                ?nextPhase icac-ai:followsPhase $this .
-                ?nextPhase a icac-ai:AIDetectionPhase .
-                $this icac-gufo:endTimePoint ?thisEnd .
-                ?nextPhase icac-gufo:beginTimePoint ?nextStart .
+                $this a cacontology-ai:ContentGenerationPhase .
+                ?nextPhase cacontology-ai:followsPhase $this .
+                ?nextPhase a cacontology-ai:AIDetectionPhase .
+                $this cacontology-gufo:endTimePoint ?thisEnd .
+                ?nextPhase cacontology-gufo:beginTimePoint ?nextStart .
                 FILTER(?nextStart <= ?thisEnd)
             }
         """
@@ -562,8 +562,8 @@ icac-ai:ContentGenerationPhaseShape rdf:type sh:NodeShape ;
 # gUFO ROLE VALIDATION SHAPES FOR AI-CSAM
 # =============================================================================
 
-icac-ai:AIForensicAnalystShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-ai:AIForensicAnalyst ;
+cacontology-ai:AIForensicAnalystShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-ai:AIForensicAnalyst ;
     rdfs:label "AI Forensic Analyst Shape"@en ;
     rdfs:comment "SHACL shape for AI forensic analyst roles with anti-rigid gUFO Role validation."@en ;
     # gUFO Role validation
@@ -577,21 +577,21 @@ icac-ai:AIForensicAnalystShape rdf:type sh:NodeShape ;
         a sh:SPARQLRule ;
         sh:severity sh:Violation ;
         sh:message "AI forensic analysts must demonstrate specialized competencies"@en ;
-        sh:prefixes icac-ai: ;
+        sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a icac-ai:CompetencyValidationError . }
+            INSERT { $this a cacontology-ai:CompetencyValidationError . }
             WHERE {
-                $this a icac-ai:AIForensicAnalyst .
+                $this a cacontology-ai:AIForensicAnalyst .
                 FILTER NOT EXISTS { 
-                    $this icac-ai:hasCompetency ?competency .
-                    ?competency icac-ai:competencyType "ai_content_analysis" .
+                    $this cacontology-ai:hasCompetency ?competency .
+                    ?competency cacontology-ai:competencyType "ai_content_analysis" .
                 }
             }
         """
     ] .
 
-icac-ai:SyntheticMediaExaminerShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-ai:SyntheticMediaExaminer ;
+cacontology-ai:SyntheticMediaExaminerShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-ai:SyntheticMediaExaminer ;
     rdfs:label "Synthetic Media Examiner Shape"@en ;
     rdfs:comment "SHACL shape for synthetic media examiner roles with specialized gUFO Role validation."@en ;
     # Specialized competency validation
@@ -599,14 +599,14 @@ icac-ai:SyntheticMediaExaminerShape rdf:type sh:NodeShape ;
         a sh:SPARQLRule ;
         sh:severity sh:Violation ;
         sh:message "Synthetic media examiners must have synthetic media analysis competency"@en ;
-        sh:prefixes icac-ai: ;
+        sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a icac-ai:SpecializedCompetencyError . }
+            INSERT { $this a cacontology-ai:SpecializedCompetencyError . }
             WHERE {
-                $this a icac-ai:SyntheticMediaExaminer .
+                $this a cacontology-ai:SyntheticMediaExaminer .
                 FILTER NOT EXISTS { 
-                    $this icac-ai:hasCompetency ?competency .
-                    ?competency icac-ai:competencyType "synthetic_media_analysis" .
+                    $this cacontology-ai:hasCompetency ?competency .
+                    ?competency cacontology-ai:competencyType "synthetic_media_analysis" .
                 }
             }
         """
@@ -616,8 +616,8 @@ icac-ai:SyntheticMediaExaminerShape rdf:type sh:NodeShape ;
 # gUFO SITUATION VALIDATION SHAPES FOR AI-CSAM
 # =============================================================================
 
-icac-ai:AIContentInvestigationSituationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-ai:AIContentInvestigationSituation ;
+cacontology-ai:AIContentInvestigationSituationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-ai:AIContentInvestigationSituation ;
     rdfs:label "AI Content Investigation Situation Shape"@en ;
     rdfs:comment "SHACL shape for AI content investigation situations with comprehensive gUFO Situation validation."@en ;
     # gUFO Situation validation
@@ -631,14 +631,14 @@ icac-ai:AIContentInvestigationSituationShape rdf:type sh:NodeShape ;
         a sh:SPARQLRule ;
         sh:severity sh:Violation ;
         sh:message "Investigation situations must involve multiple stakeholders"@en ;
-        sh:prefixes icac-ai: ;
+        sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a icac-ai:StakeholderValidationError . }
+            INSERT { $this a cacontology-ai:StakeholderValidationError . }
             WHERE {
-                $this a icac-ai:AIContentInvestigationSituation .
+                $this a cacontology-ai:AIContentInvestigationSituation .
                 {
                     SELECT $this (COUNT(?participant) AS ?participantCount) WHERE {
-                        $this icac-ai:hasParticipant ?participant .
+                        $this cacontology-ai:hasParticipant ?participant .
                     } GROUP BY $this
                 }
                 FILTER(?participantCount < 2)
@@ -646,8 +646,8 @@ icac-ai:AIContentInvestigationSituationShape rdf:type sh:NodeShape ;
         """
     ] .
 
-icac-ai:TechnicalAnalysisSituationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-ai:TechnicalAnalysisSituation ;
+cacontology-ai:TechnicalAnalysisSituationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-ai:TechnicalAnalysisSituation ;
     rdfs:label "Technical Analysis Situation Shape"@en ;
     rdfs:comment "SHACL shape for technical analysis situations with coordination validation."@en ;
     # Technical coordination validation
@@ -655,20 +655,20 @@ icac-ai:TechnicalAnalysisSituationShape rdf:type sh:NodeShape ;
         a sh:SPARQLRule ;
         sh:severity sh:Violation ;
         sh:message "Technical analysis situations must coordinate between experts and legal teams"@en ;
-        sh:prefixes icac-ai: ;
+        sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a icac-ai:CoordinationValidationError . }
+            INSERT { $this a cacontology-ai:CoordinationValidationError . }
             WHERE {
-                $this a icac-ai:TechnicalAnalysisSituation .
+                $this a cacontology-ai:TechnicalAnalysisSituation .
                 FILTER NOT EXISTS { 
-                    $this icac-ai:hasParticipant ?expert .
-                    ?expert icac-ai:playsRole ?role .
-                    ?role rdfs:subClassOf* icac-ai:AIForensicAnalyst .
+                    $this cacontology-ai:hasParticipant ?expert .
+                    ?expert cacontology-ai:playsRole ?role .
+                    ?role rdfs:subClassOf* cacontology-ai:AIForensicAnalyst .
                 }
                 FILTER NOT EXISTS { 
-                    $this icac-ai:hasParticipant ?legal .
-                    ?legal icac-ai:playsRole ?legalRole .
-                    ?legalRole icac-ai:roleType "legal_specialist" .
+                    $this cacontology-ai:hasParticipant ?legal .
+                    ?legal cacontology-ai:playsRole ?legalRole .
+                    ?legalRole cacontology-ai:roleType "legal_specialist" .
                 }
             }
         """
@@ -678,8 +678,8 @@ icac-ai:TechnicalAnalysisSituationShape rdf:type sh:NodeShape ;
 # ENHANCED CROSS-REFERENCE VALIDATION SHAPES WITH gUFO
 # =============================================================================
 
-icac-ai:AIGenerationCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-ai:AIGeneratedCSAM ;
+cacontology-ai:AIGenerationCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-ai:AIGeneratedCSAM ;
     rdfs:label "AI Generation Cross Reference Shape"@en ;
     rdfs:comment "Enhanced validation that AI-generated content has associated gUFO Event generation processes."@en ;
     sh:sparql [
@@ -687,18 +687,18 @@ icac-ai:AIGenerationCrossReferenceShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-ai:AIGeneratedCSAM .
+                $this a cacontology-ai:AIGeneratedCSAM .
                 FILTER NOT EXISTS {
-                    $this icac-ai:generatedUsing ?generation .
-                    ?generation a icac-ai:AIContentGeneration .
+                    $this cacontology-ai:generatedUsing ?generation .
+                    ?generation a cacontology-ai:AIContentGeneration .
                     ?generation a gufo:Event .
                 }
             }
         """
     ] .
 
-icac-ai:DetectionToolCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-ai:AIContentDetection ;
+cacontology-ai:DetectionToolCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-ai:AIContentDetection ;
     rdfs:label "Detection Tool Cross Reference Shape"@en ;
     rdfs:comment "Enhanced validation that AI detection processes use appropriate gUFO Object tools."@en ;
     sh:sparql [
@@ -706,10 +706,10 @@ icac-ai:DetectionToolCrossReferenceShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-ai:AIContentDetection .
+                $this a cacontology-ai:AIContentDetection .
                 FILTER NOT EXISTS {
-                    $this icac-ai:usesDetectionTool ?tool .
-                    ?tool a icac-ai:AIDetectionTool .
+                    $this cacontology-ai:usesDetectionTool ?tool .
+                    ?tool a cacontology-ai:AIDetectionTool .
                     ?tool a gufo:Object .
                 }
             }
@@ -720,13 +720,13 @@ icac-ai:DetectionToolCrossReferenceShape rdf:type sh:NodeShape ;
 # ENHANCED TEMPORAL VALIDATION SHAPES WITH gUFO FRAMEWORK
 # =============================================================================
 
-icac-ai:GUFOTemporalValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-ai:AIContentGeneration ,
-                   icac-ai:AIContentDetection ,
-                   icac-ai:AICSAMInvestigation ,
-                   icac-ai:GenerationSourceTracking ,
-                   icac-ai:ModelIdentification ,
-                   icac-ai:TrainingDataAnalysis ;
+cacontology-ai:GUFOTemporalValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-ai:AIContentGeneration ,
+                   cacontology-ai:AIContentDetection ,
+                   cacontology-ai:AICSAMInvestigation ,
+                   cacontology-ai:GenerationSourceTracking ,
+                   cacontology-ai:ModelIdentification ,
+                   cacontology-ai:TrainingDataAnalysis ;
     rdfs:label "gUFO Temporal Validation Shape"@en ;
     rdfs:comment "Enhanced temporal consistency validation for AI-related gUFO Events using gUFO temporal framework."@en ;
     sh:sparql [
@@ -735,15 +735,15 @@ icac-ai:GUFOTemporalValidationShape rdf:type sh:NodeShape ;
             SELECT $this
             WHERE {
                 $this a gufo:Event .
-                $this icac-gufo:beginTimePoint ?begin .
-                $this icac-gufo:endTimePoint ?end .
+                $this cacontology-gufo:beginTimePoint ?begin .
+                $this cacontology-gufo:endTimePoint ?end .
                 FILTER (?begin >= ?end)
             }
         """
     ] .
 
-icac-ai:DetectionSequenceValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-ai:AIContentDetection ;
+cacontology-ai:DetectionSequenceValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-ai:AIContentDetection ;
     rdfs:label "Detection Sequence Validation Shape"@en ;
     rdfs:comment "Enhanced validation that detection gUFO Events occur after content generation gUFO Events."@en ;
     sh:sparql [
@@ -751,13 +751,13 @@ icac-ai:DetectionSequenceValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-ai:AIContentDetection ;
+                $this a cacontology-ai:AIContentDetection ;
                       a gufo:Event ;
-                      icac-gufo:detectionTimePoint ?detectionTime .
-                ?content icac-ai:detectedBy $this ;
-                         icac-ai:generatedUsing ?generation .
+                      cacontology-gufo:detectionTimePoint ?detectionTime .
+                ?content cacontology-ai:detectedBy $this ;
+                         cacontology-ai:generatedUsing ?generation .
                 ?generation a gufo:Event ;
-                           icac-gufo:aiGenerationTimePoint ?generationTime .
+                           cacontology-gufo:aiGenerationTimePoint ?generationTime .
                 FILTER (?detectionTime < ?generationTime)
             }
         """
@@ -767,12 +767,12 @@ icac-ai:DetectionSequenceValidationShape rdf:type sh:NodeShape ;
 # ENHANCED DATA QUALITY SHAPES WITH gUFO VALIDATION
 # =============================================================================
 
-icac-ai:GUFODataQualityShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-ai:AIGeneratedCSAM ,
-                   icac-ai:AIContentGeneration ,
-                   icac-ai:AIContentDetection ,
-                   icac-ai:AIDetectionTool ,
-                   icac-ai:AICSAMInvestigation ;
+cacontology-ai:GUFODataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-ai:AIGeneratedCSAM ,
+                   cacontology-ai:AIContentGeneration ,
+                   cacontology-ai:AIContentDetection ,
+                   cacontology-ai:AIDetectionTool ,
+                   cacontology-ai:AICSAMInvestigation ;
     rdfs:label "gUFO Data Quality Shape"@en ;
     rdfs:comment "Enhanced data quality validation for AI-related gUFO entities with foundational ontology compliance."@en ;
     # gUFO foundational type validation
@@ -780,12 +780,12 @@ icac-ai:GUFODataQualityShape rdf:type sh:NodeShape ;
         a sh:SPARQLRule ;
         sh:severity sh:Violation ;
         sh:message "AI entities must be properly typed as gUFO foundational entities"@en ;
-        sh:prefixes icac-ai: ;
+        sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a icac-ai:FoundationalTypeError . }
+            INSERT { $this a cacontology-ai:FoundationalTypeError . }
             WHERE {
                 $this a ?aiType .
-                ?aiType rdfs:subClassOf* icac-ai:AIGeneratedCSAM .
+                ?aiType rdfs:subClassOf* cacontology-ai:AIGeneratedCSAM .
                 FILTER NOT EXISTS { 
                     $this a ?gufoType .
                     ?gufoType rdfs:subClassOf* gufo:Object .
@@ -794,10 +794,10 @@ icac-ai:GUFODataQualityShape rdf:type sh:NodeShape ;
         """
     ] .
 
-icac-ai:AntiRigidityValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-ai:AIDetectionPhase ,
-                   icac-ai:ContentGenerationPhase ,
-                   icac-ai:ForensicAnalysisPhase ;
+cacontology-ai:AntiRigidityValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-ai:AIDetectionPhase ,
+                   cacontology-ai:ContentGenerationPhase ,
+                   cacontology-ai:ForensicAnalysisPhase ;
     rdfs:label "Anti-Rigidity Validation Shape"@en ;
     rdfs:comment "Validation of anti-rigidity constraints for gUFO Phases in AI-CSAM contexts."@en ;
     sh:sparql [
@@ -806,9 +806,9 @@ icac-ai:AntiRigidityValidationShape rdf:type sh:NodeShape ;
             SELECT $this
             WHERE {
                 $this a gufo:Phase .
-                ?this rdfs:subClassOf* icac-ai:AIDetectionPhase .
+                ?this rdfs:subClassOf* cacontology-ai:AIDetectionPhase .
                 FILTER NOT EXISTS { 
-                    $this icac-gufo:hasAntiRigidityConstraint ?constraint .
+                    $this cacontology-gufo:hasAntiRigidityConstraint ?constraint .
                 }
             }
         """
@@ -818,8 +818,8 @@ icac-ai:AntiRigidityValidationShape rdf:type sh:NodeShape ;
 # FORENSIC INTEGRITY VALIDATION SHAPES
 # =============================================================================
 
-icac-ai:ForensicIntegrityValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-ai:AIContentDetection ;
+cacontology-ai:ForensicIntegrityValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-ai:AIContentDetection ;
     rdfs:label "Forensic Integrity Validation Shape"@en ;
     rdfs:comment "Validation of forensic integrity for AI content detection processes."@en ;
     sh:sparql [
@@ -827,11 +827,11 @@ icac-ai:ForensicIntegrityValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-ai:detectionConfidence ?confidence .
+                $this cacontology-ai:detectionConfidence ?confidence .
                 FILTER(?confidence > 0.9)
                 {
                     SELECT $this (COUNT(?method) AS ?methodCount) WHERE {
-                        $this icac-ai:detectionMethod ?method .
+                        $this cacontology-ai:detectionMethod ?method .
                     } GROUP BY $this
                 }
                 FILTER(?methodCount < 2)

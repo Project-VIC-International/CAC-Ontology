@@ -13,8 +13,8 @@
 # PREVENTION PROGRAM FRAMEWORK SHAPES
 # =============================================================================
 
-icac-prevention:PreventionProgramShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:PreventionProgram ;
+cacontology-prevention:PreventionProgramShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:PreventionProgram ;
     rdfs:label "Prevention Program Shape"@en ;
     rdfs:comment "Validation shape for prevention program instances."@en ;
     sh:property [
@@ -41,7 +41,7 @@ icac-prevention:PreventionProgramShape rdf:type sh:NodeShape ;
         sh:message "Prevention program may specify end time."@en
     ] ;
     sh:property [
-        sh:path icac-prevention:programDuration ;
+        sh:path cacontology-prevention:programDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -50,7 +50,7 @@ icac-prevention:PreventionProgramShape rdf:type sh:NodeShape ;
         sh:message "Program duration must be between 0.5 and 120 months."@en
     ] ;
     sh:property [
-        sh:path icac-prevention:participantCount ;
+        sh:path cacontology-prevention:participantCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -59,8 +59,8 @@ icac-prevention:PreventionProgramShape rdf:type sh:NodeShape ;
         sh:message "Participant count must be between 1 and 1000000 when specified."@en
     ] .
 
-icac-prevention:EducationPortalShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:EducationPortal ;
+cacontology-prevention:EducationPortalShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:EducationPortal ;
     rdfs:label "Education Portal Shape"@en ;
     rdfs:comment "Validation shape for education portal instances."@en ;
     sh:property [
@@ -73,7 +73,7 @@ icac-prevention:EducationPortalShape rdf:type sh:NodeShape ;
         sh:message "Education portal must have a name (5-200 characters)."@en
     ] ;
     sh:property [
-        sh:path icac-prevention:educationPortalReach ;
+        sh:path cacontology-prevention:educationPortalReach ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -82,8 +82,8 @@ icac-prevention:EducationPortalShape rdf:type sh:NodeShape ;
         sh:message "Education portal reach must be between 1 and 10000000 when specified."@en
     ] .
 
-icac-prevention:SchoolAllegationProtocolShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:SchoolAllegationProtocol ;
+cacontology-prevention:SchoolAllegationProtocolShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:SchoolAllegationProtocol ;
     rdfs:label "School Allegation Protocol Shape"@en ;
     rdfs:comment "Validation shape for school allegation protocol instances."@en ;
     sh:property [
@@ -96,8 +96,8 @@ icac-prevention:SchoolAllegationProtocolShape rdf:type sh:NodeShape ;
         sh:message "School allegation protocol must have a name (5-200 characters)."@en
     ] .
 
-icac-prevention:CommunityOutreachShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:CommunityOutreach ;
+cacontology-prevention:CommunityOutreachShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:CommunityOutreach ;
     rdfs:label "Community Outreach Shape"@en ;
     rdfs:comment "Validation shape for community outreach instances."@en ;
     sh:property [
@@ -117,8 +117,8 @@ icac-prevention:CommunityOutreachShape rdf:type sh:NodeShape ;
         sh:message "Community outreach must specify start time."@en
     ] .
 
-icac-prevention:PublicAwarenessShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:PublicAwareness ;
+cacontology-prevention:PublicAwarenessShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:PublicAwareness ;
     rdfs:label "Public Awareness Shape"@en ;
     rdfs:comment "Validation shape for public awareness instances."@en ;
     sh:property [
@@ -138,12 +138,12 @@ icac-prevention:PublicAwarenessShape rdf:type sh:NodeShape ;
         sh:message "Public awareness campaign must specify start time."@en
     ] .
 
-icac-prevention:RiskPreventionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:RiskPrevention ;
+cacontology-prevention:RiskPreventionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:RiskPrevention ;
     rdfs:label "Risk Prevention Shape"@en ;
     rdfs:comment "Validation shape for risk prevention instances."@en ;
     sh:property [
-        sh:path icac-prevention:participantCount ;
+        sh:path cacontology-prevention:participantCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -156,8 +156,8 @@ icac-prevention:RiskPreventionShape rdf:type sh:NodeShape ;
 # EDUCATIONAL RESOURCES AND MATERIALS SHAPES
 # =============================================================================
 
-icac-prevention:EducationalResourceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:EducationalResource ;
+cacontology-prevention:EducationalResourceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:EducationalResource ;
     rdfs:label "Educational Resource Shape"@en ;
     rdfs:comment "Validation shape for educational resource instances."@en ;
     sh:property [
@@ -179,7 +179,7 @@ icac-prevention:EducationalResourceShape rdf:type sh:NodeShape ;
         sh:message "Educational resource description should be 10-1000 characters when specified."@en
     ] ;
     sh:property [
-        sh:path icac-prevention:languageAvailability ;
+        sh:path cacontology-prevention:languageAvailability ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 20 ;
@@ -188,7 +188,7 @@ icac-prevention:EducationalResourceShape rdf:type sh:NodeShape ;
         sh:message "Language availability should be 2-50 characters (up to 20 languages)."@en
     ] ;
     sh:property [
-        sh:path icac-prevention:targetAudience ;
+        sh:path cacontology-prevention:targetAudience ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -196,12 +196,12 @@ icac-prevention:EducationalResourceShape rdf:type sh:NodeShape ;
         sh:message "Target audience must be from the allowed list."@en
     ] .
 
-icac-prevention:PreventionMaterialShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:PreventionMaterial ;
+cacontology-prevention:PreventionMaterialShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:PreventionMaterial ;
     rdfs:label "Prevention Material Shape"@en ;
     rdfs:comment "Validation shape for prevention material instances."@en ;
     sh:property [
-        sh:path icac-prevention:targetAudience ;
+        sh:path cacontology-prevention:targetAudience ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -209,8 +209,8 @@ icac-prevention:PreventionMaterialShape rdf:type sh:NodeShape ;
         sh:message "Prevention material must specify target audience."@en
     ] .
 
-icac-prevention:SafetyProtocolShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:SafetyProtocol ;
+cacontology-prevention:SafetyProtocolShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:SafetyProtocol ;
     rdfs:label "Safety Protocol Shape"@en ;
     rdfs:comment "Validation shape for safety protocol instances."@en ;
     sh:property [
@@ -223,7 +223,7 @@ icac-prevention:SafetyProtocolShape rdf:type sh:NodeShape ;
         sh:message "Safety protocol must have a name (5-200 characters)."@en
     ] ;
     sh:property [
-        sh:path icac-prevention:implementationStatus ;
+        sh:path cacontology-prevention:implementationStatus ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -231,8 +231,8 @@ icac-prevention:SafetyProtocolShape rdf:type sh:NodeShape ;
         sh:message "Implementation status must be from the allowed list."@en
     ] .
 
-icac-prevention:RiskAssessmentToolShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:RiskAssessmentTool ;
+cacontology-prevention:RiskAssessmentToolShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:RiskAssessmentTool ;
     rdfs:label "Risk Assessment Tool Shape"@en ;
     rdfs:comment "Validation shape for risk assessment tool instances."@en ;
     sh:property [
@@ -245,12 +245,12 @@ icac-prevention:RiskAssessmentToolShape rdf:type sh:NodeShape ;
         sh:message "Risk assessment tool must have a name (5-200 characters)."@en
     ] .
 
-icac-prevention:SafetyGuidelineShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:SafetyGuideline ;
+cacontology-prevention:SafetyGuidelineShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:SafetyGuideline ;
     rdfs:label "Safety Guideline Shape"@en ;
     rdfs:comment "Validation shape for safety guideline instances."@en ;
     sh:property [
-        sh:path icac-prevention:targetAudience ;
+        sh:path cacontology-prevention:targetAudience ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -258,8 +258,8 @@ icac-prevention:SafetyGuidelineShape rdf:type sh:NodeShape ;
         sh:message "Safety guideline must specify target audience."@en
     ] .
 
-icac-prevention:PreventionCurriculumShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:PreventionCurriculum ;
+cacontology-prevention:PreventionCurriculumShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:PreventionCurriculum ;
     rdfs:label "Prevention Curriculum Shape"@en ;
     rdfs:comment "Validation shape for prevention curriculum instances."@en ;
     sh:property [
@@ -276,8 +276,8 @@ icac-prevention:PreventionCurriculumShape rdf:type sh:NodeShape ;
 # TARGET AUDIENCES AND TRAINING SHAPES
 # =============================================================================
 
-icac-prevention:EducatorTrainingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:EducatorTraining ;
+cacontology-prevention:EducatorTrainingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:EducatorTraining ;
     rdfs:label "Educator Training Shape"@en ;
     rdfs:comment "Validation shape for educator training instances."@en ;
     sh:property [
@@ -297,8 +297,8 @@ icac-prevention:EducatorTrainingShape rdf:type sh:NodeShape ;
         sh:message "Educator training must specify start time."@en
     ] .
 
-icac-prevention:ParentEducationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:ParentEducation ;
+cacontology-prevention:ParentEducationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:ParentEducation ;
     rdfs:label "Parent Education Shape"@en ;
     rdfs:comment "Validation shape for parent education instances."@en ;
     sh:property [
@@ -318,8 +318,8 @@ icac-prevention:ParentEducationShape rdf:type sh:NodeShape ;
         sh:message "Parent education must specify start time."@en
     ] .
 
-icac-prevention:ChildSafetyEducationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:ChildSafetyEducation ;
+cacontology-prevention:ChildSafetyEducationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:ChildSafetyEducation ;
     rdfs:label "Child Safety Education Shape"@en ;
     rdfs:comment "Validation shape for child safety education instances."@en ;
     sh:property [
@@ -332,7 +332,7 @@ icac-prevention:ChildSafetyEducationShape rdf:type sh:NodeShape ;
         sh:message "Child safety education must have a name (5-200 characters)."@en
     ] ;
     sh:property [
-        sh:path icac-prevention:ageGroup ;
+        sh:path cacontology-prevention:ageGroup ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -347,8 +347,8 @@ icac-prevention:ChildSafetyEducationShape rdf:type sh:NodeShape ;
         sh:message "Child safety education must specify start time."@en
     ] .
 
-icac-prevention:HealthcareProviderTrainingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:HealthcareProviderTraining ;
+cacontology-prevention:HealthcareProviderTrainingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:HealthcareProviderTraining ;
     rdfs:label "Healthcare Provider Training Shape"@en ;
     rdfs:comment "Validation shape for healthcare provider training instances."@en ;
     sh:property [
@@ -368,8 +368,8 @@ icac-prevention:HealthcareProviderTrainingShape rdf:type sh:NodeShape ;
         sh:message "Healthcare provider training must specify start time."@en
     ] .
 
-icac-prevention:CommunityEducationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:CommunityEducation ;
+cacontology-prevention:CommunityEducationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:CommunityEducation ;
     rdfs:label "Community Education Shape"@en ;
     rdfs:comment "Validation shape for community education instances."@en ;
     sh:property [
@@ -393,12 +393,12 @@ icac-prevention:CommunityEducationShape rdf:type sh:NodeShape ;
 # PREVENTION STRATEGIES AND APPROACHES SHAPES
 # =============================================================================
 
-icac-prevention:PrimaryPreventionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:PrimaryPrevention ;
+cacontology-prevention:PrimaryPreventionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:PrimaryPrevention ;
     rdfs:label "Primary Prevention Shape"@en ;
     rdfs:comment "Validation shape for primary prevention instances."@en ;
     sh:property [
-        sh:path icac-prevention:participantCount ;
+        sh:path cacontology-prevention:participantCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -407,12 +407,12 @@ icac-prevention:PrimaryPreventionShape rdf:type sh:NodeShape ;
         sh:message "Primary prevention participant count must be between 1 and 1000000 when specified."@en
     ] .
 
-icac-prevention:SecondaryPreventionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:SecondaryPrevention ;
+cacontology-prevention:SecondaryPreventionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:SecondaryPrevention ;
     rdfs:label "Secondary Prevention Shape"@en ;
     rdfs:comment "Validation shape for secondary prevention instances."@en ;
     sh:property [
-        sh:path icac-prevention:participantCount ;
+        sh:path cacontology-prevention:participantCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -421,12 +421,12 @@ icac-prevention:SecondaryPreventionShape rdf:type sh:NodeShape ;
         sh:message "Secondary prevention participant count must be between 1 and 100000 when specified."@en
     ] .
 
-icac-prevention:TertiaryPreventionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:TertiaryPrevention ;
+cacontology-prevention:TertiaryPreventionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:TertiaryPrevention ;
     rdfs:label "Tertiary Prevention Shape"@en ;
     rdfs:comment "Validation shape for tertiary prevention instances."@en ;
     sh:property [
-        sh:path icac-prevention:participantCount ;
+        sh:path cacontology-prevention:participantCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -435,12 +435,12 @@ icac-prevention:TertiaryPreventionShape rdf:type sh:NodeShape ;
         sh:message "Tertiary prevention participant count must be between 1 and 10000 when specified."@en
     ] .
 
-icac-prevention:EnvironmentalPreventionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:EnvironmentalPrevention ;
+cacontology-prevention:EnvironmentalPreventionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:EnvironmentalPrevention ;
     rdfs:label "Environmental Prevention Shape"@en ;
     rdfs:comment "Validation shape for environmental prevention instances."@en ;
     sh:property [
-        sh:path icac-prevention:programDuration ;
+        sh:path cacontology-prevention:programDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -449,12 +449,12 @@ icac-prevention:EnvironmentalPreventionShape rdf:type sh:NodeShape ;
         sh:message "Environmental prevention duration should be between 1 and 60 months."@en
     ] .
 
-icac-prevention:BehavioralPreventionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:BehavioralPrevention ;
+cacontology-prevention:BehavioralPreventionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:BehavioralPrevention ;
     rdfs:label "Behavioral Prevention Shape"@en ;
     rdfs:comment "Validation shape for behavioral prevention instances."@en ;
     sh:property [
-        sh:path icac-prevention:programDuration ;
+        sh:path cacontology-prevention:programDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -467,8 +467,8 @@ icac-prevention:BehavioralPreventionShape rdf:type sh:NodeShape ;
 # SCHOOL-BASED PREVENTION SHAPES
 # =============================================================================
 
-icac-prevention:SchoolSafetyProgramShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:SchoolSafetyProgram ;
+cacontology-prevention:SchoolSafetyProgramShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:SchoolSafetyProgram ;
     rdfs:label "School Safety Program Shape"@en ;
     rdfs:comment "Validation shape for school safety program instances."@en ;
     sh:property [
@@ -481,8 +481,8 @@ icac-prevention:SchoolSafetyProgramShape rdf:type sh:NodeShape ;
         sh:message "School safety program must have a name (5-200 characters)."@en
     ] .
 
-icac-prevention:SchoolPolicyShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:SchoolPolicy ;
+cacontology-prevention:SchoolPolicyShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:SchoolPolicy ;
     rdfs:label "School Policy Shape"@en ;
     rdfs:comment "Validation shape for school policy instances."@en ;
     sh:property [
@@ -495,8 +495,8 @@ icac-prevention:SchoolPolicyShape rdf:type sh:NodeShape ;
         sh:message "School policy must have a name (5-200 characters)."@en
     ] .
 
-icac-prevention:TeacherTrainingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:TeacherTraining ;
+cacontology-prevention:TeacherTrainingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:TeacherTraining ;
     rdfs:label "Teacher Training Shape"@en ;
     rdfs:comment "Validation shape for teacher training instances."@en ;
     sh:property [
@@ -507,12 +507,12 @@ icac-prevention:TeacherTrainingShape rdf:type sh:NodeShape ;
         sh:message "Teacher training must specify start time."@en
     ] .
 
-icac-prevention:StudentEducationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:StudentEducation ;
+cacontology-prevention:StudentEducationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:StudentEducation ;
     rdfs:label "Student Education Shape"@en ;
     rdfs:comment "Validation shape for student education instances."@en ;
     sh:property [
-        sh:path icac-prevention:ageGroup ;
+        sh:path cacontology-prevention:ageGroup ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -520,8 +520,8 @@ icac-prevention:StudentEducationShape rdf:type sh:NodeShape ;
         sh:message "Student education must specify appropriate age group."@en
     ] .
 
-icac-prevention:SchoolCounselorTrainingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:SchoolCounselorTraining ;
+cacontology-prevention:SchoolCounselorTrainingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:SchoolCounselorTraining ;
     rdfs:label "School Counselor Training Shape"@en ;
     rdfs:comment "Validation shape for school counselor training instances."@en ;
     sh:property [
@@ -536,8 +536,8 @@ icac-prevention:SchoolCounselorTrainingShape rdf:type sh:NodeShape ;
 # TECHNOLOGY-BASED PREVENTION SHAPES
 # =============================================================================
 
-icac-prevention:DigitalSafetyShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:DigitalSafety ;
+cacontology-prevention:DigitalSafetyShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:DigitalSafety ;
     rdfs:label "Digital Safety Shape"@en ;
     rdfs:comment "Validation shape for digital safety instances."@en ;
     sh:property [
@@ -550,12 +550,12 @@ icac-prevention:DigitalSafetyShape rdf:type sh:NodeShape ;
         sh:message "Digital safety program must have a name (5-200 characters)."@en
     ] .
 
-icac-prevention:OnlineSafetyEducationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:OnlineSafetyEducation ;
+cacontology-prevention:OnlineSafetyEducationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:OnlineSafetyEducation ;
     rdfs:label "Online Safety Education Shape"@en ;
     rdfs:comment "Validation shape for online safety education instances."@en ;
     sh:property [
-        sh:path icac-prevention:ageGroup ;
+        sh:path cacontology-prevention:ageGroup ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -563,8 +563,8 @@ icac-prevention:OnlineSafetyEducationShape rdf:type sh:NodeShape ;
         sh:message "Online safety education must specify age group."@en
     ] .
 
-icac-prevention:ParentalControlShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:ParentalControl ;
+cacontology-prevention:ParentalControlShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:ParentalControl ;
     rdfs:label "Parental Control Shape"@en ;
     rdfs:comment "Validation shape for parental control instances."@en ;
     sh:property [
@@ -577,8 +577,8 @@ icac-prevention:ParentalControlShape rdf:type sh:NodeShape ;
         sh:message "Parental control must have a name (5-200 characters)."@en
     ] .
 
-icac-prevention:PlatformSafetyShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:PlatformSafety ;
+cacontology-prevention:PlatformSafetyShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:PlatformSafety ;
     rdfs:label "Platform Safety Shape"@en ;
     rdfs:comment "Validation shape for platform safety instances."@en ;
     sh:property [
@@ -595,8 +595,8 @@ icac-prevention:PlatformSafetyShape rdf:type sh:NodeShape ;
 # PREVENTION METRICS AND ASSESSMENT SHAPES
 # =============================================================================
 
-icac-prevention:PreventionMetricsShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:PreventionMetrics ;
+cacontology-prevention:PreventionMetricsShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:PreventionMetrics ;
     rdfs:label "Prevention Metrics Shape"@en ;
     rdfs:comment "Validation shape for prevention metrics instances."@en ;
     sh:property [
@@ -609,12 +609,12 @@ icac-prevention:PreventionMetricsShape rdf:type sh:NodeShape ;
         sh:message "Prevention metrics name should be 5-200 characters when specified."@en
     ] .
 
-icac-prevention:PreventionEffectivenessShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:PreventionEffectiveness ;
+cacontology-prevention:PreventionEffectivenessShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:PreventionEffectiveness ;
     rdfs:label "Prevention Effectiveness Shape"@en ;
     rdfs:comment "Validation shape for prevention effectiveness instances."@en ;
     sh:property [
-        sh:path icac-prevention:preventionEffectiveness ;
+        sh:path cacontology-prevention:preventionEffectiveness ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -623,12 +623,12 @@ icac-prevention:PreventionEffectivenessShape rdf:type sh:NodeShape ;
         sh:message "Prevention effectiveness must be between 0.0 and 1.0."@en
     ] .
 
-icac-prevention:RiskReductionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:RiskReduction ;
+cacontology-prevention:RiskReductionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:RiskReduction ;
     rdfs:label "Risk Reduction Shape"@en ;
     rdfs:comment "Validation shape for risk reduction instances."@en ;
     sh:property [
-        sh:path icac-prevention:riskReductionLevel ;
+        sh:path cacontology-prevention:riskReductionLevel ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -637,12 +637,12 @@ icac-prevention:RiskReductionShape rdf:type sh:NodeShape ;
         sh:message "Risk reduction level must be between 0.0 and 1.0."@en
     ] .
 
-icac-prevention:CommunityEngagementShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:CommunityEngagement ;
+cacontology-prevention:CommunityEngagementShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:CommunityEngagement ;
     rdfs:label "Community Engagement Shape"@en ;
     rdfs:comment "Validation shape for community engagement instances."@en ;
     sh:property [
-        sh:path icac-prevention:communityParticipation ;
+        sh:path cacontology-prevention:communityParticipation ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -655,8 +655,8 @@ icac-prevention:CommunityEngagementShape rdf:type sh:NodeShape ;
 # SEXTORTION PREVENTION SHAPES
 # =============================================================================
 
-icac-prevention:SextortionAwarenessShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:SextortionAwareness ;
+cacontology-prevention:SextortionAwarenessShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:SextortionAwareness ;
     rdfs:label "Sextortion Awareness Shape"@en ;
     rdfs:comment "Validation shape for sextortion awareness instances."@en ;
     sh:property [
@@ -669,12 +669,12 @@ icac-prevention:SextortionAwarenessShape rdf:type sh:NodeShape ;
         sh:message "Sextortion awareness program must have a name (5-200 characters)."@en
     ] .
 
-icac-prevention:SextortionEducationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:SextortionEducation ;
+cacontology-prevention:SextortionEducationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:SextortionEducation ;
     rdfs:label "Sextortion Education Shape"@en ;
     rdfs:comment "Validation shape for sextortion education instances."@en ;
     sh:property [
-        sh:path icac-prevention:ageGroup ;
+        sh:path cacontology-prevention:ageGroup ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -682,8 +682,8 @@ icac-prevention:SextortionEducationShape rdf:type sh:NodeShape ;
         sh:message "Sextortion education must target appropriate age groups."@en
     ] .
 
-icac-prevention:SextortionWarningSignShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:SextortionWarningSign ;
+cacontology-prevention:SextortionWarningSignShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:SextortionWarningSign ;
     rdfs:label "Sextortion Warning Sign Shape"@en ;
     rdfs:comment "Validation shape for sextortion warning sign instances."@en ;
     sh:property [
@@ -696,12 +696,12 @@ icac-prevention:SextortionWarningSignShape rdf:type sh:NodeShape ;
         sh:message "Sextortion warning sign must have a name (5-200 characters)."@en
     ] .
 
-icac-prevention:SextortionResponseShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:SextortionResponse ;
+cacontology-prevention:SextortionResponseShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:SextortionResponse ;
     rdfs:label "Sextortion Response Shape"@en ;
     rdfs:comment "Validation shape for sextortion response instances."@en ;
     sh:property [
-        sh:path icac-prevention:implementationStatus ;
+        sh:path cacontology-prevention:implementationStatus ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -713,8 +713,8 @@ icac-prevention:SextortionResponseShape rdf:type sh:NodeShape ;
 # CROSS-REFERENCE VALIDATION SHAPES
 # =============================================================================
 
-icac-prevention:PreventionProgramDeliveryValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:PreventionProgram ;
+cacontology-prevention:PreventionProgramDeliveryValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:PreventionProgram ;
     rdfs:label "Prevention Program Delivery Validation Shape"@en ;
     rdfs:comment "Validates that prevention programs have delivery specialists."@en ;
     sh:sparql [
@@ -722,17 +722,17 @@ icac-prevention:PreventionProgramDeliveryValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-prevention:PreventionProgram .
+                $this a cacontology-prevention:PreventionProgram .
                 FILTER NOT EXISTS {
-                    $this icac-prevention:deliveredBy ?specialist .
-                    ?specialist a icac-prevention:PreventionSpecialist .
+                    $this cacontology-prevention:deliveredBy ?specialist .
+                    ?specialist a cacontology-prevention:PreventionSpecialist .
                 }
             }
         """
     ] .
 
-icac-prevention:EducationPortalResourceValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:EducationPortal ;
+cacontology-prevention:EducationPortalResourceValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:EducationPortal ;
     rdfs:label "Education Portal Resource Validation Shape"@en ;
     rdfs:comment "Validates that education portals provide educational resources."@en ;
     sh:sparql [
@@ -740,17 +740,17 @@ icac-prevention:EducationPortalResourceValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-prevention:EducationPortal .
+                $this a cacontology-prevention:EducationPortal .
                 FILTER NOT EXISTS {
-                    $this icac-prevention:providesResource ?resource .
-                    ?resource a icac-prevention:EducationalResource .
+                    $this cacontology-prevention:providesResource ?resource .
+                    ?resource a cacontology-prevention:EducationalResource .
                 }
             }
         """
     ] .
 
-icac-prevention:SafetyProtocolImplementationValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:SafetyProtocol ;
+cacontology-prevention:SafetyProtocolImplementationValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:SafetyProtocol ;
     rdfs:label "Safety Protocol Implementation Validation Shape"@en ;
     rdfs:comment "Validates that safety protocols are implemented by organizations."@en ;
     sh:sparql [
@@ -758,17 +758,17 @@ icac-prevention:SafetyProtocolImplementationValidationShape rdf:type sh:NodeShap
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-prevention:SafetyProtocol .
+                $this a cacontology-prevention:SafetyProtocol .
                 FILTER NOT EXISTS {
-                    ?org icac-prevention:implementsProtocol $this .
+                    ?org cacontology-prevention:implementsProtocol $this .
                     ?org a uco-identity:Organization .
                 }
             }
         """
     ] .
 
-icac-prevention:CommunityOutreachCoordinationValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:CommunityOutreach ;
+cacontology-prevention:CommunityOutreachCoordinationValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:CommunityOutreach ;
     rdfs:label "Community Outreach Coordination Validation Shape"@en ;
     rdfs:comment "Validates that community outreach has coordinators."@en ;
     sh:sparql [
@@ -776,10 +776,10 @@ icac-prevention:CommunityOutreachCoordinationValidationShape rdf:type sh:NodeSha
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-prevention:CommunityOutreach .
+                $this a cacontology-prevention:CommunityOutreach .
                 FILTER NOT EXISTS {
-                    $this icac-prevention:coordinatedBy ?coordinator .
-                    ?coordinator a icac-prevention:SafetyCoordinator .
+                    $this cacontology-prevention:coordinatedBy ?coordinator .
+                    ?coordinator a cacontology-prevention:SafetyCoordinator .
                 }
             }
         """
@@ -789,15 +789,15 @@ icac-prevention:CommunityOutreachCoordinationValidationShape rdf:type sh:NodeSha
 # TEMPORAL VALIDATION SHAPES
 # =============================================================================
 
-icac-prevention:TemporalValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:PreventionProgram ,
-                   icac-prevention:CommunityOutreach ,
-                   icac-prevention:PublicAwareness ,
-                   icac-prevention:EducatorTraining ,
-                   icac-prevention:ParentEducation ,
-                   icac-prevention:ChildSafetyEducation ,
-                   icac-prevention:HealthcareProviderTraining ,
-                   icac-prevention:CommunityEducation ;
+cacontology-prevention:TemporalValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:PreventionProgram ,
+                   cacontology-prevention:CommunityOutreach ,
+                   cacontology-prevention:PublicAwareness ,
+                   cacontology-prevention:EducatorTraining ,
+                   cacontology-prevention:ParentEducation ,
+                   cacontology-prevention:ChildSafetyEducation ,
+                   cacontology-prevention:HealthcareProviderTraining ,
+                   cacontology-prevention:CommunityEducation ;
     rdfs:label "Temporal Validation Shape"@en ;
     rdfs:comment "Validates temporal consistency for prevention activities."@en ;
     sh:sparql [
@@ -816,12 +816,12 @@ icac-prevention:TemporalValidationShape rdf:type sh:NodeShape ;
 # DATA QUALITY SHAPES
 # =============================================================================
 
-icac-prevention:DataQualityShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:PreventionProgram ,
-                   icac-prevention:EducationPortal ,
-                   icac-prevention:EducationalResource ,
-                   icac-prevention:SafetyProtocol ,
-                   icac-prevention:PreventionMetrics ;
+cacontology-prevention:DataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:PreventionProgram ,
+                   cacontology-prevention:EducationPortal ,
+                   cacontology-prevention:EducationalResource ,
+                   cacontology-prevention:SafetyProtocol ,
+                   cacontology-prevention:PreventionMetrics ;
     rdfs:label "Data Quality Shape"@en ;
     rdfs:comment "Validates data quality for prevention entities."@en ;
     sh:property [
@@ -839,8 +839,8 @@ icac-prevention:DataQualityShape rdf:type sh:NodeShape ;
         sh:message "Modification time should be specified when available."@en
     ] .
 
-icac-prevention:PreventionEffectivenessValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:PreventionProgram ;
+cacontology-prevention:PreventionEffectivenessValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:PreventionProgram ;
     rdfs:label "Prevention Effectiveness Validation Shape"@en ;
     rdfs:comment "Validates prevention program effectiveness metrics."@en ;
     sh:sparql [
@@ -848,18 +848,18 @@ icac-prevention:PreventionEffectivenessValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-prevention:participantCount ?count .
+                $this cacontology-prevention:participantCount ?count .
                 FILTER (?count > 1000)
                 FILTER NOT EXISTS {
-                    ?effectiveness a icac-prevention:PreventionEffectiveness ;
-                                   icac-prevention:preventionEffectiveness ?score .
+                    ?effectiveness a cacontology-prevention:PreventionEffectiveness ;
+                                   cacontology-prevention:preventionEffectiveness ?score .
                 }
             }
         """
     ] .
 
-icac-prevention:TargetAudienceValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:ChildSafetyEducation ;
+cacontology-prevention:TargetAudienceValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:ChildSafetyEducation ;
     rdfs:label "Target Audience Validation Shape"@en ;
     rdfs:comment "Validates target audience appropriateness for child safety education."@en ;
     sh:sparql [
@@ -867,14 +867,14 @@ icac-prevention:TargetAudienceValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-prevention:OnlineSafetyEducation ;
-                      icac-prevention:ageGroup "preschool" .
+                $this a cacontology-prevention:OnlineSafetyEducation ;
+                      cacontology-prevention:ageGroup "preschool" .
             }
         """
     ] .
 
-icac-prevention:LanguageAvailabilityValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:EducationalResource ;
+cacontology-prevention:LanguageAvailabilityValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:EducationalResource ;
     rdfs:label "Language Availability Validation Shape"@en ;
     rdfs:comment "Validates language availability for educational resources."@en ;
     sh:sparql [
@@ -882,18 +882,18 @@ icac-prevention:LanguageAvailabilityValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-prevention:targetAudience "community_members" .
+                $this cacontology-prevention:targetAudience "community_members" .
                 FILTER NOT EXISTS {
-                    $this icac-prevention:languageAvailability ?lang1 .
-                    $this icac-prevention:languageAvailability ?lang2 .
+                    $this cacontology-prevention:languageAvailability ?lang1 .
+                    $this cacontology-prevention:languageAvailability ?lang2 .
                     FILTER (?lang1 != ?lang2)
                 }
             }
         """
     ] .
 
-icac-prevention:ProgramDurationValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-prevention:PreventionProgram ;
+cacontology-prevention:ProgramDurationValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-prevention:PreventionProgram ;
     rdfs:label "Program Duration Validation Shape"@en ;
     rdfs:comment "Validates program duration consistency."@en ;
     sh:sparql [
@@ -901,8 +901,8 @@ icac-prevention:ProgramDurationValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-prevention:programDuration ?duration ;
-                      icac-prevention:participantCount ?count .
+                $this cacontology-prevention:programDuration ?duration ;
+                      cacontology-prevention:participantCount ?count .
                 FILTER (?duration > 24.0 && ?count < 10)
             }
         """

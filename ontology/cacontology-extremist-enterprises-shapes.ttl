@@ -13,7 +13,7 @@
 # GUFO TYPE VALIDATION SHAPES
 # =============================================================================
 
-icac-enterprises:GufoKindValidationShape rdf:type sh:NodeShape ;
+cacontology-enterprises:GufoKindValidationShape rdf:type sh:NodeShape ;
     sh:targetClass gufo:Kind ;
     sh:property [
         sh:path rdf:type ;
@@ -22,7 +22,7 @@ icac-enterprises:GufoKindValidationShape rdf:type sh:NodeShape ;
         sh:message "gUFO Kinds must be OWL classes."@en ;
     ] .
 
-icac-enterprises:GufoRoleValidationShape rdf:type sh:NodeShape ;
+cacontology-enterprises:GufoRoleValidationShape rdf:type sh:NodeShape ;
     sh:targetClass gufo:Role ;
     sh:property [
         sh:path rdf:type ;
@@ -31,7 +31,7 @@ icac-enterprises:GufoRoleValidationShape rdf:type sh:NodeShape ;
         sh:message "gUFO Roles must be OWL classes."@en ;
     ] .
 
-icac-enterprises:GufoEventTypeValidationShape rdf:type sh:NodeShape ;
+cacontology-enterprises:GufoEventTypeValidationShape rdf:type sh:NodeShape ;
     sh:targetClass gufo:EventType ;
     sh:property [
         sh:path rdf:type ;
@@ -44,36 +44,36 @@ icac-enterprises:GufoEventTypeValidationShape rdf:type sh:NodeShape ;
 # GUFO TEMPORAL VALIDATION SHAPES
 # =============================================================================
 
-icac-enterprises:GufoTemporalConsistencyShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:ChildExploitationEnterprise ;
+cacontology-enterprises:GufoTemporalConsistencyShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:ChildExploitationEnterprise ;
     sh:property [
-        sh:path icac-enterprises:hasOperationalBeginDate ;
+        sh:path cacontology-enterprises:hasOperationalBeginDate ;
         sh:datatype xsd:dateTimeStamp ;
         sh:maxCount 1 ;
         sh:message "Enterprise must have at most one operational begin date."@en ;
     ] ;
     sh:property [
-        sh:path icac-enterprises:hasOperationalEndDate ;
+        sh:path cacontology-enterprises:hasOperationalEndDate ;
         sh:datatype xsd:dateTimeStamp ;
         sh:maxCount 1 ;
         sh:message "Enterprise must have at most one operational end date."@en ;
     ] ;
     sh:sparql [
         sh:message "Operational end date must be after begin date."@en ;
-        sh:prefixes icac-enterprises: ;
+        sh:prefixes cacontology-enterprises: ;
         sh:select """
             SELECT $this WHERE {
-                $this icac-enterprises:hasOperationalBeginDate ?begin .
-                $this icac-enterprises:hasOperationalEndDate ?end .
+                $this cacontology-enterprises:hasOperationalBeginDate ?begin .
+                $this cacontology-enterprises:hasOperationalEndDate ?end .
                 FILTER (?end <= ?begin)
             }
         """ ;
     ] .
 
-icac-enterprises:GufoEventTemporalShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:SelfHarmCoercion ;
+cacontology-enterprises:GufoEventTemporalShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:SelfHarmCoercion ;
     sh:property [
-        sh:path icac-enterprises:hasCoercionEventBeginDate ;
+        sh:path cacontology-enterprises:hasCoercionEventBeginDate ;
         sh:datatype xsd:dateTimeStamp ;
         sh:maxCount 1 ;
         sh:message "Coercion event must have at most one begin date."@en ;
@@ -83,18 +83,18 @@ icac-enterprises:GufoEventTemporalShape rdf:type sh:NodeShape ;
 # GUFO PART-WHOLE VALIDATION SHAPES  
 # =============================================================================
 
-icac-enterprises:GufoComponentValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:NihilisticViolentExtremismNetwork ;
+cacontology-enterprises:GufoComponentValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:NihilisticViolentExtremismNetwork ;
     sh:property [
-        sh:path icac-enterprises:hasNetworkComponent ;
+        sh:path cacontology-enterprises:hasNetworkComponent ;
         sh:class gufo:Object ;
         sh:message "Network components must be gUFO Objects."@en ;
     ] .
 
-icac-enterprises:GufoMembershipValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:ChildExploitationEnterprise ;
+cacontology-enterprises:GufoMembershipValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:ChildExploitationEnterprise ;
     sh:property [
-        sh:path icac-enterprises:hasMember ;
+        sh:path cacontology-enterprises:hasMember ;
         sh:class uco-identity:Person ;
         sh:minCount 2 ; # Enterprise must have multiple participants
         sh:message "Enterprise must have at least 2 members."@en ;
@@ -104,19 +104,19 @@ icac-enterprises:GufoMembershipValidationShape rdf:type sh:NodeShape ;
 # GUFO QUALITY AND MODE VALIDATION SHAPES
 # =============================================================================
 
-icac-enterprises:GufoQualityValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:NihilisticViolentExtremismNetwork ;
+cacontology-enterprises:GufoQualityValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:NihilisticViolentExtremismNetwork ;
     sh:property [
-        sh:path icac-enterprises:hasNetworkNotorietyQuality ;
+        sh:path cacontology-enterprises:hasNetworkNotorietyQuality ;
         sh:class gufo:Quality ;
         sh:maxCount 1 ;
         sh:message "Network can have at most one notoriety quality."@en ;
     ] .
 
-icac-enterprises:GufoModeValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:EncryptedChannelNetwork ;
+cacontology-enterprises:GufoModeValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:EncryptedChannelNetwork ;
     sh:property [
-        sh:path icac-enterprises:hasEncryptionCapability ;
+        sh:path cacontology-enterprises:hasEncryptionCapability ;
         sh:class gufo:IntrinsicMode ;
         sh:maxCount 1 ;
         sh:message "Encrypted network can have at most one encryption capability mode."@en ;
@@ -126,18 +126,18 @@ icac-enterprises:GufoModeValidationShape rdf:type sh:NodeShape ;
 # GUFO SITUATION VALIDATION SHAPES
 # =============================================================================
 
-icac-enterprises:GufoSituationValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:ChildExploitationEnterprise ;
+cacontology-enterprises:GufoSituationValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:ChildExploitationEnterprise ;
     sh:property [
-        sh:path icac-enterprises:operatesInSituation ;
+        sh:path cacontology-enterprises:operatesInSituation ;
         sh:class gufo:Situation ;
         sh:message "Enterprise must operate in valid gUFO Situations."@en ;
     ] .
 
-icac-enterprises:GufoVictimizationSituationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:SelfHarmCoercion ;
+cacontology-enterprises:GufoVictimizationSituationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:SelfHarmCoercion ;
     sh:property [
-        sh:path icac-enterprises:createsVictimizationSituation ;
+        sh:path cacontology-enterprises:createsVictimizationSituation ;
         sh:class gufo:Situation ;
         sh:minCount 1 ;
         sh:message "Self-harm coercion must create at least one victimization situation."@en ;
@@ -147,16 +147,16 @@ icac-enterprises:GufoVictimizationSituationShape rdf:type sh:NodeShape ;
 # GUFO RELATOR VALIDATION SHAPES
 # =============================================================================
 
-icac-enterprises:GufoRelatorValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:ChildExploitationEnterprise ;
+cacontology-enterprises:GufoRelatorValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:ChildExploitationEnterprise ;
     sh:property [
-        sh:path icac-enterprises:hasLeadershipRelation ;
+        sh:path cacontology-enterprises:hasLeadershipRelation ;
         sh:class gufo:Relator ;
         sh:minCount 1 ;
         sh:message "Enterprise must have at least one leadership relator."@en ;
     ] ;
     sh:property [
-        sh:path icac-enterprises:hasExploitationRelation ;
+        sh:path cacontology-enterprises:hasExploitationRelation ;
         sh:class gufo:Relator ;
         sh:minCount 1 ;
         sh:message "Exploitation enterprise must have at least one exploitation relator."@en ;
@@ -166,16 +166,16 @@ icac-enterprises:GufoRelatorValidationShape rdf:type sh:NodeShape ;
 # GUFO PARTICIPATION VALIDATION SHAPES
 # =============================================================================
 
-icac-enterprises:GufoParticipationValidationShape rdf:type sh:NodeShape ;
+cacontology-enterprises:GufoParticipationValidationShape rdf:type sh:NodeShape ;
     sh:targetClass uco-identity:Person ;
     sh:property [
-        sh:path icac-enterprises:participatesInCoercion ;
-        sh:class icac-enterprises:SelfHarmCoercion ;
+        sh:path cacontology-enterprises:participatesInCoercion ;
+        sh:class cacontology-enterprises:SelfHarmCoercion ;
         sh:message "Person participation in coercion must link to valid coercion events."@en ;
     ] ;
     sh:property [
-        sh:path icac-enterprises:participatesInRecruitment ;
-        sh:class icac-enterprises:ContentBasedRecruitment ;
+        sh:path cacontology-enterprises:participatesInRecruitment ;
+        sh:class cacontology-enterprises:ContentBasedRecruitment ;
         sh:message "Person participation in recruitment must link to valid recruitment events."@en ;
     ] .
 
@@ -187,41 +187,41 @@ icac-enterprises:GufoParticipationValidationShape rdf:type sh:NodeShape ;
 # NIHILISTIC VIOLENT EXTREMISM NETWORK SHAPES
 # =============================================================================
 
-icac-enterprises:NihilisticViolentExtremismNetworkShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:NihilisticViolentExtremismNetwork ;
+cacontology-enterprises:NihilisticViolentExtremismNetworkShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:NihilisticViolentExtremismNetwork ;
     sh:property [
-        sh:path icac-enterprises:networkSize ;
+        sh:path cacontology-enterprises:networkSize ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:maxCount 1 ;
         sh:minInclusive 2 ; # Minimum 2 members for a network
         sh:message "NVE network must have at least 2 members."@en ;
     ] ;
     sh:property [
-        sh:path icac-enterprises:operationalScope ;
+        sh:path cacontology-enterprises:operationalScope ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ("local" "national" "international") ;
         sh:message "Operational scope must be local, national, or international."@en ;
     ] ;
     sh:property [
-        sh:path icac-enterprises:ideologicalFramework ;
+        sh:path cacontology-enterprises:ideologicalFramework ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ("nihilistic" "accelerationist" "anarchist" "mixed") ;
         sh:message "Ideological framework must be recognized extremist ideology."@en ;
     ] ;
     sh:property [
-        sh:path icac-enterprises:networkNotoriety ;
+        sh:path cacontology-enterprises:networkNotoriety ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ("low" "moderate" "high" "international") ;
         sh:message "Network notoriety must be valid level."@en ;
     ] .
 
-icac-enterprises:ChildExploitationEnterpriseShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:ChildExploitationEnterprise ;
+cacontology-enterprises:ChildExploitationEnterpriseShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:ChildExploitationEnterprise ;
     sh:property [
-        sh:path icac-enterprises:leadershipCount ;
+        sh:path cacontology-enterprises:leadershipCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:maxCount 1 ;
         sh:minInclusive 1 ; # Must have at least 1 leader
@@ -229,7 +229,7 @@ icac-enterprises:ChildExploitationEnterpriseShape rdf:type sh:NodeShape ;
         sh:message "Enterprise must have 1-10 leaders."@en ;
     ] ;
     sh:property [
-        sh:path icac-enterprises:membershipRequirements ;
+        sh:path cacontology-enterprises:membershipRequirements ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:minLength 10 ;
@@ -237,8 +237,8 @@ icac-enterprises:ChildExploitationEnterpriseShape rdf:type sh:NodeShape ;
         sh:message "Membership requirements must be 10-500 characters."@en ;
     ] ;
     sh:property [
-        sh:path icac-enterprises:hasHierarchy ;
-        sh:class icac-enterprises:EnterpriseHierarchy ;
+        sh:path cacontology-enterprises:hasHierarchy ;
+        sh:class cacontology-enterprises:EnterpriseHierarchy ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Enterprise must have exactly one hierarchy."@en ;
@@ -248,20 +248,20 @@ icac-enterprises:ChildExploitationEnterpriseShape rdf:type sh:NodeShape ;
 # ENTERPRISE HIERARCHY SHAPES
 # =============================================================================
 
-icac-enterprises:EnterpriseHierarchyShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:EnterpriseHierarchy ;
+cacontology-enterprises:EnterpriseHierarchyShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:EnterpriseHierarchy ;
     sh:property [
-        sh:path icac-enterprises:hierarchyComplexity ;
+        sh:path cacontology-enterprises:hierarchyComplexity ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ("simple" "moderate" "complex" "highly_complex") ;
         sh:message "Hierarchy complexity must be valid level."@en ;
     ] .
 
-icac-enterprises:InnerCoreShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:InnerCore ;
+cacontology-enterprises:InnerCoreShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:InnerCore ;
     sh:property [
-        sh:path icac-enterprises:innerCoreSize ;
+        sh:path cacontology-enterprises:innerCoreSize ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:maxCount 1 ;
         sh:minInclusive 1 ; # Must have at least 1 member
@@ -269,17 +269,17 @@ icac-enterprises:InnerCoreShape rdf:type sh:NodeShape ;
         sh:message "Inner core must have 1-50 members."@en ;
     ] .
 
-icac-enterprises:MembershipTierShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:MembershipTier ;
+cacontology-enterprises:MembershipTierShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:MembershipTier ;
     sh:property [
-        sh:path icac-enterprises:membershipLevel ;
+        sh:path cacontology-enterprises:membershipLevel ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ("novice" "member" "advanced" "inner_core" "leader") ;
         sh:message "Membership level must be valid tier."@en ;
     ] ;
     sh:property [
-        sh:path icac-enterprises:accessLevel ;
+        sh:path cacontology-enterprises:accessLevel ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ("restricted" "basic" "enhanced" "privileged" "full") ;
@@ -290,10 +290,10 @@ icac-enterprises:MembershipTierShape rdf:type sh:NodeShape ;
 # CONTENT COMPILATION SHAPES
 # =============================================================================
 
-icac-enterprises:LorebookShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:Lorebook ;
+cacontology-enterprises:LorebookShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:Lorebook ;
     sh:property [
-        sh:path icac-enterprises:contentVolumeItems ;
+        sh:path cacontology-enterprises:contentVolumeItems ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:maxCount 1 ;
         sh:minInclusive 1 ; # Must contain at least 1 item
@@ -301,34 +301,34 @@ icac-enterprises:LorebookShape rdf:type sh:NodeShape ;
         sh:message "Lorebook must contain 1-10,000 items."@en ;
     ] ;
     sh:property [
-        sh:path icac-enterprises:compilationComplexity ;
+        sh:path cacontology-enterprises:compilationComplexity ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ("basic" "moderate" "advanced" "professional") ;
         sh:message "Compilation complexity must be valid level."@en ;
     ] ;
     sh:property [
-        sh:path icac-enterprises:contentNotoriety ;
+        sh:path cacontology-enterprises:contentNotoriety ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ("low" "moderate" "high" "notorious") ;
         sh:message "Content notoriety must be valid level."@en ;
     ] .
 
-icac-enterprises:ContentEditingProcessShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:ContentEditingProcess ;
+cacontology-enterprises:ContentEditingProcessShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:ContentEditingProcess ;
     sh:property [
-        sh:path icac-enterprises:editingQuality ;
+        sh:path cacontology-enterprises:editingQuality ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ("poor" "basic" "good" "professional") ;
         sh:message "Editing quality must be valid level."@en ;
     ] .
 
-icac-enterprises:ContentValueAssessmentShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:ContentValueAssessment ;
+cacontology-enterprises:ContentValueAssessmentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:ContentValueAssessment ;
     sh:property [
-        sh:path icac-enterprises:contentValue ;
+        sh:path cacontology-enterprises:contentValue ;
         sh:datatype xsd:decimal ;
         sh:maxCount 1 ;
         sh:minInclusive 0.0 ;
@@ -340,19 +340,19 @@ icac-enterprises:ContentValueAssessmentShape rdf:type sh:NodeShape ;
 # CONTENT CURRENCY SYSTEM SHAPES
 # =============================================================================
 
-icac-enterprises:ContentCurrencySystemShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:ContentCurrencySystem ;
+cacontology-enterprises:ContentCurrencySystemShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:ContentCurrencySystem ;
     sh:property [
-        sh:path icac-enterprises:usesAsCurrency ;
-        sh:class icac-enterprises:Lorebook ;
+        sh:path cacontology-enterprises:usesAsCurrency ;
+        sh:class cacontology-enterprises:Lorebook ;
         sh:minCount 1 ; # Must use at least one piece of content as currency
         sh:message "Content currency system must use at least one lorebook as currency."@en ;
     ] .
 
-icac-enterprises:MembershipAdvancementSystemShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:MembershipAdvancementSystem ;
+cacontology-enterprises:MembershipAdvancementSystemShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:MembershipAdvancementSystem ;
     sh:property [
-        sh:path icac-enterprises:advancementCriteria ;
+        sh:path cacontology-enterprises:advancementCriteria ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:minLength 10 ;
@@ -364,24 +364,24 @@ icac-enterprises:MembershipAdvancementSystemShape rdf:type sh:NodeShape ;
 # SELF-HARM COERCION SHAPES
 # =============================================================================
 
-icac-enterprises:SelfHarmCoercionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:SelfHarmCoercion ;
+cacontology-enterprises:SelfHarmCoercionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:SelfHarmCoercion ;
     sh:property [
-        sh:path icac-enterprises:coercionSeverity ;
+        sh:path cacontology-enterprises:coercionSeverity ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ("moderate" "severe" "extreme" "life_threatening") ;
         sh:message "Coercion severity must be valid level."@en ;
     ] ;
     sh:property [
-        sh:path icac-enterprises:selfHarmType ;
+        sh:path cacontology-enterprises:selfHarmType ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ("cutting" "burning" "bruising" "other") ;
         sh:message "Self-harm type must be valid type."@en ;
     ] ;
     sh:property [
-        sh:path icac-enterprises:coercionEffectiveness ;
+        sh:path cacontology-enterprises:coercionEffectiveness ;
         sh:datatype xsd:decimal ;
         sh:maxCount 1 ;
         sh:minInclusive 0.0 ;
@@ -389,10 +389,10 @@ icac-enterprises:SelfHarmCoercionShape rdf:type sh:NodeShape ;
         sh:message "Coercion effectiveness must be between 0.0 and 1.0."@en ;
     ] .
 
-icac-enterprises:ExtremeDegradationCoercionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:ExtremeDegradationCoercion ;
+cacontology-enterprises:ExtremeDegradationCoercionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:ExtremeDegradationCoercion ;
     sh:property [
-        sh:path icac-enterprises:degradationLevel ;
+        sh:path cacontology-enterprises:degradationLevel ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ("moderate" "severe" "extreme" "inhuman") ;
@@ -403,37 +403,37 @@ icac-enterprises:ExtremeDegradationCoercionShape rdf:type sh:NodeShape ;
 # VULNERABILITY TARGETING SHAPES
 # =============================================================================
 
-icac-enterprises:VulnerablePopulationTargetingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:VulnerablePopulationTargeting ;
+cacontology-enterprises:VulnerablePopulationTargetingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:VulnerablePopulationTargeting ;
     sh:property [
-        sh:path icac-enterprises:vulnerabilityType ;
+        sh:path cacontology-enterprises:vulnerabilityType ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ("mental_health" "isolation" "trauma" "substance_abuse" "financial" "social") ;
         sh:message "Vulnerability type must be valid type."@en ;
     ] ;
     sh:property [
-        sh:path icac-enterprises:targetingPrecision ;
+        sh:path cacontology-enterprises:targetingPrecision ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ("broad" "focused" "precise" "surgical") ;
         sh:message "Targeting precision must be valid level."@en ;
     ] .
 
-icac-enterprises:SocialEngineeringCampaignShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:SocialEngineeringCampaign ;
+cacontology-enterprises:SocialEngineeringCampaignShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:SocialEngineeringCampaign ;
     sh:property [
-        sh:path icac-enterprises:socialEngineeringComplexity ;
+        sh:path cacontology-enterprises:socialEngineeringComplexity ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ("basic" "intermediate" "advanced" "sophisticated") ;
         sh:message "Social engineering complexity must be valid level."@en ;
     ] .
 
-icac-enterprises:TrustBuildingProcessShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:TrustBuildingProcess ;
+cacontology-enterprises:TrustBuildingProcessShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:TrustBuildingProcess ;
     sh:property [
-        sh:path icac-enterprises:trustBuildingDuration ;
+        sh:path cacontology-enterprises:trustBuildingDuration ;
         sh:datatype xsd:decimal ;
         sh:maxCount 1 ;
         sh:minInclusive 0.1 ; # Minimum 0.1 days (about 2.4 hours)
@@ -445,10 +445,10 @@ icac-enterprises:TrustBuildingProcessShape rdf:type sh:NodeShape ;
 # CROSS-PLATFORM COORDINATION SHAPES
 # =============================================================================
 
-icac-enterprises:CrossPlatformCoordinationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:CrossPlatformCoordination ;
+cacontology-enterprises:CrossPlatformCoordinationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:CrossPlatformCoordination ;
     sh:property [
-        sh:path icac-enterprises:platformCount ;
+        sh:path cacontology-enterprises:platformCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:maxCount 1 ;
         sh:minInclusive 2 ; # Must coordinate across at least 2 platforms
@@ -456,17 +456,17 @@ icac-enterprises:CrossPlatformCoordinationShape rdf:type sh:NodeShape ;
         sh:message "Cross-platform coordination must involve 2-20 platforms."@en ;
     ] .
 
-icac-enterprises:EncryptedChannelNetworkShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:EncryptedChannelNetwork ;
+cacontology-enterprises:EncryptedChannelNetworkShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:EncryptedChannelNetwork ;
     sh:property [
-        sh:path icac-enterprises:encryptionLevel ;
+        sh:path cacontology-enterprises:encryptionLevel ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ("basic" "strong" "military_grade") ;
         sh:message "Encryption level must be valid level."@en ;
     ] ;
     sh:property [
-        sh:path icac-enterprises:channelCount ;
+        sh:path cacontology-enterprises:channelCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:maxCount 1 ;
         sh:minInclusive 1 ; # Must have at least 1 channel
@@ -474,10 +474,10 @@ icac-enterprises:EncryptedChannelNetworkShape rdf:type sh:NodeShape ;
         sh:message "Encrypted network must have 1-100 channels."@en ;
     ] .
 
-icac-enterprises:AlternateAccountSystemShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:AlternateAccountSystem ;
+cacontology-enterprises:AlternateAccountSystemShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:AlternateAccountSystem ;
     sh:property [
-        sh:path icac-enterprises:altAccountCount ;
+        sh:path cacontology-enterprises:altAccountCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:maxCount 1 ;
         sh:minInclusive 1 ; # Must have at least 1 alt account
@@ -489,20 +489,20 @@ icac-enterprises:AlternateAccountSystemShape rdf:type sh:NodeShape ;
 # INVESTIGATION SHAPES
 # =============================================================================
 
-icac-enterprises:CovertEmployeeOperationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:CovertEmployeeOperation ;
+cacontology-enterprises:CovertEmployeeOperationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:CovertEmployeeOperation ;
     sh:property [
-        sh:path icac-enterprises:evidenceQuality ;
+        sh:path cacontology-enterprises:evidenceQuality ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ("poor" "fair" "good" "excellent") ;
         sh:message "Evidence quality must be valid level."@en ;
     ] .
 
-icac-enterprises:EncryptedChannelInfiltrationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:EncryptedChannelInfiltration ;
+cacontology-enterprises:EncryptedChannelInfiltrationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:EncryptedChannelInfiltration ;
     sh:property [
-        sh:path icac-enterprises:infiltrationDuration ;
+        sh:path cacontology-enterprises:infiltrationDuration ;
         sh:datatype xsd:decimal ;
         sh:maxCount 1 ;
         sh:minInclusive 1.0 ; # Minimum 1 day
@@ -510,10 +510,10 @@ icac-enterprises:EncryptedChannelInfiltrationShape rdf:type sh:NodeShape ;
         sh:message "Infiltration duration must be between 1 and 1,095 days."@en ;
     ] .
 
-icac-enterprises:IdentityCorrelationAnalysisShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:IdentityCorrelationAnalysis ;
+cacontology-enterprises:IdentityCorrelationAnalysisShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:IdentityCorrelationAnalysis ;
     sh:property [
-        sh:path icac-enterprises:identityCorrelationAccuracy ;
+        sh:path cacontology-enterprises:identityCorrelationAccuracy ;
         sh:datatype xsd:decimal ;
         sh:maxCount 1 ;
         sh:minInclusive 0.0 ;
@@ -521,10 +521,10 @@ icac-enterprises:IdentityCorrelationAnalysisShape rdf:type sh:NodeShape ;
         sh:message "Identity correlation accuracy must be between 0.0 and 1.0."@en ;
     ] .
 
-icac-enterprises:NetworkMappingInvestigationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:NetworkMappingInvestigation ;
+cacontology-enterprises:NetworkMappingInvestigationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:NetworkMappingInvestigation ;
     sh:property [
-        sh:path icac-enterprises:networkMappingCompleteness ;
+        sh:path cacontology-enterprises:networkMappingCompleteness ;
         sh:datatype xsd:decimal ;
         sh:maxCount 1 ;
         sh:minInclusive 0.0 ;
@@ -536,28 +536,28 @@ icac-enterprises:NetworkMappingInvestigationShape rdf:type sh:NodeShape ;
 # RELATIONSHIP VALIDATION SHAPES
 # =============================================================================
 
-icac-enterprises:EnterpriseLeadershipValidationShape rdf:type sh:NodeShape ;
-    sh:targetNode icac-enterprises:EnterpriseLeaderRole ;
+cacontology-enterprises:EnterpriseLeadershipValidationShape rdf:type sh:NodeShape ;
+    sh:targetNode cacontology-enterprises:EnterpriseLeaderRole ;
     sh:property [
-        sh:path [ sh:inversePath icac-enterprises:holdsLeadershipRole ] ;
+        sh:path [ sh:inversePath cacontology-enterprises:holdsLeadershipRole ] ;
         sh:class uco-identity:Person ;
         sh:minCount 1 ;
         sh:message "Enterprise leader role must be held by at least one person."@en ;
     ] .
 
-icac-enterprises:LorebookContentValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:Lorebook ;
+cacontology-enterprises:LorebookContentValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:Lorebook ;
     sh:property [
-        sh:path icac-enterprises:containsVictimContent ;
+        sh:path cacontology-enterprises:containsVictimContent ;
         sh:class uco-observable:ObservableObject ;
         sh:minCount 1 ;
         sh:message "Lorebook must contain at least one piece of victim content."@en ;
     ] .
 
-icac-enterprises:InnerCoreAccessValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:InnerCore ;
+cacontology-enterprises:InnerCoreAccessValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:InnerCore ;
     sh:property [
-        sh:path [ sh:inversePath icac-enterprises:participatesInInnerCore ] ;
+        sh:path [ sh:inversePath cacontology-enterprises:participatesInInnerCore ] ;
         sh:class uco-identity:Person ;
         sh:minCount 1 ;
         sh:message "Inner core must have at least one participating member."@en ;
@@ -567,49 +567,49 @@ icac-enterprises:InnerCoreAccessValidationShape rdf:type sh:NodeShape ;
 # CROSS-VALIDATION SHAPES
 # =============================================================================
 
-icac-enterprises:NetworkSizeConsistencyShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:NihilisticViolentExtremismNetwork ;
+cacontology-enterprises:NetworkSizeConsistencyShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:NihilisticViolentExtremismNetwork ;
     sh:sparql [
         sh:message "Network size must be consistent with inner core size and leadership count."@en ;
-        sh:prefixes icac-enterprises: ;
+        sh:prefixes cacontology-enterprises: ;
         sh:select """
             SELECT $this WHERE {
-                $this icac-enterprises:networkSize ?networkSize .
-                $this icac-enterprises:operatesEnterprise ?enterprise .
-                ?enterprise icac-enterprises:hasInnerCore ?innerCore .
-                ?innerCore icac-enterprises:innerCoreSize ?innerCoreSize .
-                ?enterprise icac-enterprises:leadershipCount ?leadershipCount .
+                $this cacontology-enterprises:networkSize ?networkSize .
+                $this cacontology-enterprises:operatesEnterprise ?enterprise .
+                ?enterprise cacontology-enterprises:hasInnerCore ?innerCore .
+                ?innerCore cacontology-enterprises:innerCoreSize ?innerCoreSize .
+                ?enterprise cacontology-enterprises:leadershipCount ?leadershipCount .
                 FILTER (?networkSize < (?innerCoreSize + ?leadershipCount))
             }
         """ ;
     ] .
 
-icac-enterprises:CoercionSeverityConsistencyShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:SelfHarmCoercion ;
+cacontology-enterprises:CoercionSeverityConsistencyShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:SelfHarmCoercion ;
     sh:sparql [
         sh:message "Extreme coercion severity must have degradation level of severe or extreme."@en ;
-        sh:prefixes icac-enterprises: ;
+        sh:prefixes cacontology-enterprises: ;
         sh:select """
             SELECT $this WHERE {
-                $this icac-enterprises:coercionSeverity "extreme" .
-                $this rdf:type/rdfs:subClassOf* icac-enterprises:ExtremeDegradationCoercion .
-                $this icac-enterprises:degradationLevel ?degradationLevel .
+                $this cacontology-enterprises:coercionSeverity "extreme" .
+                $this rdf:type/rdfs:subClassOf* cacontology-enterprises:ExtremeDegradationCoercion .
+                $this cacontology-enterprises:degradationLevel ?degradationLevel .
                 FILTER (?degradationLevel NOT IN ("severe", "extreme", "inhuman"))
             }
         """ ;
     ] .
 
-icac-enterprises:PlatformCoordinationConsistencyShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:CrossPlatformCoordination ;
+cacontology-enterprises:PlatformCoordinationConsistencyShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:CrossPlatformCoordination ;
     sh:sparql [
         sh:message "Platform count must be consistent with encrypted channel count."@en ;
-        sh:prefixes icac-enterprises: ;
+        sh:prefixes cacontology-enterprises: ;
         sh:select """
             SELECT $this WHERE {
-                $this icac-enterprises:platformCount ?platformCount .
-                ?enterprise icac-enterprises:coordinatesAcrossPlatforms $this .
-                ?enterprise icac-enterprises:utilizesEncryptedChannels ?encryptedNetwork .
-                ?encryptedNetwork icac-enterprises:channelCount ?channelCount .
+                $this cacontology-enterprises:platformCount ?platformCount .
+                ?enterprise cacontology-enterprises:coordinatesAcrossPlatforms $this .
+                ?enterprise cacontology-enterprises:utilizesEncryptedChannels ?encryptedNetwork .
+                ?encryptedNetwork cacontology-enterprises:channelCount ?channelCount .
                 FILTER (?channelCount < ?platformCount)
             }
         """ ;
@@ -619,54 +619,54 @@ icac-enterprises:PlatformCoordinationConsistencyShape rdf:type sh:NodeShape ;
 # BUSINESS RULE VALIDATION SHAPES
 # =============================================================================
 
-icac-enterprises:EnterpriseHierarchyBusinessRule rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:ChildExploitationEnterprise ;
+cacontology-enterprises:EnterpriseHierarchyBusinessRule rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:ChildExploitationEnterprise ;
     sh:rule [
         sh:condition [
             sh:property [
-                sh:path icac-enterprises:leadershipCount ;
+                sh:path cacontology-enterprises:leadershipCount ;
                 sh:minInclusive 3 ;
             ] ;
         ] ;
         sh:consequence [
             sh:property [
-                sh:path icac-enterprises:hasHierarchy ;
-                sh:hasValue icac-enterprises:LeadershipStructure ;
+                sh:path cacontology-enterprises:hasHierarchy ;
+                sh:hasValue cacontology-enterprises:LeadershipStructure ;
             ] ;
         ] ;
     ] ;
     sh:message "Enterprises with 3+ leaders must have formal leadership structure."@en .
 
-icac-enterprises:ContentCurrencyBusinessRule rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:ContentCurrencySystem ;
+cacontology-enterprises:ContentCurrencyBusinessRule rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:ContentCurrencySystem ;
     sh:rule [
         sh:condition [
             sh:property [
-                sh:path icac-enterprises:usesAsCurrency ;
+                sh:path cacontology-enterprises:usesAsCurrency ;
                 sh:minCount 5 ; # 5+ pieces of content as currency
             ] ;
         ] ;
         sh:consequence [
             sh:property [
                 sh:path rdf:type ;
-                sh:hasValue icac-enterprises:MembershipAdvancementSystem ;
+                sh:hasValue cacontology-enterprises:MembershipAdvancementSystem ;
             ] ;
         ] ;
     ] ;
     sh:message "Content currency systems with 5+ items must support membership advancement."@en .
 
-icac-enterprises:InvestigationQualityBusinessRule rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:IdentityCorrelationAnalysis ;
+cacontology-enterprises:InvestigationQualityBusinessRule rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:IdentityCorrelationAnalysis ;
     sh:rule [
         sh:condition [
             sh:property [
-                sh:path icac-enterprises:identityCorrelationAccuracy ;
+                sh:path cacontology-enterprises:identityCorrelationAccuracy ;
                 sh:minInclusive 0.9 ; # 90%+ accuracy
             ] ;
         ] ;
         sh:consequence [
             sh:property [
-                sh:path icac-enterprises:evidenceQuality ;
+                sh:path cacontology-enterprises:evidenceQuality ;
                 sh:in ("good" "excellent") ;
             ] ;
         ] ;
@@ -677,7 +677,7 @@ icac-enterprises:InvestigationQualityBusinessRule rdf:type sh:NodeShape ;
 # GUFO FOUNDATIONAL CONSTRAINTS AND BUSINESS RULES
 # =============================================================================
 
-icac-enterprises:GufoKindIdentityBusinessRule rdf:type sh:NodeShape ;
+cacontology-enterprises:GufoKindIdentityBusinessRule rdf:type sh:NodeShape ;
     sh:targetClass gufo:Kind ;
     sh:sparql [
         sh:message "gUFO Kinds cannot be subclasses of other Kinds - violates identity principle."@en ;
@@ -692,7 +692,7 @@ icac-enterprises:GufoKindIdentityBusinessRule rdf:type sh:NodeShape ;
         """ ;
     ] .
 
-icac-enterprises:GufoRoleAntiRigidityRule rdf:type sh:NodeShape ;
+cacontology-enterprises:GufoRoleAntiRigidityRule rdf:type sh:NodeShape ;
     sh:targetClass gufo:Role ;
     sh:sparql [
         sh:message "gUFO Roles are anti-rigid and cannot be essential to their instances."@en ;
@@ -706,41 +706,41 @@ icac-enterprises:GufoRoleAntiRigidityRule rdf:type sh:NodeShape ;
         """ ;
     ] .
 
-icac-enterprises:GufoEventTemporalExistenceRule rdf:type sh:NodeShape ;
+cacontology-enterprises:GufoEventTemporalExistenceRule rdf:type sh:NodeShape ;
     sh:targetClass gufo:Event ;
     sh:property [
-        sh:path [ sh:alternativePath ( gufo:hasBeginPointInXSDDateTimeStamp icac-enterprises:hasCoercionEventBeginDate icac-enterprises:hasInvestigationBeginDate ) ] ;
+        sh:path [ sh:alternativePath ( gufo:hasBeginPointInXSDDateTimeStamp cacontology-enterprises:hasCoercionEventBeginDate cacontology-enterprises:hasInvestigationBeginDate ) ] ;
         sh:minCount 1 ;
         sh:message "gUFO Events must have at least one temporal beginning point."@en ;
     ] .
 
-icac-enterprises:GufoFunctionalComplexPartRule rdf:type sh:NodeShape ;
+cacontology-enterprises:GufoFunctionalComplexPartRule rdf:type sh:NodeShape ;
     sh:targetClass gufo:FunctionalComplex ;
     sh:property [
-        sh:path [ sh:alternativePath ( gufo:isComponentOf icac-enterprises:hasNetworkComponent icac-enterprises:hasMember ) ] ;
+        sh:path [ sh:alternativePath ( gufo:isComponentOf cacontology-enterprises:hasNetworkComponent cacontology-enterprises:hasMember ) ] ;
         sh:minCount 1 ;
         sh:message "gUFO Functional Complexes must have at least one component or member."@en ;
     ] .
 
-icac-enterprises:GufoQualityInherentRule rdf:type sh:NodeShape ;
+cacontology-enterprises:GufoQualityInherentRule rdf:type sh:NodeShape ;
     sh:targetClass gufo:Quality ;
     sh:property [
-        sh:path [ sh:inversePath [ sh:alternativePath ( gufo:hasQuality icac-enterprises:hasNetworkNotorietyQuality ) ] ] ;
+        sh:path [ sh:inversePath [ sh:alternativePath ( gufo:hasQuality cacontology-enterprises:hasNetworkNotorietyQuality ) ] ] ;
         sh:class gufo:Object ;
         sh:minCount 1 ;
         sh:message "gUFO Qualities must inhere in at least one Object."@en ;
     ] .
 
-icac-enterprises:GufoModeInherentRule rdf:type sh:NodeShape ;
+cacontology-enterprises:GufoModeInherentRule rdf:type sh:NodeShape ;
     sh:targetClass gufo:IntrinsicMode ;
     sh:property [
-        sh:path [ sh:inversePath [ sh:alternativePath ( gufo:hasMode icac-enterprises:hasEncryptionCapability icac-enterprises:hasRecruitmentMode ) ] ] ;
+        sh:path [ sh:inversePath [ sh:alternativePath ( gufo:hasMode cacontology-enterprises:hasEncryptionCapability cacontology-enterprises:hasRecruitmentMode ) ] ] ;
         sh:class gufo:Object ;
         sh:minCount 1 ;
         sh:message "gUFO Intrinsic Modes must inhere in at least one Object."@en ;
     ] .
 
-icac-enterprises:GufoSituationFactualRule rdf:type sh:NodeShape ;
+cacontology-enterprises:GufoSituationFactualRule rdf:type sh:NodeShape ;
     sh:targetClass gufo:Situation ;
     sh:sparql [
         sh:message "gUFO Situations must be factual and include at least one object or event."@en ;
@@ -761,7 +761,7 @@ icac-enterprises:GufoSituationFactualRule rdf:type sh:NodeShape ;
         """ ;
     ] .
 
-icac-enterprises:GufoRelatorMediationRule rdf:type sh:NodeShape ;
+cacontology-enterprises:GufoRelatorMediationRule rdf:type sh:NodeShape ;
     sh:targetClass gufo:Relator ;
     sh:sparql [
         sh:message "gUFO Relators must mediate relationships between at least two distinct objects."@en ;
@@ -782,16 +782,16 @@ icac-enterprises:GufoRelatorMediationRule rdf:type sh:NodeShape ;
 # GUFO ENHANCED VALIDATION FOR ICAC ENTERPRISE PATTERNS
 # =============================================================================
 
-icac-enterprises:GufoEnterpriseStructureValidation rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:ChildExploitationEnterprise ;
+cacontology-enterprises:GufoEnterpriseStructureValidation rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:ChildExploitationEnterprise ;
     sh:sparql [
         sh:message "Enterprise as functional complex must have proper part-whole relationships with its hierarchy."@en ;
-        sh:prefixes icac-enterprises: , gufo: ;
+        sh:prefixes cacontology-enterprises: , gufo: ;
         sh:select """
             SELECT $this WHERE {
-                $this rdf:type icac-enterprises:ChildExploitationEnterprise .
+                $this rdf:type cacontology-enterprises:ChildExploitationEnterprise .
                 $this rdf:type gufo:FunctionalComplex .
-                $this icac-enterprises:hasHierarchy ?hierarchy .
+                $this cacontology-enterprises:hasHierarchy ?hierarchy .
                 FILTER NOT EXISTS {
                     ?hierarchy gufo:isComponentOf $this .
                 }
@@ -799,15 +799,15 @@ icac-enterprises:GufoEnterpriseStructureValidation rdf:type sh:NodeShape ;
         """ ;
     ] .
 
-icac-enterprises:GufoNetworkCellValidation rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:ExtremistNetworkCell ;
+cacontology-enterprises:GufoNetworkCellValidation rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:ExtremistNetworkCell ;
     sh:sparql [
         sh:message "Network cells must be proper components of their parent network."@en ;
-        sh:prefixes icac-enterprises: , gufo: ;
+        sh:prefixes cacontology-enterprises: , gufo: ;
         sh:select """
             SELECT $this WHERE {
-                $this rdf:type icac-enterprises:ExtremistNetworkCell .
-                ?network icac-enterprises:hasNetworkCell $this .
+                $this rdf:type cacontology-enterprises:ExtremistNetworkCell .
+                ?network cacontology-enterprises:hasNetworkCell $this .
                 FILTER NOT EXISTS {
                     $this gufo:isComponentOf ?network .
                 }
@@ -815,61 +815,61 @@ icac-enterprises:GufoNetworkCellValidation rdf:type sh:NodeShape ;
         """ ;
     ] .
 
-icac-enterprises:GufoCoercionEventValidation rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:SelfHarmCoercion ;
+cacontology-enterprises:GufoCoercionEventValidation rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:SelfHarmCoercion ;
     sh:sparql [
         sh:message "Coercion events must create situations and involve participant objects."@en ;
-        sh:prefixes icac-enterprises: , gufo: , uco-identity: ;
+        sh:prefixes cacontology-enterprises: , gufo: , uco-identity: ;
         sh:select """
             SELECT $this WHERE {
-                $this rdf:type icac-enterprises:SelfHarmCoercion .
+                $this rdf:type cacontology-enterprises:SelfHarmCoercion .
                 $this rdf:type gufo:Event .
                 FILTER NOT EXISTS {
                     {
-                        $this icac-enterprises:createsVictimizationSituation ?situation .
+                        $this cacontology-enterprises:createsVictimizationSituation ?situation .
                         ?situation rdf:type gufo:Situation .
                     }
                     UNION
                     {
                         ?person uco-identity:Person .
-                        ?person icac-enterprises:participatesInCoercion $this .
+                        ?person cacontology-enterprises:participatesInCoercion $this .
                     }
                 }
             }
         """ ;
     ] .
 
-icac-enterprises:GufoTemporalConsistencyValidation rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:ChildExploitationEnterprise ;
+cacontology-enterprises:GufoTemporalConsistencyValidation rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:ChildExploitationEnterprise ;
     sh:sparql [
         sh:message "Enterprise temporal boundaries must be consistent with member participation events."@en ;
-        sh:prefixes icac-enterprises: , gufo: ;
+        sh:prefixes cacontology-enterprises: , gufo: ;
         sh:select """
             SELECT $this WHERE {
-                $this icac-enterprises:hasOperationalBeginDate ?begin .
-                $this icac-enterprises:hasOperationalEndDate ?end .
-                $this icac-enterprises:hasMember ?member .
-                ?member icac-enterprises:participatesInCoercion ?event .
-                ?event icac-enterprises:hasCoercionEventBeginDate ?eventDate .
+                $this cacontology-enterprises:hasOperationalBeginDate ?begin .
+                $this cacontology-enterprises:hasOperationalEndDate ?end .
+                $this cacontology-enterprises:hasMember ?member .
+                ?member cacontology-enterprises:participatesInCoercion ?event .
+                ?event cacontology-enterprises:hasCoercionEventBeginDate ?eventDate .
                 FILTER (?eventDate < ?begin || ?eventDate > ?end)
             }
         """ ;
     ] .
 
-icac-enterprises:GufoRoleInstantiationValidation rdf:type sh:NodeShape ;
-    sh:targetClass icac-enterprises:EnterpriseRole ;
+cacontology-enterprises:GufoRoleInstantiationValidation rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-enterprises:EnterpriseRole ;
     sh:sparql [
         sh:message "Enterprise roles must be properly instantiated by persons within enterprise context."@en ;
-        sh:prefixes icac-enterprises: , gufo: , uco-identity: ;
+        sh:prefixes cacontology-enterprises: , gufo: , uco-identity: ;
         sh:select """
             SELECT $this WHERE {
-                $this rdf:type icac-enterprises:EnterpriseRole .
+                $this rdf:type cacontology-enterprises:EnterpriseRole .
                 $this rdf:type gufo:Role .
                 FILTER NOT EXISTS {
                     ?person rdf:type uco-identity:Person .
                     ?person ?roleProperty $this .
-                    ?enterprise icac-enterprises:hasMember ?person .
-                    ?enterprise rdf:type icac-enterprises:ChildExploitationEnterprise .
+                    ?enterprise cacontology-enterprises:hasMember ?person .
+                    ?enterprise rdf:type cacontology-enterprises:ChildExploitationEnterprise .
                 }
             }
         """ ;
@@ -879,14 +879,14 @@ icac-enterprises:GufoRoleInstantiationValidation rdf:type sh:NodeShape ;
 # GUFO FOUNDATIONAL CARDINALITY CONSTRAINTS
 # =============================================================================
 
-icac-enterprises:GufoObjectExistenceRule rdf:type sh:NodeShape ;
+cacontology-enterprises:GufoObjectExistenceRule rdf:type sh:NodeShape ;
     sh:targetClass gufo:Object ;
     sh:property [
         sh:path [ sh:alternativePath ( gufo:hasBeginPointInXSDDateTimeStamp gufo:hasEndPointInXSDDateTimeStamp ) ] ;
         sh:message "gUFO Objects should have temporal existence markers when applicable."@en ;
     ] .
 
-icac-enterprises:GufoEventDurationRule rdf:type sh:NodeShape ;
+cacontology-enterprises:GufoEventDurationRule rdf:type sh:NodeShape ;
     sh:targetClass gufo:Event ;
     sh:sparql [
         sh:message "gUFO Events with both begin and end dates must have positive duration."@en ;
@@ -901,7 +901,7 @@ icac-enterprises:GufoEventDurationRule rdf:type sh:NodeShape ;
         """ ;
     ] .
 
-icac-enterprises:GufoCollectionMembershipRule rdf:type sh:NodeShape ;
+cacontology-enterprises:GufoCollectionMembershipRule rdf:type sh:NodeShape ;
     sh:targetClass gufo:Collection ;
     sh:property [
         sh:path [ sh:inversePath gufo:isCollectionMemberOf ] ;

@@ -15,12 +15,12 @@
 # TACTICAL OPERATION SHAPES
 # =============================================================================
 
-icac-tactical:TacticalOperationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-tactical:TacticalOperation ;
+cacontology-tactical:TacticalOperationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-tactical:TacticalOperation ;
     rdfs:label "Tactical Operation Shape"@en ;
     rdfs:comment "Validation shape for tactical operation instances."@en ;
     sh:property [
-        sh:path icac-tactical:operationType ;
+        sh:path cacontology-tactical:operationType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -28,7 +28,7 @@ icac-tactical:TacticalOperationShape rdf:type sh:NodeShape ;
         sh:message "Tactical operation must specify operation type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:operationScope ;
+        sh:path cacontology-tactical:operationScope ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -36,7 +36,7 @@ icac-tactical:TacticalOperationShape rdf:type sh:NodeShape ;
         sh:message "Tactical operation must specify operation scope from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:riskLevel ;
+        sh:path cacontology-tactical:riskLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -44,7 +44,7 @@ icac-tactical:TacticalOperationShape rdf:type sh:NodeShape ;
         sh:message "Tactical operation must specify risk level from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:operationStatus ;
+        sh:path cacontology-tactical:operationStatus ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -52,7 +52,7 @@ icac-tactical:TacticalOperationShape rdf:type sh:NodeShape ;
         sh:message "Tactical operation must specify operation status from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:personnelCount ;
+        sh:path cacontology-tactical:personnelCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -61,7 +61,7 @@ icac-tactical:TacticalOperationShape rdf:type sh:NodeShape ;
         sh:message "Tactical operation must have between 1 and 200 personnel."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:planningDuration ;
+        sh:path cacontology-tactical:planningDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -84,12 +84,12 @@ icac-tactical:TacticalOperationShape rdf:type sh:NodeShape ;
         sh:message "Tactical operation may have an end time."@en
     ] .
 
-icac-tactical:ArrestOperationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-tactical:ArrestOperation ;
+cacontology-tactical:ArrestOperationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-tactical:ArrestOperation ;
     rdfs:label "Arrest Operation Shape"@en ;
     rdfs:comment "Validation shape for arrest operation instances."@en ;
     sh:property [
-        sh:path icac-tactical:arrestType ;
+        sh:path cacontology-tactical:arrestType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -97,7 +97,7 @@ icac-tactical:ArrestOperationShape rdf:type sh:NodeShape ;
         sh:message "Arrest operation must specify arrest type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:targetCount ;
+        sh:path cacontology-tactical:targetCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -106,26 +106,26 @@ icac-tactical:ArrestOperationShape rdf:type sh:NodeShape ;
         sh:message "Arrest operation must target between 1 and 50 individuals."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:resistanceExpected ;
+        sh:path cacontology-tactical:resistanceExpected ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Arrest operation must specify if resistance is expected."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:weaponsExpected ;
+        sh:path cacontology-tactical:weaponsExpected ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Arrest operation must specify if weapons are expected."@en
     ] .
 
-icac-tactical:SearchWarrantOperationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-tactical:SearchWarrantOperation ;
+cacontology-tactical:SearchWarrantOperationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-tactical:SearchWarrantOperation ;
     rdfs:label "Search Warrant Operation Shape"@en ;
     rdfs:comment "Validation shape for search warrant operation instances."@en ;
     sh:property [
-        sh:path icac-tactical:warrantType ;
+        sh:path cacontology-tactical:warrantType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -133,7 +133,7 @@ icac-tactical:SearchWarrantOperationShape rdf:type sh:NodeShape ;
         sh:message "Search warrant operation must specify warrant type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:searchScope ;
+        sh:path cacontology-tactical:searchScope ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -141,7 +141,7 @@ icac-tactical:SearchWarrantOperationShape rdf:type sh:NodeShape ;
         sh:message "Search warrant operation must specify search scope from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:entryMethod ;
+        sh:path cacontology-tactical:entryMethod ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -149,7 +149,7 @@ icac-tactical:SearchWarrantOperationShape rdf:type sh:NodeShape ;
         sh:message "Search warrant operation must specify entry method from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:evidenceExpected ;
+        sh:path cacontology-tactical:evidenceExpected ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -160,12 +160,12 @@ icac-tactical:SearchWarrantOperationShape rdf:type sh:NodeShape ;
 # TACTICAL TEAM SHAPES
 # =============================================================================
 
-icac-tactical:TacticalTeamShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-tactical:TacticalTeam ;
+cacontology-tactical:TacticalTeamShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-tactical:TacticalTeam ;
     rdfs:label "Tactical Team Shape"@en ;
     rdfs:comment "Validation shape for tactical team instances."@en ;
     sh:property [
-        sh:path icac-tactical:teamType ;
+        sh:path cacontology-tactical:teamType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -173,7 +173,7 @@ icac-tactical:TacticalTeamShape rdf:type sh:NodeShape ;
         sh:message "Tactical team must specify team type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:teamSize ;
+        sh:path cacontology-tactical:teamSize ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -182,7 +182,7 @@ icac-tactical:TacticalTeamShape rdf:type sh:NodeShape ;
         sh:message "Tactical team must have between 2 and 50 members."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:teamLeader ;
+        sh:path cacontology-tactical:teamLeader ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -191,7 +191,7 @@ icac-tactical:TacticalTeamShape rdf:type sh:NodeShape ;
         sh:message "Tactical team must specify team leader (3-100 characters)."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:readinessLevel ;
+        sh:path cacontology-tactical:readinessLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -199,7 +199,7 @@ icac-tactical:TacticalTeamShape rdf:type sh:NodeShape ;
         sh:message "Tactical team must specify readiness level from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:specialization ;
+        sh:path cacontology-tactical:specialization ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -207,7 +207,7 @@ icac-tactical:TacticalTeamShape rdf:type sh:NodeShape ;
         sh:message "Team specialization must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:certificationLevel ;
+        sh:path cacontology-tactical:certificationLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -215,12 +215,12 @@ icac-tactical:TacticalTeamShape rdf:type sh:NodeShape ;
         sh:message "Tactical team must specify certification level from the allowed list."@en
     ] .
 
-icac-tactical:SwatTeamShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-tactical:SwatTeam ;
+cacontology-tactical:SwatTeamShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-tactical:SwatTeam ;
     rdfs:label "SWAT Team Shape"@en ;
     rdfs:comment "Validation shape for SWAT team instances."@en ;
     sh:property [
-        sh:path icac-tactical:swatClassification ;
+        sh:path cacontology-tactical:swatClassification ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -228,7 +228,7 @@ icac-tactical:SwatTeamShape rdf:type sh:NodeShape ;
         sh:message "SWAT team must specify SWAT classification from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:equipmentLevel ;
+        sh:path cacontology-tactical:equipmentLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -236,7 +236,7 @@ icac-tactical:SwatTeamShape rdf:type sh:NodeShape ;
         sh:message "SWAT team must specify equipment level from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:trainingHours ;
+        sh:path cacontology-tactical:trainingHours ;
         sh:datatype xsd:decimal ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -249,12 +249,12 @@ icac-tactical:SwatTeamShape rdf:type sh:NodeShape ;
 # TACTICAL PLANNING SHAPES
 # =============================================================================
 
-icac-tactical:TacticalPlanShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-tactical:TacticalPlan ;
+cacontology-tactical:TacticalPlanShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-tactical:TacticalPlan ;
     rdfs:label "Tactical Plan Shape"@en ;
     rdfs:comment "Validation shape for tactical plan instances."@en ;
     sh:property [
-        sh:path icac-tactical:planType ;
+        sh:path cacontology-tactical:planType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -262,7 +262,7 @@ icac-tactical:TacticalPlanShape rdf:type sh:NodeShape ;
         sh:message "Tactical plan must specify plan type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:planComplexity ;
+        sh:path cacontology-tactical:planComplexity ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -270,7 +270,7 @@ icac-tactical:TacticalPlanShape rdf:type sh:NodeShape ;
         sh:message "Tactical plan must specify plan complexity from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:approvalLevel ;
+        sh:path cacontology-tactical:approvalLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -278,7 +278,7 @@ icac-tactical:TacticalPlanShape rdf:type sh:NodeShape ;
         sh:message "Tactical plan must specify approval level from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:planStatus ;
+        sh:path cacontology-tactical:planStatus ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -286,7 +286,7 @@ icac-tactical:TacticalPlanShape rdf:type sh:NodeShape ;
         sh:message "Tactical plan must specify plan status from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:riskAssessment ;
+        sh:path cacontology-tactical:riskAssessment ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -294,7 +294,7 @@ icac-tactical:TacticalPlanShape rdf:type sh:NodeShape ;
         sh:message "Tactical plan must specify risk assessment from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:contingencyPlans ;
+        sh:path cacontology-tactical:contingencyPlans ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -303,12 +303,12 @@ icac-tactical:TacticalPlanShape rdf:type sh:NodeShape ;
         sh:message "Number of contingency plans must be between 0 and 10."@en
     ] .
 
-icac-tactical:OperationBriefingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-tactical:OperationBriefing ;
+cacontology-tactical:OperationBriefingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-tactical:OperationBriefing ;
     rdfs:label "Operation Briefing Shape"@en ;
     rdfs:comment "Validation shape for operation briefing instances."@en ;
     sh:property [
-        sh:path icac-tactical:briefingType ;
+        sh:path cacontology-tactical:briefingType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -316,7 +316,7 @@ icac-tactical:OperationBriefingShape rdf:type sh:NodeShape ;
         sh:message "Operation briefing must specify briefing type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:briefingDuration ;
+        sh:path cacontology-tactical:briefingDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -325,7 +325,7 @@ icac-tactical:OperationBriefingShape rdf:type sh:NodeShape ;
         sh:message "Briefing duration must be between 0.25 and 8 hours."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:attendeeCount ;
+        sh:path cacontology-tactical:attendeeCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -334,7 +334,7 @@ icac-tactical:OperationBriefingShape rdf:type sh:NodeShape ;
         sh:message "Operation briefing must have between 2 and 100 attendees."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:briefingDate ;
+        sh:path cacontology-tactical:briefingDate ;
         sh:datatype xsd:dateTime ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -345,12 +345,12 @@ icac-tactical:OperationBriefingShape rdf:type sh:NodeShape ;
 # TACTICAL EQUIPMENT SHAPES
 # =============================================================================
 
-icac-tactical:TacticalEquipmentShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-tactical:TacticalEquipment ;
+cacontology-tactical:TacticalEquipmentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-tactical:TacticalEquipment ;
     rdfs:label "Tactical Equipment Shape"@en ;
     rdfs:comment "Validation shape for tactical equipment instances."@en ;
     sh:property [
-        sh:path icac-tactical:equipmentType ;
+        sh:path cacontology-tactical:equipmentType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -358,7 +358,7 @@ icac-tactical:TacticalEquipmentShape rdf:type sh:NodeShape ;
         sh:message "Tactical equipment must specify equipment type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:equipmentStatus ;
+        sh:path cacontology-tactical:equipmentStatus ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -366,14 +366,14 @@ icac-tactical:TacticalEquipmentShape rdf:type sh:NodeShape ;
         sh:message "Tactical equipment must specify equipment status from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:certificationRequired ;
+        sh:path cacontology-tactical:certificationRequired ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Tactical equipment must specify if certification is required."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:maintenanceInterval ;
+        sh:path cacontology-tactical:maintenanceInterval ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -382,19 +382,19 @@ icac-tactical:TacticalEquipmentShape rdf:type sh:NodeShape ;
         sh:message "Maintenance interval must be between 1 and 365 days."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:lastMaintenance ;
+        sh:path cacontology-tactical:lastMaintenance ;
         sh:datatype xsd:dateTime ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "Tactical equipment may specify last maintenance date."@en
     ] .
 
-icac-tactical:ProtectiveGearShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-tactical:ProtectiveGear ;
+cacontology-tactical:ProtectiveGearShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-tactical:ProtectiveGear ;
     rdfs:label "Protective Gear Shape"@en ;
     rdfs:comment "Validation shape for protective gear instances."@en ;
     sh:property [
-        sh:path icac-tactical:protectionLevel ;
+        sh:path cacontology-tactical:protectionLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -402,7 +402,7 @@ icac-tactical:ProtectiveGearShape rdf:type sh:NodeShape ;
         sh:message "Protective gear must specify protection level from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:gearType ;
+        sh:path cacontology-tactical:gearType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -410,7 +410,7 @@ icac-tactical:ProtectiveGearShape rdf:type sh:NodeShape ;
         sh:message "Protective gear must specify gear type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:threatProtection ;
+        sh:path cacontology-tactical:threatProtection ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -422,12 +422,12 @@ icac-tactical:ProtectiveGearShape rdf:type sh:NodeShape ;
 # SURVEILLANCE OPERATION SHAPES
 # =============================================================================
 
-icac-tactical:SurveillanceOperationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-tactical:SurveillanceOperation ;
+cacontology-tactical:SurveillanceOperationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-tactical:SurveillanceOperation ;
     rdfs:label "Surveillance Operation Shape"@en ;
     rdfs:comment "Validation shape for surveillance operation instances."@en ;
     sh:property [
-        sh:path icac-tactical:surveillanceType ;
+        sh:path cacontology-tactical:surveillanceType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -435,7 +435,7 @@ icac-tactical:SurveillanceOperationShape rdf:type sh:NodeShape ;
         sh:message "Surveillance operation must specify surveillance type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:surveillanceDuration ;
+        sh:path cacontology-tactical:surveillanceDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -444,7 +444,7 @@ icac-tactical:SurveillanceOperationShape rdf:type sh:NodeShape ;
         sh:message "Surveillance duration must be between 1 and 8760 hours (1 year)."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:targetType ;
+        sh:path cacontology-tactical:targetType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -452,7 +452,7 @@ icac-tactical:SurveillanceOperationShape rdf:type sh:NodeShape ;
         sh:message "Surveillance operation must specify target type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:detectionRisk ;
+        sh:path cacontology-tactical:detectionRisk ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -460,7 +460,7 @@ icac-tactical:SurveillanceOperationShape rdf:type sh:NodeShape ;
         sh:message "Surveillance operation must specify detection risk from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:surveillanceTeamSize ;
+        sh:path cacontology-tactical:surveillanceTeamSize ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -469,12 +469,12 @@ icac-tactical:SurveillanceOperationShape rdf:type sh:NodeShape ;
         sh:message "Surveillance team size must be between 1 and 20 members."@en
     ] .
 
-icac-tactical:ElectronicSurveillanceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-tactical:ElectronicSurveillance ;
+cacontology-tactical:ElectronicSurveillanceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-tactical:ElectronicSurveillance ;
     rdfs:label "Electronic Surveillance Shape"@en ;
     rdfs:comment "Validation shape for electronic surveillance instances."@en ;
     sh:property [
-        sh:path icac-tactical:surveillanceMethod ;
+        sh:path cacontology-tactical:surveillanceMethod ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -482,14 +482,14 @@ icac-tactical:ElectronicSurveillanceShape rdf:type sh:NodeShape ;
         sh:message "Electronic surveillance must specify surveillance method from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:legalAuthorization ;
+        sh:path cacontology-tactical:legalAuthorization ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Electronic surveillance must specify if legal authorization exists."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:dataRetention ;
+        sh:path cacontology-tactical:dataRetention ;
         sh:datatype xsd:decimal ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -502,12 +502,12 @@ icac-tactical:ElectronicSurveillanceShape rdf:type sh:NodeShape ;
 # TACTICAL EXECUTION SHAPES
 # =============================================================================
 
-icac-tactical:TacticalExecutionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-tactical:TacticalExecution ;
+cacontology-tactical:TacticalExecutionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-tactical:TacticalExecution ;
     rdfs:label "Tactical Execution Shape"@en ;
     rdfs:comment "Validation shape for tactical execution instances."@en ;
     sh:property [
-        sh:path icac-tactical:executionPhase ;
+        sh:path cacontology-tactical:executionPhase ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -515,7 +515,7 @@ icac-tactical:TacticalExecutionShape rdf:type sh:NodeShape ;
         sh:message "Tactical execution must specify execution phase from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:executionStatus ;
+        sh:path cacontology-tactical:executionStatus ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -523,28 +523,28 @@ icac-tactical:TacticalExecutionShape rdf:type sh:NodeShape ;
         sh:message "Tactical execution must specify execution status from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:forceUsed ;
+        sh:path cacontology-tactical:forceUsed ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Tactical execution must specify if force was used."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:injuriesReported ;
+        sh:path cacontology-tactical:injuriesReported ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Tactical execution must specify if injuries were reported."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:evidenceSeized ;
+        sh:path cacontology-tactical:evidenceSeized ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Tactical execution must specify if evidence was seized."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:arrestsMade ;
+        sh:path cacontology-tactical:arrestsMade ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -553,12 +553,12 @@ icac-tactical:TacticalExecutionShape rdf:type sh:NodeShape ;
         sh:message "Number of arrests made must be between 0 and 100."@en
     ] .
 
-icac-tactical:PostOperationReportShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-tactical:PostOperationReport ;
+cacontology-tactical:PostOperationReportShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-tactical:PostOperationReport ;
     rdfs:label "Post Operation Report Shape"@en ;
     rdfs:comment "Validation shape for post operation report instances."@en ;
     sh:property [
-        sh:path icac-tactical:reportType ;
+        sh:path cacontology-tactical:reportType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -566,21 +566,21 @@ icac-tactical:PostOperationReportShape rdf:type sh:NodeShape ;
         sh:message "Post operation report must specify report type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:reportDate ;
+        sh:path cacontology-tactical:reportDate ;
         sh:datatype xsd:dateTime ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Post operation report must specify report date."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:objectivesAchieved ;
+        sh:path cacontology-tactical:objectivesAchieved ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Post operation report must specify if objectives were achieved."@en
     ] ;
     sh:property [
-        sh:path icac-tactical:recommendationsCount ;
+        sh:path cacontology-tactical:recommendationsCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -593,63 +593,63 @@ icac-tactical:PostOperationReportShape rdf:type sh:NodeShape ;
 # OBJECT PROPERTY SHAPES
 # =============================================================================
 
-icac-tactical:ExecutedByTeamShape rdf:type sh:PropertyShape ;
-    sh:path icac-tactical:executedByTeam ;
+cacontology-tactical:ExecutedByTeamShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-tactical:executedByTeam ;
     sh:name "executed by team" ;
     sh:description "Links operation to executing team" ;
-    sh:class icac-tactical:TacticalTeam ;
+    sh:class cacontology-tactical:TacticalTeam ;
     sh:minCount 1 .
 
-icac-tactical:FollowsPlanShape rdf:type sh:PropertyShape ;
-    sh:path icac-tactical:followsPlan ;
+cacontology-tactical:FollowsPlanShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-tactical:followsPlan ;
     sh:name "follows plan" ;
     sh:description "Links operation to tactical plan" ;
-    sh:class icac-tactical:TacticalPlan ;
+    sh:class cacontology-tactical:TacticalPlan ;
     sh:minCount 1 ;
     sh:maxCount 1 .
 
-icac-tactical:UsesEquipmentShape rdf:type sh:PropertyShape ;
-    sh:path icac-tactical:usesEquipment ;
+cacontology-tactical:UsesEquipmentShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-tactical:usesEquipment ;
     sh:name "uses equipment" ;
     sh:description "Links operation to equipment used" ;
-    sh:class icac-tactical:TacticalEquipment ;
+    sh:class cacontology-tactical:TacticalEquipment ;
     sh:minCount 0 .
 
-icac-tactical:IncludesBriefingShape rdf:type sh:PropertyShape ;
-    sh:path icac-tactical:includesBriefing ;
+cacontology-tactical:IncludesBriefingShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-tactical:includesBriefing ;
     sh:name "includes briefing" ;
     sh:description "Links operation to briefings" ;
-    sh:class icac-tactical:OperationBriefing ;
+    sh:class cacontology-tactical:OperationBriefing ;
     sh:minCount 1 .
 
-icac-tactical:ResultsInExecutionShape rdf:type sh:PropertyShape ;
-    sh:path icac-tactical:resultsInExecution ;
+cacontology-tactical:ResultsInExecutionShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-tactical:resultsInExecution ;
     sh:name "results in execution" ;
     sh:description "Links operation to execution details" ;
-    sh:class icac-tactical:TacticalExecution ;
+    sh:class cacontology-tactical:TacticalExecution ;
     sh:minCount 0 ;
     sh:maxCount 1 .
 
-icac-tactical:GeneratesReportShape rdf:type sh:PropertyShape ;
-    sh:path icac-tactical:generatesReport ;
+cacontology-tactical:GeneratesReportShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-tactical:generatesReport ;
     sh:name "generates report" ;
     sh:description "Links operation to post-operation reports" ;
-    sh:class icac-tactical:PostOperationReport ;
+    sh:class cacontology-tactical:PostOperationReport ;
     sh:minCount 0 .
 
-icac-tactical:IncludesSurveillanceShape rdf:type sh:PropertyShape ;
-    sh:path icac-tactical:includesSurveillance ;
+cacontology-tactical:IncludesSurveillanceShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-tactical:includesSurveillance ;
     sh:name "includes surveillance" ;
     sh:description "Links operation to surveillance components" ;
-    sh:class icac-tactical:SurveillanceOperation ;
+    sh:class cacontology-tactical:SurveillanceOperation ;
     sh:minCount 0 .
 
 # =============================================================================
 # CROSS-REFERENCE VALIDATION SHAPES
 # =============================================================================
 
-icac-tactical:TacticalOperationCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-tactical:TacticalOperation ;
+cacontology-tactical:TacticalOperationCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-tactical:TacticalOperation ;
     rdfs:label "Tactical Operation Cross Reference Shape"@en ;
     rdfs:comment "Validates cross-references between tactical operations and related entities."@en ;
     sh:sparql [
@@ -657,18 +657,18 @@ icac-tactical:TacticalOperationCrossReferenceShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-tactical:TacticalOperation .
+                $this a cacontology-tactical:TacticalOperation .
                 FILTER NOT EXISTS {
-                    $this icac-tactical:executedByTeam ?team ;
-                          icac-tactical:followsPlan ?plan ;
-                          icac-tactical:includesBriefing ?briefing .
+                    $this cacontology-tactical:executedByTeam ?team ;
+                          cacontology-tactical:followsPlan ?plan ;
+                          cacontology-tactical:includesBriefing ?briefing .
                 }
             }
         """
     ] .
 
-icac-tactical:RiskAssessmentValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-tactical:TacticalPlan ;
+cacontology-tactical:RiskAssessmentValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-tactical:TacticalPlan ;
     rdfs:label "Risk Assessment Validation Shape"@en ;
     rdfs:comment "Validates risk assessment consistency in tactical plans."@en ;
     sh:sparql [
@@ -676,15 +676,15 @@ icac-tactical:RiskAssessmentValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-tactical:riskAssessment ?risk ;
-                      icac-tactical:contingencyPlans ?contingencies .
+                $this cacontology-tactical:riskAssessment ?risk ;
+                      cacontology-tactical:contingencyPlans ?contingencies .
                 FILTER (?risk IN ("high_risk", "extreme_risk", "critical_risk") && ?contingencies = 0)
             }
         """
     ] .
 
-icac-tactical:TeamCertificationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-tactical:TacticalTeam ;
+cacontology-tactical:TeamCertificationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-tactical:TacticalTeam ;
     rdfs:label "Team Certification Shape"@en ;
     rdfs:comment "Validates tactical team certification requirements."@en ;
     sh:sparql [
@@ -692,9 +692,9 @@ icac-tactical:TeamCertificationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-tactical:SwatTeam ;
-                      icac-tactical:certificationLevel ?cert ;
-                      icac-tactical:trainingHours ?hours .
+                $this a cacontology-tactical:SwatTeam ;
+                      cacontology-tactical:certificationLevel ?cert ;
+                      cacontology-tactical:trainingHours ?hours .
                 FILTER (?cert IN ("basic", "intermediate") || ?hours < 200.0)
             }
         """
@@ -704,8 +704,8 @@ icac-tactical:TeamCertificationShape rdf:type sh:NodeShape ;
 # TEMPORAL VALIDATION SHAPES
 # =============================================================================
 
-icac-tactical:TemporalValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-tactical:TacticalOperation ;
+cacontology-tactical:TemporalValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-tactical:TacticalOperation ;
     rdfs:label "Temporal Validation Shape"@en ;
     rdfs:comment "Validates temporal consistency in tactical operations."@en ;
     sh:sparql [
@@ -720,8 +720,8 @@ icac-tactical:TemporalValidationShape rdf:type sh:NodeShape ;
         """
     ] .
 
-icac-tactical:BriefingTimingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-tactical:OperationBriefing ;
+cacontology-tactical:BriefingTimingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-tactical:OperationBriefing ;
     rdfs:label "Briefing Timing Shape"@en ;
     rdfs:comment "Validates operation briefing timing."@en ;
     sh:sparql [
@@ -729,17 +729,17 @@ icac-tactical:BriefingTimingShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-tactical:briefingType "pre_operation" ;
-                      icac-tactical:briefingDate ?briefingDate .
-                ?operation icac-tactical:includesBriefing $this ;
+                $this cacontology-tactical:briefingType "pre_operation" ;
+                      cacontology-tactical:briefingDate ?briefingDate .
+                ?operation cacontology-tactical:includesBriefing $this ;
                           uco-core:startTime ?operationStart .
                 FILTER (?briefingDate >= ?operationStart)
             }
         """
     ] .
 
-icac-tactical:MaintenanceTimingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-tactical:TacticalEquipment ;
+cacontology-tactical:MaintenanceTimingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-tactical:TacticalEquipment ;
     rdfs:label "Maintenance Timing Shape"@en ;
     rdfs:comment "Validates equipment maintenance timing."@en ;
     sh:sparql [
@@ -747,8 +747,8 @@ icac-tactical:MaintenanceTimingShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-tactical:lastMaintenance ?lastMaint ;
-                      icac-tactical:maintenanceInterval ?interval .
+                $this cacontology-tactical:lastMaintenance ?lastMaint ;
+                      cacontology-tactical:maintenanceInterval ?interval .
                 FILTER ((NOW() - ?lastMaint) > (?interval * 24 * 60 * 60))
             }
         """
@@ -758,8 +758,8 @@ icac-tactical:MaintenanceTimingShape rdf:type sh:NodeShape ;
 # DATA QUALITY SHAPES
 # =============================================================================
 
-icac-tactical:DataQualityShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-tactical:TacticalOperation ;
+cacontology-tactical:DataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-tactical:TacticalOperation ;
     rdfs:label "Data Quality Shape"@en ;
     rdfs:comment "Validates data quality for tactical operations."@en ;
     sh:property [

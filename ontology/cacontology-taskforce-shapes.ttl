@@ -15,12 +15,12 @@
 # TASK FORCE SHAPES
 # =============================================================================
 
-icac-taskforce:TaskForceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-taskforce:TaskForce ;
+cacontology-taskforce:TaskForceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-taskforce:TaskForce ;
     rdfs:label "Task Force Shape"@en ;
     rdfs:comment "Validation shape for task force instances."@en ;
     sh:property [
-        sh:path icac-taskforce:taskForceType ;
+        sh:path cacontology-taskforce:taskForceType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -28,7 +28,7 @@ icac-taskforce:TaskForceShape rdf:type sh:NodeShape ;
         sh:message "Task force must specify task force type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:memberAgencyCount ;
+        sh:path cacontology-taskforce:memberAgencyCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -37,7 +37,7 @@ icac-taskforce:TaskForceShape rdf:type sh:NodeShape ;
         sh:message "Task force must have between 2 and 50 member agencies."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:operationalStatus ;
+        sh:path cacontology-taskforce:operationalStatus ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -45,7 +45,7 @@ icac-taskforce:TaskForceShape rdf:type sh:NodeShape ;
         sh:message "Task force must specify operational status from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:fundingSource ;
+        sh:path cacontology-taskforce:fundingSource ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -53,14 +53,14 @@ icac-taskforce:TaskForceShape rdf:type sh:NodeShape ;
         sh:message "Task force must specify funding source from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:establishmentDate ;
+        sh:path cacontology-taskforce:establishmentDate ;
         sh:datatype xsd:dateTime ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Task force must specify establishment date."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:jurisdictionCoverage ;
+        sh:path cacontology-taskforce:jurisdictionCoverage ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -68,12 +68,12 @@ icac-taskforce:TaskForceShape rdf:type sh:NodeShape ;
         sh:message "Task force must specify jurisdiction coverage from the allowed list."@en
     ] .
 
-icac-taskforce:IcacTaskForceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-taskforce:IcacTaskForce ;
+cacontology-taskforce:IcacTaskForceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-taskforce:IcacTaskForce ;
     rdfs:label "CAC Task Force Shape"@en ;
     rdfs:comment "Validation shape for ICAC task force instances."@en ;
     sh:property [
-        sh:path icac-taskforce:icacRegion ;
+        sh:path cacontology-taskforce:icacRegion ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -81,7 +81,7 @@ icac-taskforce:IcacTaskForceShape rdf:type sh:NodeShape ;
         sh:message "ICAC task force must specify ICAC region from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:grantNumber ;
+        sh:path cacontology-taskforce:grantNumber ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -90,7 +90,7 @@ icac-taskforce:IcacTaskForceShape rdf:type sh:NodeShape ;
         sh:message "ICAC task force must specify grant number (5-50 characters)."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:complianceStatus ;
+        sh:path cacontology-taskforce:complianceStatus ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -102,12 +102,12 @@ icac-taskforce:IcacTaskForceShape rdf:type sh:NodeShape ;
 # TASK FORCE MEMBER SHAPES
 # =============================================================================
 
-icac-taskforce:TaskForceMemberShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-taskforce:TaskForceMember ;
+cacontology-taskforce:TaskForceMemberShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-taskforce:TaskForceMember ;
     rdfs:label "Task Force Member Shape"@en ;
     rdfs:comment "Validation shape for task force member instances."@en ;
     sh:property [
-        sh:path icac-taskforce:memberRole ;
+        sh:path cacontology-taskforce:memberRole ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -115,7 +115,7 @@ icac-taskforce:TaskForceMemberShape rdf:type sh:NodeShape ;
         sh:message "Task force member must specify member role from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:membershipType ;
+        sh:path cacontology-taskforce:membershipType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -123,7 +123,7 @@ icac-taskforce:TaskForceMemberShape rdf:type sh:NodeShape ;
         sh:message "Task force member must specify membership type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:securityClearance ;
+        sh:path cacontology-taskforce:securityClearance ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -131,33 +131,33 @@ icac-taskforce:TaskForceMemberShape rdf:type sh:NodeShape ;
         sh:message "Security clearance must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:trainingCompleted ;
+        sh:path cacontology-taskforce:trainingCompleted ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Task force member must specify if training is completed."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:membershipStartDate ;
+        sh:path cacontology-taskforce:membershipStartDate ;
         sh:datatype xsd:dateTime ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Task force member must specify membership start date."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:membershipEndDate ;
+        sh:path cacontology-taskforce:membershipEndDate ;
         sh:datatype xsd:dateTime ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "Task force member may specify membership end date."@en
     ] .
 
-icac-taskforce:TaskForceCommanderShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-taskforce:TaskForceCommander ;
+cacontology-taskforce:TaskForceCommanderShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-taskforce:TaskForceCommander ;
     rdfs:label "Task Force Commander Shape"@en ;
     rdfs:comment "Validation shape for task force commander instances."@en ;
     sh:property [
-        sh:path icac-taskforce:commandAuthority ;
+        sh:path cacontology-taskforce:commandAuthority ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -165,7 +165,7 @@ icac-taskforce:TaskForceCommanderShape rdf:type sh:NodeShape ;
         sh:message "Task force commander must specify command authority from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:yearsExperience ;
+        sh:path cacontology-taskforce:yearsExperience ;
         sh:datatype xsd:decimal ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -178,12 +178,12 @@ icac-taskforce:TaskForceCommanderShape rdf:type sh:NodeShape ;
 # TASK FORCE OPERATION SHAPES
 # =============================================================================
 
-icac-taskforce:TaskForceOperationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-taskforce:TaskForceOperation ;
+cacontology-taskforce:TaskForceOperationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-taskforce:TaskForceOperation ;
     rdfs:label "Task Force Operation Shape"@en ;
     rdfs:comment "Validation shape for task force operation instances."@en ;
     sh:property [
-        sh:path icac-taskforce:operationType ;
+        sh:path cacontology-taskforce:operationType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -191,7 +191,7 @@ icac-taskforce:TaskForceOperationShape rdf:type sh:NodeShape ;
         sh:message "Task force operation must specify operation type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:operationScope ;
+        sh:path cacontology-taskforce:operationScope ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -199,7 +199,7 @@ icac-taskforce:TaskForceOperationShape rdf:type sh:NodeShape ;
         sh:message "Task force operation must specify operation scope from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:participatingAgencies ;
+        sh:path cacontology-taskforce:participatingAgencies ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -208,7 +208,7 @@ icac-taskforce:TaskForceOperationShape rdf:type sh:NodeShape ;
         sh:message "Task force operation must have between 1 and 25 participating agencies."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:operationDuration ;
+        sh:path cacontology-taskforce:operationDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -231,12 +231,12 @@ icac-taskforce:TaskForceOperationShape rdf:type sh:NodeShape ;
         sh:message "Task force operation may have an end time."@en
     ] .
 
-icac-taskforce:JointOperationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-taskforce:JointOperation ;
+cacontology-taskforce:JointOperationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-taskforce:JointOperation ;
     rdfs:label "Joint Operation Shape"@en ;
     rdfs:comment "Validation shape for joint operation instances."@en ;
     sh:property [
-        sh:path icac-taskforce:leadTaskForce ;
+        sh:path cacontology-taskforce:leadTaskForce ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -245,7 +245,7 @@ icac-taskforce:JointOperationShape rdf:type sh:NodeShape ;
         sh:message "Joint operation must specify lead task force (3-100 characters)."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:coordinationLevel ;
+        sh:path cacontology-taskforce:coordinationLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -257,12 +257,12 @@ icac-taskforce:JointOperationShape rdf:type sh:NodeShape ;
 # RESOURCE ALLOCATION SHAPES
 # =============================================================================
 
-icac-taskforce:ResourceAllocationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-taskforce:ResourceAllocation ;
+cacontology-taskforce:ResourceAllocationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-taskforce:ResourceAllocation ;
     rdfs:label "Resource Allocation Shape"@en ;
     rdfs:comment "Validation shape for resource allocation instances."@en ;
     sh:property [
-        sh:path icac-taskforce:resourceType ;
+        sh:path cacontology-taskforce:resourceType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -270,7 +270,7 @@ icac-taskforce:ResourceAllocationShape rdf:type sh:NodeShape ;
         sh:message "Resource allocation must specify resource type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:allocationAmount ;
+        sh:path cacontology-taskforce:allocationAmount ;
         sh:datatype xsd:decimal ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -279,7 +279,7 @@ icac-taskforce:ResourceAllocationShape rdf:type sh:NodeShape ;
         sh:message "Allocation amount must be between $1 and $10,000,000."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:allocationPeriod ;
+        sh:path cacontology-taskforce:allocationPeriod ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -287,7 +287,7 @@ icac-taskforce:ResourceAllocationShape rdf:type sh:NodeShape ;
         sh:message "Resource allocation must specify allocation period from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:fundingSource ;
+        sh:path cacontology-taskforce:fundingSource ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -295,12 +295,12 @@ icac-taskforce:ResourceAllocationShape rdf:type sh:NodeShape ;
         sh:message "Resource allocation must specify funding source from the allowed list."@en
     ] .
 
-icac-taskforce:PersonnelAllocationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-taskforce:PersonnelAllocation ;
+cacontology-taskforce:PersonnelAllocationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-taskforce:PersonnelAllocation ;
     rdfs:label "Personnel Allocation Shape"@en ;
     rdfs:comment "Validation shape for personnel allocation instances."@en ;
     sh:property [
-        sh:path icac-taskforce:personnelCount ;
+        sh:path cacontology-taskforce:personnelCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -309,7 +309,7 @@ icac-taskforce:PersonnelAllocationShape rdf:type sh:NodeShape ;
         sh:message "Personnel allocation must specify personnel count between 1 and 100."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:personnelType ;
+        sh:path cacontology-taskforce:personnelType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -317,7 +317,7 @@ icac-taskforce:PersonnelAllocationShape rdf:type sh:NodeShape ;
         sh:message "Personnel allocation must specify personnel type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:fullTimeEquivalent ;
+        sh:path cacontology-taskforce:fullTimeEquivalent ;
         sh:datatype xsd:decimal ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -330,12 +330,12 @@ icac-taskforce:PersonnelAllocationShape rdf:type sh:NodeShape ;
 # TRAINING AND CERTIFICATION SHAPES
 # =============================================================================
 
-icac-taskforce:TrainingProgramShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-taskforce:TrainingProgram ;
+cacontology-taskforce:TrainingProgramShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-taskforce:TrainingProgram ;
     rdfs:label "Training Program Shape"@en ;
     rdfs:comment "Validation shape for training program instances."@en ;
     sh:property [
-        sh:path icac-taskforce:trainingType ;
+        sh:path cacontology-taskforce:trainingType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -343,7 +343,7 @@ icac-taskforce:TrainingProgramShape rdf:type sh:NodeShape ;
         sh:message "Training program must specify training type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:trainingDuration ;
+        sh:path cacontology-taskforce:trainingDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -352,14 +352,14 @@ icac-taskforce:TrainingProgramShape rdf:type sh:NodeShape ;
         sh:message "Training duration must be between 4 and 160 hours."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:certificationRequired ;
+        sh:path cacontology-taskforce:certificationRequired ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Training program must specify if certification is required."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:trainingProvider ;
+        sh:path cacontology-taskforce:trainingProvider ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -367,7 +367,7 @@ icac-taskforce:TrainingProgramShape rdf:type sh:NodeShape ;
         sh:message "Training program must specify training provider from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:maxParticipants ;
+        sh:path cacontology-taskforce:maxParticipants ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -376,12 +376,12 @@ icac-taskforce:TrainingProgramShape rdf:type sh:NodeShape ;
         sh:message "Training program must specify maximum participants between 5 and 100."@en
     ] .
 
-icac-taskforce:CertificationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-taskforce:Certification ;
+cacontology-taskforce:CertificationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-taskforce:Certification ;
     rdfs:label "Certification Shape"@en ;
     rdfs:comment "Validation shape for certification instances."@en ;
     sh:property [
-        sh:path icac-taskforce:certificationType ;
+        sh:path cacontology-taskforce:certificationType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -389,21 +389,21 @@ icac-taskforce:CertificationShape rdf:type sh:NodeShape ;
         sh:message "Certification must specify certification type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:certificationDate ;
+        sh:path cacontology-taskforce:certificationDate ;
         sh:datatype xsd:dateTime ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Certification must specify certification date."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:expirationDate ;
+        sh:path cacontology-taskforce:expirationDate ;
         sh:datatype xsd:dateTime ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Certification must specify expiration date."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:renewalRequired ;
+        sh:path cacontology-taskforce:renewalRequired ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -414,12 +414,12 @@ icac-taskforce:CertificationShape rdf:type sh:NodeShape ;
 # PERFORMANCE METRICS SHAPES
 # =============================================================================
 
-icac-taskforce:PerformanceMetricsShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-taskforce:PerformanceMetrics ;
+cacontology-taskforce:PerformanceMetricsShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-taskforce:PerformanceMetrics ;
     rdfs:label "Performance Metrics Shape"@en ;
     rdfs:comment "Validation shape for performance metrics instances."@en ;
     sh:property [
-        sh:path icac-taskforce:metricType ;
+        sh:path cacontology-taskforce:metricType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -427,7 +427,7 @@ icac-taskforce:PerformanceMetricsShape rdf:type sh:NodeShape ;
         sh:message "Performance metrics must specify metric type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:metricValue ;
+        sh:path cacontology-taskforce:metricValue ;
         sh:datatype xsd:decimal ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -436,7 +436,7 @@ icac-taskforce:PerformanceMetricsShape rdf:type sh:NodeShape ;
         sh:message "Metric value must be between 0.0 and 100.0."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:reportingPeriod ;
+        sh:path cacontology-taskforce:reportingPeriod ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -444,7 +444,7 @@ icac-taskforce:PerformanceMetricsShape rdf:type sh:NodeShape ;
         sh:message "Performance metrics must specify reporting period from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-taskforce:benchmarkComparison ;
+        sh:path cacontology-taskforce:benchmarkComparison ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -456,54 +456,54 @@ icac-taskforce:PerformanceMetricsShape rdf:type sh:NodeShape ;
 # OBJECT PROPERTY SHAPES
 # =============================================================================
 
-icac-taskforce:HasMemberShape rdf:type sh:PropertyShape ;
-    sh:path icac-taskforce:hasMember ;
+cacontology-taskforce:HasMemberShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-taskforce:hasMember ;
     sh:name "has member" ;
     sh:description "Links task force to its members" ;
-    sh:class icac-taskforce:TaskForceMember ;
+    sh:class cacontology-taskforce:TaskForceMember ;
     sh:minCount 1 .
 
-icac-taskforce:ConductsOperationShape rdf:type sh:PropertyShape ;
-    sh:path icac-taskforce:conductsOperation ;
+cacontology-taskforce:ConductsOperationShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-taskforce:conductsOperation ;
     sh:name "conducts operation" ;
     sh:description "Links task force to operations conducted" ;
-    sh:class icac-taskforce:TaskForceOperation ;
+    sh:class cacontology-taskforce:TaskForceOperation ;
     sh:minCount 0 .
 
-icac-taskforce:AllocatesResourcesShape rdf:type sh:PropertyShape ;
-    sh:path icac-taskforce:allocatesResources ;
+cacontology-taskforce:AllocatesResourcesShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-taskforce:allocatesResources ;
     sh:name "allocates resources" ;
     sh:description "Links task force to resource allocations" ;
-    sh:class icac-taskforce:ResourceAllocation ;
+    sh:class cacontology-taskforce:ResourceAllocation ;
     sh:minCount 1 .
 
-icac-taskforce:ProvidesTrainingShape rdf:type sh:PropertyShape ;
-    sh:path icac-taskforce:providesTraining ;
+cacontology-taskforce:ProvidesTrainingShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-taskforce:providesTraining ;
     sh:name "provides training" ;
     sh:description "Links task force to training programs" ;
-    sh:class icac-taskforce:TrainingProgram ;
+    sh:class cacontology-taskforce:TrainingProgram ;
     sh:minCount 0 .
 
-icac-taskforce:ReportsMetricsShape rdf:type sh:PropertyShape ;
-    sh:path icac-taskforce:reportsMetrics ;
+cacontology-taskforce:ReportsMetricsShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-taskforce:reportsMetrics ;
     sh:name "reports metrics" ;
     sh:description "Links task force to performance metrics" ;
-    sh:class icac-taskforce:PerformanceMetrics ;
+    sh:class cacontology-taskforce:PerformanceMetrics ;
     sh:minCount 1 .
 
-icac-taskforce:HoldsCertificationShape rdf:type sh:PropertyShape ;
-    sh:path icac-taskforce:holdsCertification ;
+cacontology-taskforce:HoldsCertificationShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-taskforce:holdsCertification ;
     sh:name "holds certification" ;
     sh:description "Links member to certifications held" ;
-    sh:class icac-taskforce:Certification ;
+    sh:class cacontology-taskforce:Certification ;
     sh:minCount 0 .
 
 # =============================================================================
 # CROSS-REFERENCE VALIDATION SHAPES
 # =============================================================================
 
-icac-taskforce:TaskForceCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-taskforce:TaskForce ;
+cacontology-taskforce:TaskForceCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-taskforce:TaskForce ;
     rdfs:label "Task Force Cross Reference Shape"@en ;
     rdfs:comment "Validates cross-references between task force and related entities."@en ;
     sh:sparql [
@@ -511,17 +511,17 @@ icac-taskforce:TaskForceCrossReferenceShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-taskforce:TaskForce .
+                $this a cacontology-taskforce:TaskForce .
                 FILTER NOT EXISTS {
-                    $this icac-taskforce:hasMember ?member ;
-                          icac-taskforce:allocatesResources ?resource .
+                    $this cacontology-taskforce:hasMember ?member ;
+                          cacontology-taskforce:allocatesResources ?resource .
                 }
             }
         """
     ] .
 
-icac-taskforce:MembershipValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-taskforce:TaskForceMember ;
+cacontology-taskforce:MembershipValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-taskforce:TaskForceMember ;
     rdfs:label "Membership Validation Shape"@en ;
     rdfs:comment "Validates task force membership consistency."@en ;
     sh:sparql [
@@ -529,14 +529,14 @@ icac-taskforce:MembershipValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-taskforce:membershipType "full_time" ;
-                      icac-taskforce:trainingCompleted false .
+                $this cacontology-taskforce:membershipType "full_time" ;
+                      cacontology-taskforce:trainingCompleted false .
             }
         """
     ] .
 
-icac-taskforce:CommanderValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-taskforce:TaskForceCommander ;
+cacontology-taskforce:CommanderValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-taskforce:TaskForceCommander ;
     rdfs:label "Commander Validation Shape"@en ;
     rdfs:comment "Validates task force commander requirements."@en ;
     sh:sparql [
@@ -544,7 +544,7 @@ icac-taskforce:CommanderValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-taskforce:yearsExperience ?experience .
+                $this cacontology-taskforce:yearsExperience ?experience .
                 FILTER (?experience < 5.0)
             }
         """
@@ -554,8 +554,8 @@ icac-taskforce:CommanderValidationShape rdf:type sh:NodeShape ;
 # TEMPORAL VALIDATION SHAPES
 # =============================================================================
 
-icac-taskforce:TemporalValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-taskforce:TaskForceMember ;
+cacontology-taskforce:TemporalValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-taskforce:TaskForceMember ;
     rdfs:label "Temporal Validation Shape"@en ;
     rdfs:comment "Validates temporal consistency in task force memberships."@en ;
     sh:sparql [
@@ -563,15 +563,15 @@ icac-taskforce:TemporalValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-taskforce:membershipStartDate ?start ;
-                      icac-taskforce:membershipEndDate ?end .
+                $this cacontology-taskforce:membershipStartDate ?start ;
+                      cacontology-taskforce:membershipEndDate ?end .
                 FILTER (?start >= ?end)
             }
         """
     ] .
 
-icac-taskforce:CertificationValidityShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-taskforce:Certification ;
+cacontology-taskforce:CertificationValidityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-taskforce:Certification ;
     rdfs:label "Certification Validity Shape"@en ;
     rdfs:comment "Validates certification date consistency."@en ;
     sh:sparql [
@@ -579,15 +579,15 @@ icac-taskforce:CertificationValidityShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-taskforce:certificationDate ?cert ;
-                      icac-taskforce:expirationDate ?exp .
+                $this cacontology-taskforce:certificationDate ?cert ;
+                      cacontology-taskforce:expirationDate ?exp .
                 FILTER (?cert >= ?exp)
             }
         """
     ] .
 
-icac-taskforce:EstablishmentDateValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-taskforce:TaskForce ;
+cacontology-taskforce:EstablishmentDateValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-taskforce:TaskForce ;
     rdfs:label "Establishment Date Validation Shape"@en ;
     rdfs:comment "Validates task force establishment date."@en ;
     sh:sparql [
@@ -595,7 +595,7 @@ icac-taskforce:EstablishmentDateValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-taskforce:establishmentDate ?date .
+                $this cacontology-taskforce:establishmentDate ?date .
                 FILTER (?date > NOW())
             }
         """
@@ -605,8 +605,8 @@ icac-taskforce:EstablishmentDateValidationShape rdf:type sh:NodeShape ;
 # DATA QUALITY SHAPES
 # =============================================================================
 
-icac-taskforce:DataQualityShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-taskforce:TaskForce ;
+cacontology-taskforce:DataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-taskforce:TaskForce ;
     rdfs:label "Data Quality Shape"@en ;
     rdfs:comment "Validates data quality for task forces."@en ;
     sh:property [

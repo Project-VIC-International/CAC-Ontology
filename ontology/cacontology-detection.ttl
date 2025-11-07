@@ -35,70 +35,70 @@
 # =============================================================================
 
 # Classification Schemes as gUFO Objects
-icac-detection:SARClassificationScheme rdf:type skos:ConceptScheme, gufo:Object ;
+cacontology-detection:SARClassificationScheme rdf:type skos:ConceptScheme, gufo:Object ;
     rdfs:label "SAR Classification Scheme"@en ;
     rdfs:comment "NCMEC's Suspected Abuse Report (SAR) classification scale from 1-5. Modeled as gUFO Object."@en ;
     dcterms:issued "2024-12-19"^^xsd:date .
 
-icac-detection:COPINEClassificationScheme rdf:type skos:ConceptScheme, gufo:Object ;
+cacontology-detection:COPINEClassificationScheme rdf:type skos:ConceptScheme, gufo:Object ;
     rdfs:label "COPINE Classification Scheme"@en ;
     rdfs:comment "European COPINE classification scale for child abuse imagery severity. Modeled as gUFO Object."@en ;
     dcterms:issued "2024-12-19"^^xsd:date .
 
-icac-detection:TannerScaleScheme rdf:type skos:ConceptScheme, gufo:Object ;
+cacontology-detection:TannerScaleScheme rdf:type skos:ConceptScheme, gufo:Object ;
     rdfs:label "Tanner Scale Scheme"@en ;
     rdfs:comment "Medical scale for assessing physical development for age estimation. Modeled as gUFO Object."@en ;
     dcterms:issued "2024-12-19"^^xsd:date .
 
 # SAR Classification Concepts
-icac-detection:sar-1 rdf:type owl:NamedIndividual , skos:Concept ;
-    skos:inScheme icac-detection:SARClassificationScheme ;
+cacontology-detection:sar-1 rdf:type owl:NamedIndividual , skos:Concept ;
+    skos:inScheme cacontology-detection:SARClassificationScheme ;
     skos:prefLabel "SAR 1 - Indicative"@en ;
     skos:definition "Nudity or erotica involving minors with no explicit sexual activity."@en .
 
-icac-detection:sar-2 rdf:type owl:NamedIndividual , skos:Concept ;
-    skos:inScheme icac-detection:SARClassificationScheme ;
+cacontology-detection:sar-2 rdf:type owl:NamedIndividual , skos:Concept ;
+    skos:inScheme cacontology-detection:SARClassificationScheme ;
     skos:prefLabel "SAR 2 - Non-penetrative"@en ;
     skos:definition "Sexual activity between children, or solo masturbation by a child."@en .
 
-icac-detection:sar-3 rdf:type owl:NamedIndividual , skos:Concept ;
-    skos:inScheme icac-detection:SARClassificationScheme ;
+cacontology-detection:sar-3 rdf:type owl:NamedIndividual , skos:Concept ;
+    skos:inScheme cacontology-detection:SARClassificationScheme ;
     skos:prefLabel "SAR 3 - Non-penetrative with Adult"@en ;
     skos:definition "Non-penetrative sexual activity between adult(s) and child(ren)."@en .
 
-icac-detection:sar-4 rdf:type owl:NamedIndividual , skos:Concept ;
-    skos:inScheme icac-detection:SARClassificationScheme ;
+cacontology-detection:sar-4 rdf:type owl:NamedIndividual , skos:Concept ;
+    skos:inScheme cacontology-detection:SARClassificationScheme ;
     skos:prefLabel "SAR 4 - Penetrative"@en ;
     skos:definition "Penetrative sexual activity involving child(ren)."@en .
 
-icac-detection:sar-5 rdf:type owl:NamedIndividual , skos:Concept ;
-    skos:inScheme icac-detection:SARClassificationScheme ;
+cacontology-detection:sar-5 rdf:type owl:NamedIndividual , skos:Concept ;
+    skos:inScheme cacontology-detection:SARClassificationScheme ;
     skos:prefLabel "SAR 5 - Sadistic/Bestiality"@en ;
     skos:definition "Sadistic or violent content or bestiality involving child(ren)."@en .
 
 # COPINE Classification Concepts  
-icac-detection:copine-1 rdf:type owl:NamedIndividual , skos:Concept ;
-    skos:inScheme icac-detection:COPINEClassificationScheme ;
+cacontology-detection:copine-1 rdf:type owl:NamedIndividual , skos:Concept ;
+    skos:inScheme cacontology-detection:COPINEClassificationScheme ;
     skos:prefLabel "COPINE 1 - Indicative"@en ;
     skos:definition "Non-erotic and non-sexualized pictures showing children in their underwear, swimming costumes, etc. from either commercial sources or family albums."@en .
 
-icac-detection:copine-4 rdf:type owl:NamedIndividual , skos:Concept ;
-    skos:inScheme icac-detection:COPINEClassificationScheme ;
+cacontology-detection:copine-4 rdf:type owl:NamedIndividual , skos:Concept ;
+    skos:inScheme cacontology-detection:COPINEClassificationScheme ;
     skos:prefLabel "COPINE 4 - Posing"@en ;
     skos:definition "Deliberately posed pictures of children fully clothed, partially clothed or naked."@en .
 
-icac-detection:copine-7 rdf:type owl:NamedIndividual , skos:Concept ;
-    skos:inScheme icac-detection:COPINEClassificationScheme ;
+cacontology-detection:copine-7 rdf:type owl:NamedIndividual , skos:Concept ;
+    skos:inScheme cacontology-detection:COPINEClassificationScheme ;
     skos:prefLabel "COPINE 7 - Explicit Erotic Posing"@en ;
     skos:definition "Pictures emphasizing genital areas where the child is either naked, partially clothed or fully clothed."@en .
 
-icac-detection:copine-8 rdf:type owl:NamedIndividual , skos:Concept ;
-    skos:inScheme icac-detection:COPINEClassificationScheme ;
+cacontology-detection:copine-8 rdf:type owl:NamedIndividual , skos:Concept ;
+    skos:inScheme cacontology-detection:COPINEClassificationScheme ;
     skos:prefLabel "COPINE 8 - Explicit Sexual Activity"@en ;
     skos:definition "Pictures involving touching, mutual and self-masturbation, oral sex and intercourse by child, not involving an adult."@en .
 
-icac-detection:copine-10 rdf:type owl:NamedIndividual , skos:Concept ;
-    skos:inScheme icac-detection:COPINEClassificationScheme ;
+cacontology-detection:copine-10 rdf:type owl:NamedIndividual , skos:Concept ;
+    skos:inScheme cacontology-detection:COPINEClassificationScheme ;
     skos:prefLabel "COPINE 10 - Gross Assault"@en ;
     skos:definition "Pictures of children being subjected to a sexual assault involving digital touching, penetration by an object or an adult or other gross acts of assault."@en .
 
@@ -107,22 +107,22 @@ icac-detection:copine-10 rdf:type owl:NamedIndividual , skos:Concept ;
 # =============================================================================
 
 # Detection Tools as gUFO Objects
-icac-detection:ContentHashingTool rdf:type owl:Class ;
+cacontology-detection:ContentHashingTool rdf:type owl:Class ;
     rdfs:label "Content Hashing Tool"@en ;
     rdfs:comment "A tool for generating perceptual or cryptographic hashes for content matching (e.g., PhotoDNA, pHash, MD5). Modeled as gUFO Object."@en ;
     rdfs:subClassOf uco-tool:AnalyticTool, gufo:Object .
 
-icac-detection:MachineLearningDetectionTool rdf:type owl:Class ;
+cacontology-detection:MachineLearningDetectionTool rdf:type owl:Class ;
     rdfs:label "Machine Learning Detection Tool"@en ;
     rdfs:comment "A tool using machine learning algorithms to detect CSAM content (e.g., Google's CSAI Classifier, Facebook's neural networks). Modeled as gUFO Object."@en ;
     rdfs:subClassOf uco-tool:AnalyticTool, gufo:Object .
 
-icac-detection:ManualReviewTool rdf:type owl:Class ;
+cacontology-detection:ManualReviewTool rdf:type owl:Class ;
     rdfs:label "Manual Review Tool"@en ;
     rdfs:comment "A tool supporting human review and classification of potentially illegal content. Modeled as gUFO Object."@en ;
     rdfs:subClassOf uco-tool:AnalyticTool, gufo:Object .
 
-icac-detection:DatabaseMatchingTool rdf:type owl:Class ;
+cacontology-detection:DatabaseMatchingTool rdf:type owl:Class ;
     rdfs:label "Database Matching Tool"@en ;
     rdfs:comment "A tool for matching content against known CSAM databases (e.g., NCMEC hash database, INTERPOL ICSE database). Modeled as gUFO Object."@en ;
     rdfs:subClassOf uco-tool:AnalyticTool, gufo:Object .
@@ -132,28 +132,28 @@ icac-detection:DatabaseMatchingTool rdf:type owl:Class ;
 # =============================================================================
 
 # Detection Actions as gUFO Events
-icac-detection:ContentHashingAction rdf:type owl:Class ;
+cacontology-detection:ContentHashingAction rdf:type owl:Class ;
     rdfs:label "Content Hashing Action"@en ;
     rdfs:comment "The action of generating cryptographic or perceptual hashes for content identification and matching. Modeled as gUFO Event."@en ;
     rdfs:subClassOf uco-action:Action, gufo:Event .
 
-icac-detection:AutomatedDetectionAction rdf:type owl:Class ;
+cacontology-detection:AutomatedDetectionAction rdf:type owl:Class ;
     rdfs:label "Automated Detection Action"@en ;
     rdfs:comment "The action of using automated systems to detect potential CSAM content. Modeled as gUFO Event."@en ;
     rdfs:subClassOf uco-action:Action, gufo:Event ;
-    owl:equivalentClass icac-gufo:CriminalEvent .
+    owl:equivalentClass cacontology-gufo:CriminalEvent .
 
-icac-detection:ManualClassificationAction rdf:type owl:Class ;
+cacontology-detection:ManualClassificationAction rdf:type owl:Class ;
     rdfs:label "Manual Classification Action"@en ;
     rdfs:comment "The action of human review and classification of suspected CSAM content. Modeled as gUFO Event."@en ;
     rdfs:subClassOf uco-action:Action, gufo:Event .
 
-icac-detection:DatabaseMatchAction rdf:type owl:Class ;
+cacontology-detection:DatabaseMatchAction rdf:type owl:Class ;
     rdfs:label "Database Match Action"@en ;
     rdfs:comment "The action of comparing content against known CSAM hash databases. Modeled as gUFO Event."@en ;
     rdfs:subClassOf uco-action:Action, gufo:Event .
 
-icac-detection:FalsePositiveAnalysisAction rdf:type owl:Class ;
+cacontology-detection:FalsePositiveAnalysisAction rdf:type owl:Class ;
     rdfs:label "False Positive Analysis Action"@en ;
     rdfs:comment "The action of analyzing and documenting false positive detections to improve accuracy. Modeled as gUFO Event."@en ;
     rdfs:subClassOf uco-action:Action, gufo:Event .
@@ -163,22 +163,22 @@ icac-detection:FalsePositiveAnalysisAction rdf:type owl:Class ;
 # =============================================================================
 
 # Hash and Detection Results as gUFO Objects
-icac-detection:PhotoDNAHash rdf:type owl:Class ;
+cacontology-detection:PhotoDNAHash rdf:type owl:Class ;
     rdfs:label "PhotoDNA Hash"@en ;
     rdfs:comment "A Microsoft PhotoDNA hash for robust image matching that survives common transformations. Modeled as gUFO Object."@en ;
     rdfs:subClassOf uco-types:Hash, gufo:Object .
 
-icac-detection:PerceptualHash rdf:type owl:Class ;
+cacontology-detection:PerceptualHash rdf:type owl:Class ;
     rdfs:label "Perceptual Hash"@en ;
     rdfs:comment "A hash that captures visual similarity rather than exact bit patterns (e.g., pHash, aHash, dHash). Modeled as gUFO Object."@en ;
     rdfs:subClassOf uco-types:Hash, gufo:Object .
 
-icac-detection:DetectionResult rdf:type owl:Class ;
+cacontology-detection:DetectionResult rdf:type owl:Class ;
     rdfs:label "Detection Result"@en ;
     rdfs:comment "The result of a content detection action including confidence scores and classification. Modeled as gUFO Object."@en ;
     rdfs:subClassOf uco-observable:ObservableObject, gufo:Object .
 
-icac-detection:ClassificationResult rdf:type owl:Class ;
+cacontology-detection:ClassificationResult rdf:type owl:Class ;
     rdfs:label "Classification Result"@en ;
     rdfs:comment "The result of content classification using standard scales like SAR or COPINE. Modeled as gUFO Object."@en ;
     rdfs:subClassOf uco-observable:ObservableObject, gufo:Object .
@@ -188,27 +188,27 @@ icac-detection:ClassificationResult rdf:type owl:Class ;
 # =============================================================================
 
 # Detection Process Phases (gUFO Phase anti-rigid modeling)
-icac-detection:InitialDetectionPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-detection:InitialDetectionPhase rdf:type owl:Class, gufo:Phase ;
     rdfs:label "Initial Detection Phase"@en ;
     rdfs:comment "Phase of initial automated content detection and flagging. Modeled as anti-rigid gUFO Phase."@en ;
-    rdfs:subClassOf icac-detection:AutomatedDetectionAction .
+    rdfs:subClassOf cacontology-detection:AutomatedDetectionAction .
 
-icac-detection:HashComparisonPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-detection:HashComparisonPhase rdf:type owl:Class, gufo:Phase ;
     rdfs:label "Hash Comparison Phase"@en ;
     rdfs:comment "Phase of comparing content hashes against known databases. Modeled as anti-rigid gUFO Phase."@en ;
-    rdfs:subClassOf icac-detection:DatabaseMatchAction .
+    rdfs:subClassOf cacontology-detection:DatabaseMatchAction .
 
-icac-detection:ManualReviewPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-detection:ManualReviewPhase rdf:type owl:Class, gufo:Phase ;
     rdfs:label "Manual Review Phase"@en ;
     rdfs:comment "Phase of human expert review and classification. Modeled as anti-rigid gUFO Phase."@en ;
-    rdfs:subClassOf icac-detection:ManualClassificationAction .
+    rdfs:subClassOf cacontology-detection:ManualClassificationAction .
 
-icac-detection:ValidationPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-detection:ValidationPhase rdf:type owl:Class, gufo:Phase ;
     rdfs:label "Validation Phase"@en ;
     rdfs:comment "Phase of validating detection results and reducing false positives. Modeled as anti-rigid gUFO Phase."@en ;
-    rdfs:subClassOf icac-detection:FalsePositiveAnalysisAction .
+    rdfs:subClassOf cacontology-detection:FalsePositiveAnalysisAction .
 
-icac-detection:ReportingPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-detection:ReportingPhase rdf:type owl:Class, gufo:Phase ;
     rdfs:label "Reporting Phase"@en ;
     rdfs:comment "Phase of generating reports and notifications to authorities. Modeled as anti-rigid gUFO Phase."@en ;
     rdfs:subClassOf uco-action:Action .
@@ -218,17 +218,17 @@ icac-detection:ReportingPhase rdf:type owl:Class, gufo:Phase ;
 # =============================================================================
 
 # Detection Process Situations (gUFO Situation)
-icac-detection:MassContentAnalysisSituation rdf:type owl:Class ;
+cacontology-detection:MassContentAnalysisSituation rdf:type owl:Class ;
     rdfs:label "Mass Content Analysis Situation"@en ;
     rdfs:comment "Situation involving analysis of large volumes of content requiring coordinated detection systems. Modeled as gUFO Situation."@en ;
     rdfs:subClassOf gufo:Situation .
 
-icac-detection:CrossPlatformDetectionSituation rdf:type owl:Class ;
+cacontology-detection:CrossPlatformDetectionSituation rdf:type owl:Class ;
     rdfs:label "Cross-Platform Detection Situation"@en ;
     rdfs:comment "Situation involving detection across multiple platforms and services. Modeled as gUFO Situation."@en ;
     rdfs:subClassOf gufo:Situation .
 
-icac-detection:FalsePositiveManagementSituation rdf:type owl:Class ;
+cacontology-detection:FalsePositiveManagementSituation rdf:type owl:Class ;
     rdfs:label "False Positive Management Situation"@en ;
     rdfs:comment "Situation focused on managing and reducing false positive detection rates. Modeled as gUFO Situation."@en ;
     rdfs:subClassOf gufo:Situation .
@@ -238,22 +238,22 @@ icac-detection:FalsePositiveManagementSituation rdf:type owl:Class ;
 # =============================================================================
 
 # Detection Process Roles as gUFO Roles (anti-rigid)
-icac-detection:ContentAnalystRole rdf:type owl:Class, gufo:Role ;
+cacontology-detection:ContentAnalystRole rdf:type owl:Class, gufo:Role ;
     rdfs:label "Content Analyst Role"@en ;
     rdfs:comment "Role of professional analyzing flagged content for classification. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf uco-identity:Role .
 
-icac-detection:HashAnalystRole rdf:type owl:Class, gufo:Role ;
+cacontology-detection:HashAnalystRole rdf:type owl:Class, gufo:Role ;
     rdfs:label "Hash Analyst Role"@en ;
     rdfs:comment "Role of specialist working with hash databases and matching systems. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf uco-identity:Role .
 
-icac-detection:MachineLearningSpecialistRole rdf:type owl:Class, gufo:Role ;
+cacontology-detection:MachineLearningSpecialistRole rdf:type owl:Class, gufo:Role ;
     rdfs:label "Machine Learning Specialist Role"@en ;
     rdfs:comment "Role of specialist developing and maintaining ML detection systems. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf uco-identity:Role .
 
-icac-detection:QualityAssuranceAnalystRole rdf:type owl:Class, gufo:Role ;
+cacontology-detection:QualityAssuranceAnalystRole rdf:type owl:Class, gufo:Role ;
     rdfs:label "Quality Assurance Analyst Role"@en ;
     rdfs:comment "Role focused on validating detection accuracy and managing quality metrics. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf uco-identity:Role .
@@ -263,29 +263,29 @@ icac-detection:QualityAssuranceAnalystRole rdf:type owl:Class, gufo:Role ;
 # =============================================================================
 
 # Detection Action Temporal Properties
-icac-detection:hasDetectionBeginPoint rdf:type owl:DatatypeProperty ;
+cacontology-detection:hasDetectionBeginPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has detection begin point"@en ;
     rdfs:comment "Temporal begin point for detection action."@en ;
     rdfs:subPropertyOf gufo:hasBeginPointInXSDDateTimeStamp ;
-    rdfs:domain icac-detection:AutomatedDetectionAction ;
+    rdfs:domain cacontology-detection:AutomatedDetectionAction ;
     rdfs:range xsd:dateTimeStamp .
 
-icac-detection:hasDetectionEndPoint rdf:type owl:DatatypeProperty ;
+cacontology-detection:hasDetectionEndPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has detection end point"@en ;
     rdfs:comment "Temporal end point for detection action."@en ;
     rdfs:subPropertyOf gufo:hasEndPointInXSDDateTimeStamp ;
-    rdfs:domain icac-detection:AutomatedDetectionAction ;
+    rdfs:domain cacontology-detection:AutomatedDetectionAction ;
     rdfs:range xsd:dateTimeStamp .
 
 # Detection Phase Temporal Properties
-icac-detection:hasPhaseBeginPoint rdf:type owl:DatatypeProperty ;
+cacontology-detection:hasPhaseBeginPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has phase begin point"@en ;
     rdfs:comment "Temporal begin point for detection phase."@en ;
     rdfs:subPropertyOf gufo:hasBeginPointInXSDDateTimeStamp ;
     rdfs:domain gufo:Phase ;
     rdfs:range xsd:dateTimeStamp .
 
-icac-detection:hasPhaseEndPoint rdf:type owl:DatatypeProperty ;
+cacontology-detection:hasPhaseEndPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has phase end point"@en ;
     rdfs:comment "Temporal end point for detection phase."@en ;
     rdfs:subPropertyOf gufo:hasEndPointInXSDDateTimeStamp ;
@@ -293,14 +293,14 @@ icac-detection:hasPhaseEndPoint rdf:type owl:DatatypeProperty ;
     rdfs:range xsd:dateTimeStamp .
 
 # Detection Role Temporal Properties
-icac-detection:hasRoleBeginPoint rdf:type owl:DatatypeProperty ;
+cacontology-detection:hasRoleBeginPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has role begin point"@en ;
     rdfs:comment "Temporal begin point for detection role."@en ;
     rdfs:subPropertyOf gufo:hasBeginPointInXSDDateTimeStamp ;
     rdfs:domain gufo:Role ;
     rdfs:range xsd:dateTimeStamp .
 
-icac-detection:hasRoleEndPoint rdf:type owl:DatatypeProperty ;
+cacontology-detection:hasRoleEndPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has role end point"@en ;
     rdfs:comment "Temporal end point for detection role."@en ;
     rdfs:subPropertyOf gufo:hasEndPointInXSDDateTimeStamp ;
@@ -308,19 +308,19 @@ icac-detection:hasRoleEndPoint rdf:type owl:DatatypeProperty ;
     rdfs:range xsd:dateTimeStamp .
 
 # Duration Properties
-icac-detection:detectionDuration rdf:type owl:DatatypeProperty ;
+cacontology-detection:detectionDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "detection duration"@en ;
     rdfs:comment "Duration of detection action from start to completion."@en ;
-    rdfs:domain icac-detection:AutomatedDetectionAction ;
+    rdfs:domain cacontology-detection:AutomatedDetectionAction ;
     rdfs:range xsd:duration .
 
-icac-detection:phaseDuration rdf:type owl:DatatypeProperty ;
+cacontology-detection:phaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "phase duration"@en ;
     rdfs:comment "Duration of detection phase."@en ;
     rdfs:domain gufo:Phase ;
     rdfs:range xsd:duration .
 
-icac-detection:roleDuration rdf:type owl:DatatypeProperty ;
+cacontology-detection:roleDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "role duration"@en ;
     rdfs:comment "Duration of individual's detection role."@en ;
     rdfs:domain gufo:Role ;
@@ -331,110 +331,110 @@ icac-detection:roleDuration rdf:type owl:DatatypeProperty ;
 # =============================================================================
 
 # Hash Properties
-icac-detection:photoDNAValue rdf:type owl:DatatypeProperty ;
+cacontology-detection:photoDNAValue rdf:type owl:DatatypeProperty ;
     rdfs:label "PhotoDNA value"@en ;
     rdfs:comment "The PhotoDNA hash value as a hexadecimal string."@en ;
-    rdfs:domain icac-detection:PhotoDNAHash ;
+    rdfs:domain cacontology-detection:PhotoDNAHash ;
     rdfs:range xsd:string .
 
-icac-detection:perceptualHashValue rdf:type owl:DatatypeProperty ;
+cacontology-detection:perceptualHashValue rdf:type owl:DatatypeProperty ;
     rdfs:label "perceptual hash value"@en ;
     rdfs:comment "The perceptual hash value as a hexadecimal string."@en ;
-    rdfs:domain icac-detection:PerceptualHash ;
+    rdfs:domain cacontology-detection:PerceptualHash ;
     rdfs:range xsd:string .
 
-icac-detection:hashAlgorithm rdf:type owl:DatatypeProperty ;
+cacontology-detection:hashAlgorithm rdf:type owl:DatatypeProperty ;
     rdfs:label "hash algorithm"@en ;
     rdfs:comment "The specific algorithm used for perceptual hashing (e.g., 'pHash', 'aHash', 'dHash')."@en ;
-    rdfs:domain icac-detection:PerceptualHash ;
+    rdfs:domain cacontology-detection:PerceptualHash ;
     rdfs:range xsd:string .
 
 # Detection Properties
-icac-detection:confidenceScore rdf:type owl:DatatypeProperty ;
+cacontology-detection:confidenceScore rdf:type owl:DatatypeProperty ;
     rdfs:label "confidence score"@en ;
     rdfs:comment "The confidence score (0.0-1.0) of the detection or classification result."@en ;
-    rdfs:domain icac-detection:DetectionResult ;
+    rdfs:domain cacontology-detection:DetectionResult ;
     rdfs:range xsd:decimal .
 
-icac-detection:detectionThreshold rdf:type owl:DatatypeProperty ;
+cacontology-detection:detectionThreshold rdf:type owl:DatatypeProperty ;
     rdfs:label "detection threshold"@en ;
     rdfs:comment "The threshold value used for determining positive detection."@en ;
-    rdfs:domain icac-detection:AutomatedDetectionAction ;
+    rdfs:domain cacontology-detection:AutomatedDetectionAction ;
     rdfs:range xsd:decimal .
 
-icac-detection:modelVersion rdf:type owl:DatatypeProperty ;
+cacontology-detection:modelVersion rdf:type owl:DatatypeProperty ;
     rdfs:label "model version"@en ;
     rdfs:comment "The version of the machine learning model used for detection."@en ;
-    rdfs:domain icac-detection:MachineLearningDetectionTool ;
+    rdfs:domain cacontology-detection:MachineLearningDetectionTool ;
     rdfs:range xsd:string .
 
 # Classification Properties
-icac-detection:sarClassification rdf:type owl:ObjectProperty ;
+cacontology-detection:sarClassification rdf:type owl:ObjectProperty ;
     rdfs:label "SAR classification"@en ;
     rdfs:comment "Links content to its SAR (1-5) classification level."@en ;
-    rdfs:range icac-detection:SARClassificationScheme .
+    rdfs:range cacontology-detection:SARClassificationScheme .
 
-icac-detection:copineClassification rdf:type owl:ObjectProperty ;
+cacontology-detection:copineClassification rdf:type owl:ObjectProperty ;
     rdfs:label "COPINE classification"@en ;
     rdfs:comment "Links content to its COPINE classification level."@en ;
-    rdfs:range icac-detection:COPINEClassificationScheme .
+    rdfs:range cacontology-detection:COPINEClassificationScheme .
 
-icac-detection:ageEstimate rdf:type owl:DatatypeProperty ;
+cacontology-detection:ageEstimate rdf:type owl:DatatypeProperty ;
     rdfs:label "age estimate"@en ;
     rdfs:comment "Estimated age or age range of depicted individuals."@en ;
     rdfs:range xsd:string .
 
-icac-detection:tannerStage rdf:type owl:DatatypeProperty ;
+cacontology-detection:tannerStage rdf:type owl:DatatypeProperty ;
     rdfs:label "Tanner stage"@en ;
     rdfs:comment "Tanner stage assessment for physical development (1-5)."@en ;
     rdfs:range xsd:integer .
 
 # Database Matching Properties
-icac-detection:matchedDatabase rdf:type owl:ObjectProperty ;
+cacontology-detection:matchedDatabase rdf:type owl:ObjectProperty ;
     rdfs:label "matched database"@en ;
     rdfs:comment "Links a match action to the database that contained the matching hash."@en ;
-    rdfs:domain icac-detection:DatabaseMatchAction ;
+    rdfs:domain cacontology-detection:DatabaseMatchAction ;
     rdfs:range uco-observable:ObservableObject .
 
-icac-detection:matchType rdf:type owl:DatatypeProperty ;
+cacontology-detection:matchType rdf:type owl:DatatypeProperty ;
     rdfs:label "match type"@en ;
     rdfs:comment "The type of match found (e.g., 'exact', 'near-duplicate', 'variant')."@en ;
-    rdfs:domain icac-detection:DatabaseMatchAction ;
+    rdfs:domain cacontology-detection:DatabaseMatchAction ;
     rdfs:range xsd:string .
 
-icac-detection:similarityScore rdf:type owl:DatatypeProperty ;
+cacontology-detection:similarityScore rdf:type owl:DatatypeProperty ;
     rdfs:label "similarity score"@en ;
     rdfs:comment "The similarity score for perceptual hash matches (0.0-1.0)."@en ;
     rdfs:range xsd:decimal .
 
 # Review Properties
-icac-detection:reviewedBy rdf:type owl:ObjectProperty ;
+cacontology-detection:reviewedBy rdf:type owl:ObjectProperty ;
     rdfs:label "reviewed by"@en ;
     rdfs:comment "Links a classification action to the person who performed the review."@en ;
-    rdfs:domain icac-detection:ManualClassificationAction ;
+    rdfs:domain cacontology-detection:ManualClassificationAction ;
     rdfs:range uco-identity:Identity .
 
-icac-detection:reviewDecision rdf:type owl:DatatypeProperty ;
+cacontology-detection:reviewDecision rdf:type owl:DatatypeProperty ;
     rdfs:label "review decision"@en ;
     rdfs:comment "The decision made during manual review (e.g., 'confirmed', 'rejected', 'uncertain')."@en ;
-    rdfs:domain icac-detection:ManualClassificationAction ;
+    rdfs:domain cacontology-detection:ManualClassificationAction ;
     rdfs:range xsd:string .
 
-icac-detection:falsePositiveReason rdf:type owl:DatatypeProperty ;
+cacontology-detection:falsePositiveReason rdf:type owl:DatatypeProperty ;
     rdfs:label "false positive reason"@en ;
     rdfs:comment "The reason why content was determined to be a false positive."@en ;
-    rdfs:domain icac-detection:FalsePositiveAnalysisAction ;
+    rdfs:domain cacontology-detection:FalsePositiveAnalysisAction ;
     rdfs:range xsd:string .
 
 # Content Analysis Properties
-icac-detection:detectedContent rdf:type owl:ObjectProperty ;
+cacontology-detection:detectedContent rdf:type owl:ObjectProperty ;
     rdfs:label "detected content"@en ;
     rdfs:comment "Links a detection action to the content that was analyzed."@en ;
-    rdfs:domain icac-detection:AutomatedDetectionAction ;
+    rdfs:domain cacontology-detection:AutomatedDetectionAction ;
     rdfs:range uco-observable:ObservableObject .
 
-icac-detection:generatedHash rdf:type owl:ObjectProperty ;
+cacontology-detection:generatedHash rdf:type owl:ObjectProperty ;
     rdfs:label "generated hash"@en ;
     rdfs:comment "Links a hashing action to the hash that was generated."@en ;
-    rdfs:domain icac-detection:ContentHashingAction ;
+    rdfs:domain cacontology-detection:ContentHashingAction ;
     rdfs:range uco-types:Hash . 

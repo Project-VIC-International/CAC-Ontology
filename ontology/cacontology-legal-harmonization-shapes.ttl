@@ -30,13 +30,13 @@
 # gUFO TYPE CONSISTENCY VALIDATION SHAPES
 # =============================================================================
 
-icac-legal-shapes:LegalObjectTypeValidationShape rdf:type sh:NodeShape ;
+cacontology-legal-shapes:LegalObjectTypeValidationShape rdf:type sh:NodeShape ;
     rdfs:label "Legal Object Type Validation Shape"@en ;
     rdfs:comment "Validates that legal objects are properly classified as gUFO Objects and Kinds."@en ;
-    sh:targetClass icac-legal:CSAMModelLaw ;
-    sh:targetClass icac-legal:NationalLegislation ;
-    sh:targetClass icac-legal:RegionalFramework ;
-    sh:targetClass icac-legal:TreatyFramework ;
+    sh:targetClass cacontology-legal:CSAMModelLaw ;
+    sh:targetClass cacontology-legal:NationalLegislation ;
+    sh:targetClass cacontology-legal:RegionalFramework ;
+    sh:targetClass cacontology-legal:TreatyFramework ;
     sh:property [
         sh:path rdf:type ;
         sh:hasValue gufo:Kind ;
@@ -55,13 +55,13 @@ icac-legal-shapes:LegalObjectTypeValidationShape rdf:type sh:NodeShape ;
         sh:message "Legal objects must extend gUFO Object"@en
     ] .
 
-icac-legal-shapes:LegalProcessTypeValidationShape rdf:type sh:NodeShape ;
+cacontology-legal-shapes:LegalProcessTypeValidationShape rdf:type sh:NodeShape ;
     rdfs:label "Legal Process Type Validation Shape"@en ;
     rdfs:comment "Validates that legal processes are properly classified as gUFO Events and EventTypes."@en ;
-    sh:targetClass icac-legal:PolicyHarmonization ;
-    sh:targetClass icac-legal:LegalReform ;
-    sh:targetClass icac-legal:PolicyDevelopment ;
-    sh:targetClass icac-legal:InternationalLawEnforcement ;
+    sh:targetClass cacontology-legal:PolicyHarmonization ;
+    sh:targetClass cacontology-legal:LegalReform ;
+    sh:targetClass cacontology-legal:PolicyDevelopment ;
+    sh:targetClass cacontology-legal:InternationalLawEnforcement ;
     sh:property [
         sh:path rdf:type ;
         sh:hasValue gufo:EventType ;
@@ -87,11 +87,11 @@ icac-legal-shapes:LegalProcessTypeValidationShape rdf:type sh:NodeShape ;
         sh:message "Legal processes should have temporal boundaries"@en
     ] .
 
-icac-legal-shapes:LegalSituationTypeValidationShape rdf:type sh:NodeShape ;
+cacontology-legal-shapes:LegalSituationTypeValidationShape rdf:type sh:NodeShape ;
     rdfs:label "Legal Situation Type Validation Shape"@en ;
     rdfs:comment "Validates that legal situations are properly classified as gUFO Situations and SituationTypes."@en ;
-    sh:targetClass icac-legal:LegalCompliance ;
-    sh:targetClass icac-legal:LegalSystemCompatibility ;
+    sh:targetClass cacontology-legal:LegalCompliance ;
+    sh:targetClass cacontology-legal:LegalSystemCompatibility ;
     sh:property [
         sh:path rdf:type ;
         sh:hasValue gufo:SituationType ;
@@ -114,12 +114,12 @@ icac-legal-shapes:LegalSituationTypeValidationShape rdf:type sh:NodeShape ;
 # gUFO TEMPORAL CONSTRAINTS SHAPES
 # =============================================================================
 
-icac-legal-shapes:LegalProcessTemporalShape rdf:type sh:NodeShape ;
+cacontology-legal-shapes:LegalProcessTemporalShape rdf:type sh:NodeShape ;
     rdfs:label "Legal Process Temporal Shape"@en ;
     rdfs:comment "Validates temporal constraints for legal processes according to gUFO framework."@en ;
-    sh:targetClass icac-legal:LegalReform ;
-    sh:targetClass icac-legal:PolicyDevelopment ;
-    sh:targetClass icac-legal:PolicyHarmonization ;
+    sh:targetClass cacontology-legal:LegalReform ;
+    sh:targetClass cacontology-legal:PolicyDevelopment ;
+    sh:targetClass cacontology-legal:PolicyHarmonization ;
     sh:property [
         sh:path gufo:hasBeginPointInXSDDateTimeStamp ;
         sh:datatype xsd:dateTimeStamp ;
@@ -153,12 +153,12 @@ icac-legal-shapes:LegalProcessTemporalShape rdf:type sh:NodeShape ;
         """
     ] .
 
-icac-legal-shapes:LegalFrameworkTemporalShape rdf:type sh:NodeShape ;
+cacontology-legal-shapes:LegalFrameworkTemporalShape rdf:type sh:NodeShape ;
     rdfs:label "Legal Framework Temporal Shape"@en ;
     rdfs:comment "Validates temporal aspects of legal framework creation and evolution."@en ;
-    sh:targetClass icac-legal:NationalLegislation ;
-    sh:targetClass icac-legal:TreatyFramework ;
-    sh:targetClass icac-legal:ExtraditionAgreement ;
+    sh:targetClass cacontology-legal:NationalLegislation ;
+    sh:targetClass cacontology-legal:TreatyFramework ;
+    sh:targetClass cacontology-legal:ExtraditionAgreement ;
     sh:property [
         sh:path uco-core:createdTime ;
         sh:datatype xsd:dateTime ;
@@ -174,11 +174,11 @@ icac-legal-shapes:LegalFrameworkTemporalShape rdf:type sh:NodeShape ;
         sh:message "Legal frameworks may have modification timestamp"@en
     ] .
 
-icac-legal-shapes:AssessmentTemporalShape rdf:type sh:NodeShape ;
+cacontology-legal-shapes:AssessmentTemporalShape rdf:type sh:NodeShape ;
     rdfs:label "Assessment Temporal Shape"@en ;
     rdfs:comment "Validates temporal constraints for legal assessments and reviews."@en ;
-    sh:targetClass icac-legal:GlobalLegalReview ;
-    sh:targetClass icac-legal:LegislativeAssessment ;
+    sh:targetClass cacontology-legal:GlobalLegalReview ;
+    sh:targetClass cacontology-legal:LegislativeAssessment ;
     sh:property [
         sh:path uco-core:startTime ;
         sh:datatype xsd:dateTime ;
@@ -216,8 +216,8 @@ icac-legal-shapes:AssessmentTemporalShape rdf:type sh:NodeShape ;
 # ENHANCED DOMAIN-SPECIFIC SHAPES WITH gUFO QUALITY ASPECTS
 # =============================================================================
 
-icac-legal-shapes:CSAMModelLawShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-legal:CSAMModelLaw ;
+cacontology-legal-shapes:CSAMModelLawShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal:CSAMModelLaw ;
     rdfs:label "CSAM Model Law Shape"@en ;
     rdfs:comment "Enhanced validation shape for CSAM model legislation with gUFO quality aspects."@en ;
     sh:property [
@@ -229,7 +229,7 @@ icac-legal-shapes:CSAMModelLawShape rdf:type sh:NodeShape ;
     ] ;
     # gUFO Quality Aspects
     sh:property [
-        sh:path icac-legal:hasLegalEffectiveness ;
+        sh:path cacontology-legal:hasLegalEffectiveness ;
         sh:datatype xsd:string ;
         sh:in ( "ineffective" "limited" "moderate" "effective" "highly_effective" ) ;
         sh:maxCount 1 ;
@@ -237,7 +237,7 @@ icac-legal-shapes:CSAMModelLawShape rdf:type sh:NodeShape ;
         sh:message "Legal effectiveness should be assessed"@en
     ] ;
     sh:property [
-        sh:path icac-legal:hasDataQuality ;
+        sh:path cacontology-legal:hasDataQuality ;
         sh:datatype xsd:string ;
         sh:in ( "poor" "fair" "good" "excellent" "validated" ) ;
         sh:maxCount 1 ;
@@ -263,15 +263,15 @@ icac-legal-shapes:CSAMModelLawShape rdf:type sh:NodeShape ;
         rdfs:comment "Model law must have detailed description."@en ;
     ] ;
     sh:property [
-        sh:path icac-legal:legalSystemType ;
+        sh:path cacontology-legal:legalSystemType ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ("common_law" "civil_law" "religious_law" "mixed" "universal") ;
         rdfs:comment "Legal system type for model law applicability."@en ;
     ] .
 
-icac-legal-shapes:NationalLegislationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-legal:NationalLegislation ;
+cacontology-legal-shapes:NationalLegislationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal:NationalLegislation ;
     rdfs:label "National Legislation Shape"@en ;
     rdfs:comment "Enhanced shape for national legislation with implementation quality and effectiveness assessments."@en ;
     sh:property [
@@ -283,7 +283,7 @@ icac-legal-shapes:NationalLegislationShape rdf:type sh:NodeShape ;
     ] ;
     # gUFO Quality Aspects
     sh:property [
-        sh:path icac-legal:hasImplementationQuality ;
+        sh:path cacontology-legal:hasImplementationQuality ;
         sh:datatype xsd:string ;
         sh:in ( "poor" "fair" "good" "excellent" "exemplary" ) ;
         sh:maxCount 1 ;
@@ -291,7 +291,7 @@ icac-legal-shapes:NationalLegislationShape rdf:type sh:NodeShape ;
         sh:message "Implementation quality should be assessed"@en
     ] ;
     sh:property [
-        sh:path icac-legal:hasLegalEffectiveness ;
+        sh:path cacontology-legal:hasLegalEffectiveness ;
         sh:datatype xsd:string ;
         sh:in ( "ineffective" "limited" "moderate" "effective" "highly_effective" ) ;
         sh:maxCount 1 ;
@@ -299,7 +299,7 @@ icac-legal-shapes:NationalLegislationShape rdf:type sh:NodeShape ;
         sh:message "Legal effectiveness should be assessed"@en
     ] ;
     sh:property [
-        sh:path icac-legal:hasLegalRobustness ;
+        sh:path cacontology-legal:hasLegalRobustness ;
         sh:datatype xsd:string ;
         sh:in ( "weak" "moderate" "strong" "very_strong" "comprehensive" ) ;
         sh:maxCount 1 ;
@@ -308,7 +308,7 @@ icac-legal-shapes:NationalLegislationShape rdf:type sh:NodeShape ;
     ] ;
     # Standard Properties
     sh:property [
-        sh:path icac-legal:implementationStatus ;
+        sh:path cacontology-legal:implementationStatus ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -316,22 +316,22 @@ icac-legal-shapes:NationalLegislationShape rdf:type sh:NodeShape ;
         rdfs:comment "Implementation status must be specified."@en ;
     ] ;
     sh:property [
-        sh:path icac-legal:legalSystemType ;
+        sh:path cacontology-legal:legalSystemType ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ("common_law" "civil_law" "religious_law" "mixed") ;
         rdfs:comment "Legal system type classification."@en ;
     ] ;
     sh:property [
-        sh:path icac-legal:appliesToCountry ;
+        sh:path cacontology-legal:appliesToCountry ;
         sh:class uco-location:Location ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         rdfs:comment "National legislation must apply to exactly one country."@en ;
     ] .
 
-icac-legal-shapes:PolicyHarmonizationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-legal:PolicyHarmonization ;
+cacontology-legal-shapes:PolicyHarmonizationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal:PolicyHarmonization ;
     rdfs:label "Policy Harmonization Shape"@en ;
     rdfs:comment "Enhanced shape for policy harmonization with harmonization degree assessment."@en ;
     sh:property [
@@ -343,7 +343,7 @@ icac-legal-shapes:PolicyHarmonizationShape rdf:type sh:NodeShape ;
     ] ;
     # gUFO Quality Aspects
     sh:property [
-        sh:path icac-legal:hasHarmonizationDegree ;
+        sh:path cacontology-legal:hasHarmonizationDegree ;
         sh:datatype xsd:string ;
         sh:in ( "minimal" "partial" "substantial" "comprehensive" "complete" ) ;
         sh:maxCount 1 ;
@@ -351,8 +351,8 @@ icac-legal-shapes:PolicyHarmonizationShape rdf:type sh:NodeShape ;
         sh:message "Harmonization degree should be assessed"@en
     ] .
 
-icac-legal-shapes:LegalReformShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-legal:LegalReform ;
+cacontology-legal-shapes:LegalReformShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal:LegalReform ;
     rdfs:label "Legal Reform Shape"@en ;
     rdfs:comment "Enhanced shape for legal reform processes with urgency assessment."@en ;
     sh:property [
@@ -364,7 +364,7 @@ icac-legal-shapes:LegalReformShape rdf:type sh:NodeShape ;
     ] ;
     # gUFO Quality Aspects
     sh:property [
-        sh:path icac-legal:hasReformUrgency ;
+        sh:path cacontology-legal:hasReformUrgency ;
         sh:datatype xsd:string ;
         sh:in ( "low" "moderate" "high" "urgent" "critical" ) ;
         sh:maxCount 1 ;
@@ -373,7 +373,7 @@ icac-legal-shapes:LegalReformShape rdf:type sh:NodeShape ;
     ] ;
     # Standard Properties
     sh:property [
-        sh:path icac-legal:reformPriority ;
+        sh:path cacontology-legal:reformPriority ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -389,8 +389,8 @@ icac-legal-shapes:LegalReformShape rdf:type sh:NodeShape ;
         rdfs:comment "Reform name must contain 'Reform'."@en ;
     ] .
 
-icac-legal-shapes:TreatyFrameworkShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-legal:TreatyFramework ;
+cacontology-legal-shapes:TreatyFrameworkShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal:TreatyFramework ;
     rdfs:label "Treaty Framework Shape"@en ;
     rdfs:comment "Enhanced shape for international treaty frameworks with strength assessment."@en ;
     sh:property [
@@ -402,7 +402,7 @@ icac-legal-shapes:TreatyFrameworkShape rdf:type sh:NodeShape ;
     ] ;
     # gUFO Quality Aspects
     sh:property [
-        sh:path icac-legal:hasTreatyStrength ;
+        sh:path cacontology-legal:hasTreatyStrength ;
         sh:datatype xsd:string ;
         sh:in ( "weak" "moderate" "strong" "binding" "comprehensive" ) ;
         sh:maxCount 1 ;
@@ -420,20 +420,20 @@ icac-legal-shapes:TreatyFrameworkShape rdf:type sh:NodeShape ;
         rdfs:comment "Treaty framework must have comprehensive name."@en ;
     ] ;
     sh:property [
-        sh:path icac-legal:facilitatesCooperation ;
-        sh:class icac-legal:InternationalLawEnforcement ;
+        sh:path cacontology-legal:facilitatesCooperation ;
+        sh:class cacontology-legal:InternationalLawEnforcement ;
         sh:minCount 1 ;
         rdfs:comment "Treaty must facilitate international cooperation."@en ;
     ] ;
     sh:property [
-        sh:path icac-legal:appliesToCountry ;
+        sh:path cacontology-legal:appliesToCountry ;
         sh:class uco-location:Location ;
         sh:minCount 3 ;
         rdfs:comment "Multilateral treaty must apply to at least three countries."@en ;
     ] .
 
-icac-legal-shapes:InternationalLawEnforcementShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-legal:InternationalLawEnforcement ;
+cacontology-legal-shapes:InternationalLawEnforcementShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal:InternationalLawEnforcement ;
     rdfs:label "International Law Enforcement Shape"@en ;
     rdfs:comment "Enhanced shape for international law enforcement with cooperation intensity assessment."@en ;
     sh:property [
@@ -445,7 +445,7 @@ icac-legal-shapes:InternationalLawEnforcementShape rdf:type sh:NodeShape ;
     ] ;
     # gUFO Quality Aspects
     sh:property [
-        sh:path icac-legal:hasCooperationIntensity ;
+        sh:path cacontology-legal:hasCooperationIntensity ;
         sh:datatype xsd:string ;
         sh:in ( "minimal" "moderate" "substantial" "intensive" "comprehensive" ) ;
         sh:maxCount 1 ;
@@ -453,8 +453,8 @@ icac-legal-shapes:InternationalLawEnforcementShape rdf:type sh:NodeShape ;
         sh:message "Cooperation intensity should be assessed"@en
     ] .
 
-icac-legal-shapes:LegalComplianceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-legal:LegalCompliance ;
+cacontology-legal-shapes:LegalComplianceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal:LegalCompliance ;
     rdfs:label "Legal Compliance Shape"@en ;
     rdfs:comment "Enhanced shape for legal compliance situations with compliance level assessment."@en ;
     sh:property [
@@ -466,7 +466,7 @@ icac-legal-shapes:LegalComplianceShape rdf:type sh:NodeShape ;
     ] ;
     # gUFO Quality Aspects
     sh:property [
-        sh:path icac-legal:hasComplianceLevel ;
+        sh:path cacontology-legal:hasComplianceLevel ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
@@ -476,7 +476,7 @@ icac-legal-shapes:LegalComplianceShape rdf:type sh:NodeShape ;
     ] ;
     # Standard Properties
     sh:property [
-        sh:path icac-legal:legalAlignmentLevel ;
+        sh:path cacontology-legal:legalAlignmentLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -484,14 +484,14 @@ icac-legal-shapes:LegalComplianceShape rdf:type sh:NodeShape ;
         rdfs:comment "Legal alignment level must be specified."@en ;
     ] ;
     sh:property [
-        sh:path icac-legal:measuredBy ;
-        sh:class icac-legal:ComplianceMetrics ;
+        sh:path cacontology-legal:measuredBy ;
+        sh:class cacontology-legal:ComplianceMetrics ;
         sh:minCount 1 ;
         rdfs:comment "Compliance must be measured by specific metrics."@en ;
     ] .
 
-icac-legal-shapes:LegalFrameworkGapShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-legal:LegalFrameworkGap ;
+cacontology-legal-shapes:LegalFrameworkGapShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal:LegalFrameworkGap ;
     rdfs:label "Legal Framework Gap Shape"@en ;
     rdfs:comment "Enhanced shape for legal framework gaps with gap severity assessment."@en ;
     sh:property [
@@ -503,7 +503,7 @@ icac-legal-shapes:LegalFrameworkGapShape rdf:type sh:NodeShape ;
     ] ;
     # gUFO Quality Aspects
     sh:property [
-        sh:path icac-legal:hasGapSeverity ;
+        sh:path cacontology-legal:hasGapSeverity ;
         sh:datatype xsd:string ;
         sh:in ( "minor" "moderate" "major" "critical" "systemic" ) ;
         sh:maxCount 1 ;
@@ -512,7 +512,7 @@ icac-legal-shapes:LegalFrameworkGapShape rdf:type sh:NodeShape ;
     ] ;
     # Standard Properties
     sh:property [
-        sh:path icac-legal:policyGapSeverity ;
+        sh:path cacontology-legal:policyGapSeverity ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -528,14 +528,14 @@ icac-legal-shapes:LegalFrameworkGapShape rdf:type sh:NodeShape ;
         rdfs:comment "Gap must have detailed description."@en ;
     ] ;
     sh:property [
-        sh:path icac-legal:requiresReform ;
-        sh:class icac-legal:LegalReform ;
+        sh:path cacontology-legal:requiresReform ;
+        sh:class cacontology-legal:LegalReform ;
         sh:minCount 1 ;
         rdfs:comment "Gap must require specific legal reform."@en ;
     ] .
 
-icac-legal-shapes:LegislativeAssessmentShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-legal:LegislativeAssessment ;
+cacontology-legal-shapes:LegislativeAssessmentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal:LegislativeAssessment ;
     rdfs:label "Legislative Assessment Shape"@en ;
     rdfs:comment "Enhanced shape for legislative assessments with reliability assessment."@en ;
     sh:property [
@@ -547,7 +547,7 @@ icac-legal-shapes:LegislativeAssessmentShape rdf:type sh:NodeShape ;
     ] ;
     # gUFO Quality Aspects
     sh:property [
-        sh:path icac-legal:hasAssessmentReliability ;
+        sh:path cacontology-legal:hasAssessmentReliability ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
@@ -556,7 +556,7 @@ icac-legal-shapes:LegislativeAssessmentShape rdf:type sh:NodeShape ;
         sh:message "Assessment reliability should be measured"@en
     ] ;
     sh:property [
-        sh:path icac-legal:hasDataQuality ;
+        sh:path cacontology-legal:hasDataQuality ;
         sh:datatype xsd:string ;
         sh:in ( "poor" "fair" "good" "excellent" "validated" ) ;
         sh:maxCount 1 ;
@@ -565,7 +565,7 @@ icac-legal-shapes:LegislativeAssessmentShape rdf:type sh:NodeShape ;
     ] ;
     # Standard Properties
     sh:property [
-        sh:path icac-legal:legislativeCompliance ;
+        sh:path cacontology-legal:legislativeCompliance ;
         sh:datatype xsd:decimal ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -585,36 +585,36 @@ icac-legal-shapes:LegislativeAssessmentShape rdf:type sh:NodeShape ;
 # gUFO PARTICIPATION CONSTRAINT SHAPES
 # =============================================================================
 
-icac-legal-shapes:LegalHarmonizationParticipationShape rdf:type sh:NodeShape ;
+cacontology-legal-shapes:LegalHarmonizationParticipationShape rdf:type sh:NodeShape ;
     rdfs:label "Legal Harmonization Participation Shape"@en ;
     rdfs:comment "Validates participation constraints for legal harmonization activities following gUFO participation patterns."@en ;
-    sh:targetClass icac-legal:PolicyHarmonization ;
+    sh:targetClass cacontology-legal:PolicyHarmonization ;
     sh:property [
-        sh:path [ sh:inversePath icac-legal:participatesIn ] ;
+        sh:path [ sh:inversePath cacontology-legal:participatesIn ] ;
         sh:class uco-location:Location ;
         sh:minCount 2 ;
         sh:severity sh:Violation ;
         sh:message "Policy harmonization must involve at least two countries"@en
     ] .
 
-icac-legal-shapes:InternationalCooperationParticipationShape rdf:type sh:NodeShape ;
+cacontology-legal-shapes:InternationalCooperationParticipationShape rdf:type sh:NodeShape ;
     rdfs:label "International Cooperation Participation Shape"@en ;
     rdfs:comment "Validates participation constraints for international law enforcement cooperation."@en ;
-    sh:targetClass icac-legal:InternationalLawEnforcement ;
+    sh:targetClass cacontology-legal:InternationalLawEnforcement ;
     sh:property [
-        sh:path [ sh:inversePath icac-legal:participatesIn ] ;
+        sh:path [ sh:inversePath cacontology-legal:participatesIn ] ;
         sh:class uco-identity:Organization ;
         sh:minCount 2 ;
         sh:severity sh:Warning ;
         sh:message "International cooperation should involve multiple organizations"@en
     ] .
 
-icac-legal-shapes:TechnicalAssistanceParticipationShape rdf:type sh:NodeShape ;
+cacontology-legal-shapes:TechnicalAssistanceParticipationShape rdf:type sh:NodeShape ;
     rdfs:label "Technical Assistance Participation Shape"@en ;
     rdfs:comment "Validates participation of organizations in technical assistance programs."@en ;
-    sh:targetClass icac-legal:TechnicalAssistance ;
+    sh:targetClass cacontology-legal:TechnicalAssistance ;
     sh:property [
-        sh:path [ sh:inversePath icac-legal:participatesIn ] ;
+        sh:path [ sh:inversePath cacontology-legal:participatesIn ] ;
         sh:class uco-identity:Organization ;
         sh:minCount 1 ;
         sh:severity sh:Violation ;
@@ -625,25 +625,25 @@ icac-legal-shapes:TechnicalAssistanceParticipationShape rdf:type sh:NodeShape ;
 # gUFO PART-WHOLE RELATIONSHIP SHAPES
 # =============================================================================
 
-icac-legal-shapes:LegalFrameworkCompositionShape rdf:type sh:NodeShape ;
+cacontology-legal-shapes:LegalFrameworkCompositionShape rdf:type sh:NodeShape ;
     rdfs:label "Legal Framework Composition Shape"@en ;
     rdfs:comment "Validates compositional structure of legal frameworks following gUFO part-whole patterns."@en ;
-    sh:targetClass icac-legal:RegionalFramework ;
+    sh:targetClass cacontology-legal:RegionalFramework ;
     sh:property [
-        sh:path [ sh:inversePath icac-legal:isComponentOf ] ;
-        sh:class icac-legal:NationalLegislation ;
+        sh:path [ sh:inversePath cacontology-legal:isComponentOf ] ;
+        sh:class cacontology-legal:NationalLegislation ;
         sh:minCount 3 ;
         sh:severity sh:Violation ;
         sh:message "Regional framework must include legislation from at least three countries"@en
     ] .
 
-icac-legal-shapes:TreatyFrameworkCompositionShape rdf:type sh:NodeShape ;
+cacontology-legal-shapes:TreatyFrameworkCompositionShape rdf:type sh:NodeShape ;
     rdfs:label "Treaty Framework Composition Shape"@en ;
     rdfs:comment "Validates compositional structure of treaty frameworks."@en ;
-    sh:targetClass icac-legal:TreatyFramework ;
+    sh:targetClass cacontology-legal:TreatyFramework ;
     sh:property [
-        sh:path [ sh:inversePath icac-legal:isComponentOf ] ;
-        sh:class icac-legal:NationalLegislation ;
+        sh:path [ sh:inversePath cacontology-legal:isComponentOf ] ;
+        sh:class cacontology-legal:NationalLegislation ;
         sh:minCount 2 ;
         sh:severity sh:Warning ;
         sh:message "Treaty framework should include implementing legislation from member countries"@en
@@ -653,13 +653,13 @@ icac-legal-shapes:TreatyFrameworkCompositionShape rdf:type sh:NodeShape ;
 # gUFO QUALIFIED RELATION SHAPES
 # =============================================================================
 
-icac-legal-shapes:QualifiedComplianceParticipationShape rdf:type sh:NodeShape ;
+cacontology-legal-shapes:QualifiedComplianceParticipationShape rdf:type sh:NodeShape ;
     rdfs:label "Qualified Compliance Participation Shape"@en ;
     rdfs:comment "Validates qualified participation relationships in legal compliance according to gUFO patterns."@en ;
     sh:targetClass gufo:ParticipationSituation ;
     sh:property [
-        sh:path icac-legal:concernsLegalFramework ;
-        sh:class icac-legal:NationalLegislation ;
+        sh:path cacontology-legal:concernsLegalFramework ;
+        sh:class cacontology-legal:NationalLegislation ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:severity sh:Violation ;
@@ -670,10 +670,10 @@ icac-legal-shapes:QualifiedComplianceParticipationShape rdf:type sh:NodeShape ;
 # ADVANCED gUFO BUSINESS RULES
 # =============================================================================
 
-icac-legal-shapes:HighEffectivenessLegislationRule rdf:type sh:NodeShape ;
+cacontology-legal-shapes:HighEffectivenessLegislationRule rdf:type sh:NodeShape ;
     rdfs:label "High Effectiveness Legislation Rule"@en ;
     rdfs:comment "Highly effective legislation should have excellent implementation quality."@en ;
-    sh:targetClass icac-legal:NationalLegislation ;
+    sh:targetClass cacontology-legal:NationalLegislation ;
     sh:sparql [
         sh:message "Highly effective legislation should have excellent implementation quality"@en ;
         sh:severity sh:Warning ;
@@ -686,9 +686,9 @@ icac-legal-shapes:HighEffectivenessLegislationRule rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-legal:hasLegalEffectiveness "highly_effective" .
+                $this cacontology-legal:hasLegalEffectiveness "highly_effective" .
                 OPTIONAL {
-                    $this icac-legal:hasImplementationQuality ?quality .
+                    $this cacontology-legal:hasImplementationQuality ?quality .
                     FILTER (?quality IN ("excellent", "exemplary"))
                 }
                 FILTER (!BOUND(?quality))
@@ -696,10 +696,10 @@ icac-legal-shapes:HighEffectivenessLegislationRule rdf:type sh:NodeShape ;
         """
     ] .
 
-icac-legal-shapes:ComprehensiveHarmonizationRule rdf:type sh:NodeShape ;
+cacontology-legal-shapes:ComprehensiveHarmonizationRule rdf:type sh:NodeShape ;
     rdfs:label "Comprehensive Harmonization Rule"@en ;
     rdfs:comment "Comprehensive harmonization should involve strong treaty frameworks."@en ;
-    sh:targetClass icac-legal:PolicyHarmonization ;
+    sh:targetClass cacontology-legal:PolicyHarmonization ;
     sh:sparql [
         sh:message "Comprehensive harmonization should involve strong treaty frameworks"@en ;
         sh:severity sh:Warning ;
@@ -712,12 +712,12 @@ icac-legal-shapes:ComprehensiveHarmonizationRule rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-legal:hasHarmonizationDegree ?degree .
+                $this cacontology-legal:hasHarmonizationDegree ?degree .
                 FILTER (?degree IN ("comprehensive", "complete"))
                 OPTIONAL {
-                    ?treaty icac-legal:facilitatesCooperation ?cooperation .
-                    ?cooperation rdf:type icac-legal:InternationalLawEnforcement .
-                    ?treaty icac-legal:hasTreatyStrength ?strength .
+                    ?treaty cacontology-legal:facilitatesCooperation ?cooperation .
+                    ?cooperation rdf:type cacontology-legal:InternationalLawEnforcement .
+                    ?treaty cacontology-legal:hasTreatyStrength ?strength .
                     FILTER (?strength IN ("binding", "comprehensive"))
                 }
                 FILTER (!BOUND(?strength))
@@ -725,10 +725,10 @@ icac-legal-shapes:ComprehensiveHarmonizationRule rdf:type sh:NodeShape ;
         """
     ] .
 
-icac-legal-shapes:CriticalGapReformRule rdf:type sh:NodeShape ;
+cacontology-legal-shapes:CriticalGapReformRule rdf:type sh:NodeShape ;
     rdfs:label "Critical Gap Reform Rule"@en ;
     rdfs:comment "Critical gaps should require urgent reform."@en ;
-    sh:targetClass icac-legal:LegalFrameworkGap ;
+    sh:targetClass cacontology-legal:LegalFrameworkGap ;
     sh:sparql [
         sh:message "Critical gaps should require urgent reform"@en ;
         sh:severity sh:Warning ;
@@ -741,11 +741,11 @@ icac-legal-shapes:CriticalGapReformRule rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-legal:hasGapSeverity ?severity .
+                $this cacontology-legal:hasGapSeverity ?severity .
                 FILTER (?severity IN ("critical", "systemic"))
                 OPTIONAL {
-                    $this icac-legal:requiresReform ?reform .
-                    ?reform icac-legal:hasReformUrgency ?urgency .
+                    $this cacontology-legal:requiresReform ?reform .
+                    ?reform cacontology-legal:hasReformUrgency ?urgency .
                     FILTER (?urgency IN ("urgent", "critical"))
                 }
                 FILTER (!BOUND(?urgency))
@@ -753,10 +753,10 @@ icac-legal-shapes:CriticalGapReformRule rdf:type sh:NodeShape ;
         """
     ] .
 
-icac-legal-shapes:FullComplianceAlignmentRule rdf:type sh:NodeShape ;
+cacontology-legal-shapes:FullComplianceAlignmentRule rdf:type sh:NodeShape ;
     rdfs:label "Full Compliance Alignment Rule"@en ;
     rdfs:comment "Full legal alignment should have high compliance levels."@en ;
-    sh:targetClass icac-legal:LegalCompliance ;
+    sh:targetClass cacontology-legal:LegalCompliance ;
     sh:sparql [
         sh:message "Full legal alignment should have high compliance levels"@en ;
         sh:severity sh:Warning ;
@@ -769,9 +769,9 @@ icac-legal-shapes:FullComplianceAlignmentRule rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-legal:legalAlignmentLevel "full" .
+                $this cacontology-legal:legalAlignmentLevel "full" .
                 OPTIONAL {
-                    $this icac-legal:hasComplianceLevel ?level .
+                    $this cacontology-legal:hasComplianceLevel ?level .
                     FILTER (?level >= 0.8)
                 }
                 FILTER (!BOUND(?level))
@@ -779,10 +779,10 @@ icac-legal-shapes:FullComplianceAlignmentRule rdf:type sh:NodeShape ;
         """
     ] .
 
-icac-legal-shapes:InternationalCooperationFrameworkRule rdf:type sh:NodeShape ;
+cacontology-legal-shapes:InternationalCooperationFrameworkRule rdf:type sh:NodeShape ;
     rdfs:label "International Cooperation Framework Rule"@en ;
     rdfs:comment "International law enforcement must be supported by proper legal framework."@en ;
-    sh:targetClass icac-legal:InternationalLawEnforcement ;
+    sh:targetClass cacontology-legal:InternationalLawEnforcement ;
     sh:sparql [
         sh:message "International law enforcement must be supported by treaty or extradition framework"@en ;
         sh:severity sh:Violation ;
@@ -795,11 +795,11 @@ icac-legal-shapes:InternationalCooperationFrameworkRule rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-legal:InternationalLawEnforcement .
+                $this a cacontology-legal:InternationalLawEnforcement .
                 FILTER NOT EXISTS {
-                    { ?treaty icac-legal:facilitatesCooperation $this . }
+                    { ?treaty cacontology-legal:facilitatesCooperation $this . }
                     UNION
-                    { ?agreement icac-legal:enablesExtradition $this . }
+                    { ?agreement cacontology-legal:enablesExtradition $this . }
                 }
             }
         """
@@ -809,15 +809,15 @@ icac-legal-shapes:InternationalCooperationFrameworkRule rdf:type sh:NodeShape ;
 # ENHANCED gUFO DATA QUALITY VALIDATION SHAPE
 # =============================================================================
 
-icac-legal-shapes:LegalHarmonizationDataQualityShape rdf:type sh:NodeShape ;
+cacontology-legal-shapes:LegalHarmonizationDataQualityShape rdf:type sh:NodeShape ;
     rdfs:label "Legal Harmonization Data Quality Shape"@en ;
     rdfs:comment "Comprehensive gUFO quality validation for legal harmonization data."@en ;
-    sh:targetClass icac-legal:GlobalLegalReview ;
-    sh:targetClass icac-legal:LegislativeAssessment ;
-    sh:targetClass icac-legal:ComplianceMetrics ;
+    sh:targetClass cacontology-legal:GlobalLegalReview ;
+    sh:targetClass cacontology-legal:LegislativeAssessment ;
+    sh:targetClass cacontology-legal:ComplianceMetrics ;
     # gUFO Quality Level Validation
     sh:property [
-        sh:path icac-legal:hasDataQuality ;
+        sh:path cacontology-legal:hasDataQuality ;
         sh:datatype xsd:string ;
         sh:in ( "poor" "fair" "good" "excellent" "validated" ) ;
         sh:maxCount 1 ;
@@ -837,9 +837,9 @@ icac-legal-shapes:LegalHarmonizationDataQualityShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-legal:hasDataQuality "excellent" .
+                $this cacontology-legal:hasDataQuality "excellent" .
                 OPTIONAL {
-                    $this icac-legal:hasAssessmentReliability ?reliability .
+                    $this cacontology-legal:hasAssessmentReliability ?reliability .
                     FILTER (?reliability >= 0.8)
                 }
                 FILTER (!BOUND(?reliability))
@@ -851,8 +851,8 @@ icac-legal-shapes:LegalHarmonizationDataQualityShape rdf:type sh:NodeShape ;
 # ORIGINAL VALIDATION SHAPES (ENHANCED)
 # =============================================================================
 
-icac-legal-shapes:GlobalLegalReviewShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-legal:GlobalLegalReview ;
+cacontology-legal-shapes:GlobalLegalReviewShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal:GlobalLegalReview ;
     rdfs:label "Global Legal Review Shape"@en ;
     rdfs:comment "Enhanced validation shape for global legal reviews with gUFO integration."@en ;
     sh:property [
@@ -863,7 +863,7 @@ icac-legal-shapes:GlobalLegalReviewShape rdf:type sh:NodeShape ;
         sh:message "Must be classified as gUFO Kind"@en
     ] ;
     sh:property [
-        sh:path icac-legal:countriesAnalyzed ;
+        sh:path cacontology-legal:countriesAnalyzed ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
