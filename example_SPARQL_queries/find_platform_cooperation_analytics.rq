@@ -53,61 +53,61 @@ SELECT DISTINCT
     
 WHERE {
     # Main investigation
-    ?investigation rdf:type icac-core:ICACInvestigation ;
+    ?investigation rdf:type cacontology-core:ICACInvestigation ;
                   rdfs:label ?investigationLabel ;
-                  icac-core:hasStep ?receiveStep .
+                  cacontology-core:hasStep ?receiveStep .
     
     # Initial cybertip reception
-    ?receiveStep rdf:type icac-core:ReceiveCybertipAction ;
+    ?receiveStep rdf:type cacontology-core:ReceiveCybertipAction ;
                 uco-core:object ?report .
     
     # Platform and ESP information
     ?report hotlines-core:reportedBy ?esp .
-    ?platform icac-platforms:operatedBy ?esp ;
+    ?platform cacontology-platforms:operatedBy ?esp ;
              rdf:type ?platformClass ;
              rdfs:label ?platformLabel ;
-             icac-platforms:platformType ?platformType .
+             cacontology-platforms:platformType ?platformType .
     
-    ?esp rdf:type icac-platforms:ElectronicServiceProvider ;
+    ?esp rdf:type cacontology-platforms:ElectronicServiceProvider ;
         rdfs:label ?espLabel ;
-        icac-platforms:headquarteredIn ?espHeadquarters .
+        cacontology-platforms:headquarteredIn ?espHeadquarters .
     
     # Detection information
     OPTIONAL {
-        ?investigation icac-core:hasStep ?detectionStep .
-        ?detectionStep rdf:type icac-detection:AutomatedDetectionAction ;
+        ?investigation cacontology-core:hasStep ?detectionStep .
+        ?detectionStep rdf:type cacontology-detection:AutomatedDetectionAction ;
                       uco-core:result ?detectionResult .
         
-        ?detectionResult icac-detection:confidenceScore ?detectionConfidence ;
-                        icac-detection:sarClassification ?sarClass .
+        ?detectionResult cacontology-detection:confidenceScore ?detectionConfidence ;
+                        cacontology-detection:sarClassification ?sarClass .
         
         ?sarClass rdfs:label ?sarClassification .
     }
     
     # Forensic acquisition information
     OPTIONAL {
-        ?investigation icac-core:hasStep ?forensicStep .
-        ?forensicStep rdf:type icac-forensics:ForensicAcquisitionAction ;
-                     icac-forensics:acquisitionMethod ?forensicMethod .
+        ?investigation cacontology-core:hasStep ?forensicStep .
+        ?forensicStep rdf:type cacontology-forensics:ForensicAcquisitionAction ;
+                     cacontology-forensics:acquisitionMethod ?forensicMethod .
     }
     
     # Platform cooperation information
     OPTIONAL {
-        ?investigation icac-core:hasStep ?legalStep .
-        ?legalStep rdf:type icac-core:LegalProcessAction ;
+        ?investigation cacontology-core:hasStep ?legalStep .
+        ?legalStep rdf:type cacontology-core:LegalProcessAction ;
                   uco-core:result ?preservationAction .
         
-        ?preservationAction rdf:type icac-platforms:DataPreservationAction ;
-                           icac-platforms:preservationPeriod ?preservationPeriod .
+        ?preservationAction rdf:type cacontology-platforms:DataPreservationAction ;
+                           cacontology-platforms:preservationPeriod ?preservationPeriod .
     }
     
     # Recovered evidence information
     OPTIONAL {
-        ?investigation icac-core:hasStep ?analysisStep .
-        ?analysisStep rdf:type icac-forensics:MetadataExtractionAction ;
+        ?investigation cacontology-core:hasStep ?analysisStep .
+        ?analysisStep rdf:type cacontology-forensics:MetadataExtractionAction ;
                      uco-core:result ?recoveredEvidence .
         
-        ?recoveredEvidence rdf:type icac-forensics:RecoveredFile ;
+        ?recoveredEvidence rdf:type cacontology-forensics:RecoveredFile ;
                           rdfs:label ?recoveredFiles .
     }
     
@@ -120,20 +120,20 @@ WHERE {
                (COUNT(DISTINCT ?deviceCorr) AS ?deviceCorrelation)
                (SAMPLE(?searchWarrant) AS ?searchWarrantRequired)
         WHERE {
-            ?socialMedia rdf:type icac-platforms:SocialMediaEvidence ;
-                icac-platforms:foundOnSocialMedia true .
+            ?socialMedia rdf:type cacontology-platforms:SocialMediaEvidence ;
+                cacontology-platforms:foundOnSocialMedia true .
             
             OPTIONAL {
-                ?crossPlatform rdf:type icac-platforms:CrossPlatformEvidence ;
-                    icac-platforms:platformsInvestigated ?platformCount .
+                ?crossPlatform rdf:type cacontology-platforms:CrossPlatformEvidence ;
+                    cacontology-platforms:platformsInvestigated ?platformCount .
             }
             
             OPTIONAL {
-                ?socialMedia icac-platforms:correlatesWithDevice ?deviceCorr .
+                ?socialMedia cacontology-platforms:correlatesWithDevice ?deviceCorr .
             }
             
             OPTIONAL {
-                ?socialMedia icac-platforms:searchWarrantRequired ?searchWarrant .
+                ?socialMedia cacontology-platforms:searchWarrantRequired ?searchWarrant .
             }
         }
         GROUP BY ?investigation
@@ -141,32 +141,32 @@ WHERE {
     
     # Task Force Coordination
     OPTIONAL {
-        ?taskForceInvolved rdf:type icac-taskforce:ICACtaskForce ;
-            icac-taskforce:handledInvestigation ?investigation .
+        ?taskForceInvolved rdf:type cacontology-taskforce:ICACtaskForce ;
+            cacontology-taskforce:handledInvestigation ?investigation .
         
         OPTIONAL {
-            ?multiAgency rdf:type icac-platforms:PlatformInvestigationCoordination ;
-                icac-platforms:coordinatedBy ?taskForceInvolved .
+            ?multiAgency rdf:type cacontology-platforms:PlatformInvestigationCoordination ;
+                cacontology-platforms:coordinatedBy ?taskForceInvolved .
             BIND("COORDINATED" AS ?multiAgencyCoordination)
         }
     }
     
     # Legal Process Analysis
     OPTIONAL {
-        ?evidence rdf:type icac-platforms:SocialMediaEvidence ;
-            icac-platforms:legalProcessUsed ?legalProcessUsed .
+        ?evidence rdf:type cacontology-platforms:SocialMediaEvidence ;
+            cacontology-platforms:legalProcessUsed ?legalProcessUsed .
     }
     
     # Platform Cooperation Capabilities
     OPTIONAL {
-        ?platform icac-platforms:hasLegalComplianceCapability ?compliance .
-        ?compliance icac-platforms:responseTimeFrame ?responseTimeFrame ;
-                   icac-platforms:emergencyDisclosureCapable ?emergencyDisclosureCapable .
+        ?platform cacontology-platforms:hasLegalComplianceCapability ?compliance .
+        ?compliance cacontology-platforms:responseTimeFrame ?responseTimeFrame ;
+                   cacontology-platforms:emergencyDisclosureCapable ?emergencyDisclosureCapable .
     }
     
     OPTIONAL {
-        ?platform icac-platforms:hasDataRetentionPolicy ?retention .
-        ?retention icac-platforms:userDataRetentionPeriod ?dataRetentionPeriod .
+        ?platform cacontology-platforms:hasDataRetentionPolicy ?retention .
+        ?retention cacontology-platforms:userDataRetentionPeriod ?dataRetentionPeriod .
     }
     
     # Filter constraints (can be customized)
@@ -196,25 +196,25 @@ SELECT
     (AVG(?dataRetentionPeriod) AS ?avgDataRetentionDays)
 
 WHERE {
-    ?investigation rdf:type icac-core:ICACInvestigation .
+    ?investigation rdf:type cacontology-core:ICACInvestigation .
     
-    ?platform icac-platforms:platformType ?platformType .
+    ?platform cacontology-platforms:platformType ?platformType .
     
     OPTIONAL {
-        ?detectionResult icac-detection:confidenceScore ?detectionConfidence .
+        ?detectionResult cacontology-detection:confidenceScore ?detectionConfidence .
     }
     
     OPTIONAL {
-        ?preservationAction icac-platforms:preservationPeriod ?preservationPeriod .
+        ?preservationAction cacontology-platforms:preservationPeriod ?preservationPeriod .
     }
     
     OPTIONAL {
-        ?compliance icac-platforms:responseTimeFrame ?responseTimeFrame ;
-                   icac-platforms:emergencyDisclosureCapable ?emergencyDisclosureCapable .
+        ?compliance cacontology-platforms:responseTimeFrame ?responseTimeFrame ;
+                   cacontology-platforms:emergencyDisclosureCapable ?emergencyDisclosureCapable .
     }
     
     OPTIONAL {
-        ?retention icac-platforms:userDataRetentionPeriod ?dataRetentionPeriod .
+        ?retention cacontology-platforms:userDataRetentionPeriod ?dataRetentionPeriod .
     }
     
     # Social Media Evidence Metrics
@@ -225,16 +225,16 @@ WHERE {
                (MAX(?platformCount) AS ?platformsInvestigated)
                (SAMPLE(?searchWarrant) AS ?searchWarrantRequired)
         WHERE {
-            ?socialMedia rdf:type icac-platforms:SocialMediaEvidence ;
-                icac-platforms:foundOnSocialMedia true .
+            ?socialMedia rdf:type cacontology-platforms:SocialMediaEvidence ;
+                cacontology-platforms:foundOnSocialMedia true .
             
             OPTIONAL {
-                ?crossPlatform rdf:type icac-platforms:CrossPlatformEvidence ;
-                    icac-platforms:platformsInvestigated ?platformCount .
+                ?crossPlatform rdf:type cacontology-platforms:CrossPlatformEvidence ;
+                    cacontology-platforms:platformsInvestigated ?platformCount .
             }
             
             OPTIONAL {
-                ?socialMedia icac-platforms:searchWarrantRequired ?searchWarrant .
+                ?socialMedia cacontology-platforms:searchWarrantRequired ?searchWarrant .
             }
         }
         GROUP BY ?investigation

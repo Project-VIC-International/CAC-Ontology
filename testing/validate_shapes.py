@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ICAC SHACL Shapes Validation Script
+CAC Ontology SHACL Shapes Validation Script
 Validates all SHACL shapes files for syntactic correctness and generates coverage report.
 """
 
@@ -9,7 +9,7 @@ import os
 import glob
 
 def main():
-    print('🔍 ICAC SHACL Shapes Validation Report')
+    print('🔍 CAC Ontology SHACL Shapes Validation Report')
     print('=' * 50)
 
     shapes_files = glob.glob('*-shapes.ttl')

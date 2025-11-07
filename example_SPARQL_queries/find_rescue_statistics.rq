@@ -38,10 +38,10 @@ WHERE {
             hotlines-core:createdTime ?reportTime ;
             hotlines-core:triggersAction ?rescueAction .
     
-    ?rescueAction a icac-core:VictimRescueAction ;
+    ?rescueAction a cacontology-core:VictimRescueAction ;
                   uco-core:startTime ?rescueTime ;
-                  icac-core:rescuedVictim ?victim ;
-                  icac-core:outcome icac-core:outcome-success .
+                  cacontology-core:rescuedVictim ?victim ;
+                  cacontology-core:outcome cacontology-core:outcome-success .
 
     # Filter by specific organization if URI is provided
     FILTER(!BOUND(?organizationURI) || (?organization = ?organizationURI))
@@ -58,25 +58,25 @@ WHERE {
 
     # Enhanced rescue operations analysis
     OPTIONAL {
-        ?childRescueUnit rdf:type icac-specialized:ChildRescueUnit ;
-            icac-specialized:participatedInRescue ?rescueAction .
+        ?childRescueUnit rdf:type cacontology-specialized:ChildRescueUnit ;
+            cacontology-specialized:participatedInRescue ?rescueAction .
         
         OPTIONAL {
-            ?childRescueUnit icac-specialized:emergencyResponseTime ?emergencyResponseTime .
+            ?childRescueUnit cacontology-specialized:emergencyResponseTime ?emergencyResponseTime .
         }
     }
     
     # Multi-state rescue coordination
     OPTIONAL {
-        ?multiStateRescue rdf:type icac-multi:ChildRescueCoordination ;
-            icac-multi:rescueAction ?rescueAction ;
-            icac-multi:childrenRescued ?rescueCount .
+        ?multiStateRescue rdf:type cacontology-multi:ChildRescueCoordination ;
+            cacontology-multi:rescueAction ?rescueAction ;
+            cacontology-multi:childrenRescued ?rescueCount .
         FILTER(?rescueCount > 0)
     }
     
     # Ongoing abuse rescue cases
     OPTIONAL {
-        ?victim icac-victim:currentlyInDanger true .
+        ?victim cacontology-victim:currentlyInDanger true .
         BIND(?victim AS ?ongoingAbuse)
     }
 
@@ -111,16 +111,16 @@ WHERE {
         ("2025-01-01T00:00:00Z"^^xsd:dateTime "2025-12-31T23:59:59Z"^^xsd:dateTime)
     }
     
-    ?rescueAction rdf:type icac-core:VictimRescueAction ;
+    ?rescueAction rdf:type cacontology-core:VictimRescueAction ;
                   uco-core:startTime ?rescueTime ;
-                  icac-core:rescuedVictim ?victim .
+                  cacontology-core:rescuedVictim ?victim .
     
     ?specializedUnit rdf:type ?specializedUnitType ;
-        icac-specialized:participatedInRescue ?rescueAction .
+        cacontology-specialized:participatedInRescue ?rescueAction .
     
     # Response time analysis
     OPTIONAL {
-        ?specializedUnit icac-specialized:emergencyResponseTime ?emergencyResponseTime .
+        ?specializedUnit cacontology-specialized:emergencyResponseTime ?emergencyResponseTime .
     }
     
     # Cycle time from initial report
@@ -132,16 +132,16 @@ WHERE {
     
     # Multi-state operations
     OPTIONAL {
-        ?multiState rdf:type icac-multi:ChildRescueCoordination ;
-            icac-multi:rescueAction ?rescueAction .
+        ?multiState rdf:type cacontology-multi:ChildRescueCoordination ;
+            cacontology-multi:rescueAction ?rescueAction .
     }
     
     FILTER(?rescueTime >= ?from && ?rescueTime <= ?to)
     FILTER(?specializedUnitType IN (
-        icac-specialized:ChildRescueUnit,
-        icac-specialized:TacticalUnit,
-        icac-specialized:VictimServiceUnit,
-        icac-specialized:EmergencyResponseUnit
+        cacontology-specialized:ChildRescueUnit,
+        cacontology-specialized:TacticalUnit,
+        cacontology-specialized:VictimServiceUnit,
+        cacontology-specialized:EmergencyResponseUnit
     ))
 }
 GROUP BY ?specializedUnitType

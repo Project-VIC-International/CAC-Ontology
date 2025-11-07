@@ -5,7 +5,124 @@ All notable changes to the CAC ontology family will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## 07 November 2025
+
+### Changed - Namespace and Prefix Realignment from ICAC to CAC Ontology
+
+Comprehensive namespace and prefix realignment across the entire CAC ontology family to standardize on the `cacontology` naming convention, replacing legacy ICAC-based namespaces and prefixes.
+
+#### Namespace Realignment:
+
+**Primary Namespace Migration:**
+- **Previous**: `http://ontology.icac.org` and `https://ontology.caseontology.org/icac/`
+- **Current**: `https://cacontology.projectvic.org`
+- **Rationale**: Aligns with the CAC (Crimes Against Children) terminology and establishes a dedicated Project VIC namespace
+
+**Module-Specific Namespaces:**
+- All ontology modules now use the standardized `https://cacontology.projectvic.org/{module-name}#` pattern
+- Example modules:
+  - Core: `https://cacontology.projectvic.org/core#`
+  - Task Force: `https://cacontology.projectvic.org/taskforce#`
+  - Educational Exploitation: `https://cacontology.projectvic.org/educational-exploitation#`
+  - Sex Trafficking: `https://cacontology.projectvic.org/trafficking#`
+  - And all other 30+ ontology modules
+
+#### Prefix Standardization:
+
+**Primary Prefix Changes:**
+- **Previous**: `icac-core:`, `icac-taskforce:`, `icac-forensics:`, etc.
+- **Current**: `cacontology-core:`, `cacontology-taskforce:`, `cacontology-forensics:`, etc.
+- **Base Prefix**: `cacontology:` for the root namespace
+
+**Module Prefix Pattern:**
+- All module prefixes follow the `cacontology-{module-name}:` convention
+- Maintains consistency across all ontology files, SHACL shapes, and example data
+- Example: `cacontology-educational:`, `cacontology-grooming:`, `cacontology-sentencing:`
+
+#### Files Affected:
+
+**Ontology Files (80+ files):**
+- All `.ttl` ontology files in the `ontology/` directory
+- All SHACL shapes files (`*-shapes.ttl`)
+- Updated prefix declarations and namespace references throughout
+
+**Example Files:**
+- Updated example files in `examples/` directory to use new namespaces
+- Legacy examples may still reference old namespaces for historical accuracy
+
+**SPARQL Queries:**
+- Updated SPARQL query examples in `example_SPARQL_queries/` directory
+- Some queries may retain legacy prefixes for backward compatibility documentation
+
+**Documentation:**
+- README.md updated with new namespace information
+- Documentation site reflects new namespace structure
+
+#### Migration Impact:
+
+**Breaking Changes:**
+- **Namespace URIs**: All namespace URIs have changed from ICAC-based to CAC ontology-based
+- **Prefix Declarations**: All `@prefix` declarations updated across ontology files
+- **Import Statements**: `owl:imports` statements updated to reflect new namespace locations
+- **Cross-References**: Internal ontology references updated to use new namespaces
+
+**Backward Compatibility:**
+- Legacy namespace URIs may be maintained as redirects or aliases where possible
+- Example files may preserve both old and new namespace references for migration reference
+- SPARQL queries updated but legacy patterns documented for reference
+
+**Validation:**
+- All SHACL shapes updated to reference new namespaces
+- SHACL namespace declarations (`sh:namespace`) updated in all shapes files
+- Validation pipeline updated to use new namespace structure
+
+#### Technical Details:
+
+**Namespace Structure:**
+```
+Base: https://cacontology.projectvic.org
+Modules: https://cacontology.projectvic.org/{module-name}#
+Shapes: https://cacontology.projectvic.org/{module-name}/shapes#
+Examples: https://cacontology.projectvic.org/examples/{example-name}#
+```
+
+**Prefix Pattern:**
+```turtle
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-{module}: <https://cacontology.projectvic.org/{module-name}#> .
+@prefix cacontology-{module}-shapes: <https://cacontology.projectvic.org/{module-name}/shapes#> .
+```
+
+**Implementation Status:**
+- ✅ All ontology files updated
+- ✅ All SHACL shapes files updated
+- ✅ Core example files updated
+- ⚠️ Some legacy examples may retain old namespaces for historical reference
+- ⚠️ SPARQL queries partially updated (legacy patterns may remain for documentation)
+
+#### Benefits:
+
+**Semantic Clarity:**
+- Namespace clearly indicates "CAC Ontology" rather than "ICAC"
+- Aligns with modern terminology (Crimes Against Children vs. Internet Crimes Against Children)
+- Better reflects the ontology's scope beyond internet-specific crimes
+
+**Organizational Alignment:**
+- Namespace hosted under Project VIC domain (`projectvic.org`)
+- Establishes clear ownership and maintenance responsibility
+- Supports long-term sustainability and governance
+
+**Technical Consistency:**
+- Standardized prefix naming convention across all modules
+- Predictable namespace structure for tooling and automation
+- Improved interoperability with other Project VIC ontologies
+
+**Future-Proofing:**
+- Namespace structure supports versioning and module expansion
+- Clear separation between ontology modules and example data
+- Foundation for API and service integration
+
+**Based on**: Branch `refactor-icac-to-cac-74114` - Comprehensive namespace realignment initiative to standardize CAC ontology naming conventions and establish Project VIC namespace governance.
 
 ### Added - gUFO Integration for CAC Educational SHACL Validation Framework (January 3, 2025)
 

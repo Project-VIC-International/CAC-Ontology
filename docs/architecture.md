@@ -1,11 +1,11 @@
-# ICAC Ontology Family Architecture
+# CAC Ontology Family Architecture
 
 ## gUFO Foundational Ontology Integration (**NEW**)
 
-The ICAC ontology family now includes comprehensive integration with gUFO (Unified Foundational Ontology), providing enhanced semantic precision, temporal modeling, and validation capabilities. This integration consists of three completed phases:
+The CAC ontology family now includes comprehensive integration with gUFO (Unified Foundational Ontology), providing enhanced semantic precision, temporal modeling, and validation capabilities. This integration consists of three completed phases:
 
 ### Phase 1: Core Investigation Modeling (✅ COMPLETE)
-**Files**: `icac-core-gufo.ttl`, `examples/gufo-phase1-example.ttl`
+**Files**: `cacontology-core-gufo.ttl`, `examples/gufo-phase1-example.ttl`
 
 ```mermaid
 graph TD
@@ -17,7 +17,7 @@ graph TD
         GUFO_SITUATION[gufo:Situation]
     end
 
-    subgraph "ICAC Core with gUFO"
+    subgraph "CAC Core with gUFO"
         INVESTIGATION[Investigation]
         INIT_PHASE[InitialPhase]
         ANALYSIS_PHASE[AnalysisPhase]
@@ -39,7 +39,7 @@ graph TD
 ```
 
 ### Phase 2: Temporal Framework (✅ COMPLETE)  
-**Files**: `icac-temporal-gufo.ttl`, `examples/gufo-phase2-temporal-example.ttl`
+**Files**: `cacontology-temporal-gufo.ttl`, `examples/gufo-phase2-temporal-example.ttl`
 
 ```mermaid
 graph TD
@@ -67,9 +67,9 @@ graph TD
 ```
 
 ### Phase 3: Full Integration Strategy (✅ COMPLETE)
-**Files**: `icac-gufo-integration-strategy.ttl`, `examples/gufo-integration-summary.md`
+**Files**: `cacontology-gufo-integration-strategy.ttl`, `examples/gufo-integration-summary.md`
 
-16 specialized integration patterns across all 26 ICAC modules with 345-day deployment timeline.
+16 specialized integration patterns across all 30+ CAC ontology modules with 345-day deployment timeline.
 
 ## Complete Import Chain
 
@@ -82,56 +82,56 @@ graph TD
 
     subgraph "gUFO Foundation (**NEW**)"
         GUFO[gUFO Core Concepts]
-        ICAC_GUFO[icac-core-gufo.ttl]
-        TEMPORAL_GUFO[icac-temporal-gufo.ttl]
-        STRATEGY_GUFO[icac-gufo-integration-strategy.ttl]
+        CAC_GUFO[cacontology-core-gufo.ttl]
+        TEMPORAL_GUFO[cacontology-temporal-gufo.ttl]
+        STRATEGY_GUFO[cacontology-gufo-integration-strategy.ttl]
     end
 
-    subgraph "ICAC Core"
-        ICAC[icac-core.ttl]
-        ICAC_SHAPES[icac-core-shapes.ttl]
-        HOTLINES[hotlines-core.ttl]
-        HOTLINES_SHAPES[hotlines-core-shapes.ttl]
-        NCMEC[icac-us-ncmec.ttl]
+    subgraph "CAC Core"
+        CAC[cacontology-core.ttl]
+        CAC_SHAPES[cacontology-core-shapes.ttl]
+        HOTLINES[cacontology-hotlines-core.ttl]
+        HOTLINES_SHAPES[cacontology-hotlines-core-shapes.ttl]
+        NCMEC[cacontology-us-ncmec.ttl]
     end
 
     subgraph "International & Global"
-        INTERNATIONAL[icac-international.ttl]
-        TRAINING[icac-training.ttl]
-        PREVENTION[icac-prevention.ttl]
-        LEGAL[icac-legal-harmonization.ttl]
+        INTERNATIONAL[cacontology-international.ttl]
+        TRAINING[cacontology-training.ttl]
+        PREVENTION[cacontology-prevention.ttl]
+        LEGAL[cacontology-legal-harmonization.ttl]
     end
 
     subgraph "High-Priority Criminal Activities"
-        PRODUCTION[icac-production.ttl]
-        CUSTODIAL[icac-custodial.ttl]
-        GROOMING[icac-grooming.ttl]
-        SEXTORTION[icac-sextortion.ttl]
-        ATHLETIC[icac-athletic-exploitation.ttl]
+        PRODUCTION[cacontology-production.ttl]
+        CUSTODIAL[cacontology-custodial.ttl]
+        GROOMING[cacontology-grooming.ttl]
+        SEXTORTION[cacontology-sextortion.ttl]
+        ATHLETIC[cacontology-athletic-exploitation.ttl]
     end
 
     subgraph "Specialized Investigation"
-        UNDERCOVER[icac-undercover.ttl]
-        PHYSICAL[icac-physical-evidence.ttl]
-        TACTICAL[icac-tactical.ttl]
-        MULTI_JURISDICTION[icac-multi-jurisdiction.ttl]
-        STRANGER[icac-stranger-abduction.ttl]
+        UNDERCOVER[cacontology-undercover.ttl]
+        PHYSICAL[cacontology-physical-evidence.ttl]
+        TACTICAL[cacontology-tactical.ttl]
+        MULTI_JURISDICTION[cacontology-multi-jurisdiction.ttl]
+        STRANGER[cacontology-stranger-abduction.ttl]
     end
 
     subgraph "Technical Support"
-        FORENSICS[icac-forensics.ttl]
-        FORENSICS_SHAPES[icac-forensics-shapes.ttl]
-        DETECTION[icac-detection.ttl]
-        PLATFORMS[icac-platforms.ttl]
-        STREET[icac-street-recruitment.ttl]
+        FORENSICS[cacontology-forensics.ttl]
+        FORENSICS_SHAPES[cacontology-forensics-shapes.ttl]
+        DETECTION[cacontology-detection.ttl]
+        PLATFORMS[cacontology-platforms.ttl]
+        STREET[cacontology-street-recruitment.ttl]
     end
 
     subgraph "Victim Services & Legal"
-        VICTIM_IMPACT[icac-victim-impact.ttl]
-        TASKFORCE[icac-taskforce.ttl]
-        SENTENCING[icac-sentencing.ttl]
-        SPECIALIZED_UNITS[icac-specialized-units.ttl]
-        SEX_OFFENDER[icac-sex-offender-registry.ttl]
+        VICTIM_IMPACT[cacontology-victim-impact.ttl]
+        TASKFORCE[cacontology-taskforce.ttl]
+        SENTENCING[cacontology-sentencing.ttl]
+        SPECIALIZED_UNITS[cacontology-specialized-units.ttl]
+        SEX_OFFENDER[cacontology-sex-offender-registry.ttl]
     end
 
     subgraph Examples
@@ -151,51 +151,51 @@ graph TD
         SEXTORTION_EX[wa-sextortion-case-example.ttl]
     end
 
-    GUFO --> ICAC_GUFO
+    GUFO --> CAC_GUFO
     GUFO --> TEMPORAL_GUFO  
     GUFO --> STRATEGY_GUFO
-    UCO --> ICAC
-    CASE --> ICAC
-    ICAC --> ICAC_GUFO
-    ICAC --> HOTLINES
-    ICAC --> NCMEC
+    UCO --> CAC
+    CASE --> CAC
+    CAC --> CAC_GUFO
+    CAC --> HOTLINES
+    CAC --> NCMEC
     
-    ICAC --> INTERNATIONAL
-    ICAC --> TRAINING
-    ICAC --> PREVENTION
-    ICAC --> LEGAL
+    CAC --> INTERNATIONAL
+    CAC --> TRAINING
+    CAC --> PREVENTION
+    CAC --> LEGAL
     
-    ICAC --> PRODUCTION
-    ICAC --> CUSTODIAL
-    ICAC --> GROOMING
-    ICAC --> SEXTORTION
-    ICAC --> ATHLETIC
+    CAC --> PRODUCTION
+    CAC --> CUSTODIAL
+    CAC --> GROOMING
+    CAC --> SEXTORTION
+    CAC --> ATHLETIC
     
-    ICAC --> UNDERCOVER
-    ICAC --> PHYSICAL
-    ICAC --> TACTICAL
-    ICAC --> MULTI_JURISDICTION
-    ICAC --> STRANGER
+    CAC --> UNDERCOVER
+    CAC --> PHYSICAL
+    CAC --> TACTICAL
+    CAC --> MULTI_JURISDICTION
+    CAC --> STRANGER
     
-    ICAC --> FORENSICS
-    ICAC --> DETECTION
-    ICAC --> PLATFORMS
-    ICAC --> STREET
+    CAC --> FORENSICS
+    CAC --> DETECTION
+    CAC --> PLATFORMS
+    CAC --> STREET
     
-    ICAC --> VICTIM_IMPACT
-    ICAC --> TASKFORCE
-    ICAC --> SENTENCING
-    ICAC --> SPECIALIZED_UNITS
-    ICAC --> SEX_OFFENDER
+    CAC --> VICTIM_IMPACT
+    CAC --> TASKFORCE
+    CAC --> SENTENCING
+    CAC --> SPECIALIZED_UNITS
+    CAC --> SEX_OFFENDER
 
     HOTLINES -.-> HOTLINES_SHAPES
-    ICAC -.-> ICAC_SHAPES
+    CAC -.-> CAC_SHAPES
     FORENSICS -.-> FORENSICS_SHAPES
     
-    ICAC_GUFO --> GUFO_EX1
+    CAC_GUFO --> GUFO_EX1
     TEMPORAL_GUFO --> GUFO_EX2
     HOTLINES --> HOTLINE_EX
-    ICAC --> INVEST_EX
+    CAC --> INVEST_EX
     FORENSICS --> ENHANCED_EX
     PRODUCTION --> RHODE_ISLAND_EX
     CUSTODIAL --> DOUGLAS_EX
@@ -210,14 +210,14 @@ graph TD
     linkStyle 23,24,25 stroke-dasharray: 5 5
 
     style GUFO fill:#e1f5fe
-    style ICAC_GUFO fill:#e1f5fe  
+    style CAC_GUFO fill:#e1f5fe  
     style TEMPORAL_GUFO fill:#e1f5fe
     style STRATEGY_GUFO fill:#e1f5fe
     style GUFO_EX1 fill:#f3e5f5
     style GUFO_EX2 fill:#f3e5f5
 ```
 
-> **Note**: gUFO components (blue) provide foundational ontology enhancements. Shapes files (dotted lines) are used for validation but not imported by production graphs. All 23 ontology modules extend the core ICAC framework with optional gUFO integration.
+> **Note**: gUFO components (blue) provide foundational ontology enhancements. Shapes files (dotted lines) are used for validation but not imported by production graphs. All 30+ ontology modules extend the core CAC framework with optional gUFO integration.
 
 ## Enhanced Data Flow with gUFO Integration
 
@@ -350,7 +350,7 @@ classDiagram
         +HotlineAction[] triggersAction
     }
     
-    class ICACInvestigation {
+    class CACInvestigation {
         +HotlineReport[] hasReport
         +InvestigationAction[] hasAction
         +String status
@@ -381,14 +381,14 @@ classDiagram
     }
     
     UCOObservable <|-- HotlineReport
-    UCOObservable <|-- ICACInvestigation
+    UCOObservable <|-- CACInvestigation
     UCOObservable <|-- SocialMediaPlatform
     UCOObservable <|-- PhotoDNAHash
     UCOAction <|-- ForensicAcquisitionAction
     UCOAction <|-- AutomatedDetectionAction
     UCOTool <|-- ForensicImagingTool
     UCOTool <|-- MachineLearningDetectionTool
-    HotlineReport --> ICACInvestigation
+    HotlineReport --> CACInvestigation
 ```
 
 ## Enhanced Property Relationships
@@ -396,7 +396,7 @@ classDiagram
 ```mermaid
 graph TD
     subgraph "Core Investigation"
-        I[ICACInvestigation]
+        I[CACInvestigation]
         R[HotlineReport]
         E[EvidenceItem]
     end
@@ -441,46 +441,51 @@ graph TD
 
 ## Complete Ontology Module Reference
 
-The ICAC Ontology Family consists of 23 modules organized by domain:
+The CAC Ontology Family consists of 30+ modules organized by domain:
 
 ### Core Framework (3 modules)
-- **`icac-core.ttl`:** Base investigation framework and lifecycles
-- **`hotlines-core.ttl`:** Hotline operations and report management
-- **`icac-us-ncmec.ttl`:** Enhanced NCMEC integration and tip analysis
+- **`cacontology-core.ttl`:** Base investigation framework and lifecycles
+- **`cacontology-hotlines-core.ttl`:** Hotline operations and report management
+- **`cacontology-us-ncmec.ttl`:** Enhanced NCMEC integration and tip analysis
 
 ### International Coordination & Global Frameworks (4 modules)
-- **`icac-international.ttl`:** Global coordination & cross-border operations (120+ countries)
-- **`icac-training.ttl`:** Professional development & capacity building (155,000+ professionals)
-- **`icac-prevention.ttl`:** Prevention programs & education
-- **`icac-legal-harmonization.ttl`:** International legal framework (196 countries analyzed)
+- **`cacontology-international.ttl`:** Global coordination & cross-border operations (120+ countries)
+- **`cacontology-training.ttl`:** Professional development & capacity building (155,000+ professionals)
+- **`cacontology-prevention.ttl`:** Prevention programs & education
+- **`cacontology-legal-harmonization.ttl`:** International legal framework (196 countries analyzed)
 
-### High-Priority Criminal Activities (3 modules)
-- **`icac-production.ttl`:** Child sexual abuse material production
-- **`icac-custodial.ttl`:** Custodial relationships & positions of trust
-- **`icac-grooming.ttl`:** Online grooming & enticement
+### High-Priority Criminal Activities (5+ modules)
+- **`cacontology-production.ttl`:** Child sexual abuse material production
+- **`cacontology-custodial.ttl`:** Custodial relationships & positions of trust
+- **`cacontology-grooming.ttl`:** Online grooming & enticement
+- **`cacontology-sextortion.ttl`:** Sexual extortion incidents
+- **`cacontology-athletic-exploitation.ttl`:** Athletic coaching exploitation
 
-### Specialized Investigation Ontologies (4 modules)
-- **`icac-undercover.ttl`:** Undercover operations
-- **`icac-physical-evidence.ttl`:** Physical evidence & procurement
-- **`icac-tactical.ttl`:** Tactical law enforcement operations
-- **`icac-multi-jurisdiction.ttl`:** Multi-jurisdictional operations
+### Specialized Investigation Ontologies (5+ modules)
+- **`cacontology-undercover.ttl`:** Undercover operations
+- **`cacontology-physical-evidence.ttl`:** Physical evidence & procurement
+- **`cacontology-tactical.ttl`:** Tactical law enforcement operations
+- **`cacontology-multi-jurisdiction.ttl`:** Multi-jurisdictional operations
+- **`cacontology-stranger-abduction.ttl`:** Stranger abduction patterns
 
-### Technical Support Ontologies (3 modules)
-- **`icac-forensics.ttl`:** Digital forensics
-- **`icac-detection.ttl`:** Content detection & classification
-- **`icac-platforms.ttl`:** Technology platforms & service providers
+### Technical Support Ontologies (4+ modules)
+- **`cacontology-forensics.ttl`:** Digital forensics
+- **`cacontology-detection.ttl`:** Content detection & classification
+- **`cacontology-platforms.ttl`:** Technology platforms & service providers
+- **`cacontology-street-recruitment.ttl`:** Street-based recruitment patterns
 
-### Victim Services & Task Force Management (5 modules)
-- **`icac-victim-impact.ttl`:** Victim impact assessment & recovery
-- **`icac-taskforce.ttl`:** ICAC task force organization
-- **`icac-sentencing.ttl`:** Legal outcomes & sentencing
-- **`icac-specialized-units.ttl`:** Specialized units & advanced capabilities
-- **`icac-sex-offender-registry.ttl`:** Sex offender registry management
+### Victim Services & Task Force Management (5+ modules)
+- **`cacontology-victim-impact.ttl`:** Victim impact assessment & recovery
+- **`cacontology-taskforce.ttl`:** CAC task force organization
+- **`cacontology-sentencing.ttl`:** Legal outcomes & sentencing
+- **`cacontology-specialized-units.ttl`:** Specialized units & advanced capabilities
+- **`cacontology-sex-offender-registry.ttl`:** Sex offender registry management
 
-### Validation Components (3 modules)
-- **`icac-core-shapes.ttl`:** Core validation shapes
-- **`hotlines-core-shapes.ttl`:** Hotline validation shapes
-- **`icac-forensics-shapes.ttl`:** Forensic validation shapes
+### Validation Components (20+ modules)
+- **`cacontology-core-shapes.ttl`:** Core validation shapes
+- **`cacontology-hotlines-core-shapes.ttl`:** Hotline validation shapes
+- **`cacontology-forensics-shapes.ttl`:** Forensic validation shapes
+- Plus 17+ additional SHACL validation modules
 
 ## UCO/CASE Integration
 
@@ -494,7 +499,7 @@ The enhanced ontology family maximally reuses UCO and CASE concepts:
 - `uco-identity:Organization` for service providers
 
 **CASE Integration:**
-- `case-investigation:Investigation` as base for `ICACInvestigation`
+- `case-investigation:Investigation` as base for `CACInvestigation`
 - Full compatibility with CASE investigation workflows
 - Seamless export to CASE format for tool interoperability
 
@@ -502,7 +507,7 @@ The enhanced ontology family maximally reuses UCO and CASE concepts:
 
 ### JSON-LD Contexts
 - **`contexts/hotlines-core.jsonld`:** Complete context for hotline operations
-- **`contexts/icac-core.jsonld`:** Core investigation context (to be created)
+- **`contexts/cacontology-core.jsonld`:** Core investigation context (to be created)
 
 ### Example Data Sets (10 files)
 - **`hotline-lifecycle.ttl`:** Basic hotline workflow

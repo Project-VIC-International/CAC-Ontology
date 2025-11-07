@@ -1,7 +1,7 @@
-# ICAC Ontology Family - Product Requirements Document
+# CAC Ontology Family - Product Requirements Document
 
 ## Overview
-Current ICAC data sets are siloed (NCMEC XML, ICCAM CSV). Our ontologies unify these disparate formats into a standardized, interoperable framework for representing and sharing data about child exploitation investigations and hotline operations. This document outlines the requirements for the 23-module ontology family and its supporting technologies. This family of ontologies was assembled using Claude 4 Sonnet to conduct an analysis of law enforcement and prosecutor's press releases that describe the results of investigations and legal process for crimes against children and trafficking. This family of ontologies extend the Unified Cyber Ontology and the Cyber-investigation Analysis Standard Expression (CASE) Ontology. This make it possible to model all aspects of an child sexual abuse or child sex trafficking investigation, including the digital forensics examination.
+Current Crimes Against Children community language and data sets are siloed in organizations and law enforcement jurisdictions. This language is presented in many venues including courts of law, in the press, in non governmental organization reporting, and by survivors. We present a unified Crimes Against Children (CAC) family of ontologies that unifies the language used in the CAC community into a standardized, interoperable framework for representing and sharing data about child exploitation investigations and operations, and analysis. This document outlines the requirements for the 30+ module ontology family and its supporting technologies. This family of ontologies was assembled using various language models and human analysis of law enforcement and prosecutor's press releases that describe the results of investigations and legal process for crimes against children and trafficking. This family of ontologies extends the Unified Cyber Ontology (UCO), the Cyber-investigation Analysis Standard Expression (CASE) Ontology, and the Unified Foundational Ontology (gUFO) to ensure that key communities of interest can easily access the semantic modeling in the CAC Ontology. This make it possible to model all aspects of an child sexual abuse or child sex trafficking investigation, including the digital forensics examination, operations planning tradecraft, and legal process. This document presents the requirements for the CAC Ontology.
 
 **NEW**: The ontology family now includes comprehensive gUFO (Unified Foundational Ontology) integration, providing enhanced semantic precision, temporal modeling, and validation capabilities for law enforcement investigations.
 
@@ -20,7 +20,7 @@ Current ICAC data sets are siloed (NCMEC XML, ICCAM CSV). Our ontologies unify t
 ## Core Requirements
 
 ### 1. Ontology Structure
-- Must support modular design with clear separation of concerns across 23 specialized modules
+- Must support modular design with clear separation of concerns across 30+ specialized modules
 - Must maintain compatibility with UCO (Unified Cyber Ontology)
 - Must support versioning and backward compatibility
 - Must include comprehensive SHACL validation rules
@@ -57,7 +57,7 @@ Current ICAC data sets are siloed (NCMEC XML, ICCAM CSV). Our ontologies unify t
 - Must support multiple serialization formats (Turtle, JSON-LD, RDF/XML)
 - Must include validation tools for data quality
 - Must integrate with educational and athletic institution systems
-- **NEW**: Must maintain backward compatibility with existing ICAC ontologies
+- **NEW**: Must maintain backward compatibility with existing CAC ontologies
 - **NEW**: Must provide equivalence mappings between original and gUFO-enhanced classes
 - **NEW**: Must support parallel operation of original and enhanced models
 
@@ -84,16 +84,16 @@ Current ICAC data sets are siloed (NCMEC XML, ICCAM CSV). Our ontologies unify t
 ## Technical Requirements
 
 ### 1. Ontology Components
-- Core ICAC ontology
+- Core CAC ontology
 - Hotline operations ontology
 - Investigation workflow ontology
 - Athletic exploitation ontology
 - Regional extensions (e.g., NCMEC)
 - Validation shapes
 - Example data sets
-- **NEW**: gUFO-enhanced core investigation modeling (`icac-core-gufo.ttl`)
-- **NEW**: Temporal framework for investigation lifecycle (`icac-temporal-gufo.ttl`)
-- **NEW**: Integration strategy across all modules (`icac-gufo-integration-strategy.ttl`)
+- **NEW**: gUFO-enhanced core investigation modeling (`cacontology-core-gufo.ttl`)
+- **NEW**: Temporal framework for investigation lifecycle (`cacontology-temporal-gufo.ttl`)
+- **NEW**: Integration strategy across all modules (`cacontology-gufo-integration-strategy.ttl`)
 - **NEW**: Advanced analytics query library (`queries/gufo-enhanced-analytics.rq`)
 - **NEW**: AI integration framework (`ai-integration-framework.py`)
 
