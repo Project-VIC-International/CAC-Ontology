@@ -6,11 +6,11 @@
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
-@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
-@prefix icac-multi: <https://ontology.unifiedcyberontology.org/icac/multi-jurisdiction#> .
-@prefix icac-undercover: <https://ontology.unifiedcyberontology.org/icac/undercover#> .
-@prefix icac-taskforce: <https://ontology.unifiedcyberontology.org/icac/taskforce#> .
-@prefix icac-sentencing: <https://ontology.unifiedcyberontology.org/icac/sentencing#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-multi: <https://cacontology.projectvic.org/multi-jurisdiction#> .
+@prefix cacontology-undercover: <https://cacontology.projectvic.org/undercover#> .
+@prefix cacontology-taskforce: <https://cacontology.projectvic.org/taskforce#> .
+@prefix cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#> .
 @prefix ex: <https://example.org/kb/> .
 
 # =============================================================================

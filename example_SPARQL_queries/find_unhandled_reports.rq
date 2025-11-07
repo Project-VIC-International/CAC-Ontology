@@ -5,8 +5,8 @@
 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX hotline: <https://ontology.unifiedcyberontology.org/hotlines/2025/core#>
-PREFIX icac: <https://ontology.unifiedcyberontology.org/icac/0.3#>
+PREFIX cacontology-hotlines: <https://cacontology.projectvic.org/hotlines/2025/core#>
+PREFIX cacontology: <https://cacontology.projectvic.org/0.3#>
 PREFIX uco-core: <https://ontology.unifiedcyberontology.org/core#>
 PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/observable#>
 PREFIX uco-confidentiality: <https://ontology.unifiedcyberontology.org/confidentiality#>
@@ -19,14 +19,14 @@ WHERE {
     }
     
     ?report a ?reportType ;
-            hotline:status ?status ;
-            hotline:createdTime ?createdTime ;
-            hotline:hasEvidence ?evidence .
+            cacontology-hotlines:status ?status ;
+            cacontology-hotlines:createdTime ?createdTime ;
+            cacontology-hotlines:hasEvidence ?evidence .
     
     {
         SELECT ?report (COUNT(?evidence) as ?evidenceCount)
         WHERE {
-            ?report hotline:hasEvidence ?evidence .
+            ?report cacontology-hotlines:hasEvidence ?evidence .
         }
         GROUP BY ?report
     }
@@ -34,16 +34,16 @@ WHERE {
     BIND(DAYS(NOW() - ?createdTime) AS ?daysSinceCreation) # Use DAYS for simpler age
     
     FILTER NOT EXISTS {
-        ?report hotline:triggersAction ?action .
-        ?action a hotline:ForwardToLEAction ;
-                hotline:outcome hotline:outcome-success . # Only exclude successful forwards
+        ?report cacontology-hotlines:triggersAction ?action .
+        ?action a cacontology-hotlines:ForwardToLEAction ;
+                cacontology-hotlines:outcome cacontology-hotlines:outcome-success . # Only exclude successful forwards
     }
     
     VALUES ?status { # Reports that are still considered open for this purpose
-        hotline:status-new
-        hotline:status-in-progress
-        hotline:status-in-review
-        # Exclude hotline:status-forwarded as we are looking for un-forwarded, 
+        cacontology-hotlines:status-new
+        cacontology-hotlines:status-in-progress
+        cacontology-hotlines:status-in-review
+        # Exclude cacontology-hotlines:status-forwarded as we are looking for un-forwarded, 
         # or forwards that didn't succeed if that's modeled.
     }
 

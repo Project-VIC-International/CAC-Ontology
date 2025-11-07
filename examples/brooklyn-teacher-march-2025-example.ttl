@@ -8,11 +8,11 @@
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/role#> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/location#> .
 @prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
-@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
-@prefix icac-educational: <https://ontology.unifiedcyberontology.org/icac/educational#> .
-@prefix icac-grooming: <https://ontology.unifiedcyberontology.org/icac/grooming#> .
-@prefix icac-sentencing: <https://ontology.unifiedcyberontology.org/icac/sentencing#> .
-@prefix icac-platforms: <https://ontology.unifiedcyberontology.org/icac/platforms#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-educational: <https://cacontology.projectvic.org/educational#> .
+@prefix cacontology-grooming: <https://cacontology.projectvic.org/grooming#> .
+@prefix cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#> .
+@prefix cacontology-platforms: <https://cacontology.projectvic.org/platforms#> .
 @prefix : <https://example.org/brooklyn-teacher-march-2025/> .
 
 # =============================================================================

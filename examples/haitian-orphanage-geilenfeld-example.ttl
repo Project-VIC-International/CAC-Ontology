@@ -9,10 +9,10 @@
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/location#> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/observable#> .
 @prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
-@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
-@prefix icac-institutional: <https://ontology.unifiedcyberontology.org/icac/institutional-exploitation#> .
-@prefix icac-international: <https://ontology.unifiedcyberontology.org/icac/international#> .
-@prefix icac-prevention: <https://ontology.unifiedcyberontology.org/icac/prevention#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-institutional: <https://cacontology.projectvic.org/institutional-exploitation#> .
+@prefix cacontology-international: <https://cacontology.projectvic.org/international#> .
+@prefix cacontology-prevention: <https://cacontology.projectvic.org/prevention#> .
 
 # =============================================================================
 # HAITIAN ORPHANAGE CASE EXAMPLE - MICHAEL KARL GEILENFELD
@@ -20,14 +20,14 @@
 # 210-year sentence for operating orphanage as exploitation operation
 # =============================================================================
 
-<https://ontology.unifiedcyberontology.org/icac/examples/haitian-orphanage-geilenfeld>
+<https://cacontology.projectvic.org/examples/haitian-orphanage-geilenfeld>
     rdf:type owl:Ontology ;
     rdfs:label "Haitian Orphanage Geilenfeld Case Example"@en ;
     rdfs:comment "Example modeling the Michael Karl Geilenfeld case involving systematic exploitation at St. Joseph's Home for Boys in Haiti over more than two decades."@en ;
     owl:versionInfo "1.0.0" .
 
 # Namespace for this example
-@prefix geilenfeld-case: <https://ontology.unifiedcyberontology.org/icac/examples/haitian-orphanage-geilenfeld#> .
+@prefix geilenfeld-case: <https://cacontology.projectvic.org/examples/haitian-orphanage-geilenfeld#> .
 
 # =============================================================================
 # PERPETRATOR AND INSTITUTIONAL LEADERSHIP

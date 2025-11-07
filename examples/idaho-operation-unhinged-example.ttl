@@ -6,11 +6,11 @@
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity#> .
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role#> .
 
-@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
-@prefix icac-specialized: <https://ontology.unifiedcyberontology.org/icac/specialized-units#> .
-@prefix icac-training: <https://ontology.unifiedcyberontology.org/icac/training#> .
-@prefix icac-multi: <https://ontology.unifiedcyberontology.org/icac/multi-jurisdiction#> .
-@prefix icac-forensics: <https://ontology.unifiedcyberontology.org/icac/forensics#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-specialized: <https://cacontology.projectvic.org/specialized-units#> .
+@prefix cacontology-training: <https://cacontology.projectvic.org/training#> .
+@prefix cacontology-multi: <https://cacontology.projectvic.org/multi-jurisdiction#> .
+@prefix cacontology-forensics: <https://cacontology.projectvic.org/forensics#> .
 
 @prefix ex: <https://example.org/icac/idaho-operation-unhinged#> .
 

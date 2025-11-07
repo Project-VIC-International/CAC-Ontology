@@ -13,13 +13,13 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core#>
 PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action#>
 PREFIX uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity#>
-PREFIX icac-core: <https://ontology.unifiedcyberontology.org/icac#>
-PREFIX icac-forensics: <https://ontology.unifiedcyberontology.org/icac/forensics#>
-PREFIX icac-detection: <https://ontology.unifiedcyberontology.org/icac/detection#>
-PREFIX icac-platforms: <https://ontology.unifiedcyberontology.org/icac/platforms#>
-PREFIX icac-taskforce: <https://ontology.unifiedcyberontology.org/icac/taskforce#>
-PREFIX icac-sentencing: <https://ontology.unifiedcyberontology.org/icac/sentencing#>
-PREFIX hotlines-core: <https://ontology.unifiedcyberontology.org/hotlines/2025/core#>
+PREFIX cacontology-core: <https://cacontology.projectvic.org#>
+PREFIX cacontology-forensics: <https://cacontology.projectvic.org/forensics#>
+PREFIX cacontology-detection: <https://cacontology.projectvic.org/detection#>
+PREFIX cacontology-platforms: <https://cacontology.projectvic.org/platforms#>
+PREFIX cacontology-taskforce: <https://cacontology.projectvic.org/taskforce#>
+PREFIX cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#>
+PREFIX hotlines-core: <https://cacontology.projectvic.org/hotlines/2025/core#>
 
 SELECT DISTINCT
     ?investigation

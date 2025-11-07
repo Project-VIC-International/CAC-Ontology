@@ -8,13 +8,13 @@
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location#> .
 @prefix uco-tool: <https://ontology.unifiedcyberontology.org/uco/tool#> .
-@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
-@prefix icac-ai: <https://ontology.unifiedcyberontology.org/icac/ai-generated#> .
-@prefix icac-partnerships: <https://ontology.unifiedcyberontology.org/icac/partnerships#> .
-@prefix icac-international: <https://ontology.unifiedcyberontology.org/icac/international#> .
-@prefix icac-forensics: <https://ontology.unifiedcyberontology.org/icac/forensics#> .
-@prefix icac-platforms: <https://ontology.unifiedcyberontology.org/icac/platforms#> .
-@prefix operation-cumberland: <https://ontology.unifiedcyberontology.org/icac/examples/operation-cumberland#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-ai: <https://cacontology.projectvic.org/ai-generated#> .
+@prefix cacontology-partnerships: <https://cacontology.projectvic.org/partnerships#> .
+@prefix cacontology-international: <https://cacontology.projectvic.org/international#> .
+@prefix cacontology-forensics: <https://cacontology.projectvic.org/forensics#> .
+@prefix cacontology-platforms: <https://cacontology.projectvic.org/platforms#> .
+@prefix operation-cumberland: <https://cacontology.projectvic.org/examples/operation-cumberland#> .
 
 # =============================================================================
 # OPERATION CUMBERLAND 2025: AI-CSAM INVESTIGATION EXAMPLE

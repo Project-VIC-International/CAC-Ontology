@@ -6,7 +6,7 @@
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable#> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role#> .
-@prefix hotlines-core: <https://ontology.unifiedcyberontology.org/hotlines/2025/core#> .
+@prefix hotlines-core: <https://cacontology.projectvic.org/hotlines/2025/core#> .
 
 # Example Report
 hotlines-core:report-2024-001 a hotlines-core:PublicReport ;

@@ -8,12 +8,12 @@
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/location#> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/observable#> .
 @prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
-@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
-@prefix icac-multi: <https://ontology.unifiedcyberontology.org/icac/multi-jurisdiction#> .
-@prefix icac-corruption: <https://ontology.unifiedcyberontology.org/icac/law-enforcement-corruption#> .
-@prefix icac-prevention: <https://ontology.unifiedcyberontology.org/icac/prevention#> .
-@prefix icac-sentencing: <https://ontology.unifiedcyberontology.org/icac/sentencing#> .
-@prefix icac-production: <https://ontology.unifiedcyberontology.org/icac/production#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-multi: <https://cacontology.projectvic.org/multi-jurisdiction#> .
+@prefix cacontology-corruption: <https://cacontology.projectvic.org/law-enforcement-corruption#> .
+@prefix cacontology-prevention: <https://cacontology.projectvic.org/prevention#> .
+@prefix cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#> .
+@prefix cacontology-production: <https://cacontology.projectvic.org/production#> .
 @prefix ex: <https://example.org/operation-restore-justice#> .
 
 # =============================================================================

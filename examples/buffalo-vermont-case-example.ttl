@@ -7,12 +7,12 @@
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location#> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable#> .
-@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
-@prefix icac-multi: <https://ontology.unifiedcyberontology.org/icac/multi-jurisdiction#> .
-@prefix icac-grooming: <https://ontology.unifiedcyberontology.org/icac/grooming#> .
-@prefix icac-platforms: <https://ontology.unifiedcyberontology.org/icac/platforms#> .
-@prefix icac-physical-evidence: <https://ontology.unifiedcyberontology.org/icac/physical-evidence#> .
-@prefix icac-sentencing: <https://ontology.unifiedcyberontology.org/icac/sentencing#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-multi: <https://cacontology.projectvic.org/multi-jurisdiction#> .
+@prefix cacontology-grooming: <https://cacontology.projectvic.org/grooming#> .
+@prefix cacontology-platforms: <https://cacontology.projectvic.org/platforms#> .
+@prefix cacontology-physical-evidence: <https://cacontology.projectvic.org/physical-evidence#> .
+@prefix cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#> .
 
 # =============================================================================
 # Buffalo/Vermont Interstate Transportation Case Example

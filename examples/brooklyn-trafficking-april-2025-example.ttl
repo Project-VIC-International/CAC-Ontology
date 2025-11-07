@@ -8,11 +8,11 @@
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/role#> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/location#> .
 @prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
-@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
-@prefix icac-trafficking: <https://ontology.unifiedcyberontology.org/icac/trafficking#> .
-@prefix icac-multi: <https://ontology.unifiedcyberontology.org/icac/multi-jurisdiction#> .
-@prefix icac-sentencing: <https://ontology.unifiedcyberontology.org/icac/sentencing#> .
-@prefix icac-impact: <https://ontology.unifiedcyberontology.org/icac/victim-impact#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-trafficking: <https://cacontology.projectvic.org/trafficking#> .
+@prefix cacontology-multi: <https://cacontology.projectvic.org/multi-jurisdiction#> .
+@prefix cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#> .
+@prefix cacontology-impact: <https://cacontology.projectvic.org/victim-impact#> .
 @prefix : <https://example.org/brooklyn-trafficking-april-2025/> .
 
 # =============================================================================
@@ -54,7 +54,7 @@
     uco-location:hasLocation :brooklyn_location ;
     icac-trafficking:operatesEnterprise :april_2025_trafficking_ring ;
     icac-trafficking:participatesInConspiracy :april_2025_conspiracy ;
-    icac:leadsConspiracy :april_2025_conspiracy .
+    cacontology:leadsConspiracy :april_2025_conspiracy .
 
 :ronasia_robinson rdf:type uco-identity:Person ;
     uco-identity:fullName "Ronasia Robinson"@en ;
@@ -384,22 +384,22 @@
 # CRIMINAL CONSPIRACY
 # =============================================================================
 
-:april_2025_conspiracy rdf:type icac:ConspiracyToCommitCSA ;
+:april_2025_conspiracy rdf:type cacontology:ConspiracyToCommitCSA ;
     rdfs:label "April 2025 Sex Trafficking Conspiracy"@en ;
     rdfs:comment "Criminal conspiracy involving 5 defendants coordinating sex trafficking activities across multiple states."@en ;
-    icac:conspiracyMemberCount 5 ;
-    icac:conspiracyDuration "P4M"^^xsd:duration ; # 4 months
+    cacontology:conspiracyMemberCount 5 ;
+    cacontology:conspiracyDuration "P4M"^^xsd:duration ; # 4 months
     uco-core:startTime "2024-10-05T00:00:00Z"^^xsd:dateTime ;
-    icac:resultsinIndictment :fourteen_count_indictment .
+    cacontology:resultsinIndictment :fourteen_count_indictment .
 
 # =============================================================================
 # LEGAL PROCEEDINGS
 # =============================================================================
 
-:fourteen_count_indictment rdf:type icac:MultiDefendantIndictment ;
+:fourteen_count_indictment rdf:type cacontology:MultiDefendantIndictment ;
     rdfs:label "14-Count Indictment"@en ;
     rdfs:comment "14-count indictment charging 5 defendants variously with conspiracy, sex trafficking, sex trafficking of a child, promoting prostitution and related charges."@en ;
-    icac:indictmentCounts 14 ;
+    cacontology:indictmentCounts 14 ;
     uco-core:createdTime "2025-04-11T00:00:00Z"^^xsd:dateTime .
 
 # =============================================================================

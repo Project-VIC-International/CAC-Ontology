@@ -55,51 +55,51 @@ class gUFOInvestigationAnalytics:
         """Extract ML features from gUFO-enhanced investigation data"""
         
         query = """
-        PREFIX icac-gufo: <https://ontology.unifiedcyberontology.org/icac/gufo#>
-        PREFIX icac-temporal: <https://ontology.unifiedcyberontology.org/icac/temporal#>
+        PREFIX cacontology-gufo: <https://cacontology.projectvic.org/gufo#>
+        PREFIX cacontology-temporal: <https://cacontology.projectvic.org/temporal#>
         PREFIX gufo: <http://purl.org/nemo/gufo#>
         PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
         
         SELECT ?investigation ?phase_count ?role_count ?event_count 
                ?urgency ?duration_days ?suspension_count ?efficiency WHERE {
             
-            ?investigation rdf:type icac-gufo:Investigation ;
-                          icac-temporal:urgencyLevel ?urgency ;
-                          icac-temporal:hasTimeToResolution ?duration .
+            ?investigation rdf:type cacontology-gufo:Investigation ;
+                          cacontology-temporal:urgencyLevel ?urgency ;
+                          cacontology-temporal:hasTimeToResolution ?duration .
             
             # Count phases
             {
                 SELECT ?investigation (COUNT(?phase) as ?phase_count) WHERE {
-                    ?investigation icac-gufo:hasPhase ?phase .
+                    ?investigation cacontology-gufo:hasPhase ?phase .
                 } GROUP BY ?investigation
             }
             
             # Count roles
             {
                 SELECT ?investigation (COUNT(?role) as ?role_count) WHERE {
-                    ?investigation icac-gufo:hasRole ?role .
+                    ?investigation cacontology-gufo:hasRole ?role .
                 } GROUP BY ?investigation
             }
             
             # Count events
             {
                 SELECT ?investigation (COUNT(?event) as ?event_count) WHERE {
-                    ?event icac-gufo:participatesInInvestigation ?investigation .
+                    ?event cacontology-gufo:participatesInInvestigation ?investigation .
                 } GROUP BY ?investigation
             }
             
             # Count suspensions
             {
                 SELECT ?investigation (COUNT(?suspension) as ?suspension_count) WHERE {
-                    ?suspension rdf:type icac-temporal:SuspensionEvent ;
-                               icac-temporal:suspends ?investigation .
+                    ?suspension rdf:type cacontology-temporal:SuspensionEvent ;
+                               cacontology-temporal:suspends ?investigation .
                 } GROUP BY ?investigation
             }
             
             # Get efficiency from phases
             OPTIONAL {
-                ?investigation icac-gufo:hasPhase ?phase .
-                ?phase icac-temporal:phaseEfficiency ?efficiency .
+                ?investigation cacontology-gufo:hasPhase ?phase .
+                ?phase cacontology-temporal:phaseEfficiency ?efficiency .
             }
             
             # Convert duration to days
@@ -181,25 +181,25 @@ class gUFOInvestigationAnalytics:
         """Detect potential role conflicts using gUFO role semantics"""
         
         query = """
-        PREFIX icac-gufo: <https://ontology.unifiedcyberontology.org/icac/gufo#>
+        PREFIX cacontology-gufo: <https://cacontology.projectvic.org/gufo#>
         
         SELECT ?person ?role1 ?role2 ?investigation ?conflict_type WHERE {
-            ?person icac-gufo:playsRole ?role1 ;
-                   icac-gufo:playsRole ?role2 .
+            ?person cacontology-gufo:playsRole ?role1 ;
+                   cacontology-gufo:playsRole ?role2 .
             
-            ?role1 icac-gufo:participatesInInvestigation ?investigation .
-            ?role2 icac-gufo:participatesInInvestigation ?investigation .
+            ?role1 cacontology-gufo:participatesInInvestigation ?investigation .
+            ?role2 cacontology-gufo:participatesInInvestigation ?investigation .
             
             # Different roles for same person in same investigation
             FILTER(?role1 != ?role2)
             
             # Check for specific conflict types
             BIND(
-                IF((?role1 = icac-gufo:VictimRole && ?role2 = icac-gufo:OffenderRole) ||
-                   (?role1 = icac-gufo:OffenderRole && ?role2 = icac-gufo:VictimRole),
+                IF((?role1 = cacontology-gufo:VictimRole && ?role2 = cacontology-gufo:OffenderRole) ||
+                   (?role1 = cacontology-gufo:OffenderRole && ?role2 = cacontology-gufo:VictimRole),
                    "VICTIM-OFFENDER-CONFLICT",
-                IF((?role1 = icac-gufo:InvestigatorRole && ?role2 = icac-gufo:OffenderRole) ||
-                   (?role1 = icac-gufo:OffenderRole && ?role2 = icac-gufo:InvestigatorRole),
+                IF((?role1 = cacontology-gufo:InvestigatorRole && ?role2 = cacontology-gufo:OffenderRole) ||
+                   (?role1 = cacontology-gufo:OffenderRole && ?role2 = cacontology-gufo:InvestigatorRole),
                    "INVESTIGATOR-OFFENDER-CONFLICT",
                    "ROLE-OVERLAP")) as ?conflict_type
             )
@@ -226,18 +226,18 @@ class gUFOInvestigationAnalytics:
         """Analyze temporal patterns using gUFO temporal framework"""
         
         query = """
-        PREFIX icac-temporal: <https://ontology.unifiedcyberontology.org/icac/temporal#>
-        PREFIX icac-gufo: <https://ontology.unifiedcyberontology.org/icac/gufo#>
+        PREFIX cacontology-temporal: <https://cacontology.projectvic.org/temporal#>
+        PREFIX cacontology-gufo: <https://cacontology.projectvic.org/gufo#>
         PREFIX gufo: <http://purl.org/nemo/gufo#>
         
         SELECT ?investigation ?phase_type ?duration_hours ?efficiency ?urgency WHERE {
-            ?investigation rdf:type icac-gufo:Investigation ;
-                          icac-temporal:urgencyLevel ?urgency ;
-                          icac-gufo:hasPhase ?phase .
+            ?investigation rdf:type cacontology-gufo:Investigation ;
+                          cacontology-temporal:urgencyLevel ?urgency ;
+                          cacontology-gufo:hasPhase ?phase .
             
             ?phase rdf:type ?phase_type ;
-                   icac-gufo:phaseDuration ?duration ;
-                   icac-temporal:phaseEfficiency ?efficiency .
+                   cacontology-gufo:phaseDuration ?duration ;
+                   cacontology-temporal:phaseEfficiency ?efficiency .
             
             # Convert duration to hours
             BIND(
@@ -279,21 +279,21 @@ class gUFOInvestigationAnalytics:
         """Build network graph of investigation relationships using gUFO"""
         
         query = """
-        PREFIX icac-gufo: <https://ontology.unifiedcyberontology.org/icac/gufo#>
-        PREFIX icac-temporal: <https://ontology.unifiedcyberontology.org/icac/temporal#>
+        PREFIX cacontology-gufo: <https://cacontology.projectvic.org/gufo#>
+        PREFIX cacontology-temporal: <https://cacontology.projectvic.org/temporal#>
         
         SELECT ?investigation ?person ?role ?event WHERE {
-            ?investigation rdf:type icac-gufo:Investigation .
+            ?investigation rdf:type cacontology-gufo:Investigation .
             
             # Person-Investigation connections via roles
             OPTIONAL {
-                ?investigation icac-gufo:hasRole ?role .
-                ?person icac-gufo:playsRole ?role .
+                ?investigation cacontology-gufo:hasRole ?role .
+                ?person cacontology-gufo:playsRole ?role .
             }
             
             # Event-Investigation connections
             OPTIONAL {
-                ?event icac-gufo:participatesInInvestigation ?investigation .
+                ?event cacontology-gufo:participatesInInvestigation ?investigation .
             }
         }
         """
@@ -441,7 +441,7 @@ def main():
     print("=" * 50)
     
     # Initialize analytics framework
-    analytics = gUFOInvestigationAnalytics('icac-core-gufo.ttl')
+    analytics = gUFOInvestigationAnalytics('ontology/cacontology-core.ttl')
     
     # Extract features from gUFO-enhanced data
     df = analytics.extract_investigation_features()

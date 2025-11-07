@@ -1,5 +1,5 @@
 @prefix example: <http://ontology.icac.org/examples/gufo-phase1#> .
-@prefix icac-gufo: <https://ontology.unifiedcyberontology.org/icac/gufo#> .
+@prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/core#> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/identity#> .

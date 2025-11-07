@@ -1,6 +1,6 @@
-# ICAC Ontology Docker Development Environment
+# CAC Ontology Docker Development Environment
 
-This Docker Compose environment provides a comprehensive development and validation setup for the ICAC Ontology Family with 23 specialized modules.
+This Docker Compose environment provides a comprehensive development and validation setup for the CAC Ontology Family with 23 specialized modules.
 
 ## Services Overview
 
@@ -11,7 +11,7 @@ This Docker Compose environment provides a comprehensive development and validat
   - Loads all 23 core ontology modules automatically
   - 4GB heap size for handling large datasets
   - Web interface at http://localhost:3030
-  - Dataset name: `/icac`
+  - Dataset name: `/CAC`
 
 ### 2. pySHACL Validator (`pyshacl`)
 - **Purpose**: Comprehensive SHACL validation
@@ -42,7 +42,7 @@ This Docker Compose environment provides a comprehensive development and validat
 
 ### Start All Services
 ```bash
-cd ontology/icac
+cd ontology/CAC
 docker-compose up -d
 ```
 
@@ -66,17 +66,17 @@ The pySHACL service validates examples in organized categories:
 
 ### Core Ontology Validation
 - `hotlines-core.ttl` against `hotlines-core-shapes.ttl`
-- `icac-core.ttl` against `icac-core-shapes.ttl`
-- `icac-forensics.ttl` against `icac-forensics-shapes.ttl`
-- `icac-educational-exploitation.ttl` against `icac-educational-shapes.ttl`
-- `icac-sex-trafficking.ttl` against `icac-trafficking-shapes.ttl`
-- `icac-athletic-exploitation.ttl` against `icac-athletic-exploitation-shapes.ttl`
-- `icac-production.ttl` against `icac-production-shapes.ttl`
-- `icac-custodial.ttl` against `icac-custodial-shapes.ttl`
-- `icac-grooming.ttl` against `icac-grooming-shapes.ttl`
-- `icac-sextortion.ttl` against `icac-sextortion-shapes.ttl`
-- `icac-victim-impact.ttl` against `icac-victim-impact-shapes.ttl`
-- `icac-undercover.ttl` against `icac-undercover-shapes.ttl`
+- `cacontology-core.ttl` against `cacontology-core-shapes.ttl`
+- `cacontology-forensics.ttl` against `cacontology-forensics-shapes.ttl`
+- `cacontology-educational-exploitation.ttl` against `cacontology-educational-shapes.ttl`
+- `cacontology-sex-trafficking.ttl` against `cacontology-trafficking-shapes.ttl`
+- `cacontology-athletic-exploitation.ttl` against `cacontology-athletic-exploitation-shapes.ttl`
+- `cacontology-production.ttl` against `cacontology-production-shapes.ttl`
+- `cacontology-custodial.ttl` against `cacontology-custodial-shapes.ttl`
+- `cacontology-grooming.ttl` against `cacontology-grooming-shapes.ttl`
+- `cacontology-sextortion.ttl` against `cacontology-sextortion-shapes.ttl`
+- `cacontology-victim-impact.ttl` against `cacontology-victim-impact-shapes.ttl`
+- `cacontology-undercover.ttl` against `cacontology-undercover-shapes.ttl`
 
 ### Example Validation Categories
 1. **Basic Examples**: Core lifecycle examples
@@ -94,19 +94,19 @@ The pySHACL service validates examples in organized categories:
 ### ROBOT Framework Commands
 ```bash
 # Access ROBOT container
-docker exec -it icac_robot bash
+docker exec -it CAC_robot bash
 
 # Validate ontologies
 robot validate *.ttl
 
 # Merge ontologies
-robot merge --input icac-core.ttl --input hotlines-core.ttl --output merged.ttl
+robot merge --input cacontology-core.ttl --input hotlines-core.ttl --output merged.ttl
 
 # Run reasoning
-robot reason --input icac-core.ttl --reasoner hermit
+robot reason --input cacontology-core.ttl --reasoner hermit
 
 # Execute SPARQL queries
-robot query --input icac-core.ttl --query queries/find_open_reports.rq
+robot query --input cacontology-core.ttl --query queries/find_open_reports.rq
 ```
 
 ### Fuseki SPARQL Queries
@@ -115,12 +115,12 @@ robot query --input icac-core.ttl --query queries/find_open_reports.rq
 open http://localhost:3030
 
 # Example SPARQL query for athletic coaching cases
-PREFIX icac-athletic: <https://ontology.unifiedcyberontology.org/icac/athletic#>
+PREFIX cacontology-athletic: <https://ontology.unifiedcyberontology.org/CAC/athletic#>
 SELECT ?exploitation ?sportType ?teamSize
 WHERE {
-    ?exploitation a icac-athletic:AthleticCoachingExploitation ;
-                  icac-athletic:sportType ?sportType ;
-                  icac-athletic:teamSize ?teamSize .
+    ?exploitation a cacontology-athletic:AthleticCoachingExploitation ;
+                  cacontology-athletic:sportType ?sportType ;
+                  cacontology-athletic:teamSize ?teamSize .
 }
 ```
 
@@ -139,48 +139,48 @@ open http://localhost:7200
 The Fuseki service automatically loads all 23 core modules:
 
 ### Core Framework (3 modules)
-- `icac-core.ttl`
+- `cacontology-core.ttl`
 - `hotlines-core.ttl`
-- `icac-us-ncmec.ttl`
+- `cacontology-us-ncmec.ttl`
 
 ### International & Global (4 modules)
-- `icac-international.ttl`
-- `icac-training.ttl`
-- `icac-prevention.ttl`
-- `icac-legal-harmonization.ttl`
+- `cacontology-international.ttl`
+- `cacontology-training.ttl`
+- `cacontology-prevention.ttl`
+- `cacontology-legal-harmonization.ttl`
 
 ### Criminal Activities (5 modules)
-- `icac-production.ttl`
-- `icac-custodial.ttl`
-- `icac-grooming.ttl`
-- `icac-sextortion.ttl`
-- `icac-athletic-exploitation.ttl`
+- `cacontology-production.ttl`
+- `cacontology-custodial.ttl`
+- `cacontology-grooming.ttl`
+- `cacontology-sextortion.ttl`
+- `cacontology-athletic-exploitation.ttl`
 
 ### Investigation (5 modules)
-- `icac-undercover.ttl`
-- `icac-physical-evidence.ttl`
-- `icac-tactical.ttl`
-- `icac-multi-jurisdiction.ttl`
-- `icac-stranger-abduction.ttl`
+- `cacontology-undercover.ttl`
+- `cacontology-physical-evidence.ttl`
+- `cacontology-tactical.ttl`
+- `cacontology-multi-jurisdiction.ttl`
+- `cacontology-stranger-abduction.ttl`
 
 ### Technical (4 modules)
-- `icac-forensics.ttl`
-- `icac-detection.ttl`
-- `icac-platforms.ttl`
-- `icac-street-recruitment.ttl`
+- `cacontology-forensics.ttl`
+- `cacontology-detection.ttl`
+- `cacontology-platforms.ttl`
+- `cacontology-street-recruitment.ttl`
 
 ### Victim Services & Legal (5 modules)
-- `icac-victim-impact.ttl`
-- `icac-taskforce.ttl`
-- `icac-sentencing.ttl`
-- `icac-specialized-units.ttl`
-- `icac-sex-offender-registry.ttl`
+- `cacontology-victim-impact.ttl`
+- `cacontology-taskforce.ttl`
+- `cacontology-sentencing.ttl`
+- `cacontology-specialized-units.ttl`
+- `cacontology-sex-offender-registry.ttl`
 
 ### Additional Modules
-- `icac-asset-forfeiture.ttl`
-- `icac-educational-exploitation.ttl`
-- `icac-ai-generated-content.ttl`
-- `icac-platform-infrastructure.ttl`
+- `cacontology-asset-forfeiture.ttl`
+- `cacontology-educational-exploitation.ttl`
+- `cacontology-ai-generated-content.ttl`
+- `cacontology-platform-infrastructure.ttl`
 
 ## Development Workflow
 
@@ -207,7 +207,7 @@ open http://localhost:3030
 ### 4. Advanced Processing
 ```bash
 # Use ROBOT for advanced operations
-docker exec -it icac_robot bash
+docker exec -it CAC_robot bash
 robot validate your-new-ontology.ttl
 ```
 
@@ -227,7 +227,7 @@ If you encounter memory issues with large datasets:
 docker-compose logs pyshacl | grep -A 10 "Validation Result"
 
 # Validate individual files
-docker exec icac_pyshacl pyshacl -s /app/ontology/icac/icac-core-shapes.ttl -d /app/ontology/icac/your-file.ttl -f human
+docker exec CAC_pyshacl pyshacl -s /app/ontology/CAC/cacontology-core-shapes.ttl -d /app/ontology/CAC/your-file.ttl -f human
 ```
 
 ### Port Conflicts

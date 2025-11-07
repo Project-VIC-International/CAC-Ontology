@@ -6,10 +6,10 @@
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity#> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location#> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
-@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
-@prefix icac-production: <https://ontology.unifiedcyberontology.org/icac/production#> .
-@prefix icac-partnerships: <https://ontology.unifiedcyberontology.org/icac/partnerships#> .
-@prefix icac-international: <https://ontology.unifiedcyberontology.org/icac/international#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-production: <https://cacontology.projectvic.org/production#> .
+@prefix cacontology-partnerships: <https://cacontology.projectvic.org/partnerships#> .
+@prefix cacontology-international: <https://cacontology.projectvic.org/international#> .
 
 # Example modeling of the Vermont case (Brian Bluto) using enhanced ICAC ontology
 # This demonstrates the Vermont case enhancements implemented in the ontology modules
@@ -21,10 +21,10 @@
 :VermontCase2024 rdf:type icac-partnerships:ProjectSafeChildhoodCase ;
     rdfs:label "Brian Bluto Production Case"@en ;
     rdfs:comment "Vermont case involving sophisticated covert production and international distribution of CSAM"@en ;
-    icac:caseNumber "VT-2024-HSI-001" ;
-    icac:caseStatus "sentenced" ;
-    icac:hasInvestigationMethod :InternationalCoordination ;
-    icac:hasStep :VermontProduction ,
+    cacontology:caseNumber "VT-2024-HSI-001" ;
+    cacontology:caseStatus "sentenced" ;
+    cacontology:hasInvestigationMethod :InternationalCoordination ;
+    cacontology:hasStep :VermontProduction ,
                  :InternationalAlert ,
                  :SearchAndSeizure .
 
@@ -165,27 +165,27 @@
 :BrianBluto rdf:type icac-production:Producer ;
     rdfs:label "Brian Bluto"@en ;
     rdfs:comment "60-year-old defendant from Alburgh, Vermont"@en ;
-    icac:hasAge 60 ;
-    icac:hasSentence :SentenceDetails .
+    cacontology:hasAge 60 ;
+    cacontology:hasSentence :SentenceDetails .
 
 :PrimaryVictim rdf:type icac-production:ProductionVictim ;
     rdfs:label "Primary Victim"@en ;
     rdfs:comment "Victim recorded during ages 13-16 over 3+ year period"@en ;
     icac-production:victimAge 13 ; # Starting age
-    icac:hasVictimStatus "identified" .
+    cacontology:hasVictimStatus "identified" .
 
-:SentenceDetails rdf:type icac:Sentence ;
+:SentenceDetails rdf:type cacontology:Sentence ;
     rdfs:label "Federal Sentence"@en ;
     rdfs:comment "144 months imprisonment plus 15 years supervised release"@en ;
-    icac:imprisonmentMonths 144 ;
-    icac:supervisedReleaseYears 15 ;
-    icac:hasCharges :ProductionCharges .
+    cacontology:imprisonmentMonths 144 ;
+    cacontology:supervisedReleaseYears 15 ;
+    cacontology:hasCharges :ProductionCharges .
 
-:ProductionCharges rdf:type icac:CriminalCharges ;
+:ProductionCharges rdf:type cacontology:CriminalCharges ;
     rdfs:label "Production and Distribution Charges"@en ;
     rdfs:comment "Federal charges for production and distribution of child sexual abuse material"@en ;
-    icac:chargeType "production_and_distribution" ;
-    icac:federalCharges true .
+    cacontology:chargeType "production_and_distribution" ;
+    cacontology:federalCharges true .
 
 # =============================================================================
 # SEARCH AND SEIZURE OPERATION
@@ -220,7 +220,7 @@
 :VermontCase2024 icac-partnerships:partOfProgram :ProjectSafeChildhoodProgram .
 
 # Link international coordination to case
-:VermontCase2024 icac:hasInternationalElement :InternationalAlert .
+:VermontCase2024 cacontology:hasInternationalElement :InternationalAlert .
 
 # Link production activities
 :VermontProduction icac-production:partOfSeries :VermontCase2024 .
@@ -232,4 +232,4 @@
 
 # Evidence relationships
 :ProducedMaterial icac-production:evidenceOf :VermontProduction .
-:SearchAndSeizure icac:recoversEvidence :ProducedMaterial . 
+:SearchAndSeizure cacontology:recoversEvidence :ProducedMaterial . 

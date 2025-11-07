@@ -8,11 +8,11 @@
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/role#> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/location#> .
 @prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
-@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
-@prefix icac-trafficking: <https://ontology.unifiedcyberontology.org/icac/trafficking#> .
-@prefix icac-multi: <https://ontology.unifiedcyberontology.org/icac/multi-jurisdiction#> .
-@prefix icac-sentencing: <https://ontology.unifiedcyberontology.org/icac/sentencing#> .
-@prefix icac-impact: <https://ontology.unifiedcyberontology.org/icac/victim-impact#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-trafficking: <https://cacontology.projectvic.org/trafficking#> .
+@prefix cacontology-multi: <https://cacontology.projectvic.org/multi-jurisdiction#> .
+@prefix cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#> .
+@prefix cacontology-impact: <https://cacontology.projectvic.org/victim-impact#> .
 @prefix : <https://example.org/brooklyn-trafficking/> .
 
 # =============================================================================
@@ -56,7 +56,7 @@
     uco-location:hasLocation :bronx_location ;
     icac-trafficking:operatesEnterprise :brooklyn_trafficking_ring ;
     icac-trafficking:participatesInConspiracy :trafficking_conspiracy ;
-    icac:leadsConspiracy :trafficking_conspiracy .
+    cacontology:leadsConspiracy :trafficking_conspiracy .
 
 :terrel_chery rdf:type uco-identity:Person ;
     uco-identity:fullName "Terrel Chery"@en ;
@@ -292,28 +292,28 @@
 # CRIMINAL CONSPIRACY
 # =============================================================================
 
-:trafficking_conspiracy rdf:type icac:ConspiracyToCommitCSA ;
+:trafficking_conspiracy rdf:type cacontology:ConspiracyToCommitCSA ;
     rdfs:label "Brooklyn Sex Trafficking Conspiracy"@en ;
     rdfs:comment "Criminal conspiracy involving 8 defendants coordinating sex trafficking activities across Brooklyn and North Carolina from 2022-2025."@en ;
-    icac:conspiracyMemberCount 8 ;
-    icac:conspiracyDuration "P30M"^^xsd:duration ; # 30 months
+    cacontology:conspiracyMemberCount 8 ;
+    cacontology:conspiracyDuration "P30M"^^xsd:duration ; # 30 months
     uco-core:startTime "2022-07-01T00:00:00Z"^^xsd:dateTime ;
-    icac:resultsinIndictment :superseding_indictment .
+    cacontology:resultsinIndictment :superseding_indictment .
 
 # =============================================================================
 # LEGAL PROCEEDINGS AND INDICTMENTS
 # =============================================================================
 
-:superseding_indictment rdf:type icac:MultiDefendantIndictment ;
+:superseding_indictment rdf:type cacontology:MultiDefendantIndictment ;
     rdfs:label "19-Count Superseding Indictment"@en ;
     rdfs:comment "19-count superseding indictment charging 6 defendants variously with conspiracy, sex trafficking of a child, promoting prostitution and related charges."@en ;
-    icac:indictmentCounts 19 ;
+    cacontology:indictmentCounts 19 ;
     uco-core:createdTime "2025-05-23T00:00:00Z"^^xsd:dateTime .
 
-:separate_indictment rdf:type icac:MultiDefendantIndictment ;
+:separate_indictment rdf:type cacontology:MultiDefendantIndictment ;
     rdfs:label "5-Count Separate Indictment"@en ;
     rdfs:comment "Separate 5-count indictment charging Williams and Chery for Crown Heights trafficking incident."@en ;
-    icac:indictmentCounts 5 ;
+    cacontology:indictmentCounts 5 ;
     uco-core:createdTime "2025-05-23T00:00:00Z"^^xsd:dateTime .
 
 # =============================================================================

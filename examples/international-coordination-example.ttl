@@ -9,11 +9,11 @@
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity#> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location#> .
 
-@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
-@prefix icac-international: <https://ontology.unifiedcyberontology.org/icac/international#> .
-@prefix icac-training: <https://ontology.unifiedcyberontology.org/icac/training#> .
-@prefix icac-prevention: <https://ontology.unifiedcyberontology.org/icac/prevention#> .
-@prefix icac-legal: <https://ontology.unifiedcyberontology.org/icac/legal-harmonization#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-international: <https://cacontology.projectvic.org/international#> .
+@prefix cacontology-training: <https://cacontology.projectvic.org/training#> .
+@prefix cacontology-prevention: <https://cacontology.projectvic.org/prevention#> .
+@prefix cacontology-legal: <https://cacontology.projectvic.org/legal-harmonization#> .
 
 # =============================================================================
 # GLOBAL PARTNERSHIP FRAMEWORK

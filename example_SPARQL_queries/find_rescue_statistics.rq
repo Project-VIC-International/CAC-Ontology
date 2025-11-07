@@ -8,11 +8,11 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core#>
 PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable#>
 PREFIX uco-confidentiality: <https://ontology.unifiedcyberontology.org/uco/confidentiality#>
-PREFIX hotlines-core: <https://ontology.unifiedcyberontology.org/hotlines/2025/core#>
-PREFIX icac-core: <https://ontology.unifiedcyberontology.org/icac#>
-PREFIX icac-multi: <https://ontology.unifiedcyberontology.org/icac/multi-jurisdiction#>
-PREFIX icac-specialized: <https://ontology.unifiedcyberontology.org/icac/specialized-units#>
-PREFIX icac-victim: <https://ontology.unifiedcyberontology.org/icac/victim-impact#>
+PREFIX hotlines-core: <https://cacontology.projectvic.org/hotlines/2025/core#>
+PREFIX cacontology-core: <https://cacontology.projectvic.org#>
+PREFIX cacontology-multi: <https://cacontology.projectvic.org/multi-jurisdiction#>
+PREFIX cacontology-specialized: <https://cacontology.projectvic.org/specialized-units#>
+PREFIX cacontology-victim: <https://cacontology.projectvic.org/victim-impact#>
 
 SELECT ?organization ?yearMonth
        (COUNT(DISTINCT ?report) AS ?totalReportsLinkedToRescue)

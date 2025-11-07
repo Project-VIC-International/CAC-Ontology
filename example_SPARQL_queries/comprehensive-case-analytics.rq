@@ -9,20 +9,20 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core#>
 PREFIX uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity#>
 PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action#>
-PREFIX icac-core: <https://ontology.unifiedcyberontology.org/icac#>
-PREFIX icac-undercover: <https://ontology.unifiedcyberontology.org/icac/undercover#>
-PREFIX icac-grooming: <https://ontology.unifiedcyberontology.org/icac/grooming#>
-PREFIX icac-physical: <https://ontology.unifiedcyberontology.org/icac/physical-evidence#>
-PREFIX icac-tactical: <https://ontology.unifiedcyberontology.org/icac/tactical#>
-PREFIX icac-multi: <https://ontology.unifiedcyberontology.org/icac/multi-jurisdiction#>
-PREFIX icac-sentencing: <https://ontology.unifiedcyberontology.org/icac/sentencing#>
-PREFIX icac-taskforce: <https://ontology.unifiedcyberontology.org/icac/taskforce#>
-PREFIX icac-platforms: <https://ontology.unifiedcyberontology.org/icac/platforms#>
-PREFIX icac-specialized: <https://ontology.unifiedcyberontology.org/icac/specialized-units#>
-PREFIX icac-registry: <https://ontology.unifiedcyberontology.org/icac/sex-offender-registry#>
-PREFIX icac-production: <https://ontology.unifiedcyberontology.org/icac/production#>
-PREFIX icac-victim: <https://ontology.unifiedcyberontology.org/icac/victim-impact#>
-PREFIX icac-international: <https://ontology.unifiedcyberontology.org/icac/international#>
+PREFIX cacontology-core: <https://cacontology.projectvic.org#>
+PREFIX cacontology-undercover: <https://cacontology.projectvic.org/undercover#>
+PREFIX cacontology-grooming: <https://cacontology.projectvic.org/grooming#>
+PREFIX cacontology-physical: <https://cacontology.projectvic.org/physical-evidence#>
+PREFIX cacontology-tactical: <https://cacontology.projectvic.org/tactical#>
+PREFIX cacontology-multi: <https://cacontology.projectvic.org/multi-jurisdiction#>
+PREFIX cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#>
+PREFIX cacontology-taskforce: <https://cacontology.projectvic.org/taskforce#>
+PREFIX cacontology-platforms: <https://cacontology.projectvic.org/platforms#>
+PREFIX cacontology-specialized: <https://cacontology.projectvic.org/specialized-units#>
+PREFIX cacontology-registry: <https://cacontology.projectvic.org/sex-offender-registry#>
+PREFIX cacontology-production: <https://cacontology.projectvic.org/production#>
+PREFIX cacontology-victim: <https://cacontology.projectvic.org/victim-impact#>
+PREFIX cacontology-international: <https://cacontology.projectvic.org/international#>
 
 # =============================================================================
 # COMPREHENSIVE CASE ANALYSIS QUERY

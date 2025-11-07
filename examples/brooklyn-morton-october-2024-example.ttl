@@ -10,10 +10,10 @@
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/role#> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/location#> .
 @prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
-@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
-@prefix icac-athletic: <https://ontology.unifiedcyberontology.org/icac/athletic#> .
-@prefix icac-educational: <https://ontology.unifiedcyberontology.org/icac/educational#> .
-@prefix icac-sentencing: <https://ontology.unifiedcyberontology.org/icac/sentencing#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-athletic: <https://cacontology.projectvic.org/athletic#> .
+@prefix cacontology-educational: <https://cacontology.projectvic.org/educational#> .
+@prefix cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#> .
 
 # =============================================================================
 # CASE METADATA
