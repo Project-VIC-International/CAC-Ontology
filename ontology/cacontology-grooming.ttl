@@ -13,6 +13,7 @@
 @prefix cacontology-grooming: <https://cacontology.projectvic.org/grooming#> .
 @prefix cacontology-educational: <https://cacontology.projectvic.org/educational#> .
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role#> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 
