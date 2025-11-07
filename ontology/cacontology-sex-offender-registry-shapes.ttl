@@ -15,8 +15,8 @@
 # REGISTRY CORE SHAPES
 # =============================================================================
 
-icac-registry:SexOffenderRegistryShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-registry:SexOffenderRegistry ;
+cacontology-registry:SexOffenderRegistryShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-registry:SexOffenderRegistry ;
     rdfs:label "Sex Offender Registry Shape"@en ;
     rdfs:comment "Validation shape for sex offender registry instances."@en ;
     sh:property [
@@ -29,19 +29,19 @@ icac-registry:SexOffenderRegistryShape rdf:type sh:NodeShape ;
         sh:message "Registry must have a name (5-200 characters)."@en
     ] ;
     sh:property [
-        sh:path icac-registry:managedBy ;
+        sh:path cacontology-registry:managedBy ;
         sh:class uco-identity:Organization ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Registry must specify managing organization."@en
     ] .
 
-icac-registry:RegisteredSexOffenderShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-registry:RegisteredSexOffender ;
+cacontology-registry:RegisteredSexOffenderShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-registry:RegisteredSexOffender ;
     rdfs:label "Registered Sex Offender Shape"@en ;
     rdfs:comment "Validation shape for registered sex offender instances."@en ;
     sh:property [
-        sh:path icac-registry:fullName ;
+        sh:path cacontology-registry:fullName ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -50,14 +50,14 @@ icac-registry:RegisteredSexOffenderShape rdf:type sh:NodeShape ;
         sh:message "Offender must have a full name (2-100 characters)."@en
     ] ;
     sh:property [
-        sh:path icac-registry:dateOfBirth ;
+        sh:path cacontology-registry:dateOfBirth ;
         sh:datatype xsd:date ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Offender must have a date of birth."@en
     ] ;
     sh:property [
-        sh:path icac-registry:socialSecurityNumber ;
+        sh:path cacontology-registry:socialSecurityNumber ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -65,7 +65,7 @@ icac-registry:RegisteredSexOffenderShape rdf:type sh:NodeShape ;
         sh:message "SSN must follow format XXX-XX-XXXX when provided."@en
     ] ;
     sh:property [
-        sh:path icac-registry:sex ;
+        sh:path cacontology-registry:sex ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -73,14 +73,14 @@ icac-registry:RegisteredSexOffenderShape rdf:type sh:NodeShape ;
         sh:message "Sex must be Male, Female, or Unknown."@en
     ] ;
     sh:property [
-        sh:path icac-registry:registeredIn ;
-        sh:class icac-registry:SexOffenderRegistry ;
+        sh:path cacontology-registry:registeredIn ;
+        sh:class cacontology-registry:SexOffenderRegistry ;
         sh:minCount 1 ;
         sh:message "Offender must be registered in at least one registry."@en
     ] .
 
-icac-registry:OffenderProfileShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-registry:OffenderProfile ;
+cacontology-registry:OffenderProfileShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-registry:OffenderProfile ;
     rdfs:label "Offender Profile Shape"@en ;
     rdfs:comment "Validation shape for offender profile instances."@en ;
     sh:property [
@@ -91,19 +91,19 @@ icac-registry:OffenderProfileShape rdf:type sh:NodeShape ;
         sh:message "Profile must specify creation time."@en
     ] ;
     sh:property [
-        sh:path icac-registry:lastUpdate ;
+        sh:path cacontology-registry:lastUpdate ;
         sh:datatype xsd:dateTime ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "Profile may specify last update time."@en
     ] .
 
-icac-registry:RegistrationRecordShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-registry:RegistrationRecord ;
+cacontology-registry:RegistrationRecordShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-registry:RegistrationRecord ;
     rdfs:label "Registration Record Shape"@en ;
     rdfs:comment "Validation shape for registration record instances."@en ;
     sh:property [
-        sh:path icac-registry:registrationNumber ;
+        sh:path cacontology-registry:registrationNumber ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -112,21 +112,21 @@ icac-registry:RegistrationRecordShape rdf:type sh:NodeShape ;
         sh:message "Registration record must have a registration number (5-50 characters)."@en
     ] ;
     sh:property [
-        sh:path icac-registry:registrationDate ;
+        sh:path cacontology-registry:registrationDate ;
         sh:datatype xsd:date ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Registration record must specify registration date."@en
     ] ;
     sh:property [
-        sh:path icac-registry:expirationDate ;
+        sh:path cacontology-registry:expirationDate ;
         sh:datatype xsd:date ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "Registration record may specify expiration date."@en
     ] ;
     sh:property [
-        sh:path icac-registry:tier ;
+        sh:path cacontology-registry:tier ;
         sh:datatype xsd:integer ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -135,7 +135,7 @@ icac-registry:RegistrationRecordShape rdf:type sh:NodeShape ;
         sh:message "Registration tier must be 1, 2, or 3."@en
     ] ;
     sh:property [
-        sh:path icac-registry:lifetimeRegistration ;
+        sh:path cacontology-registry:lifetimeRegistration ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -146,12 +146,12 @@ icac-registry:RegistrationRecordShape rdf:type sh:NodeShape ;
 # OFFENSE AND CONVICTION SHAPES
 # =============================================================================
 
-icac-registry:ConvictingOffenseShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-registry:ConvictingOffense ;
+cacontology-registry:ConvictingOffenseShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-registry:ConvictingOffense ;
     rdfs:label "Convicting Offense Shape"@en ;
     rdfs:comment "Validation shape for convicting offense instances."@en ;
     sh:property [
-        sh:path icac-registry:offenseDescription ;
+        sh:path cacontology-registry:offenseDescription ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -160,14 +160,14 @@ icac-registry:ConvictingOffenseShape rdf:type sh:NodeShape ;
         sh:message "Offense must have a description (10-1000 characters)."@en
     ] ;
     sh:property [
-        sh:path icac-registry:convictionDate ;
+        sh:path cacontology-registry:convictionDate ;
         sh:datatype xsd:date ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Offense must specify conviction date."@en
     ] ;
     sh:property [
-        sh:path icac-registry:sentenceLength ;
+        sh:path cacontology-registry:sentenceLength ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -176,12 +176,12 @@ icac-registry:ConvictingOffenseShape rdf:type sh:NodeShape ;
         sh:message "Sentence length should be 1-100 characters when specified."@en
     ] .
 
-icac-registry:VictimInformationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-registry:VictimInformation ;
+cacontology-registry:VictimInformationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-registry:VictimInformation ;
     rdfs:label "Victim Information Shape"@en ;
     rdfs:comment "Validation shape for victim information instances."@en ;
     sh:property [
-        sh:path icac-registry:victimAge ;
+        sh:path cacontology-registry:victimAge ;
         sh:datatype xsd:integer ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -190,7 +190,7 @@ icac-registry:VictimInformationShape rdf:type sh:NodeShape ;
         sh:message "Victim age must be between 0 and 25 when specified."@en
     ] ;
     sh:property [
-        sh:path icac-registry:victimCount ;
+        sh:path cacontology-registry:victimCount ;
         sh:datatype xsd:integer ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -198,7 +198,7 @@ icac-registry:VictimInformationShape rdf:type sh:NodeShape ;
         sh:message "Victim count must be at least 1 when specified."@en
     ] ;
     sh:property [
-        sh:path icac-registry:victimRelationship ;
+        sh:path cacontology-registry:victimRelationship ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -210,12 +210,12 @@ icac-registry:VictimInformationShape rdf:type sh:NodeShape ;
 # PHYSICAL DESCRIPTION SHAPES
 # =============================================================================
 
-icac-registry:PhysicalDescriptionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-registry:PhysicalDescription ;
+cacontology-registry:PhysicalDescriptionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-registry:PhysicalDescription ;
     rdfs:label "Physical Description Shape"@en ;
     rdfs:comment "Validation shape for physical description instances."@en ;
     sh:property [
-        sh:path icac-registry:height ;
+        sh:path cacontology-registry:height ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -223,7 +223,7 @@ icac-registry:PhysicalDescriptionShape rdf:type sh:NodeShape ;
         sh:message "Height must be in format X'XX\" or XXX cm when specified."@en
     ] ;
     sh:property [
-        sh:path icac-registry:weight ;
+        sh:path cacontology-registry:weight ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -231,7 +231,7 @@ icac-registry:PhysicalDescriptionShape rdf:type sh:NodeShape ;
         sh:message "Weight must be in format XXX lbs or XXX kg when specified."@en
     ] ;
     sh:property [
-        sh:path icac-registry:eyeColor ;
+        sh:path cacontology-registry:eyeColor ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -239,7 +239,7 @@ icac-registry:PhysicalDescriptionShape rdf:type sh:NodeShape ;
         sh:message "Eye color must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-registry:hairColor ;
+        sh:path cacontology-registry:hairColor ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -247,7 +247,7 @@ icac-registry:PhysicalDescriptionShape rdf:type sh:NodeShape ;
         sh:message "Hair color must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-registry:race ;
+        sh:path cacontology-registry:race ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -259,8 +259,8 @@ icac-registry:PhysicalDescriptionShape rdf:type sh:NodeShape ;
 # ADDRESS AND LOCATION SHAPES
 # =============================================================================
 
-icac-registry:RegisteredAddressShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-registry:RegisteredAddress ;
+cacontology-registry:RegisteredAddressShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-registry:RegisteredAddress ;
     rdfs:label "Registered Address Shape"@en ;
     rdfs:comment "Validation shape for registered address instances."@en ;
     sh:property [
@@ -299,8 +299,8 @@ icac-registry:RegisteredAddressShape rdf:type sh:NodeShape ;
         sh:message "Postal code must be in format XXXXX or XXXXX-XXXX."@en
     ] .
 
-icac-registry:PrimaryResidenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-registry:PrimaryResidence ;
+cacontology-registry:PrimaryResidenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-registry:PrimaryResidence ;
     rdfs:label "Primary Residence Shape"@en ;
     rdfs:comment "Validation shape for primary residence instances."@en ;
     sh:property [
@@ -311,8 +311,8 @@ icac-registry:PrimaryResidenceShape rdf:type sh:NodeShape ;
         sh:message "Primary residence must specify start date."@en
     ] .
 
-icac-registry:WorkLocationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-registry:WorkLocation ;
+cacontology-registry:WorkLocationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-registry:WorkLocation ;
     rdfs:label "Work Location Shape"@en ;
     rdfs:comment "Validation shape for work location instances."@en ;
     sh:property [
@@ -329,8 +329,8 @@ icac-registry:WorkLocationShape rdf:type sh:NodeShape ;
 # EMPLOYMENT AND EDUCATION SHAPES
 # =============================================================================
 
-icac-registry:EmploymentInformationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-registry:EmploymentInformation ;
+cacontology-registry:EmploymentInformationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-registry:EmploymentInformation ;
     rdfs:label "Employment Information Shape"@en ;
     rdfs:comment "Validation shape for employment information instances."@en ;
     sh:property [
@@ -350,8 +350,8 @@ icac-registry:EmploymentInformationShape rdf:type sh:NodeShape ;
         sh:message "Employment may specify start date."@en
     ] .
 
-icac-registry:EducationInformationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-registry:EducationInformation ;
+cacontology-registry:EducationInformationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-registry:EducationInformation ;
     rdfs:label "Education Information Shape"@en ;
     rdfs:comment "Validation shape for education information instances."@en ;
     sh:property [
@@ -368,8 +368,8 @@ icac-registry:EducationInformationShape rdf:type sh:NodeShape ;
 # VEHICLE INFORMATION SHAPES
 # =============================================================================
 
-icac-registry:VehicleInformationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-registry:VehicleInformation ;
+cacontology-registry:VehicleInformationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-registry:VehicleInformation ;
     rdfs:label "Vehicle Information Shape"@en ;
     rdfs:comment "Validation shape for vehicle information instances."@en ;
     sh:property [
@@ -413,8 +413,8 @@ icac-registry:VehicleInformationShape rdf:type sh:NodeShape ;
 # COMPLIANCE AND STATUS SHAPES
 # =============================================================================
 
-icac-registry:RegistrationStatusShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-registry:RegistrationStatus ;
+cacontology-registry:RegistrationStatusShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-registry:RegistrationStatus ;
     rdfs:label "Registration Status Shape"@en ;
     rdfs:comment "Validation shape for registration status instances."@en ;
     sh:property [
@@ -433,8 +433,8 @@ icac-registry:RegistrationStatusShape rdf:type sh:NodeShape ;
         sh:message "Status must specify start time."@en
     ] .
 
-icac-registry:ComplianceViolationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-registry:ComplianceViolation ;
+cacontology-registry:ComplianceViolationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-registry:ComplianceViolation ;
     rdfs:label "Compliance Violation Shape"@en ;
     rdfs:comment "Validation shape for compliance violation instances."@en ;
     sh:property [
@@ -454,8 +454,8 @@ icac-registry:ComplianceViolationShape rdf:type sh:NodeShape ;
         sh:message "Violation must specify occurrence time."@en
     ] .
 
-icac-registry:VerificationCheckShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-registry:VerificationCheck ;
+cacontology-registry:VerificationCheckShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-registry:VerificationCheck ;
     rdfs:label "Verification Check Shape"@en ;
     rdfs:comment "Validation shape for verification check instances."@en ;
     sh:property [
@@ -477,8 +477,8 @@ icac-registry:VerificationCheckShape rdf:type sh:NodeShape ;
 # CROSS-REFERENCE VALIDATION SHAPES
 # =============================================================================
 
-icac-registry:OffenderRegistrationCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-registry:RegisteredSexOffender ;
+cacontology-registry:OffenderRegistrationCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-registry:RegisteredSexOffender ;
     rdfs:label "Offender Registration Cross Reference Shape"@en ;
     rdfs:comment "Validates that registered offenders have required registration records."@en ;
     sh:sparql [
@@ -486,17 +486,17 @@ icac-registry:OffenderRegistrationCrossReferenceShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-registry:RegisteredSexOffender .
+                $this a cacontology-registry:RegisteredSexOffender .
                 FILTER NOT EXISTS {
-                    $this icac-registry:hasRegistrationRecord ?record .
-                    ?record a icac-registry:RegistrationRecord .
+                    $this cacontology-registry:hasRegistrationRecord ?record .
+                    ?record a cacontology-registry:RegistrationRecord .
                 }
             }
         """
     ] .
 
-icac-registry:RegistrationOffenseCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-registry:RegistrationRecord ;
+cacontology-registry:RegistrationOffenseCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-registry:RegistrationRecord ;
     rdfs:label "Registration Offense Cross Reference Shape"@en ;
     rdfs:comment "Validates that registration records are based on convicting offenses."@en ;
     sh:sparql [
@@ -504,17 +504,17 @@ icac-registry:RegistrationOffenseCrossReferenceShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-registry:RegistrationRecord .
+                $this a cacontology-registry:RegistrationRecord .
                 FILTER NOT EXISTS {
-                    $this icac-registry:basedOnOffense ?offense .
-                    ?offense a icac-registry:ConvictingOffense .
+                    $this cacontology-registry:basedOnOffense ?offense .
+                    ?offense a cacontology-registry:ConvictingOffense .
                 }
             }
         """
     ] .
 
-icac-registry:AddressVerificationCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-registry:RegisteredSexOffender ;
+cacontology-registry:AddressVerificationCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-registry:RegisteredSexOffender ;
     rdfs:label "Address Verification Cross Reference Shape"@en ;
     rdfs:comment "Validates that registered offenders have current address information."@en ;
     sh:sparql [
@@ -522,10 +522,10 @@ icac-registry:AddressVerificationCrossReferenceShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-registry:RegisteredSexOffender .
+                $this a cacontology-registry:RegisteredSexOffender .
                 FILTER NOT EXISTS {
-                    $this icac-registry:residesAt ?address .
-                    ?address a icac-registry:RegisteredAddress .
+                    $this cacontology-registry:residesAt ?address .
+                    ?address a cacontology-registry:RegisteredAddress .
                 }
             }
         """
@@ -535,10 +535,10 @@ icac-registry:AddressVerificationCrossReferenceShape rdf:type sh:NodeShape ;
 # TEMPORAL VALIDATION SHAPES
 # =============================================================================
 
-icac-registry:TemporalValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-registry:RegistrationRecord ,
-                   icac-registry:VerificationCheck ,
-                   icac-registry:RegistrationUpdate ;
+cacontology-registry:TemporalValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-registry:RegistrationRecord ,
+                   cacontology-registry:VerificationCheck ,
+                   cacontology-registry:RegistrationUpdate ;
     rdfs:label "Temporal Validation Shape"@en ;
     rdfs:comment "Validates temporal consistency for registry actions and records."@en ;
     sh:sparql [
@@ -553,8 +553,8 @@ icac-registry:TemporalValidationShape rdf:type sh:NodeShape ;
         """
     ] .
 
-icac-registry:RegistrationDateValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-registry:RegistrationRecord ;
+cacontology-registry:RegistrationDateValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-registry:RegistrationRecord ;
     rdfs:label "Registration Date Validation Shape"@en ;
     rdfs:comment "Validates that registration dates are logical and consistent."@en ;
     sh:sparql [
@@ -562,10 +562,10 @@ icac-registry:RegistrationDateValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-registry:RegistrationRecord ;
-                      icac-registry:registrationDate ?regDate ;
-                      icac-registry:basedOnOffense ?offense .
-                ?offense icac-registry:convictionDate ?convDate .
+                $this a cacontology-registry:RegistrationRecord ;
+                      cacontology-registry:registrationDate ?regDate ;
+                      cacontology-registry:basedOnOffense ?offense .
+                ?offense cacontology-registry:convictionDate ?convDate .
                 FILTER (?regDate < ?convDate)
             }
         """
@@ -575,8 +575,8 @@ icac-registry:RegistrationDateValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-registry:registrationDate ?regDate ;
-                      icac-registry:expirationDate ?expDate .
+                $this cacontology-registry:registrationDate ?regDate ;
+                      cacontology-registry:expirationDate ?expDate .
                 FILTER (?expDate <= ?regDate)
             }
         """
@@ -586,10 +586,10 @@ icac-registry:RegistrationDateValidationShape rdf:type sh:NodeShape ;
 # DATA QUALITY SHAPES
 # =============================================================================
 
-icac-registry:DataQualityShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-registry:RegisteredSexOffender ,
-                   icac-registry:RegistrationRecord ,
-                   icac-registry:ConvictingOffense ;
+cacontology-registry:DataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-registry:RegisteredSexOffender ,
+                   cacontology-registry:RegistrationRecord ,
+                   cacontology-registry:ConvictingOffense ;
     rdfs:label "Data Quality Shape"@en ;
     rdfs:comment "Validates data quality for registry entities."@en ;
     sh:property [
@@ -607,8 +607,8 @@ icac-registry:DataQualityShape rdf:type sh:NodeShape ;
         sh:message "Modification time should be specified when available."@en
     ] .
 
-icac-registry:RegistrationFrequencyValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-registry:RegistrationRecord ;
+cacontology-registry:RegistrationFrequencyValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-registry:RegistrationRecord ;
     rdfs:label "Registration Frequency Validation Shape"@en ;
     rdfs:comment "Validates registration frequency requirements based on tier."@en ;
     sh:sparql [
@@ -616,8 +616,8 @@ icac-registry:RegistrationFrequencyValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-registry:tier 1 ;
-                      icac-registry:registrationFrequency ?freq .
+                $this cacontology-registry:tier 1 ;
+                      cacontology-registry:registrationFrequency ?freq .
                 FILTER (?freq != "annual")
             }
         """
@@ -627,8 +627,8 @@ icac-registry:RegistrationFrequencyValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-registry:tier 2 ;
-                      icac-registry:registrationFrequency ?freq .
+                $this cacontology-registry:tier 2 ;
+                      cacontology-registry:registrationFrequency ?freq .
                 FILTER (?freq != "semi-annual")
             }
         """
@@ -638,15 +638,15 @@ icac-registry:RegistrationFrequencyValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-registry:tier 3 ;
-                      icac-registry:registrationFrequency ?freq .
+                $this cacontology-registry:tier 3 ;
+                      cacontology-registry:registrationFrequency ?freq .
                 FILTER (?freq != "quarterly")
             }
         """
     ] .
 
-icac-registry:AgeValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-registry:RegisteredSexOffender ;
+cacontology-registry:AgeValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-registry:RegisteredSexOffender ;
     rdfs:label "Age Validation Shape"@en ;
     rdfs:comment "Validates age-related constraints for registered offenders."@en ;
     sh:sparql [
@@ -654,9 +654,9 @@ icac-registry:AgeValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-registry:dateOfBirth ?dob ;
-                      icac-registry:hasRegistrationRecord ?record .
-                ?record icac-registry:registrationDate ?regDate .
+                $this cacontology-registry:dateOfBirth ?dob ;
+                      cacontology-registry:hasRegistrationRecord ?record .
+                ?record cacontology-registry:registrationDate ?regDate .
                 BIND(YEAR(?regDate) - YEAR(?dob) AS ?age)
                 FILTER (?age < 18)
             }

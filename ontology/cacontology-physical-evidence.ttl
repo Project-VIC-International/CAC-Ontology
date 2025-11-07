@@ -34,59 +34,59 @@
 # PHYSICAL EVIDENCE CLASSES (extending UCO Observable and gUFO Object)
 # =============================================================================
 
-icac-physical:PhysicalEvidence rdf:type owl:Class ;
+cacontology-physical:PhysicalEvidence rdf:type owl:Class ;
     rdfs:label "Physical Evidence"@en ;
     rdfs:comment "Tangible items collected as evidence in ICAC investigations (gUFO Object)."@en ;
     rdfs:subClassOf uco-observable:ObservableObject ,
                     gufo:Object .
 
-icac-physical:ComputerEquipment rdf:type owl:Class ;
+cacontology-physical:ComputerEquipment rdf:type owl:Class ;
     rdfs:label "Computer Equipment"@en ;
     rdfs:comment "Digital devices including computers, laptops, tablets, and mobile phones seized as evidence (gUFO FunctionalComplex)."@en ;
-    rdfs:subClassOf icac-physical:PhysicalEvidence ,
+    rdfs:subClassOf cacontology-physical:PhysicalEvidence ,
                     gufo:FunctionalComplex .
 
-icac-physical:StorageMedia rdf:type owl:Class ;
+cacontology-physical:StorageMedia rdf:type owl:Class ;
     rdfs:label "Storage Media"@en ;
     rdfs:comment "External storage devices including hard drives, USB drives, memory cards, and optical media (gUFO Object)."@en ;
-    rdfs:subClassOf icac-physical:PhysicalEvidence .
+    rdfs:subClassOf cacontology-physical:PhysicalEvidence .
 
-icac-physical:AbuseFacilitationItem rdf:type owl:Class ;
+cacontology-physical:AbuseFacilitationItem rdf:type owl:Class ;
     rdfs:label "Abuse Facilitation Item"@en ;
     rdfs:comment "Physical items intended for use in facilitating child abuse or exploitation (gUFO Object)."@en ;
-    rdfs:subClassOf icac-physical:PhysicalEvidence .
+    rdfs:subClassOf cacontology-physical:PhysicalEvidence .
 
-icac-physical:DocumentaryEvidence rdf:type owl:Class ;
+cacontology-physical:DocumentaryEvidence rdf:type owl:Class ;
     rdfs:label "Documentary Evidence"@en ;
     rdfs:comment "Physical documents, printed materials, or written items relevant to the investigation (gUFO Object)."@en ;
-    rdfs:subClassOf icac-physical:PhysicalEvidence .
+    rdfs:subClassOf cacontology-physical:PhysicalEvidence .
 
-icac-physical:PersonalItem rdf:type owl:Class ;
+cacontology-physical:PersonalItem rdf:type owl:Class ;
     rdfs:label "Personal Item"@en ;
     rdfs:comment "Personal belongings that may contain evidence or indicate criminal behavior (gUFO Object)."@en ;
-    rdfs:subClassOf icac-physical:PhysicalEvidence .
+    rdfs:subClassOf cacontology-physical:PhysicalEvidence .
 
 # =============================================================================
 # PROCUREMENT AND ACQUISITION CLASSES (extending UCO Action and gUFO Event)
 # =============================================================================
 
-icac-physical:CriminalProcurement rdf:type owl:Class ;
+cacontology-physical:CriminalProcurement rdf:type owl:Class ;
     rdfs:label "Criminal Procurement"@en ;
     rdfs:comment "Action of acquiring items specifically for criminal purposes (gUFO Event)."@en ;
     rdfs:subClassOf uco-action:Action ,
                     gufo:Event .
 
-icac-physical:OnlinePurchase rdf:type owl:Class ;
+cacontology-physical:OnlinePurchase rdf:type owl:Class ;
     rdfs:label "Online Purchase"@en ;
     rdfs:comment "Purchase of items through online platforms for criminal purposes (gUFO Event)."@en ;
-    rdfs:subClassOf icac-physical:CriminalProcurement .
+    rdfs:subClassOf cacontology-physical:CriminalProcurement .
 
-icac-physical:PhysicalPurchase rdf:type owl:Class ;
+cacontology-physical:PhysicalPurchase rdf:type owl:Class ;
     rdfs:label "Physical Purchase"@en ;
     rdfs:comment "In-person purchase of items for criminal purposes (gUFO Event)."@en ;
-    rdfs:subClassOf icac-physical:CriminalProcurement .
+    rdfs:subClassOf cacontology-physical:CriminalProcurement .
 
-icac-physical:ItemModification rdf:type owl:Class ;
+cacontology-physical:ItemModification rdf:type owl:Class ;
     rdfs:label "Item Modification"@en ;
     rdfs:comment "Alteration or customization of items to facilitate criminal activity (gUFO Event)."@en ;
     rdfs:subClassOf uco-action:Action ,
@@ -96,102 +96,102 @@ icac-physical:ItemModification rdf:type owl:Class ;
 # SPECIFIC EVIDENCE ITEM CLASSES
 # =============================================================================
 
-icac-physical:RecordingEquipment rdf:type owl:Class ;
+cacontology-physical:RecordingEquipment rdf:type owl:Class ;
     rdfs:label "Recording Equipment"@en ;
     rdfs:comment "Devices used to create audio or video recordings of criminal activity (gUFO FunctionalComplex)."@en ;
-    rdfs:subClassOf icac-physical:AbuseFacilitationItem ,
+    rdfs:subClassOf cacontology-physical:AbuseFacilitationItem ,
                     gufo:FunctionalComplex .
 
-icac-physical:CommunicationDevice rdf:type owl:Class ;
+cacontology-physical:CommunicationDevice rdf:type owl:Class ;
     rdfs:label "Communication Device"@en ;
     rdfs:comment "Devices used to communicate with victims or distribute illegal content (gUFO FunctionalComplex)."@en ;
-    rdfs:subClassOf icac-physical:ComputerEquipment .
+    rdfs:subClassOf cacontology-physical:ComputerEquipment .
 
-icac-physical:ChildTargetedItem rdf:type owl:Class ;
+cacontology-physical:ChildTargetedItem rdf:type owl:Class ;
     rdfs:label "Child Targeted Item"@en ;
     rdfs:comment "Items specifically designed to appeal to or attract children (gUFO Object)."@en ;
-    rdfs:subClassOf icac-physical:AbuseFacilitationItem .
+    rdfs:subClassOf cacontology-physical:AbuseFacilitationItem .
 
-icac-physical:RestraintItem rdf:type owl:Class ;
+cacontology-physical:RestraintItem rdf:type owl:Class ;
     rdfs:label "Restraint Item"@en ;
     rdfs:comment "Items intended for restraining or controlling victims (gUFO Object)."@en ;
-    rdfs:subClassOf icac-physical:AbuseFacilitationItem .
+    rdfs:subClassOf cacontology-physical:AbuseFacilitationItem .
 
-icac-physical:DisguiseItem rdf:type owl:Class ;
+cacontology-physical:DisguiseItem rdf:type owl:Class ;
     rdfs:label "Disguise Item"@en ;
     rdfs:comment "Items used to conceal identity or change appearance (gUFO Object)."@en ;
-    rdfs:subClassOf icac-physical:PersonalItem .
+    rdfs:subClassOf cacontology-physical:PersonalItem .
 
 # =============================================================================
 # SEARCH AND SEIZURE CLASSES (extending UCO Action and gUFO Event)
 # =============================================================================
 
-icac-physical:PhysicalSearch rdf:type owl:Class ;
+cacontology-physical:PhysicalSearch rdf:type owl:Class ;
     rdfs:label "Physical Search"@en ;
     rdfs:comment "Law enforcement search of physical premises for evidence (gUFO Event)."@en ;
     rdfs:subClassOf uco-action:Action ,
                     gufo:Event .
 
-icac-physical:EvidenceSeizure rdf:type owl:Class ;
+cacontology-physical:EvidenceSeizure rdf:type owl:Class ;
     rdfs:label "Evidence Seizure"@en ;
     rdfs:comment "Legal seizure of physical items as evidence (gUFO Event)."@en ;
     rdfs:subClassOf uco-action:Action ,
                     gufo:Event .
 
-icac-physical:VehicleSearch rdf:type owl:Class ;
+cacontology-physical:VehicleSearch rdf:type owl:Class ;
     rdfs:label "Vehicle Search"@en ;
     rdfs:comment "Search of motor vehicles for evidence or contraband (gUFO Event)."@en ;
-    rdfs:subClassOf icac-physical:PhysicalSearch .
+    rdfs:subClassOf cacontology-physical:PhysicalSearch .
 
-icac-physical:ResidenceSearch rdf:type owl:Class ;
+cacontology-physical:ResidenceSearch rdf:type owl:Class ;
     rdfs:label "Residence Search"@en ;
     rdfs:comment "Search of residential premises including homes and apartments (gUFO Event)."@en ;
-    rdfs:subClassOf icac-physical:PhysicalSearch .
+    rdfs:subClassOf cacontology-physical:PhysicalSearch .
 
-icac-physical:WorkplaceSearch rdf:type owl:Class ;
+cacontology-physical:WorkplaceSearch rdf:type owl:Class ;
     rdfs:label "Workplace Search"@en ;
     rdfs:comment "Search of workplace or commercial premises (gUFO Event)."@en ;
-    rdfs:subClassOf icac-physical:PhysicalSearch .
+    rdfs:subClassOf cacontology-physical:PhysicalSearch .
 
 # =============================================================================
 # EVIDENCE LIFECYCLE PHASES (gUFO Phase - Anti-Rigid)
 # =============================================================================
 
-icac-physical:EvidenceCollectionPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-physical:EvidenceCollectionPhase rdf:type owl:Class, gufo:Phase ;
     rdfs:label "Evidence Collection Phase"@en ;
     rdfs:comment "Phase during which physical evidence is being collected (gUFO Phase - anti-rigid)."@en ;
-    rdfs:subClassOf icac-physical:PhysicalEvidence .
+    rdfs:subClassOf cacontology-physical:PhysicalEvidence .
 
-icac-physical:EvidenceAnalysisPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-physical:EvidenceAnalysisPhase rdf:type owl:Class, gufo:Phase ;
     rdfs:label "Evidence Analysis Phase"@en ;
     rdfs:comment "Phase during which physical evidence is undergoing forensic analysis (gUFO Phase - anti-rigid)."@en ;
-    rdfs:subClassOf icac-physical:PhysicalEvidence .
+    rdfs:subClassOf cacontology-physical:PhysicalEvidence .
 
-icac-physical:EvidenceStoragePhase rdf:type owl:Class, gufo:Phase ;
+cacontology-physical:EvidenceStoragePhase rdf:type owl:Class, gufo:Phase ;
     rdfs:label "Evidence Storage Phase"@en ;
     rdfs:comment "Phase during which physical evidence is in secure storage (gUFO Phase - anti-rigid)."@en ;
-    rdfs:subClassOf icac-physical:PhysicalEvidence .
+    rdfs:subClassOf cacontology-physical:PhysicalEvidence .
 
-icac-physical:EvidenceDispositionPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-physical:EvidenceDispositionPhase rdf:type owl:Class, gufo:Phase ;
     rdfs:label "Evidence Disposition Phase"@en ;
     rdfs:comment "Phase during which evidence disposition is determined and executed (gUFO Phase - anti-rigid)."@en ;
-    rdfs:subClassOf icac-physical:PhysicalEvidence .
+    rdfs:subClassOf cacontology-physical:PhysicalEvidence .
 
 # =============================================================================
 # FORENSIC ANALYSIS ROLES (gUFO Role - Anti-Rigid)
 # =============================================================================
 
-icac-physical:ForensicAnalystRole rdf:type owl:Class, gufo:Role ;
+cacontology-physical:ForensicAnalystRole rdf:type owl:Class, gufo:Role ;
     rdfs:label "Forensic Analyst Role"@en ;
     rdfs:comment "Role of person conducting forensic analysis of physical evidence (gUFO Role - anti-rigid)."@en ;
     rdfs:subClassOf uco-identity:Person .
 
-icac-physical:EvidenceCustodianRole rdf:type owl:Class, gufo:Role ;
+cacontology-physical:EvidenceCustodianRole rdf:type owl:Class, gufo:Role ;
     rdfs:label "Evidence Custodian Role"@en ;
     rdfs:comment "Role of person responsible for evidence custody and chain of custody (gUFO Role - anti-rigid)."@en ;
     rdfs:subClassOf uco-identity:Person .
 
-icac-physical:SearchOfficerRole rdf:type owl:Class, gufo:Role ;
+cacontology-physical:SearchOfficerRole rdf:type owl:Class, gufo:Role ;
     rdfs:label "Search Officer Role"@en ;
     rdfs:comment "Role of law enforcement officer conducting physical searches (gUFO Role - anti-rigid)."@en ;
     rdfs:subClassOf uco-identity:Person .
@@ -200,17 +200,17 @@ icac-physical:SearchOfficerRole rdf:type owl:Class, gufo:Role ;
 # EVIDENCE SITUATIONS (gUFO Situation)
 # =============================================================================
 
-icac-physical:EvidenceContaminationSituation rdf:type owl:Class ;
+cacontology-physical:EvidenceContaminationSituation rdf:type owl:Class ;
     rdfs:label "Evidence Contamination Situation"@en ;
     rdfs:comment "Situation where physical evidence has been contaminated or compromised (gUFO Situation)."@en ;
     rdfs:subClassOf gufo:Situation .
 
-icac-physical:ChainOfCustodyBreachSituation rdf:type owl:Class ;
+cacontology-physical:ChainOfCustodyBreachSituation rdf:type owl:Class ;
     rdfs:label "Chain of Custody Breach Situation"@en ;
     rdfs:comment "Situation where the chain of custody for evidence has been breached (gUFO Situation)."@en ;
     rdfs:subClassOf gufo:Situation .
 
-icac-physical:EvidenceRecoverySituation rdf:type owl:Class ;
+cacontology-physical:EvidenceRecoverySituation rdf:type owl:Class ;
     rdfs:label "Evidence Recovery Situation"@en ;
     rdfs:comment "Situation involving the recovery of previously lost or missing evidence (gUFO Situation)."@en ;
     rdfs:subClassOf gufo:Situation .
@@ -220,58 +220,58 @@ icac-physical:EvidenceRecoverySituation rdf:type owl:Class ;
 # =============================================================================
 
 # Evidence Temporal Properties
-icac-physical:hasEvidenceBeginPoint rdf:type owl:DatatypeProperty ;
+cacontology-physical:hasEvidenceBeginPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has evidence begin point"@en ;
     rdfs:comment "Temporal begin point for evidence lifecycle (gUFO temporal property)."@en ;
     rdfs:subPropertyOf gufo:hasBeginPointInXSDDateTimeStamp ;
-    rdfs:domain icac-physical:PhysicalEvidence ;
+    rdfs:domain cacontology-physical:PhysicalEvidence ;
     rdfs:range xsd:dateTimeStamp .
 
-icac-physical:hasEvidenceEndPoint rdf:type owl:DatatypeProperty ;
+cacontology-physical:hasEvidenceEndPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has evidence end point"@en ;
     rdfs:comment "Temporal end point for evidence lifecycle (gUFO temporal property)."@en ;
     rdfs:subPropertyOf gufo:hasEndPointInXSDDateTimeStamp ;
-    rdfs:domain icac-physical:PhysicalEvidence ;
+    rdfs:domain cacontology-physical:PhysicalEvidence ;
     rdfs:range xsd:dateTimeStamp .
 
 # Event Temporal Properties
-icac-physical:hasSearchBeginPoint rdf:type owl:DatatypeProperty ;
+cacontology-physical:hasSearchBeginPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has search begin point"@en ;
     rdfs:comment "Temporal begin point for search events (gUFO temporal property)."@en ;
     rdfs:subPropertyOf gufo:hasBeginPointInXSDDateTimeStamp ;
-    rdfs:domain icac-physical:PhysicalSearch ;
+    rdfs:domain cacontology-physical:PhysicalSearch ;
     rdfs:range xsd:dateTimeStamp .
 
-icac-physical:hasSearchEndPoint rdf:type owl:DatatypeProperty ;
+cacontology-physical:hasSearchEndPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has search end point"@en ;
     rdfs:comment "Temporal end point for search events (gUFO temporal property)."@en ;
     rdfs:subPropertyOf gufo:hasEndPointInXSDDateTimeStamp ;
-    rdfs:domain icac-physical:PhysicalSearch ;
+    rdfs:domain cacontology-physical:PhysicalSearch ;
     rdfs:range xsd:dateTimeStamp .
 
-icac-physical:hasProcurementBeginPoint rdf:type owl:DatatypeProperty ;
+cacontology-physical:hasProcurementBeginPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has procurement begin point"@en ;
     rdfs:comment "Temporal begin point for procurement events (gUFO temporal property)."@en ;
     rdfs:subPropertyOf gufo:hasBeginPointInXSDDateTimeStamp ;
-    rdfs:domain icac-physical:CriminalProcurement ;
+    rdfs:domain cacontology-physical:CriminalProcurement ;
     rdfs:range xsd:dateTimeStamp .
 
-icac-physical:hasProcurementEndPoint rdf:type owl:DatatypeProperty ;
+cacontology-physical:hasProcurementEndPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has procurement end point"@en ;
     rdfs:comment "Temporal end point for procurement events (gUFO temporal property)."@en ;
     rdfs:subPropertyOf gufo:hasEndPointInXSDDateTimeStamp ;
-    rdfs:domain icac-physical:CriminalProcurement ;
+    rdfs:domain cacontology-physical:CriminalProcurement ;
     rdfs:range xsd:dateTimeStamp .
 
 # Phase Temporal Properties  
-icac-physical:hasPhaseBeginPoint rdf:type owl:DatatypeProperty ;
+cacontology-physical:hasPhaseBeginPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has phase begin point"@en ;
     rdfs:comment "Temporal begin point for evidence phases (gUFO temporal property)."@en ;
     rdfs:subPropertyOf gufo:hasBeginPointInXSDDateTimeStamp ;
     rdfs:domain gufo:Phase ;
     rdfs:range xsd:dateTimeStamp .
 
-icac-physical:hasPhaseEndPoint rdf:type owl:DatatypeProperty ;
+cacontology-physical:hasPhaseEndPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has phase end point"@en ;
     rdfs:comment "Temporal end point for evidence phases (gUFO temporal property)."@en ;
     rdfs:subPropertyOf gufo:hasEndPointInXSDDateTimeStamp ;
@@ -279,14 +279,14 @@ icac-physical:hasPhaseEndPoint rdf:type owl:DatatypeProperty ;
     rdfs:range xsd:dateTimeStamp .
 
 # Role Temporal Properties
-icac-physical:hasRoleBeginPoint rdf:type owl:DatatypeProperty ;
+cacontology-physical:hasRoleBeginPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has role begin point"@en ;
     rdfs:comment "Temporal begin point for forensic roles (gUFO temporal property)."@en ;
     rdfs:subPropertyOf gufo:hasBeginPointInXSDDateTimeStamp ;
     rdfs:domain gufo:Role ;
     rdfs:range xsd:dateTimeStamp .
 
-icac-physical:hasRoleEndPoint rdf:type owl:DatatypeProperty ;
+cacontology-physical:hasRoleEndPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has role end point"@en ;
     rdfs:comment "Temporal end point for forensic roles (gUFO temporal property)."@en ;
     rdfs:subPropertyOf gufo:hasEndPointInXSDDateTimeStamp ;
@@ -298,104 +298,104 @@ icac-physical:hasRoleEndPoint rdf:type owl:DatatypeProperty ;
 # =============================================================================
 
 # Evidence Quality Aspects
-icac-physical:hasEvidenceIntegrity rdf:type owl:DatatypeProperty ;
+cacontology-physical:hasEvidenceIntegrity rdf:type owl:DatatypeProperty ;
     rdfs:label "has evidence integrity"@en ;
     rdfs:comment "Overall integrity level of physical evidence (gUFO quality aspect)."@en ;
-    rdfs:domain icac-physical:PhysicalEvidence ;
+    rdfs:domain cacontology-physical:PhysicalEvidence ;
     rdfs:range xsd:string .
 
-icac-physical:hasEvidenceReliability rdf:type owl:DatatypeProperty ;
+cacontology-physical:hasEvidenceReliability rdf:type owl:DatatypeProperty ;
     rdfs:label "has evidence reliability"@en ;
     rdfs:comment "Reliability assessment of evidence for prosecution (gUFO quality aspect)."@en ;
-    rdfs:domain icac-physical:PhysicalEvidence ;
+    rdfs:domain cacontology-physical:PhysicalEvidence ;
     rdfs:range xsd:double .
 
-icac-physical:hasPreservationQuality rdf:type owl:DatatypeProperty ;
+cacontology-physical:hasPreservationQuality rdf:type owl:DatatypeProperty ;
     rdfs:label "has preservation quality"@en ;
     rdfs:comment "Quality level of evidence preservation (gUFO quality aspect)."@en ;
-    rdfs:domain icac-physical:PhysicalEvidence ;
+    rdfs:domain cacontology-physical:PhysicalEvidence ;
     rdfs:range xsd:string .
 
-icac-physical:hasForensicValue rdf:type owl:DatatypeProperty ;
+cacontology-physical:hasForensicValue rdf:type owl:DatatypeProperty ;
     rdfs:label "has forensic value"@en ;
     rdfs:comment "Forensic value assessment of evidence (gUFO quality aspect)."@en ;
-    rdfs:domain icac-physical:PhysicalEvidence ;
+    rdfs:domain cacontology-physical:PhysicalEvidence ;
     rdfs:range xsd:string .
 
-icac-physical:hasContaminationLevel rdf:type owl:DatatypeProperty ;
+cacontology-physical:hasContaminationLevel rdf:type owl:DatatypeProperty ;
     rdfs:label "has contamination level"@en ;
     rdfs:comment "Level of evidence contamination (gUFO quality aspect)."@en ;
-    rdfs:domain icac-physical:PhysicalEvidence ;
+    rdfs:domain cacontology-physical:PhysicalEvidence ;
     rdfs:range xsd:double .
 
 # Search Quality Aspects
-icac-physical:hasSearchThoroughness rdf:type owl:DatatypeProperty ;
+cacontology-physical:hasSearchThoroughness rdf:type owl:DatatypeProperty ;
     rdfs:label "has search thoroughness"@en ;
     rdfs:comment "Thoroughness level of physical search (gUFO quality aspect)."@en ;
-    rdfs:domain icac-physical:PhysicalSearch ;
+    rdfs:domain cacontology-physical:PhysicalSearch ;
     rdfs:range xsd:string .
 
-icac-physical:hasSearchEfficiency rdf:type owl:DatatypeProperty ;
+cacontology-physical:hasSearchEfficiency rdf:type owl:DatatypeProperty ;
     rdfs:label "has search efficiency"@en ;
     rdfs:comment "Efficiency rating of search operation (gUFO quality aspect)."@en ;
-    rdfs:domain icac-physical:PhysicalSearch ;
+    rdfs:domain cacontology-physical:PhysicalSearch ;
     rdfs:range xsd:double .
 
-icac-physical:hasSearchCompleteness rdf:type owl:DatatypeProperty ;
+cacontology-physical:hasSearchCompleteness rdf:type owl:DatatypeProperty ;
     rdfs:label "has search completeness"@en ;
     rdfs:comment "Completeness assessment of search coverage (gUFO quality aspect)."@en ;
-    rdfs:domain icac-physical:PhysicalSearch ;
+    rdfs:domain cacontology-physical:PhysicalSearch ;
     rdfs:range xsd:double .
 
 # Analysis Quality Aspects
-icac-physical:hasAnalysisAccuracy rdf:type owl:DatatypeProperty ;
+cacontology-physical:hasAnalysisAccuracy rdf:type owl:DatatypeProperty ;
     rdfs:label "has analysis accuracy"@en ;
     rdfs:comment "Accuracy level of forensic analysis (gUFO quality aspect)."@en ;
-    rdfs:domain icac-physical:ForensicAnalystRole ;
+    rdfs:domain cacontology-physical:ForensicAnalystRole ;
     rdfs:range xsd:double .
 
-icac-physical:hasAnalysisReliability rdf:type owl:DatatypeProperty ;
+cacontology-physical:hasAnalysisReliability rdf:type owl:DatatypeProperty ;
     rdfs:label "has analysis reliability"@en ;
     rdfs:comment "Reliability of forensic analysis results (gUFO quality aspect)."@en ;
-    rdfs:domain icac-physical:ForensicAnalystRole ;
+    rdfs:domain cacontology-physical:ForensicAnalystRole ;
     rdfs:range xsd:string .
 
-icac-physical:hasMethodValidation rdf:type owl:DatatypeProperty ;
+cacontology-physical:hasMethodValidation rdf:type owl:DatatypeProperty ;
     rdfs:label "has method validation"@en ;
     rdfs:comment "Validation status of analysis methods used (gUFO quality aspect)."@en ;
-    rdfs:domain icac-physical:ForensicAnalystRole ;
+    rdfs:domain cacontology-physical:ForensicAnalystRole ;
     rdfs:range xsd:string .
 
 # Procurement Risk Aspects
-icac-physical:hasProcurementSuspicion rdf:type owl:DatatypeProperty ;
+cacontology-physical:hasProcurementSuspicion rdf:type owl:DatatypeProperty ;
     rdfs:label "has procurement suspicion"@en ;
     rdfs:comment "Suspicion level regarding criminal procurement (gUFO quality aspect)."@en ;
-    rdfs:domain icac-physical:CriminalProcurement ;
+    rdfs:domain cacontology-physical:CriminalProcurement ;
     rdfs:range xsd:string .
 
-icac-physical:hasTraceability rdf:type owl:DatatypeProperty ;
+cacontology-physical:hasTraceability rdf:type owl:DatatypeProperty ;
     rdfs:label "has traceability"@en ;
     rdfs:comment "Traceability level of procurement source (gUFO quality aspect)."@en ;
-    rdfs:domain icac-physical:CriminalProcurement ;
+    rdfs:domain cacontology-physical:CriminalProcurement ;
     rdfs:range xsd:double .
 
-icac-physical:hasAcquisitionRisk rdf:type owl:DatatypeProperty ;
+cacontology-physical:hasAcquisitionRisk rdf:type owl:DatatypeProperty ;
     rdfs:label "has acquisition risk"@en ;
     rdfs:comment "Risk assessment of criminal acquisition patterns (gUFO quality aspect)."@en ;
-    rdfs:domain icac-physical:CriminalProcurement ;
+    rdfs:domain cacontology-physical:CriminalProcurement ;
     rdfs:range xsd:string .
 
 # Custody Quality Aspects
-icac-physical:hasCustodyIntegrity rdf:type owl:DatatypeProperty ;
+cacontology-physical:hasCustodyIntegrity rdf:type owl:DatatypeProperty ;
     rdfs:label "has custody integrity"@en ;
     rdfs:comment "Integrity level of chain of custody (gUFO quality aspect)."@en ;
-    rdfs:domain icac-physical:EvidenceCustodianRole ;
+    rdfs:domain cacontology-physical:EvidenceCustodianRole ;
     rdfs:range xsd:string .
 
-icac-physical:hasDocumentationCompleteness rdf:type owl:DatatypeProperty ;
+cacontology-physical:hasDocumentationCompleteness rdf:type owl:DatatypeProperty ;
     rdfs:label "has documentation completeness"@en ;
     rdfs:comment "Completeness of custody documentation (gUFO quality aspect)."@en ;
-    rdfs:domain icac-physical:EvidenceCustodianRole ;
+    rdfs:domain cacontology-physical:EvidenceCustodianRole ;
     rdfs:range xsd:double .
 
 # =============================================================================
@@ -403,214 +403,214 @@ icac-physical:hasDocumentationCompleteness rdf:type owl:DatatypeProperty ;
 # =============================================================================
 
 # Basic Evidence Properties
-icac-physical:evidenceType rdf:type owl:DatatypeProperty ;
+cacontology-physical:evidenceType rdf:type owl:DatatypeProperty ;
     rdfs:label "evidence type"@en ;
     rdfs:comment "Category of physical evidence (digital_device, document, contraband, personal_item)."@en ;
-    rdfs:domain icac-physical:PhysicalEvidence ;
+    rdfs:domain cacontology-physical:PhysicalEvidence ;
     rdfs:range xsd:string .
 
-icac-physical:evidenceTag rdf:type owl:DatatypeProperty ;
+cacontology-physical:evidenceTag rdf:type owl:DatatypeProperty ;
     rdfs:label "evidence tag"@en ;
     rdfs:comment "Unique identifier assigned to evidence item during collection."@en ;
-    rdfs:domain icac-physical:PhysicalEvidence ;
+    rdfs:domain cacontology-physical:PhysicalEvidence ;
     rdfs:range xsd:string .
 
-icac-physical:seizureDate rdf:type owl:DatatypeProperty ;
+cacontology-physical:seizureDate rdf:type owl:DatatypeProperty ;
     rdfs:label "seizure date"@en ;
     rdfs:comment "Date when the evidence was seized by law enforcement."@en ;
-    rdfs:domain icac-physical:PhysicalEvidence ;
+    rdfs:domain cacontology-physical:PhysicalEvidence ;
     rdfs:range xsd:dateTime .
 
-icac-physical:seizureLocation rdf:type owl:ObjectProperty ;
+cacontology-physical:seizureLocation rdf:type owl:ObjectProperty ;
     rdfs:label "seizure location"@en ;
     rdfs:comment "Physical location where evidence was seized."@en ;
-    rdfs:domain icac-physical:PhysicalEvidence ;
+    rdfs:domain cacontology-physical:PhysicalEvidence ;
     rdfs:range uco-location:Location .
 
 # Device Properties
-icac-physical:deviceBrand rdf:type owl:DatatypeProperty ;
+cacontology-physical:deviceBrand rdf:type owl:DatatypeProperty ;
     rdfs:label "device brand"@en ;
     rdfs:comment "Manufacturer or brand of the computer equipment."@en ;
-    rdfs:domain icac-physical:ComputerEquipment ;
+    rdfs:domain cacontology-physical:ComputerEquipment ;
     rdfs:range xsd:string .
 
-icac-physical:deviceModel rdf:type owl:DatatypeProperty ;
+cacontology-physical:deviceModel rdf:type owl:DatatypeProperty ;
     rdfs:label "device model"@en ;
     rdfs:comment "Model number or name of the device."@en ;
-    rdfs:domain icac-physical:ComputerEquipment ;
+    rdfs:domain cacontology-physical:ComputerEquipment ;
     rdfs:range xsd:string .
 
-icac-physical:serialNumber rdf:type owl:DatatypeProperty ;
+cacontology-physical:serialNumber rdf:type owl:DatatypeProperty ;
     rdfs:label "serial number"@en ;
     rdfs:comment "Serial number of the device or item."@en ;
-    rdfs:domain icac-physical:PhysicalEvidence ;
+    rdfs:domain cacontology-physical:PhysicalEvidence ;
     rdfs:range xsd:string .
 
-icac-physical:storageCapacity rdf:type owl:DatatypeProperty ;
+cacontology-physical:storageCapacity rdf:type owl:DatatypeProperty ;
     rdfs:label "storage capacity"@en ;
     rdfs:comment "Storage capacity of digital storage media in gigabytes."@en ;
-    rdfs:domain icac-physical:StorageMedia ;
+    rdfs:domain cacontology-physical:StorageMedia ;
     rdfs:range xsd:decimal .
 
-icac-physical:encryptionStatus rdf:type owl:DatatypeProperty ;
+cacontology-physical:encryptionStatus rdf:type owl:DatatypeProperty ;
     rdfs:label "encryption status"@en ;
     rdfs:comment "Whether the device or storage media is encrypted (encrypted, unencrypted, partially_encrypted)."@en ;
-    rdfs:domain icac-physical:ComputerEquipment ;
+    rdfs:domain cacontology-physical:ComputerEquipment ;
     rdfs:range xsd:string .
 
 # Procurement Properties
-icac-physical:procurementDate rdf:type owl:DatatypeProperty ;
+cacontology-physical:procurementDate rdf:type owl:DatatypeProperty ;
     rdfs:label "procurement date"@en ;
     rdfs:comment "Date when the item was acquired by the suspect."@en ;
-    rdfs:domain icac-physical:CriminalProcurement ;
+    rdfs:domain cacontology-physical:CriminalProcurement ;
     rdfs:range xsd:dateTime .
 
-icac-physical:procurementMethod rdf:type owl:DatatypeProperty ;
+cacontology-physical:procurementMethod rdf:type owl:DatatypeProperty ;
     rdfs:label "procurement method"@en ;
     rdfs:comment "Method used to acquire the item (online_purchase, retail_store, private_sale, gift)."@en ;
-    rdfs:domain icac-physical:CriminalProcurement ;
+    rdfs:domain cacontology-physical:CriminalProcurement ;
     rdfs:range xsd:string .
 
-icac-physical:procurementSource rdf:type owl:DatatypeProperty ;
+cacontology-physical:procurementSource rdf:type owl:DatatypeProperty ;
     rdfs:label "procurement source"@en ;
     rdfs:comment "Source from which the item was acquired (vendor name, website, individual)."@en ;
-    rdfs:domain icac-physical:CriminalProcurement ;
+    rdfs:domain cacontology-physical:CriminalProcurement ;
     rdfs:range xsd:string .
 
-icac-physical:procurementCost rdf:type owl:DatatypeProperty ;
+cacontology-physical:procurementCost rdf:type owl:DatatypeProperty ;
     rdfs:label "procurement cost"@en ;
     rdfs:comment "Cost paid for the item in USD."@en ;
-    rdfs:domain icac-physical:CriminalProcurement ;
+    rdfs:domain cacontology-physical:CriminalProcurement ;
     rdfs:range xsd:decimal .
 
-icac-physical:paymentMethod rdf:type owl:DatatypeProperty ;
+cacontology-physical:paymentMethod rdf:type owl:DatatypeProperty ;
     rdfs:label "payment method"@en ;
     rdfs:comment "Method of payment used (credit_card, cash, digital_currency, check)."@en ;
-    rdfs:domain icac-physical:CriminalProcurement ;
+    rdfs:domain cacontology-physical:CriminalProcurement ;
     rdfs:range xsd:string .
 
 # Search and Seizure Properties
-icac-physical:searchWarrant rdf:type owl:ObjectProperty ;
+cacontology-physical:searchWarrant rdf:type owl:ObjectProperty ;
     rdfs:label "search warrant"@en ;
     rdfs:comment "Warrant authorizing the search and seizure."@en ;
-    rdfs:domain icac-physical:PhysicalSearch ;
+    rdfs:domain cacontology-physical:PhysicalSearch ;
     rdfs:range uco-observable:ObservableObject .
 
-icac-physical:searchingOfficer rdf:type owl:ObjectProperty ;
+cacontology-physical:searchingOfficer rdf:type owl:ObjectProperty ;
     rdfs:label "searching officer"@en ;
     rdfs:comment "Law enforcement officer who conducted the search."@en ;
-    rdfs:domain icac-physical:PhysicalSearch ;
+    rdfs:domain cacontology-physical:PhysicalSearch ;
     rdfs:range uco-identity:Person .
 
-icac-physical:witnessPresent rdf:type owl:ObjectProperty ;
+cacontology-physical:witnessPresent rdf:type owl:ObjectProperty ;
     rdfs:label "witness present"@en ;
     rdfs:comment "Civilian witness present during the search."@en ;
-    rdfs:domain icac-physical:PhysicalSearch ;
+    rdfs:domain cacontology-physical:PhysicalSearch ;
     rdfs:range uco-identity:Person .
 
-icac-physical:searchDuration rdf:type owl:DatatypeProperty ;
+cacontology-physical:searchDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "search duration"@en ;
     rdfs:comment "Duration of the search in hours."@en ;
-    rdfs:domain icac-physical:PhysicalSearch ;
+    rdfs:domain cacontology-physical:PhysicalSearch ;
     rdfs:range xsd:decimal .
 
-icac-physical:searchScope rdf:type owl:DatatypeProperty ;
+cacontology-physical:searchScope rdf:type owl:DatatypeProperty ;
     rdfs:label "search scope"@en ;
     rdfs:comment "Areas or items covered by the search authorization."@en ;
-    rdfs:domain icac-physical:PhysicalSearch ;
+    rdfs:domain cacontology-physical:PhysicalSearch ;
     rdfs:range xsd:string .
 
 # Criminal Intent Properties
-icac-physical:criminalPurpose rdf:type owl:DatatypeProperty ;
+cacontology-physical:criminalPurpose rdf:type owl:DatatypeProperty ;
     rdfs:label "criminal purpose"@en ;
     rdfs:comment "Intended criminal use of the item."@en ;
-    rdfs:domain icac-physical:AbuseFacilitationItem ;
+    rdfs:domain cacontology-physical:AbuseFacilitationItem ;
     rdfs:range xsd:string .
 
-icac-physical:targetAgeGroup rdf:type owl:DatatypeProperty ;
+cacontology-physical:targetAgeGroup rdf:type owl:DatatypeProperty ;
     rdfs:label "target age group"@en ;
     rdfs:comment "Age group of children the item is designed to attract."@en ;
-    rdfs:domain icac-physical:ChildTargetedItem ;
+    rdfs:domain cacontology-physical:ChildTargetedItem ;
     rdfs:range xsd:string .
 
-icac-physical:modificationPurpose rdf:type owl:DatatypeProperty ;
+cacontology-physical:modificationPurpose rdf:type owl:DatatypeProperty ;
     rdfs:label "modification purpose"@en ;
     rdfs:comment "Purpose of item modification for criminal activity."@en ;
-    rdfs:domain icac-physical:ItemModification ;
+    rdfs:domain cacontology-physical:ItemModification ;
     rdfs:range xsd:string .
 
 # Evidentiary Value Properties
-icac-physical:evidentiarySignificance rdf:type owl:DatatypeProperty ;
+cacontology-physical:evidentiarySignificance rdf:type owl:DatatypeProperty ;
     rdfs:label "evidentiary significance"@en ;
     rdfs:comment "Assessment of evidence importance (critical, high, medium, low)."@en ;
-    rdfs:domain icac-physical:PhysicalEvidence ;
+    rdfs:domain cacontology-physical:PhysicalEvidence ;
     rdfs:range xsd:string .
 
-icac-physical:chainOfCustody rdf:type owl:DatatypeProperty ;
+cacontology-physical:chainOfCustody rdf:type owl:DatatypeProperty ;
     rdfs:label "chain of custody"@en ;
     rdfs:comment "Documentation of evidence handling from seizure to court."@en ;
-    rdfs:domain icac-physical:PhysicalEvidence ;
+    rdfs:domain cacontology-physical:PhysicalEvidence ;
     rdfs:range xsd:string .
 
-icac-physical:forensicAnalysisRequired rdf:type owl:DatatypeProperty ;
+cacontology-physical:forensicAnalysisRequired rdf:type owl:DatatypeProperty ;
     rdfs:label "forensic analysis required"@en ;
     rdfs:comment "Whether the item requires specialized forensic analysis."@en ;
-    rdfs:domain icac-physical:PhysicalEvidence ;
+    rdfs:domain cacontology-physical:PhysicalEvidence ;
     rdfs:range xsd:boolean .
 
-icac-physical:digitalContentFound rdf:type owl:DatatypeProperty ;
+cacontology-physical:digitalContentFound rdf:type owl:DatatypeProperty ;
     rdfs:label "digital content found"@en ;
     rdfs:comment "Whether illegal digital content was found on the device."@en ;
-    rdfs:domain icac-physical:ComputerEquipment ;
+    rdfs:domain cacontology-physical:ComputerEquipment ;
     rdfs:range xsd:boolean .
 
 # Relationship Properties
-icac-physical:procuredBy rdf:type owl:ObjectProperty ;
+cacontology-physical:procuredBy rdf:type owl:ObjectProperty ;
     rdfs:label "procured by"@en ;
     rdfs:comment "Links a physical evidence item to its procurement action."@en ;
-    rdfs:domain icac-physical:PhysicalEvidence ;
-    rdfs:range icac-physical:CriminalProcurement .
+    rdfs:domain cacontology-physical:PhysicalEvidence ;
+    rdfs:range cacontology-physical:CriminalProcurement .
 
-icac-physical:seizedDuring rdf:type owl:ObjectProperty ;
+cacontology-physical:seizedDuring rdf:type owl:ObjectProperty ;
     rdfs:label "seized during"@en ;
     rdfs:comment "Links physical evidence to the search operation during which it was seized."@en ;
-    rdfs:domain icac-physical:PhysicalEvidence ;
-    rdfs:range icac-physical:PhysicalSearch .
+    rdfs:domain cacontology-physical:PhysicalEvidence ;
+    rdfs:range cacontology-physical:PhysicalSearch .
 
-icac-physical:containsItem rdf:type owl:ObjectProperty ;
+cacontology-physical:containsItem rdf:type owl:ObjectProperty ;
     rdfs:label "contains item"@en ;
     rdfs:comment "Indicates that one evidence item was found inside another (gUFO part-whole relationship)."@en ;
-    rdfs:domain icac-physical:PhysicalEvidence ;
-    rdfs:range icac-physical:PhysicalEvidence ;
+    rdfs:domain cacontology-physical:PhysicalEvidence ;
+    rdfs:range cacontology-physical:PhysicalEvidence ;
     rdfs:subPropertyOf gufo:isObjectProperPartOf .
 
-icac-physical:associatedWithSubject rdf:type owl:ObjectProperty ;
+cacontology-physical:associatedWithSubject rdf:type owl:ObjectProperty ;
     rdfs:label "associated with subject"@en ;
     rdfs:comment "Links evidence to the person associated with its ownership or use."@en ;
-    rdfs:domain icac-physical:PhysicalEvidence ;
+    rdfs:domain cacontology-physical:PhysicalEvidence ;
     rdfs:range uco-identity:Person .
 
 # Condition and State Properties
-icac-physical:physicalCondition rdf:type owl:DatatypeProperty ;
+cacontology-physical:physicalCondition rdf:type owl:DatatypeProperty ;
     rdfs:label "physical condition"@en ;
     rdfs:comment "Physical state of the evidence (excellent, good, fair, poor, damaged)."@en ;
-    rdfs:domain icac-physical:PhysicalEvidence ;
+    rdfs:domain cacontology-physical:PhysicalEvidence ;
     rdfs:range xsd:string .
 
-icac-physical:functionalStatus rdf:type owl:DatatypeProperty ;
+cacontology-physical:functionalStatus rdf:type owl:DatatypeProperty ;
     rdfs:label "functional status"@en ;
     rdfs:comment "Whether the device is functional (working, non_functional, partially_functional)."@en ;
-    rdfs:domain icac-physical:ComputerEquipment ;
+    rdfs:domain cacontology-physical:ComputerEquipment ;
     rdfs:range xsd:string .
 
-icac-physical:tamperEvidence rdf:type owl:DatatypeProperty ;
+cacontology-physical:tamperEvidence rdf:type owl:DatatypeProperty ;
     rdfs:label "tamper evidence"@en ;
     rdfs:comment "Signs that the item has been tampered with or modified."@en ;
-    rdfs:domain icac-physical:PhysicalEvidence ;
+    rdfs:domain cacontology-physical:PhysicalEvidence ;
     rdfs:range xsd:string .
 
-icac-physical:hiddenCompartment rdf:type owl:DatatypeProperty ;
+cacontology-physical:hiddenCompartment rdf:type owl:DatatypeProperty ;
     rdfs:label "hidden compartment"@en ;
     rdfs:comment "Whether the item contains hidden compartments or concealed areas."@en ;
-    rdfs:domain icac-physical:PhysicalEvidence ;
+    rdfs:domain cacontology-physical:PhysicalEvidence ;
     rdfs:range xsd:boolean . 

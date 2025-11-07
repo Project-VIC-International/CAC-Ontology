@@ -17,7 +17,7 @@
 # =============================================================================
 
 # EventType validation for coordination activities (investigation coordination as events)
-icac-coord:CoordinationEventTypeValidationShape rdf:type sh:NodeShape ;
+cacontology-coord:CoordinationEventTypeValidationShape rdf:type sh:NodeShape ;
     sh:targetClass gufo:EventType ;
     sh:property [
         sh:path rdf:type ;
@@ -32,7 +32,7 @@ icac-coord:CoordinationEventTypeValidationShape rdf:type sh:NodeShape ;
     sh:message "Every coordination EventType must extend gufo:Event"@en .
 
 # SituationType validation for agreements and protocols (legal/procedural situations)
-icac-coord:CoordinationSituationTypeValidationShape rdf:type sh:NodeShape ;
+cacontology-coord:CoordinationSituationTypeValidationShape rdf:type sh:NodeShape ;
     sh:targetClass gufo:SituationType ;
     sh:property [
         sh:path rdf:type ;
@@ -47,7 +47,7 @@ icac-coord:CoordinationSituationTypeValidationShape rdf:type sh:NodeShape ;
     sh:message "Every coordination SituationType must extend gufo:Situation"@en .
 
 # Role validation for liaison officers (anti-rigid relational)
-icac-coord:LiaisonRoleValidationShape rdf:type sh:NodeShape ;
+cacontology-coord:LiaisonRoleValidationShape rdf:type sh:NodeShape ;
     sh:targetClass gufo:Role ;
     sh:property [
         sh:path rdf:type ;
@@ -63,7 +63,7 @@ icac-coord:LiaisonRoleValidationShape rdf:type sh:NodeShape ;
     sh:message "Liaison roles are anti-rigid and cannot be subclasses of rigid Kinds"@en .
 
 # Object validation for metrics and measurement entities
-icac-coord:MetricsObjectValidationShape rdf:type sh:NodeShape ;
+cacontology-coord:MetricsObjectValidationShape rdf:type sh:NodeShape ;
     sh:targetClass gufo:Object ;
     sh:property [
         sh:path rdf:type ;
@@ -77,8 +77,8 @@ icac-coord:MetricsObjectValidationShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # Investigation Coordination Temporal Validation
-icac-coord:InvestigationCoordinationTemporalShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:InvestigationCoordination ;
+cacontology-coord:InvestigationCoordinationTemporalShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:InvestigationCoordination ;
     sh:property [
         sh:path gufo:hasBeginPointInXSDDateTimeStamp ;
         sh:datatype xsd:dateTime ;
@@ -110,8 +110,8 @@ icac-coord:InvestigationCoordinationTemporalShape rdf:type sh:NodeShape ;
     ] .
 
 # Resource Sharing Temporal Validation
-icac-coord:ResourceSharingTemporalShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:ResourceSharing ;
+cacontology-coord:ResourceSharingTemporalShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:ResourceSharing ;
     sh:property [
         sh:path gufo:hasBeginPointInXSDDateTimeStamp ;
         sh:datatype xsd:dateTime ;
@@ -126,17 +126,17 @@ icac-coord:ResourceSharingTemporalShape rdf:type sh:NodeShape ;
     ] .
 
 # Coordination Agreement Temporal Validation
-icac-coord:CoordinationAgreementTemporalShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:CoordinationAgreement ;
+cacontology-coord:CoordinationAgreementTemporalShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:CoordinationAgreement ;
     sh:property [
-        sh:path icac-coord:effectiveDate ;
+        sh:path cacontology-coord:effectiveDate ;
         sh:datatype xsd:dateTime ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Agreement must have effective date (gUFO temporal boundary)"@en ;
     ] ;
     sh:property [
-        sh:path icac-coord:expirationDate ;
+        sh:path cacontology-coord:expirationDate ;
         sh:datatype xsd:dateTime ;
         sh:maxCount 1 ;
         sh:message "Agreement may have expiration date (gUFO temporal boundary)"@en ;
@@ -158,12 +158,12 @@ icac-coord:CoordinationAgreementTemporalShape rdf:type sh:NodeShape ;
 # INVESTIGATION COORDINATION SHAPES
 # =============================================================================
 
-icac-coord:InvestigationCoordinationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:InvestigationCoordination ;
+cacontology-coord:InvestigationCoordinationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:InvestigationCoordination ;
     rdfs:label "Investigation Coordination Shape"@en ;
     rdfs:comment "Validation shape for investigation coordination instances with gUFO integration."@en ;
     sh:property [
-        sh:path icac-coord:coordinationType ;
+        sh:path cacontology-coord:coordinationType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -171,7 +171,7 @@ icac-coord:InvestigationCoordinationShape rdf:type sh:NodeShape ;
         sh:message "Investigation coordination must specify coordination type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-coord:coordinationLevel ;
+        sh:path cacontology-coord:coordinationLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -179,7 +179,7 @@ icac-coord:InvestigationCoordinationShape rdf:type sh:NodeShape ;
         sh:message "Investigation coordination must specify coordination level from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-coord:participatingAgencies ;
+        sh:path cacontology-coord:participatingAgencies ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -188,7 +188,7 @@ icac-coord:InvestigationCoordinationShape rdf:type sh:NodeShape ;
         sh:message "Investigation coordination must have between 2 and 50 participating agencies."@en
     ] ;
     sh:property [
-        sh:path icac-coord:leadAgency ;
+        sh:path cacontology-coord:leadAgency ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -197,7 +197,7 @@ icac-coord:InvestigationCoordinationShape rdf:type sh:NodeShape ;
         sh:message "Investigation coordination must specify lead agency (3-100 characters)."@en
     ] ;
     sh:property [
-        sh:path icac-coord:coordinationStatus ;
+        sh:path cacontology-coord:coordinationStatus ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -231,21 +231,21 @@ icac-coord:InvestigationCoordinationShape rdf:type sh:NodeShape ;
         sh:message "Coordination may have gUFO temporal end boundary"@en ;
     ] ;
     sh:property [
-        sh:path icac-coord:hasCoordinationEffectiveness ;
+        sh:path cacontology-coord:hasCoordinationEffectiveness ;
         sh:datatype xsd:string ;
         sh:in ( "poor" "fair" "good" "excellent" "outstanding" ) ;
         sh:maxCount 1 ;
         sh:message "Coordination effectiveness level must be from allowed list (gUFO quality aspect)"@en ;
     ] ;
     sh:property [
-        sh:path icac-coord:hasComplexityLevel ;
+        sh:path cacontology-coord:hasComplexityLevel ;
         sh:datatype xsd:string ;
         sh:in ( "simple" "moderate" "complex" "highly_complex" "extremely_complex" ) ;
         sh:maxCount 1 ;
         sh:message "Coordination complexity level must be from allowed list (gUFO quality aspect)"@en ;
     ] ;
     sh:property [
-        sh:path icac-coord:hasSuccessRate ;
+        sh:path cacontology-coord:hasSuccessRate ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
@@ -253,12 +253,12 @@ icac-coord:InvestigationCoordinationShape rdf:type sh:NodeShape ;
         sh:message "Success rate must be between 0.0 and 1.0 (gUFO quality aspect)"@en ;
     ] .
 
-icac-coord:JointInvestigationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:JointInvestigation ;
+cacontology-coord:JointInvestigationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:JointInvestigation ;
     rdfs:label "Joint Investigation Shape"@en ;
     rdfs:comment "Validation shape for joint investigation instances with gUFO integration."@en ;
     sh:property [
-        sh:path icac-coord:investigationScope ;
+        sh:path cacontology-coord:investigationScope ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -266,21 +266,21 @@ icac-coord:JointInvestigationShape rdf:type sh:NodeShape ;
         sh:message "Joint investigation must specify investigation scope from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-coord:resourcePooling ;
+        sh:path cacontology-coord:resourcePooling ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Joint investigation must specify if resource pooling is used."@en
     ] ;
     sh:property [
-        sh:path icac-coord:sharedCommand ;
+        sh:path cacontology-coord:sharedCommand ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Joint investigation must specify if shared command structure is used."@en
     ] ;
     sh:property [
-        sh:path icac-coord:unifiedReporting ;
+        sh:path cacontology-coord:unifiedReporting ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -294,14 +294,14 @@ icac-coord:JointInvestigationShape rdf:type sh:NodeShape ;
         sh:message "Joint investigation must have start time (gUFO temporal boundary)"@en ;
     ] ;
     sh:property [
-        sh:path icac-coord:hasCoordinationIntensity ;
+        sh:path cacontology-coord:hasCoordinationIntensity ;
         sh:datatype xsd:string ;
         sh:in ( "minimal" "moderate" "high" "intensive" "fully_integrated" ) ;
         sh:maxCount 1 ;
         sh:message "Coordination intensity level must be from allowed list (gUFO quality aspect)"@en ;
     ] ;
     sh:property [
-        sh:path icac-coord:hasUnificationLevel ;
+        sh:path cacontology-coord:hasUnificationLevel ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
@@ -313,12 +313,12 @@ icac-coord:JointInvestigationShape rdf:type sh:NodeShape ;
 # INFORMATION SHARING SHAPES
 # =============================================================================
 
-icac-coord:InformationSharingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:InformationSharing ;
+cacontology-coord:InformationSharingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:InformationSharing ;
     rdfs:label "Information Sharing Shape"@en ;
     rdfs:comment "Validation shape for information sharing instances with gUFO integration."@en ;
     sh:property [
-        sh:path icac-coord:sharingType ;
+        sh:path cacontology-coord:sharingType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -326,7 +326,7 @@ icac-coord:InformationSharingShape rdf:type sh:NodeShape ;
         sh:message "Information sharing must specify sharing type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-coord:classificationLevel ;
+        sh:path cacontology-coord:classificationLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -334,7 +334,7 @@ icac-coord:InformationSharingShape rdf:type sh:NodeShape ;
         sh:message "Information sharing must specify classification level from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-coord:sharingMechanism ;
+        sh:path cacontology-coord:sharingMechanism ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -342,14 +342,14 @@ icac-coord:InformationSharingShape rdf:type sh:NodeShape ;
         sh:message "Information sharing must specify sharing mechanism from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-coord:reciprocity ;
+        sh:path cacontology-coord:reciprocity ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Information sharing must specify if reciprocity is expected."@en
     ] ;
     sh:property [
-        sh:path icac-coord:sharingAgreement ;
+        sh:path cacontology-coord:sharingAgreement ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -362,21 +362,21 @@ icac-coord:InformationSharingShape rdf:type sh:NodeShape ;
         sh:message "Information sharing may have start time (gUFO temporal boundary)"@en ;
     ] ;
     sh:property [
-        sh:path icac-coord:hasSharingEfficiency ;
+        sh:path cacontology-coord:hasSharingEfficiency ;
         sh:datatype xsd:string ;
         sh:in ( "poor" "fair" "good" "excellent" "optimal" ) ;
         sh:maxCount 1 ;
         sh:message "Sharing efficiency level must be from allowed list (gUFO quality aspect)"@en ;
     ] ;
     sh:property [
-        sh:path icac-coord:hasSecurityLevel ;
+        sh:path cacontology-coord:hasSecurityLevel ;
         sh:datatype xsd:string ;
         sh:in ( "basic" "standard" "enhanced" "high" "maximum" ) ;
         sh:maxCount 1 ;
         sh:message "Security level must be from allowed list (gUFO quality aspect)"@en ;
     ] ;
     sh:property [
-        sh:path icac-coord:hasTimeliness ;
+        sh:path cacontology-coord:hasTimeliness ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
@@ -384,12 +384,12 @@ icac-coord:InformationSharingShape rdf:type sh:NodeShape ;
         sh:message "Timeliness score must be between 0.0 and 1.0 (gUFO quality aspect)"@en ;
     ] .
 
-icac-coord:IntelligenceSharingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:IntelligenceSharing ;
+cacontology-coord:IntelligenceSharingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:IntelligenceSharing ;
     rdfs:label "Intelligence Sharing Shape"@en ;
     rdfs:comment "Validation shape for intelligence sharing instances with gUFO integration."@en ;
     sh:property [
-        sh:path icac-coord:intelligenceType ;
+        sh:path cacontology-coord:intelligenceType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -397,7 +397,7 @@ icac-coord:IntelligenceSharingShape rdf:type sh:NodeShape ;
         sh:message "Intelligence sharing must specify intelligence type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-coord:sourceReliability ;
+        sh:path cacontology-coord:sourceReliability ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -405,7 +405,7 @@ icac-coord:IntelligenceSharingShape rdf:type sh:NodeShape ;
         sh:message "Intelligence sharing must specify source reliability from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-coord:informationAccuracy ;
+        sh:path cacontology-coord:informationAccuracy ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -413,14 +413,14 @@ icac-coord:IntelligenceSharingShape rdf:type sh:NodeShape ;
         sh:message "Intelligence sharing must specify information accuracy from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-coord:hasIntelligenceValue ;
+        sh:path cacontology-coord:hasIntelligenceValue ;
         sh:datatype xsd:string ;
         sh:in ( "low" "moderate" "high" "critical" "exceptional" ) ;
         sh:maxCount 1 ;
         sh:message "Intelligence value level must be from allowed list (gUFO quality aspect)"@en ;
     ] ;
     sh:property [
-        sh:path icac-coord:hasActionability ;
+        sh:path cacontology-coord:hasActionability ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
@@ -432,12 +432,12 @@ icac-coord:IntelligenceSharingShape rdf:type sh:NodeShape ;
 # RESOURCE SHARING SHAPES
 # =============================================================================
 
-icac-coord:ResourceSharingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:ResourceSharing ;
+cacontology-coord:ResourceSharingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:ResourceSharing ;
     rdfs:label "Resource Sharing Shape"@en ;
     rdfs:comment "Validation shape for resource sharing instances."@en ;
     sh:property [
-        sh:path icac-coord:resourceType ;
+        sh:path cacontology-coord:resourceType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -445,7 +445,7 @@ icac-coord:ResourceSharingShape rdf:type sh:NodeShape ;
         sh:message "Resource sharing must specify resource type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-coord:sharingDuration ;
+        sh:path cacontology-coord:sharingDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -454,21 +454,21 @@ icac-coord:ResourceSharingShape rdf:type sh:NodeShape ;
         sh:message "Resource sharing duration must be between 1 and 8760 hours (1 year)."@en
     ] ;
     sh:property [
-        sh:path icac-coord:costSharing ;
+        sh:path cacontology-coord:costSharing ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Resource sharing must specify if cost sharing is involved."@en
     ] ;
     sh:property [
-        sh:path icac-coord:reimbursement ;
+        sh:path cacontology-coord:reimbursement ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Resource sharing must specify if reimbursement is required."@en
     ] ;
     sh:property [
-        sh:path icac-coord:availabilityLevel ;
+        sh:path cacontology-coord:availabilityLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -476,12 +476,12 @@ icac-coord:ResourceSharingShape rdf:type sh:NodeShape ;
         sh:message "Resource sharing must specify availability level from the allowed list."@en
     ] .
 
-icac-coord:PersonnelSharingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:PersonnelSharing ;
+cacontology-coord:PersonnelSharingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:PersonnelSharing ;
     rdfs:label "Personnel Sharing Shape"@en ;
     rdfs:comment "Validation shape for personnel sharing instances."@en ;
     sh:property [
-        sh:path icac-coord:personnelCount ;
+        sh:path cacontology-coord:personnelCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -490,7 +490,7 @@ icac-coord:PersonnelSharingShape rdf:type sh:NodeShape ;
         sh:message "Personnel sharing must specify personnel count between 1 and 100."@en
     ] ;
     sh:property [
-        sh:path icac-coord:specialization ;
+        sh:path cacontology-coord:specialization ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -498,7 +498,7 @@ icac-coord:PersonnelSharingShape rdf:type sh:NodeShape ;
         sh:message "Personnel sharing must specify specialization from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-coord:securityClearance ;
+        sh:path cacontology-coord:securityClearance ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -510,12 +510,12 @@ icac-coord:PersonnelSharingShape rdf:type sh:NodeShape ;
 # COMMUNICATION PROTOCOL SHAPES
 # =============================================================================
 
-icac-coord:CommunicationProtocolShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:CommunicationProtocol ;
+cacontology-coord:CommunicationProtocolShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:CommunicationProtocol ;
     rdfs:label "Communication Protocol Shape"@en ;
     rdfs:comment "Validation shape for communication protocol instances."@en ;
     sh:property [
-        sh:path icac-coord:protocolType ;
+        sh:path cacontology-coord:protocolType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -523,7 +523,7 @@ icac-coord:CommunicationProtocolShape rdf:type sh:NodeShape ;
         sh:message "Communication protocol must specify protocol type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-coord:communicationFrequency ;
+        sh:path cacontology-coord:communicationFrequency ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -531,14 +531,14 @@ icac-coord:CommunicationProtocolShape rdf:type sh:NodeShape ;
         sh:message "Communication protocol must specify communication frequency from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-coord:escalationProcedure ;
+        sh:path cacontology-coord:escalationProcedure ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Communication protocol must specify if escalation procedure exists."@en
     ] ;
     sh:property [
-        sh:path icac-coord:responseTimeRequirement ;
+        sh:path cacontology-coord:responseTimeRequirement ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -551,12 +551,12 @@ icac-coord:CommunicationProtocolShape rdf:type sh:NodeShape ;
 # COORDINATION AGREEMENT SHAPES
 # =============================================================================
 
-icac-coord:CoordinationAgreementShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:CoordinationAgreement ;
+cacontology-coord:CoordinationAgreementShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:CoordinationAgreement ;
     rdfs:label "Coordination Agreement Shape"@en ;
     rdfs:comment "Validation shape for coordination agreement instances."@en ;
     sh:property [
-        sh:path icac-coord:agreementType ;
+        sh:path cacontology-coord:agreementType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -564,7 +564,7 @@ icac-coord:CoordinationAgreementShape rdf:type sh:NodeShape ;
         sh:message "Coordination agreement must specify agreement type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-coord:agreementScope ;
+        sh:path cacontology-coord:agreementScope ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -572,28 +572,28 @@ icac-coord:CoordinationAgreementShape rdf:type sh:NodeShape ;
         sh:message "Coordination agreement must specify agreement scope from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-coord:effectiveDate ;
+        sh:path cacontology-coord:effectiveDate ;
         sh:datatype xsd:dateTime ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Coordination agreement must specify effective date."@en
     ] ;
     sh:property [
-        sh:path icac-coord:expirationDate ;
+        sh:path cacontology-coord:expirationDate ;
         sh:datatype xsd:dateTime ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "Coordination agreement may specify expiration date."@en
     ] ;
     sh:property [
-        sh:path icac-coord:renewalClause ;
+        sh:path cacontology-coord:renewalClause ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Coordination agreement must specify if renewal clause exists."@en
     ] ;
     sh:property [
-        sh:path icac-coord:terminationClause ;
+        sh:path cacontology-coord:terminationClause ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -604,12 +604,12 @@ icac-coord:CoordinationAgreementShape rdf:type sh:NodeShape ;
 # LIAISON OFFICER SHAPES
 # =============================================================================
 
-icac-coord:LiaisonOfficerShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:LiaisonOfficer ;
+cacontology-coord:LiaisonOfficerShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:LiaisonOfficer ;
     rdfs:label "Liaison Officer Shape"@en ;
     rdfs:comment "Validation shape for liaison officer instances with gUFO integration."@en ;
     sh:property [
-        sh:path icac-coord:liaisonRole ;
+        sh:path cacontology-coord:liaisonRole ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -617,7 +617,7 @@ icac-coord:LiaisonOfficerShape rdf:type sh:NodeShape ;
         sh:message "Liaison officer must specify liaison role from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-coord:assignmentDuration ;
+        sh:path cacontology-coord:assignmentDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -626,7 +626,7 @@ icac-coord:LiaisonOfficerShape rdf:type sh:NodeShape ;
         sh:message "Liaison assignment duration must be between 1 and 2190 days (6 years)."@en
     ] ;
     sh:property [
-        sh:path icac-coord:clearanceLevel ;
+        sh:path cacontology-coord:clearanceLevel ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -634,7 +634,7 @@ icac-coord:LiaisonOfficerShape rdf:type sh:NodeShape ;
         sh:message "Clearance level must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-coord:communicationAuthority ;
+        sh:path cacontology-coord:communicationAuthority ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -654,14 +654,14 @@ icac-coord:LiaisonOfficerShape rdf:type sh:NodeShape ;
         sh:message "Liaison assignment may have end time (gUFO temporal boundary)"@en ;
     ] ;
     sh:property [
-        sh:path icac-coord:hasLiaisonEffectiveness ;
+        sh:path cacontology-coord:hasLiaisonEffectiveness ;
         sh:datatype xsd:string ;
         sh:in ( "poor" "adequate" "good" "excellent" "exceptional" ) ;
         sh:maxCount 1 ;
         sh:message "Liaison effectiveness level must be from allowed list (gUFO quality aspect)"@en ;
     ] ;
     sh:property [
-        sh:path icac-coord:hasTrustLevel ;
+        sh:path cacontology-coord:hasTrustLevel ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
@@ -669,7 +669,7 @@ icac-coord:LiaisonOfficerShape rdf:type sh:NodeShape ;
         sh:message "Trust level must be between 0.0 and 1.0 (gUFO quality aspect)"@en ;
     ] ;
     sh:property [
-        sh:path icac-coord:hasResponsiveness ;
+        sh:path cacontology-coord:hasResponsiveness ;
         sh:datatype xsd:string ;
         sh:in ( "slow" "moderate" "good" "rapid" "immediate" ) ;
         sh:maxCount 1 ;
@@ -680,12 +680,12 @@ icac-coord:LiaisonOfficerShape rdf:type sh:NodeShape ;
 # COORDINATION METRICS SHAPES
 # =============================================================================
 
-icac-coord:CoordinationMetricsShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:CoordinationMetrics ;
+cacontology-coord:CoordinationMetricsShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:CoordinationMetrics ;
     rdfs:label "Coordination Metrics Shape"@en ;
     rdfs:comment "Validation shape for coordination metrics instances with gUFO integration."@en ;
     sh:property [
-        sh:path icac-coord:metricType ;
+        sh:path cacontology-coord:metricType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -693,7 +693,7 @@ icac-coord:CoordinationMetricsShape rdf:type sh:NodeShape ;
         sh:message "Coordination metrics must specify metric type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-coord:metricValue ;
+        sh:path cacontology-coord:metricValue ;
         sh:datatype xsd:decimal ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -702,7 +702,7 @@ icac-coord:CoordinationMetricsShape rdf:type sh:NodeShape ;
         sh:message "Metric value must be between 0.0 and 100.0."@en
     ] ;
     sh:property [
-        sh:path icac-coord:measurementPeriod ;
+        sh:path cacontology-coord:measurementPeriod ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -710,7 +710,7 @@ icac-coord:CoordinationMetricsShape rdf:type sh:NodeShape ;
         sh:message "Coordination metrics must specify measurement period from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-coord:benchmarkComparison ;
+        sh:path cacontology-coord:benchmarkComparison ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -724,7 +724,7 @@ icac-coord:CoordinationMetricsShape rdf:type sh:NodeShape ;
         sh:message "Metrics measurement may have start time (gUFO temporal boundary)"@en ;
     ] ;
     sh:property [
-        sh:path icac-coord:hasReliability ;
+        sh:path cacontology-coord:hasReliability ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
@@ -732,7 +732,7 @@ icac-coord:CoordinationMetricsShape rdf:type sh:NodeShape ;
         sh:message "Metrics reliability must be between 0.0 and 1.0 (gUFO quality aspect)"@en ;
     ] ;
     sh:property [
-        sh:path icac-coord:hasAccuracy ;
+        sh:path cacontology-coord:hasAccuracy ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
@@ -744,61 +744,61 @@ icac-coord:CoordinationMetricsShape rdf:type sh:NodeShape ;
 # OBJECT PROPERTY SHAPES
 # =============================================================================
 
-icac-coord:InvolvesAgencyShape rdf:type sh:PropertyShape ;
-    sh:path icac-coord:involvesAgency ;
+cacontology-coord:InvolvesAgencyShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-coord:involvesAgency ;
     sh:name "involves agency" ;
     sh:description "Links coordination to participating agencies" ;
     sh:class uco-identity:Organization ;
     sh:minCount 2 .
 
-icac-coord:UsesProtocolShape rdf:type sh:PropertyShape ;
-    sh:path icac-coord:usesProtocol ;
+cacontology-coord:UsesProtocolShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-coord:usesProtocol ;
     sh:name "uses protocol" ;
     sh:description "Links coordination to communication protocols" ;
-    sh:class icac-coord:CommunicationProtocol ;
+    sh:class cacontology-coord:CommunicationProtocol ;
     sh:minCount 1 .
 
-icac-coord:GovernsAgreementShape rdf:type sh:PropertyShape ;
-    sh:path icac-coord:governsAgreement ;
+cacontology-coord:GovernsAgreementShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-coord:governsAgreement ;
     sh:name "governs agreement" ;
     sh:description "Links coordination to governing agreements" ;
-    sh:class icac-coord:CoordinationAgreement ;
+    sh:class cacontology-coord:CoordinationAgreement ;
     sh:minCount 0 .
 
-icac-coord:AssignsLiaisonShape rdf:type sh:PropertyShape ;
-    sh:path icac-coord:assignsLiaison ;
+cacontology-coord:AssignsLiaisonShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-coord:assignsLiaison ;
     sh:name "assigns liaison" ;
     sh:description "Links coordination to liaison officers" ;
-    sh:class icac-coord:LiaisonOfficer ;
+    sh:class cacontology-coord:LiaisonOfficer ;
     sh:minCount 0 .
 
-icac-coord:SharesInformationShape rdf:type sh:PropertyShape ;
-    sh:path icac-coord:sharesInformation ;
+cacontology-coord:SharesInformationShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-coord:sharesInformation ;
     sh:name "shares information" ;
     sh:description "Links coordination to information sharing" ;
-    sh:class icac-coord:InformationSharing ;
+    sh:class cacontology-coord:InformationSharing ;
     sh:minCount 0 .
 
-icac-coord:SharesResourcesShape rdf:type sh:PropertyShape ;
-    sh:path icac-coord:sharesResources ;
+cacontology-coord:SharesResourcesShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-coord:sharesResources ;
     sh:name "shares resources" ;
     sh:description "Links coordination to resource sharing" ;
-    sh:class icac-coord:ResourceSharing ;
+    sh:class cacontology-coord:ResourceSharing ;
     sh:minCount 0 .
 
-icac-coord:MeasuresPerformanceShape rdf:type sh:PropertyShape ;
-    sh:path icac-coord:measuresPerformance ;
+cacontology-coord:MeasuresPerformanceShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-coord:measuresPerformance ;
     sh:name "measures performance" ;
     sh:description "Links coordination to performance metrics" ;
-    sh:class icac-coord:CoordinationMetrics ;
+    sh:class cacontology-coord:CoordinationMetrics ;
     sh:minCount 0 .
 
 # =============================================================================
 # CROSS-REFERENCE VALIDATION SHAPES
 # =============================================================================
 
-icac-coord:CoordinationCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:InvestigationCoordination ;
+cacontology-coord:CoordinationCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:InvestigationCoordination ;
     rdfs:label "Coordination Cross Reference Shape"@en ;
     rdfs:comment "Validates cross-references between coordination and related entities."@en ;
     sh:sparql [
@@ -806,18 +806,18 @@ icac-coord:CoordinationCrossReferenceShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-coord:InvestigationCoordination .
+                $this a cacontology-coord:InvestigationCoordination .
                 FILTER NOT EXISTS {
-                    $this icac-coord:involvesAgency ?agency1, ?agency2 ;
-                          icac-coord:usesProtocol ?protocol .
+                    $this cacontology-coord:involvesAgency ?agency1, ?agency2 ;
+                          cacontology-coord:usesProtocol ?protocol .
                     FILTER (?agency1 != ?agency2)
                 }
             }
         """
     ] .
 
-icac-coord:AgreementValidityShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:CoordinationAgreement ;
+cacontology-coord:AgreementValidityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:CoordinationAgreement ;
     rdfs:label "Agreement Validity Shape"@en ;
     rdfs:comment "Validates coordination agreement validity."@en ;
     sh:sparql [
@@ -825,15 +825,15 @@ icac-coord:AgreementValidityShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-coord:effectiveDate ?effective ;
-                      icac-coord:expirationDate ?expiration .
+                $this cacontology-coord:effectiveDate ?effective ;
+                      cacontology-coord:expirationDate ?expiration .
                 FILTER (?effective >= ?expiration)
             }
         """
     ] .
 
-icac-coord:LiaisonAssignmentShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:LiaisonOfficer ;
+cacontology-coord:LiaisonAssignmentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:LiaisonOfficer ;
     rdfs:label "Liaison Assignment Shape"@en ;
     rdfs:comment "Validates liaison officer assignment consistency."@en ;
     sh:sparql [
@@ -841,8 +841,8 @@ icac-coord:LiaisonAssignmentShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-coord:liaisonRole "primary_liaison" ;
-                      icac-coord:communicationAuthority ?authority .
+                $this cacontology-coord:liaisonRole "primary_liaison" ;
+                      cacontology-coord:communicationAuthority ?authority .
                 FILTER (?authority NOT IN ("full_authority", "limited_authority"))
             }
         """
@@ -852,8 +852,8 @@ icac-coord:LiaisonAssignmentShape rdf:type sh:NodeShape ;
 # TEMPORAL VALIDATION SHAPES
 # =============================================================================
 
-icac-coord:TemporalValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:InvestigationCoordination ;
+cacontology-coord:TemporalValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:InvestigationCoordination ;
     rdfs:label "Temporal Validation Shape"@en ;
     rdfs:comment "Validates temporal consistency in investigation coordination."@en ;
     sh:sparql [
@@ -868,8 +868,8 @@ icac-coord:TemporalValidationShape rdf:type sh:NodeShape ;
         """
     ] .
 
-icac-coord:ResourceSharingDurationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:ResourceSharing ;
+cacontology-coord:ResourceSharingDurationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:ResourceSharing ;
     rdfs:label "Resource Sharing Duration Shape"@en ;
     rdfs:comment "Validates resource sharing duration reasonableness."@en ;
     sh:sparql [
@@ -877,11 +877,11 @@ icac-coord:ResourceSharingDurationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-coord:sharingDuration ?duration .
+                $this cacontology-coord:sharingDuration ?duration .
                 FILTER (?duration > 720)
                 FILTER NOT EXISTS {
-                    ?coordination icac-coord:sharesResources $this ;
-                                  icac-coord:governsAgreement ?agreement .
+                    ?coordination cacontology-coord:sharesResources $this ;
+                                  cacontology-coord:governsAgreement ?agreement .
                 }
             }
         """
@@ -891,12 +891,12 @@ icac-coord:ResourceSharingDurationShape rdf:type sh:NodeShape ;
 # DATA QUALITY SHAPES
 # =============================================================================
 
-icac-coord:DataQualityShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:InvestigationCoordination ,
-                   icac-coord:InformationSharing ,
-                   icac-coord:ResourceSharing ,
-                   icac-coord:CoordinationAgreement ,
-                   icac-coord:LiaisonOfficer ;
+cacontology-coord:DataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:InvestigationCoordination ,
+                   cacontology-coord:InformationSharing ,
+                   cacontology-coord:ResourceSharing ,
+                   cacontology-coord:CoordinationAgreement ,
+                   cacontology-coord:LiaisonOfficer ;
     rdfs:label "Data Quality Shape"@en ;
     rdfs:comment "Validates data quality for investigation coordination entities with gUFO quality aspects."@en ;
     sh:property [
@@ -944,14 +944,14 @@ icac-coord:DataQualityShape rdf:type sh:NodeShape ;
         sh:message "Entity may have temporal ending (gUFO temporal boundary)"@en ;
     ] ;
     sh:property [
-        sh:path icac-coord:hasDataQuality ;
+        sh:path cacontology-coord:hasDataQuality ;
         sh:datatype xsd:string ;
         sh:in ( "poor" "fair" "good" "excellent" "validated" ) ;
         sh:maxCount 1 ;
         sh:message "Data quality level must be from allowed list (gUFO quality aspect)"@en ;
     ] ;
     sh:property [
-        sh:path icac-coord:hasDataCompleteness ;
+        sh:path cacontology-coord:hasDataCompleteness ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
@@ -959,7 +959,7 @@ icac-coord:DataQualityShape rdf:type sh:NodeShape ;
         sh:message "Data completeness must be between 0.0 and 1.0 (gUFO quality aspect)"@en ;
     ] ;
     sh:property [
-        sh:path icac-coord:hasDataConsistency ;
+        sh:path cacontology-coord:hasDataConsistency ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
@@ -967,7 +967,7 @@ icac-coord:DataQualityShape rdf:type sh:NodeShape ;
         sh:message "Data consistency must be between 0.0 and 1.0 (gUFO quality aspect)"@en ;
     ] ;
     sh:property [
-        sh:path icac-coord:hasValidationLevel ;
+        sh:path cacontology-coord:hasValidationLevel ;
         sh:datatype xsd:string ;
         sh:in ( "none" "basic" "standard" "comprehensive" "full_verification" ) ;
         sh:maxCount 1 ;
@@ -979,37 +979,37 @@ icac-coord:DataQualityShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # Investigation Coordination Participation Validation
-icac-coord:InvestigationCoordinationParticipationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:InvestigationCoordination ;
+cacontology-coord:InvestigationCoordinationParticipationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:InvestigationCoordination ;
     sh:property [
         sh:path [ sh:alternativePath ( 
             gufo:participatedIn 
-            icac-coord:involvesAgency 
-            icac-coord:assignsLiaison 
+            cacontology-coord:involvesAgency 
+            cacontology-coord:assignsLiaison 
         ) ] ;
         sh:minCount 2 ;
         sh:message "Every investigation coordination must have at least two participating entities (gUFO participation)"@en ;
     ] .
 
 # Information Sharing Participation Validation
-icac-coord:InformationSharingParticipationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:InformationSharing ;
+cacontology-coord:InformationSharingParticipationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:InformationSharing ;
     sh:property [
         sh:path [ sh:alternativePath ( 
-            icac-coord:sharesWithAgency 
-            icac-coord:sharesFromAgency 
+            cacontology-coord:sharesWithAgency 
+            cacontology-coord:sharesFromAgency 
         ) ] ;
         sh:minCount 2 ;
         sh:message "Information sharing must involve at least two organizations (gUFO participation)"@en ;
     ] .
 
 # Resource Sharing Participation Validation
-icac-coord:ResourceSharingParticipationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:ResourceSharing ;
+cacontology-coord:ResourceSharingParticipationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:ResourceSharing ;
     sh:property [
         sh:path [ sh:alternativePath ( 
-            icac-coord:providesResource 
-            icac-coord:receivesResource 
+            cacontology-coord:providesResource 
+            cacontology-coord:receivesResource 
         ) ] ;
         sh:minCount 2 ;
         sh:message "Resource sharing must involve at least provider and receiver organizations (gUFO participation)"@en ;
@@ -1020,8 +1020,8 @@ icac-coord:ResourceSharingParticipationShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # Task Force Composition Validation
-icac-coord:TaskForceCompositionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:TaskForceCoordination ;
+cacontology-coord:TaskForceCompositionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:TaskForceCoordination ;
     sh:property [
         sh:path [ sh:inversePath gufo:isProperPartOf ] ;
         sh:minCount 2 ;
@@ -1029,8 +1029,8 @@ icac-coord:TaskForceCompositionShape rdf:type sh:NodeShape ;
     ] .
 
 # Multi-Agency Coordination Composition Validation
-icac-coord:MultiAgencyCompositionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:MultiAgencyCoordination ;
+cacontology-coord:MultiAgencyCompositionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:MultiAgencyCoordination ;
     sh:property [
         sh:path [ sh:inversePath gufo:isProperPartOf ] ;
         sh:minCount 3 ;
@@ -1038,8 +1038,8 @@ icac-coord:MultiAgencyCompositionShape rdf:type sh:NodeShape ;
     ] .
 
 # Joint Investigation Composition Validation
-icac-coord:JointInvestigationCompositionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:JointInvestigation ;
+cacontology-coord:JointInvestigationCompositionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:JointInvestigation ;
     sh:property [
         sh:path [ sh:inversePath gufo:isProperPartOf ] ;
         sh:minCount 2 ;
@@ -1051,8 +1051,8 @@ icac-coord:JointInvestigationCompositionShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # Multi-Agency Coordination Complexity Business Rule
-icac-coord:MultiAgencyCoordinationComplexityBusinessRule rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:MultiAgencyCoordination ;
+cacontology-coord:MultiAgencyCoordinationComplexityBusinessRule rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:MultiAgencyCoordination ;
     sh:sparql [
         sh:message "Complex multi-agency coordination must have adequate liaison support and high effectiveness"@en ;
         sh:prefixes [
@@ -1064,12 +1064,12 @@ icac-coord:MultiAgencyCoordinationComplexityBusinessRule rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-coord:hasComplexityLevel ?complexity ;
-                      icac-coord:participatingAgencies ?agencies .
+                $this cacontology-coord:hasComplexityLevel ?complexity ;
+                      cacontology-coord:participatingAgencies ?agencies .
                 FILTER (?complexity IN ("highly_complex", "extremely_complex") && ?agencies > 10)
                 FILTER NOT EXISTS {
-                    $this icac-coord:assignsLiaison ?liaison .
-                    ?liaison icac-coord:hasLiaisonEffectiveness ?effectiveness .
+                    $this cacontology-coord:assignsLiaison ?liaison .
+                    ?liaison cacontology-coord:hasLiaisonEffectiveness ?effectiveness .
                     FILTER (?effectiveness IN ("good", "excellent", "exceptional"))
                 }
             }
@@ -1077,8 +1077,8 @@ icac-coord:MultiAgencyCoordinationComplexityBusinessRule rdf:type sh:NodeShape ;
     ] .
 
 # Joint Investigation Resource Integration Business Rule
-icac-coord:JointInvestigationResourceIntegrationBusinessRule rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:JointInvestigation ;
+cacontology-coord:JointInvestigationResourceIntegrationBusinessRule rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:JointInvestigation ;
     sh:sparql [
         sh:message "High-integration joint investigations require resource pooling and shared command"@en ;
         sh:prefixes [
@@ -1090,9 +1090,9 @@ icac-coord:JointInvestigationResourceIntegrationBusinessRule rdf:type sh:NodeSha
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-coord:hasCoordinationIntensity ?intensity ;
-                      icac-coord:resourcePooling ?pooling ;
-                      icac-coord:sharedCommand ?command .
+                $this cacontology-coord:hasCoordinationIntensity ?intensity ;
+                      cacontology-coord:resourcePooling ?pooling ;
+                      cacontology-coord:sharedCommand ?command .
                 FILTER (?intensity IN ("intensive", "fully_integrated") && 
                         (?pooling = false || ?command = false))
             }
@@ -1100,8 +1100,8 @@ icac-coord:JointInvestigationResourceIntegrationBusinessRule rdf:type sh:NodeSha
     ] .
 
 # Information Sharing Security Business Rule
-icac-coord:InformationSharingSecurityBusinessRule rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:InformationSharing ;
+cacontology-coord:InformationSharingSecurityBusinessRule rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:InformationSharing ;
     sh:sparql [
         sh:message "High classification information requires enhanced security and formal agreements"@en ;
         sh:prefixes [
@@ -1113,16 +1113,16 @@ icac-coord:InformationSharingSecurityBusinessRule rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-coord:classificationLevel ?classification ;
-                      icac-coord:sharingAgreement ?agreement .
+                $this cacontology-coord:classificationLevel ?classification ;
+                      cacontology-coord:sharingAgreement ?agreement .
                 FILTER (?classification IN ("classified", "top_secret") && ?agreement = false)
             }
         """ ;
     ] .
 
 # Liaison Authority Alignment Business Rule
-icac-coord:LiaisonAuthorityAlignmentBusinessRule rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:LiaisonOfficer ;
+cacontology-coord:LiaisonAuthorityAlignmentBusinessRule rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:LiaisonOfficer ;
     sh:sparql [
         sh:message "Primary liaisons should have full or limited authority aligned with their clearance level"@en ;
         sh:prefixes [
@@ -1134,9 +1134,9 @@ icac-coord:LiaisonAuthorityAlignmentBusinessRule rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-coord:liaisonRole "primary_liaison" ;
-                      icac-coord:communicationAuthority ?authority ;
-                      icac-coord:clearanceLevel ?clearance .
+                $this cacontology-coord:liaisonRole "primary_liaison" ;
+                      cacontology-coord:communicationAuthority ?authority ;
+                      cacontology-coord:clearanceLevel ?clearance .
                 FILTER (?clearance IN ("secret", "top_secret", "sci_access") && 
                         ?authority IN ("information_only", "advisory_only"))
             }
@@ -1144,8 +1144,8 @@ icac-coord:LiaisonAuthorityAlignmentBusinessRule rdf:type sh:NodeShape ;
     ] .
 
 # Coordination Effectiveness Success Business Rule
-icac-coord:CoordinationEffectivenessSuccessBusinessRule rdf:type sh:NodeShape ;
-    sh:targetClass icac-coord:InvestigationCoordination ;
+cacontology-coord:CoordinationEffectivenessSuccessBusinessRule rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:InvestigationCoordination ;
     sh:sparql [
         sh:message "High-effectiveness coordination should demonstrate high success rates"@en ;
         sh:prefixes [
@@ -1157,8 +1157,8 @@ icac-coord:CoordinationEffectivenessSuccessBusinessRule rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-coord:hasCoordinationEffectiveness ?effectiveness ;
-                      icac-coord:hasSuccessRate ?successRate .
+                $this cacontology-coord:hasCoordinationEffectiveness ?effectiveness ;
+                      cacontology-coord:hasSuccessRate ?successRate .
                 FILTER (?effectiveness IN ("excellent", "outstanding") && ?successRate < 0.7)
             }
         """ ;

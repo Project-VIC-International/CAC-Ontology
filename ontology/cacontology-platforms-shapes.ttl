@@ -13,8 +13,8 @@
 # SOCIAL MEDIA PLATFORM SHAPES
 # =============================================================================
 
-icac-platforms:SocialMediaPlatformShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-platforms:SocialMediaPlatform ;
+cacontology-platforms:SocialMediaPlatformShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:SocialMediaPlatform ;
     rdfs:label "Social Media Platform Shape"@en ;
     rdfs:comment "Validation shape for social media platform instances."@en ;
     sh:property [
@@ -27,7 +27,7 @@ icac-platforms:SocialMediaPlatformShape rdf:type sh:NodeShape ;
         sh:message "Social media platform must have a name (2-100 characters)."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:platformType ;
+        sh:path cacontology-platforms:platformType ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -35,7 +35,7 @@ icac-platforms:SocialMediaPlatformShape rdf:type sh:NodeShape ;
         sh:message "Platform type must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:primaryUserBase ;
+        sh:path cacontology-platforms:primaryUserBase ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -43,15 +43,15 @@ icac-platforms:SocialMediaPlatformShape rdf:type sh:NodeShape ;
         sh:message "Primary user base must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:requiresRegistration ;
+        sh:path cacontology-platforms:requiresRegistration ;
         sh:datatype xsd:boolean ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "Registration requirement must be a boolean value."@en
     ] .
 
-icac-platforms:MessagingServiceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-platforms:MessagingService ;
+cacontology-platforms:MessagingServiceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:MessagingService ;
     rdfs:label "Messaging Service Shape"@en ;
     rdfs:comment "Validation shape for messaging service instances."@en ;
     sh:property [
@@ -64,7 +64,7 @@ icac-platforms:MessagingServiceShape rdf:type sh:NodeShape ;
         sh:message "Messaging service must have a name (2-100 characters)."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:encryptionLevel ;
+        sh:path cacontology-platforms:encryptionLevel ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -72,22 +72,22 @@ icac-platforms:MessagingServiceShape rdf:type sh:NodeShape ;
         sh:message "Encryption level must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:allowsAnonymousChat ;
+        sh:path cacontology-platforms:allowsAnonymousChat ;
         sh:datatype xsd:boolean ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "Anonymous chat allowance must be a boolean value."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:conversationLogging ;
+        sh:path cacontology-platforms:conversationLogging ;
         sh:datatype xsd:boolean ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "Conversation logging must be a boolean value."@en
     ] .
 
-icac-platforms:VideoStreamingPlatformShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-platforms:VideoStreamingPlatform ;
+cacontology-platforms:VideoStreamingPlatformShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:VideoStreamingPlatform ;
     rdfs:label "Video Streaming Platform Shape"@en ;
     rdfs:comment "Validation shape for video streaming platform instances."@en ;
     sh:property [
@@ -100,15 +100,15 @@ icac-platforms:VideoStreamingPlatformShape rdf:type sh:NodeShape ;
         sh:message "Video streaming platform must have a name (2-100 characters)."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:ageVerificationRequired ;
+        sh:path cacontology-platforms:ageVerificationRequired ;
         sh:datatype xsd:boolean ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "Age verification requirement must be a boolean value."@en
     ] .
 
-icac-platforms:GamePlatformShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-platforms:GamePlatform ;
+cacontology-platforms:GamePlatformShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:GamePlatform ;
     rdfs:label "Game Platform Shape"@en ;
     rdfs:comment "Validation shape for game platform instances."@en ;
     sh:property [
@@ -121,14 +121,14 @@ icac-platforms:GamePlatformShape rdf:type sh:NodeShape ;
         sh:message "Game platform must have a name (2-100 characters)."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:guestAccountsAllowed ;
+        sh:path cacontology-platforms:guestAccountsAllowed ;
         sh:datatype xsd:boolean ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "Guest accounts allowance must be a boolean value."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:contactInitiationMethod ;
+        sh:path cacontology-platforms:contactInitiationMethod ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -140,8 +140,8 @@ icac-platforms:GamePlatformShape rdf:type sh:NodeShape ;
 # ELECTRONIC SERVICE PROVIDER SHAPES
 # =============================================================================
 
-icac-platforms:ElectronicServiceProviderShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-platforms:ElectronicServiceProvider ;
+cacontology-platforms:ElectronicServiceProviderShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:ElectronicServiceProvider ;
     rdfs:label "Electronic Service Provider Shape"@en ;
     rdfs:comment "Validation shape for electronic service provider instances."@en ;
     sh:property [
@@ -154,7 +154,7 @@ icac-platforms:ElectronicServiceProviderShape rdf:type sh:NodeShape ;
         sh:message "Electronic service provider must have a name (2-200 characters)."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:operatesInJurisdiction ;
+        sh:path cacontology-platforms:operatesInJurisdiction ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 10 ;
@@ -163,7 +163,7 @@ icac-platforms:ElectronicServiceProviderShape rdf:type sh:NodeShape ;
         sh:message "Jurisdiction must be 2-100 characters when specified."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:headquarteredIn ;
+        sh:path cacontology-platforms:headquarteredIn ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -172,14 +172,14 @@ icac-platforms:ElectronicServiceProviderShape rdf:type sh:NodeShape ;
         sh:message "Headquarters location must be 2-100 characters when specified."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:acceptsLegalProcess ;
+        sh:path cacontology-platforms:acceptsLegalProcess ;
         sh:datatype xsd:boolean ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "Legal process acceptance must be a boolean value."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:emergencyDisclosureCapable ;
+        sh:path cacontology-platforms:emergencyDisclosureCapable ;
         sh:datatype xsd:boolean ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -190,12 +190,12 @@ icac-platforms:ElectronicServiceProviderShape rdf:type sh:NodeShape ;
 # CONTENT MODERATION CAPABILITY SHAPES
 # =============================================================================
 
-icac-platforms:ContentModerationCapabilityShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-platforms:ContentModerationCapability ;
+cacontology-platforms:ContentModerationCapabilityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:ContentModerationCapability ;
     rdfs:label "Content Moderation Capability Shape"@en ;
     rdfs:comment "Validation shape for content moderation capability instances."@en ;
     sh:property [
-        sh:path icac-platforms:moderationMethod ;
+        sh:path cacontology-platforms:moderationMethod ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -203,21 +203,21 @@ icac-platforms:ContentModerationCapabilityShape rdf:type sh:NodeShape ;
         sh:message "Moderation method must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:csaiDetectionEnabled ;
+        sh:path cacontology-platforms:csaiDetectionEnabled ;
         sh:datatype xsd:boolean ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "CSAI detection enablement must be a boolean value."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:hashMatchingEnabled ;
+        sh:path cacontology-platforms:hashMatchingEnabled ;
         sh:datatype xsd:boolean ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "Hash matching enablement must be a boolean value."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:moderationPresence ;
+        sh:path cacontology-platforms:moderationPresence ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -229,12 +229,12 @@ icac-platforms:ContentModerationCapabilityShape rdf:type sh:NodeShape ;
 # DATA RETENTION POLICY SHAPES
 # =============================================================================
 
-icac-platforms:DataRetentionPolicyShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-platforms:DataRetentionPolicy ;
+cacontology-platforms:DataRetentionPolicyShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:DataRetentionPolicy ;
     rdfs:label "Data Retention Policy Shape"@en ;
     rdfs:comment "Validation shape for data retention policy instances."@en ;
     sh:property [
-        sh:path icac-platforms:userDataRetentionPeriod ;
+        sh:path cacontology-platforms:userDataRetentionPeriod ;
         sh:datatype xsd:integer ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -243,7 +243,7 @@ icac-platforms:DataRetentionPolicyShape rdf:type sh:NodeShape ;
         sh:message "User data retention period must be between 0 and 3650 days (10 years)."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:contentRetentionPeriod ;
+        sh:path cacontology-platforms:contentRetentionPeriod ;
         sh:datatype xsd:integer ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -252,7 +252,7 @@ icac-platforms:DataRetentionPolicyShape rdf:type sh:NodeShape ;
         sh:message "Content retention period must be between 0 and 3650 days (10 years)."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:logRetentionPeriod ;
+        sh:path cacontology-platforms:logRetentionPeriod ;
         sh:datatype xsd:integer ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -261,7 +261,7 @@ icac-platforms:DataRetentionPolicyShape rdf:type sh:NodeShape ;
         sh:message "Log retention period must be between 0 and 3650 days (10 years)."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:anonymousUserDataRetention ;
+        sh:path cacontology-platforms:anonymousUserDataRetention ;
         sh:datatype xsd:integer ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -274,12 +274,12 @@ icac-platforms:DataRetentionPolicyShape rdf:type sh:NodeShape ;
 # USER VERIFICATION SYSTEM SHAPES
 # =============================================================================
 
-icac-platforms:UserVerificationSystemShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-platforms:UserVerificationSystem ;
+cacontology-platforms:UserVerificationSystemShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:UserVerificationSystem ;
     rdfs:label "User Verification System Shape"@en ;
     rdfs:comment "Validation shape for user verification system instances."@en ;
     sh:property [
-        sh:path icac-platforms:ageVerificationMethod ;
+        sh:path cacontology-platforms:ageVerificationMethod ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -287,14 +287,14 @@ icac-platforms:UserVerificationSystemShape rdf:type sh:NodeShape ;
         sh:message "Age verification method must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:identityVerificationRequired ;
+        sh:path cacontology-platforms:identityVerificationRequired ;
         sh:datatype xsd:boolean ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "Identity verification requirement must be a boolean value."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:verificationStrength ;
+        sh:path cacontology-platforms:verificationStrength ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -306,8 +306,8 @@ icac-platforms:UserVerificationSystemShape rdf:type sh:NodeShape ;
 # PLATFORM ACTION SHAPES
 # =============================================================================
 
-icac-platforms:ContentModerationActionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-platforms:ContentModerationAction ;
+cacontology-platforms:ContentModerationActionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:ContentModerationAction ;
     rdfs:label "Content Moderation Action Shape"@en ;
     rdfs:comment "Validation shape for content moderation action instances."@en ;
     sh:property [
@@ -318,7 +318,7 @@ icac-platforms:ContentModerationActionShape rdf:type sh:NodeShape ;
         sh:message "Content moderation action must specify start time."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:moderationDecision ;
+        sh:path cacontology-platforms:moderationDecision ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -326,8 +326,8 @@ icac-platforms:ContentModerationActionShape rdf:type sh:NodeShape ;
         sh:message "Moderation decision must be from the allowed list."@en
     ] .
 
-icac-platforms:AccountSuspensionActionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-platforms:AccountSuspensionAction ;
+cacontology-platforms:AccountSuspensionActionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:AccountSuspensionAction ;
     rdfs:label "Account Suspension Action Shape"@en ;
     rdfs:comment "Validation shape for account suspension action instances."@en ;
     sh:property [
@@ -338,7 +338,7 @@ icac-platforms:AccountSuspensionActionShape rdf:type sh:NodeShape ;
         sh:message "Account suspension action must specify start time."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:suspensionReason ;
+        sh:path cacontology-platforms:suspensionReason ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -346,7 +346,7 @@ icac-platforms:AccountSuspensionActionShape rdf:type sh:NodeShape ;
         sh:message "Suspension reason must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:suspensionDuration ;
+        sh:path cacontology-platforms:suspensionDuration ;
         sh:datatype xsd:integer ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -355,8 +355,8 @@ icac-platforms:AccountSuspensionActionShape rdf:type sh:NodeShape ;
         sh:message "Suspension duration must be between 1 and 3650 days."@en
     ] .
 
-icac-platforms:DataPreservationActionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-platforms:DataPreservationAction ;
+cacontology-platforms:DataPreservationActionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:DataPreservationAction ;
     rdfs:label "Data Preservation Action Shape"@en ;
     rdfs:comment "Validation shape for data preservation action instances."@en ;
     sh:property [
@@ -367,7 +367,7 @@ icac-platforms:DataPreservationActionShape rdf:type sh:NodeShape ;
         sh:message "Data preservation action must specify start time."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:preservationPeriod ;
+        sh:path cacontology-platforms:preservationPeriod ;
         sh:datatype xsd:integer ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -376,8 +376,8 @@ icac-platforms:DataPreservationActionShape rdf:type sh:NodeShape ;
         sh:message "Preservation period must be between 30 and 3650 days."@en
     ] .
 
-icac-platforms:LegalDataDisclosureActionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-platforms:LegalDataDisclosureAction ;
+cacontology-platforms:LegalDataDisclosureActionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:LegalDataDisclosureAction ;
     rdfs:label "Legal Data Disclosure Action Shape"@en ;
     rdfs:comment "Validation shape for legal data disclosure action instances."@en ;
     sh:property [
@@ -388,7 +388,7 @@ icac-platforms:LegalDataDisclosureActionShape rdf:type sh:NodeShape ;
         sh:message "Legal data disclosure action must specify start time."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:responseTimeFrame ;
+        sh:path cacontology-platforms:responseTimeFrame ;
         sh:datatype xsd:integer ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -397,7 +397,7 @@ icac-platforms:LegalDataDisclosureActionShape rdf:type sh:NodeShape ;
         sh:message "Response time frame must be between 1 and 365 days."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:legalProcessUsed ;
+        sh:path cacontology-platforms:legalProcessUsed ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -409,8 +409,8 @@ icac-platforms:LegalDataDisclosureActionShape rdf:type sh:NodeShape ;
 # LARGE-SCALE PLATFORM OPERATION SHAPES
 # =============================================================================
 
-icac-platforms:LargeScalePlatformTakedownShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-platforms:LargeScalePlatformTakedown ;
+cacontology-platforms:LargeScalePlatformTakedownShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:LargeScalePlatformTakedown ;
     rdfs:label "Large Scale Platform Takedown Shape"@en ;
     rdfs:comment "Validation shape for large scale platform takedown instances."@en ;
     sh:property [
@@ -430,7 +430,7 @@ icac-platforms:LargeScalePlatformTakedownShape rdf:type sh:NodeShape ;
         sh:message "Large scale platform takedown must specify start time."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:operationScale ;
+        sh:path cacontology-platforms:operationScale ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -438,7 +438,7 @@ icac-platforms:LargeScalePlatformTakedownShape rdf:type sh:NodeShape ;
         sh:message "Operation scale must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:countriesInvolved ;
+        sh:path cacontology-platforms:countriesInvolved ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -447,7 +447,7 @@ icac-platforms:LargeScalePlatformTakedownShape rdf:type sh:NodeShape ;
         sh:message "Countries involved must be between 1 and 200."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:evidenceVolumeTerabytes ;
+        sh:path cacontology-platforms:evidenceVolumeTerabytes ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -456,12 +456,12 @@ icac-platforms:LargeScalePlatformTakedownShape rdf:type sh:NodeShape ;
         sh:message "Evidence volume must be between 0.1 and 10000 terabytes."@en
     ] .
 
-icac-platforms:MassUserDatabaseShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-platforms:MassUserDatabase ;
+cacontology-platforms:MassUserDatabaseShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:MassUserDatabase ;
     rdfs:label "Mass User Database Shape"@en ;
     rdfs:comment "Validation shape for mass user database instances."@en ;
     sh:property [
-        sh:path icac-platforms:userCount ;
+        sh:path cacontology-platforms:userCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -470,7 +470,7 @@ icac-platforms:MassUserDatabaseShape rdf:type sh:NodeShape ;
         sh:message "User count must be between 1000 and 100 million for mass databases."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:processingTimeframeDays ;
+        sh:path cacontology-platforms:processingTimeframeDays ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -479,12 +479,12 @@ icac-platforms:MassUserDatabaseShape rdf:type sh:NodeShape ;
         sh:message "Processing timeframe must be between 1 and 3650 days."@en
     ] .
 
-icac-platforms:UserScaleClassificationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-platforms:UserScaleClassification ;
+cacontology-platforms:UserScaleClassificationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:UserScaleClassification ;
     rdfs:label "User Scale Classification Shape"@en ;
     rdfs:comment "Validation shape for user scale classification instances."@en ;
     sh:property [
-        sh:path icac-platforms:platformScale ;
+        sh:path cacontology-platforms:platformScale ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -492,15 +492,15 @@ icac-platforms:UserScaleClassificationShape rdf:type sh:NodeShape ;
         sh:message "Platform scale must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:millionPlusUsers ;
+        sh:path cacontology-platforms:millionPlusUsers ;
         sh:datatype xsd:boolean ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "Million plus users indicator must be a boolean value."@en
     ] .
 
-icac-platforms:MassUserBehaviorAnalysisShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-platforms:MassUserBehaviorAnalysis ;
+cacontology-platforms:MassUserBehaviorAnalysisShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:MassUserBehaviorAnalysis ;
     rdfs:label "Mass User Behavior Analysis Shape"@en ;
     rdfs:comment "Validation shape for mass user behavior analysis instances."@en ;
     sh:property [
@@ -511,7 +511,7 @@ icac-platforms:MassUserBehaviorAnalysisShape rdf:type sh:NodeShape ;
         sh:message "Mass user behavior analysis must specify start time."@en
     ] ;
     sh:property [
-        sh:path icac-platforms:automatedProcessingPercentage ;
+        sh:path cacontology-platforms:automatedProcessingPercentage ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -520,12 +520,12 @@ icac-platforms:MassUserBehaviorAnalysisShape rdf:type sh:NodeShape ;
         sh:message "Automated processing percentage must be between 0.0 and 100.0."@en
     ] .
 
-icac-platforms:UserRiskClassificationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-platforms:UserRiskClassification ;
+cacontology-platforms:UserRiskClassificationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:UserRiskClassification ;
     rdfs:label "User Risk Classification Shape"@en ;
     rdfs:comment "Validation shape for user risk classification instances."@en ;
     sh:property [
-        sh:path icac-platforms:userRiskLevel ;
+        sh:path cacontology-platforms:userRiskLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -537,12 +537,12 @@ icac-platforms:UserRiskClassificationShape rdf:type sh:NodeShape ;
 # CROSS-REFERENCE VALIDATION SHAPES
 # =============================================================================
 
-icac-platforms:PlatformOperatorCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-platforms:SocialMediaPlatform ,
-                   icac-platforms:MessagingService ,
-                   icac-platforms:VideoStreamingPlatform ,
-                   icac-platforms:FileHostingService ,
-                   icac-platforms:GamePlatform ;
+cacontology-platforms:PlatformOperatorCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:SocialMediaPlatform ,
+                   cacontology-platforms:MessagingService ,
+                   cacontology-platforms:VideoStreamingPlatform ,
+                   cacontology-platforms:FileHostingService ,
+                   cacontology-platforms:GamePlatform ;
     rdfs:label "Platform Operator Cross Reference Shape"@en ;
     rdfs:comment "Validates that platforms have associated operators."@en ;
     sh:sparql [
@@ -552,22 +552,22 @@ icac-platforms:PlatformOperatorCrossReferenceShape rdf:type sh:NodeShape ;
             WHERE {
                 $this a ?platformType .
                 FILTER (?platformType IN (
-                    icac-platforms:SocialMediaPlatform,
-                    icac-platforms:MessagingService,
-                    icac-platforms:VideoStreamingPlatform,
-                    icac-platforms:FileHostingService,
-                    icac-platforms:GamePlatform
+                    cacontology-platforms:SocialMediaPlatform,
+                    cacontology-platforms:MessagingService,
+                    cacontology-platforms:VideoStreamingPlatform,
+                    cacontology-platforms:FileHostingService,
+                    cacontology-platforms:GamePlatform
                 ))
                 FILTER NOT EXISTS {
-                    ?esp icac-platforms:operatedBy $this .
+                    ?esp cacontology-platforms:operatedBy $this .
                 }
             }
         """
     ] .
 
-icac-platforms:ContentModerationCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-platforms:SocialMediaPlatform ,
-                   icac-platforms:VideoStreamingPlatform ;
+cacontology-platforms:ContentModerationCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:SocialMediaPlatform ,
+                   cacontology-platforms:VideoStreamingPlatform ;
     rdfs:label "Content Moderation Cross Reference Shape"@en ;
     rdfs:comment "Validates that content platforms have moderation capabilities."@en ;
     sh:sparql [
@@ -577,18 +577,18 @@ icac-platforms:ContentModerationCrossReferenceShape rdf:type sh:NodeShape ;
             WHERE {
                 $this a ?platformType .
                 FILTER (?platformType IN (
-                    icac-platforms:SocialMediaPlatform,
-                    icac-platforms:VideoStreamingPlatform
+                    cacontology-platforms:SocialMediaPlatform,
+                    cacontology-platforms:VideoStreamingPlatform
                 ))
                 FILTER NOT EXISTS {
-                    $this icac-platforms:hasContentModerationCapability ?moderation .
+                    $this cacontology-platforms:hasContentModerationCapability ?moderation .
                 }
             }
         """
     ] .
 
-icac-platforms:DataRetentionCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-platforms:ElectronicServiceProvider ;
+cacontology-platforms:DataRetentionCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:ElectronicServiceProvider ;
     rdfs:label "Data Retention Cross Reference Shape"@en ;
     rdfs:comment "Validates that service providers have data retention policies."@en ;
     sh:sparql [
@@ -596,10 +596,10 @@ icac-platforms:DataRetentionCrossReferenceShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-platforms:ElectronicServiceProvider .
+                $this a cacontology-platforms:ElectronicServiceProvider .
                 FILTER NOT EXISTS {
-                    ?platform icac-platforms:operatedBy $this ;
-                              icac-platforms:hasDataRetentionPolicy ?policy .
+                    ?platform cacontology-platforms:operatedBy $this ;
+                              cacontology-platforms:hasDataRetentionPolicy ?policy .
                 }
             }
         """
@@ -609,13 +609,13 @@ icac-platforms:DataRetentionCrossReferenceShape rdf:type sh:NodeShape ;
 # TEMPORAL VALIDATION SHAPES
 # =============================================================================
 
-icac-platforms:TemporalValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-platforms:ContentModerationAction ,
-                   icac-platforms:AccountSuspensionAction ,
-                   icac-platforms:DataPreservationAction ,
-                   icac-platforms:LegalDataDisclosureAction ,
-                   icac-platforms:LargeScalePlatformTakedown ,
-                   icac-platforms:MassUserBehaviorAnalysis ;
+cacontology-platforms:TemporalValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:ContentModerationAction ,
+                   cacontology-platforms:AccountSuspensionAction ,
+                   cacontology-platforms:DataPreservationAction ,
+                   cacontology-platforms:LegalDataDisclosureAction ,
+                   cacontology-platforms:LargeScalePlatformTakedown ,
+                   cacontology-platforms:MassUserBehaviorAnalysis ;
     rdfs:label "Temporal Validation Shape"@en ;
     rdfs:comment "Validates temporal consistency for platform actions."@en ;
     sh:sparql [
@@ -630,8 +630,8 @@ icac-platforms:TemporalValidationShape rdf:type sh:NodeShape ;
         """
     ] .
 
-icac-platforms:RetentionPeriodValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-platforms:DataRetentionPolicy ;
+cacontology-platforms:RetentionPeriodValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:DataRetentionPolicy ;
     rdfs:label "Retention Period Validation Shape"@en ;
     rdfs:comment "Validates logical consistency of retention periods."@en ;
     sh:sparql [
@@ -639,8 +639,8 @@ icac-platforms:RetentionPeriodValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-platforms:userDataRetentionPeriod ?userRetention ;
-                      icac-platforms:anonymousUserDataRetention ?anonRetention .
+                $this cacontology-platforms:userDataRetentionPeriod ?userRetention ;
+                      cacontology-platforms:anonymousUserDataRetention ?anonRetention .
                 FILTER (?anonRetention > ?userRetention)
             }
         """
@@ -650,13 +650,13 @@ icac-platforms:RetentionPeriodValidationShape rdf:type sh:NodeShape ;
 # DATA QUALITY SHAPES
 # =============================================================================
 
-icac-platforms:DataQualityShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-platforms:SocialMediaPlatform ,
-                   icac-platforms:MessagingService ,
-                   icac-platforms:VideoStreamingPlatform ,
-                   icac-platforms:FileHostingService ,
-                   icac-platforms:GamePlatform ,
-                   icac-platforms:ElectronicServiceProvider ;
+cacontology-platforms:DataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:SocialMediaPlatform ,
+                   cacontology-platforms:MessagingService ,
+                   cacontology-platforms:VideoStreamingPlatform ,
+                   cacontology-platforms:FileHostingService ,
+                   cacontology-platforms:GamePlatform ,
+                   cacontology-platforms:ElectronicServiceProvider ;
     rdfs:label "Data Quality Shape"@en ;
     rdfs:comment "Validates data quality for platform entities."@en ;
     sh:property [
@@ -678,8 +678,8 @@ icac-platforms:DataQualityShape rdf:type sh:NodeShape ;
         sh:message "Description should be between 10 and 1000 characters when provided."@en
     ] .
 
-icac-platforms:LegalComplianceValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-platforms:ElectronicServiceProvider ;
+cacontology-platforms:LegalComplianceValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:ElectronicServiceProvider ;
     rdfs:label "Legal Compliance Validation Shape"@en ;
     rdfs:comment "Validates legal compliance capabilities for service providers."@en ;
     sh:sparql [
@@ -687,9 +687,9 @@ icac-platforms:LegalComplianceValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-platforms:acceptsLegalProcess true .
+                $this cacontology-platforms:acceptsLegalProcess true .
                 FILTER NOT EXISTS {
-                    $this icac-platforms:legalProcessContactInfo ?contact .
+                    $this cacontology-platforms:legalProcessContactInfo ?contact .
                 }
             }
         """

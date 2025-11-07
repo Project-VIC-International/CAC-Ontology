@@ -15,12 +15,12 @@
 # STRANGER ABDUCTION SHAPES
 # =============================================================================
 
-icac-stranger:StrangerAbductionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-stranger:StrangerAbduction ;
+cacontology-stranger:StrangerAbductionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-stranger:StrangerAbduction ;
     rdfs:label "Stranger Abduction Shape"@en ;
     rdfs:comment "Validation shape for stranger abduction instances."@en ;
     sh:property [
-        sh:path icac-stranger:abductionType ;
+        sh:path cacontology-stranger:abductionType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -28,7 +28,7 @@ icac-stranger:StrangerAbductionShape rdf:type sh:NodeShape ;
         sh:message "Stranger abduction must specify abduction type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:abductionLocation ;
+        sh:path cacontology-stranger:abductionLocation ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -36,7 +36,7 @@ icac-stranger:StrangerAbductionShape rdf:type sh:NodeShape ;
         sh:message "Stranger abduction must specify abduction location type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:victimAge ;
+        sh:path cacontology-stranger:victimAge ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -45,21 +45,21 @@ icac-stranger:StrangerAbductionShape rdf:type sh:NodeShape ;
         sh:message "Victim age must be between 0 and 17 years."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:abductionTime ;
+        sh:path cacontology-stranger:abductionTime ;
         sh:datatype xsd:dateTime ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Stranger abduction must specify abduction time."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:reportedTime ;
+        sh:path cacontology-stranger:reportedTime ;
         sh:datatype xsd:dateTime ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Stranger abduction must specify reported time."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:responseTime ;
+        sh:path cacontology-stranger:responseTime ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -68,7 +68,7 @@ icac-stranger:StrangerAbductionShape rdf:type sh:NodeShape ;
         sh:message "Response time must be between 0.1 and 168 hours (1 week)."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:riskLevel ;
+        sh:path cacontology-stranger:riskLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -76,12 +76,12 @@ icac-stranger:StrangerAbductionShape rdf:type sh:NodeShape ;
         sh:message "Stranger abduction must specify risk level from the allowed list."@en
     ] .
 
-icac-stranger:OpportunisticAbductionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-stranger:OpportunisticAbduction ;
+cacontology-stranger:OpportunisticAbductionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-stranger:OpportunisticAbduction ;
     rdfs:label "Opportunistic Abduction Shape"@en ;
     rdfs:comment "Validation shape for opportunistic abduction instances."@en ;
     sh:property [
-        sh:path icac-stranger:opportunityFactor ;
+        sh:path cacontology-stranger:opportunityFactor ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -89,26 +89,26 @@ icac-stranger:OpportunisticAbductionShape rdf:type sh:NodeShape ;
         sh:message "Opportunistic abduction must specify opportunity factor from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:impulsiveNature ;
+        sh:path cacontology-stranger:impulsiveNature ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Opportunistic abduction must specify if it was impulsive in nature."@en
     ] .
 
-icac-stranger:PredatoryAbductionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-stranger:PredatoryAbduction ;
+cacontology-stranger:PredatoryAbductionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-stranger:PredatoryAbduction ;
     rdfs:label "Predatory Abduction Shape"@en ;
     rdfs:comment "Validation shape for predatory abduction instances."@en ;
     sh:property [
-        sh:path icac-stranger:huntingBehavior ;
+        sh:path cacontology-stranger:huntingBehavior ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Predatory abduction must specify if hunting behavior was observed."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:surveillancePeriod ;
+        sh:path cacontology-stranger:surveillancePeriod ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -117,7 +117,7 @@ icac-stranger:PredatoryAbductionShape rdf:type sh:NodeShape ;
         sh:message "Surveillance period must be between 0.1 and 720 hours (30 days)."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:victimSelection ;
+        sh:path cacontology-stranger:victimSelection ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -129,12 +129,12 @@ icac-stranger:PredatoryAbductionShape rdf:type sh:NodeShape ;
 # ABDUCTOR PROFILE SHAPES
 # =============================================================================
 
-icac-stranger:AbductorProfileShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-stranger:AbductorProfile ;
+cacontology-stranger:AbductorProfileShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-stranger:AbductorProfile ;
     rdfs:label "Abductor Profile Shape"@en ;
     rdfs:comment "Validation shape for abductor profile instances."@en ;
     sh:property [
-        sh:path icac-stranger:profileType ;
+        sh:path cacontology-stranger:profileType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -142,7 +142,7 @@ icac-stranger:AbductorProfileShape rdf:type sh:NodeShape ;
         sh:message "Abductor profile must specify profile type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:ageRange ;
+        sh:path cacontology-stranger:ageRange ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -150,7 +150,7 @@ icac-stranger:AbductorProfileShape rdf:type sh:NodeShape ;
         sh:message "Age range must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:genderProfile ;
+        sh:path cacontology-stranger:genderProfile ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -158,14 +158,14 @@ icac-stranger:AbductorProfileShape rdf:type sh:NodeShape ;
         sh:message "Gender profile must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:criminalHistory ;
+        sh:path cacontology-stranger:criminalHistory ;
         sh:datatype xsd:boolean ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "Abductor profile may specify if criminal history exists."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:priorOffenses ;
+        sh:path cacontology-stranger:priorOffenses ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -174,7 +174,7 @@ icac-stranger:AbductorProfileShape rdf:type sh:NodeShape ;
         sh:message "Prior offenses must be between 0 and 50."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:psychologicalFactors ;
+        sh:path cacontology-stranger:psychologicalFactors ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -182,12 +182,12 @@ icac-stranger:AbductorProfileShape rdf:type sh:NodeShape ;
         sh:message "Psychological factors must be from the allowed list."@en
     ] .
 
-icac-stranger:BehavioralProfileShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-stranger:BehavioralProfile ;
+cacontology-stranger:BehavioralProfileShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-stranger:BehavioralProfile ;
     rdfs:label "Behavioral Profile Shape"@en ;
     rdfs:comment "Validation shape for behavioral profile instances."@en ;
     sh:property [
-        sh:path icac-stranger:approachMethod ;
+        sh:path cacontology-stranger:approachMethod ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -195,7 +195,7 @@ icac-stranger:BehavioralProfileShape rdf:type sh:NodeShape ;
         sh:message "Behavioral profile must specify approach method from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:communicationStyle ;
+        sh:path cacontology-stranger:communicationStyle ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -203,7 +203,7 @@ icac-stranger:BehavioralProfileShape rdf:type sh:NodeShape ;
         sh:message "Communication style must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:organizationLevel ;
+        sh:path cacontology-stranger:organizationLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -215,12 +215,12 @@ icac-stranger:BehavioralProfileShape rdf:type sh:NodeShape ;
 # ABDUCTION METHOD SHAPES
 # =============================================================================
 
-icac-stranger:AbductionMethodShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-stranger:AbductionMethod ;
+cacontology-stranger:AbductionMethodShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-stranger:AbductionMethod ;
     rdfs:label "Abduction Method Shape"@en ;
     rdfs:comment "Validation shape for abduction method instances."@en ;
     sh:property [
-        sh:path icac-stranger:methodType ;
+        sh:path cacontology-stranger:methodType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -228,7 +228,7 @@ icac-stranger:AbductionMethodShape rdf:type sh:NodeShape ;
         sh:message "Abduction method must specify method type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:forceLevel ;
+        sh:path cacontology-stranger:forceLevel ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -236,21 +236,21 @@ icac-stranger:AbductionMethodShape rdf:type sh:NodeShape ;
         sh:message "Force level must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:weaponInvolved ;
+        sh:path cacontology-stranger:weaponInvolved ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Abduction method must specify if weapon was involved."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:vehicleUsed ;
+        sh:path cacontology-stranger:vehicleUsed ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Abduction method must specify if vehicle was used."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:accomplices ;
+        sh:path cacontology-stranger:accomplices ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -259,12 +259,12 @@ icac-stranger:AbductionMethodShape rdf:type sh:NodeShape ;
         sh:message "Number of accomplices must be between 0 and 10."@en
     ] .
 
-icac-stranger:VehicleAbductionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-stranger:VehicleAbduction ;
+cacontology-stranger:VehicleAbductionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-stranger:VehicleAbduction ;
     rdfs:label "Vehicle Abduction Shape"@en ;
     rdfs:comment "Validation shape for vehicle abduction instances."@en ;
     sh:property [
-        sh:path icac-stranger:vehicleType ;
+        sh:path cacontology-stranger:vehicleType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -272,7 +272,7 @@ icac-stranger:VehicleAbductionShape rdf:type sh:NodeShape ;
         sh:message "Vehicle abduction must specify vehicle type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:vehicleColor ;
+        sh:path cacontology-stranger:vehicleColor ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -280,7 +280,7 @@ icac-stranger:VehicleAbductionShape rdf:type sh:NodeShape ;
         sh:message "Vehicle color must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:licensePlateInfo ;
+        sh:path cacontology-stranger:licensePlateInfo ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -291,12 +291,12 @@ icac-stranger:VehicleAbductionShape rdf:type sh:NodeShape ;
 # SEARCH OPERATION SHAPES
 # =============================================================================
 
-icac-stranger:SearchOperationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-stranger:SearchOperation ;
+cacontology-stranger:SearchOperationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-stranger:SearchOperation ;
     rdfs:label "Search Operation Shape"@en ;
     rdfs:comment "Validation shape for search operation instances."@en ;
     sh:property [
-        sh:path icac-stranger:searchType ;
+        sh:path cacontology-stranger:searchType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -304,7 +304,7 @@ icac-stranger:SearchOperationShape rdf:type sh:NodeShape ;
         sh:message "Search operation must specify search type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:searchRadius ;
+        sh:path cacontology-stranger:searchRadius ;
         sh:datatype xsd:decimal ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -313,7 +313,7 @@ icac-stranger:SearchOperationShape rdf:type sh:NodeShape ;
         sh:message "Search radius must be between 0.1 and 1000 kilometers."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:searchDuration ;
+        sh:path cacontology-stranger:searchDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -322,7 +322,7 @@ icac-stranger:SearchOperationShape rdf:type sh:NodeShape ;
         sh:message "Search duration must be between 1 and 8760 hours (1 year)."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:personnelCount ;
+        sh:path cacontology-stranger:personnelCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -331,7 +331,7 @@ icac-stranger:SearchOperationShape rdf:type sh:NodeShape ;
         sh:message "Search operation must have between 1 and 1000 personnel."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:resourcesDeployed ;
+        sh:path cacontology-stranger:resourcesDeployed ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -354,12 +354,12 @@ icac-stranger:SearchOperationShape rdf:type sh:NodeShape ;
         sh:message "Search operation may specify end time."@en
     ] .
 
-icac-stranger:GroundSearchShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-stranger:GroundSearch ;
+cacontology-stranger:GroundSearchShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-stranger:GroundSearch ;
     rdfs:label "Ground Search Shape"@en ;
     rdfs:comment "Validation shape for ground search instances."@en ;
     sh:property [
-        sh:path icac-stranger:searchPattern ;
+        sh:path cacontology-stranger:searchPattern ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -367,7 +367,7 @@ icac-stranger:GroundSearchShape rdf:type sh:NodeShape ;
         sh:message "Ground search must specify search pattern from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:terrainType ;
+        sh:path cacontology-stranger:terrainType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -375,7 +375,7 @@ icac-stranger:GroundSearchShape rdf:type sh:NodeShape ;
         sh:message "Ground search must specify terrain type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:canineUnits ;
+        sh:path cacontology-stranger:canineUnits ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -388,12 +388,12 @@ icac-stranger:GroundSearchShape rdf:type sh:NodeShape ;
 # AMBER ALERT SHAPES
 # =============================================================================
 
-icac-stranger:AmberAlertShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-stranger:AmberAlert ;
+cacontology-stranger:AmberAlertShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-stranger:AmberAlert ;
     rdfs:label "Amber Alert Shape"@en ;
     rdfs:comment "Validation shape for Amber Alert instances."@en ;
     sh:property [
-        sh:path icac-stranger:alertLevel ;
+        sh:path cacontology-stranger:alertLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -401,21 +401,21 @@ icac-stranger:AmberAlertShape rdf:type sh:NodeShape ;
         sh:message "Amber Alert must specify alert level from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:activationTime ;
+        sh:path cacontology-stranger:activationTime ;
         sh:datatype xsd:dateTime ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Amber Alert must specify activation time."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:deactivationTime ;
+        sh:path cacontology-stranger:deactivationTime ;
         sh:datatype xsd:dateTime ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "Amber Alert may specify deactivation time."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:alertDuration ;
+        sh:path cacontology-stranger:alertDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -424,7 +424,7 @@ icac-stranger:AmberAlertShape rdf:type sh:NodeShape ;
         sh:message "Alert duration must be between 0.1 and 720 hours (30 days)."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:distributionChannels ;
+        sh:path cacontology-stranger:distributionChannels ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -433,7 +433,7 @@ icac-stranger:AmberAlertShape rdf:type sh:NodeShape ;
         sh:message "Amber Alert must use between 1 and 50 distribution channels."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:publicResponse ;
+        sh:path cacontology-stranger:publicResponse ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -442,12 +442,12 @@ icac-stranger:AmberAlertShape rdf:type sh:NodeShape ;
         sh:message "Public response count must be between 0 and 10000."@en
     ] .
 
-icac-stranger:AlertCriteriaShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-stranger:AlertCriteria ;
+cacontology-stranger:AlertCriteriaShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-stranger:AlertCriteria ;
     rdfs:label "Alert Criteria Shape"@en ;
     rdfs:comment "Validation shape for alert criteria instances."@en ;
     sh:property [
-        sh:path icac-stranger:criteriaType ;
+        sh:path cacontology-stranger:criteriaType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -455,14 +455,14 @@ icac-stranger:AlertCriteriaShape rdf:type sh:NodeShape ;
         sh:message "Alert criteria must specify criteria type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:criteriaMet ;
+        sh:path cacontology-stranger:criteriaMet ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Alert criteria must specify if criteria is met."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:verificationLevel ;
+        sh:path cacontology-stranger:verificationLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -474,12 +474,12 @@ icac-stranger:AlertCriteriaShape rdf:type sh:NodeShape ;
 # VICTIM RECOVERY SHAPES
 # =============================================================================
 
-icac-stranger:VictimRecoveryShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-stranger:VictimRecovery ;
+cacontology-stranger:VictimRecoveryShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-stranger:VictimRecovery ;
     rdfs:label "Victim Recovery Shape"@en ;
     rdfs:comment "Validation shape for victim recovery instances."@en ;
     sh:property [
-        sh:path icac-stranger:recoveryType ;
+        sh:path cacontology-stranger:recoveryType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -487,14 +487,14 @@ icac-stranger:VictimRecoveryShape rdf:type sh:NodeShape ;
         sh:message "Victim recovery must specify recovery type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:recoveryTime ;
+        sh:path cacontology-stranger:recoveryTime ;
         sh:datatype xsd:dateTime ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Victim recovery must specify recovery time."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:recoveryLocation ;
+        sh:path cacontology-stranger:recoveryLocation ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -502,7 +502,7 @@ icac-stranger:VictimRecoveryShape rdf:type sh:NodeShape ;
         sh:message "Victim recovery must specify recovery location type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:victimCondition ;
+        sh:path cacontology-stranger:victimCondition ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -510,14 +510,14 @@ icac-stranger:VictimRecoveryShape rdf:type sh:NodeShape ;
         sh:message "Victim recovery must specify victim condition from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:medicalAttention ;
+        sh:path cacontology-stranger:medicalAttention ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Victim recovery must specify if medical attention was required."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:captivityDuration ;
+        sh:path cacontology-stranger:captivityDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -526,12 +526,12 @@ icac-stranger:VictimRecoveryShape rdf:type sh:NodeShape ;
         sh:message "Captivity duration must be between 0.1 and 8760 hours (1 year)."@en
     ] .
 
-icac-stranger:RescueOperationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-stranger:RescueOperation ;
+cacontology-stranger:RescueOperationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-stranger:RescueOperation ;
     rdfs:label "Rescue Operation Shape"@en ;
     rdfs:comment "Validation shape for rescue operation instances."@en ;
     sh:property [
-        sh:path icac-stranger:operationType ;
+        sh:path cacontology-stranger:operationType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -539,7 +539,7 @@ icac-stranger:RescueOperationShape rdf:type sh:NodeShape ;
         sh:message "Rescue operation must specify operation type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:riskAssessment ;
+        sh:path cacontology-stranger:riskAssessment ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -547,7 +547,7 @@ icac-stranger:RescueOperationShape rdf:type sh:NodeShape ;
         sh:message "Rescue operation must specify risk assessment from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-stranger:specializedUnits ;
+        sh:path cacontology-stranger:specializedUnits ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -560,57 +560,57 @@ icac-stranger:RescueOperationShape rdf:type sh:NodeShape ;
 # OBJECT PROPERTY SHAPES
 # =============================================================================
 
-icac-stranger:InvolvesAbductorShape rdf:type sh:PropertyShape ;
-    sh:path icac-stranger:involvesAbductor ;
+cacontology-stranger:InvolvesAbductorShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-stranger:involvesAbductor ;
     sh:name "involves abductor" ;
     sh:description "Links abduction to abductor profile" ;
-    sh:class icac-stranger:AbductorProfile ;
+    sh:class cacontology-stranger:AbductorProfile ;
     sh:minCount 1 ;
     sh:maxCount 1 .
 
-icac-stranger:UsesMethodShape rdf:type sh:PropertyShape ;
-    sh:path icac-stranger:usesMethod ;
+cacontology-stranger:UsesMethodShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-stranger:usesMethod ;
     sh:name "uses method" ;
     sh:description "Links abduction to method used" ;
-    sh:class icac-stranger:AbductionMethod ;
+    sh:class cacontology-stranger:AbductionMethod ;
     sh:minCount 1 ;
     sh:maxCount 1 .
 
-icac-stranger:TriggersSearchShape rdf:type sh:PropertyShape ;
-    sh:path icac-stranger:triggersSearch ;
+cacontology-stranger:TriggersSearchShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-stranger:triggersSearch ;
     sh:name "triggers search" ;
     sh:description "Links abduction to search operations" ;
-    sh:class icac-stranger:SearchOperation ;
+    sh:class cacontology-stranger:SearchOperation ;
     sh:minCount 0 .
 
-icac-stranger:ActivatesAlertShape rdf:type sh:PropertyShape ;
-    sh:path icac-stranger:activatesAlert ;
+cacontology-stranger:ActivatesAlertShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-stranger:activatesAlert ;
     sh:name "activates alert" ;
     sh:description "Links abduction to Amber Alert" ;
-    sh:class icac-stranger:AmberAlert ;
+    sh:class cacontology-stranger:AmberAlert ;
     sh:minCount 0 ;
     sh:maxCount 1 .
 
-icac-stranger:ResultsInRecoveryShape rdf:type sh:PropertyShape ;
-    sh:path icac-stranger:resultsInRecovery ;
+cacontology-stranger:ResultsInRecoveryShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-stranger:resultsInRecovery ;
     sh:name "results in recovery" ;
     sh:description "Links abduction to victim recovery" ;
-    sh:class icac-stranger:VictimRecovery ;
+    sh:class cacontology-stranger:VictimRecovery ;
     sh:minCount 0 ;
     sh:maxCount 1 .
 
-icac-stranger:MeetsAlertCriteriaShape rdf:type sh:PropertyShape ;
-    sh:path icac-stranger:meetsAlertCriteria ;
+cacontology-stranger:MeetsAlertCriteriaShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-stranger:meetsAlertCriteria ;
     sh:name "meets alert criteria" ;
     sh:description "Links Amber Alert to criteria" ;
-    sh:class icac-stranger:AlertCriteria ;
+    sh:class cacontology-stranger:AlertCriteria ;
     sh:minCount 1 .
 
-icac-stranger:RequiresRescueShape rdf:type sh:PropertyShape ;
-    sh:path icac-stranger:requiresRescue ;
+cacontology-stranger:RequiresRescueShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-stranger:requiresRescue ;
     sh:name "requires rescue" ;
     sh:description "Links recovery to rescue operation" ;
-    sh:class icac-stranger:RescueOperation ;
+    sh:class cacontology-stranger:RescueOperation ;
     sh:minCount 0 ;
     sh:maxCount 1 .
 
@@ -618,8 +618,8 @@ icac-stranger:RequiresRescueShape rdf:type sh:PropertyShape ;
 # CROSS-REFERENCE VALIDATION SHAPES
 # =============================================================================
 
-icac-stranger:AbductionCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-stranger:StrangerAbduction ;
+cacontology-stranger:AbductionCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-stranger:StrangerAbduction ;
     rdfs:label "Abduction Cross Reference Shape"@en ;
     rdfs:comment "Validates cross-references between abduction and related entities."@en ;
     sh:sparql [
@@ -627,17 +627,17 @@ icac-stranger:AbductionCrossReferenceShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-stranger:StrangerAbduction .
+                $this a cacontology-stranger:StrangerAbduction .
                 FILTER NOT EXISTS {
-                    $this icac-stranger:involvesAbductor ?abductor ;
-                          icac-stranger:usesMethod ?method .
+                    $this cacontology-stranger:involvesAbductor ?abductor ;
+                          cacontology-stranger:usesMethod ?method .
                 }
             }
         """
     ] .
 
-icac-stranger:AmberAlertValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-stranger:AmberAlert ;
+cacontology-stranger:AmberAlertValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-stranger:AmberAlert ;
     rdfs:label "Amber Alert Validation Shape"@en ;
     rdfs:comment "Validates Amber Alert activation criteria."@en ;
     sh:sparql [
@@ -645,15 +645,15 @@ icac-stranger:AmberAlertValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-stranger:AmberAlert ;
-                      icac-stranger:meetsAlertCriteria ?criteria .
-                ?criteria icac-stranger:criteriaMet false .
+                $this a cacontology-stranger:AmberAlert ;
+                      cacontology-stranger:meetsAlertCriteria ?criteria .
+                ?criteria cacontology-stranger:criteriaMet false .
             }
         """
     ] .
 
-icac-stranger:SearchEffectivenessShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-stranger:SearchOperation ;
+cacontology-stranger:SearchEffectivenessShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-stranger:SearchOperation ;
     rdfs:label "Search Effectiveness Shape"@en ;
     rdfs:comment "Validates search operation resource allocation."@en ;
     sh:sparql [
@@ -661,8 +661,8 @@ icac-stranger:SearchEffectivenessShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-stranger:searchRadius ?radius ;
-                      icac-stranger:personnelCount ?personnel .
+                $this cacontology-stranger:searchRadius ?radius ;
+                      cacontology-stranger:personnelCount ?personnel .
                 FILTER (?radius > 50.0 && ?personnel < 20)
             }
         """
@@ -672,8 +672,8 @@ icac-stranger:SearchEffectivenessShape rdf:type sh:NodeShape ;
 # TEMPORAL VALIDATION SHAPES
 # =============================================================================
 
-icac-stranger:TemporalValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-stranger:StrangerAbduction ;
+cacontology-stranger:TemporalValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-stranger:StrangerAbduction ;
     rdfs:label "Temporal Validation Shape"@en ;
     rdfs:comment "Validates temporal consistency in stranger abductions."@en ;
     sh:sparql [
@@ -681,15 +681,15 @@ icac-stranger:TemporalValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-stranger:abductionTime ?abduction ;
-                      icac-stranger:reportedTime ?reported .
+                $this cacontology-stranger:abductionTime ?abduction ;
+                      cacontology-stranger:reportedTime ?reported .
                 FILTER (?abduction > ?reported)
             }
         """
     ] .
 
-icac-stranger:SearchTimingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-stranger:SearchOperation ;
+cacontology-stranger:SearchTimingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-stranger:SearchOperation ;
     rdfs:label "Search Timing Shape"@en ;
     rdfs:comment "Validates search operation timing."@en ;
     sh:sparql [
@@ -704,8 +704,8 @@ icac-stranger:SearchTimingShape rdf:type sh:NodeShape ;
         """
     ] .
 
-icac-stranger:AmberAlertTimingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-stranger:AmberAlert ;
+cacontology-stranger:AmberAlertTimingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-stranger:AmberAlert ;
     rdfs:label "Amber Alert Timing Shape"@en ;
     rdfs:comment "Validates Amber Alert timing consistency."@en ;
     sh:sparql [
@@ -713,15 +713,15 @@ icac-stranger:AmberAlertTimingShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-stranger:activationTime ?activation ;
-                      icac-stranger:deactivationTime ?deactivation .
+                $this cacontology-stranger:activationTime ?activation ;
+                      cacontology-stranger:deactivationTime ?deactivation .
                 FILTER (?activation >= ?deactivation)
             }
         """
     ] .
 
-icac-stranger:RecoveryTimingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-stranger:VictimRecovery ;
+cacontology-stranger:RecoveryTimingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-stranger:VictimRecovery ;
     rdfs:label "Recovery Timing Shape"@en ;
     rdfs:comment "Validates victim recovery timing consistency."@en ;
     sh:sparql [
@@ -729,9 +729,9 @@ icac-stranger:RecoveryTimingShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                ?abduction icac-stranger:resultsInRecovery $this ;
-                          icac-stranger:abductionTime ?abductionTime .
-                $this icac-stranger:recoveryTime ?recoveryTime .
+                ?abduction cacontology-stranger:resultsInRecovery $this ;
+                          cacontology-stranger:abductionTime ?abductionTime .
+                $this cacontology-stranger:recoveryTime ?recoveryTime .
                 FILTER (?recoveryTime <= ?abductionTime)
             }
         """
@@ -741,8 +741,8 @@ icac-stranger:RecoveryTimingShape rdf:type sh:NodeShape ;
 # DATA QUALITY SHAPES
 # =============================================================================
 
-icac-stranger:DataQualityShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-stranger:StrangerAbduction ;
+cacontology-stranger:DataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-stranger:StrangerAbduction ;
     rdfs:label "Data Quality Shape"@en ;
     rdfs:comment "Validates data quality for stranger abductions."@en ;
     sh:property [

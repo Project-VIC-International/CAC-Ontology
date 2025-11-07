@@ -32,11 +32,11 @@
 # =============================================================================
 
 # Detection Tool gUFO Object Validation
-icac-detection:DetectionToolGUFOShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-detection:ContentHashingTool ,
-                   icac-detection:MachineLearningDetectionTool ,
-                   icac-detection:DatabaseMatchingTool ,
-                   icac-detection:ManualReviewTool ;
+cacontology-detection:DetectionToolGUFOShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:ContentHashingTool ,
+                   cacontology-detection:MachineLearningDetectionTool ,
+                   cacontology-detection:DatabaseMatchingTool ,
+                   cacontology-detection:ManualReviewTool ;
     rdfs:label "gUFO Detection Tool Shape"@en ;
     rdfs:comment "Validates detection tools as gUFO Objects with foundational constraints."@en ;
     sh:property [
@@ -56,8 +56,8 @@ icac-detection:DetectionToolGUFOShape rdf:type sh:NodeShape ;
     ] .
 
 # Content Hashing Tool Shape with gUFO Object validation
-icac-detection:ContentHashingToolGUFOShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-detection:ContentHashingTool ;
+cacontology-detection:ContentHashingToolGUFOShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:ContentHashingTool ;
     rdfs:label "gUFO Content Hashing Tool Shape"@en ;
     rdfs:comment "Validates content hashing tool instances with gUFO foundational constraints."@en ;
     sh:property [
@@ -76,8 +76,8 @@ icac-detection:ContentHashingToolGUFOShape rdf:type sh:NodeShape ;
     ] .
 
 # Machine Learning Detection Tool Shape with gUFO Object validation
-icac-detection:MachineLearningDetectionToolGUFOShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-detection:MachineLearningDetectionTool ;
+cacontology-detection:MachineLearningDetectionToolGUFOShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:MachineLearningDetectionTool ;
     rdfs:label "gUFO Machine Learning Detection Tool Shape"@en ;
     rdfs:comment "Validates machine learning detection tool instances with gUFO foundational constraints."@en ;
     sh:property [
@@ -87,7 +87,7 @@ icac-detection:MachineLearningDetectionToolGUFOShape rdf:type sh:NodeShape ;
         sh:message "ML detection tool must be typed as gUFO Object"@en
     ] ;
     sh:property [
-        sh:path icac-detection:modelVersion ;
+        sh:path cacontology-detection:modelVersion ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -96,7 +96,7 @@ icac-detection:MachineLearningDetectionToolGUFOShape rdf:type sh:NodeShape ;
         sh:message "Model version should be 1-50 characters when specified"@en
     ] ;
     sh:property [
-        sh:path icac-detection:detectionThreshold ;
+        sh:path cacontology-detection:detectionThreshold ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -110,12 +110,12 @@ icac-detection:MachineLearningDetectionToolGUFOShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # Detection Action gUFO Event Validation
-icac-detection:DetectionActionGUFOShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-detection:ContentHashingAction ,
-                   icac-detection:AutomatedDetectionAction ,
-                   icac-detection:ManualClassificationAction ,
-                   icac-detection:DatabaseMatchAction ,
-                   icac-detection:FalsePositiveAnalysisAction ;
+cacontology-detection:DetectionActionGUFOShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:ContentHashingAction ,
+                   cacontology-detection:AutomatedDetectionAction ,
+                   cacontology-detection:ManualClassificationAction ,
+                   cacontology-detection:DatabaseMatchAction ,
+                   cacontology-detection:FalsePositiveAnalysisAction ;
     rdfs:label "gUFO Detection Action Shape"@en ;
     rdfs:comment "Validates detection actions as gUFO Events with temporal boundaries."@en ;
     sh:property [
@@ -125,13 +125,13 @@ icac-detection:DetectionActionGUFOShape rdf:type sh:NodeShape ;
         sh:message "Detection action must be typed as gUFO Event"@en
     ] ;
     sh:property [
-        sh:path icac-detection:hasDetectionBeginPoint ;
+        sh:path cacontology-detection:hasDetectionBeginPoint ;
         sh:datatype xsd:dateTimeStamp ;
         sh:maxCount 1 ;
         sh:message "Detection action can have at most one begin point"@en
     ] ;
     sh:property [
-        sh:path icac-detection:hasDetectionEndPoint ;
+        sh:path cacontology-detection:hasDetectionEndPoint ;
         sh:datatype xsd:dateTimeStamp ;
         sh:maxCount 1 ;
         sh:message "Detection action can have at most one end point"@en
@@ -148,16 +148,16 @@ icac-detection:DetectionActionGUFOShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT ?this
             WHERE {
-                ?this icac-detection:hasDetectionBeginPoint ?begin ;
-                      icac-detection:hasDetectionEndPoint ?end .
+                ?this cacontology-detection:hasDetectionBeginPoint ?begin ;
+                      cacontology-detection:hasDetectionEndPoint ?end .
                 FILTER (?begin >= ?end)
             }
         """
     ] .
 
 # Content Hashing Action Shape with gUFO Event validation
-icac-detection:ContentHashingActionGUFOShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-detection:ContentHashingAction ;
+cacontology-detection:ContentHashingActionGUFOShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:ContentHashingAction ;
     rdfs:label "gUFO Content Hashing Action Shape"@en ;
     rdfs:comment "Validates content hashing action instances with gUFO Event constraints."@en ;
     sh:property [
@@ -175,15 +175,15 @@ icac-detection:ContentHashingActionGUFOShape rdf:type sh:NodeShape ;
     ] ;
     sh:property [
         sh:path uco-action:instrument ;
-        sh:class icac-detection:ContentHashingTool ;
+        sh:class cacontology-detection:ContentHashingTool ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Content hashing action must specify the hashing tool used"@en
     ] .
 
 # Automated Detection Action Shape with gUFO Event validation
-icac-detection:AutomatedDetectionActionGUFOShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-detection:AutomatedDetectionAction ;
+cacontology-detection:AutomatedDetectionActionGUFOShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:AutomatedDetectionAction ;
     rdfs:label "gUFO Automated Detection Action Shape"@en ;
     rdfs:comment "Validates automated detection action instances with gUFO Event constraints."@en ;
     sh:property [
@@ -201,13 +201,13 @@ icac-detection:AutomatedDetectionActionGUFOShape rdf:type sh:NodeShape ;
     ] ;
     sh:property [
         sh:path uco-action:instrument ;
-        sh:class icac-detection:MachineLearningDetectionTool ;
+        sh:class cacontology-detection:MachineLearningDetectionTool ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Automated detection action must specify the ML tool used"@en
     ] ;
     sh:property [
-        sh:path icac-detection:confidenceScore ;
+        sh:path cacontology-detection:confidenceScore ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -217,8 +217,8 @@ icac-detection:AutomatedDetectionActionGUFOShape rdf:type sh:NodeShape ;
     ] .
 
 # Manual Classification Action Shape with gUFO Event validation
-icac-detection:ManualClassificationActionGUFOShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-detection:ManualClassificationAction ;
+cacontology-detection:ManualClassificationActionGUFOShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:ManualClassificationAction ;
     rdfs:label "gUFO Manual Classification Action Shape"@en ;
     rdfs:comment "Validates manual classification action instances with gUFO Event constraints."@en ;
     sh:property [
@@ -242,7 +242,7 @@ icac-detection:ManualClassificationActionGUFOShape rdf:type sh:NodeShape ;
         sh:message "Manual classification action must specify the person performing the review"@en
     ] ;
     sh:property [
-        sh:path icac-detection:reviewDecision ;
+        sh:path cacontology-detection:reviewDecision ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -255,12 +255,12 @@ icac-detection:ManualClassificationActionGUFOShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # Detection Phase gUFO Phase Validation
-icac-detection:DetectionPhaseGUFOShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-detection:InitialDetectionPhase ,
-                   icac-detection:HashComparisonPhase ,
-                   icac-detection:ManualReviewPhase ,
-                   icac-detection:ValidationPhase ,
-                   icac-detection:ReportingPhase ;
+cacontology-detection:DetectionPhaseGUFOShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:InitialDetectionPhase ,
+                   cacontology-detection:HashComparisonPhase ,
+                   cacontology-detection:ManualReviewPhase ,
+                   cacontology-detection:ValidationPhase ,
+                   cacontology-detection:ReportingPhase ;
     rdfs:label "gUFO Detection Phase Shape"@en ;
     rdfs:comment "Validates detection phases as anti-rigid gUFO phases."@en ;
     sh:property [
@@ -270,13 +270,13 @@ icac-detection:DetectionPhaseGUFOShape rdf:type sh:NodeShape ;
         sh:message "Detection phase must be typed as gUFO Phase (anti-rigid sortal)"@en
     ] ;
     sh:property [
-        sh:path icac-detection:hasPhaseBeginPoint ;
+        sh:path cacontology-detection:hasPhaseBeginPoint ;
         sh:datatype xsd:dateTimeStamp ;
         sh:maxCount 1 ;
         sh:message "Detection phase can have at most one begin point"@en
     ] ;
     sh:property [
-        sh:path icac-detection:hasPhaseEndPoint ;
+        sh:path cacontology-detection:hasPhaseEndPoint ;
         sh:datatype xsd:dateTimeStamp ;
         sh:maxCount 1 ;
         sh:message "Detection phase can have at most one end point"@en
@@ -293,15 +293,15 @@ icac-detection:DetectionPhaseGUFOShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT ?this
             WHERE {
-                ?this icac-detection:hasPhaseBeginPoint ?begin ;
-                      icac-detection:hasPhaseEndPoint ?end .
+                ?this cacontology-detection:hasPhaseBeginPoint ?begin ;
+                      cacontology-detection:hasPhaseEndPoint ?end .
                 FILTER (?begin >= ?end)
             }
         """
     ] .
 
 # Detection Phase Sequence Validation
-icac-detection:DetectionPhaseSequenceShape rdf:type sh:NodeShape ;
+cacontology-detection:DetectionPhaseSequenceShape rdf:type sh:NodeShape ;
     sh:targetClass gufo:Phase ;
     rdfs:label "Detection Phase Sequence Shape"@en ;
     rdfs:comment "Validates proper sequencing of detection phases."@en ;
@@ -316,10 +316,10 @@ icac-detection:DetectionPhaseSequenceShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT ?this
             WHERE {
-                ?this a icac-detection:ManualReviewPhase ;
-                      icac-detection:hasPhaseBeginPoint ?manualStart .
-                ?initialPhase a icac-detection:InitialDetectionPhase ;
-                             icac-detection:hasPhaseEndPoint ?initialEnd .
+                ?this a cacontology-detection:ManualReviewPhase ;
+                      cacontology-detection:hasPhaseBeginPoint ?manualStart .
+                ?initialPhase a cacontology-detection:InitialDetectionPhase ;
+                             cacontology-detection:hasPhaseEndPoint ?initialEnd .
                 FILTER (?manualStart < ?initialEnd)
             }
         """
@@ -330,11 +330,11 @@ icac-detection:DetectionPhaseSequenceShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # Detection Role gUFO Role Validation
-icac-detection:DetectionRoleGUFOShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-detection:ContentAnalystRole ,
-                   icac-detection:HashAnalystRole ,
-                   icac-detection:MachineLearningSpecialistRole ,
-                   icac-detection:QualityAssuranceAnalystRole ;
+cacontology-detection:DetectionRoleGUFOShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:ContentAnalystRole ,
+                   cacontology-detection:HashAnalystRole ,
+                   cacontology-detection:MachineLearningSpecialistRole ,
+                   cacontology-detection:QualityAssuranceAnalystRole ;
     rdfs:label "gUFO Detection Role Shape"@en ;
     rdfs:comment "Validates detection roles as anti-rigid gUFO roles."@en ;
     sh:property [
@@ -344,13 +344,13 @@ icac-detection:DetectionRoleGUFOShape rdf:type sh:NodeShape ;
         sh:message "Detection role must be typed as gUFO Role (anti-rigid sortal)"@en
     ] ;
     sh:property [
-        sh:path icac-detection:hasRoleBeginPoint ;
+        sh:path cacontology-detection:hasRoleBeginPoint ;
         sh:datatype xsd:dateTimeStamp ;
         sh:maxCount 1 ;
         sh:message "Detection role can have at most one begin point"@en
     ] ;
     sh:property [
-        sh:path icac-detection:hasRoleEndPoint ;
+        sh:path cacontology-detection:hasRoleEndPoint ;
         sh:datatype xsd:dateTimeStamp ;
         sh:maxCount 1 ;
         sh:message "Detection role can have at most one end point"@en
@@ -367,8 +367,8 @@ icac-detection:DetectionRoleGUFOShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT ?this
             WHERE {
-                ?this icac-detection:hasRoleBeginPoint ?begin ;
-                      icac-detection:hasRoleEndPoint ?end .
+                ?this cacontology-detection:hasRoleBeginPoint ?begin ;
+                      cacontology-detection:hasRoleEndPoint ?end .
                 FILTER (?begin >= ?end)
             }
         """
@@ -379,10 +379,10 @@ icac-detection:DetectionRoleGUFOShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # Detection Situation gUFO Situation Validation
-icac-detection:DetectionSituationGUFOShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-detection:MassContentAnalysisSituation ,
-                   icac-detection:CrossPlatformDetectionSituation ,
-                   icac-detection:FalsePositiveManagementSituation ;
+cacontology-detection:DetectionSituationGUFOShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:MassContentAnalysisSituation ,
+                   cacontology-detection:CrossPlatformDetectionSituation ,
+                   cacontology-detection:FalsePositiveManagementSituation ;
     rdfs:label "gUFO Detection Situation Shape"@en ;
     rdfs:comment "Validates detection situations with gUFO constraints."@en ;
     sh:property [
@@ -393,8 +393,8 @@ icac-detection:DetectionSituationGUFOShape rdf:type sh:NodeShape ;
     ] .
 
 # Mass Content Analysis Situation Validation
-icac-detection:MassContentAnalysisSituationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-detection:MassContentAnalysisSituation ;
+cacontology-detection:MassContentAnalysisSituationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:MassContentAnalysisSituation ;
     rdfs:label "Mass Content Analysis Situation Shape"@en ;
     rdfs:comment "Validates mass content analysis situations."@en ;
     sh:sparql [
@@ -411,12 +411,12 @@ icac-detection:MassContentAnalysisSituationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT ?this
             WHERE {
-                ?this a icac-detection:MassContentAnalysisSituation .
+                ?this a cacontology-detection:MassContentAnalysisSituation .
                 {
                     SELECT ?this (COUNT(?action) as ?actionCount)
                     WHERE {
                         ?action gufo:occursInSituation ?this .
-                        ?action a icac-detection:AutomatedDetectionAction .
+                        ?action a cacontology-detection:AutomatedDetectionAction .
                     }
                     GROUP BY ?this
                 }
@@ -430,9 +430,9 @@ icac-detection:MassContentAnalysisSituationShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # Hash Artifact gUFO Object Validation
-icac-detection:HashArtifactGUFOShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-detection:PhotoDNAHash ,
-                   icac-detection:PerceptualHash ;
+cacontology-detection:HashArtifactGUFOShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:PhotoDNAHash ,
+                   cacontology-detection:PerceptualHash ;
     rdfs:label "gUFO Hash Artifact Shape"@en ;
     rdfs:comment "Validates hash artifacts as gUFO Objects."@en ;
     sh:property [
@@ -443,8 +443,8 @@ icac-detection:HashArtifactGUFOShape rdf:type sh:NodeShape ;
     ] .
 
 # PhotoDNA Hash Shape with gUFO Object validation
-icac-detection:PhotoDNAHashGUFOShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-detection:PhotoDNAHash ;
+cacontology-detection:PhotoDNAHashGUFOShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:PhotoDNAHash ;
     rdfs:label "gUFO PhotoDNA Hash Shape"@en ;
     rdfs:comment "Validates PhotoDNA hash instances with gUFO foundational constraints."@en ;
     sh:property [
@@ -454,7 +454,7 @@ icac-detection:PhotoDNAHashGUFOShape rdf:type sh:NodeShape ;
         sh:message "PhotoDNA hash must be typed as gUFO Object"@en
     ] ;
     sh:property [
-        sh:path icac-detection:photoDNAValue ;
+        sh:path cacontology-detection:photoDNAValue ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -465,8 +465,8 @@ icac-detection:PhotoDNAHashGUFOShape rdf:type sh:NodeShape ;
     ] .
 
 # Perceptual Hash Shape with gUFO Object validation
-icac-detection:PerceptualHashGUFOShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-detection:PerceptualHash ;
+cacontology-detection:PerceptualHashGUFOShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:PerceptualHash ;
     rdfs:label "gUFO Perceptual Hash Shape"@en ;
     rdfs:comment "Validates perceptual hash instances with gUFO foundational constraints."@en ;
     sh:property [
@@ -476,7 +476,7 @@ icac-detection:PerceptualHashGUFOShape rdf:type sh:NodeShape ;
         sh:message "Perceptual hash must be typed as gUFO Object"@en
     ] ;
     sh:property [
-        sh:path icac-detection:perceptualHashValue ;
+        sh:path cacontology-detection:perceptualHashValue ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -486,7 +486,7 @@ icac-detection:PerceptualHashGUFOShape rdf:type sh:NodeShape ;
         sh:message "Perceptual hash value must be a hexadecimal string (8-128 characters)"@en
     ] ;
     sh:property [
-        sh:path icac-detection:hashAlgorithm ;
+        sh:path cacontology-detection:hashAlgorithm ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -499,9 +499,9 @@ icac-detection:PerceptualHashGUFOShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # Detection Result gUFO Object Validation
-icac-detection:DetectionResultGUFOShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-detection:DetectionResult ,
-                   icac-detection:ClassificationResult ;
+cacontology-detection:DetectionResultGUFOShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:DetectionResult ,
+                   cacontology-detection:ClassificationResult ;
     rdfs:label "gUFO Detection Result Shape"@en ;
     rdfs:comment "Validates detection results as gUFO Objects."@en ;
     sh:property [
@@ -512,8 +512,8 @@ icac-detection:DetectionResultGUFOShape rdf:type sh:NodeShape ;
     ] .
 
 # Detection Result Shape with gUFO Object validation
-icac-detection:DetectionResultObjectShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-detection:DetectionResult ;
+cacontology-detection:DetectionResultObjectShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:DetectionResult ;
     rdfs:label "Detection Result Object Shape"@en ;
     rdfs:comment "Validates detection result instances with gUFO Object constraints."@en ;
     sh:property [
@@ -523,7 +523,7 @@ icac-detection:DetectionResultObjectShape rdf:type sh:NodeShape ;
         sh:message "Detection result must be typed as gUFO Object"@en
     ] ;
     sh:property [
-        sh:path icac-detection:confidenceScore ;
+        sh:path cacontology-detection:confidenceScore ;
         sh:datatype xsd:decimal ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -540,8 +540,8 @@ icac-detection:DetectionResultObjectShape rdf:type sh:NodeShape ;
     ] .
 
 # Classification Result Shape with gUFO Object validation
-icac-detection:ClassificationResultObjectShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-detection:ClassificationResult ;
+cacontology-detection:ClassificationResultObjectShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:ClassificationResult ;
     rdfs:label "Classification Result Object Shape"@en ;
     rdfs:comment "Validates classification result instances with gUFO Object constraints."@en ;
     sh:property [
@@ -558,7 +558,7 @@ icac-detection:ClassificationResultObjectShape rdf:type sh:NodeShape ;
         sh:message "Classification result must specify creation time"@en
     ] ;
     sh:property [
-        sh:path icac-detection:ageEstimate ;
+        sh:path cacontology-detection:ageEstimate ;
         sh:datatype xsd:integer ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -567,7 +567,7 @@ icac-detection:ClassificationResultObjectShape rdf:type sh:NodeShape ;
         sh:message "Age estimate must be between 0 and 25 years when specified"@en
     ] ;
     sh:property [
-        sh:path icac-detection:tannerStage ;
+        sh:path cacontology-detection:tannerStage ;
         sh:datatype xsd:integer ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -581,10 +581,10 @@ icac-detection:ClassificationResultObjectShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # Classification Scheme gUFO Object Validation
-icac-detection:ClassificationSchemeGUFOShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-detection:SARClassificationScheme ,
-                   icac-detection:COPINEClassificationScheme ,
-                   icac-detection:TannerScaleScheme ;
+cacontology-detection:ClassificationSchemeGUFOShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:SARClassificationScheme ,
+                   cacontology-detection:COPINEClassificationScheme ,
+                   cacontology-detection:TannerScaleScheme ;
     rdfs:label "gUFO Classification Scheme Shape"@en ;
     rdfs:comment "Validates classification schemes as gUFO Objects."@en ;
     sh:property [
@@ -595,12 +595,12 @@ icac-detection:ClassificationSchemeGUFOShape rdf:type sh:NodeShape ;
     ] .
 
 # SAR Classification Validation
-icac-detection:SARClassificationGUFOShape rdf:type sh:NodeShape ;
-    sh:targetNode icac-detection:sar-1 ,
-                  icac-detection:sar-2 ,
-                  icac-detection:sar-3 ,
-                  icac-detection:sar-4 ,
-                  icac-detection:sar-5 ;
+cacontology-detection:SARClassificationGUFOShape rdf:type sh:NodeShape ;
+    sh:targetNode cacontology-detection:sar-1 ,
+                  cacontology-detection:sar-2 ,
+                  cacontology-detection:sar-3 ,
+                  cacontology-detection:sar-4 ,
+                  cacontology-detection:sar-5 ;
     rdfs:label "SAR Classification gUFO Shape"@en ;
     rdfs:comment "Validates SAR classification concept instances with gUFO enhancements."@en ;
     sh:property [
@@ -623,19 +623,19 @@ icac-detection:SARClassificationGUFOShape rdf:type sh:NodeShape ;
     ] ;
     sh:property [
         sh:path skos:inScheme ;
-        sh:hasValue icac-detection:SARClassificationScheme ;
+        sh:hasValue cacontology-detection:SARClassificationScheme ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "SAR classification must be in the SAR Classification Scheme"@en
     ] .
 
 # COPINE Classification Validation
-icac-detection:COPINEClassificationGUFOShape rdf:type sh:NodeShape ;
-    sh:targetNode icac-detection:copine-1 ,
-                  icac-detection:copine-4 ,
-                  icac-detection:copine-7 ,
-                  icac-detection:copine-8 ,
-                  icac-detection:copine-10 ;
+cacontology-detection:COPINEClassificationGUFOShape rdf:type sh:NodeShape ;
+    sh:targetNode cacontology-detection:copine-1 ,
+                  cacontology-detection:copine-4 ,
+                  cacontology-detection:copine-7 ,
+                  cacontology-detection:copine-8 ,
+                  cacontology-detection:copine-10 ;
     rdfs:label "COPINE Classification gUFO Shape"@en ;
     rdfs:comment "Validates COPINE classification concept instances with gUFO enhancements."@en ;
     sh:property [
@@ -658,7 +658,7 @@ icac-detection:COPINEClassificationGUFOShape rdf:type sh:NodeShape ;
     ] ;
     sh:property [
         sh:path skos:inScheme ;
-        sh:hasValue icac-detection:COPINEClassificationScheme ;
+        sh:hasValue cacontology-detection:COPINEClassificationScheme ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "COPINE classification must be in the COPINE Classification Scheme"@en
@@ -669,8 +669,8 @@ icac-detection:COPINEClassificationGUFOShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # gUFO Type Consistency Shape for Detection Domain
-icac-detection:DetectionFoundationalTypeShape rdf:type sh:NodeShape ;
-    sh:targetNode icac-detection:ContentHashingTool ;
+cacontology-detection:DetectionFoundationalTypeShape rdf:type sh:NodeShape ;
+    sh:targetNode cacontology-detection:ContentHashingTool ;
     rdfs:label "Detection gUFO Foundational Type Consistency Shape"@en ;
     rdfs:comment "Validates proper gUFO foundational typing for detection entities."@en ;
     sh:sparql [
@@ -687,19 +687,19 @@ icac-detection:DetectionFoundationalTypeShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT ?entity
             WHERE {
-                ?entity a icac-detection:ContentHashingTool .
+                ?entity a cacontology-detection:ContentHashingTool .
                 FILTER NOT EXISTS { ?entity a gufo:Object . }
             } UNION {
-                ?entity a icac-detection:AutomatedDetectionAction .
+                ?entity a cacontology-detection:AutomatedDetectionAction .
                 FILTER NOT EXISTS { ?entity a gufo:Event . }
             } UNION {
-                ?entity a icac-detection:ContentAnalystRole .
+                ?entity a cacontology-detection:ContentAnalystRole .
                 FILTER NOT EXISTS { ?entity a gufo:Role . }
             } UNION {
-                ?entity a icac-detection:InitialDetectionPhase .
+                ?entity a cacontology-detection:InitialDetectionPhase .
                 FILTER NOT EXISTS { ?entity a gufo:Phase . }
             } UNION {
-                ?entity a icac-detection:DetectionResult .
+                ?entity a cacontology-detection:DetectionResult .
                 FILTER NOT EXISTS { ?entity a gufo:Object . }
             }
         """
@@ -710,8 +710,8 @@ icac-detection:DetectionFoundationalTypeShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # Detection Temporal Consistency Shape
-icac-detection:DetectionTemporalConsistencyShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-detection:AutomatedDetectionAction ;
+cacontology-detection:DetectionTemporalConsistencyShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:AutomatedDetectionAction ;
     rdfs:label "Detection Temporal Consistency Shape"@en ;
     rdfs:comment "Validates temporal consistency across detection events and phases."@en ;
     sh:sparql [
@@ -728,10 +728,10 @@ icac-detection:DetectionTemporalConsistencyShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT ?this
             WHERE {
-                ?this icac-detection:hasDetectionBeginPoint ?detectionBegin .
-                ?phase a icac-detection:InitialDetectionPhase ;
-                       icac-detection:hasPhaseBeginPoint ?phaseBegin ;
-                       icac-detection:hasPhaseEndPoint ?phaseEnd .
+                ?this cacontology-detection:hasDetectionBeginPoint ?detectionBegin .
+                ?phase a cacontology-detection:InitialDetectionPhase ;
+                       cacontology-detection:hasPhaseBeginPoint ?phaseBegin ;
+                       cacontology-detection:hasPhaseEndPoint ?phaseEnd .
                 ?this gufo:occursInPhase ?phase .
                 FILTER (?detectionBegin < ?phaseBegin || ?detectionBegin > ?phaseEnd)
             }
@@ -739,8 +739,8 @@ icac-detection:DetectionTemporalConsistencyShape rdf:type sh:NodeShape ;
     ] .
 
 # Detection Workflow Temporal Validation
-icac-detection:DetectionWorkflowTemporalShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-detection:ManualClassificationAction ;
+cacontology-detection:DetectionWorkflowTemporalShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:ManualClassificationAction ;
     rdfs:label "Detection Workflow Temporal Shape"@en ;
     rdfs:comment "Validates temporal workflow progression in detection processes."@en ;
     sh:sparql [
@@ -754,9 +754,9 @@ icac-detection:DetectionWorkflowTemporalShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT ?this
             WHERE {
-                ?this a icac-detection:ManualClassificationAction ;
+                ?this a cacontology-detection:ManualClassificationAction ;
                       uco-core:startTime ?manualTime .
-                ?autoDetection a icac-detection:AutomatedDetectionAction ;
+                ?autoDetection a cacontology-detection:AutomatedDetectionAction ;
                                uco-core:startTime ?autoTime ;
                                uco-action:object ?content .
                 ?this uco-action:object ?content .
@@ -770,8 +770,8 @@ icac-detection:DetectionWorkflowTemporalShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # Detection Action Result Cross Reference Shape
-icac-detection:DetectionActionResultCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-detection:AutomatedDetectionAction ;
+cacontology-detection:DetectionActionResultCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:AutomatedDetectionAction ;
     rdfs:label "Detection Action Result Cross Reference Shape"@en ;
     rdfs:comment "Validates that detection actions produce appropriate results."@en ;
     sh:sparql [
@@ -785,18 +785,18 @@ icac-detection:DetectionActionResultCrossReferenceShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT ?this
             WHERE {
-                ?this a icac-detection:AutomatedDetectionAction .
+                ?this a cacontology-detection:AutomatedDetectionAction .
                 FILTER NOT EXISTS {
                     ?this uco-action:result ?result .
-                    ?result a icac-detection:DetectionResult .
+                    ?result a cacontology-detection:DetectionResult .
                 }
             }
         """
     ] .
 
 # Hashing Action Result Cross Reference Shape
-icac-detection:HashingActionResultCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-detection:ContentHashingAction ;
+cacontology-detection:HashingActionResultCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:ContentHashingAction ;
     rdfs:label "Hashing Action Result Cross Reference Shape"@en ;
     rdfs:comment "Validates that hashing actions produce hash artifacts."@en ;
     sh:sparql [
@@ -810,13 +810,13 @@ icac-detection:HashingActionResultCrossReferenceShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT ?this
             WHERE {
-                ?this a icac-detection:ContentHashingAction .
+                ?this a cacontology-detection:ContentHashingAction .
                 FILTER NOT EXISTS {
                     ?this uco-action:result ?hash .
                     ?hash a ?hashType .
                     FILTER (?hashType IN (
-                        icac-detection:PhotoDNAHash,
-                        icac-detection:PerceptualHash,
+                        cacontology-detection:PhotoDNAHash,
+                        cacontology-detection:PerceptualHash,
                         uco-types:Hash
                     ))
                 }
@@ -825,8 +825,8 @@ icac-detection:HashingActionResultCrossReferenceShape rdf:type sh:NodeShape ;
     ] .
 
 # Classification Action Result Cross Reference Shape
-icac-detection:ClassificationActionResultCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-detection:ManualClassificationAction ;
+cacontology-detection:ClassificationActionResultCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:ManualClassificationAction ;
     rdfs:label "Classification Action Result Cross Reference Shape"@en ;
     rdfs:comment "Validates that classification actions produce classification results."@en ;
     sh:sparql [
@@ -840,18 +840,18 @@ icac-detection:ClassificationActionResultCrossReferenceShape rdf:type sh:NodeSha
         sh:select """
             SELECT ?this
             WHERE {
-                ?this a icac-detection:ManualClassificationAction .
+                ?this a cacontology-detection:ManualClassificationAction .
                 FILTER NOT EXISTS {
                     ?this uco-action:result ?result .
-                    ?result a icac-detection:ClassificationResult .
+                    ?result a cacontology-detection:ClassificationResult .
                 }
             }
         """
     ] .
 
 # Database Match Input Cross Reference Shape
-icac-detection:DatabaseMatchInputCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-detection:DatabaseMatchAction ;
+cacontology-detection:DatabaseMatchInputCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:DatabaseMatchAction ;
     rdfs:label "Database Match Input Cross Reference Shape"@en ;
     rdfs:comment "Validates that database match actions have hash inputs."@en ;
     sh:sparql [
@@ -865,13 +865,13 @@ icac-detection:DatabaseMatchInputCrossReferenceShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT ?this
             WHERE {
-                ?this a icac-detection:DatabaseMatchAction .
+                ?this a cacontology-detection:DatabaseMatchAction .
                 FILTER NOT EXISTS {
                     ?this uco-action:object ?hash .
                     ?hash a ?hashType .
                     FILTER (?hashType IN (
-                        icac-detection:PhotoDNAHash,
-                        icac-detection:PerceptualHash,
+                        cacontology-detection:PhotoDNAHash,
+                        cacontology-detection:PerceptualHash,
                         uco-types:Hash
                     ))
                 }
@@ -884,7 +884,7 @@ icac-detection:DatabaseMatchInputCrossReferenceShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # Detection Role Participation Shape
-icac-detection:DetectionRoleParticipationShape rdf:type sh:NodeShape ;
+cacontology-detection:DetectionRoleParticipationShape rdf:type sh:NodeShape ;
     sh:targetClass uco-identity:Person ;
     rdfs:label "Detection Role Participation Shape"@en ;
     rdfs:comment "Validates detection role participation constraints."@en ;
@@ -903,9 +903,9 @@ icac-detection:DetectionRoleParticipationShape rdf:type sh:NodeShape ;
             SELECT ?this
             WHERE {
                 ?this gufo:playsRole ?role .
-                ?role a icac-detection:ContentAnalystRole .
+                ?role a cacontology-detection:ContentAnalystRole .
                 FILTER NOT EXISTS {
-                    ?action a icac-detection:ManualClassificationAction ;
+                    ?action a cacontology-detection:ManualClassificationAction ;
                            uco-action:performer ?this .
                 }
             }
@@ -917,11 +917,11 @@ icac-detection:DetectionRoleParticipationShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # Detection Data Quality Shape
-icac-detection:DetectionDataQualityShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-detection:ContentHashingTool ,
-                   icac-detection:MachineLearningDetectionTool ,
-                   icac-detection:DatabaseMatchingTool ,
-                   icac-detection:ManualReviewTool ;
+cacontology-detection:DetectionDataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:ContentHashingTool ,
+                   cacontology-detection:MachineLearningDetectionTool ,
+                   cacontology-detection:DatabaseMatchingTool ,
+                   cacontology-detection:ManualReviewTool ;
     rdfs:label "Detection Data Quality Shape"@en ;
     rdfs:comment "Validates data quality for detection tool entities."@en ;
     sh:property [
@@ -944,9 +944,9 @@ icac-detection:DetectionDataQualityShape rdf:type sh:NodeShape ;
     ] .
 
 # Confidence Score Validation Shape
-icac-detection:ConfidenceScoreValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-detection:AutomatedDetectionAction ,
-                   icac-detection:DetectionResult ;
+cacontology-detection:ConfidenceScoreValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:AutomatedDetectionAction ,
+                   cacontology-detection:DetectionResult ;
     rdfs:label "Confidence Score Validation Shape"@en ;
     rdfs:comment "Validates confidence score consistency and reasonableness."@en ;
     sh:sparql [
@@ -960,17 +960,17 @@ icac-detection:ConfidenceScoreValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT ?this
             WHERE {
-                ?this icac-detection:confidenceScore ?score ;
-                      icac-detection:reviewDecision "false_positive" .
+                ?this cacontology-detection:confidenceScore ?score ;
+                      cacontology-detection:reviewDecision "false_positive" .
                 FILTER (?score > 0.8)
             }
         """
     ] .
 
 # Hash Format Validation Shape
-icac-detection:HashFormatValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-detection:PhotoDNAHash ,
-                   icac-detection:PerceptualHash ;
+cacontology-detection:HashFormatValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:PhotoDNAHash ,
+                   cacontology-detection:PerceptualHash ;
     rdfs:label "Hash Format Validation Shape"@en ;
     rdfs:comment "Validates hash format and consistency."@en ;
     sh:property [

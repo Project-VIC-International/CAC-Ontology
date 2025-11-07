@@ -14,12 +14,12 @@
 # VICTIM IMPACT ASSESSMENT SHAPES
 # =============================================================================
 
-icac-impact:VictimImpactAssessmentShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-impact:VictimImpactAssessment ;
+cacontology-impact:VictimImpactAssessmentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:VictimImpactAssessment ;
     rdfs:label "Victim Impact Assessment Shape"@en ;
     rdfs:comment "Validation shape for victim impact assessment instances."@en ;
     sh:property [
-        sh:path icac-impact:assessmentType ;
+        sh:path cacontology-impact:assessmentType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -27,7 +27,7 @@ icac-impact:VictimImpactAssessmentShape rdf:type sh:NodeShape ;
         sh:message "Victim impact assessment must specify assessment type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-impact:severityLevel ;
+        sh:path cacontology-impact:severityLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -35,14 +35,14 @@ icac-impact:VictimImpactAssessmentShape rdf:type sh:NodeShape ;
         sh:message "Victim impact assessment must specify severity level from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-impact:assessmentDate ;
+        sh:path cacontology-impact:assessmentDate ;
         sh:datatype xsd:dateTime ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Victim impact assessment must specify assessment date."@en
     ] ;
     sh:property [
-        sh:path icac-impact:assessorCredentials ;
+        sh:path cacontology-impact:assessorCredentials ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -50,7 +50,7 @@ icac-impact:VictimImpactAssessmentShape rdf:type sh:NodeShape ;
         sh:message "Victim impact assessment must specify assessor credentials from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-impact:assessmentDuration ;
+        sh:path cacontology-impact:assessmentDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -59,12 +59,12 @@ icac-impact:VictimImpactAssessmentShape rdf:type sh:NodeShape ;
         sh:message "Assessment duration must be between 0.5 and 8 hours."@en
     ] .
 
-icac-impact:ComprehensiveImpactAssessmentShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-impact:ComprehensiveImpactAssessment ;
+cacontology-impact:ComprehensiveImpactAssessmentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:ComprehensiveImpactAssessment ;
     rdfs:label "Comprehensive Impact Assessment Shape"@en ;
     rdfs:comment "Validation shape for comprehensive impact assessment instances."@en ;
     sh:property [
-        sh:path icac-impact:assessmentDomains ;
+        sh:path cacontology-impact:assessmentDomains ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -73,7 +73,7 @@ icac-impact:ComprehensiveImpactAssessmentShape rdf:type sh:NodeShape ;
         sh:message "Comprehensive assessment must cover between 3 and 10 assessment domains."@en
     ] ;
     sh:property [
-        sh:path icac-impact:standardizedInstruments ;
+        sh:path cacontology-impact:standardizedInstruments ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -84,12 +84,12 @@ icac-impact:ComprehensiveImpactAssessmentShape rdf:type sh:NodeShape ;
 # PSYCHOLOGICAL HARM SHAPES
 # =============================================================================
 
-icac-impact:PsychologicalHarmShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-impact:PsychologicalHarm ;
+cacontology-impact:PsychologicalHarmShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:PsychologicalHarm ;
     rdfs:label "Psychological Harm Shape"@en ;
     rdfs:comment "Validation shape for psychological harm instances."@en ;
     sh:property [
-        sh:path icac-impact:harmType ;
+        sh:path cacontology-impact:harmType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -97,7 +97,7 @@ icac-impact:PsychologicalHarmShape rdf:type sh:NodeShape ;
         sh:message "Psychological harm must specify harm type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-impact:severity ;
+        sh:path cacontology-impact:severity ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -105,7 +105,7 @@ icac-impact:PsychologicalHarmShape rdf:type sh:NodeShape ;
         sh:message "Psychological harm must specify severity from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-impact:onsetTiming ;
+        sh:path cacontology-impact:onsetTiming ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -113,7 +113,7 @@ icac-impact:PsychologicalHarmShape rdf:type sh:NodeShape ;
         sh:message "Onset timing must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-impact:duration ;
+        sh:path cacontology-impact:duration ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -122,12 +122,12 @@ icac-impact:PsychologicalHarmShape rdf:type sh:NodeShape ;
         sh:message "Harm duration must be between 0 and 20 years."@en
     ] .
 
-icac-impact:TraumaIndicatorShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-impact:TraumaIndicator ;
+cacontology-impact:TraumaIndicatorShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:TraumaIndicator ;
     rdfs:label "Trauma Indicator Shape"@en ;
     rdfs:comment "Validation shape for trauma indicator instances."@en ;
     sh:property [
-        sh:path icac-impact:indicatorType ;
+        sh:path cacontology-impact:indicatorType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -135,7 +135,7 @@ icac-impact:TraumaIndicatorShape rdf:type sh:NodeShape ;
         sh:message "Trauma indicator must specify indicator type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-impact:indicatorSeverity ;
+        sh:path cacontology-impact:indicatorSeverity ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -143,7 +143,7 @@ icac-impact:TraumaIndicatorShape rdf:type sh:NodeShape ;
         sh:message "Trauma indicator must specify severity from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-impact:frequency ;
+        sh:path cacontology-impact:frequency ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -151,12 +151,12 @@ icac-impact:TraumaIndicatorShape rdf:type sh:NodeShape ;
         sh:message "Indicator frequency must be from the allowed list."@en
     ] .
 
-icac-impact:ComplexTraumaShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-impact:ComplexTrauma ;
+cacontology-impact:ComplexTraumaShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:ComplexTrauma ;
     rdfs:label "Complex Trauma Shape"@en ;
     rdfs:comment "Validation shape for complex trauma instances."@en ;
     sh:property [
-        sh:path icac-impact:traumaType ;
+        sh:path cacontology-impact:traumaType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -164,14 +164,14 @@ icac-impact:ComplexTraumaShape rdf:type sh:NodeShape ;
         sh:message "Complex trauma must specify trauma type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-impact:developmentalImpact ;
+        sh:path cacontology-impact:developmentalImpact ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Complex trauma must specify if there is developmental impact."@en
     ] ;
     sh:property [
-        sh:path icac-impact:attachmentDisruption ;
+        sh:path cacontology-impact:attachmentDisruption ;
         sh:datatype xsd:boolean ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -182,12 +182,12 @@ icac-impact:ComplexTraumaShape rdf:type sh:NodeShape ;
 # THERAPEUTIC INTERVENTION SHAPES
 # =============================================================================
 
-icac-impact:TherapeuticInterventionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-impact:TherapeuticIntervention ;
+cacontology-impact:TherapeuticInterventionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:TherapeuticIntervention ;
     rdfs:label "Therapeutic Intervention Shape"@en ;
     rdfs:comment "Validation shape for therapeutic intervention instances."@en ;
     sh:property [
-        sh:path icac-impact:interventionType ;
+        sh:path cacontology-impact:interventionType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -195,7 +195,7 @@ icac-impact:TherapeuticInterventionShape rdf:type sh:NodeShape ;
         sh:message "Therapeutic intervention must specify intervention type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-impact:treatmentModality ;
+        sh:path cacontology-impact:treatmentModality ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -203,7 +203,7 @@ icac-impact:TherapeuticInterventionShape rdf:type sh:NodeShape ;
         sh:message "Therapeutic intervention must specify treatment modality from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-impact:sessionCount ;
+        sh:path cacontology-impact:sessionCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -212,7 +212,7 @@ icac-impact:TherapeuticInterventionShape rdf:type sh:NodeShape ;
         sh:message "Session count must be between 1 and 200 when specified."@en
     ] ;
     sh:property [
-        sh:path icac-impact:treatmentDuration ;
+        sh:path cacontology-impact:treatmentDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -235,12 +235,12 @@ icac-impact:TherapeuticInterventionShape rdf:type sh:NodeShape ;
         sh:message "Therapeutic intervention may have an end time."@en
     ] .
 
-icac-impact:TraumaTherapyShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-impact:TraumaTherapy ;
+cacontology-impact:TraumaTherapyShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:TraumaTherapy ;
     rdfs:label "Trauma Therapy Shape"@en ;
     rdfs:comment "Validation shape for trauma therapy instances."@en ;
     sh:property [
-        sh:path icac-impact:traumaFocused ;
+        sh:path cacontology-impact:traumaFocused ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -248,19 +248,19 @@ icac-impact:TraumaTherapyShape rdf:type sh:NodeShape ;
         sh:message "Trauma therapy must be trauma-focused."@en
     ] ;
     sh:property [
-        sh:path icac-impact:evidenceBased ;
+        sh:path cacontology-impact:evidenceBased ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Trauma therapy must specify if it is evidence-based."@en
     ] .
 
-icac-impact:SupportServiceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-impact:SupportService ;
+cacontology-impact:SupportServiceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:SupportService ;
     rdfs:label "Support Service Shape"@en ;
     rdfs:comment "Validation shape for support service instances."@en ;
     sh:property [
-        sh:path icac-impact:serviceType ;
+        sh:path cacontology-impact:serviceType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -268,7 +268,7 @@ icac-impact:SupportServiceShape rdf:type sh:NodeShape ;
         sh:message "Support service must specify service type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-impact:serviceProvider ;
+        sh:path cacontology-impact:serviceProvider ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -276,7 +276,7 @@ icac-impact:SupportServiceShape rdf:type sh:NodeShape ;
         sh:message "Support service must specify service provider from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-impact:serviceIntensity ;
+        sh:path cacontology-impact:serviceIntensity ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -288,12 +288,12 @@ icac-impact:SupportServiceShape rdf:type sh:NodeShape ;
 # RECOVERY PROCESS SHAPES
 # =============================================================================
 
-icac-impact:RecoveryProcessShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-impact:RecoveryProcess ;
+cacontology-impact:RecoveryProcessShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:RecoveryProcess ;
     rdfs:label "Recovery Process Shape"@en ;
     rdfs:comment "Validation shape for recovery process instances."@en ;
     sh:property [
-        sh:path icac-impact:recoveryStage ;
+        sh:path cacontology-impact:recoveryStage ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -301,7 +301,7 @@ icac-impact:RecoveryProcessShape rdf:type sh:NodeShape ;
         sh:message "Recovery process must specify recovery stage from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-impact:recoveryProgress ;
+        sh:path cacontology-impact:recoveryProgress ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -309,7 +309,7 @@ icac-impact:RecoveryProcessShape rdf:type sh:NodeShape ;
         sh:message "Recovery process must specify recovery progress from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-impact:timeInRecovery ;
+        sh:path cacontology-impact:timeInRecovery ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -318,7 +318,7 @@ icac-impact:RecoveryProcessShape rdf:type sh:NodeShape ;
         sh:message "Time in recovery must be between 0 and 10 years."@en
     ] ;
     sh:property [
-        sh:path icac-impact:recoveryMilestones ;
+        sh:path cacontology-impact:recoveryMilestones ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -327,12 +327,12 @@ icac-impact:RecoveryProcessShape rdf:type sh:NodeShape ;
         sh:message "Recovery milestones must be between 0 and 20."@en
     ] .
 
-icac-impact:ResilienceFactorShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-impact:ResilienceFactor ;
+cacontology-impact:ResilienceFactorShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:ResilienceFactor ;
     rdfs:label "Resilience Factor Shape"@en ;
     rdfs:comment "Validation shape for resilience factor instances."@en ;
     sh:property [
-        sh:path icac-impact:factorType ;
+        sh:path cacontology-impact:factorType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -340,7 +340,7 @@ icac-impact:ResilienceFactorShape rdf:type sh:NodeShape ;
         sh:message "Resilience factor must specify factor type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-impact:factorStrength ;
+        sh:path cacontology-impact:factorStrength ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -348,7 +348,7 @@ icac-impact:ResilienceFactorShape rdf:type sh:NodeShape ;
         sh:message "Resilience factor must specify factor strength from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-impact:protectiveValue ;
+        sh:path cacontology-impact:protectiveValue ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -361,12 +361,12 @@ icac-impact:ResilienceFactorShape rdf:type sh:NodeShape ;
 # LONG-TERM EFFECTS SHAPES
 # =============================================================================
 
-icac-impact:LongTermEffectShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-impact:LongTermEffect ;
+cacontology-impact:LongTermEffectShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:LongTermEffect ;
     rdfs:label "Long Term Effect Shape"@en ;
     rdfs:comment "Validation shape for long-term effect instances."@en ;
     sh:property [
-        sh:path icac-impact:effectType ;
+        sh:path cacontology-impact:effectType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -374,7 +374,7 @@ icac-impact:LongTermEffectShape rdf:type sh:NodeShape ;
         sh:message "Long-term effect must specify effect type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-impact:effectSeverity ;
+        sh:path cacontology-impact:effectSeverity ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -382,7 +382,7 @@ icac-impact:LongTermEffectShape rdf:type sh:NodeShape ;
         sh:message "Long-term effect must specify severity from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-impact:effectDuration ;
+        sh:path cacontology-impact:effectDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -391,19 +391,19 @@ icac-impact:LongTermEffectShape rdf:type sh:NodeShape ;
         sh:message "Effect duration must be between 1 and 50 years."@en
     ] ;
     sh:property [
-        sh:path icac-impact:functionalImpairment ;
+        sh:path cacontology-impact:functionalImpairment ;
         sh:datatype xsd:boolean ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "Long-term effect may specify functional impairment."@en
     ] .
 
-icac-impact:DevelopmentalImpactShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-impact:DevelopmentalImpact ;
+cacontology-impact:DevelopmentalImpactShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:DevelopmentalImpact ;
     rdfs:label "Developmental Impact Shape"@en ;
     rdfs:comment "Validation shape for developmental impact instances."@en ;
     sh:property [
-        sh:path icac-impact:developmentalDomain ;
+        sh:path cacontology-impact:developmentalDomain ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -411,7 +411,7 @@ icac-impact:DevelopmentalImpactShape rdf:type sh:NodeShape ;
         sh:message "Developmental impact must specify developmental domain from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-impact:ageAtImpact ;
+        sh:path cacontology-impact:ageAtImpact ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -420,7 +420,7 @@ icac-impact:DevelopmentalImpactShape rdf:type sh:NodeShape ;
         sh:message "Age at impact must be between 0 and 18 years."@en
     ] ;
     sh:property [
-        sh:path icac-impact:developmentalDelay ;
+        sh:path cacontology-impact:developmentalDelay ;
         sh:datatype xsd:boolean ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -431,12 +431,12 @@ icac-impact:DevelopmentalImpactShape rdf:type sh:NodeShape ;
 # TREATMENT OUTCOME SHAPES
 # =============================================================================
 
-icac-impact:TreatmentOutcomeShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-impact:TreatmentOutcome ;
+cacontology-impact:TreatmentOutcomeShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:TreatmentOutcome ;
     rdfs:label "Treatment Outcome Shape"@en ;
     rdfs:comment "Validation shape for treatment outcome instances."@en ;
     sh:property [
-        sh:path icac-impact:outcomeType ;
+        sh:path cacontology-impact:outcomeType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -444,7 +444,7 @@ icac-impact:TreatmentOutcomeShape rdf:type sh:NodeShape ;
         sh:message "Treatment outcome must specify outcome type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-impact:outcomeLevel ;
+        sh:path cacontology-impact:outcomeLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -452,7 +452,7 @@ icac-impact:TreatmentOutcomeShape rdf:type sh:NodeShape ;
         sh:message "Treatment outcome must specify outcome level from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-impact:measurementMethod ;
+        sh:path cacontology-impact:measurementMethod ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -464,62 +464,62 @@ icac-impact:TreatmentOutcomeShape rdf:type sh:NodeShape ;
 # OBJECT PROPERTY SHAPES
 # =============================================================================
 
-icac-impact:AssessesVictimShape rdf:type sh:PropertyShape ;
-    sh:path icac-impact:assessesVictim ;
+cacontology-impact:AssessesVictimShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-impact:assessesVictim ;
     sh:name "assesses victim" ;
     sh:description "Links assessment to victim being assessed" ;
     sh:class uco-identity:Person ;
     sh:minCount 1 ;
     sh:maxCount 1 .
 
-icac-impact:IdentifiesHarmShape rdf:type sh:PropertyShape ;
-    sh:path icac-impact:identifiesHarm ;
+cacontology-impact:IdentifiesHarmShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-impact:identifiesHarm ;
     sh:name "identifies harm" ;
     sh:description "Links assessment to psychological harm identified" ;
-    sh:class icac-impact:PsychologicalHarm ;
+    sh:class cacontology-impact:PsychologicalHarm ;
     sh:minCount 0 .
 
-icac-impact:AddressesHarmShape rdf:type sh:PropertyShape ;
-    sh:path icac-impact:addressesHarm ;
+cacontology-impact:AddressesHarmShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-impact:addressesHarm ;
     sh:name "addresses harm" ;
     sh:description "Links intervention to harm being addressed" ;
-    sh:class icac-impact:PsychologicalHarm ;
+    sh:class cacontology-impact:PsychologicalHarm ;
     sh:minCount 0 .
 
-icac-impact:SupportsRecoveryShape rdf:type sh:PropertyShape ;
-    sh:path icac-impact:supportsRecovery ;
+cacontology-impact:SupportsRecoveryShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-impact:supportsRecovery ;
     sh:name "supports recovery" ;
     sh:description "Links intervention to recovery process supported" ;
-    sh:class icac-impact:RecoveryProcess ;
+    sh:class cacontology-impact:RecoveryProcess ;
     sh:minCount 0 .
 
-icac-impact:ManifestsAsShape rdf:type sh:PropertyShape ;
-    sh:path icac-impact:manifestsAs ;
+cacontology-impact:ManifestsAsShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-impact:manifestsAs ;
     sh:name "manifests as" ;
     sh:description "Links harm to trauma indicators" ;
-    sh:class icac-impact:TraumaIndicator ;
+    sh:class cacontology-impact:TraumaIndicator ;
     sh:minCount 0 .
 
-icac-impact:UtilizesResilienceShape rdf:type sh:PropertyShape ;
-    sh:path icac-impact:utilizesResilience ;
+cacontology-impact:UtilizesResilienceShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-impact:utilizesResilience ;
     sh:name "utilizes resilience" ;
     sh:description "Links recovery to resilience factors utilized" ;
-    sh:class icac-impact:ResilienceFactor ;
+    sh:class cacontology-impact:ResilienceFactor ;
     sh:minCount 0 .
 
-icac-impact:ResultsInOutcomeShape rdf:type sh:PropertyShape ;
-    sh:path icac-impact:resultsInOutcome ;
+cacontology-impact:ResultsInOutcomeShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-impact:resultsInOutcome ;
     sh:name "results in outcome" ;
     sh:description "Links intervention to treatment outcome" ;
-    sh:class icac-impact:TreatmentOutcome ;
+    sh:class cacontology-impact:TreatmentOutcome ;
     sh:minCount 0 .
 
 # =============================================================================
 # CROSS-REFERENCE VALIDATION SHAPES
 # =============================================================================
 
-icac-impact:ImpactCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-impact:VictimImpactAssessment ;
+cacontology-impact:ImpactCrossReferenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:VictimImpactAssessment ;
     rdfs:label "Impact Cross Reference Shape"@en ;
     rdfs:comment "Validates cross-references between impact assessment and related entities."@en ;
     sh:sparql [
@@ -527,16 +527,16 @@ icac-impact:ImpactCrossReferenceShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-impact:VictimImpactAssessment .
+                $this a cacontology-impact:VictimImpactAssessment .
                 FILTER NOT EXISTS {
-                    $this icac-impact:assessesVictim ?victim .
+                    $this cacontology-impact:assessesVictim ?victim .
                 }
             }
         """
     ] .
 
-icac-impact:InterventionHarmAlignmentShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-impact:TherapeuticIntervention ;
+cacontology-impact:InterventionHarmAlignmentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:TherapeuticIntervention ;
     rdfs:label "Intervention Harm Alignment Shape"@en ;
     rdfs:comment "Validates alignment between intervention and harm addressed."@en ;
     sh:sparql [
@@ -544,16 +544,16 @@ icac-impact:InterventionHarmAlignmentShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-impact:TraumaTherapy ;
-                      icac-impact:addressesHarm ?harm .
-                ?harm icac-impact:harmType ?type .
+                $this a cacontology-impact:TraumaTherapy ;
+                      cacontology-impact:addressesHarm ?harm .
+                ?harm cacontology-impact:harmType ?type .
                 FILTER (?type NOT IN ("trauma", "ptsd", "complex_trauma"))
             }
         """
     ] .
 
-icac-impact:RecoveryProgressValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-impact:RecoveryProcess ;
+cacontology-impact:RecoveryProgressValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:RecoveryProcess ;
     rdfs:label "Recovery Progress Validation Shape"@en ;
     rdfs:comment "Validates recovery progress consistency."@en ;
     sh:sparql [
@@ -561,8 +561,8 @@ icac-impact:RecoveryProgressValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-impact:recoveryProgress "complete_recovery" ;
-                      icac-impact:timeInRecovery ?time .
+                $this cacontology-impact:recoveryProgress "complete_recovery" ;
+                      cacontology-impact:timeInRecovery ?time .
                 FILTER (?time < 1.0)
             }
         """
@@ -572,8 +572,8 @@ icac-impact:RecoveryProgressValidationShape rdf:type sh:NodeShape ;
 # TEMPORAL VALIDATION SHAPES
 # =============================================================================
 
-icac-impact:TemporalValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-impact:TherapeuticIntervention ;
+cacontology-impact:TemporalValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:TherapeuticIntervention ;
     rdfs:label "Temporal Validation Shape"@en ;
     rdfs:comment "Validates temporal consistency in therapeutic interventions."@en ;
     sh:sparql [
@@ -588,8 +588,8 @@ icac-impact:TemporalValidationShape rdf:type sh:NodeShape ;
         """
     ] .
 
-icac-impact:AssessmentDateValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-impact:VictimImpactAssessment ;
+cacontology-impact:AssessmentDateValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:VictimImpactAssessment ;
     rdfs:label "Assessment Date Validation Shape"@en ;
     rdfs:comment "Validates assessment date consistency."@en ;
     sh:sparql [
@@ -597,7 +597,7 @@ icac-impact:AssessmentDateValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-impact:assessmentDate ?date .
+                $this cacontology-impact:assessmentDate ?date .
                 FILTER (?date > NOW())
             }
         """
@@ -607,8 +607,8 @@ icac-impact:AssessmentDateValidationShape rdf:type sh:NodeShape ;
 # DATA QUALITY SHAPES
 # =============================================================================
 
-icac-impact:DataQualityShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-impact:VictimImpactAssessment ;
+cacontology-impact:DataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:VictimImpactAssessment ;
     rdfs:label "Data Quality Shape"@en ;
     rdfs:comment "Validates data quality for victim impact assessments."@en ;
     sh:property [

@@ -29,8 +29,8 @@
 # gUFO TYPE CONSISTENCY VALIDATION SHAPES
 # =============================================================================
 
-icac-partnerships-shapes:PartnershipOrganizationTypeValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:PublicPrivatePartnership ;
+cacontology-partnerships-shapes:PartnershipOrganizationTypeValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:PublicPrivatePartnership ;
     rdfs:label "Partnership Organization Type Validation Shape"@en ;
     rdfs:comment "Validates gUFO Organization type consistency for partnerships."@en ;
     sh:property [
@@ -46,8 +46,8 @@ icac-partnerships-shapes:PartnershipOrganizationTypeValidationShape rdf:type sh:
         sh:message "Partnership class should extend gUFO Organization."@en
     ] .
 
-icac-partnerships-shapes:CooperationEventTypeValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:TechnologyCooperation ;
+cacontology-partnerships-shapes:CooperationEventTypeValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:TechnologyCooperation ;
     rdfs:label "Cooperation Event Type Validation Shape"@en ;
     rdfs:comment "Validates gUFO Event type consistency for cooperation events."@en ;
     sh:property [
@@ -70,7 +70,7 @@ icac-partnerships-shapes:CooperationEventTypeValidationShape rdf:type sh:NodeSha
         """
     ] .
 
-icac-partnerships-shapes:PartnershipPhaseTypeValidationShape rdf:type sh:NodeShape ;
+cacontology-partnerships-shapes:PartnershipPhaseTypeValidationShape rdf:type sh:NodeShape ;
     sh:targetClass gufo:Phase ;
     rdfs:label "Partnership Phase Type Validation Shape"@en ;
     rdfs:comment "Validates gUFO Phase type consistency for partnership phases."@en ;
@@ -82,13 +82,13 @@ icac-partnerships-shapes:PartnershipPhaseTypeValidationShape rdf:type sh:NodeSha
                 $this rdf:type gufo:Phase .
                 FILTER NOT EXISTS {
                     $this rdf:type ?phaseClass .
-                    ?phaseClass rdfs:subClassOf* icac-partnerships:PublicPrivatePartnership .
+                    ?phaseClass rdfs:subClassOf* cacontology-partnerships:PublicPrivatePartnership .
                 }
             }
         """
     ] .
 
-icac-partnerships-shapes:PartnerRoleTypeValidationShape rdf:type sh:NodeShape ;
+cacontology-partnerships-shapes:PartnerRoleTypeValidationShape rdf:type sh:NodeShape ;
     sh:targetClass gufo:Role ;
     rdfs:label "Partner Role Type Validation Shape"@en ;
     rdfs:comment "Validates gUFO Role type consistency for partner roles."@en ;
@@ -105,8 +105,8 @@ icac-partnerships-shapes:PartnerRoleTypeValidationShape rdf:type sh:NodeShape ;
         """
     ] .
 
-icac-partnerships-shapes:PartnershipObjectTypeValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:InformationSharingFramework ;
+cacontology-partnerships-shapes:PartnershipObjectTypeValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:InformationSharingFramework ;
     rdfs:label "Partnership Object Type Validation Shape"@en ;
     rdfs:comment "Validates gUFO Object type consistency for partnership objects."@en ;
     sh:property [
@@ -116,7 +116,7 @@ icac-partnerships-shapes:PartnershipObjectTypeValidationShape rdf:type sh:NodeSh
         sh:message "Information sharing framework should extend gUFO Object."@en
     ] .
 
-icac-partnerships-shapes:PartnershipSituationTypeValidationShape rdf:type sh:NodeShape ;
+cacontology-partnerships-shapes:PartnershipSituationTypeValidationShape rdf:type sh:NodeShape ;
     sh:targetClass gufo:Situation ;
     rdfs:label "Partnership Situation Type Validation Shape"@en ;
     rdfs:comment "Validates gUFO Situation type consistency for partnership situations."@en ;
@@ -131,18 +131,18 @@ icac-partnerships-shapes:PartnershipSituationTypeValidationShape rdf:type sh:Nod
 # gUFO TEMPORAL CONSTRAINTS SHAPES
 # =============================================================================
 
-icac-partnerships-shapes:PartnershipTemporalShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:PublicPrivatePartnership ;
+cacontology-partnerships-shapes:PartnershipTemporalShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:PublicPrivatePartnership ;
     rdfs:label "Partnership Temporal Shape"@en ;
     rdfs:comment "Validates gUFO temporal constraints for partnerships."@en ;
     sh:property [
-        sh:path icac-partnerships:hasPartnershipBeginPoint ;
+        sh:path cacontology-partnerships:hasPartnershipBeginPoint ;
         sh:datatype xsd:dateTimeStamp ;
         sh:maxCount 1 ;
         sh:message "Partnership may have begin point timestamp."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:hasPartnershipEndPoint ;
+        sh:path cacontology-partnerships:hasPartnershipEndPoint ;
         sh:datatype xsd:dateTimeStamp ;
         sh:maxCount 1 ;
         sh:message "Partnership may have end point timestamp."@en
@@ -152,15 +152,15 @@ icac-partnerships-shapes:PartnershipTemporalShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-partnerships:hasPartnershipBeginPoint ?start ;
-                      icac-partnerships:hasPartnershipEndPoint ?end .
+                $this cacontology-partnerships:hasPartnershipBeginPoint ?start ;
+                      cacontology-partnerships:hasPartnershipEndPoint ?end .
                 FILTER (?end <= ?start)
             }
         """
     ] .
 
-icac-partnerships-shapes:CooperationEventTemporalShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:TechnologyCooperation ;
+cacontology-partnerships-shapes:CooperationEventTemporalShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:TechnologyCooperation ;
     rdfs:label "Cooperation Event Temporal Shape"@en ;
     rdfs:comment "Validates gUFO temporal constraints for cooperation events."@en ;
     sh:sparql [
@@ -175,18 +175,18 @@ icac-partnerships-shapes:CooperationEventTemporalShape rdf:type sh:NodeShape ;
         """
     ] .
 
-icac-partnerships-shapes:PartnershipPhaseTemporalShape rdf:type sh:NodeShape ;
+cacontology-partnerships-shapes:PartnershipPhaseTemporalShape rdf:type sh:NodeShape ;
     sh:targetClass gufo:Phase ;
     rdfs:label "Partnership Phase Temporal Shape"@en ;
     rdfs:comment "Validates gUFO temporal constraints for partnership phases."@en ;
     sh:property [
-        sh:path icac-partnerships:hasPhaseBeginPoint ;
+        sh:path cacontology-partnerships:hasPhaseBeginPoint ;
         sh:datatype xsd:dateTimeStamp ;
         sh:maxCount 1 ;
         sh:message "Partnership phase may have begin point timestamp."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:hasPhaseEndPoint ;
+        sh:path cacontology-partnerships:hasPhaseEndPoint ;
         sh:datatype xsd:dateTimeStamp ;
         sh:maxCount 1 ;
         sh:message "Partnership phase may have end point timestamp."@en
@@ -196,25 +196,25 @@ icac-partnerships-shapes:PartnershipPhaseTemporalShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-partnerships:hasPhaseBeginPoint ?start ;
-                      icac-partnerships:hasPhaseEndPoint ?end .
+                $this cacontology-partnerships:hasPhaseBeginPoint ?start ;
+                      cacontology-partnerships:hasPhaseEndPoint ?end .
                 FILTER (?end <= ?start)
             }
         """
     ] .
 
-icac-partnerships-shapes:PartnerRoleTemporalShape rdf:type sh:NodeShape ;
+cacontology-partnerships-shapes:PartnerRoleTemporalShape rdf:type sh:NodeShape ;
     sh:targetClass gufo:Role ;
     rdfs:label "Partner Role Temporal Shape"@en ;
     rdfs:comment "Validates gUFO temporal constraints for partner roles."@en ;
     sh:property [
-        sh:path icac-partnerships:hasRoleBeginPoint ;
+        sh:path cacontology-partnerships:hasRoleBeginPoint ;
         sh:datatype xsd:dateTimeStamp ;
         sh:maxCount 1 ;
         sh:message "Partner role may have begin point timestamp."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:hasRoleEndPoint ;
+        sh:path cacontology-partnerships:hasRoleEndPoint ;
         sh:datatype xsd:dateTimeStamp ;
         sh:maxCount 1 ;
         sh:message "Partner role may have end point timestamp."@en
@@ -224,8 +224,8 @@ icac-partnerships-shapes:PartnerRoleTemporalShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-partnerships:hasRoleBeginPoint ?start ;
-                      icac-partnerships:hasRoleEndPoint ?end .
+                $this cacontology-partnerships:hasRoleBeginPoint ?start ;
+                      cacontology-partnerships:hasRoleEndPoint ?end .
                 FILTER (?end <= ?start)
             }
         """
@@ -235,12 +235,12 @@ icac-partnerships-shapes:PartnerRoleTemporalShape rdf:type sh:NodeShape ;
 # PUBLIC-PRIVATE PARTNERSHIP SHAPES
 # =============================================================================
 
-icac-partnerships-shapes:PublicPrivatePartnershipShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:PublicPrivatePartnership ;
+cacontology-partnerships-shapes:PublicPrivatePartnershipShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:PublicPrivatePartnership ;
     rdfs:label "Public Private Partnership Shape"@en ;
     rdfs:comment "Enhanced validation shape for public-private partnership instances with gUFO quality aspects."@en ;
     sh:property [
-        sh:path icac-partnerships:partnerCount ;
+        sh:path cacontology-partnerships:partnerCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -249,7 +249,7 @@ icac-partnerships-shapes:PublicPrivatePartnershipShape rdf:type sh:NodeShape ;
         sh:message "Partnership must have between 2 and 100 partners."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:partnershipScope ;
+        sh:path cacontology-partnerships:partnershipScope ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -257,7 +257,7 @@ icac-partnerships-shapes:PublicPrivatePartnershipShape rdf:type sh:NodeShape ;
         sh:message "Partnership scope must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:partnershipDuration ;
+        sh:path cacontology-partnerships:partnershipDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -266,7 +266,7 @@ icac-partnerships-shapes:PublicPrivatePartnershipShape rdf:type sh:NodeShape ;
         sh:message "Partnership duration must be between 1 and 120 months."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:formalAgreement ;
+        sh:path cacontology-partnerships:formalAgreement ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -274,21 +274,21 @@ icac-partnerships-shapes:PublicPrivatePartnershipShape rdf:type sh:NodeShape ;
     ] ;
     # gUFO Quality Aspects for Partnerships
     sh:property [
-        sh:path icac-partnerships:hasPartnershipEffectiveness ;
+        sh:path cacontology-partnerships:hasPartnershipEffectiveness ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ( "ineffective" "limited" "moderate" "effective" "highly_effective" ) ;
         sh:message "Partnership effectiveness must be from allowed values (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:hasCoordinationLevel ;
+        sh:path cacontology-partnerships:hasCoordinationLevel ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ( "minimal" "basic" "standard" "enhanced" "comprehensive" ) ;
         sh:message "Coordination level must be from allowed values (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:hasTrustLevel ;
+        sh:path cacontology-partnerships:hasTrustLevel ;
         sh:datatype xsd:double ;
         sh:maxCount 1 ;
         sh:minInclusive 0.0 ;
@@ -296,14 +296,14 @@ icac-partnerships-shapes:PublicPrivatePartnershipShape rdf:type sh:NodeShape ;
         sh:message "Trust level must be between 0.0 and 1.0 (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:hasCollaborationIntensity ;
+        sh:path cacontology-partnerships:hasCollaborationIntensity ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ( "low" "moderate" "high" "intensive" "fully_integrated" ) ;
         sh:message "Collaboration intensity must be from allowed values (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:hasSuccessRate ;
+        sh:path cacontology-partnerships:hasSuccessRate ;
         sh:datatype xsd:double ;
         sh:maxCount 1 ;
         sh:minInclusive 0.0 ;
@@ -311,12 +311,12 @@ icac-partnerships-shapes:PublicPrivatePartnershipShape rdf:type sh:NodeShape ;
         sh:message "Success rate must be between 0.0 and 1.0 (gUFO quality aspect)."@en
     ] .
 
-icac-partnerships-shapes:MultiStakeholderInitiativeShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:MultiStakeholderInitiative ;
+cacontology-partnerships-shapes:MultiStakeholderInitiativeShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:MultiStakeholderInitiative ;
     rdfs:label "Multi Stakeholder Initiative Shape"@en ;
     rdfs:comment "Validation shape for multi-stakeholder initiative instances."@en ;
     sh:property [
-        sh:path icac-partnerships:partnerCount ;
+        sh:path cacontology-partnerships:partnerCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -325,12 +325,12 @@ icac-partnerships-shapes:MultiStakeholderInitiativeShape rdf:type sh:NodeShape ;
         sh:message "Multi-stakeholder initiative must have between 3 and 50 partners."@en
     ] .
 
-icac-partnerships-shapes:TechIndustryCooperationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:TechIndustryCooperation ;
+cacontology-partnerships-shapes:TechIndustryCooperationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:TechIndustryCooperation ;
     rdfs:label "Tech Industry Cooperation Shape"@en ;
     rdfs:comment "Validation shape for tech industry cooperation instances."@en ;
     sh:property [
-        sh:path icac-partnerships:formalAgreement ;
+        sh:path cacontology-partnerships:formalAgreement ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -341,12 +341,12 @@ icac-partnerships-shapes:TechIndustryCooperationShape rdf:type sh:NodeShape ;
 # NATIONAL INITIATIVE PROGRAM SHAPES
 # =============================================================================
 
-icac-partnerships-shapes:NationalInitiativeProgramShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:NationalInitiativeProgram ;
+cacontology-partnerships-shapes:NationalInitiativeProgramShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:NationalInitiativeProgram ;
     rdfs:label "National Initiative Program Shape"@en ;
     rdfs:comment "Validation shape for national initiative program instances."@en ;
     sh:property [
-        sh:path icac-partnerships:initiativeName ;
+        sh:path cacontology-partnerships:initiativeName ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -355,14 +355,14 @@ icac-partnerships-shapes:NationalInitiativeProgramShape rdf:type sh:NodeShape ;
         sh:message "Initiative name must be between 3 and 100 characters."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:launchedDate ;
+        sh:path cacontology-partnerships:launchedDate ;
         sh:datatype xsd:dateTime ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "National initiative must have a launch date."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:programScope ;
+        sh:path cacontology-partnerships:programScope ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -370,7 +370,7 @@ icac-partnerships-shapes:NationalInitiativeProgramShape rdf:type sh:NodeShape ;
         sh:message "Program scope must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:leadAgency ;
+        sh:path cacontology-partnerships:leadAgency ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -378,7 +378,7 @@ icac-partnerships-shapes:NationalInitiativeProgramShape rdf:type sh:NodeShape ;
         sh:message "Lead agency must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:casesProcessed ;
+        sh:path cacontology-partnerships:casesProcessed ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -387,8 +387,8 @@ icac-partnerships-shapes:NationalInitiativeProgramShape rdf:type sh:NodeShape ;
         sh:message "Cases processed must be between 0 and 10,000."@en
     ] .
 
-icac-partnerships-shapes:ProjectSafeChildhoodCaseShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:ProjectSafeChildhoodCase ;
+cacontology-partnerships-shapes:ProjectSafeChildhoodCaseShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:ProjectSafeChildhoodCase ;
     rdfs:label "Project Safe Childhood Case Shape"@en ;
     rdfs:comment "Validation shape for Project Safe Childhood case instances."@en ;
     sh:property [
@@ -405,12 +405,12 @@ icac-partnerships-shapes:ProjectSafeChildhoodCaseShape rdf:type sh:NodeShape ;
 # CROWDSOURCING INVESTIGATION SHAPES
 # =============================================================================
 
-icac-partnerships-shapes:CrowdsourcingInvestigationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:CrowdsourcingInvestigation ;
+cacontology-partnerships-shapes:CrowdsourcingInvestigationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:CrowdsourcingInvestigation ;
     rdfs:label "Crowdsourcing Investigation Shape"@en ;
     rdfs:comment "Enhanced validation shape for crowdsourcing investigation instances with gUFO quality aspects."@en ;
     sh:property [
-        sh:path icac-partnerships:publicTipsReceived ;
+        sh:path cacontology-partnerships:publicTipsReceived ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -419,7 +419,7 @@ icac-partnerships-shapes:CrowdsourcingInvestigationShape rdf:type sh:NodeShape ;
         sh:message "Public tips received must be between 0 and 100,000."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:crowdsourcingPlatform ;
+        sh:path cacontology-partnerships:crowdsourcingPlatform ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -428,21 +428,21 @@ icac-partnerships-shapes:CrowdsourcingInvestigationShape rdf:type sh:NodeShape ;
     ] ;
     # gUFO Quality Aspects for Crowdsourcing
     sh:property [
-        sh:path icac-partnerships:hasParticipationLevel ;
+        sh:path cacontology-partnerships:hasParticipationLevel ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ( "minimal" "low" "moderate" "high" "massive" ) ;
         sh:message "Participation level must be from allowed values (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:hasResponseQuality ;
+        sh:path cacontology-partnerships:hasResponseQuality ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ( "poor" "fair" "good" "excellent" "exceptional" ) ;
         sh:message "Response quality must be from allowed values (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:hasEngagementEffectiveness ;
+        sh:path cacontology-partnerships:hasEngagementEffectiveness ;
         sh:datatype xsd:double ;
         sh:maxCount 1 ;
         sh:minInclusive 0.0 ;
@@ -450,12 +450,12 @@ icac-partnerships-shapes:CrowdsourcingInvestigationShape rdf:type sh:NodeShape ;
         sh:message "Engagement effectiveness must be between 0.0 and 1.0 (gUFO quality aspect)."@en
     ] .
 
-icac-partnerships-shapes:ObjectIdentificationRequestShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:ObjectIdentificationRequest ;
+cacontology-partnerships-shapes:ObjectIdentificationRequestShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:ObjectIdentificationRequest ;
     rdfs:label "Object Identification Request Shape"@en ;
     rdfs:comment "Validation shape for object identification request instances."@en ;
     sh:property [
-        sh:path icac-partnerships:objectsToIdentify ;
+        sh:path cacontology-partnerships:objectsToIdentify ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -464,7 +464,7 @@ icac-partnerships-shapes:ObjectIdentificationRequestShape rdf:type sh:NodeShape 
         sh:message "Objects to identify must be between 1 and 1,000."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:identificationSuccessRate ;
+        sh:path cacontology-partnerships:identificationSuccessRate ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -473,12 +473,12 @@ icac-partnerships-shapes:ObjectIdentificationRequestShape rdf:type sh:NodeShape 
         sh:message "Identification success rate must be between 0.0 and 1.0."@en
     ] .
 
-icac-partnerships-shapes:GeolocationRequestShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:GeolocationRequest ;
+cacontology-partnerships-shapes:GeolocationRequestShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:GeolocationRequest ;
     rdfs:label "Geolocation Request Shape"@en ;
     rdfs:comment "Validation shape for geolocation request instances."@en ;
     sh:property [
-        sh:path icac-partnerships:objectsToIdentify ;
+        sh:path cacontology-partnerships:objectsToIdentify ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -487,12 +487,12 @@ icac-partnerships-shapes:GeolocationRequestShape rdf:type sh:NodeShape ;
         sh:message "Locations to identify must be between 1 and 500."@en
     ] .
 
-icac-partnerships-shapes:CommunityAnalysisShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:CommunityAnalysis ;
+cacontology-partnerships-shapes:CommunityAnalysisShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:CommunityAnalysis ;
     rdfs:label "Community Analysis Shape"@en ;
     rdfs:comment "Validation shape for community analysis instances."@en ;
     sh:property [
-        sh:path icac-partnerships:volunteerHours ;
+        sh:path cacontology-partnerships:volunteerHours ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -505,12 +505,12 @@ icac-partnerships-shapes:CommunityAnalysisShape rdf:type sh:NodeShape ;
 # INFORMATION SHARING FRAMEWORK SHAPES
 # =============================================================================
 
-icac-partnerships-shapes:InformationSharingFrameworkShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:InformationSharingFramework ;
+cacontology-partnerships-shapes:InformationSharingFrameworkShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:InformationSharingFramework ;
     rdfs:label "Information Sharing Framework Shape"@en ;
     rdfs:comment "Enhanced validation shape for information sharing framework instances with gUFO quality aspects."@en ;
     sh:property [
-        sh:path icac-partnerships:sharingFrequency ;
+        sh:path cacontology-partnerships:sharingFrequency ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -519,7 +519,7 @@ icac-partnerships-shapes:InformationSharingFrameworkShape rdf:type sh:NodeShape 
     ] ;
     # gUFO Quality Aspects for Information Sharing
     sh:property [
-        sh:path icac-partnerships:hasSharingEfficiency ;
+        sh:path cacontology-partnerships:hasSharingEfficiency ;
         sh:datatype xsd:double ;
         sh:maxCount 1 ;
         sh:minInclusive 0.0 ;
@@ -527,26 +527,26 @@ icac-partnerships-shapes:InformationSharingFrameworkShape rdf:type sh:NodeShape 
         sh:message "Sharing efficiency must be between 0.0 and 1.0 (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:hasSecurityLevel ;
+        sh:path cacontology-partnerships:hasSecurityLevel ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ( "basic" "standard" "enhanced" "high" "maximum" ) ;
         sh:message "Security level must be from allowed values (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:hasDataQuality ;
+        sh:path cacontology-partnerships:hasDataQuality ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ( "poor" "fair" "good" "excellent" "verified" ) ;
         sh:message "Data quality must be from allowed values (gUFO quality aspect)."@en
     ] .
 
-icac-partnerships-shapes:DataSharingAgreementShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:DataSharingAgreement ;
+cacontology-partnerships-shapes:DataSharingAgreementShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:DataSharingAgreement ;
     rdfs:label "Data Sharing Agreement Shape"@en ;
     rdfs:comment "Validation shape for data sharing agreement instances."@en ;
     sh:property [
-        sh:path icac-partnerships:dataSharingLevel ;
+        sh:path cacontology-partnerships:dataSharingLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -554,12 +554,12 @@ icac-partnerships-shapes:DataSharingAgreementShape rdf:type sh:NodeShape ;
         sh:message "Data sharing level must be from the allowed list."@en
     ] .
 
-icac-partnerships-shapes:TechnicalIntegrationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:TechnicalIntegration ;
+cacontology-partnerships-shapes:TechnicalIntegrationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:TechnicalIntegration ;
     rdfs:label "Technical Integration Shape"@en ;
     rdfs:comment "Validation shape for technical integration instances."@en ;
     sh:property [
-        sh:path icac-partnerships:automationLevel ;
+        sh:path cacontology-partnerships:automationLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -567,12 +567,12 @@ icac-partnerships-shapes:TechnicalIntegrationShape rdf:type sh:NodeShape ;
         sh:message "Automation level must be from the allowed list."@en
     ] .
 
-icac-partnerships-shapes:HashSharingProtocolShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:HashSharingProtocol ;
+cacontology-partnerships-shapes:HashSharingProtocolShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:HashSharingProtocol ;
     rdfs:label "Hash Sharing Protocol Shape"@en ;
     rdfs:comment "Validation shape for hash sharing protocol instances."@en ;
     sh:property [
-        sh:path icac-partnerships:hashDatabaseSize ;
+        sh:path cacontology-partnerships:hashDatabaseSize ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -585,12 +585,12 @@ icac-partnerships-shapes:HashSharingProtocolShape rdf:type sh:NodeShape ;
 # TECHNOLOGY COOPERATION SHAPES
 # =============================================================================
 
-icac-partnerships-shapes:TechnologyCooperationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:TechnologyCooperation ;
+cacontology-partnerships-shapes:TechnologyCooperationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:TechnologyCooperation ;
     rdfs:label "Technology Cooperation Shape"@en ;
     rdfs:comment "Enhanced validation shape for technology cooperation instances with gUFO quality aspects."@en ;
     sh:property [
-        sh:path icac-partnerships:technologyMaturity ;
+        sh:path cacontology-partnerships:technologyMaturity ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -599,21 +599,21 @@ icac-partnerships-shapes:TechnologyCooperationShape rdf:type sh:NodeShape ;
     ] ;
     # gUFO Quality Aspects for Technology Cooperation
     sh:property [
-        sh:path icac-partnerships:hasInnovationLevel ;
+        sh:path cacontology-partnerships:hasInnovationLevel ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ( "incremental" "moderate" "significant" "breakthrough" "revolutionary" ) ;
         sh:message "Innovation level must be from allowed values (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:hasImplementationSpeed ;
+        sh:path cacontology-partnerships:hasImplementationSpeed ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ( "slow" "moderate" "fast" "rapid" "immediate" ) ;
         sh:message "Implementation speed must be from allowed values (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:hasTechnicalReliability ;
+        sh:path cacontology-partnerships:hasTechnicalReliability ;
         sh:datatype xsd:double ;
         sh:maxCount 1 ;
         sh:minInclusive 0.0 ;
@@ -621,12 +621,12 @@ icac-partnerships-shapes:TechnologyCooperationShape rdf:type sh:NodeShape ;
         sh:message "Technical reliability must be between 0.0 and 1.0 (gUFO quality aspect)."@en
     ] .
 
-icac-partnerships-shapes:ContentDetectionCooperationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:ContentDetectionCooperation ;
+cacontology-partnerships-shapes:ContentDetectionCooperationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:ContentDetectionCooperation ;
     rdfs:label "Content Detection Cooperation Shape"@en ;
     rdfs:comment "Validation shape for content detection cooperation instances."@en ;
     sh:property [
-        sh:path icac-partnerships:detectionAccuracy ;
+        sh:path cacontology-partnerships:detectionAccuracy ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -635,12 +635,12 @@ icac-partnerships-shapes:ContentDetectionCooperationShape rdf:type sh:NodeShape 
         sh:message "Detection accuracy must be between 0.5 and 1.0."@en
     ] .
 
-icac-partnerships-shapes:PlatformMonitoringShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:PlatformMonitoring ;
+cacontology-partnerships-shapes:PlatformMonitoringShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:PlatformMonitoring ;
     rdfs:label "Platform Monitoring Shape"@en ;
     rdfs:comment "Validation shape for platform monitoring instances."@en ;
     sh:property [
-        sh:path icac-partnerships:platformsCovered ;
+        sh:path cacontology-partnerships:platformsCovered ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -649,12 +649,12 @@ icac-partnerships-shapes:PlatformMonitoringShape rdf:type sh:NodeShape ;
         sh:message "Platforms covered must be between 1 and 1,000."@en
     ] .
 
-icac-partnerships-shapes:ToolDevelopmentShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:ToolDevelopment ;
+cacontology-partnerships-shapes:ToolDevelopmentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:ToolDevelopment ;
     rdfs:label "Tool Development Shape"@en ;
     rdfs:comment "Validation shape for tool development instances."@en ;
     sh:property [
-        sh:path icac-partnerships:developmentInvestment ;
+        sh:path cacontology-partnerships:developmentInvestment ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -667,8 +667,8 @@ icac-partnerships-shapes:ToolDevelopmentShape rdf:type sh:NodeShape ;
 # COORDINATION MECHANISM SHAPES
 # =============================================================================
 
-icac-partnerships-shapes:CoordinationMechanismShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:CoordinationMechanism ;
+cacontology-partnerships-shapes:CoordinationMechanismShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:CoordinationMechanism ;
     rdfs:label "Coordination Mechanism Shape"@en ;
     rdfs:comment "Validation shape for coordination mechanism instances."@en ;
     sh:property [
@@ -681,12 +681,12 @@ icac-partnerships-shapes:CoordinationMechanismShape rdf:type sh:NodeShape ;
         sh:message "Coordination mechanism label should be between 5 and 200 characters when provided."@en
     ] .
 
-icac-partnerships-shapes:RegularMeetingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:RegularMeeting ;
+cacontology-partnerships-shapes:RegularMeetingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:RegularMeeting ;
     rdfs:label "Regular Meeting Shape"@en ;
     rdfs:comment "Validation shape for regular meeting instances."@en ;
     sh:property [
-        sh:path icac-partnerships:meetingFrequency ;
+        sh:path cacontology-partnerships:meetingFrequency ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -694,12 +694,12 @@ icac-partnerships-shapes:RegularMeetingShape rdf:type sh:NodeShape ;
         sh:message "Meeting frequency must be from the allowed list."@en
     ] .
 
-icac-partnerships-shapes:EmergencyCoordinationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:EmergencyCoordination ;
+cacontology-partnerships-shapes:EmergencyCoordinationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:EmergencyCoordination ;
     rdfs:label "Emergency Coordination Shape"@en ;
     rdfs:comment "Validation shape for emergency coordination instances."@en ;
     sh:property [
-        sh:path icac-partnerships:responseTime ;
+        sh:path cacontology-partnerships:responseTime ;
         sh:datatype xsd:decimal ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -708,12 +708,12 @@ icac-partnerships-shapes:EmergencyCoordinationShape rdf:type sh:NodeShape ;
         sh:message "Emergency response time must be between 0.25 and 72.0 hours."@en
     ] .
 
-icac-partnerships-shapes:JointOperationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:JointOperation ;
+cacontology-partnerships-shapes:JointOperationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:JointOperation ;
     rdfs:label "Joint Operation Shape"@en ;
     rdfs:comment "Validation shape for joint operation instances."@en ;
     sh:property [
-        sh:path icac-partnerships:operationSuccess ;
+        sh:path cacontology-partnerships:operationSuccess ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -726,8 +726,8 @@ icac-partnerships-shapes:JointOperationShape rdf:type sh:NodeShape ;
 # PARTNER ROLE SHAPES
 # =============================================================================
 
-icac-partnerships-shapes:PartnerRoleShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:PartnerRole ;
+cacontology-partnerships-shapes:PartnerRoleShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:PartnerRole ;
     rdfs:label "Partner Role Shape"@en ;
     rdfs:comment "Enhanced validation shape for partner role instances with gUFO quality aspects."@en ;
     sh:property [
@@ -741,7 +741,7 @@ icac-partnerships-shapes:PartnerRoleShape rdf:type sh:NodeShape ;
     ] ;
     # gUFO Quality Aspects for Partner Roles
     sh:property [
-        sh:path icac-partnerships:hasRoleEffectiveness ;
+        sh:path cacontology-partnerships:hasRoleEffectiveness ;
         sh:datatype xsd:double ;
         sh:maxCount 1 ;
         sh:minInclusive 0.0 ;
@@ -749,14 +749,14 @@ icac-partnerships-shapes:PartnerRoleShape rdf:type sh:NodeShape ;
         sh:message "Role effectiveness must be between 0.0 and 1.0 (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:hasCapabilityLevel ;
+        sh:path cacontology-partnerships:hasCapabilityLevel ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ( "limited" "basic" "standard" "advanced" "expert" ) ;
         sh:message "Capability level must be from allowed values (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:hasCommitmentLevel ;
+        sh:path cacontology-partnerships:hasCommitmentLevel ;
         sh:datatype xsd:double ;
         sh:maxCount 1 ;
         sh:minInclusive 0.0 ;
@@ -764,8 +764,8 @@ icac-partnerships-shapes:PartnerRoleShape rdf:type sh:NodeShape ;
         sh:message "Commitment level must be between 0.0 and 1.0 (gUFO quality aspect)."@en
     ] .
 
-icac-partnerships-shapes:LawEnforcementPartnerShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:LawEnforcementPartner ;
+cacontology-partnerships-shapes:LawEnforcementPartnerShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:LawEnforcementPartner ;
     rdfs:label "Law Enforcement Partner Shape"@en ;
     rdfs:comment "Validation shape for law enforcement partner instances."@en ;
     sh:property [
@@ -778,8 +778,8 @@ icac-partnerships-shapes:LawEnforcementPartnerShape rdf:type sh:NodeShape ;
         sh:message "Law enforcement partner label should be between 3 and 100 characters when provided."@en
     ] .
 
-icac-partnerships-shapes:TechnologyPartnerShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:TechnologyPartner ;
+cacontology-partnerships-shapes:TechnologyPartnerShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:TechnologyPartner ;
     rdfs:label "Technology Partner Shape"@en ;
     rdfs:comment "Validation shape for technology partner instances."@en ;
     sh:property [
@@ -792,8 +792,8 @@ icac-partnerships-shapes:TechnologyPartnerShape rdf:type sh:NodeShape ;
         sh:message "Technology partner label should be between 3 and 100 characters when provided."@en
     ] .
 
-icac-partnerships-shapes:NGOPartnerShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:NGOPartner ;
+cacontology-partnerships-shapes:NGOPartnerShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:NGOPartner ;
     rdfs:label "NGO Partner Shape"@en ;
     rdfs:comment "Validation shape for NGO partner instances."@en ;
     sh:property [
@@ -810,61 +810,61 @@ icac-partnerships-shapes:NGOPartnerShape rdf:type sh:NodeShape ;
 # OBJECT PROPERTY SHAPES
 # =============================================================================
 
-icac-partnerships-shapes:IncludesPartnerShape rdf:type sh:PropertyShape ;
-    sh:path icac-partnerships:includesPartner ;
+cacontology-partnerships-shapes:IncludesPartnerShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-partnerships:includesPartner ;
     sh:name "includes partner" ;
     sh:description "Links partnership to participating organizations" ;
     sh:class uco-identity:Organization ;
     sh:minCount 2 .
 
-icac-partnerships-shapes:HasRoleShape rdf:type sh:PropertyShape ;
-    sh:path icac-partnerships:hasRole ;
+cacontology-partnerships-shapes:HasRoleShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-partnerships:hasRole ;
     sh:name "has role" ;
     sh:description "Links partner organization to their role in the partnership" ;
-    sh:class icac-partnerships:PartnerRole ;
+    sh:class cacontology-partnerships:PartnerRole ;
     sh:minCount 1 .
 
-icac-partnerships-shapes:CoordinatedByShape rdf:type sh:PropertyShape ;
-    sh:path icac-partnerships:coordinatedBy ;
+cacontology-partnerships-shapes:CoordinatedByShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-partnerships:coordinatedBy ;
     sh:name "coordinated by" ;
     sh:description "Links partnership activities to coordinating organization" ;
     sh:class uco-identity:Organization ;
     sh:minCount 1 .
 
-icac-partnerships-shapes:GovernedByShape rdf:type sh:PropertyShape ;
-    sh:path icac-partnerships:governedBy ;
+cacontology-partnerships-shapes:GovernedByShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-partnerships:governedBy ;
     sh:name "governed by" ;
     sh:description "Links partnership to information sharing frameworks governing it" ;
-    sh:class icac-partnerships:InformationSharingFramework ;
+    sh:class cacontology-partnerships:InformationSharingFramework ;
     sh:minCount 0 .
 
-icac-partnerships-shapes:SolicitsHelpShape rdf:type sh:PropertyShape ;
-    sh:path icac-partnerships:solicitsHelp ;
+cacontology-partnerships-shapes:SolicitsHelpShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-partnerships:solicitsHelp ;
     sh:name "solicits help" ;
     sh:description "Links organization to crowdsourcing investigations they conduct" ;
-    sh:class icac-partnerships:CrowdsourcingInvestigation ;
+    sh:class cacontology-partnerships:CrowdsourcingInvestigation ;
     sh:minCount 0 .
 
-icac-partnerships-shapes:ParticipatesInDevelopmentShape rdf:type sh:PropertyShape ;
-    sh:path icac-partnerships:participatesInDevelopment ;
+cacontology-partnerships-shapes:ParticipatesInDevelopmentShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-partnerships:participatesInDevelopment ;
     sh:name "participates in development" ;
     sh:description "Links technology partners to development projects they participate in" ;
-    sh:class icac-partnerships:ToolDevelopment ;
+    sh:class cacontology-partnerships:ToolDevelopment ;
     sh:minCount 0 .
 
-icac-partnerships-shapes:CoordinatedThroughShape rdf:type sh:PropertyShape ;
-    sh:path icac-partnerships:coordinatedThrough ;
+cacontology-partnerships-shapes:CoordinatedThroughShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-partnerships:coordinatedThrough ;
     sh:name "coordinated through" ;
     sh:description "Links partnership activities to coordination mechanisms used" ;
-    sh:class icac-partnerships:CoordinationMechanism ;
+    sh:class cacontology-partnerships:CoordinationMechanism ;
     sh:minCount 1 .
 
 # =============================================================================
 # CROSS-REFERENCE VALIDATION SHAPES
 # =============================================================================
 
-icac-partnerships-shapes:PartnershipConsistencyShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:PublicPrivatePartnership ;
+cacontology-partnerships-shapes:PartnershipConsistencyShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:PublicPrivatePartnership ;
     rdfs:label "Partnership Consistency Shape"@en ;
     rdfs:comment "Validates consistency between partnership characteristics and participating organizations."@en ;
     sh:sparql [
@@ -878,11 +878,11 @@ icac-partnerships-shapes:PartnershipConsistencyShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-partnerships:partnerCount ?count .
+                $this cacontology-partnerships:partnerCount ?count .
                 {
                     SELECT $this (COUNT(?partner) AS ?actualCount)
                     WHERE {
-                        $this icac-partnerships:includesPartner ?partner .
+                        $this cacontology-partnerships:includesPartner ?partner .
                     }
                     GROUP BY $this
                 }
@@ -891,8 +891,8 @@ icac-partnerships-shapes:PartnershipConsistencyShape rdf:type sh:NodeShape ;
         """
     ] .
 
-icac-partnerships-shapes:TechCooperationValidityShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:TechIndustryCooperation ;
+cacontology-partnerships-shapes:TechCooperationValidityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:TechIndustryCooperation ;
     rdfs:label "Tech Cooperation Validity Shape"@en ;
     rdfs:comment "Validates that tech industry cooperation includes at least one technology partner."@en ;
     sh:sparql [
@@ -906,17 +906,17 @@ icac-partnerships-shapes:TechCooperationValidityShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a icac-partnerships:TechIndustryCooperation .
+                $this a cacontology-partnerships:TechIndustryCooperation .
                 FILTER NOT EXISTS {
-                    $this icac-partnerships:includesPartner ?org .
-                    ?org icac-partnerships:hasRole icac-partnerships:TechnologyPartner .
+                    $this cacontology-partnerships:includesPartner ?org .
+                    ?org cacontology-partnerships:hasRole cacontology-partnerships:TechnologyPartner .
                 }
             }
         """
     ] .
 
-icac-partnerships-shapes:CrowdsourcingEffectivenessShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:ObjectIdentificationRequest ;
+cacontology-partnerships-shapes:CrowdsourcingEffectivenessShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:ObjectIdentificationRequest ;
     rdfs:label "Crowdsourcing Effectiveness Shape"@en ;
     rdfs:comment "Validates crowdsourcing effectiveness metrics."@en ;
     sh:sparql [
@@ -930,11 +930,11 @@ icac-partnerships-shapes:CrowdsourcingEffectivenessShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-partnerships:identificationSuccessRate ?rate .
+                $this cacontology-partnerships:identificationSuccessRate ?rate .
                 FILTER (?rate > 0.5)
                 FILTER NOT EXISTS {
-                    ?investigation icac-partnerships:generatesRequests $this ;
-                                   icac-partnerships:publicTipsReceived ?tips .
+                    ?investigation cacontology-partnerships:generatesRequests $this ;
+                                   cacontology-partnerships:publicTipsReceived ?tips .
                     FILTER (?tips > 0)
                 }
             }
@@ -945,8 +945,8 @@ icac-partnerships-shapes:CrowdsourcingEffectivenessShape rdf:type sh:NodeShape ;
 # DATA QUALITY SHAPES
 # =============================================================================
 
-icac-partnerships-shapes:DataQualityShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:PublicPrivatePartnership ;
+cacontology-partnerships-shapes:DataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:PublicPrivatePartnership ;
     rdfs:label "Data Quality Shape"@en ;
     rdfs:comment "Validates data quality for partnership instances."@en ;
     sh:property [
@@ -968,8 +968,8 @@ icac-partnerships-shapes:DataQualityShape rdf:type sh:NodeShape ;
         sh:message "Partnership comment should be between 10 and 1000 characters when provided."@en
     ] .
 
-icac-partnerships-shapes:NationalInitiativeDataQualityShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:NationalInitiativeProgram ;
+cacontology-partnerships-shapes:NationalInitiativeDataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:NationalInitiativeProgram ;
     rdfs:label "National Initiative Data Quality Shape"@en ;
     rdfs:comment "Validates data quality for national initiative program instances."@en ;
     sh:sparql [
@@ -983,8 +983,8 @@ icac-partnerships-shapes:NationalInitiativeDataQualityShape rdf:type sh:NodeShap
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-partnerships:casesProcessed ?cases ;
-                      icac-partnerships:launchedDate ?launched .
+                $this cacontology-partnerships:casesProcessed ?cases ;
+                      cacontology-partnerships:launchedDate ?launched .
                 BIND (NOW() AS ?now)
                 BIND ((?now - ?launched) / (365.25 * 24 * 60 * 60) AS ?yearsActive)
                 BIND (?cases / ?yearsActive AS ?casesPerYear)
@@ -997,12 +997,12 @@ icac-partnerships-shapes:NationalInitiativeDataQualityShape rdf:type sh:NodeShap
 # ENHANCED DOMAIN-SPECIFIC SHAPES WITH gUFO QUALITY ASPECTS
 # =============================================================================
 
-icac-partnerships-shapes:PublicPrivatePartnershipShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:PublicPrivatePartnership ;
+cacontology-partnerships-shapes:PublicPrivatePartnershipShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:PublicPrivatePartnership ;
     rdfs:label "Public Private Partnership Shape"@en ;
     rdfs:comment "Enhanced validation shape for public-private partnership instances with gUFO quality aspects."@en ;
     sh:property [
-        sh:path icac-partnerships:partnerCount ;
+        sh:path cacontology-partnerships:partnerCount ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -1011,7 +1011,7 @@ icac-partnerships-shapes:PublicPrivatePartnershipShape rdf:type sh:NodeShape ;
         sh:message "Partnership must have between 2 and 100 partners."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:partnershipScope ;
+        sh:path cacontology-partnerships:partnershipScope ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -1019,7 +1019,7 @@ icac-partnerships-shapes:PublicPrivatePartnershipShape rdf:type sh:NodeShape ;
         sh:message "Partnership scope must be from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:partnershipDuration ;
+        sh:path cacontology-partnerships:partnershipDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -1028,7 +1028,7 @@ icac-partnerships-shapes:PublicPrivatePartnershipShape rdf:type sh:NodeShape ;
         sh:message "Partnership duration must be between 1 and 120 months."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:formalAgreement ;
+        sh:path cacontology-partnerships:formalAgreement ;
         sh:datatype xsd:boolean ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -1036,21 +1036,21 @@ icac-partnerships-shapes:PublicPrivatePartnershipShape rdf:type sh:NodeShape ;
     ] ;
     # gUFO Quality Aspects for Partnerships
     sh:property [
-        sh:path icac-partnerships:hasPartnershipEffectiveness ;
+        sh:path cacontology-partnerships:hasPartnershipEffectiveness ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ( "ineffective" "limited" "moderate" "effective" "highly_effective" ) ;
         sh:message "Partnership effectiveness must be from allowed values (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:hasCoordinationLevel ;
+        sh:path cacontology-partnerships:hasCoordinationLevel ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ( "minimal" "basic" "standard" "enhanced" "comprehensive" ) ;
         sh:message "Coordination level must be from allowed values (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:hasTrustLevel ;
+        sh:path cacontology-partnerships:hasTrustLevel ;
         sh:datatype xsd:double ;
         sh:maxCount 1 ;
         sh:minInclusive 0.0 ;
@@ -1058,14 +1058,14 @@ icac-partnerships-shapes:PublicPrivatePartnershipShape rdf:type sh:NodeShape ;
         sh:message "Trust level must be between 0.0 and 1.0 (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:hasCollaborationIntensity ;
+        sh:path cacontology-partnerships:hasCollaborationIntensity ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ( "low" "moderate" "high" "intensive" "fully_integrated" ) ;
         sh:message "Collaboration intensity must be from allowed values (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:hasSuccessRate ;
+        sh:path cacontology-partnerships:hasSuccessRate ;
         sh:datatype xsd:double ;
         sh:maxCount 1 ;
         sh:minInclusive 0.0 ;
@@ -1073,12 +1073,12 @@ icac-partnerships-shapes:PublicPrivatePartnershipShape rdf:type sh:NodeShape ;
         sh:message "Success rate must be between 0.0 and 1.0 (gUFO quality aspect)."@en
     ] .
 
-icac-partnerships-shapes:TechnologyCooperationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:TechnologyCooperation ;
+cacontology-partnerships-shapes:TechnologyCooperationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:TechnologyCooperation ;
     rdfs:label "Technology Cooperation Shape"@en ;
     rdfs:comment "Enhanced validation shape for technology cooperation instances with gUFO quality aspects."@en ;
     sh:property [
-        sh:path icac-partnerships:technologyMaturity ;
+        sh:path cacontology-partnerships:technologyMaturity ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -1087,21 +1087,21 @@ icac-partnerships-shapes:TechnologyCooperationShape rdf:type sh:NodeShape ;
     ] ;
     # gUFO Quality Aspects for Technology Cooperation
     sh:property [
-        sh:path icac-partnerships:hasInnovationLevel ;
+        sh:path cacontology-partnerships:hasInnovationLevel ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ( "incremental" "moderate" "significant" "breakthrough" "revolutionary" ) ;
         sh:message "Innovation level must be from allowed values (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:hasImplementationSpeed ;
+        sh:path cacontology-partnerships:hasImplementationSpeed ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ( "slow" "moderate" "fast" "rapid" "immediate" ) ;
         sh:message "Implementation speed must be from allowed values (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:hasTechnicalReliability ;
+        sh:path cacontology-partnerships:hasTechnicalReliability ;
         sh:datatype xsd:double ;
         sh:maxCount 1 ;
         sh:minInclusive 0.0 ;
@@ -1109,12 +1109,12 @@ icac-partnerships-shapes:TechnologyCooperationShape rdf:type sh:NodeShape ;
         sh:message "Technical reliability must be between 0.0 and 1.0 (gUFO quality aspect)."@en
     ] .
 
-icac-partnerships-shapes:CrowdsourcingInvestigationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:CrowdsourcingInvestigation ;
+cacontology-partnerships-shapes:CrowdsourcingInvestigationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:CrowdsourcingInvestigation ;
     rdfs:label "Crowdsourcing Investigation Shape"@en ;
     rdfs:comment "Enhanced validation shape for crowdsourcing investigation instances with gUFO quality aspects."@en ;
     sh:property [
-        sh:path icac-partnerships:publicTipsReceived ;
+        sh:path cacontology-partnerships:publicTipsReceived ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -1123,7 +1123,7 @@ icac-partnerships-shapes:CrowdsourcingInvestigationShape rdf:type sh:NodeShape ;
         sh:message "Public tips received must be between 0 and 100,000."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:crowdsourcingPlatform ;
+        sh:path cacontology-partnerships:crowdsourcingPlatform ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -1132,21 +1132,21 @@ icac-partnerships-shapes:CrowdsourcingInvestigationShape rdf:type sh:NodeShape ;
     ] ;
     # gUFO Quality Aspects for Crowdsourcing
     sh:property [
-        sh:path icac-partnerships:hasParticipationLevel ;
+        sh:path cacontology-partnerships:hasParticipationLevel ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ( "minimal" "low" "moderate" "high" "massive" ) ;
         sh:message "Participation level must be from allowed values (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:hasResponseQuality ;
+        sh:path cacontology-partnerships:hasResponseQuality ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ( "poor" "fair" "good" "excellent" "exceptional" ) ;
         sh:message "Response quality must be from allowed values (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:hasEngagementEffectiveness ;
+        sh:path cacontology-partnerships:hasEngagementEffectiveness ;
         sh:datatype xsd:double ;
         sh:maxCount 1 ;
         sh:minInclusive 0.0 ;
@@ -1154,12 +1154,12 @@ icac-partnerships-shapes:CrowdsourcingInvestigationShape rdf:type sh:NodeShape ;
         sh:message "Engagement effectiveness must be between 0.0 and 1.0 (gUFO quality aspect)."@en
     ] .
 
-icac-partnerships-shapes:InformationSharingFrameworkShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:InformationSharingFramework ;
+cacontology-partnerships-shapes:InformationSharingFrameworkShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:InformationSharingFramework ;
     rdfs:label "Information Sharing Framework Shape"@en ;
     rdfs:comment "Enhanced validation shape for information sharing framework instances with gUFO quality aspects."@en ;
     sh:property [
-        sh:path icac-partnerships:sharingFrequency ;
+        sh:path cacontology-partnerships:sharingFrequency ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -1168,7 +1168,7 @@ icac-partnerships-shapes:InformationSharingFrameworkShape rdf:type sh:NodeShape 
     ] ;
     # gUFO Quality Aspects for Information Sharing
     sh:property [
-        sh:path icac-partnerships:hasSharingEfficiency ;
+        sh:path cacontology-partnerships:hasSharingEfficiency ;
         sh:datatype xsd:double ;
         sh:maxCount 1 ;
         sh:minInclusive 0.0 ;
@@ -1176,22 +1176,22 @@ icac-partnerships-shapes:InformationSharingFrameworkShape rdf:type sh:NodeShape 
         sh:message "Sharing efficiency must be between 0.0 and 1.0 (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:hasSecurityLevel ;
+        sh:path cacontology-partnerships:hasSecurityLevel ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ( "basic" "standard" "enhanced" "high" "maximum" ) ;
         sh:message "Security level must be from allowed values (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:hasDataQuality ;
+        sh:path cacontology-partnerships:hasDataQuality ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ( "poor" "fair" "good" "excellent" "verified" ) ;
         sh:message "Data quality must be from allowed values (gUFO quality aspect)."@en
     ] .
 
-icac-partnerships-shapes:PartnerRoleShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:PartnerRole ;
+cacontology-partnerships-shapes:PartnerRoleShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:PartnerRole ;
     rdfs:label "Partner Role Shape"@en ;
     rdfs:comment "Enhanced validation shape for partner role instances with gUFO quality aspects."@en ;
     sh:property [
@@ -1205,7 +1205,7 @@ icac-partnerships-shapes:PartnerRoleShape rdf:type sh:NodeShape ;
     ] ;
     # gUFO Quality Aspects for Partner Roles
     sh:property [
-        sh:path icac-partnerships:hasRoleEffectiveness ;
+        sh:path cacontology-partnerships:hasRoleEffectiveness ;
         sh:datatype xsd:double ;
         sh:maxCount 1 ;
         sh:minInclusive 0.0 ;
@@ -1213,14 +1213,14 @@ icac-partnerships-shapes:PartnerRoleShape rdf:type sh:NodeShape ;
         sh:message "Role effectiveness must be between 0.0 and 1.0 (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:hasCapabilityLevel ;
+        sh:path cacontology-partnerships:hasCapabilityLevel ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
         sh:in ( "limited" "basic" "standard" "advanced" "expert" ) ;
         sh:message "Capability level must be from allowed values (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-partnerships:hasCommitmentLevel ;
+        sh:path cacontology-partnerships:hasCommitmentLevel ;
         sh:datatype xsd:double ;
         sh:maxCount 1 ;
         sh:minInclusive 0.0 ;
@@ -1232,8 +1232,8 @@ icac-partnerships-shapes:PartnerRoleShape rdf:type sh:NodeShape ;
 # gUFO PARTICIPATION CONSTRAINT SHAPES
 # =============================================================================
 
-icac-partnerships-shapes:PartnershipParticipationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:PublicPrivatePartnership ;
+cacontology-partnerships-shapes:PartnershipParticipationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:PublicPrivatePartnership ;
     rdfs:label "Partnership Participation Shape"@en ;
     rdfs:comment "Validates gUFO participation constraints for partnerships."@en ;
     sh:sparql [
@@ -1241,11 +1241,11 @@ icac-partnerships-shapes:PartnershipParticipationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this rdf:type icac-partnerships:PublicPrivatePartnership .
+                $this rdf:type cacontology-partnerships:PublicPrivatePartnership .
                 {
                     SELECT $this (COUNT(DISTINCT ?partner) AS ?partnerCount)
                     WHERE {
-                        $this icac-partnerships:includesPartner ?partner .
+                        $this cacontology-partnerships:includesPartner ?partner .
                     }
                     GROUP BY $this
                 }
@@ -1254,8 +1254,8 @@ icac-partnerships-shapes:PartnershipParticipationShape rdf:type sh:NodeShape ;
         """
     ] .
 
-icac-partnerships-shapes:TechCooperationParticipationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:TechIndustryCooperation ;
+cacontology-partnerships-shapes:TechCooperationParticipationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:TechIndustryCooperation ;
     rdfs:label "Tech Cooperation Participation Shape"@en ;
     rdfs:comment "Validates gUFO participation constraints for technology cooperation."@en ;
     sh:sparql [
@@ -1263,23 +1263,23 @@ icac-partnerships-shapes:TechCooperationParticipationShape rdf:type sh:NodeShape
         sh:select """
             SELECT $this
             WHERE {
-                $this rdf:type icac-partnerships:TechIndustryCooperation .
+                $this rdf:type cacontology-partnerships:TechIndustryCooperation .
                 FILTER NOT EXISTS {
-                    $this icac-partnerships:includesPartner ?techOrg .
-                    ?techOrg icac-partnerships:hasRole ?techRole .
-                    ?techRole rdf:type icac-partnerships:TechnologyPartner .
+                    $this cacontology-partnerships:includesPartner ?techOrg .
+                    ?techOrg cacontology-partnerships:hasRole ?techRole .
+                    ?techRole rdf:type cacontology-partnerships:TechnologyPartner .
                 } ||
                 FILTER NOT EXISTS {
-                    $this icac-partnerships:includesPartner ?leOrg .
-                    ?leOrg icac-partnerships:hasRole ?leRole .
-                    ?leRole rdf:type icac-partnerships:LawEnforcementPartner .
+                    $this cacontology-partnerships:includesPartner ?leOrg .
+                    ?leOrg cacontology-partnerships:hasRole ?leRole .
+                    ?leRole rdf:type cacontology-partnerships:LawEnforcementPartner .
                 }
             }
         """
     ] .
 
-icac-partnerships-shapes:MultiStakeholderParticipationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:MultiStakeholderInitiative ;
+cacontology-partnerships-shapes:MultiStakeholderParticipationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:MultiStakeholderInitiative ;
     rdfs:label "Multi-Stakeholder Participation Shape"@en ;
     rdfs:comment "Validates gUFO participation constraints for multi-stakeholder initiatives."@en ;
     sh:sparql [
@@ -1287,14 +1287,14 @@ icac-partnerships-shapes:MultiStakeholderParticipationShape rdf:type sh:NodeShap
         sh:select """
             SELECT $this
             WHERE {
-                $this rdf:type icac-partnerships:MultiStakeholderInitiative .
+                $this rdf:type cacontology-partnerships:MultiStakeholderInitiative .
                 {
                     SELECT $this (COUNT(DISTINCT ?roleType) AS ?roleTypeCount)
                     WHERE {
-                        $this icac-partnerships:includesPartner ?partner .
-                        ?partner icac-partnerships:hasRole ?role .
+                        $this cacontology-partnerships:includesPartner ?partner .
+                        ?partner cacontology-partnerships:hasRole ?role .
                         ?role rdf:type ?roleType .
-                        ?roleType rdfs:subClassOf* icac-partnerships:PartnerRole .
+                        ?roleType rdfs:subClassOf* cacontology-partnerships:PartnerRole .
                     }
                     GROUP BY $this
                 }
@@ -1307,8 +1307,8 @@ icac-partnerships-shapes:MultiStakeholderParticipationShape rdf:type sh:NodeShap
 # gUFO PART-WHOLE RELATIONSHIP SHAPES
 # =============================================================================
 
-icac-partnerships-shapes:PartnershipCompositionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:PublicPrivatePartnership ;
+cacontology-partnerships-shapes:PartnershipCompositionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:PublicPrivatePartnership ;
     rdfs:label "Partnership Composition Shape"@en ;
     rdfs:comment "Validates gUFO part-whole relationships for partnership composition."@en ;
     sh:sparql [
@@ -1316,23 +1316,23 @@ icac-partnerships-shapes:PartnershipCompositionShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this rdf:type icac-partnerships:PublicPrivatePartnership .
-                $this icac-partnerships:includesPartner ?publicOrg .
-                ?publicOrg icac-partnerships:hasRole ?publicRole .
-                ?publicRole rdf:type icac-partnerships:LawEnforcementPartner .
+                $this rdf:type cacontology-partnerships:PublicPrivatePartnership .
+                $this cacontology-partnerships:includesPartner ?publicOrg .
+                ?publicOrg cacontology-partnerships:hasRole ?publicRole .
+                ?publicRole rdf:type cacontology-partnerships:LawEnforcementPartner .
                 FILTER NOT EXISTS {
-                    $this icac-partnerships:includesPartner ?privateOrg .
-                    ?privateOrg icac-partnerships:hasRole ?privateRole .
+                    $this cacontology-partnerships:includesPartner ?privateOrg .
+                    ?privateOrg cacontology-partnerships:hasRole ?privateRole .
                     ?privateRole rdf:type ?privateRoleType .
-                    ?privateRoleType rdfs:subClassOf* icac-partnerships:PartnerRole .
-                    FILTER (?privateRoleType != icac-partnerships:LawEnforcementPartner)
+                    ?privateRoleType rdfs:subClassOf* cacontology-partnerships:PartnerRole .
+                    FILTER (?privateRoleType != cacontology-partnerships:LawEnforcementPartner)
                 }
             }
         """
     ] .
 
-icac-partnerships-shapes:TechnologyCooperationCompositionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:TechnologyCooperation ;
+cacontology-partnerships-shapes:TechnologyCooperationCompositionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:TechnologyCooperation ;
     rdfs:label "Technology Cooperation Composition Shape"@en ;
     rdfs:comment "Validates gUFO part-whole relationships for technology cooperation composition."@en ;
     sh:sparql [
@@ -1340,17 +1340,17 @@ icac-partnerships-shapes:TechnologyCooperationCompositionShape rdf:type sh:NodeS
         sh:select """
             SELECT $this
             WHERE {
-                $this rdf:type icac-partnerships:TechnologyCooperation .
+                $this rdf:type cacontology-partnerships:TechnologyCooperation .
                 FILTER NOT EXISTS {
-                    { ?partnership icac-partnerships:coordinatedThrough $this } UNION
-                    { ?framework icac-partnerships:enablesSharing $this }
+                    { ?partnership cacontology-partnerships:coordinatedThrough $this } UNION
+                    { ?framework cacontology-partnerships:enablesSharing $this }
                 }
             }
         """
     ] .
 
-icac-partnerships-shapes:InformationSharingCompositionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:InformationSharingFramework ;
+cacontology-partnerships-shapes:InformationSharingCompositionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:InformationSharingFramework ;
     rdfs:label "Information Sharing Composition Shape"@en ;
     rdfs:comment "Validates gUFO part-whole relationships for information sharing composition."@en ;
     sh:sparql [
@@ -1358,13 +1358,13 @@ icac-partnerships-shapes:InformationSharingCompositionShape rdf:type sh:NodeShap
         sh:select """
             SELECT $this
             WHERE {
-                $this rdf:type icac-partnerships:InformationSharingFramework .
+                $this rdf:type cacontology-partnerships:InformationSharingFramework .
                 FILTER NOT EXISTS {
-                    ?agreement rdf:type icac-partnerships:DataSharingAgreement .
+                    ?agreement rdf:type cacontology-partnerships:DataSharingAgreement .
                     ?agreement rdfs:subClassOf* $this .
                 } &&
                 FILTER NOT EXISTS {
-                    ?technical rdf:type icac-partnerships:TechnicalIntegration .
+                    ?technical rdf:type cacontology-partnerships:TechnicalIntegration .
                     ?technical rdfs:subClassOf* $this .
                 }
             }
@@ -1375,7 +1375,7 @@ icac-partnerships-shapes:InformationSharingCompositionShape rdf:type sh:NodeShap
 # gUFO QUALIFIED RELATION SHAPES
 # =============================================================================
 
-icac-partnerships-shapes:QualifiedPartnershipParticipationShape rdf:type sh:NodeShape ;
+cacontology-partnerships-shapes:QualifiedPartnershipParticipationShape rdf:type sh:NodeShape ;
     sh:targetClass gufo:ParticipationSituation ;
     rdfs:label "Qualified Partnership Participation Shape"@en ;
     rdfs:comment "Validates gUFO qualified participation situations in partnerships."@en ;
@@ -1386,11 +1386,11 @@ icac-partnerships-shapes:QualifiedPartnershipParticipationShape rdf:type sh:Node
             WHERE {
                 $this rdf:type gufo:ParticipationSituation .
                 $this gufo:participatesIn ?partnership .
-                ?partnership rdf:type icac-partnerships:PublicPrivatePartnership .
+                ?partnership rdf:type cacontology-partnerships:PublicPrivatePartnership .
                 FILTER NOT EXISTS {
-                    ?org icac-partnerships:hasRole ?role .
+                    ?org cacontology-partnerships:hasRole ?role .
                     ?role rdf:type ?roleType .
-                    ?roleType rdfs:subClassOf* icac-partnerships:PartnerRole .
+                    ?roleType rdfs:subClassOf* cacontology-partnerships:PartnerRole .
                 }
             }
         """
@@ -1400,8 +1400,8 @@ icac-partnerships-shapes:QualifiedPartnershipParticipationShape rdf:type sh:Node
 # ADVANCED gUFO BUSINESS RULES
 # =============================================================================
 
-icac-partnerships-shapes:HighEffectivenessPartnershipRule rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:PublicPrivatePartnership ;
+cacontology-partnerships-shapes:HighEffectivenessPartnershipRule rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:PublicPrivatePartnership ;
     rdfs:label "High Effectiveness Partnership Rule"@en ;
     rdfs:comment "Advanced gUFO business rule: Highly effective partnerships should have high trust and coordination levels."@en ;
     sh:sparql [
@@ -1409,15 +1409,15 @@ icac-partnerships-shapes:HighEffectivenessPartnershipRule rdf:type sh:NodeShape 
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-partnerships:hasPartnershipEffectiveness "highly_effective" .
+                $this cacontology-partnerships:hasPartnershipEffectiveness "highly_effective" .
                 {
                     FILTER NOT EXISTS {
-                        $this icac-partnerships:hasTrustLevel ?trust .
+                        $this cacontology-partnerships:hasTrustLevel ?trust .
                         FILTER (?trust >= 0.7)
                     }
                 } UNION {
                     FILTER NOT EXISTS {
-                        $this icac-partnerships:hasCoordinationLevel ?coord .
+                        $this cacontology-partnerships:hasCoordinationLevel ?coord .
                         FILTER (?coord IN ("enhanced", "comprehensive"))
                     }
                 }
@@ -1425,8 +1425,8 @@ icac-partnerships-shapes:HighEffectivenessPartnershipRule rdf:type sh:NodeShape 
         """
     ] .
 
-icac-partnerships-shapes:TechnologyMaturityImplementationRule rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:TechnologyCooperation ;
+cacontology-partnerships-shapes:TechnologyMaturityImplementationRule rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:TechnologyCooperation ;
     rdfs:label "Technology Maturity Implementation Rule"@en ;
     rdfs:comment "Advanced gUFO business rule: Mature technology should have fast implementation and high reliability."@en ;
     sh:sparql [
@@ -1434,15 +1434,15 @@ icac-partnerships-shapes:TechnologyMaturityImplementationRule rdf:type sh:NodeSh
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-partnerships:technologyMaturity "mature" .
+                $this cacontology-partnerships:technologyMaturity "mature" .
                 {
                     FILTER NOT EXISTS {
-                        $this icac-partnerships:hasImplementationSpeed ?speed .
+                        $this cacontology-partnerships:hasImplementationSpeed ?speed .
                         FILTER (?speed IN ("fast", "rapid", "immediate"))
                     }
                 } UNION {
                     FILTER NOT EXISTS {
-                        $this icac-partnerships:hasTechnicalReliability ?reliability .
+                        $this cacontology-partnerships:hasTechnicalReliability ?reliability .
                         FILTER (?reliability >= 0.8)
                     }
                 }
@@ -1450,8 +1450,8 @@ icac-partnerships-shapes:TechnologyMaturityImplementationRule rdf:type sh:NodeSh
         """
     ] .
 
-icac-partnerships-shapes:CrowdsourcingEffectivenessRule rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:CrowdsourcingInvestigation ;
+cacontology-partnerships-shapes:CrowdsourcingEffectivenessRule rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:CrowdsourcingInvestigation ;
     rdfs:label "Crowdsourcing Effectiveness Rule"@en ;
     rdfs:comment "Advanced gUFO business rule: High engagement effectiveness requires high participation and response quality."@en ;
     sh:sparql [
@@ -1459,16 +1459,16 @@ icac-partnerships-shapes:CrowdsourcingEffectivenessRule rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-partnerships:hasEngagementEffectiveness ?effectiveness .
+                $this cacontology-partnerships:hasEngagementEffectiveness ?effectiveness .
                 FILTER (?effectiveness >= 0.8)
                 {
                     FILTER NOT EXISTS {
-                        $this icac-partnerships:hasParticipationLevel ?participation .
+                        $this cacontology-partnerships:hasParticipationLevel ?participation .
                         FILTER (?participation IN ("high", "massive"))
                     }
                 } UNION {
                     FILTER NOT EXISTS {
-                        $this icac-partnerships:hasResponseQuality ?quality .
+                        $this cacontology-partnerships:hasResponseQuality ?quality .
                         FILTER (?quality IN ("excellent", "exceptional"))
                     }
                 }
@@ -1476,8 +1476,8 @@ icac-partnerships-shapes:CrowdsourcingEffectivenessRule rdf:type sh:NodeShape ;
         """
     ] .
 
-icac-partnerships-shapes:InformationSharingSecurityRule rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:InformationSharingFramework ;
+cacontology-partnerships-shapes:InformationSharingSecurityRule rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:InformationSharingFramework ;
     rdfs:label "Information Sharing Security Rule"@en ;
     rdfs:comment "Advanced gUFO business rule: High data quality requires enhanced security levels."@en ;
     sh:sparql [
@@ -1485,18 +1485,18 @@ icac-partnerships-shapes:InformationSharingSecurityRule rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-partnerships:hasDataQuality ?quality .
+                $this cacontology-partnerships:hasDataQuality ?quality .
                 FILTER (?quality IN ("excellent", "verified"))
                 FILTER NOT EXISTS {
-                    $this icac-partnerships:hasSecurityLevel ?security .
+                    $this cacontology-partnerships:hasSecurityLevel ?security .
                     FILTER (?security IN ("enhanced", "high", "maximum"))
                 }
             }
         """
     ] .
 
-icac-partnerships-shapes:PartnerRoleCapabilityCommitmentRule rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:PartnerRole ;
+cacontology-partnerships-shapes:PartnerRoleCapabilityCommitmentRule rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:PartnerRole ;
     rdfs:label "Partner Role Capability Commitment Rule"@en ;
     rdfs:comment "Advanced gUFO business rule: High role effectiveness requires advanced capabilities and high commitment."@en ;
     sh:sparql [
@@ -1504,16 +1504,16 @@ icac-partnerships-shapes:PartnerRoleCapabilityCommitmentRule rdf:type sh:NodeSha
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-partnerships:hasRoleEffectiveness ?effectiveness .
+                $this cacontology-partnerships:hasRoleEffectiveness ?effectiveness .
                 FILTER (?effectiveness >= 0.8)
                 {
                     FILTER NOT EXISTS {
-                        $this icac-partnerships:hasCapabilityLevel ?capability .
+                        $this cacontology-partnerships:hasCapabilityLevel ?capability .
                         FILTER (?capability IN ("advanced", "expert"))
                     }
                 } UNION {
                     FILTER NOT EXISTS {
-                        $this icac-partnerships:hasCommitmentLevel ?commitment .
+                        $this cacontology-partnerships:hasCommitmentLevel ?commitment .
                         FILTER (?commitment >= 0.7)
                     }
                 }
@@ -1521,8 +1521,8 @@ icac-partnerships-shapes:PartnerRoleCapabilityCommitmentRule rdf:type sh:NodeSha
         """
     ] .
 
-icac-partnerships-shapes:MultiStakeholderComplexityRule rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:MultiStakeholderInitiative ;
+cacontology-partnerships-shapes:MultiStakeholderComplexityRule rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:MultiStakeholderInitiative ;
     rdfs:label "Multi-Stakeholder Complexity Rule"@en ;
     rdfs:comment "Advanced gUFO business rule: Multi-stakeholder initiatives with many partners need comprehensive coordination."@en ;
     sh:sparql [
@@ -1530,17 +1530,17 @@ icac-partnerships-shapes:MultiStakeholderComplexityRule rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this rdf:type icac-partnerships:MultiStakeholderInitiative .
+                $this rdf:type cacontology-partnerships:MultiStakeholderInitiative .
                 {
                     SELECT $this (COUNT(DISTINCT ?partner) AS ?partnerCount)
                     WHERE {
-                        $this icac-partnerships:includesPartner ?partner .
+                        $this cacontology-partnerships:includesPartner ?partner .
                     }
                     GROUP BY $this
                 }
                 FILTER (?partnerCount >= 5)
                 FILTER NOT EXISTS {
-                    $this icac-partnerships:hasCoordinationLevel "comprehensive" .
+                    $this cacontology-partnerships:hasCoordinationLevel "comprehensive" .
                 }
             }
         """
@@ -1550,8 +1550,8 @@ icac-partnerships-shapes:MultiStakeholderComplexityRule rdf:type sh:NodeShape ;
 # ENHANCED DATA QUALITY VALIDATION SHAPE
 # =============================================================================
 
-icac-partnerships-shapes:PartnershipDataQualityShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-partnerships:PublicPrivatePartnership ;
+cacontology-partnerships-shapes:PartnershipDataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-partnerships:PublicPrivatePartnership ;
     rdfs:label "Partnership Data Quality Shape"@en ;
     rdfs:comment "Enhanced data quality validation for partnerships with gUFO quality consistency rules."@en ;
     sh:property [
@@ -1578,8 +1578,8 @@ icac-partnerships-shapes:PartnershipDataQualityShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-partnerships:hasPartnershipEffectiveness ?effectiveness ;
-                      icac-partnerships:hasSuccessRate ?rate .
+                $this cacontology-partnerships:hasPartnershipEffectiveness ?effectiveness ;
+                      cacontology-partnerships:hasSuccessRate ?rate .
                 {
                     FILTER (?effectiveness = "highly_effective" && ?rate < 0.7)
                 } UNION {
@@ -1599,8 +1599,8 @@ icac-partnerships-shapes:PartnershipDataQualityShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-partnerships:hasTrustLevel ?trust ;
-                      icac-partnerships:hasCollaborationIntensity ?intensity .
+                $this cacontology-partnerships:hasTrustLevel ?trust ;
+                      cacontology-partnerships:hasCollaborationIntensity ?intensity .
                 {
                     FILTER (?trust >= 0.8 && ?intensity NOT IN ("intensive", "fully_integrated"))
                 } UNION {

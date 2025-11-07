@@ -16,7 +16,7 @@
 # =============================================================================
 
 # Event Types validation for grooming behaviors
-icac-grooming:GroomingEventTypeValidationShape rdf:type sh:NodeShape ;
+cacontology-grooming:GroomingEventTypeValidationShape rdf:type sh:NodeShape ;
     sh:targetClass gufo:EventType ;
     sh:property [
         sh:path rdf:type ;
@@ -31,7 +31,7 @@ icac-grooming:GroomingEventTypeValidationShape rdf:type sh:NodeShape ;
     sh:message "Every grooming EventType must extend gufo:Event"@en .
 
 # Phases validation for grooming stages
-icac-grooming:GroomingPhaseValidationShape rdf:type sh:NodeShape ;
+cacontology-grooming:GroomingPhaseValidationShape rdf:type sh:NodeShape ;
     sh:targetClass gufo:Phase ;
     sh:property [
         sh:path rdf:type ;
@@ -47,7 +47,7 @@ icac-grooming:GroomingPhaseValidationShape rdf:type sh:NodeShape ;
     sh:message "Grooming phases are anti-rigid and cannot be subclasses of rigid Kinds"@en .
 
 # Roles validation for grooming participants
-icac-grooming:GroomingRoleValidationShape rdf:type sh:NodeShape ;
+cacontology-grooming:GroomingRoleValidationShape rdf:type sh:NodeShape ;
     sh:targetClass gufo:Role ;
     sh:property [
         sh:path rdf:type ;
@@ -63,7 +63,7 @@ icac-grooming:GroomingRoleValidationShape rdf:type sh:NodeShape ;
     sh:message "Grooming roles are anti-rigid and cannot be subclasses of rigid Kinds"@en .
 
 # Aspect validation for victim vulnerabilities  
-icac-grooming:VulnerabilityAspectValidationShape rdf:type sh:NodeShape ;
+cacontology-grooming:VulnerabilityAspectValidationShape rdf:type sh:NodeShape ;
     sh:targetClass gufo:Aspect ;
     sh:property [
         sh:path rdf:type ;
@@ -77,7 +77,7 @@ icac-grooming:VulnerabilityAspectValidationShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # Grooming Behavior Temporal Validation
-icac-grooming:GroomingBehaviorTemporalShape rdf:type sh:NodeShape ;
+cacontology-grooming:GroomingBehaviorTemporalShape rdf:type sh:NodeShape ;
     sh:targetClass gufo:Event ;
     sh:property [
         sh:path gufo:hasBeginPointInXSDDateTimeStamp ;
@@ -113,8 +113,8 @@ icac-grooming:GroomingBehaviorTemporalShape rdf:type sh:NodeShape ;
 # ENHANCED GROOMING BEHAVIOR SHAPES WITH gUFO INTEGRATION
 # =============================================================================
 
-icac-grooming:GroomingBehaviorShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-grooming:GroomingBehavior ;
+cacontology-grooming:GroomingBehaviorShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-grooming:GroomingBehavior ;
     rdfs:label "Grooming Behavior Shape"@en ;
     rdfs:comment "Validation shape for grooming behavior instances with gUFO integration."@en ;
     sh:property [
@@ -130,7 +130,7 @@ icac-grooming:GroomingBehaviorShape rdf:type sh:NodeShape ;
         sh:message "Grooming behavior may have end timestamp (gUFO temporal)"@en ;
     ] ;
     sh:property [
-        sh:path icac-grooming:groomingStage ;
+        sh:path cacontology-grooming:groomingStage ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -138,7 +138,7 @@ icac-grooming:GroomingBehaviorShape rdf:type sh:NodeShape ;
         sh:message "Grooming behavior must specify grooming stage from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:behaviorType ;
+        sh:path cacontology-grooming:behaviorType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -146,7 +146,7 @@ icac-grooming:GroomingBehaviorShape rdf:type sh:NodeShape ;
         sh:message "Grooming behavior must specify behavior type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:behaviorFrequency ;
+        sh:path cacontology-grooming:behaviorFrequency ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -154,7 +154,7 @@ icac-grooming:GroomingBehaviorShape rdf:type sh:NodeShape ;
         sh:message "Behavior frequency must be from the allowed list (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:behaviorIntensity ;
+        sh:path cacontology-grooming:behaviorIntensity ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -162,7 +162,7 @@ icac-grooming:GroomingBehaviorShape rdf:type sh:NodeShape ;
         sh:message "Behavior intensity must be from the allowed list (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:groomingEffectiveness ;
+        sh:path cacontology-grooming:groomingEffectiveness ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
@@ -170,7 +170,7 @@ icac-grooming:GroomingBehaviorShape rdf:type sh:NodeShape ;
         sh:message "Grooming effectiveness must be between 0.0 and 1.0 (gUFO quality aspect)"@en ;
     ] ;
     sh:property [
-        sh:path icac-grooming:manipulationLevel ;
+        sh:path cacontology-grooming:manipulationLevel ;
         sh:datatype xsd:string ;
         sh:in ( "subtle" "moderate" "obvious" "aggressive" "extreme" "coercive" ) ;
         sh:maxCount 1 ;
@@ -191,8 +191,8 @@ icac-grooming:GroomingBehaviorShape rdf:type sh:NodeShape ;
         sh:message "Grooming behavior may have an end time."@en
     ] .
 
-icac-grooming:TrustBuildingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-grooming:TrustBuilding ;
+cacontology-grooming:TrustBuildingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-grooming:TrustBuilding ;
     rdfs:label "Trust Building Shape"@en ;
     rdfs:comment "Validation shape for trust building behavior instances with gUFO integration."@en ;
     sh:property [
@@ -202,7 +202,7 @@ icac-grooming:TrustBuildingShape rdf:type sh:NodeShape ;
         sh:message "Trust building may have begin timestamp (gUFO temporal)"@en ;
     ] ;
     sh:property [
-        sh:path icac-grooming:trustBuildingMethod ;
+        sh:path cacontology-grooming:trustBuildingMethod ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -210,7 +210,7 @@ icac-grooming:TrustBuildingShape rdf:type sh:NodeShape ;
         sh:message "Trust building must specify method from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:trustLevel ;
+        sh:path cacontology-grooming:trustLevel ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -218,7 +218,7 @@ icac-grooming:TrustBuildingShape rdf:type sh:NodeShape ;
         sh:message "Trust level must be from the allowed list (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:trustDevelopmentRate ;
+        sh:path cacontology-grooming:trustDevelopmentRate ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
@@ -226,8 +226,8 @@ icac-grooming:TrustBuildingShape rdf:type sh:NodeShape ;
         sh:message "Trust development rate must be between 0.0 and 1.0 (gUFO quality aspect)"@en ;
     ] .
 
-icac-grooming:IsolationTacticsShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-grooming:IsolationTactics ;
+cacontology-grooming:IsolationTacticsShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-grooming:IsolationTactics ;
     rdfs:label "Isolation Tactics Shape"@en ;
     rdfs:comment "Validation shape for isolation tactics instances with gUFO integration."@en ;
     sh:property [
@@ -237,7 +237,7 @@ icac-grooming:IsolationTacticsShape rdf:type sh:NodeShape ;
         sh:message "Isolation tactics may have begin timestamp (gUFO temporal)"@en ;
     ] ;
     sh:property [
-        sh:path icac-grooming:isolationMethod ;
+        sh:path cacontology-grooming:isolationMethod ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -245,7 +245,7 @@ icac-grooming:IsolationTacticsShape rdf:type sh:NodeShape ;
         sh:message "Isolation tactics must specify method from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:isolationEffectiveness ;
+        sh:path cacontology-grooming:isolationEffectiveness ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -253,7 +253,7 @@ icac-grooming:IsolationTacticsShape rdf:type sh:NodeShape ;
         sh:message "Isolation effectiveness must be from the allowed list (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:isolationProgressRate ;
+        sh:path cacontology-grooming:isolationProgressRate ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
@@ -261,8 +261,8 @@ icac-grooming:IsolationTacticsShape rdf:type sh:NodeShape ;
         sh:message "Isolation progress rate must be between 0.0 and 1.0 (gUFO quality aspect)"@en ;
     ] .
 
-icac-grooming:BoundaryTestingShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-grooming:BoundaryTesting ;
+cacontology-grooming:BoundaryTestingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-grooming:BoundaryTesting ;
     rdfs:label "Boundary Testing Shape"@en ;
     rdfs:comment "Validation shape for boundary testing behavior instances with gUFO integration."@en ;
     sh:property [
@@ -272,7 +272,7 @@ icac-grooming:BoundaryTestingShape rdf:type sh:NodeShape ;
         sh:message "Boundary testing may have begin timestamp (gUFO temporal)"@en ;
     ] ;
     sh:property [
-        sh:path icac-grooming:boundaryType ;
+        sh:path cacontology-grooming:boundaryType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -280,7 +280,7 @@ icac-grooming:BoundaryTestingShape rdf:type sh:NodeShape ;
         sh:message "Boundary testing must specify boundary type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:testingMethod ;
+        sh:path cacontology-grooming:testingMethod ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -288,7 +288,7 @@ icac-grooming:BoundaryTestingShape rdf:type sh:NodeShape ;
         sh:message "Boundary testing must specify testing method from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:victimResponse ;
+        sh:path cacontology-grooming:victimResponse ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -296,7 +296,7 @@ icac-grooming:BoundaryTestingShape rdf:type sh:NodeShape ;
         sh:message "Victim response must be from the allowed list (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:boundaryViolationSeverity ;
+        sh:path cacontology-grooming:boundaryViolationSeverity ;
         sh:datatype xsd:integer ;
         sh:minInclusive 1 ;
         sh:maxInclusive 10 ;
@@ -308,8 +308,8 @@ icac-grooming:BoundaryTestingShape rdf:type sh:NodeShape ;
 # ENHANCED VICTIM VULNERABILITY SHAPES WITH gUFO INTEGRATION
 # =============================================================================
 
-icac-grooming:VictimVulnerabilityShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-grooming:VictimVulnerability ;
+cacontology-grooming:VictimVulnerabilityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-grooming:VictimVulnerability ;
     rdfs:label "Victim Vulnerability Shape"@en ;
     rdfs:comment "Validation shape for victim vulnerability instances with gUFO integration."@en ;
     sh:property [
@@ -319,7 +319,7 @@ icac-grooming:VictimVulnerabilityShape rdf:type sh:NodeShape ;
         sh:message "Vulnerability may have begin timestamp (gUFO temporal)"@en ;
     ] ;
     sh:property [
-        sh:path icac-grooming:vulnerabilityType ;
+        sh:path cacontology-grooming:vulnerabilityType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -327,7 +327,7 @@ icac-grooming:VictimVulnerabilityShape rdf:type sh:NodeShape ;
         sh:message "Victim vulnerability must specify vulnerability type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:vulnerabilityLevel ;
+        sh:path cacontology-grooming:vulnerabilityLevel ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -335,7 +335,7 @@ icac-grooming:VictimVulnerabilityShape rdf:type sh:NodeShape ;
         sh:message "Victim vulnerability must specify vulnerability level from the allowed list (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:vulnerabilityDuration ;
+        sh:path cacontology-grooming:vulnerabilityDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -344,7 +344,7 @@ icac-grooming:VictimVulnerabilityShape rdf:type sh:NodeShape ;
         sh:message "Vulnerability duration must be between 0 and 20 years."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:exploitabilityScore ;
+        sh:path cacontology-grooming:exploitabilityScore ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
@@ -352,19 +352,19 @@ icac-grooming:VictimVulnerabilityShape rdf:type sh:NodeShape ;
         sh:message "Exploitability score must be between 0.0 and 1.0 (gUFO quality aspect)"@en ;
     ] ;
     sh:property [
-        sh:path icac-grooming:vulnerabilityStability ;
+        sh:path cacontology-grooming:vulnerabilityStability ;
         sh:datatype xsd:string ;
         sh:in ( "stable" "fluctuating" "increasing" "decreasing" "episodic" ) ;
         sh:maxCount 1 ;
         sh:message "Vulnerability stability must be from allowed list (gUFO mode aspect)"@en ;
     ] .
 
-icac-grooming:EmotionalVulnerabilityShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-grooming:EmotionalVulnerability ;
+cacontology-grooming:EmotionalVulnerabilityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-grooming:EmotionalVulnerability ;
     rdfs:label "Emotional Vulnerability Shape"@en ;
     rdfs:comment "Validation shape for emotional vulnerability instances with gUFO integration."@en ;
     sh:property [
-        sh:path icac-grooming:emotionalState ;
+        sh:path cacontology-grooming:emotionalState ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -372,7 +372,7 @@ icac-grooming:EmotionalVulnerabilityShape rdf:type sh:NodeShape ;
         sh:message "Emotional vulnerability must specify emotional state from the allowed list (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:emotionalNeed ;
+        sh:path cacontology-grooming:emotionalNeed ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -380,7 +380,7 @@ icac-grooming:EmotionalVulnerabilityShape rdf:type sh:NodeShape ;
         sh:message "Emotional need must be from the allowed list (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:emotionalIntensity ;
+        sh:path cacontology-grooming:emotionalIntensity ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
@@ -388,12 +388,12 @@ icac-grooming:EmotionalVulnerabilityShape rdf:type sh:NodeShape ;
         sh:message "Emotional intensity must be between 0.0 and 1.0 (gUFO quality aspect)"@en ;
     ] .
 
-icac-grooming:SocialVulnerabilityShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-grooming:SocialVulnerability ;
+cacontology-grooming:SocialVulnerabilityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-grooming:SocialVulnerability ;
     rdfs:label "Social Vulnerability Shape"@en ;
     rdfs:comment "Validation shape for social vulnerability instances with gUFO integration."@en ;
     sh:property [
-        sh:path icac-grooming:socialIsolation ;
+        sh:path cacontology-grooming:socialIsolation ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -401,7 +401,7 @@ icac-grooming:SocialVulnerabilityShape rdf:type sh:NodeShape ;
         sh:message "Social vulnerability must specify isolation level from the allowed list (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:socialSupport ;
+        sh:path cacontology-grooming:socialSupport ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -409,7 +409,7 @@ icac-grooming:SocialVulnerabilityShape rdf:type sh:NodeShape ;
         sh:message "Social support must be from the allowed list (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:socialConnectedness ;
+        sh:path cacontology-grooming:socialConnectedness ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
@@ -421,8 +421,8 @@ icac-grooming:SocialVulnerabilityShape rdf:type sh:NodeShape ;
 # ENHANCED ESCALATION PATTERN SHAPES WITH gUFO INTEGRATION
 # =============================================================================
 
-icac-grooming:EscalationPatternShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-grooming:EscalationPattern ;
+cacontology-grooming:EscalationPatternShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-grooming:EscalationPattern ;
     rdfs:label "Escalation Pattern Shape"@en ;
     rdfs:comment "Validation shape for escalation pattern instances with gUFO integration."@en ;
     sh:property [
@@ -438,7 +438,7 @@ icac-grooming:EscalationPatternShape rdf:type sh:NodeShape ;
         sh:message "Escalation pattern may have end timestamp (gUFO temporal)"@en ;
     ] ;
     sh:property [
-        sh:path icac-grooming:escalationType ;
+        sh:path cacontology-grooming:escalationType ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -446,7 +446,7 @@ icac-grooming:EscalationPatternShape rdf:type sh:NodeShape ;
         sh:message "Escalation pattern must specify escalation type from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:escalationSpeed ;
+        sh:path cacontology-grooming:escalationSpeed ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -454,7 +454,7 @@ icac-grooming:EscalationPatternShape rdf:type sh:NodeShape ;
         sh:message "Escalation pattern must specify escalation speed from the allowed list (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:escalationDuration ;
+        sh:path cacontology-grooming:escalationDuration ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -463,7 +463,7 @@ icac-grooming:EscalationPatternShape rdf:type sh:NodeShape ;
         sh:message "Escalation duration must be between 0 and 365 days."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:patternConfidence ;
+        sh:path cacontology-grooming:patternConfidence ;
         sh:datatype xsd:decimal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -472,7 +472,7 @@ icac-grooming:EscalationPatternShape rdf:type sh:NodeShape ;
         sh:message "Pattern confidence must be between 0.0 and 1.0 (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:escalationPredictability ;
+        sh:path cacontology-grooming:escalationPredictability ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
@@ -480,8 +480,8 @@ icac-grooming:EscalationPatternShape rdf:type sh:NodeShape ;
         sh:message "Escalation predictability must be between 0.0 and 1.0 (gUFO quality aspect)"@en ;
     ] .
 
-icac-grooming:OnlineToOfflineProgressionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-grooming:OnlineToOfflineProgression ;
+cacontology-grooming:OnlineToOfflineProgressionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-grooming:OnlineToOfflineProgression ;
     rdfs:label "Online to Offline Progression Shape"@en ;
     rdfs:comment "Validation shape for online to offline progression instances with gUFO integration."@en ;
     sh:property [
@@ -492,7 +492,7 @@ icac-grooming:OnlineToOfflineProgressionShape rdf:type sh:NodeShape ;
         sh:message "Online to offline progression must have begin timestamp (gUFO temporal)"@en ;
     ] ;
     sh:property [
-        sh:path icac-grooming:progressionDuration ;
+        sh:path cacontology-grooming:progressionDuration ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -501,7 +501,7 @@ icac-grooming:OnlineToOfflineProgressionShape rdf:type sh:NodeShape ;
         sh:message "Online to offline progression duration must be between 1 and 365 days."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:progressionStages ;
+        sh:path cacontology-grooming:progressionStages ;
         sh:datatype xsd:nonNegativeInteger ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -510,7 +510,7 @@ icac-grooming:OnlineToOfflineProgressionShape rdf:type sh:NodeShape ;
         sh:message "Progression stages must be between 2 and 10 when specified."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:transitionLikelihood ;
+        sh:path cacontology-grooming:transitionLikelihood ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
@@ -522,8 +522,8 @@ icac-grooming:OnlineToOfflineProgressionShape rdf:type sh:NodeShape ;
 # ENHANCED COMMUNICATION TACTICS SHAPES WITH gUFO INTEGRATION
 # =============================================================================
 
-icac-grooming:CommunicationTacticsShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-grooming:CommunicationTactics ;
+cacontology-grooming:CommunicationTacticsShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-grooming:CommunicationTactics ;
     rdfs:label "Communication Tactics Shape"@en ;
     rdfs:comment "Validation shape for communication tactics instances with gUFO integration."@en ;
     sh:property [
@@ -533,7 +533,7 @@ icac-grooming:CommunicationTacticsShape rdf:type sh:NodeShape ;
         sh:message "Communication tactics may have begin timestamp (gUFO temporal)"@en ;
     ] ;
     sh:property [
-        sh:path icac-grooming:communicationMethod ;
+        sh:path cacontology-grooming:communicationMethod ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -541,7 +541,7 @@ icac-grooming:CommunicationTacticsShape rdf:type sh:NodeShape ;
         sh:message "Communication tactics must specify method from the allowed list."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:communicationFrequency ;
+        sh:path cacontology-grooming:communicationFrequency ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -549,7 +549,7 @@ icac-grooming:CommunicationTacticsShape rdf:type sh:NodeShape ;
         sh:message "Communication frequency must be from the allowed list (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:communicationTone ;
+        sh:path cacontology-grooming:communicationTone ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -557,7 +557,7 @@ icac-grooming:CommunicationTacticsShape rdf:type sh:NodeShape ;
         sh:message "Communication tone must be from the allowed list (gUFO quality aspect)."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:communicationEffectiveness ;
+        sh:path cacontology-grooming:communicationEffectiveness ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
@@ -570,14 +570,14 @@ icac-grooming:CommunicationTacticsShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # Grooming Event Participation Validation
-icac-grooming:GroomingEventParticipationShape rdf:type sh:NodeShape ;
+cacontology-grooming:GroomingEventParticipationShape rdf:type sh:NodeShape ;
     sh:targetClass gufo:Event ;
     sh:property [
         sh:path [ sh:alternativePath ( 
-            icac-grooming:targetsVictim 
-            icac-grooming:performedBy 
-            icac-grooming:witnessedBy 
-            icac-grooming:facilitatedBy 
+            cacontology-grooming:targetsVictim 
+            cacontology-grooming:performedBy 
+            cacontology-grooming:witnessedBy 
+            cacontology-grooming:facilitatedBy 
         ) ] ;
         sh:minCount 1 ;
         sh:message "Every grooming event must have at least one participant (gUFO participation)"@en ;
@@ -588,10 +588,10 @@ icac-grooming:GroomingEventParticipationShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # Grooming Process Composition Validation
-icac-grooming:GroomingProcessCompositionShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-grooming:GroomingProcess ;
+cacontology-grooming:GroomingProcessCompositionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-grooming:GroomingProcess ;
     sh:property [
-        sh:path icac-grooming:hasGroomingBehavior ;
+        sh:path cacontology-grooming:hasGroomingBehavior ;
         sh:class gufo:Event ;
         sh:minCount 1 ;
         sh:message "Grooming process must have at least one grooming behavior (gUFO part-whole)"@en ;
@@ -602,8 +602,8 @@ icac-grooming:GroomingProcessCompositionShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 # Escalation Consistency Business Rule
-icac-grooming:EscalationConsistencyBusinessRule rdf:type sh:NodeShape ;
-    sh:targetClass icac-grooming:EscalationPattern ;
+cacontology-grooming:EscalationConsistencyBusinessRule rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-grooming:EscalationPattern ;
     sh:sparql [
         sh:message "Rapid escalation should have short duration and high predictability"@en ;
         sh:prefixes [
@@ -615,17 +615,17 @@ icac-grooming:EscalationConsistencyBusinessRule rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-grooming:escalationSpeed "very_fast" ;
-                      icac-grooming:escalationDuration ?duration ;
-                      icac-grooming:escalationPredictability ?predictability .
+                $this cacontology-grooming:escalationSpeed "very_fast" ;
+                      cacontology-grooming:escalationDuration ?duration ;
+                      cacontology-grooming:escalationPredictability ?predictability .
                 FILTER (?duration > 30.0 || ?predictability < 0.7)
             }
         """ ;
     ] .
 
 # Vulnerability Exploitation Business Rule
-icac-grooming:VulnerabilityExploitationBusinessRule rdf:type sh:NodeShape ;
-    sh:targetClass icac-grooming:GroomingBehavior ;
+cacontology-grooming:VulnerabilityExploitationBusinessRule rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-grooming:GroomingBehavior ;
     sh:sparql [
         sh:message "High manipulation grooming behaviors must target critical vulnerabilities"@en ;
         sh:prefixes [
@@ -637,17 +637,17 @@ icac-grooming:VulnerabilityExploitationBusinessRule rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-grooming:manipulationLevel "extreme" ;
-                      icac-grooming:exploitsVulnerability ?vulnerability .
-                ?vulnerability icac-grooming:vulnerabilityLevel ?level .
+                $this cacontology-grooming:manipulationLevel "extreme" ;
+                      cacontology-grooming:exploitsVulnerability ?vulnerability .
+                ?vulnerability cacontology-grooming:vulnerabilityLevel ?level .
                 FILTER (?level NOT IN ("severe", "extreme", "critical"))
             }
         """ ;
     ] .
 
 # Trust Building Effectiveness Business Rule
-icac-grooming:TrustBuildingEffectivenessBusinessRule rdf:type sh:NodeShape ;
-    sh:targetClass icac-grooming:TrustBuilding ;
+cacontology-grooming:TrustBuildingEffectivenessBusinessRule rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-grooming:TrustBuilding ;
     sh:sparql [
         sh:message "High trust development rate requires consistent communication tactics"@en ;
         sh:prefixes [
@@ -659,17 +659,17 @@ icac-grooming:TrustBuildingEffectivenessBusinessRule rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-grooming:trustDevelopmentRate ?rate ;
-                      icac-grooming:usesCommunication ?comm .
-                ?comm icac-grooming:communicationFrequency ?freq .
+                $this cacontology-grooming:trustDevelopmentRate ?rate ;
+                      cacontology-grooming:usesCommunication ?comm .
+                ?comm cacontology-grooming:communicationFrequency ?freq .
                 FILTER (?rate > 0.8 && ?freq IN ("sporadic", "weekly"))
             }
         """ ;
     ] .
 
 # Boundary Testing Progression Business Rule
-icac-grooming:BoundaryTestingProgressionBusinessRule rdf:type sh:NodeShape ;
-    sh:targetClass icac-grooming:BoundaryTesting ;
+cacontology-grooming:BoundaryTestingProgressionBusinessRule rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-grooming:BoundaryTesting ;
     sh:sparql [
         sh:message "High severity boundary violations require victim compliance response"@en ;
         sh:prefixes [
@@ -681,16 +681,16 @@ icac-grooming:BoundaryTestingProgressionBusinessRule rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-grooming:boundaryViolationSeverity ?severity ;
-                      icac-grooming:victimResponse ?response .
+                $this cacontology-grooming:boundaryViolationSeverity ?severity ;
+                      cacontology-grooming:victimResponse ?response .
                 FILTER (?severity >= 8 && ?response = "resistance")
             }
         """ ;
     ] .
 
 # Online to Offline Transition Business Rule
-icac-grooming:OnlineOfflineTransitionBusinessRule rdf:type sh:NodeShape ;
-    sh:targetClass icac-grooming:OnlineToOfflineProgression ;
+cacontology-grooming:OnlineOfflineTransitionBusinessRule rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-grooming:OnlineToOfflineProgression ;
     sh:sparql [
         sh:message "High transition likelihood requires completed trust building and isolation phases"@en ;
         sh:prefixes [
@@ -702,13 +702,13 @@ icac-grooming:OnlineOfflineTransitionBusinessRule rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this icac-grooming:transitionLikelihood ?likelihood .
+                $this cacontology-grooming:transitionLikelihood ?likelihood .
                 FILTER (?likelihood > 0.8)
                 FILTER NOT EXISTS {
-                    ?trustBuilding rdf:type icac-grooming:TrustBuilding ;
-                                   icac-grooming:trustLevel "complete" .
-                    ?isolation rdf:type icac-grooming:IsolationTactics ;
-                               icac-grooming:isolationEffectiveness "highly_effective" .
+                    ?trustBuilding rdf:type cacontology-grooming:TrustBuilding ;
+                                   cacontology-grooming:trustLevel "complete" .
+                    ?isolation rdf:type cacontology-grooming:IsolationTactics ;
+                               cacontology-grooming:isolationEffectiveness "highly_effective" .
                 }
             }
         """ ;
@@ -718,8 +718,8 @@ icac-grooming:OnlineOfflineTransitionBusinessRule rdf:type sh:NodeShape ;
 # TEMPORAL VALIDATION SHAPES WITH gUFO INTEGRATION
 # =============================================================================
 
-icac-grooming:GroomingTemporalValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-grooming:GroomingBehavior ;
+cacontology-grooming:GroomingTemporalValidationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-grooming:GroomingBehavior ;
     rdfs:label "Grooming Temporal Validation Shape"@en ;
     rdfs:comment "Validates temporal consistency in grooming behaviors with gUFO integration."@en ;
     sh:sparql [
@@ -765,47 +765,47 @@ icac-grooming:GroomingTemporalValidationShape rdf:type sh:NodeShape ;
 # ENHANCED OBJECT PROPERTY SHAPES WITH gUFO INTEGRATION
 # =============================================================================
 
-icac-grooming:TargetsVictimShape rdf:type sh:PropertyShape ;
-    sh:path icac-grooming:targetsVictim ;
+cacontology-grooming:TargetsVictimShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-grooming:targetsVictim ;
     sh:name "targets victim" ;
     sh:description "Links grooming behavior to victim being targeted (gUFO participation)" ;
     sh:class uco-identity:Person ;
     sh:minCount 0 .
 
-icac-grooming:ExploitsVulnerabilityShape rdf:type sh:PropertyShape ;
-    sh:path icac-grooming:exploitsVulnerability ;
+cacontology-grooming:ExploitsVulnerabilityShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-grooming:exploitsVulnerability ;
     sh:name "exploits vulnerability" ;
     sh:description "Links grooming to victim vulnerability being exploited (gUFO aspect exploitation)" ;
-    sh:class icac-grooming:VictimVulnerability ;
+    sh:class cacontology-grooming:VictimVulnerability ;
     sh:minCount 0 .
 
-icac-grooming:FollowsPatternShape rdf:type sh:PropertyShape ;
-    sh:path icac-grooming:followsPattern ;
+cacontology-grooming:FollowsPatternShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-grooming:followsPattern ;
     sh:name "follows pattern" ;
     sh:description "Links grooming to escalation pattern followed (gUFO temporal pattern)" ;
-    sh:class icac-grooming:EscalationPattern ;
+    sh:class cacontology-grooming:EscalationPattern ;
     sh:minCount 0 .
 
-icac-grooming:UsesCommunicationShape rdf:type sh:PropertyShape ;
-    sh:path icac-grooming:usesCommunication ;
+cacontology-grooming:UsesCommunicationShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-grooming:usesCommunication ;
     sh:name "uses communication" ;
     sh:description "Links grooming to communication tactics used (gUFO participation in communication event)" ;
-    sh:class icac-grooming:CommunicationTactics ;
+    sh:class cacontology-grooming:CommunicationTactics ;
     sh:minCount 0 .
 
-icac-grooming:LeadsToMeetingShape rdf:type sh:PropertyShape ;
-    sh:path icac-grooming:leadsToMeeting ;
+cacontology-grooming:LeadsToMeetingShape rdf:type sh:PropertyShape ;
+    sh:path cacontology-grooming:leadsToMeeting ;
     sh:name "leads to meeting" ;
     sh:description "Links grooming to physical meeting arrangement (gUFO causal relationship)" ;
-    sh:class icac-grooming:PhysicalMeetingArrangement ;
+    sh:class cacontology-grooming:PhysicalMeetingArrangement ;
     sh:minCount 0 .
 
 # =============================================================================
 # DATA QUALITY SHAPES WITH gUFO INTEGRATION
 # =============================================================================
 
-icac-grooming:GroomingDataQualityShape rdf:type sh:NodeShape ;
-    sh:targetClass icac-grooming:GroomingBehavior ;
+cacontology-grooming:GroomingDataQualityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-grooming:GroomingBehavior ;
     rdfs:label "Grooming Data Quality Shape"@en ;
     rdfs:comment "Validates data quality for grooming behaviors with gUFO quality aspects."@en ;
     sh:property [
@@ -827,7 +827,7 @@ icac-grooming:GroomingDataQualityShape rdf:type sh:NodeShape ;
         sh:message "Comment should be between 10 and 1000 characters when provided."@en
     ] ;
     sh:property [
-        sh:path icac-grooming:dataConfidence ;
+        sh:path cacontology-grooming:dataConfidence ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
@@ -835,7 +835,7 @@ icac-grooming:GroomingDataQualityShape rdf:type sh:NodeShape ;
         sh:message "Data confidence must be between 0.0 and 1.0 (gUFO quality aspect)"@en ;
     ] ;
     sh:property [
-        sh:path icac-grooming:analysisCompleteness ;
+        sh:path cacontology-grooming:analysisCompleteness ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
