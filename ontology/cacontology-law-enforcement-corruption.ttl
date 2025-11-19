@@ -12,6 +12,7 @@
 @prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-corruption: <https://cacontology.projectvic.org/law-enforcement-corruption#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 
 # =============================================================================
 # ICAC LAW ENFORCEMENT CORRUPTION ONTOLOGY
