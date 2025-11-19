@@ -15,19 +15,19 @@
 @prefix cacontology-asset-forfeiture: <https://cacontology.projectvic.org/asset-forfeiture#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/asset-forfeiture/0.1> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/asset-forfeiture/2.1.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Asset Forfeiture and Financial Recovery Ontology with gUFO Integration"@en ;
     rdfs:comment "An ontology for representing asset forfeiture, property restraints, and financial recovery actions in Internet Crimes Against Children investigations, enhanced with comprehensive gUFO foundational modeling. Based on Criminal Assets Confiscation Taskforce (CACT) operations and Commonwealth financial penalties, featuring gUFO Events, Organizations, Objects, Roles, Phases, and Situations for enhanced semantic precision and anti-rigidity enforcement."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/asset-forfeiture/0.2> ;
-    dcterms:creator "UCO Ontology Team" ;
+    owl:versionIRI <https://cacontology.projectvic.org/asset-forfeiture/2.1.0> ;
+    dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-05-23"^^xsd:date ;
-    dcterms:modified "2024-12-28"^^xsd:date ;
+    dcterms:modified "2025-11-18"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable> ,
                 <https://ontology.unifiedcyberontology.org/uco/action> ,
                 <https://ontology.unifiedcyberontology.org/uco/role> ,
-                <https://cacontology.projectvic.org/0.3> ,
+                <https://cacontology.projectvic.org/2.1.0> ,
                 <http://purl.org/nemo/gufo#> ;
     rdfs:comment "Enhanced with gUFO foundational ontology for +80% semantic precision, +190% temporal modeling improvements, +380% validation coverage, and comprehensive anti-rigidity enforcement for asset forfeiture operations and multi-jurisdictional coordination."@en .
 

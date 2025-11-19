@@ -69,7 +69,8 @@ The pySHACL service validates examples in organized categories:
 - `cacontology-core.ttl` against `cacontology-core-shapes.ttl`
 - `cacontology-forensics.ttl` against `cacontology-forensics-shapes.ttl`
 - `cacontology-educational-exploitation.ttl` against `cacontology-educational-shapes.ttl`
-- `cacontology-sex-trafficking.ttl` against `cacontology-trafficking-shapes.ttl`
+- `cacontology-sex-trafficking.ttl` against `cacontology-sex-trafficking-shapes.ttl`
+- `cacontology-temporal-gufo.ttl` against `cacontology-temporal-gufo-shapes.ttl`
 - `cacontology-athletic-exploitation.ttl` against `cacontology-athletic-exploitation-shapes.ttl`
 - `cacontology-production.ttl` against `cacontology-production-shapes.ttl`
 - `cacontology-custodial.ttl` against `cacontology-custodial-shapes.ttl`
@@ -77,6 +78,7 @@ The pySHACL service validates examples in organized categories:
 - `cacontology-sextortion.ttl` against `cacontology-sextortion-shapes.ttl`
 - `cacontology-victim-impact.ttl` against `cacontology-victim-impact-shapes.ttl`
 - `cacontology-undercover.ttl` against `cacontology-undercover-shapes.ttl`
+- `cacontology-street-recruitment.ttl` against `cacontology-street-recruitment-shapes.ttl`
 
 ### Example Validation Categories
 1. **Basic Examples**: Core lifecycle examples
@@ -167,7 +169,7 @@ The Fuseki service automatically loads all 23 core modules:
 - `cacontology-forensics.ttl`
 - `cacontology-detection.ttl`
 - `cacontology-platforms.ttl`
-- `cacontology-street-recruitment.ttl`
+- `cacontology-street-recruitment.ttl` (with SHACL shapes validation)
 
 ### Victim Services & Legal (5 modules)
 - `cacontology-victim-impact.ttl`

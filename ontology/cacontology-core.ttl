@@ -15,18 +15,19 @@
 @prefix cacontology-hotlines: <https://cacontology.projectvic.org/hotlines/core#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
+@prefix cacontology-temporal: <https://cacontology.projectvic.org/temporal#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/0.3> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/2.1.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Ontology Core"@en ;
     rdfs:comment "A core ontology for representing concepts and relationships specific to Crimes Against Children investigations, extending UCO and CASE with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, and validation capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/0.3> ;
-    dcterms:creator "UCO Ontology Team" ;
+    owl:versionIRI <https://cacontology.projectvic.org/2.1.0> ;
+    dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-03-20"^^xsd:date ;
-    dcterms:modified "2025-01-03"^^xsd:date ;
+    dcterms:modified "2025-11-18"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/core> ,
                 <https://ontology.caseontology.org/case> ,
-                <https://cacontology.projectvic.org/hotlines/core> ,
+                <https://cacontology.projectvic.org/hotlines/core/2.1.0> ,
                 <http://purl.org/nemo/gufo> .
 
 # =============================================================================
@@ -124,7 +125,7 @@ cacontology:UnknownVictimSubmission rdf:type owl:Class ;
 # Base Criminal Events as gUFO Events
 cacontology:ChildSexualAbuseEvent rdf:type owl:Class ;
     rdfs:label "Child Sexual Abuse Event"@en ;
-    rdfs:comment "A class representing any event involving child sexual abuse or exploitation. This is the base class for all CAC incidents modeled as gUFO Event."@en ;
+    rdfs:comment "A class representing any event involving child sexual abuse or exploitation. This is the base class for all CAC incidents modeled as gUFO Event. Victim and offender ages at the time of the event SHOULD be represented using cacontology-temporal:AgeAtTimeSituation instances rather than static age literals to support age-of-consent, Romeo-and-Juliet, and other temporal legal analyses."@en ;
     rdfs:subClassOf uco-action:Crime, gufo:Event ;
     owl:equivalentClass cacontology-gufo:CriminalEvent .
 
@@ -160,13 +161,13 @@ cacontology:Sextortion rdf:type owl:Class ;
 # CAC Roles as gUFO Roles (anti-rigid)
 cacontology:VictimRole rdf:type owl:Class, gufo:Role ;
     rdfs:label "Victim Role"@en ;
-    rdfs:comment "Role of a person who is a victim of child sexual abuse or exploitation. Modeled as anti-rigid gUFO Role."@en ;
+    rdfs:comment "Role of a person who is a victim of child sexual abuse or exploitation. Modeled as anti-rigid gUFO Role. When the victim's age is known at the time of a specific event or phase, it SHOULD be captured via one or more cacontology-temporal:AgeAtTimeSituation instances linked to the underlying person."@en ;
     rdfs:subClassOf uco-role:VictimRole ;
     owl:equivalentClass cacontology-gufo:VictimRole .
 
 cacontology:OffenderRole rdf:type owl:Class, gufo:Role ;
     rdfs:label "Offender Role"@en ;
-    rdfs:comment "Role of a person who commits child sexual abuse or exploitation. Modeled as anti-rigid gUFO Role."@en ;
+    rdfs:comment "Role of a person who commits child sexual abuse or exploitation. Modeled as anti-rigid gUFO Role. When offender age or age-gap reasoning is relevant (e.g., Romeo-and-Juliet scenarios), age SHOULD be represented via cacontology-temporal:AgeAtTimeSituation instances for the corresponding person."@en ;
     rdfs:subClassOf uco-role:OffenderRole ;
     owl:equivalentClass cacontology-gufo:OffenderRole .
 
@@ -278,6 +279,28 @@ cacontology:rescuedVictim rdf:type owl:ObjectProperty ;
     rdfs:comment "Links a victim rescue action to the rescued victim."@en ;
     rdfs:domain cacontology:VictimRescueAction ;
     rdfs:range uco-identity:Person .
+
+# =============================================================================
+# AGE-AT-TIME HELPER PROPERTIES (bridging core events/people to temporal age situations)
+# =============================================================================
+
+cacontology:hasAgeSituation rdf:type owl:ObjectProperty ;
+    rdfs:label "has age situation"@en ;
+    rdfs:comment "Links a person to an Age At Time Situation that attributes a concrete age value to them over a time-bounded interval. This is the primary bridge from identity data into the gUFO-based age modeling pattern."@en ;
+    rdfs:domain uco-identity:Person ;
+    rdfs:range cacontology-temporal:AgeAtTimeSituation .
+
+cacontology:hasVictimAgeSituation rdf:type owl:ObjectProperty ;
+    rdfs:label "has victim age situation"@en ;
+    rdfs:comment "Convenience link from a child sexual abuse event to an Age At Time Situation describing the victim’s age at or during that event. Implementations MAY infer or materialize this from person-level age situations and event timepoints."@en ;
+    rdfs:domain cacontology:ChildSexualAbuseEvent ;
+    rdfs:range cacontology-temporal:AgeAtTimeSituation .
+
+cacontology:hasOffenderAgeSituation rdf:type owl:ObjectProperty ;
+    rdfs:label "has offender age situation"@en ;
+    rdfs:comment "Convenience link from a child sexual abuse event to an Age At Time Situation describing the offender’s age at or during that event, enabling age-gap and Romeo-and-Juliet style analyses."@en ;
+    rdfs:domain cacontology:ChildSexualAbuseEvent ;
+    rdfs:range cacontology-temporal:AgeAtTimeSituation .
 
 cacontology:submittedTo rdf:type owl:ObjectProperty ;
     rdfs:label "submitted to"@en ;

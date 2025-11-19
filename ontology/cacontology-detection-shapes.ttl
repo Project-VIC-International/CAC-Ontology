@@ -16,16 +16,19 @@
 # gUFO Integration
 @prefix gufo: <http://purl.org/nemo/gufo#> .
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Enhanced Ontology Declaration with gUFO Validation
-<https://cacontology.projectvic.org/detection/shapes/0.2> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/detection/shapes/2.1.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Detection SHACL Shapes with gUFO Validation"@en ;
     rdfs:comment "Comprehensive SHACL validation shapes for gUFO-enhanced ICAC detection ontology, including foundational type validation, anti-rigidity constraints for detection roles and phases, temporal consistency validation, detection workflow validation, and advanced cross-reference validation for content detection systems."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/detection/shapes/0.2> ;
-    owl:imports <https://cacontology.projectvic.org/detection/0.1> ,
+    owl:versionIRI <https://cacontology.projectvic.org/detection/shapes/2.1.0> ;
+    owl:imports <https://cacontology.projectvic.org/detection/2.1.0> ,
                 <http://purl.org/nemo/gufo> ,
                 <https://ontology.unifiedcyberontology.org/uco/core> ;
-    owl:versionInfo "0.2 - gUFO Enhanced Validation"@en .
+    owl:versionInfo "2.1.0" ;
+    dcterms:creator "CAC Ontology Team" ;
+    dcterms:modified "2025-11-18"^^xsd:date .
 
 # =============================================================================
 # gUFO DETECTION TOOL VALIDATION (Objects)
@@ -141,11 +144,12 @@ cacontology-detection:DetectionActionGUFOShape rdf:type sh:NodeShape ;
         sh:message "Detection begin point must precede end point"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-detection" ;
+                sh:prefix "cacontology-detection" ;
                 sh:namespace "https://cacontology.projectvic.org/detection#"^^xsd:anyURI
             ]
         ] ;
         sh:select """
+            PREFIX cacontology-detection: <https://cacontology.projectvic.org/detection#>
             SELECT ?this
             WHERE {
                 ?this cacontology-detection:hasDetectionBeginPoint ?begin ;
@@ -286,7 +290,7 @@ cacontology-detection:DetectionPhaseGUFOShape rdf:type sh:NodeShape ;
         sh:message "Phase begin point must precede end point"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-detection" ;
+                sh:prefix "cacontology-detection" ;
                 sh:namespace "https://cacontology.projectvic.org/detection#"^^xsd:anyURI
             ]
         ] ;
@@ -309,11 +313,12 @@ cacontology-detection:DetectionPhaseSequenceShape rdf:type sh:NodeShape ;
         sh:message "Detection phases must follow logical workflow sequence"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-detection" ;
+                sh:prefix "cacontology-detection" ;
                 sh:namespace "https://cacontology.projectvic.org/detection#"^^xsd:anyURI
             ]
         ] ;
         sh:select """
+            PREFIX cacontology-detection: <https://cacontology.projectvic.org/detection#>
             SELECT ?this
             WHERE {
                 ?this a cacontology-detection:ManualReviewPhase ;
@@ -360,11 +365,12 @@ cacontology-detection:DetectionRoleGUFOShape rdf:type sh:NodeShape ;
         sh:message "Role begin point must precede end point"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-detection" ;
+                sh:prefix "cacontology-detection" ;
                 sh:namespace "https://cacontology.projectvic.org/detection#"^^xsd:anyURI
             ]
         ] ;
         sh:select """
+            PREFIX cacontology-detection: <https://cacontology.projectvic.org/detection#>
             SELECT ?this
             WHERE {
                 ?this cacontology-detection:hasRoleBeginPoint ?begin ;
@@ -401,7 +407,7 @@ cacontology-detection:MassContentAnalysisSituationShape rdf:type sh:NodeShape ;
         sh:message "Mass content analysis situation must involve multiple detection actions"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-detection" ;
+                sh:prefix "cacontology-detection" ;
                 sh:namespace "https://cacontology.projectvic.org/detection#"^^xsd:anyURI
             ] , [
                 sh:prefix "gufo" ;
@@ -409,6 +415,8 @@ cacontology-detection:MassContentAnalysisSituationShape rdf:type sh:NodeShape ;
             ]
         ] ;
         sh:select """
+            PREFIX cacontology-detection: <https://cacontology.projectvic.org/detection#>
+            PREFIX gufo: <http://purl.org/nemo/gufo#>
             SELECT ?this
             WHERE {
                 ?this a cacontology-detection:MassContentAnalysisSituation .
@@ -605,7 +613,6 @@ cacontology-detection:SARClassificationGUFOShape rdf:type sh:NodeShape ;
     rdfs:comment "Validates SAR classification concept instances with gUFO enhancements."@en ;
     sh:property [
         sh:path skos:prefLabel ;
-        sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minLength 5 ;
@@ -614,7 +621,6 @@ cacontology-detection:SARClassificationGUFOShape rdf:type sh:NodeShape ;
     ] ;
     sh:property [
         sh:path skos:definition ;
-        sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minLength 10 ;
@@ -640,7 +646,6 @@ cacontology-detection:COPINEClassificationGUFOShape rdf:type sh:NodeShape ;
     rdfs:comment "Validates COPINE classification concept instances with gUFO enhancements."@en ;
     sh:property [
         sh:path skos:prefLabel ;
-        sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minLength 5 ;
@@ -649,7 +654,6 @@ cacontology-detection:COPINEClassificationGUFOShape rdf:type sh:NodeShape ;
     ] ;
     sh:property [
         sh:path skos:definition ;
-        sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minLength 10 ;
@@ -679,28 +683,33 @@ cacontology-detection:DetectionFoundationalTypeShape rdf:type sh:NodeShape ;
             sh:declare [
                 sh:prefix "gufo" ;
                 sh:namespace "http://purl.org/nemo/gufo#"^^xsd:anyURI
-            ] , [
-                sh:prefix "icac-detection" ;
+            ] ,
+            [
+                sh:prefix "cacontology-detection" ;
                 sh:namespace "https://cacontology.projectvic.org/detection#"^^xsd:anyURI
             ]
         ] ;
         sh:select """
+            PREFIX gufo: <http://purl.org/nemo/gufo#>
+            PREFIX cacontology-detection: <https://cacontology.projectvic.org/detection#>
             SELECT ?entity
             WHERE {
-                ?entity a cacontology-detection:ContentHashingTool .
-                FILTER NOT EXISTS { ?entity a gufo:Object . }
-            } UNION {
-                ?entity a cacontology-detection:AutomatedDetectionAction .
-                FILTER NOT EXISTS { ?entity a gufo:Event . }
-            } UNION {
-                ?entity a cacontology-detection:ContentAnalystRole .
-                FILTER NOT EXISTS { ?entity a gufo:Role . }
-            } UNION {
-                ?entity a cacontology-detection:InitialDetectionPhase .
-                FILTER NOT EXISTS { ?entity a gufo:Phase . }
-            } UNION {
-                ?entity a cacontology-detection:DetectionResult .
-                FILTER NOT EXISTS { ?entity a gufo:Object . }
+                {
+                    ?entity a cacontology-detection:ContentHashingTool .
+                    FILTER NOT EXISTS { ?entity a gufo:Object . }
+                } UNION {
+                    ?entity a cacontology-detection:AutomatedDetectionAction .
+                    FILTER NOT EXISTS { ?entity a gufo:Event . }
+                } UNION {
+                    ?entity a cacontology-detection:ContentAnalystRole .
+                    FILTER NOT EXISTS { ?entity a gufo:Role . }
+                } UNION {
+                    ?entity a cacontology-detection:InitialDetectionPhase .
+                    FILTER NOT EXISTS { ?entity a gufo:Phase . }
+                } UNION {
+                    ?entity a cacontology-detection:DetectionResult .
+                    FILTER NOT EXISTS { ?entity a gufo:Object . }
+                }
             }
         """
     ] .
@@ -718,7 +727,7 @@ cacontology-detection:DetectionTemporalConsistencyShape rdf:type sh:NodeShape ;
         sh:message "Detection actions must occur within active detection phase timeframe"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-detection" ;
+                sh:prefix "cacontology-detection" ;
                 sh:namespace "https://cacontology.projectvic.org/detection#"^^xsd:anyURI
             ] , [
                 sh:prefix "gufo" ;
@@ -726,6 +735,8 @@ cacontology-detection:DetectionTemporalConsistencyShape rdf:type sh:NodeShape ;
             ]
         ] ;
         sh:select """
+            PREFIX cacontology-detection: <https://cacontology.projectvic.org/detection#>
+            PREFIX gufo: <http://purl.org/nemo/gufo#>
             SELECT ?this
             WHERE {
                 ?this cacontology-detection:hasDetectionBeginPoint ?detectionBegin .
@@ -747,11 +758,14 @@ cacontology-detection:DetectionWorkflowTemporalShape rdf:type sh:NodeShape ;
         sh:message "Manual classification should follow automated detection"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-detection" ;
+                sh:prefix "cacontology-detection" ;
                 sh:namespace "https://cacontology.projectvic.org/detection#"^^xsd:anyURI
             ]
         ] ;
         sh:select """
+            PREFIX cacontology-detection: <https://cacontology.projectvic.org/detection#>
+            PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core#>
+            PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action#>
             SELECT ?this
             WHERE {
                 ?this a cacontology-detection:ManualClassificationAction ;
@@ -778,11 +792,13 @@ cacontology-detection:DetectionActionResultCrossReferenceShape rdf:type sh:NodeS
         sh:message "Automated detection action should produce detection results"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-detection" ;
+                sh:prefix "cacontology-detection" ;
                 sh:namespace "https://cacontology.projectvic.org/detection#"^^xsd:anyURI
             ]
         ] ;
         sh:select """
+            PREFIX cacontology-detection: <https://cacontology.projectvic.org/detection#>
+            PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action#>
             SELECT ?this
             WHERE {
                 ?this a cacontology-detection:AutomatedDetectionAction .
@@ -803,11 +819,14 @@ cacontology-detection:HashingActionResultCrossReferenceShape rdf:type sh:NodeSha
         sh:message "Content hashing action should produce hash results"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-detection" ;
+                sh:prefix "cacontology-detection" ;
                 sh:namespace "https://cacontology.projectvic.org/detection#"^^xsd:anyURI
             ]
         ] ;
         sh:select """
+            PREFIX cacontology-detection: <https://cacontology.projectvic.org/detection#>
+            PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action#>
+            PREFIX uco-types: <https://ontology.unifiedcyberontology.org/uco/types#>
             SELECT ?this
             WHERE {
                 ?this a cacontology-detection:ContentHashingAction .
@@ -833,7 +852,7 @@ cacontology-detection:ClassificationActionResultCrossReferenceShape rdf:type sh:
         sh:message "Manual classification action should produce classification results"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-detection" ;
+                sh:prefix "cacontology-detection" ;
                 sh:namespace "https://cacontology.projectvic.org/detection#"^^xsd:anyURI
             ]
         ] ;
@@ -858,11 +877,14 @@ cacontology-detection:DatabaseMatchInputCrossReferenceShape rdf:type sh:NodeShap
         sh:message "Database match action should have hash inputs for comparison"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-detection" ;
+                sh:prefix "cacontology-detection" ;
                 sh:namespace "https://cacontology.projectvic.org/detection#"^^xsd:anyURI
             ]
         ] ;
         sh:select """
+            PREFIX cacontology-detection: <https://cacontology.projectvic.org/detection#>
+            PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action#>
+            PREFIX uco-types: <https://ontology.unifiedcyberontology.org/uco/types#>
             SELECT ?this
             WHERE {
                 ?this a cacontology-detection:DatabaseMatchAction .
@@ -892,7 +914,7 @@ cacontology-detection:DetectionRoleParticipationShape rdf:type sh:NodeShape ;
         sh:message "Person in detection role must participate in appropriate detection actions"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-detection" ;
+                sh:prefix "cacontology-detection" ;
                 sh:namespace "https://cacontology.projectvic.org/detection#"^^xsd:anyURI
             ] , [
                 sh:prefix "gufo" ;
@@ -900,6 +922,9 @@ cacontology-detection:DetectionRoleParticipationShape rdf:type sh:NodeShape ;
             ]
         ] ;
         sh:select """
+            PREFIX cacontology-detection: <https://cacontology.projectvic.org/detection#>
+            PREFIX gufo: <http://purl.org/nemo/gufo#>
+            PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action#>
             SELECT ?this
             WHERE {
                 ?this gufo:playsRole ?role .
@@ -953,11 +978,12 @@ cacontology-detection:ConfidenceScoreValidationShape rdf:type sh:NodeShape ;
         sh:message "High confidence scores should correlate with positive detection decisions"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-detection" ;
+                sh:prefix "cacontology-detection" ;
                 sh:namespace "https://cacontology.projectvic.org/detection#"^^xsd:anyURI
             ]
         ] ;
         sh:select """
+            PREFIX cacontology-detection: <https://cacontology.projectvic.org/detection#>
             SELECT ?this
             WHERE {
                 ?this cacontology-detection:confidenceScore ?score ;

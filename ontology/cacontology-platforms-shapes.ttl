@@ -8,6 +8,20 @@
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable#> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-platforms: <https://cacontology.projectvic.org/platforms#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# Ontology Declaration
+<https://cacontology.projectvic.org/platforms/shapes/2.1.0> rdf:type owl:Ontology ;
+    rdfs:label "CAC Platforms SHACL Shapes"@en ;
+    rdfs:comment "SHACL validation shapes for the ICAC Platforms Ontology, providing validation for technology platforms, digital services, and Electronic Service Provider capabilities."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/platforms/shapes/2.1.0> ;
+    owl:versionInfo "2.1.0" ;
+    dcterms:creator "CAC Ontology Team" ;
+    dcterms:modified "2025-11-18"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/platforms/2.1.0> ,
+                <http://purl.org/nemo/gufo> ,
+                <https://ontology.unifiedcyberontology.org/core> .
 
 # =============================================================================
 # SOCIAL MEDIA PLATFORM SHAPES

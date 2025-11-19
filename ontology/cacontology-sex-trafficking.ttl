@@ -16,18 +16,18 @@
 @prefix cacontology-impact: <https://cacontology.projectvic.org/victim-impact#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
+@prefix cacontology-temporal: <https://cacontology.projectvic.org/temporal#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/trafficking/0.1> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/trafficking/2.1.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Sex Trafficking Ontology"@en ;
     rdfs:comment "Specialized ontology for modeling sex trafficking of minors and related criminal enterprises with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, organization structure modeling, and validation capabilities. Based on cases like Brooklyn DA v. Eight Defendants (2025)."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/trafficking/0.1> ;
-    dcterms:creator "UCO Ontology Team" ;
+    owl:versionIRI <https://cacontology.projectvic.org/trafficking/2.1.0> ;
+    dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-05-28"^^xsd:date ;
-    dcterms:modified "2025-01-03"^^xsd:date ;
+    dcterms:modified "2025-11-18"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/core> ,
                 <https://ontology.caseontology.org/case> ,
-                <https://ontology.unifiedcyberontology.org/icac> ,
                 <http://purl.org/nemo/gufo> .
 
 # =============================================================================
@@ -177,7 +177,7 @@ cacontology-trafficking:TraffickingVictimRole rdf:type owl:Class, gufo:Role ;
 
 cacontology-trafficking:MinorTraffickingVictimRole rdf:type owl:Class, gufo:Role ;
     rdfs:label "Minor Trafficking Victim Role"@en ;
-    rdfs:comment "Role of minor (under 18) being sex trafficked. Modeled as anti-rigid gUFO Role."@en ;
+    rdfs:comment "Role of minor (under 18) being sex trafficked. Modeled as anti-rigid gUFO Role. Concrete victim age at specific trafficking operations SHOULD be represented using cacontology-temporal:AgeAtTimeSituation instances linked to the victim person, allowing precise modeling of age-of-consent, enhanced-penalty, and related legal thresholds."@en ;
     rdfs:subClassOf cacontology-trafficking:TraffickingVictimRole .
 
 cacontology-trafficking:AdultTraffickingVictimRole rdf:type owl:Class, gufo:Role ;

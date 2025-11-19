@@ -1,0 +1,225 @@
+# =============================================================================
+# Age-At-Time Analytics Queries (gUFO QualityValueAttributionSituation)
+# =============================================================================
+# These example queries demonstrate how to:
+# 1) Model and consume cacontology-temporal:AgeAtTimeSituation instances, and
+# 2) Answer age-dependent questions such as:
+#    "Find State Police investigations with victims 13 or under who are groomed online in 2025."
+#
+# NOTE: These queries assume that:
+# - Victims and offenders are modeled as uco-identity:Person individuals.
+# - Age-at-time information is represented using cacontology-temporal:AgeAtTimeSituation.
+# - Grooming behaviors are modeled using cacontology-grooming:GroomingBehavior and
+#   related classes, and are linked to child victims via cacontology-grooming:targetsVictim.
+# - Investigations are represented using cacontology:CACInvestigation and linked
+#   to relevant grooming events and participating agencies in the data.
+#
+# Adapt the WHERE patterns to match your local integration patterns (e.g., how
+# investigations are linked to events and how State Police host organizations
+# are modeled in your graph).
+#
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX gufo: <http://purl.org/nemo/gufo#>
+PREFIX uco-identity: <https://ontology.unifiedcyberontology.org/identity#>
+PREFIX uco-action: <https://ontology.unifiedcyberontology.org/action#>
+PREFIX uco-location: <https://ontology.unifiedcyberontology.org/location#>
+PREFIX cacontology: <https://cacontology.projectvic.org#>
+PREFIX cacontology-temporal: <https://cacontology.projectvic.org/temporal#>
+PREFIX cacontology-grooming: <https://cacontology.projectvic.org/grooming#>
+PREFIX cacontology-taskforce: <https://cacontology.projectvic.org/taskforce#>
+PREFIX cacontology-specialized: <https://cacontology.projectvic.org/specialized-units#>
+
+# =============================================================================
+# QUERY 1: Victims 13-or-under in online grooming situations during 2025
+# =============================================================================
+
+SELECT DISTINCT
+  ?victim
+  ?victimLabel
+  ?ageValue
+  ?ageSituation
+  ?ageBegin
+  ?groomingEvent
+  ?groomingStage
+  ?platform
+WHERE {
+  # Example temporal window (2025 calendar year)
+  BIND("2025-01-01T00:00:00Z"^^xsd:dateTimeStamp AS ?start2025)
+  BIND("2026-01-01T00:00:00Z"^^xsd:dateTimeStamp AS ?end2025)
+
+  # Grooming events targeting a child victim
+  ?groomingEvent rdf:type cacontology-grooming:GroomingBehavior ;
+                  cacontology-grooming:targetsVictim ?victim .
+
+  ?victim rdf:type cacontology-grooming:ChildVictim ;
+          rdfs:label ?victimLabel .
+
+  # Optional: restrict to online grooming (platform-based)
+  OPTIONAL {
+    ?groomingEvent cacontology-grooming:primaryPlatform ?platform .
+  }
+
+  # Age-at-time situation for the victim
+  ?ageSituation rdf:type cacontology-temporal:AgeAtTimeSituation ;
+                cacontology-temporal:ageSubject ?victim ;
+                cacontology-temporal:hasAgeInYears ?ageValue ;
+                gufo:hasBeginPointInXSDDateTimeStamp ?ageBegin .
+
+  # Optional end point when provided
+  OPTIONAL {
+    ?ageSituation gufo:hasEndPointInXSDDateTimeStamp ?ageEnd .
+  }
+
+  # Constrain the situation to be valid at some point during 2025
+  FILTER(
+    (?ageBegin < ?end2025) &&
+    ( !BOUND(?ageEnd) || ?ageEnd >= ?start2025 )
+  )
+
+  # Victim 13 or younger at that time
+  FILTER(?ageValue <= 13.0)
+
+  # Optional: return grooming stage information when present
+  OPTIONAL { ?groomingEvent cacontology-grooming:groomingStage ?groomingStage }
+}
+ORDER BY ?victimLabel ?ageBegin
+
+
+# =============================================================================
+# QUERY 2: State Police investigations with online grooming victims 13-or-under in 2025
+# =============================================================================
+# This query shows one way to combine:
+# - CAC investigations,
+# - State Police taskforce / specialized-unit modeling, and
+# - Age-at-time situations for grooming victims.
+#
+# You may need to adapt the agency / host patterns depending on how your data
+# links investigations to state police units (e.g., via cacontology-taskforce
+# or cacontology-specialized-units classes and properties).
+# =============================================================================
+
+SELECT DISTINCT
+  ?investigation
+  ?investigationLabel
+  ?statePoliceUnit
+  ?statePoliceLabel
+  ?victim
+  ?victimLabel
+  ?ageValue
+  ?ageBegin
+  ?groomingEvent
+  ?platform
+WHERE {
+  BIND("2025-01-01T00:00:00Z"^^xsd:dateTimeStamp AS ?start2025)
+  BIND("2026-01-01T00:00:00Z"^^xsd:dateTimeStamp AS ?end2025)
+
+  # CAC investigation, labeled
+  ?investigation rdf:type cacontology:CACInvestigation ;
+                 rdfs:label ?investigationLabel .
+
+  # Example pattern: investigation handled by a State Police-hosted task force
+  # or a State Police specialized unit. Adjust to match your actual data.
+  OPTIONAL {
+    ?investigation cacontology-taskforce:handledByTaskForce ?taskForce .
+    ?taskForce rdf:type cacontology-taskforce:StatePoliceHost ;
+               rdfs:label ?statePoliceLabel .
+    BIND(?taskForce AS ?statePoliceUnit)
+  }
+  OPTIONAL {
+    ?investigation cacontology-specialized:handledByUnit ?unit .
+    ?unit rdf:type cacontology-specialized:StatePoliceComputerCrimesUnit ;
+          rdfs:label ?unitLabel .
+    BIND(?unit AS ?statePoliceUnit)
+    BIND(?unitLabel AS ?statePoliceLabel)
+  }
+
+  # Grooming events associated with the investigation
+  ?groomingEvent rdf:type cacontology-grooming:GroomingBehavior ;
+                  cacontology-grooming:targetsVictim ?victim .
+
+  # You may relate investigations to events in different ways (e.g., via
+  # participation or case-investigation patterns). This is a generic example:
+  ?groomingEvent uco-action:hasFacet ?investigationFacet .
+  ?investigationFacet cacontology:occursDuringPhase ?phase .
+  ?investigation cacontology:hasPhase ?phase .
+
+  # Victim identity and age-at-time situation
+  ?victim rdf:type cacontology-grooming:ChildVictim ;
+          rdfs:label ?victimLabel .
+
+  ?ageSituation rdf:type cacontology-temporal:AgeAtTimeSituation ;
+                cacontology-temporal:ageSubject ?victim ;
+                cacontology-temporal:hasAgeInYears ?ageValue ;
+                gufo:hasBeginPointInXSDDateTimeStamp ?ageBegin .
+
+  OPTIONAL { ?ageSituation gufo:hasEndPointInXSDDateTimeStamp ?ageEnd }
+
+  # Age situation valid during 2025
+  FILTER(
+    (?ageBegin < ?end2025) &&
+    ( !BOUND(?ageEnd) || ?ageEnd >= ?start2025 )
+  )
+
+  # Victim age threshold
+  FILTER(?ageValue <= 13.0)
+
+  # Online grooming indicator via platform
+  OPTIONAL { ?groomingEvent cacontology-grooming:primaryPlatform ?platform }
+}
+ORDER BY ?statePoliceLabel ?investigationLabel ?victimLabel ?ageBegin
+
+
+# =============================================================================
+# QUERY 3: Victim / Offender age-gap pairs for grooming events
+# =============================================================================
+# This example illustrates how AgeAtTimeSituation can be used to derive
+# age-gap analytics (e.g., Romeo-and-Juliet-style reasoning) without encoding
+# any jurisdiction-specific thresholds into the ontology.
+# =============================================================================
+
+SELECT DISTINCT
+  ?groomingEvent
+  ?victim
+  ?victimLabel
+  ?victimAge
+  ?offender
+  ?offenderLabel
+  ?offenderAge
+  (?offenderAge - ?victimAge AS ?ageGapYears)
+WHERE {
+  # Grooming event with victim and offender persons
+  ?groomingEvent rdf:type cacontology-grooming:GroomingBehavior ;
+                  cacontology-grooming:targetsVictim ?victim .
+
+  ?victim rdf:type cacontology-grooming:ChildVictim ;
+          rdfs:label ?victimLabel .
+
+  # Offender modeled as an OnlinePredator; adjust to your offender modeling
+  ?offender rdf:type cacontology-grooming:OnlinePredator ;
+            rdfs:label ?offenderLabel .
+
+  # Age-at-time situations for victim and offender
+  ?victimAgeSituation rdf:type cacontology-temporal:AgeAtTimeSituation ;
+                      cacontology-temporal:ageSubject ?victim ;
+                      cacontology-temporal:hasAgeInYears ?victimAge ;
+                      gufo:hasBeginPointInXSDDateTimeStamp ?victimAgeBegin .
+
+  ?offenderAgeSituation rdf:type cacontology-temporal:AgeAtTimeSituation ;
+                        cacontology-temporal:ageSubject ?offender ;
+                        cacontology-temporal:hasAgeInYears ?offenderAge ;
+                        gufo:hasBeginPointInXSDDateTimeStamp ?offenderAgeBegin .
+
+  # Example alignment: require that the age situations overlap the time of the grooming event.
+  # If grooming events have explicit temporal points, you can refine this pattern.
+  OPTIONAL { ?groomingEvent gufo:hasBeginPointInXSDDateTimeStamp ?eventBegin }
+  OPTIONAL { ?groomingEvent gufo:hasEndPointInXSDDateTimeStamp ?eventEnd }
+
+  # Weak alignment example: require that the victim and offender age situations start
+  # within +/- 1 year of each other, as a proxy for "same time window"
+  FILTER(ABS(xsd:decimal(year(?victimAgeBegin)) - xsd:decimal(year(?offenderAgeBegin))) <= 1.0)
+}
+ORDER BY ?groomingEvent ?victimLabel ?offenderLabel
+
+

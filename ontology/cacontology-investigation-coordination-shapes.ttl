@@ -11,6 +11,20 @@
 @prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-coord: <https://cacontology.projectvic.org/investigation-coordination#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# Ontology Declaration
+<https://cacontology.projectvic.org/investigation-coordination/shapes/2.1.0> rdf:type owl:Ontology ;
+    rdfs:label "CAC Investigation Coordination SHACL Shapes with gUFO Validation"@en ;
+    rdfs:comment "SHACL validation shapes for gUFO-enhanced ICAC investigation coordination ontology, including anti-rigidity constraints, temporal validation, and foundational type compliance."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/investigation-coordination/shapes/2.1.0> ;
+    owl:versionInfo "2.1.0" ;
+    dcterms:creator "CAC Ontology Team" ;
+    dcterms:modified "2025-11-18"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/investigation-coordination/2.1.0> ,
+                <http://purl.org/nemo/gufo> ,
+                <https://ontology.unifiedcyberontology.org/core> .
 
 # =============================================================================
 # gUFO TYPE CONSISTENCY VALIDATION FOR INVESTIGATION COORDINATION
@@ -1057,7 +1071,7 @@ cacontology-coord:MultiAgencyCoordinationComplexityBusinessRule rdf:type sh:Node
         sh:message "Complex multi-agency coordination must have adequate liaison support and high effectiveness"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-coord" ;
+                sh:prefix "cacontology-coord" ;
                 sh:namespace "https://cacontology.projectvic.org/investigation-coordination#"^^xsd:anyURI ;
             ] ;
         ] ;
@@ -1083,7 +1097,7 @@ cacontology-coord:JointInvestigationResourceIntegrationBusinessRule rdf:type sh:
         sh:message "High-integration joint investigations require resource pooling and shared command"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-coord" ;
+                sh:prefix "cacontology-coord" ;
                 sh:namespace "https://cacontology.projectvic.org/investigation-coordination#"^^xsd:anyURI ;
             ] ;
         ] ;
@@ -1106,7 +1120,7 @@ cacontology-coord:InformationSharingSecurityBusinessRule rdf:type sh:NodeShape ;
         sh:message "High classification information requires enhanced security and formal agreements"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-coord" ;
+                sh:prefix "cacontology-coord" ;
                 sh:namespace "https://cacontology.projectvic.org/investigation-coordination#"^^xsd:anyURI ;
             ] ;
         ] ;
@@ -1127,7 +1141,7 @@ cacontology-coord:LiaisonAuthorityAlignmentBusinessRule rdf:type sh:NodeShape ;
         sh:message "Primary liaisons should have full or limited authority aligned with their clearance level"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-coord" ;
+                sh:prefix "cacontology-coord" ;
                 sh:namespace "https://cacontology.projectvic.org/investigation-coordination#"^^xsd:anyURI ;
             ] ;
         ] ;
@@ -1150,7 +1164,7 @@ cacontology-coord:CoordinationEffectivenessSuccessBusinessRule rdf:type sh:NodeS
         sh:message "High-effectiveness coordination should demonstrate high success rates"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-coord" ;
+                sh:prefix "cacontology-coord" ;
                 sh:namespace "https://cacontology.projectvic.org/investigation-coordination#"^^xsd:anyURI ;
             ] ;
         ] ;

@@ -14,16 +14,19 @@
 # gUFO Integration
 @prefix gufo: <http://purl.org/nemo/gufo#> .
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Enhanced Ontology Declaration with gUFO Validation
-<https://cacontology.projectvic.org/custodial/shapes/0.2> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/custodial/shapes/2.1.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Custodial SHACL Shapes with gUFO Validation"@en ;
     rdfs:comment "Comprehensive SHACL validation shapes for gUFO-enhanced ICAC custodial ontology, including anti-rigidity constraints, temporal validation, phase transitions, role validation, trust violation patterns, and foundational type compliance."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/custodial/shapes/0.2> ;
-    owl:imports <https://cacontology.projectvic.org/custodial/0.2> ,
+    owl:versionIRI <https://cacontology.projectvic.org/custodial/shapes/2.1.0> ;
+    owl:versionInfo "2.1.0" ;
+    dcterms:creator "CAC Ontology Team" ;
+    dcterms:modified "2025-11-18"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/custodial/2.1.0> ,
                 <http://purl.org/nemo/gufo> ,
-                <https://ontology.unifiedcyberontology.org/uco/core> ;
-    owl:versionInfo "0.2 - gUFO Enhanced Validation"@en .
+                <https://ontology.unifiedcyberontology.org/uco/core> .
 
 # =============================================================================
 # gUFO CUSTODIAL RELATIONSHIP VALIDATION
@@ -70,11 +73,12 @@ cacontology-custodial:CustodialRelationshipGUFOShape rdf:type sh:NodeShape ;
         sh:message "Custody begin point must precede end point"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-custodial" ;
+                sh:prefix "cacontology-custodial" ;
                 sh:namespace "https://cacontology.projectvic.org/custodial#"^^xsd:anyURI
             ]
         ] ;
         sh:select """
+            PREFIX cacontology-custodial: <https://cacontology.projectvic.org/custodial#>
             SELECT ?this
             WHERE {
                 ?this cacontology-custodial:hasCustodyBeginPoint ?begin ;
@@ -232,11 +236,12 @@ cacontology-custodial:PositionOfTrustGUFOShape rdf:type sh:NodeShape ;
         sh:message "Role begin point must precede end point"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-custodial" ;
+                sh:prefix "cacontology-custodial" ;
                 sh:namespace "https://cacontology.projectvic.org/custodial#"^^xsd:anyURI
             ]
         ] ;
         sh:select """
+            PREFIX cacontology-custodial: <https://cacontology.projectvic.org/custodial#>
             SELECT ?this
             WHERE {
                 ?this cacontology-custodial:hasRoleBeginPoint ?begin ;
@@ -296,11 +301,12 @@ cacontology-custodial:TrustViolationGUFOShape rdf:type sh:NodeShape ;
         sh:message "Violation begin point must precede end point"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-custodial" ;
+                sh:prefix "cacontology-custodial" ;
                 sh:namespace "https://cacontology.projectvic.org/custodial#"^^xsd:anyURI
             ]
         ] ;
         sh:select """
+            PREFIX cacontology-custodial: <https://cacontology.projectvic.org/custodial#>
             SELECT ?this
             WHERE {
                 ?this cacontology-custodial:hasViolationBeginPoint ?begin ;
@@ -368,11 +374,12 @@ cacontology-custodial:CustodyPhaseGUFOShape rdf:type sh:NodeShape ;
         sh:message "Custody phases must follow valid transition sequence"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-custodial" ;
+                sh:prefix "cacontology-custodial" ;
                 sh:namespace "https://cacontology.projectvic.org/custodial#"^^xsd:anyURI
             ]
         ] ;
         sh:select """
+            PREFIX cacontology-custodial: <https://cacontology.projectvic.org/custodial#>
             SELECT ?this
             WHERE {
                 ?relationship cacontology-custodial:hasCustodyPhase ?this ;
@@ -432,7 +439,7 @@ cacontology-custodial:TrustBreachSituationShape rdf:type sh:NodeShape ;
         sh:message "Trust breach situation must be created by trust violation event"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-custodial" ;
+                sh:prefix "cacontology-custodial" ;
                 sh:namespace "https://cacontology.projectvic.org/custodial#"^^xsd:anyURI
             ]
         ] ;
@@ -463,25 +470,30 @@ cacontology-custodial:CustodialFoundationalTypeShape rdf:type sh:NodeShape ;
             sh:declare [
                 sh:prefix "gufo" ;
                 sh:namespace "http://purl.org/nemo/gufo#"^^xsd:anyURI
-            ] , [
-                sh:prefix "icac-custodial" ;
+            ] ,
+            [
+                sh:prefix "cacontology-custodial" ;
                 sh:namespace "https://cacontology.projectvic.org/custodial#"^^xsd:anyURI
             ]
         ] ;
         sh:select """
+            PREFIX gufo: <http://purl.org/nemo/gufo#>
+            PREFIX cacontology-custodial: <https://cacontology.projectvic.org/custodial#>
             SELECT ?entity
             WHERE {
-                ?entity a cacontology-custodial:CustodialRelationship .
-                FILTER NOT EXISTS { ?entity a gufo:Object . }
-            } UNION {
-                ?entity a cacontology-custodial:PositionOfTrust .
-                FILTER NOT EXISTS { ?entity a gufo:Role . }
-            } UNION {
-                ?entity a cacontology-custodial:TrustViolation .
-                FILTER NOT EXISTS { ?entity a gufo:Event . }
-            } UNION {
-                ?entity a cacontology-custodial:ActiveCustodyPhase .
-                FILTER NOT EXISTS { ?entity a gufo:Phase . }
+                {
+                    ?entity a cacontology-custodial:CustodialRelationship .
+                    FILTER NOT EXISTS { ?entity a gufo:Object . }
+                } UNION {
+                    ?entity a cacontology-custodial:PositionOfTrust .
+                    FILTER NOT EXISTS { ?entity a gufo:Role . }
+                } UNION {
+                    ?entity a cacontology-custodial:TrustViolation .
+                    FILTER NOT EXISTS { ?entity a gufo:Event . }
+                } UNION {
+                    ?entity a cacontology-custodial:ActiveCustodyPhase .
+                    FILTER NOT EXISTS { ?entity a gufo:Phase . }
+                }
             }
         """
     ] .
@@ -499,7 +511,7 @@ cacontology-custodial:AuthorityRoleExclusivityShape rdf:type sh:NodeShape ;
         sh:message "Person cannot simultaneously hold conflicting authority roles in same custodial context"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-custodial" ;
+                sh:prefix "cacontology-custodial" ;
                 sh:namespace "https://cacontology.projectvic.org/custodial#"^^xsd:anyURI
             ]
         ] ;
@@ -532,7 +544,7 @@ cacontology-custodial:CustodialTemporalConsistencyShape rdf:type sh:NodeShape ;
         sh:message "Trust violations must occur within active custody timeframe"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-custodial" ;
+                sh:prefix "cacontology-custodial" ;
                 sh:namespace "https://cacontology.projectvic.org/custodial#"^^xsd:anyURI
             ]
         ] ;
@@ -561,7 +573,7 @@ cacontology-custodial:CustodialCrossReferenceShape rdf:type sh:NodeShape ;
         sh:message "Custodial relationship must involve both a custodian and a child."@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-custodial" ;
+                sh:prefix "cacontology-custodial" ;
                 sh:namespace "https://cacontology.projectvic.org/custodial#"^^xsd:anyURI
             ]
         ] ;
@@ -586,7 +598,7 @@ cacontology-custodial:TrustLevelConsistencyShape rdf:type sh:NodeShape ;
         sh:message "Trust level after violation should not be higher than before violation."@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-custodial" ;
+                sh:prefix "cacontology-custodial" ;
                 sh:namespace "https://cacontology.projectvic.org/custodial#"^^xsd:anyURI
             ]
         ] ;
@@ -619,7 +631,7 @@ cacontology-custodial:CustodialParticipationShape rdf:type sh:NodeShape ;
         sh:message "Custodial relationship must have coherent role and event participation"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-custodial" ;
+                sh:prefix "cacontology-custodial" ;
                 sh:namespace "https://cacontology.projectvic.org/custodial#"^^xsd:anyURI
             ] , [
                 sh:prefix "gufo" ;

@@ -219,6 +219,12 @@ graph TD
 
 > **Note**: gUFO components (blue) provide foundational ontology enhancements. Shapes files (dotted lines) are used for validation but not imported by production graphs. All 30+ ontology modules extend the core CAC framework with optional gUFO integration.
 
+### Release Versioning Policy
+
+- The CAC Ontology family uses a **global release version** recorded in `CHANGELOG.md` (for example, `v2.1.0`) to describe the state of the full ontology suite.
+- Individual ontology modules (and their SHACL shapes) retain **module-specific `owl:versionIRI` values**, which are only incremented when that particular module’s semantics change.
+- This approach avoids churn in ontology IRIs while still providing a clear project-wide release history for implementers and downstream tools.
+
 ## Enhanced Data Flow with gUFO Integration
 
 ```mermaid

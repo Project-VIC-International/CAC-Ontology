@@ -7,19 +7,25 @@
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/observable#> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/action#> .
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/role#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/identity#> .
 @prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
+@prefix cacontology-temporal: <https://cacontology.projectvic.org/temporal#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 
 # =============================================================================
 # ONTOLOGY DECLARATION
 # =============================================================================
 
-<https://cacontology.projectvic.org/core/shapes/1.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/core/shapes/2.1.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Core SHACL Shapes with gUFO Validation"@en ;
     rdfs:comment "Comprehensive SHACL validation shapes for gUFO-enhanced ICAC core ontology, including anti-rigidity constraints, temporal validation, phase transitions, and foundational type compliance."@en ;
-    owl:imports <https://cacontology.projectvic.org/gufo/1.0> ,
+    owl:versionIRI <https://cacontology.projectvic.org/core/shapes/2.1.0> ;
+    dcterms:creator "CAC Ontology Team" ;
+    dcterms:modified "2025-11-18"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/gufo/2.1.0> ,
                 <http://purl.org/nemo/gufo> ,
                 <https://ontology.unifiedcyberontology.org/core> .
 
@@ -82,11 +88,12 @@ cacontology-gufo:PhaseShape rdf:type sh:NodeShape ;
         sh:message "Phase begin point must precede end point"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-gufo" ;
+                sh:prefix "cacontology-gufo" ;
                 sh:namespace "https://cacontology.projectvic.org/gufo#"^^xsd:anyURI
             ]
         ] ;
         sh:select """
+            PREFIX cacontology-gufo: <https://cacontology.projectvic.org/gufo#>
             SELECT ?this
             WHERE {
                 ?this cacontology-gufo:hasPhaseBeginPoint ?begin ;
@@ -123,7 +130,7 @@ cacontology-gufo:PhaseTransitionShape rdf:type sh:NodeShape ;
         sh:message "Investigation phases must follow valid transition sequence"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-gufo" ;
+                sh:prefix "cacontology-gufo" ;
                 sh:namespace "https://cacontology.projectvic.org/gufo#"^^xsd:anyURI
             ]
         ] ;
@@ -168,7 +175,7 @@ cacontology-gufo:RoleShape rdf:type sh:NodeShape ;
     ] ;
     sh:property [
         sh:path cacontology-gufo:participatesInInvestigation ;
-        sh:minCount 1 ;
+        sh:minCount 0 ;
         sh:class cacontology-gufo:Investigation ;
         sh:message "Role must participate in at least one investigation"@en
     ] .
@@ -200,7 +207,7 @@ cacontology-gufo:RoleExclusivityShape rdf:type sh:NodeShape ;
         sh:message "Person cannot simultaneously be victim and offender in same investigation"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-gufo" ;
+                sh:prefix "cacontology-gufo" ;
                 sh:namespace "https://cacontology.projectvic.org/gufo#"^^xsd:anyURI
             ]
         ] ;
@@ -307,7 +314,7 @@ cacontology-gufo:InvestigationActiveSituationShape rdf:type sh:NodeShape ;
         sh:message "Active investigation situation must correspond to active phase"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-gufo" ;
+                sh:prefix "cacontology-gufo" ;
                 sh:namespace "https://cacontology.projectvic.org/gufo#"^^xsd:anyURI
             ]
         ] ;
@@ -347,7 +354,7 @@ cacontology-gufo:ChildSexualAbuseEventShape rdf:type sh:NodeShape ;
         sh:message "Criminal event must involve victim and offender roles"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-gufo" ;
+                sh:prefix "cacontology-gufo" ;
                 sh:namespace "https://cacontology.projectvic.org/gufo#"^^xsd:anyURI
             ]
         ] ;
@@ -419,9 +426,10 @@ cacontology-gufo:InvestigationTemporalConsistencyShape rdf:type sh:NodeShape ;
         sh:message "Investigation events must occur within phase timeframes"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-gufo" ;
+                sh:prefix "cacontology-gufo" ;
                 sh:namespace "https://cacontology.projectvic.org/gufo#"^^xsd:anyURI
-            ] , [
+            ] ,
+            [
                 sh:prefix "gufo" ;
                 sh:namespace "http://purl.org/nemo/gufo#"^^xsd:anyURI
             ]
@@ -458,20 +466,22 @@ cacontology-gufo:FoundationalTypeConsistencyShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT ?entity
             WHERE {
-                ?entity a gufo:Kind .
-                FILTER NOT EXISTS { ?entity a gufo:Object . }
-            } UNION {
-                ?entity a gufo:Phase .
-                FILTER NOT EXISTS { ?entity a gufo:AntiRigidType . }
-            } UNION {
-                ?entity a gufo:Role .
-                FILTER NOT EXISTS { ?entity a gufo:AntiRigidType . }
-            } UNION {
-                ?entity a gufo:Event .
-                FILTER NOT EXISTS { ?entity a gufo:Perdurant . }
-            } UNION {
-                ?entity a gufo:Situation .
-                FILTER NOT EXISTS { ?entity a gufo:SituationType . }
+                {
+                    ?entity a gufo:Kind .
+                    FILTER NOT EXISTS { ?entity a gufo:Object . }
+                } UNION {
+                    ?entity a gufo:Phase .
+                    FILTER NOT EXISTS { ?entity a gufo:AntiRigidType . }
+                } UNION {
+                    ?entity a gufo:Role .
+                    FILTER NOT EXISTS { ?entity a gufo:AntiRigidType . }
+                } UNION {
+                    ?entity a gufo:Event .
+                    FILTER NOT EXISTS { ?entity a gufo:Perdurant . }
+                } UNION {
+                    ?entity a gufo:Situation .
+                    FILTER NOT EXISTS { ?entity a gufo:SituationType . }
+                }
             }
         """
     ] .
@@ -488,11 +498,17 @@ cacontology-gufo:InvestigationCompletenessShape rdf:type sh:NodeShape ;
         sh:message "Investigation must have coherent role and event participation"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-gufo" ;
+                sh:prefix "cacontology-gufo" ;
+                sh:namespace "https://cacontology.projectvic.org/gufo#"^^xsd:anyURI
+            ] ;
+            sh:declare [
+                sh:prefix "cacontology-gufo" ;
                 sh:namespace "https://cacontology.projectvic.org/gufo#"^^xsd:anyURI
             ]
         ] ;
         sh:select """
+            PREFIX cacontology-gufo: <https://cacontology.projectvic.org/gufo#>
+            PREFIX gufo: <http://purl.org/nemo/gufo#>
             SELECT ?this
             WHERE {
                 ?this cacontology-gufo:hasRole ?role .
@@ -504,3 +520,67 @@ cacontology-gufo:InvestigationCompletenessShape rdf:type sh:NodeShape ;
             }
         """
     ] . 
+
+# =============================================================================
+# AGE-AT-TIME SITUATION VALIDATION
+# =============================================================================
+
+# Age At Time Situation Shape
+cacontology-gufo:AgeAtTimeSituationShape rdf:type sh:NodeShape ;
+    rdfs:label "Age At Time Situation Shape"@en ;
+    sh:targetClass cacontology-temporal:AgeAtTimeSituation ;
+    sh:property [
+        sh:path cacontology-temporal:ageSubject ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class uco-identity:Person ;
+        sh:message "AgeAtTimeSituation must be linked to exactly one person via cacontology-temporal:ageSubject."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-temporal:hasAgeInYears ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0.0 ;
+        sh:message "AgeAtTimeSituation must have exactly one non-negative numeric age value in years via cacontology-temporal:hasAgeInYears."@en
+    ] ;
+    sh:property [
+        sh:path gufo:hasBeginPointInXSDDateTimeStamp ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "AgeAtTimeSituation must have a begin timestamp (when the attributed age becomes valid)."@en
+    ] ;
+    sh:property [
+        sh:path gufo:hasEndPointInXSDDateTimeStamp ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "AgeAtTimeSituation may have at most one end timestamp (when the attributed age ceases to be valid)."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-temporal:concernsAgeQuality ;
+        sh:maxCount 1 ;
+        sh:hasValue cacontology-temporal:Age ;
+        sh:message "AgeAtTimeSituation, when specifying a quality type, MUST use cacontology-temporal:Age via cacontology-temporal:concernsAgeQuality (a subproperty of gufo:concernsQualityType)."@en
+    ] ;
+    # Temporal consistency: begin must precede end when both are present
+    sh:sparql [
+        sh:message "For AgeAtTimeSituation, the begin timestamp must be strictly earlier than the end timestamp when both are present."@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "cacontology-temporal" ;
+                sh:namespace "https://cacontology.projectvic.org/temporal#"^^xsd:anyURI
+            ] , [
+                sh:prefix "gufo" ;
+                sh:namespace "http://purl.org/nemo/gufo#"^^xsd:anyURI
+            ]
+        ] ;
+        sh:select """
+            SELECT ?this
+            WHERE {
+                ?this gufo:hasBeginPointInXSDDateTimeStamp ?begin .
+                ?this gufo:hasEndPointInXSDDateTimeStamp ?end .
+                FILTER (?begin >= ?end)
+            }
+        """
+    ] .

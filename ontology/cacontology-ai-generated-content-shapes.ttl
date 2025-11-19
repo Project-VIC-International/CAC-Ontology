@@ -15,14 +15,15 @@
 @prefix cacontology-ai: <https://cacontology.projectvic.org/ai-generated#> .
 
 # Enhanced Ontology Declaration with gUFO
-<https://cacontology.projectvic.org/ai-generated/shapes> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/ai-generated/shapes/2.1.0> rdf:type owl:Ontology ;
     rdfs:label "CAC AI-Generated Content SHACL Shapes with gUFO Integration"@en ;
     rdfs:comment "SHACL validation shapes for the ICAC AI-Generated Content Ontology, enhanced with comprehensive gUFO foundational modeling validation. Provides +450% validation coverage through gUFO Events, Objects, Roles, Phases, Situations constraint validation with anti-rigidity enforcement, temporal modeling, and AI-specific forensic validation rules."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/ai-generated/shapes/0.2> ;
-    dcterms:creator "UCO Ontology Team" ;
+    owl:versionIRI <https://cacontology.projectvic.org/ai-generated/shapes/2.1.0> ;
+    owl:versionInfo "2.1.0" ;
+    dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-05-23"^^xsd:date ;
-    dcterms:modified "2024-12-28"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/ai-generated/0.1>,
+    dcterms:modified "2025-11-18"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/ai-generated/2.1.0>,
                 <http://purl.org/nemo/gufo#> ;
     rdfs:comment "gUFO-enhanced SHACL shapes providing comprehensive validation for AI-generated content investigation with foundational ontology compliance checking, anti-rigidity enforcement, and temporal constraint validation."@en .
 

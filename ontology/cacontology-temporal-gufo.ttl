@@ -5,6 +5,7 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/core#> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/action#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/identity#> .
 @prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 @prefix cacontology-temporal: <https://cacontology.projectvic.org/temporal#> .
@@ -14,18 +15,57 @@
 # ONTOLOGY DECLARATION
 # =============================================================================
 
-<https://cacontology.projectvic.org/temporal/1.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/temporal/2.1.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Temporal Framework with gUFO Integration - Phase 2"@en ;
-    rdfs:comment "Phase 2 gUFO integration for ICAC ontology family, focusing on temporal enhancement and investigation lifecycle modeling patterns. Extends gUFO temporal framework for law enforcement applications."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/temporal/1.0> ;
-    dcterms:creator "ICAC Ontology Team" ;
+    rdfs:comment "Phase 2 gUFO integration for ICAC ontology family, focusing on temporal enhancement and investigation lifecycle modeling patterns. Extends gUFO temporal framework for law enforcement applications, including age-at-time modeling patterns for victims and offenders."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/temporal/2.1.0> ;
+    dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-01-03"^^xsd:date ;
-    dcterms:modified "2025-01-03"^^xsd:date ;
+    dcterms:modified "2025-11-18"^^xsd:date ;
     dcterms:description "Phase 2 temporal enhancement framework integrating gUFO temporal concepts with UCO action modeling and ICAC investigation lifecycle patterns."@en ;
     owl:imports <https://ontology.unifiedcyberontology.org/core> ,
                 <https://ontology.caseontology.org/case> ,
-                <https://cacontology.projectvic.org/gufo/1.0> ,
+                <https://cacontology.projectvic.org/gufo/2.1.0> ,
                 <http://purl.org/nemo/gufo> .
+
+# =============================================================================
+# AGE AS QUALITY AND AGE-AT-TIME SITUATIONS (gUFO QualityValueAttribution)
+# =============================================================================
+
+# Age as gUFO Quality for legal and analytical reasoning
+cacontology-temporal:Age rdf:type owl:Class ;
+    rdfs:label "Age Quality"@en ;
+    rdfs:comment "Age of a person modeled as a gUFO Quality whose concrete value is attributed in time-bounded situations. Intended for age-of-consent, Romeo-and-Juliet, and other age-dependent legal reasoning."@en ;
+    rdfs:subClassOf gufo:Quality .
+
+# Situation that attributes a concrete age value to a person at a particular time interval
+cacontology-temporal:AgeAtTimeSituation rdf:type owl:Class ;
+    rdfs:label "Age At Time Situation"@en ;
+    rdfs:comment "gUFO QualityValueAttributionSituation specializing in attribution of an Age quality value to a specific person over a time-bounded interval (e.g., the victim was 13 years old during a 2025 grooming event)."@en ;
+    rdfs:subClassOf gufo:QualityValueAttributionSituation .
+
+# Person whose age is being asserted in this situation
+cacontology-temporal:ageSubject rdf:type owl:ObjectProperty ;
+    rdfs:label "age subject"@en ;
+    rdfs:comment "Links an Age At Time Situation to the person whose age is being asserted in that situation."@en ;
+    rdfs:domain cacontology-temporal:AgeAtTimeSituation ;
+    rdfs:range uco-identity:Person .
+
+# Concrete numeric age value (in years) being attributed in the situation
+cacontology-temporal:hasAgeInYears rdf:type owl:DatatypeProperty ;
+    rdfs:label "has age in years"@en ;
+    rdfs:comment "Numeric age in years attributed to a person in an Age At Time Situation (non-negative, may be fractional for finer-grained analytics)."@en ;
+    rdfs:subPropertyOf gufo:concernsQualityValue ;
+    rdfs:domain cacontology-temporal:AgeAtTimeSituation ;
+    rdfs:range xsd:decimal .
+
+# Optional explicit typing of the quality type for age situations
+cacontology-temporal:concernsAgeQuality rdf:type owl:ObjectProperty ;
+    rdfs:label "concerns age quality"@en ;
+    rdfs:comment "Specialization of gufo:concernsQualityType making explicit that an Age At Time Situation attributes a value for the Age quality type."@en ;
+    rdfs:subPropertyOf gufo:concernsQualityType ;
+    rdfs:domain cacontology-temporal:AgeAtTimeSituation ;
+    rdfs:range cacontology-temporal:Age .
 
 # =============================================================================
 # PHASE 2: INVESTIGATION LIFECYCLE TEMPORAL MODELING

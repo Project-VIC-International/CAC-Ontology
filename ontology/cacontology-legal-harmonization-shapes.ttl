@@ -11,18 +11,21 @@
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-legal: <https://cacontology.projectvic.org/legal-harmonization#> .
 @prefix cacontology-legal-shapes: <https://cacontology.projectvic.org/legal-harmonization/shapes#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 
 # =============================================================================
 # ICAC LEGAL HARMONIZATION SHACL SHAPES
 # Enhanced with gUFO (gentle Unified Foundational Ontology) integration
 # =============================================================================
 
-<https://cacontology.projectvic.org/legal-harmonization-shapes> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/legal-harmonization/shapes/2.1.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Legal Harmonization SHACL Shapes"@en ;
     rdfs:comment "SHACL shapes for validating ICAC legal harmonization ontology instances with comprehensive gUFO integration for enhanced semantic validation, covering international legal frameworks, policy harmonization, and CSAM legislation analysis across 196 countries."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/legal-harmonization/shapes/1.1> ;
-    owl:versionInfo "1.1.0" ;
-    owl:imports <https://cacontology.projectvic.org/legal-harmonization> ,
+    owl:versionIRI <https://cacontology.projectvic.org/legal-harmonization/shapes/2.1.0> ;
+    owl:versionInfo "2.1.0" ;
+    dcterms:creator "CAC Ontology Team" ;
+    dcterms:modified "2025-11-18"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/legal-harmonization/2.1.0> ,
                 <http://purl.org/nemo/gufo#> ,
                 <http://www.w3.org/ns/shacl#> .
 
@@ -679,7 +682,7 @@ cacontology-legal-shapes:HighEffectivenessLegislationRule rdf:type sh:NodeShape 
         sh:severity sh:Warning ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-legal" ;
+                sh:prefix "cacontology-legal" ;
                 sh:namespace "https://cacontology.projectvic.org/legal-harmonization#"^^xsd:anyURI
             ]
         ] ;
@@ -705,7 +708,7 @@ cacontology-legal-shapes:ComprehensiveHarmonizationRule rdf:type sh:NodeShape ;
         sh:severity sh:Warning ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-legal" ;
+                sh:prefix "cacontology-legal" ;
                 sh:namespace "https://cacontology.projectvic.org/legal-harmonization#"^^xsd:anyURI
             ]
         ] ;
@@ -734,7 +737,7 @@ cacontology-legal-shapes:CriticalGapReformRule rdf:type sh:NodeShape ;
         sh:severity sh:Warning ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-legal" ;
+                sh:prefix "cacontology-legal" ;
                 sh:namespace "https://cacontology.projectvic.org/legal-harmonization#"^^xsd:anyURI
             ]
         ] ;
@@ -762,7 +765,7 @@ cacontology-legal-shapes:FullComplianceAlignmentRule rdf:type sh:NodeShape ;
         sh:severity sh:Warning ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-legal" ;
+                sh:prefix "cacontology-legal" ;
                 sh:namespace "https://cacontology.projectvic.org/legal-harmonization#"^^xsd:anyURI
             ]
         ] ;
@@ -788,7 +791,7 @@ cacontology-legal-shapes:InternationalCooperationFrameworkRule rdf:type sh:NodeS
         sh:severity sh:Violation ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-legal" ;
+                sh:prefix "cacontology-legal" ;
                 sh:namespace "https://cacontology.projectvic.org/legal-harmonization#"^^xsd:anyURI
             ]
         ] ;
@@ -830,7 +833,7 @@ cacontology-legal-shapes:LegalHarmonizationDataQualityShape rdf:type sh:NodeShap
         sh:severity sh:Warning ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-legal" ;
+                sh:prefix "cacontology-legal" ;
                 sh:namespace "https://cacontology.projectvic.org/legal-harmonization#"^^xsd:anyURI
             ]
         ] ;

@@ -12,18 +12,21 @@
 @prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
 @prefix cacontology-corruption: <https://cacontology.projectvic.org/law-enforcement-corruption#> .
 @prefix cacontology-corruption-shapes: <https://cacontology.projectvic.org/law-enforcement-corruption/shapes#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 
 # =============================================================================
 # ICAC LAW ENFORCEMENT CORRUPTION SHACL SHAPES
 # Enhanced with gUFO (gentle Unified Foundational Ontology) integration
 # =============================================================================
 
-<https://cacontology.projectvic.org/law-enforcement-corruption/shapes> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/law-enforcement-corruption/shapes/2.1.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Law Enforcement Corruption SHACL Shapes"@en ;
     rdfs:comment "SHACL shapes for validating law enforcement corruption ontology instances with comprehensive gUFO integration for enhanced semantic validation."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/law-enforcement-corruption/shapes/1.1> ;
-    owl:versionInfo "1.1.0" ;
-    owl:imports <https://cacontology.projectvic.org/law-enforcement-corruption> ,
+    owl:versionIRI <https://cacontology.projectvic.org/law-enforcement-corruption/shapes/2.1.0> ;
+    owl:versionInfo "2.1.0" ;
+    dcterms:creator "CAC Ontology Team" ;
+    dcterms:modified "2025-11-18"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/law-enforcement-corruption/2.1.0> ,
                 <http://purl.org/nemo/gufo#> ,
                 <http://www.w3.org/ns/shacl#> .
 
@@ -561,7 +564,7 @@ cacontology-corruption-shapes:HighSeverityCorruptionRule rdf:type sh:NodeShape ;
         sh:severity sh:Warning ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-corruption" ;
+                sh:prefix "cacontology-corruption" ;
                 sh:namespace "https://cacontology.projectvic.org/law-enforcement-corruption#"^^xsd:anyURI
             ]
         ] ;
@@ -589,7 +592,7 @@ cacontology-corruption-shapes:AuthorityEnhancementRule rdf:type sh:NodeShape ;
         sh:severity sh:Warning ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-corruption" ;
+                sh:prefix "cacontology-corruption" ;
                 sh:namespace "https://cacontology.projectvic.org/law-enforcement-corruption#"^^xsd:anyURI
             ]
         ] ;
@@ -615,7 +618,7 @@ cacontology-corruption-shapes:TrustBetrayalRule rdf:type sh:NodeShape ;
         sh:severity sh:Warning ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-corruption" ;
+                sh:prefix "cacontology-corruption" ;
                 sh:namespace "https://cacontology.projectvic.org/law-enforcement-corruption#"^^xsd:anyURI
             ]
         ] ;
@@ -641,7 +644,7 @@ cacontology-corruption-shapes:DetectionDifficultyRule rdf:type sh:NodeShape ;
         sh:severity sh:Info ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-corruption" ;
+                sh:prefix "cacontology-corruption" ;
                 sh:namespace "https://cacontology.projectvic.org/law-enforcement-corruption#"^^xsd:anyURI
             ]
         ] ;
@@ -669,7 +672,7 @@ cacontology-corruption-shapes:EvidenceIntegrityRule rdf:type sh:NodeShape ;
         sh:severity sh:Warning ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-corruption" ;
+                sh:prefix "cacontology-corruption" ;
                 sh:namespace "https://cacontology.projectvic.org/law-enforcement-corruption#"^^xsd:anyURI
             ]
         ] ;
@@ -729,7 +732,7 @@ cacontology-corruption-shapes:CorruptionDataQualityShape rdf:type sh:NodeShape ;
         sh:severity sh:Warning ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-corruption" ;
+                sh:prefix "cacontology-corruption" ;
                 sh:namespace "https://cacontology.projectvic.org/law-enforcement-corruption#"^^xsd:anyURI
             ]
         ] ;

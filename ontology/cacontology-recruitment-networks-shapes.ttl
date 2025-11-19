@@ -10,6 +10,20 @@
 @prefix cacontology-trafficking: <https://cacontology.projectvic.org/trafficking#> .
 @prefix cacontology-recruitment: <https://cacontology.projectvic.org/recruitment-networks#> .
 @prefix cacontology-recruitment-shapes: <https://cacontology.projectvic.org/recruitment-networks/shapes#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# Ontology Declaration
+<https://cacontology.projectvic.org/recruitment-networks/shapes/2.1.0> rdf:type owl:Ontology ;
+    rdfs:label "CAC Recruitment Networks SHACL Shapes"@en ;
+    rdfs:comment "SHACL validation shapes for the ICAC Recruitment Networks Ontology, providing validation for peer recruitment networks, classmate-mediated trafficking, and social recruitment patterns."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/recruitment-networks/shapes/2.1.0> ;
+    owl:versionInfo "2.1.0" ;
+    dcterms:creator "CAC Ontology Team" ;
+    dcterms:modified "2025-11-18"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/recruitment-networks/2.1.0> ,
+                <http://purl.org/nemo/gufo> ,
+                <https://ontology.unifiedcyberontology.org/core> .
 
 # =============================================================================
 # PEER RECRUITMENT NETWORK SHAPES
@@ -401,7 +415,7 @@ cacontology-recruitment-shapes:RecruitmentConsistencyShape rdf:type sh:NodeShape
         sh:message "Successful recruitments cannot exceed total recruitment attempts."@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-recruitment" ;
+                sh:prefix "cacontology-recruitment" ;
                 sh:namespace "https://cacontology.projectvic.org/recruitment-networks#"^^xsd:anyURI
             ]
         ] ;
@@ -423,7 +437,7 @@ cacontology-recruitment-shapes:SchoolReportingTimelinessShape rdf:type sh:NodeSh
         sh:message "Mandatory reporting should occur within 24 hours when triggered."@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-recruitment" ;
+                sh:prefix "cacontology-recruitment" ;
                 sh:namespace "https://cacontology.projectvic.org/recruitment-networks#"^^xsd:anyURI
             ]
         ] ;
@@ -445,7 +459,7 @@ cacontology-recruitment-shapes:NetworkSizeConsistencyShape rdf:type sh:NodeShape
         sh:message "Victim recruiter count cannot exceed total network size."@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-recruitment" ;
+                sh:prefix "cacontology-recruitment" ;
                 sh:namespace "https://cacontology.projectvic.org/recruitment-networks#"^^xsd:anyURI
             ]
         ] ;

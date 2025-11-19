@@ -13,18 +13,22 @@
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-physical: <https://cacontology.projectvic.org/physical-evidence#> .
 @prefix cacontology-physical-shapes: <https://cacontology.projectvic.org/physical-evidence/shapes#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 
 # =============================================================================
 # ICAC PHYSICAL EVIDENCE SHACL SHAPES with gUFO INTEGRATION
 # Enhanced with comprehensive gUFO (gentle Unified Foundational Ontology) validation
 # =============================================================================
 
-<https://cacontology.projectvic.org/physical-evidence-shapes> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/physical/shapes/2.1.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Physical Evidence SHACL Shapes with gUFO Integration"@en ;
     rdfs:comment "SHACL shapes for validating physical evidence in ICAC investigations with comprehensive gUFO foundational ontology integration for enhanced semantic precision and validation capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/physical-evidence-shapes/1.1> ;
-    owl:versionInfo "1.1.0" ;
-    owl:imports <http://purl.org/nemo/gufo#> .
+    owl:versionIRI <https://cacontology.projectvic.org/physical/shapes/2.1.0> ;
+    owl:versionInfo "2.1.0" ;
+    dcterms:creator "CAC Ontology Team" ;
+    dcterms:modified "2025-11-18"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/physical/2.1.0> ,
+                <http://purl.org/nemo/gufo#> .
 
 # =============================================================================
 # gUFO TYPE CONSISTENCY VALIDATION SHAPES

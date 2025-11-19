@@ -12,18 +12,22 @@
 @prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-multi: <https://cacontology.projectvic.org/multi-jurisdiction#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 
 # =============================================================================
 # ICAC MULTI-JURISDICTION SHACL SHAPES with gUFO INTEGRATION
 # Enhanced with comprehensive gUFO (gentle Unified Foundational Ontology) validation
 # =============================================================================
 
-<https://cacontology.projectvic.org/multi-jurisdiction-shapes> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/multi-jurisdiction/shapes/2.1.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Multi-Jurisdiction SHACL Shapes with gUFO Integration"@en ;
     rdfs:comment "SHACL shapes for validating multi-jurisdictional operations with comprehensive gUFO foundational ontology integration for enhanced semantic precision and validation capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/multi-jurisdiction-shapes/1.1> ;
-    owl:versionInfo "1.1.0" ;
-    owl:imports <http://purl.org/nemo/gufo#> .
+    owl:versionIRI <https://cacontology.projectvic.org/multi-jurisdiction/shapes/2.1.0> ;
+    owl:versionInfo "2.1.0" ;
+    dcterms:creator "CAC Ontology Team" ;
+    dcterms:modified "2025-11-18"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/multi-jurisdiction/2.1.0> ,
+                <http://purl.org/nemo/gufo#> .
 
 # =============================================================================
 # gUFO TYPE CONSISTENCY VALIDATION SHAPES

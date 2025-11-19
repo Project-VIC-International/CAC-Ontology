@@ -17,20 +17,20 @@
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/sentencing/0.1> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/sentencing/2.1.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Legal Outcomes & Sentencing Ontology"@en ;
     rdfs:comment "An ontology for representing legal outcomes, federal sentences, judicial proceedings, and punishment guidelines in Internet Crimes Against Children cases with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, and validation capabilities, extending UCO and CASE."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/sentencing/0.1> ;
-    dcterms:creator "UCO Ontology Team" ;
+    owl:versionIRI <https://cacontology.projectvic.org/sentencing/2.1.0> ;
+    dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2025-01-03"^^xsd:date ;
+    dcterms:modified "2025-11-18"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable> ,
                 <https://ontology.unifiedcyberontology.org/uco/action> ,
                 <https://ontology.unifiedcyberontology.org/uco/location> ,
                 <https://ontology.unifiedcyberontology.org/uco/role> ,
-                <https://cacontology.projectvic.org/0.3> ,
+                <https://cacontology.projectvic.org/2.1.0> ,
                 <http://purl.org/nemo/gufo> .
 
 # =============================================================================
@@ -40,7 +40,7 @@
 # Legal Proceedings as gUFO Events
 cacontology-sentencing:LegalProceeding rdf:type owl:Class ;
     rdfs:label "Legal Proceeding"@en ;
-    rdfs:comment "Formal judicial process for prosecuting ICAC-related crimes. Modeled as gUFO Event."@en ;
+    rdfs:comment "Formal judicial process for prosecuting cacontology-related crimes. Modeled as gUFO Event."@en ;
     rdfs:subClassOf uco-action:Action, gufo:Event ;
     owl:equivalentClass cacontology-gufo:CriminalEvent .
 

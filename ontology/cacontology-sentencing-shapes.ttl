@@ -9,6 +9,20 @@
 @prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# Ontology Declaration
+<https://cacontology.projectvic.org/sentencing/shapes/2.1.0> rdf:type owl:Ontology ;
+    rdfs:label "CAC Sentencing SHACL Shapes"@en ;
+    rdfs:comment "SHACL validation shapes for the ICAC Sentencing Ontology, providing validation for legal outcomes, federal sentences, judicial proceedings, and punishment guidelines."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/sentencing/shapes/2.1.0> ;
+    owl:versionInfo "2.1.0" ;
+    dcterms:creator "CAC Ontology Team" ;
+    dcterms:modified "2025-11-18"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/sentencing/2.1.0> ,
+                <http://purl.org/nemo/gufo> ,
+                <https://ontology.unifiedcyberontology.org/core> .
 
 # =============================================================================
 # SENTENCING OUTCOME SHAPES

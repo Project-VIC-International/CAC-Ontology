@@ -12,18 +12,22 @@
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-partnerships: <https://cacontology.projectvic.org/partnerships#> .
 @prefix cacontology-partnerships-shapes: <https://cacontology.projectvic.org/partnerships/shapes#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 
 # =============================================================================
 # ICAC PARTNERSHIPS SHACL SHAPES with gUFO INTEGRATION
 # Enhanced with comprehensive gUFO (gentle Unified Foundational Ontology) validation
 # =============================================================================
 
-<https://cacontology.projectvic.org/partnerships-shapes> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/partnerships/shapes/2.1.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Partnerships SHACL Shapes with gUFO Integration"@en ;
     rdfs:comment "SHACL shapes for validating public-private partnerships with comprehensive gUFO foundational ontology integration for enhanced semantic precision and validation capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/partnerships-shapes/1.1> ;
-    owl:versionInfo "1.1.0" ;
-    owl:imports <http://purl.org/nemo/gufo#> .
+    owl:versionIRI <https://cacontology.projectvic.org/partnerships/shapes/2.1.0> ;
+    owl:versionInfo "2.1.0" ;
+    dcterms:creator "CAC Ontology Team" ;
+    dcterms:modified "2025-11-18"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/partnerships/2.1.0> ,
+                <http://purl.org/nemo/gufo#> .
 
 # =============================================================================
 # gUFO TYPE CONSISTENCY VALIDATION SHAPES
@@ -871,7 +875,7 @@ cacontology-partnerships-shapes:PartnershipConsistencyShape rdf:type sh:NodeShap
         sh:message "Partnership must include at least the minimum number of partners specified in partnerCount."@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-partnerships" ;
+                sh:prefix "cacontology-partnerships" ;
                 sh:namespace "https://cacontology.projectvic.org/partnerships#"^^xsd:anyURI ;
             ]
         ] ;
@@ -899,7 +903,7 @@ cacontology-partnerships-shapes:TechCooperationValidityShape rdf:type sh:NodeSha
         sh:message "Tech industry cooperation must include at least one technology partner."@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-partnerships" ;
+                sh:prefix "cacontology-partnerships" ;
                 sh:namespace "https://cacontology.projectvic.org/partnerships#"^^xsd:anyURI ;
             ]
         ] ;
@@ -923,7 +927,7 @@ cacontology-partnerships-shapes:CrowdsourcingEffectivenessShape rdf:type sh:Node
         sh:message "Object identification requests with high success rates should have received public tips."@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-partnerships" ;
+                sh:prefix "cacontology-partnerships" ;
                 sh:namespace "https://cacontology.projectvic.org/partnerships#"^^xsd:anyURI ;
             ]
         ] ;
@@ -976,7 +980,7 @@ cacontology-partnerships-shapes:NationalInitiativeDataQualityShape rdf:type sh:N
         sh:message "National initiative programs should have realistic case processing numbers relative to their duration."@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-partnerships" ;
+                sh:prefix "cacontology-partnerships" ;
                 sh:namespace "https://cacontology.projectvic.org/partnerships#"^^xsd:anyURI ;
             ]
         ] ;
