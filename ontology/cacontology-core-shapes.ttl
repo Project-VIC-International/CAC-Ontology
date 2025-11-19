@@ -3,12 +3,12 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix uco-core: <https://ontology.unifiedcyberontology.org/core#> .
-@prefix uco-observable: <https://ontology.unifiedcyberontology.org/observable#> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/action#> .
-@prefix uco-role: <https://ontology.unifiedcyberontology.org/role#> .
-@prefix uco-identity: <https://ontology.unifiedcyberontology.org/identity#> .
-@prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 @prefix cacontology-temporal: <https://cacontology.projectvic.org/temporal#> .
@@ -27,7 +27,7 @@
     dcterms:modified "2025-11-18"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/gufo/2.1.0> ,
                 <http://purl.org/nemo/gufo> ,
-                <https://ontology.unifiedcyberontology.org/core> .
+                <https://ontology.unifiedcyberontology.org/uco/core/> .
 
 # =============================================================================
 # gUFO INVESTIGATION VALIDATION

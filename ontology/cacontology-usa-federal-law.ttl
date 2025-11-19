@@ -4,11 +4,11 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
-@prefix uco-core: <http://unifiedcyberontology.org/uco/core#> .
-@prefix uco-action: <http://unifiedcyberontology.org/uco/action#> .
-@prefix uco-identity: <http://unifiedcyberontology.org/uco/identity#> .
-@prefix uco-location: <http://unifiedcyberontology.org/uco/location#> .
-@prefix uco-observable: <http://unifiedcyberontology.org/uco/observable#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-usa-federal: <https://cacontology.projectvic.org/usa-federal-law#> .
 

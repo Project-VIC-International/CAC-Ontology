@@ -4,11 +4,11 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix uco-core: <https://ontology.unifiedcyberontology.org/core#> .
-@prefix uco-identity: <https://ontology.unifiedcyberontology.org/identity#> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/action#> .
-@prefix uco-role: <https://ontology.unifiedcyberontology.org/role#> .
-@prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
+@prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
@@ -22,7 +22,7 @@
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-01-27"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://ontology.unifiedcyberontology.org/core> ,
+    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
                 <https://ontology.caseontology.org/case> ,
                 <https://ontology.unifiedcyberontology.org/icac> ,
                 <http://purl.org/nemo/gufo#> ;

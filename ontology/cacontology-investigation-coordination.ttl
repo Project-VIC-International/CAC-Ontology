@@ -5,12 +5,12 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
-@prefix uco-core: <https://ontology.unifiedcyberontology.org/core#> .
-@prefix uco-identity: <https://ontology.unifiedcyberontology.org/identity#> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/action#> .
-@prefix uco-role: <https://ontology.unifiedcyberontology.org/role#> .
-@prefix uco-location: <https://ontology.unifiedcyberontology.org/location#> .
-@prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
+@prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-coord: <https://cacontology.projectvic.org/investigation-coordination#> .
 
@@ -23,7 +23,7 @@
     dcterms:issued "2025-01-27"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
     owl:versionInfo "2.1.0" ;
-    owl:imports <https://ontology.unifiedcyberontology.org/core> ,
+    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
                 <https://ontology.caseontology.org/case> ,
                 <https://ontology.unifiedcyberontology.org/icac> ,
                 <http://purl.org/nemo/gufo#> .

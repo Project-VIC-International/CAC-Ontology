@@ -7,7 +7,7 @@
 PREFIX cacontology-gufo: <https://cacontology.projectvic.org/gufo#>
 PREFIX cacontology-temporal: <https://cacontology.projectvic.org/temporal#>
 PREFIX gufo: <http://purl.org/nemo/gufo#>
-PREFIX uco-core: <https://ontology.unifiedcyberontology.org/core#>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 # =============================================================================

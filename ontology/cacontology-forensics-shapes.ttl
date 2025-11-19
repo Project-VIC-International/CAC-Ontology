@@ -4,9 +4,9 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
-@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core#> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
-@prefix uco-tool: <https://ontology.unifiedcyberontology.org/uco/tool#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-tool: <https://ontology.unifiedcyberontology.org/uco/tool/> .
 @prefix cacontology-forensics: <https://cacontology.projectvic.org/forensics#> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
@@ -21,7 +21,7 @@
     dcterms:modified "2025-11-18"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/forensics/2.1.0> ,
                 <http://purl.org/nemo/gufo> ,
-                <https://ontology.unifiedcyberontology.org/core> .
+                <https://ontology.unifiedcyberontology.org/uco/core/> .
 
 # =============================================================================
 # gUFO TYPE CONSISTENCY VALIDATION
@@ -127,7 +127,7 @@ cacontology-forensics:ChainOfCustodyTemporalOrderingShape rdf:type sh:NodeShape 
             ] ;
             sh:declare [
                 sh:prefix "uco-core" ;
-                sh:namespace "https://ontology.unifiedcyberontology.org/uco/core#"^^xsd:anyURI ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/uco/core/"^^xsd:anyURI ;
             ] ;
         ] ;
         sh:select """
@@ -661,7 +661,7 @@ cacontology-forensics:ChainOfCustodyIntegrityBusinessRule rdf:type sh:NodeShape 
             ] ;
             sh:declare [
                 sh:prefix "uco-core" ;
-                sh:namespace "https://ontology.unifiedcyberontology.org/uco/core#"^^xsd:anyURI ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/uco/core/"^^xsd:anyURI ;
             ] ;
         ] ;
         sh:select """
@@ -688,7 +688,7 @@ cacontology-forensics:ForensicToolValidationBusinessRule rdf:type sh:NodeShape ;
             ] ;
             sh:declare [
                 sh:prefix "uco-action" ;
-                sh:namespace "https://ontology.unifiedcyberontology.org/uco/action#"^^xsd:anyURI ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/uco/action/"^^xsd:anyURI ;
             ] ;
         ] ;
         sh:select """
