@@ -14,21 +14,22 @@
 @prefix cacontology-impact: <https://cacontology.projectvic.org/victim-impact#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
+@prefix cacontology-temporal: <https://cacontology.projectvic.org/temporal#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/victim-impact/0.1> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/victim-impact/2.1.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Victim Impact Assessment Ontology"@en ;
     rdfs:comment "An ontology for representing victim impact assessments, psychological harm, trauma indicators, therapeutic interventions, and recovery processes in Internet Crimes Against Children investigations, extending UCO and CASE with gUFO foundational ontology enhancements."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/victim-impact/0.1> ;
-    dcterms:creator "UCO Ontology Team" ;
+    owl:versionIRI <https://cacontology.projectvic.org/victim-impact/2.1.0> ;
+    dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2025-01-02"^^xsd:date ;
+    dcterms:modified "2025-11-18"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable> ,
                 <https://ontology.unifiedcyberontology.org/uco/action> ,
                 <https://ontology.unifiedcyberontology.org/uco/role> ,
-                <https://cacontology.projectvic.org/0.3> ,
+                <https://cacontology.projectvic.org/2.1.0> ,
                 <http://purl.org/nemo/gufo> .
 
 # =============================================================================
@@ -235,7 +236,7 @@ cacontology-impact:ResilienceFactors rdf:type owl:Class ;
 
 cacontology-impact:TraumatizedVictim rdf:type owl:Class, gufo:Role ;
     rdfs:label "Traumatized Victim"@en ;
-    rdfs:comment "Role of a child victim experiencing psychological trauma."@en ;
+    rdfs:comment "Role of a child victim experiencing psychological trauma. Where age at time of victimization or at time of assessment is analytically relevant, that age SHOULD be expressed via cacontology-temporal:AgeAtTimeSituation rather than ad-hoc age literals."@en ;
     rdfs:subClassOf uco-role:VictimRole ;
     owl:equivalentClass cacontology-gufo:VictimRole .
 

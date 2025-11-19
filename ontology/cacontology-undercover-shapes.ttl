@@ -9,6 +9,20 @@
 @prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-undercover: <https://cacontology.projectvic.org/undercover#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# Ontology Declaration
+<https://cacontology.projectvic.org/undercover/shapes/2.1.0> rdf:type owl:Ontology ;
+    rdfs:label "CAC Undercover Operations SHACL Shapes"@en ;
+    rdfs:comment "SHACL validation shapes for the ICAC Undercover Operations Ontology, providing validation for undercover identities, infiltration tactics, surveillance operations, and evidence collection through covert means."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/undercover/shapes/2.1.0> ;
+    owl:versionInfo "2.1.0" ;
+    dcterms:creator "CAC Ontology Team" ;
+    dcterms:modified "2025-11-18"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/undercover/2.1.0> ,
+                <http://purl.org/nemo/gufo> ,
+                <https://ontology.unifiedcyberontology.org/core> .
 
 # =============================================================================
 # UNDERCOVER OPERATION SHAPES

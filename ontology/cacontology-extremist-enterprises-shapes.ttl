@@ -9,6 +9,20 @@
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix cacontology-enterprises: <https://cacontology.projectvic.org/extremist-enterprises#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# Ontology Declaration
+<https://cacontology.projectvic.org/extremist-enterprises/shapes/2.1.0> rdf:type owl:Ontology ;
+    rdfs:label "CAC Extremist Enterprises SHACL Shapes with gUFO Validation"@en ;
+    rdfs:comment "SHACL validation shapes for gUFO-enhanced ICAC extremist enterprises ontology, including anti-rigidity constraints, temporal validation, and foundational type compliance."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/extremist-enterprises/shapes/2.1.0> ;
+    owl:versionInfo "2.1.0" ;
+    dcterms:creator "CAC Ontology Team" ;
+    dcterms:modified "2025-11-18"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/extremist-enterprises/2.1.0> ,
+                <http://purl.org/nemo/gufo> ,
+                <https://ontology.unifiedcyberontology.org/core> .
 
 # =============================================================================
 # GUFO TYPE VALIDATION SHAPES

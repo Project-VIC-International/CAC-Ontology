@@ -37,7 +37,7 @@
 - **HashFeedbackAction**: Action recording feedback on hash matches
 - **URLReference**: Reference to a URL containing potential CSAM
 
-### **NEW: gUFO-Enhanced Core Classes**
+### gUFO-Enhanced Core Classes
 - **Investigation** (`icac-gufo:Investigation`): gUFO-enhanced investigation with phase modeling and temporal constraints
 - **InitialPhase** (`icac-gufo:InitialPhase`): Initial investigation phase modeled as anti-rigid `gufo:Phase`
 - **AnalysisPhase** (`icac-gufo:AnalysisPhase`): Evidence analysis phase with temporal dependencies

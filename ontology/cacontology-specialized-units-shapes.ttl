@@ -8,6 +8,20 @@
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/role#> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-specialized: <https://cacontology.projectvic.org/specialized-units#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# Ontology Declaration
+<https://cacontology.projectvic.org/specialized-units/shapes/2.1.0> rdf:type owl:Ontology ;
+    rdfs:label "CAC Specialized Units SHACL Shapes"@en ;
+    rdfs:comment "SHACL validation shapes for the ICAC Specialized Units Ontology, providing validation for K9 detection programs, officer wellness support, and specialized investigative capabilities."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/specialized-units/shapes/2.1.0> ;
+    owl:versionInfo "2.1.0" ;
+    dcterms:creator "CAC Ontology Team" ;
+    dcterms:modified "2025-11-18"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/specialized-units/2.1.0> ,
+                <http://purl.org/nemo/gufo> ,
+                <https://ontology.unifiedcyberontology.org/core> .
 
 # =============================================================================
 # K9 DETECTION PROGRAM SHAPES

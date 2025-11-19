@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   fuseki:
-    image: stain/jena-fuseki:4.10.0
+    image: stain/jena-fuseki:latest
     container_name: cacontology_fuseki
     ports:
       - "3030:3030"
@@ -32,9 +32,11 @@ services:
              echo 'Validating cacontology-forensics.ttl...' && \
              pyshacl -s /app/cacontology/ontology/cacontology-forensics-shapes.ttl -d /app/cacontology/ontology/cacontology-forensics.ttl -f human && \
              echo 'Validating cacontology-educational-exploitation.ttl...' && \
-             pyshacl -s /app/cacontology/ontology/cacontology-educational-shapes.ttl -d /app/cacontology/ontology/cacontology-educational-exploitation.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-educational-exploitation-shapes.ttl -d /app/cacontology/ontology/cacontology-educational-exploitation.ttl -f human && \
              echo 'Validating cacontology-sex-trafficking.ttl...' && \
-             pyshacl -s /app/cacontology/ontology/cacontology-trafficking-shapes.ttl -d /app/cacontology/ontology/cacontology-sex-trafficking.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-sex-trafficking-shapes.ttl -d /app/cacontology/ontology/cacontology-sex-trafficking.ttl -f human && \
+             echo 'Validating cacontology-temporal-gufo.ttl...' && \
+             pyshacl -s /app/cacontology/ontology/cacontology-temporal-gufo-shapes.ttl -d /app/cacontology/ontology/cacontology-temporal-gufo.ttl -f human && \
              echo 'Validating cacontology-athletic-exploitation.ttl...' && \
              pyshacl -s /app/cacontology/ontology/cacontology-athletic-exploitation-shapes.ttl -d /app/cacontology/ontology/cacontology-athletic-exploitation.ttl -f human && \
              echo 'Validating cacontology-production.ttl...' && \
@@ -71,6 +73,8 @@ services:
              pyshacl -s /app/cacontology/ontology/cacontology-legal-harmonization-shapes.ttl -d /app/cacontology/ontology/cacontology-legal-harmonization.ttl -f human && \
              echo 'Validating cacontology-us-ncmec.ttl...' && \
              pyshacl -s /app/cacontology/ontology/cacontology-us-ncmec-shapes.ttl -d /app/cacontology/ontology/cacontology-us-ncmec.ttl -f human && \
+             echo 'Validating cacontology-street-recruitment.ttl...' && \
+             pyshacl -s /app/cacontology/ontology/cacontology-street-recruitment-shapes.ttl -d /app/cacontology/ontology/cacontology-street-recruitment.ttl -f human && \
              echo '' && \
              echo '=== Basic Example Validation ===' && \
              echo 'Validating hotline-lifecycle example...' && \
@@ -142,7 +146,7 @@ services:
     restart: unless-stopped
 
   robot:
-    image: obolibrary/robot:1.9.4
+    image: obolibrary/robot:latest
     container_name: cacontology_robot
     working_dir: /work
     volumes:

@@ -11,6 +11,20 @@
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable#> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-international: <https://cacontology.projectvic.org/international#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# Ontology Declaration
+<https://cacontology.projectvic.org/international/shapes/2.1.0> rdf:type owl:Ontology ;
+    rdfs:label "CAC International Cooperation SHACL Shapes with gUFO Validation"@en ;
+    rdfs:comment "SHACL validation shapes for gUFO-enhanced ICAC international cooperation ontology, including anti-rigidity constraints, temporal validation, and foundational type compliance."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/international/shapes/2.1.0> ;
+    owl:versionInfo "2.1.0" ;
+    dcterms:creator "CAC Ontology Team" ;
+    dcterms:modified "2025-11-18"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/international/2.1.0> ,
+                <http://purl.org/nemo/gufo> ,
+                <https://ontology.unifiedcyberontology.org/core> .
 
 # =============================================================================
 # gUFO TYPE CONSISTENCY VALIDATION FOR INTERNATIONAL COOPERATION
@@ -1115,7 +1129,7 @@ cacontology-international:MultiJurisdictionCoordinationBusinessRule rdf:type sh:
         sh:message "High complexity operations must involve multiple jurisdictions and advanced capabilities"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-international" ;
+                sh:prefix "cacontology-international" ;
                 sh:namespace "https://cacontology.projectvic.org/international#"^^xsd:anyURI ;
             ] ;
         ] ;
@@ -1137,7 +1151,7 @@ cacontology-international:PartnershipEffectivenessBusinessRule rdf:type sh:NodeS
         sh:message "High effectiveness partnerships require established or strong trust levels"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-international" ;
+                sh:prefix "cacontology-international" ;
                 sh:namespace "https://cacontology.projectvic.org/international#"^^xsd:anyURI ;
             ] ;
         ] ;
@@ -1159,7 +1173,7 @@ cacontology-international:UrgentOperationResponseBusinessRule rdf:type sh:NodeSh
         sh:message "Emergency operations must have rapid response times"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-international" ;
+                sh:prefix "cacontology-international" ;
                 sh:namespace "https://cacontology.projectvic.org/international#"^^xsd:anyURI ;
             ] ;
         ] ;
@@ -1180,7 +1194,7 @@ cacontology-international:InformationSharingLevelBusinessRule rdf:type sh:NodeSh
         sh:message "Multilateral agreements with many partners require enhanced information sharing"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-international" ;
+                sh:prefix "cacontology-international" ;
                 sh:namespace "https://cacontology.projectvic.org/international#"^^xsd:anyURI ;
             ] ;
         ] ;
@@ -1208,7 +1222,7 @@ cacontology-international:LiveStreamingInvestigationCapabilityBusinessRule rdf:t
         sh:message "Live streaming investigations require expert capabilities and complex coordination"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-international" ;
+                sh:prefix "cacontology-international" ;
                 sh:namespace "https://cacontology.projectvic.org/international#"^^xsd:anyURI ;
             ] ;
         ] ;

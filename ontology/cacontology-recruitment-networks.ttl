@@ -15,21 +15,21 @@
 @prefix cacontology-recruitment: <https://cacontology.projectvic.org/recruitment-networks#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/recruitment-networks/0.1> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/recruitment-networks/2.1.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Recruitment Networks Ontology"@en ;
     rdfs:comment "An ontology for representing peer recruitment networks, classmate-mediated trafficking, educational institution reporting, and social recruitment patterns in child exploitation cases. Based on analysis of Brooklyn DA cases involving victim recruitment through existing trafficking victims."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/recruitment-networks/0.1> ;
-    dcterms:creator "UCO Ontology Team" ;
+    owl:versionIRI <https://cacontology.projectvic.org/recruitment-networks/2.1.0> ;
+    dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-01-08"^^xsd:date ;
-    dcterms:modified "2025-01-08"^^xsd:date ;
+    dcterms:modified "2025-11-18"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable> ,
                 <https://ontology.unifiedcyberontology.org/uco/action> ,
                 <https://ontology.unifiedcyberontology.org/uco/role> ,
                 <https://ontology.unifiedcyberontology.org/uco/location> ,
-                <https://cacontology.projectvic.org/0.3> ,
-                <https://cacontology.projectvic.org/trafficking> .
+                <https://cacontology.projectvic.org/2.1.0> ,
+                <https://cacontology.projectvic.org/trafficking/2.1.0> .
 
 # =============================================================================
 # PEER RECRUITMENT NETWORK CLASSES (extending UCO Core)

@@ -9,11 +9,11 @@ This family of ontologies seeks to implement semantically clear information mode
 
 #### 1.1 Core Framework (3 modules + gUFO Integration)
 - `cacontology-core.ttl`: Base ontology for CAC investigations
-- `cacontology-core-gufo.ttl`: **NEW** - gUFO-enhanced investigation modeling with anti-rigid phases and roles
+- `cacontology-core-gufo.ttl`: gUFO-enhanced investigation modeling with anti-rigid phases and roles
 - `cacontology-hotlines-core.ttl`: Hotline operations and reporting
 - `cacontology-us-ncmec.ttl`: NCMEC-specific extensions
 
-#### 1.2 gUFO Foundational Components (**NEW**)
+#### 1.2 gUFO Foundational Components
 - `cacontology-core-gufo.ttl`: Phase 1 core investigation modeling with gUFO patterns
 - `cacontology-temporal-gufo.ttl`: Phase 2 temporal framework for investigation lifecycle
 - `cacontology-gufo-integration-strategy.ttl`: Phase 3 strategy for full integration across 30+ modules
@@ -54,7 +54,7 @@ This family of ontologies seeks to implement semantically clear information mode
 - `cacontology-specialized-units.ttl`: Specialized units & advanced capabilities
 - `cacontology-sex-offender-registry.ttl`: Sex offender registry management
 
-#### 1.7 Validation Components (20+ modules)
+#### 1.7 Validation Components (30 modules)
 - `cacontology-core-shapes.ttl`: SHACL shapes for core validation
 - `cacontology-hotlines-core-shapes.ttl`: SHACL shapes for hotline validation
 - `cacontology-forensics-shapes.ttl`: SHACL shapes for forensic validation

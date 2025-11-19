@@ -1,14 +1,16 @@
 # CAC Ontology
 
-The CAC (Crimes Against Children) Ontology Family is a comprehensive semantic framework for modeling child exploitation investigations, operations, legal processes, reporting, offender tradecraft, and digital forensics activities. This ontology family extends the Unified Cyber Ontology (UCO) and the Cyber-investigation Analysis Standard Expression (CASE) Ontology.
+The CAC (Crimes Against Children) Ontology Family is an **EXPERIMENTAL** comprehensive semantic framework for modeling child exploitation investigations, operations, law enforcement organizations, legal processes, reporting, offender tradecraft, and digital forensics activities. This ontology family extends the Unified Cyber Ontology (UCO), the Cyber-investigation Analysis Standard Expression (CASE) Ontology, and the lightweight version of the Unified Foundational Ontology (gUFO). We use artificial intelligence to review data sources, map concepts to CAC Ontology, identify gaps, model new classes/properties/relationships, write example SPARQL queries and update documentation. There is a human in the loop to review changes and make adjustments. The Crimes Against Children domain of discourse is immense, has great depth and complexity, and is oftentimes reflective of legal process/precident and jurisdiction. 
+
+Project VIC International serves as the shephard of the CAC Ontology and we invite any other interested party to participate with us in developing it further. We released the CAC Ontology under an Apache 2 license making it open-source so that others can build upon it and adopt it freely. All we ask from adopters is to let us know that you are using it, and that if you are monetizing it, to consider providing financial support for the project.
 
 ## Overview
 
-The CAC Ontology Family consists of **30+ specialized modules** organized into six domain areas, enhanced with comprehensive gUFO (Unified Foundational Ontology) integration for improved semantic precision, temporal modeling, and validation capabilities. The ontology family is designed to support law enforcement agencies, hotline organizations, digital forensics teams, prosecutors, and researchers in modeling and analyzing crimes against children investigations.
+The CAC Ontology Family consists of **30 specialized modules** organized into six domain areas, enhanced with comprehensive gUFO (Unified Foundational Ontology) integration for improved semantic precision, temporal modeling, and validation capabilities. The ontology family is designed to support law enforcement agencies, hotline organizations and NGOs in general, digital forensics examiners and analysts, prosecutors, and researchers in modeling and analyzing crimes against children investigations. Each ontology has a corresponding SHACL shapes file that implements **some** business rules that validate the ontology. These shapes files are very useful to ensure that data is modeled correctly and that only conformant data is imported into the adopter's graph database.
 
 **Namespace**: `https://cacontology.projectvic.org`
 
-**Documentation**: [cacontology.projectvic.org](https://cacontology.projectvic.org)
+**Documentation**: [ontology.cacontology.projectvic.org](https://ontology.cacontology.projectvic.org)
 
 ## Key Features
 
@@ -60,7 +62,7 @@ The CAC Ontology Family consists of **30+ specialized modules** organized into s
 - `cacontology-specialized-units.ttl` - Specialized units & advanced capabilities
 - `cacontology-sex-offender-registry.ttl` - Sex offender registry management
 
-### Validation Components (20+ modules)
+### Validation Components (30 modules)
 - Comprehensive SHACL validation shapes for all major modules
 - Cross-reference validation and business rule enforcement
 

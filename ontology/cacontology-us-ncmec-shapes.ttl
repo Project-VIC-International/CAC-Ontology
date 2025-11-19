@@ -9,11 +9,18 @@
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-us-ncmec: <https://cacontology.projectvic.org/us/ncmec#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 
-<https://cacontology.projectvic.org/us-ncmec-shapes> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/us/ncmec/shapes/2.1.0> rdf:type owl:Ontology ;
     rdfs:label "CAC US NCMEC SHACL Shapes"@en ;
     rdfs:comment "SHACL shapes for validating ICAC US NCMEC ontology instances, covering NCMEC CyberTip reports, incident types, analysis processes, and investigation triggers."@en ;
-    owl:versionInfo "0.1.0" .
+    owl:versionIRI <https://cacontology.projectvic.org/us/ncmec/shapes/2.1.0> ;
+    owl:versionInfo "2.1.0" ;
+    dcterms:creator "CAC Ontology Team" ;
+    dcterms:modified "2025-11-18"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/us/ncmec/2.1.0> ,
+                <http://purl.org/nemo/gufo> ,
+                <https://ontology.unifiedcyberontology.org/core> .
 
 # =============================================================================
 # NCMEC CYBERTIP REPORT SHAPES

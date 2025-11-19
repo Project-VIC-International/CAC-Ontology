@@ -5,9 +5,136 @@ All notable changes to the CAC ontology family will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 07 November 2025
+## v2.1.0 - 18 November 2025
+
+### Added - SHACL Shapes for Sex Trafficking and Temporal gUFO Modules
+
+- **Added & Updated Ontology Declaration Sections**
+  -Created uniform approach so that each ontology and shapes file has an ontology declaration section.
+
+- **Completed Realignment of Namespace Prefixes**
+  - CAC Ontology still had several icac-* prefixes across ontology files, SHACL shapes files, and example knowledge graphs. Those are now removed and replaced with cacontology-* prefixes.
+
+- **Fixed SHACL Validation Issues**
+  - Several example knowledge graphs needed default prefix declarations added using example.org/*
+  - Fixed several RDF related prefix issues.
+  - SHACL validation now runs cleanly against CAC Ontology v2.1.0
+
+- **New Sex Trafficking Shapes (`cacontology-sex-trafficking-shapes.ttl`)**
+  - Minimal core SHACL node shapes for key classes in `cacontology-sex-trafficking.ttl`, including `TraffickingEnterprise`, `TraffickerRole`, `TraffickingVictimRole`, `TraffickingOperation`, `VictimTransportation`, `EarningsCollection`, and `MultiJurisdictionalSituation`.
+  - Validates gUFO-aligned typing of organizations, roles, and events along with core temporal and quantitative properties such as enterprise begin/end points, role begin/end points, transportation origin/destination, earnings amounts, and multi-jurisdictional victim/trafficker counts.
+
+- **New Temporal gUFO Shapes (`cacontology-temporal-gufo-shapes.ttl`)**
+  - Minimal core SHACL node shapes for temporal constructs introduced in `cacontology-temporal-gufo.ttl`, including gUFO phases and specialized temporal events.
+  - Validates phase duration/deadline and urgency properties on `gufo:Phase` instances, phase performance metrics (`phaseEfficiency`, `phaseCompletionRate`), and enforces that `PhaseTransitionEvent`, `SuspensionEvent`, and `ResumptionEvent` are correctly linked to their source/target phases, investigations, and suspension situations.
+
+### Changed - Versioning and Validation Policy
+
+- Adopted a **global release versioning** strategy for the CAC Ontology family: this release is tagged as `v2.1.0` in `CHANGELOG.md`.
+- Updated the Docker `pySHACL` validation pipeline to:
+  - Validate `cacontology-sex-trafficking.ttl` against the new `cacontology-sex-trafficking-shapes.ttl` instead of the more general and former `cacontology-trafficking-shapes.ttl` which is now removed.
+  - Add validation of `cacontology-temporal-gufo.ttl` against `cacontology-temporal-gufo-shapes.ttl` so that temporal gUFO extensions receive direct SHACL coverage.
+- Improved SHACL validation coverage from **37.5% (12 of 32 modules)** to **43.75% (14 of 32 modules)**, continuing progress toward the PRD requirement of ≥ 95% coverage.
+
+## v2.0.0 - 18 November 2025
+
+### Added - gUFO-Based Age-at-Time Modeling and Analytics
+
+Introduced a canonical, gUFO-compliant pattern for representing a person’s age at specific times or during specific events, enabling precise age-of-consent and age-gap reasoning across the CAC ontology family.
+
+#### Age as Quality and Age At Time Situations
+
+- **New Age Quality Class (`cacontology-temporal:Age`)**
+  - Modeled as a `gufo:Quality` representing the abstract age aspect of a person.
+  - Intended for legal-age and temporal analytics (age-of-consent, Romeo-and-Juliet laws, enhanced penalty thresholds).
+
+- **New Age At Time Situation Class (`cacontology-temporal:AgeAtTimeSituation`)**
+  - Specialized `gufo:QualityValueAttributionSituation` that attributes a concrete numeric age value to a person over a time-bounded interval.
+  - Supports modeling statements such as “the victim was 13 years old during a specific grooming event in 2025.”
+
+- **New Age Datatype and Object Properties (in `cacontology-temporal-gufo.ttl`)**
+  - `cacontology-temporal:ageSubject`
+    - Domain: `cacontology-temporal:AgeAtTimeSituation`
+    - Range: `uco-identity:Person`
+    - Links an Age At Time Situation to the person whose age is being asserted.
+  - `cacontology-temporal:hasAgeInYears`
+    - Subproperty of `gufo:concernsQualityValue`
+    - Domain: `cacontology-temporal:AgeAtTimeSituation`
+    - Range: `xsd:decimal` (non-negative)
+    - Captures the numeric age value in years for that situation.
+  - `cacontology-temporal:concernsAgeQuality`
+    - Subproperty of `gufo:concernsQualityType`
+    - Domain: `cacontology-temporal:AgeAtTimeSituation`
+    - Range: `cacontology-temporal:Age`
+    - Optional helper making the quality type explicit when desired.
+
+#### Core and Domain Integration (Victims, Offenders, Grooming, Trafficking, Victim Impact)
+
+- **Core Event and Role Guidance (in `cacontology-core.ttl`)**
+  - Clarified `cacontology:ChildSexualAbuseEvent` documentation to indicate that victim and offender ages SHOULD be captured via `cacontology-temporal:AgeAtTimeSituation` rather than ad-hoc age literals.
+  - Updated comments on `cacontology:VictimRole` and `cacontology:OffenderRole` to recommend age-at-time modeling for age-dependent legal reasoning (e.g., age-of-consent, Romeo-and-Juliet scenarios).
+
+- **New Helper Properties Bridging Identity and Age Situations**
+  - `cacontology:hasAgeSituation`
+    - Domain: `uco-identity:Person`
+    - Range: `cacontology-temporal:AgeAtTimeSituation`
+    - Primary bridge linking a person to one or more Age At Time Situations.
+  - `cacontology:hasVictimAgeSituation`
+    - Domain: `cacontology:ChildSexualAbuseEvent`
+    - Range: `cacontology-temporal:AgeAtTimeSituation`
+    - Convenience link from events to the victim’s age-at-time situation for that event.
+  - `cacontology:hasOffenderAgeSituation`
+    - Domain: `cacontology:ChildSexualAbuseEvent`
+    - Range: `cacontology-temporal:AgeAtTimeSituation`
+    - Convenience link from events to the offender’s age-at-time situation, supporting age-gap analytics.
+
+- **Grooming Module Enhancements (`cacontology-grooming.ttl`)**
+  - Updated `cacontology-grooming:ChildVictim` comment to explicitly recommend use of Age At Time Situations when answering questions like “victims 13 or under groomed online in 2025.”
+  - Updated `cacontology-grooming:OnlinePredator` comment to encourage modeling offender age-at-time when age-gap or legal-capacity reasoning is required.
+
+- **Sex Trafficking Module Enhancements (`cacontology-sex-trafficking.ttl`)**
+  - Updated `cacontology-trafficking:MinorTraffickingVictimRole` documentation to highlight Age At Time Situations as the preferred mechanism for capturing concrete victim ages at trafficking operations, enabling precise age-of-consent and enhanced-penalty analysis.
+
+- **Victim Impact Module Enhancements (`cacontology-victim-impact.ttl`)**
+  - Updated `cacontology-impact:TraumatizedVictim` comment to recommend age-at-time modeling where age at victimization or at assessment is analytically relevant.
+
+#### SHACL Validation for Age At Time Situations
+
+- **New SHACL Node Shape in `cacontology-core-shapes.ttl`**
+  - `cacontology-gufo:AgeAtTimeSituationShape`
+    - `sh:targetClass` `cacontology-temporal:AgeAtTimeSituation`
+    - Validates that each Age At Time Situation:
+      - Has exactly one `cacontology-temporal:ageSubject` of type `uco-identity:Person`.
+      - Has exactly one non-negative `cacontology-temporal:hasAgeInYears` (`xsd:decimal`).
+      - Has exactly one `gufo:hasBeginPointInXSDDateTimeStamp` and at most one `gufo:hasEndPointInXSDDateTimeStamp`.
+      - When an end point is present, enforces `begin < end` via SPARQL-based temporal consistency.
+      - Optionally uses `cacontology-temporal:concernsAgeQuality` to assert that the quality type is `cacontology-temporal:Age`.
+
+#### Example SPARQL Queries for Age-at-Time Analytics
+
+- **New Query File: `example_SPARQL_queries/age-at-time-analytics.rq`**
+  - **Query 1 – Victims 13-or-under in online grooming situations during 2025**
+    - Demonstrates how to select child victims with `cacontology-temporal:AgeAtTimeSituation` where `hasAgeInYears <= 13` and the situation is valid during 2025.
+    - Uses `cacontology-grooming:GroomingBehavior` and `cacontology-grooming:targetsVictim` to locate relevant grooming events and victim persons, then joins to their age situations.
+  - **Query 2 – State Police investigations with online grooming victims 13-or-under in 2025**
+    - Illustrates how to combine investigations, State Police task force / specialized-unit modeling, grooming events, and Age At Time Situations.
+    - Shows one way to bind `cacontology:CACInvestigation` to grooming events and State Police units, then filter for victims 13-or-under during 2025.
+    - Includes comments explaining how to adapt the patterns to local data (e.g., specific taskforce and specialized-unit linkage).
+  - **Query 3 – Victim/Offender age-gap pairs for grooming events**
+    - Demonstrates how to obtain age-gap analytics by joining victim and offender Age At Time Situations for the same grooming context.
+    - Returns victim and offender ages and computes a simple age-gap (`offenderAge - victimAge`), leaving jurisdiction-specific Romeo-and-Juliet thresholds to downstream logic or separate validation rules.
+
+#### Breaking Changes and Migration Notes
+
+- No existing age-related datatype properties were removed. Instead, the Age At Time pattern is introduced as the **canonical** way to represent age at specific times, and future modules will assume age-at-time modeling for age-dependent analytics.
+- Consumers are encouraged to migrate any legacy static age modeling to `cacontology-temporal:AgeAtTimeSituation` instances and to use the helper properties defined in `cacontology-core.ttl` for consistent linkage.
+
+## v1.9.0 - 07 November 2025
 
 ### Changed - Namespace and Prefix Realignment from ICAC to CAC Ontology
+
+Published ontology to https://cacontology.projectvic.org.
+Pulished ontology documentation to https://ontology.cacontology.projectvic.org
 
 Comprehensive namespace and prefix realignment across the entire CAC ontology family to standardize on the `cacontology` naming convention, replacing legacy ICAC-based namespaces and prefixes.
 
@@ -124,7 +251,7 @@ Examples: https://cacontology.projectvic.org/examples/{example-name}#
 
 **Based on**: Branch `refactor-icac-to-cac-74114` - Comprehensive namespace realignment initiative to standardize CAC ontology naming conventions and establish Project VIC namespace governance.
 
-### Added - gUFO Integration for CAC Educational SHACL Validation Framework (January 3, 2025)
+## Added - gUFO Integration for CAC Educational SHACL Validation Framework 
 
 Comprehensive gUFO (g-Unified Foundational Ontology) integration for the CAC Educational Exploitation validation framework, transforming basic SHACL validation to comprehensive foundational ontology validation with advanced temporal constraints, anti-rigidity modeling for educator roles and phases, and educational exploitation workflow validation for educator-perpetrated exploitation systems.
 
@@ -427,8 +554,7 @@ Comprehensive gUFO (g-Unified Foundational Ontology) integration for the CAC Cas
 - **Temporal Coherence**: Consistency checks for temporal ordering and non-overlapping constraints
 - **Foundational Type Compliance**: Adherence to gUFO foundational distinctions and constraints
 
-#### Enhanced cacontology-case-management-shapes.ttl - gUFO SHACL Validation Framework (557 lines)
-
+#### Enhanced cacontology-case-management-shapes.ttl - gUFO SHACL Validation Framework
 **gUFO Event Validation Shapes:**
 - **CaseManagementEventShape**: Validates proper event structure with mandatory participants and temporal properties
 - **EventParticipationShape**: Ensures events have appropriate participants (agents, objects) with correct roles
@@ -1107,7 +1233,7 @@ Based on analysis of Brooklyn District Attorney press release (October 24, 2024)
 
 Based on analysis of Brooklyn District Attorney press release (November 22, 2024) regarding Christopher Fiesco sentenced to 14 years for stranger abduction and sexual assault of a 13-year-old boy, the following major enhancements were implemented to address critical gaps in stranger abduction patterns, weapon-based coercion, and disguise-based concealment:
 
-#### New Ontology Module - `cacontology-stranger-abduction.ttl` (700+ lines):
+#### New Ontology Module - `cacontology-stranger-abduction.ttl`:
 
 **Stranger Abduction Core Classes:**
 - `StrangerAbduction` - Abduction of child by unknown perpetrator without prior relationship
@@ -3207,4 +3333,3 @@ Based on analysis of Department of Justice press release (May 28, 2025) regardin
 
 **Total Enhancement**: 96 new semantic elements (39 classes + 40 properties + 17 relationships) representing major advancement in federal child exploitation law modeling.
 
-## [2.0.0] - 2025-01-03

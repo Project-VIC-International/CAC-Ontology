@@ -12,16 +12,18 @@
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-case: <https://cacontology.projectvic.org/case-management#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Enhanced Ontology Declaration with gUFO Integration
-<https://cacontology.projectvic.org/case-management/shapes> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/case-management/shapes/2.1.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Case Management SHACL Shapes with gUFO Integration"@en ;
     rdfs:comment "SHACL validation shapes for the ICAC Case Management Ontology, enhanced with comprehensive gUFO foundational modeling validation. Provides +385% validation coverage through gUFO Events, Objects, Roles, Phases, Situations constraint validation with anti-rigidity enforcement, temporal modeling, and case management-specific validation rules."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/case-management/shapes/0.2> ;
-    dcterms:creator "UCO Ontology Team" ;
+    owl:versionIRI <https://cacontology.projectvic.org/case-management/shapes/2.1.0> ;
+    owl:versionInfo "2.1.0" ;
+    dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-01-27"^^xsd:date ;
-    dcterms:modified "2025-01-28"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/case-management/0.2>,
+    dcterms:modified "2025-11-18"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/case-management/2.1.0>,
                 <http://purl.org/nemo/gufo#> ;
     rdfs:comment "gUFO-enhanced SHACL shapes providing comprehensive validation for case management with foundational ontology compliance checking, anti-rigidity enforcement, temporal constraint validation, and workflow coordination validation."@en .
 

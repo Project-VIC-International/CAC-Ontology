@@ -8,6 +8,20 @@
 @prefix uco-identity: <http://unifiedcyberontology.org/uco/identity#> .
 @prefix uco-observable: <http://unifiedcyberontology.org/uco/observable#> .
 @prefix cacontology-usa-federal: <https://cacontology.projectvic.org/usa-federal-law#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# Ontology Declaration
+<https://cacontology.projectvic.org/usa-federal-law/shapes/2.1.0> rdf:type owl:Ontology ;
+    rdfs:label "CAC USA Federal Law SHACL Shapes with gUFO Validation"@en ;
+    rdfs:comment "SHACL validation shapes for gUFO-enhanced ICAC USA Federal Law ontology, including anti-rigidity constraints, temporal validation, and foundational type compliance."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/usa-federal-law/shapes/2.1.0> ;
+    owl:versionInfo "2.1.0" ;
+    dcterms:creator "CAC Ontology Team" ;
+    dcterms:modified "2025-11-18"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/usa-federal-law/2.1.0> ,
+                <http://purl.org/nemo/gufo> ,
+                <https://ontology.unifiedcyberontology.org/core> .
 
 # =============================================================================
 # gUFO TYPE CONSISTENCY VALIDATION
@@ -415,7 +429,7 @@ cacontology-usa-federal:PhaseOrderingValidationShape rdf:type sh:NodeShape ;
         sh:message "Pre-trial phase must precede trial phase in federal prosecution"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-usa-federal" ;
+                sh:prefix "cacontology-usa-federal" ;
                 sh:namespace "https://cacontology.projectvic.org/usa-federal-law#"^^xsd:anyURI ;
             ] ;
         ] ;
@@ -439,7 +453,7 @@ cacontology-usa-federal:ProsecutionTemporalValidationShape rdf:type sh:NodeShape
         sh:message "Prosecution end point must be after begin point"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-usa-federal" ;
+                sh:prefix "cacontology-usa-federal" ;
                 sh:namespace "https://cacontology.projectvic.org/usa-federal-law#"^^xsd:anyURI ;
             ] ;
         ] ;
@@ -481,7 +495,7 @@ cacontology-usa-federal:MandatoryMinimumBusinessRule rdf:type sh:NodeShape ;
         sh:message "Child pornography production with multiple victims requires enhanced sentence"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-usa-federal" ;
+                sh:prefix "cacontology-usa-federal" ;
                 sh:namespace "https://cacontology.projectvic.org/usa-federal-law#"^^xsd:anyURI ;
             ] ;
         ] ;
@@ -524,7 +538,7 @@ cacontology-usa-federal:ComplexCaseBusinessRule rdf:type sh:NodeShape ;
         sh:message "Complex prosecutions require experienced CEOS attorney"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-usa-federal" ;
+                sh:prefix "cacontology-usa-federal" ;
                 sh:namespace "https://cacontology.projectvic.org/usa-federal-law#"^^xsd:anyURI ;
             ] ;
         ] ;
@@ -547,7 +561,7 @@ cacontology-usa-federal:DigitalEvidenceBusinessRule rdf:type sh:NodeShape ;
         sh:message "Investigations with digital evidence must require forensic analysis"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-usa-federal" ;
+                sh:prefix "cacontology-usa-federal" ;
                 sh:namespace "https://cacontology.projectvic.org/usa-federal-law#"^^xsd:anyURI ;
             ] ;
         ] ;

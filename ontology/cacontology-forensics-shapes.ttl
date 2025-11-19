@@ -8,6 +8,20 @@
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
 @prefix uco-tool: <https://ontology.unifiedcyberontology.org/uco/tool#> .
 @prefix cacontology-forensics: <https://cacontology.projectvic.org/forensics#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# Ontology Declaration
+<https://cacontology.projectvic.org/forensics/shapes/2.1.0> rdf:type owl:Ontology ;
+    rdfs:label "CAC Forensics SHACL Shapes with gUFO Validation"@en ;
+    rdfs:comment "SHACL validation shapes for gUFO-enhanced ICAC forensics ontology, including anti-rigidity constraints, temporal validation, and foundational type compliance."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/forensics/shapes/2.1.0> ;
+    owl:versionInfo "2.1.0" ;
+    dcterms:creator "CAC Ontology Team" ;
+    dcterms:modified "2025-11-18"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/forensics/2.1.0> ,
+                <http://purl.org/nemo/gufo> ,
+                <https://ontology.unifiedcyberontology.org/core> .
 
 # =============================================================================
 # gUFO TYPE CONSISTENCY VALIDATION
@@ -108,7 +122,7 @@ cacontology-forensics:ChainOfCustodyTemporalOrderingShape rdf:type sh:NodeShape 
         sh:message "Chain of custody actions must maintain temporal ordering (gUFO temporal succession)"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-forensics" ;
+                sh:prefix "cacontology-forensics" ;
                 sh:namespace "https://cacontology.projectvic.org/forensics#"^^xsd:anyURI ;
             ] ;
             sh:declare [
@@ -642,7 +656,7 @@ cacontology-forensics:ChainOfCustodyIntegrityBusinessRule rdf:type sh:NodeShape 
         sh:message "Chain of custody gaps compromise evidence integrity"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-forensics" ;
+                sh:prefix "cacontology-forensics" ;
                 sh:namespace "https://cacontology.projectvic.org/forensics#"^^xsd:anyURI ;
             ] ;
             sh:declare [
@@ -669,7 +683,7 @@ cacontology-forensics:ForensicToolValidationBusinessRule rdf:type sh:NodeShape ;
         sh:message "Critical forensic acquisitions must use validated tools"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-forensics" ;
+                sh:prefix "cacontology-forensics" ;
                 sh:namespace "https://cacontology.projectvic.org/forensics#"^^xsd:anyURI ;
             ] ;
             sh:declare [
@@ -695,7 +709,7 @@ cacontology-forensics:EvidenceVerificationCompletenessBusinessRule rdf:type sh:N
         sh:message "Failed evidence verification requires re-acquisition"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-forensics" ;
+                sh:prefix "cacontology-forensics" ;
                 sh:namespace "https://cacontology.projectvic.org/forensics#"^^xsd:anyURI ;
             ] ;
         ] ;
@@ -719,7 +733,7 @@ cacontology-forensics:ExaminerCertificationBusinessRule rdf:type sh:NodeShape ;
         sh:message "Critical evidence acquisition requires certified examiner"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-forensics" ;
+                sh:prefix "cacontology-forensics" ;
                 sh:namespace "https://cacontology.projectvic.org/forensics#"^^xsd:anyURI ;
             ] ;
         ] ;
@@ -741,7 +755,7 @@ cacontology-forensics:TemporalConsistencyBusinessRule rdf:type sh:NodeShape ;
         sh:message "Timeline analysis must have sufficient temporal accuracy for evidence quality"@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-forensics" ;
+                sh:prefix "cacontology-forensics" ;
                 sh:namespace "https://cacontology.projectvic.org/forensics#"^^xsd:anyURI ;
             ] ;
         ] ;

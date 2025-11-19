@@ -12,6 +12,20 @@
 @prefix cacontology-production: <https://cacontology.projectvic.org/production#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# Ontology Declaration
+<https://cacontology.projectvic.org/production/shapes/2.1.0> rdf:type owl:Ontology ;
+    rdfs:label "CAC Production SHACL Shapes with gUFO Validation"@en ;
+    rdfs:comment "SHACL validation shapes for gUFO-enhanced ICAC production ontology, including anti-rigidity constraints, temporal validation, and foundational type compliance."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/production/shapes/2.1.0> ;
+    owl:versionInfo "2.1.0" ;
+    dcterms:creator "CAC Ontology Team" ;
+    dcterms:modified "2025-11-18"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/production/2.1.0> ,
+                <http://purl.org/nemo/gufo> ,
+                <https://ontology.unifiedcyberontology.org/core> .
 
 # =============================================================================
 # gUFO PHASE VALIDATION SHAPES
@@ -24,9 +38,9 @@ cacontology-production:ProductionPhaseShape rdf:type sh:NodeShape ;
     sh:property [
         sh:path cacontology-production:hasProductionPhaseBeginPoint ;
         sh:datatype xsd:dateTimeStamp ;
-        sh:minCount 1 ;
+        sh:minCount 0 ;
         sh:maxCount 1 ;
-        sh:message "Production phase must have exactly one begin point."@en
+        sh:message "Production phase may have at most one begin point."@en
     ] ;
     sh:property [
         sh:path cacontology-production:hasProductionPhaseEndPoint ;
@@ -39,11 +53,12 @@ cacontology-production:ProductionPhaseShape rdf:type sh:NodeShape ;
         sh:message "Phase begin point must be before end point."@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-production" ;
+                sh:prefix "cacontology-production" ;
                 sh:namespace "https://cacontology.projectvic.org/production#"^^xsd:anyURI
             ]
         ] ;
         sh:select """
+            PREFIX cacontology-production: <https://cacontology.projectvic.org/production#>
             SELECT ?this WHERE {
                 ?this cacontology-production:hasProductionPhaseBeginPoint ?begin .
                 ?this cacontology-production:hasProductionPhaseEndPoint ?end .
@@ -60,8 +75,11 @@ cacontology-production:ProductionPhaseShape rdf:type sh:NodeShape ;
             ]
         ] ;
         sh:select """
+            PREFIX gufo: <http://purl.org/nemo/gufo#>
+            PREFIX owl: <http://www.w3.org/2002/07/owl#>
             SELECT ?this WHERE {
                 ?this a gufo:Phase .
+                FILTER NOT EXISTS { ?this a owl:Class . }
                 FILTER NOT EXISTS { 
                     ?entity ?property ?this .
                     ?property rdfs:subPropertyOf* gufo:hasPhase .
@@ -94,9 +112,9 @@ cacontology-production:ProductionRoleShape rdf:type sh:NodeShape ;
     sh:property [
         sh:path cacontology-production:hasRoleBeginPoint ;
         sh:datatype xsd:dateTimeStamp ;
-        sh:minCount 1 ;
+        sh:minCount 0 ;
         sh:maxCount 1 ;
-        sh:message "Production role must have exactly one begin point."@en
+        sh:message "Production role may have at most one begin point."@en
     ] ;
     sh:property [
         sh:path cacontology-production:hasRoleEndPoint ;
@@ -109,11 +127,12 @@ cacontology-production:ProductionRoleShape rdf:type sh:NodeShape ;
         sh:message "Role begin point must be before end point."@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-production" ;
+                sh:prefix "cacontology-production" ;
                 sh:namespace "https://cacontology.projectvic.org/production#"^^xsd:anyURI
             ]
         ] ;
         sh:select """
+            PREFIX cacontology-production: <https://cacontology.projectvic.org/production#>
             SELECT ?this WHERE {
                 ?this cacontology-production:hasRoleBeginPoint ?begin .
                 ?this cacontology-production:hasRoleEndPoint ?end .
@@ -130,8 +149,11 @@ cacontology-production:ProductionRoleShape rdf:type sh:NodeShape ;
             ]
         ] ;
         sh:select """
+            PREFIX gufo: <http://purl.org/nemo/gufo#>
+            PREFIX owl: <http://www.w3.org/2002/07/owl#>
             SELECT ?this WHERE {
                 ?this a gufo:Role .
+                FILTER NOT EXISTS { ?this a owl:Class . }
                 FILTER NOT EXISTS { 
                     ?entity ?property ?this .
                     ?property rdfs:subPropertyOf* gufo:playsRole .
@@ -148,15 +170,18 @@ cacontology-production:ProducerRoleConflictShape rdf:type sh:NodeShape ;
         sh:message "Individual cannot simultaneously be Producer and VictimRole."@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icac-production" ;
+                sh:prefix "cacontology-production" ;
                 sh:namespace "https://cacontology.projectvic.org/production#"^^xsd:anyURI
             ] ,
-            sh:declare [
-                sh:prefix "icac-gufo" ;
+            [
+                sh:prefix "cacontology-gufo" ;
                 sh:namespace "https://cacontology.projectvic.org/gufo#"^^xsd:anyURI
             ]
         ] ;
         sh:select """
+            PREFIX cacontology-production: <https://cacontology.projectvic.org/production#>
+            PREFIX cacontology-gufo: <https://cacontology.projectvic.org/gufo#>
+            PREFIX gufo: <http://purl.org/nemo/gufo#>
             SELECT ?this WHERE {
                 ?entity gufo:playsRole ?this .
                 ?entity gufo:playsRole ?victimRole .

@@ -12,18 +12,22 @@
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-infrastructure: <https://cacontology.projectvic.org/infrastructure#> .
 @prefix cacontology-infrastructure-shapes: <https://cacontology.projectvic.org/infrastructure/shapes#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 
 # =============================================================================
 # ICAC PLATFORM INFRASTRUCTURE SHACL SHAPES with gUFO INTEGRATION
 # Enhanced with comprehensive gUFO (gentle Unified Foundational Ontology) validation
 # =============================================================================
 
-<https://cacontology.projectvic.org/infrastructure-shapes> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/infrastructure/shapes/2.1.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Platform Infrastructure SHACL Shapes with gUFO Integration"@en ;
     rdfs:comment "SHACL shapes for validating platform infrastructure in ICAC investigations with comprehensive gUFO foundational ontology integration for enhanced semantic precision and validation capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/infrastructure-shapes/1.1> ;
-    owl:versionInfo "1.1.0" ;
-    owl:imports <http://purl.org/nemo/gufo#> .
+    owl:versionIRI <https://cacontology.projectvic.org/infrastructure/shapes/2.1.0> ;
+    owl:versionInfo "2.1.0" ;
+    dcterms:creator "CAC Ontology Team" ;
+    dcterms:modified "2025-11-18"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/infrastructure/2.1.0> ,
+                <http://purl.org/nemo/gufo#> .
 
 cacontology-infrastructure:PlatformInfrastructureShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-infrastructure:PlatformInfrastructure ;
@@ -831,8 +835,7 @@ cacontology-infrastructure-shapes:InfrastructurePhaseTypeValidationShape rdf:typ
             WHERE {
                 $this rdf:type gufo:Phase .
                 FILTER NOT EXISTS {
-                    $this rdf:type ?phaseClass .
-                    ?phaseClass rdfs:subClassOf* cacontology-infrastructure:PlatformInfrastructure .
+                    $this rdfs:subClassOf* cacontology-infrastructure:PlatformInfrastructure .
                 }
             }
         """
