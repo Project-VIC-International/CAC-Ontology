@@ -3,10 +3,10 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core#> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
-@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity#> .
-@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
 
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-prevention: <https://cacontology.projectvic.org/prevention#> .

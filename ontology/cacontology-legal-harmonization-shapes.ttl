@@ -4,10 +4,10 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
-@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core#> .
-@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity#> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
-@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-legal: <https://cacontology.projectvic.org/legal-harmonization#> .
 @prefix cacontology-legal-shapes: <https://cacontology.projectvic.org/legal-harmonization/shapes#> .
@@ -202,7 +202,7 @@ cacontology-legal-shapes:AssessmentTemporalShape rdf:type sh:NodeShape ;
         sh:prefixes [
             sh:declare [
                 sh:prefix "uco-core" ;
-                sh:namespace "https://ontology.unifiedcyberontology.org/uco/core#"^^xsd:anyURI
+                sh:namespace "https://ontology.unifiedcyberontology.org/uco/core/"^^xsd:anyURI
             ]
         ] ;
         sh:select """

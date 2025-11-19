@@ -4,8 +4,8 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix uco-core: <https://ontology.unifiedcyberontology.org/core#> .
-@prefix uco-observable: <https://ontology.unifiedcyberontology.org/observable#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 @prefix cacontology: <https://cacontology.projectvic.org/2.1.0#> .
 @prefix cacontology-us-ncmec: <https://cacontology.projectvic.org/us/ncmec/2.1.0#> .
 

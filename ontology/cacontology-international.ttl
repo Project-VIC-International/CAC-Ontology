@@ -3,12 +3,12 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core#> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
-@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity#> .
-@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location#> .
-@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role#> .
-@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-international: <https://cacontology.projectvic.org/international#> .

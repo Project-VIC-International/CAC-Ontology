@@ -3,10 +3,10 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix uco-core: <https://ontology.unifiedcyberontology.org/core#> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/action#> .
-@prefix uco-identity: <https://ontology.unifiedcyberontology.org/identity#> .
-@prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 @prefix cacontology-temporal: <https://cacontology.projectvic.org/temporal#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
@@ -23,7 +23,7 @@
     dcterms:issued "2025-01-03"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
     dcterms:description "Phase 2 temporal enhancement framework integrating gUFO temporal concepts with UCO action modeling and ICAC investigation lifecycle patterns."@en ;
-    owl:imports <https://ontology.unifiedcyberontology.org/core> ,
+    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
                 <https://ontology.caseontology.org/case> ,
                 <https://cacontology.projectvic.org/gufo/2.1.0> ,
                 <http://purl.org/nemo/gufo> .

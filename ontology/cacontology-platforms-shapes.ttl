@@ -2,10 +2,10 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core#> .
-@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity#> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
-@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-platforms: <https://cacontology.projectvic.org/platforms#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -21,7 +21,7 @@
     dcterms:modified "2025-11-18"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/platforms/2.1.0> ,
                 <http://purl.org/nemo/gufo> ,
-                <https://ontology.unifiedcyberontology.org/core> .
+                <https://ontology.unifiedcyberontology.org/uco/core/> .
 
 # =============================================================================
 # SOCIAL MEDIA PLATFORM SHAPES

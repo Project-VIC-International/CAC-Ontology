@@ -5,9 +5,9 @@
 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core#>
-PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable#>
-PREFIX uco-confidentiality: <https://ontology.unifiedcyberontology.org/uco/confidentiality#>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core/>
+PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/>
+PREFIX uco-confidentiality: <https://ontology.unifiedcyberontology.org/uco/confidentiality/>
 PREFIX hotlines-core: <https://cacontology.projectvic.org/hotlines/2025/core#>
 PREFIX cacontology-platforms: <https://cacontology.projectvic.org/platforms#>
 PREFIX cacontology-detection: <https://cacontology.projectvic.org/detection#>

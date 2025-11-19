@@ -6,9 +6,9 @@
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core#>
-PREFIX uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity#>
-PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action#>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core/>
+PREFIX uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/>
+PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/>
 PREFIX cacontology-core: <https://cacontology.projectvic.org#>
 PREFIX cacontology-undercover: <https://cacontology.projectvic.org/undercover#>
 PREFIX cacontology-grooming: <https://cacontology.projectvic.org/grooming#>

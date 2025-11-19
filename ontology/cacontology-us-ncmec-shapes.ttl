@@ -2,10 +2,10 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core#> .
-@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity#> .
-@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable#> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-us-ncmec: <https://cacontology.projectvic.org/us/ncmec#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -20,7 +20,7 @@
     dcterms:modified "2025-11-18"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/us/ncmec/2.1.0> ,
                 <http://purl.org/nemo/gufo> ,
-                <https://ontology.unifiedcyberontology.org/core> .
+                <https://ontology.unifiedcyberontology.org/uco/core/> .
 
 # =============================================================================
 # NCMEC CYBERTIP REPORT SHAPES
@@ -613,7 +613,7 @@ cacontology-us-ncmec:PlatformCooperationCrossReferenceShape rdf:type sh:NodeShap
             ] ;
             sh:declare [
                 sh:prefix "uco-observable" ;
-                sh:namespace "https://ontology.unifiedcyberontology.org/uco/observable#"^^xsd:anyURI ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/uco/observable/"^^xsd:anyURI ;
             ]
         ] ;
         sh:select """
@@ -642,7 +642,7 @@ cacontology-us-ncmec:TemporalValidationShape rdf:type sh:NodeShape ;
         sh:prefixes [
             sh:declare [
                 sh:prefix "uco-core" ;
-                sh:namespace "https://ontology.unifiedcyberontology.org/uco/core#"^^xsd:anyURI ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/uco/core/"^^xsd:anyURI ;
             ]
         ] ;
         sh:select """
@@ -667,7 +667,7 @@ cacontology-us-ncmec:ProcessingSequenceValidationShape rdf:type sh:NodeShape ;
             ] ;
             sh:declare [
                 sh:prefix "uco-core" ;
-                sh:namespace "https://ontology.unifiedcyberontology.org/uco/core#"^^xsd:anyURI ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/uco/core/"^^xsd:anyURI ;
             ]
         ] ;
         sh:select """
@@ -769,7 +769,7 @@ cacontology-us-ncmec:ProcessingTimeValidationShape rdf:type sh:NodeShape ;
             ] ;
             sh:declare [
                 sh:prefix "uco-core" ;
-                sh:namespace "https://ontology.unifiedcyberontology.org/uco/core#"^^xsd:anyURI ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/uco/core/"^^xsd:anyURI ;
             ]
         ] ;
         sh:select """

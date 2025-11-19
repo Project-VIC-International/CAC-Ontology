@@ -22,9 +22,9 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX gufo: <http://purl.org/nemo/gufo#>
-PREFIX uco-identity: <https://ontology.unifiedcyberontology.org/identity#>
-PREFIX uco-action: <https://ontology.unifiedcyberontology.org/action#>
-PREFIX uco-location: <https://ontology.unifiedcyberontology.org/location#>
+PREFIX uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/>
+PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/>
+PREFIX uco-location: <https://ontology.unifiedcyberontology.org/uco/location/>
 PREFIX cacontology: <https://cacontology.projectvic.org#>
 PREFIX cacontology-temporal: <https://cacontology.projectvic.org/temporal#>
 PREFIX cacontology-grooming: <https://cacontology.projectvic.org/grooming#>

@@ -3,11 +3,11 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
-@prefix uco-core: <https://ontology.unifiedcyberontology.org/core#> .
-@prefix uco-identity: <https://ontology.unifiedcyberontology.org/identity#> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/action#> .
-@prefix uco-role: <https://ontology.unifiedcyberontology.org/role#> .
-@prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
+@prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-grooming: <https://cacontology.projectvic.org/grooming#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -23,7 +23,7 @@
     dcterms:modified "2025-11-18"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/grooming/2.1.0> ,
                 <http://purl.org/nemo/gufo> ,
-                <https://ontology.unifiedcyberontology.org/core> .
+                <https://ontology.unifiedcyberontology.org/uco/core/> .
 
 # =============================================================================
 # gUFO TYPE CONSISTENCY VALIDATION
@@ -741,7 +741,7 @@ cacontology-grooming:GroomingTemporalValidationShape rdf:type sh:NodeShape ;
         sh:prefixes [
             sh:declare [
                 sh:prefix "uco-core" ;
-                sh:namespace "https://ontology.unifiedcyberontology.org/core#"^^xsd:anyURI ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/uco/core/"^^xsd:anyURI ;
             ] ;
         ] ;
         sh:select """
@@ -762,7 +762,7 @@ cacontology-grooming:GroomingTemporalValidationShape rdf:type sh:NodeShape ;
             ] ;
             sh:declare [
                 sh:prefix "uco-core" ;
-                sh:namespace "https://ontology.unifiedcyberontology.org/core#"^^xsd:anyURI ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/uco/core/"^^xsd:anyURI ;
             ] ;
         ] ;
         sh:select """
