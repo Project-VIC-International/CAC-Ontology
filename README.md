@@ -10,7 +10,7 @@ The CAC Ontology Family consists of **30 specialized modules** organized into si
 
 **Namespace**: `https://cacontology.projectvic.org`
 
-**Documentation**: [ontology.cacontology.projectvic.org](https://ontology.cacontology.projectvic.org)
+**Documentation**: [cacontology.projectvic.org](https://cacontology.projectvic.org)
 
 ## Key Features
 
