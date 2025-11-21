@@ -25,8 +25,7 @@
     dcterms:issued "2025-05-28"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
-                <https://ontology.caseontology.org/case> ,
-                <https://ontology.unifiedcyberontology.org/icac> .
+                <https://ontology.caseontology.org/case> .
 
 # =============================================================================
 # STREET-BASED RECRUITMENT CORE CLASSES

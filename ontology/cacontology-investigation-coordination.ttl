@@ -25,7 +25,6 @@
     owl:versionInfo "2.1.0" ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
                 <https://ontology.caseontology.org/case> ,
-                <https://ontology.unifiedcyberontology.org/icac> ,
                 <http://purl.org/nemo/gufo#> .
 
 # =============================================================================

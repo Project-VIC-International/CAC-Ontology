@@ -24,7 +24,6 @@
     dcterms:modified "2025-11-18"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
                 <https://ontology.caseontology.org/case> ,
-                <https://ontology.unifiedcyberontology.org/icac> ,
                 <http://purl.org/nemo/gufo#> ;
     rdfs:comment "Enhanced with gUFO foundational ontology for comprehensive semantic precision, temporal modeling, validation coverage, and anti-rigidity enforcement for case management operations and coordination processes."@en .
 
