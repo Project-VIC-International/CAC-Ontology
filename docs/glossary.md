@@ -38,23 +38,24 @@
 - **URLReference**: Reference to a URL containing potential CSAM
 
 ### gUFO-Enhanced Core Classes
-- **Investigation** (`icac-gufo:Investigation`): gUFO-enhanced investigation with phase modeling and temporal constraints
-- **InitialPhase** (`icac-gufo:InitialPhase`): Initial investigation phase modeled as anti-rigid `gufo:Phase`
-- **AnalysisPhase** (`icac-gufo:AnalysisPhase`): Evidence analysis phase with temporal dependencies
-- **LegalProcessPhase** (`icac-gufo:LegalProcessPhase`): Legal proceedings phase with court coordination
-- **EvidencePhase** (`icac-gufo:EvidencePhase`): Evidence collection and processing phase
-- **ResolutionPhase** (`icac-gufo:ResolutionPhase`): Investigation resolution and case closure phase
-- **InvestigatorRole** (`icac-gufo:InvestigatorRole`): Investigation role with anti-rigid properties and temporal boundaries
-- **VictimRole** (`icac-gufo:VictimRole`): Victim role with conflict prevention mechanisms
-- **OffenderRole** (`icac-gufo:OffenderRole`): Offender role with exclusive constraints
-- **WitnessRole** (`icac-gufo:WitnessRole`): Witness role allowing multiple assignments
-- **InformantRole** (`icac-gufo:InformantRole`): Informant role with confidentiality constraints
-- **RescuerRole** (`icac-gufo:RescuerRole`): Rescue operation role with temporal dynamics
+- **Investigation** (`cacontology-gufo:Investigation`): gUFO-enhanced investigation with phase modeling and temporal constraints
+- **InitialPhase** (`cacontology-gufo:InitialPhase`): Initial investigation phase modeled as anti-rigid `gufo:Phase`
+- **AnalysisPhase** (`cacontology-gufo:AnalysisPhase`): Evidence analysis phase with temporal dependencies
+- **LegalProcessPhase** (`cacontology-gufo:LegalProcessPhase`): Legal proceedings phase with court coordination
+- **EvidencePhase** (`cacontology-gufo:EvidencePhase`): Evidence collection and processing phase
+- **ResolutionPhase** (`cacontology-gufo:ResolutionPhase`): Investigation resolution and case closure phase
+- **InvestigatorRole** (`cacontology-gufo:InvestigatorRole`): Investigation role with anti-rigid properties and temporal boundaries
+- **VictimRole** (`cacontology-gufo:VictimRole`): Victim role with conflict prevention mechanisms
+- **OffenderRole** (`cacontology-gufo:OffenderRole`): Offender role with exclusive constraints
+- **WitnessRole** (`cacontology-gufo:WitnessRole`): Witness role allowing multiple assignments
+- **InformantRole** (`cacontology-gufo:InformantRole`): Informant role with confidentiality constraints
+- **RescuerRole** (`cacontology-gufo:RescuerRole`): Rescue operation role with temporal dynamics
 
 ### Criminal Activity Classes
 - **ProductionOffense**: Child sexual abuse material production activity
 - **CustodialRelationship**: Trust relationship involving authority over children
 - **GroomingSolicitation**: Grooming or solicitation of children for sexual purposes
+- **SexualConsequenceGameGrooming**: Physical-space, multi-victim grooming pattern where a perpetrator uses structured “games with sexual consequences” involving several juveniles
 - **Sextortion**: Sexual extortion incidents involving children
 - **LiveStreamingCSA**: Live streaming of child sexual abuse
 - **DigitallyGeneratedCSAMIncident**: AI-generated or manipulated CSAM

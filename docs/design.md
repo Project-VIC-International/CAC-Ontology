@@ -309,104 +309,122 @@ graph TD
 - Standardized error handling and responses
 - Rate limiting and authentication support
 
+### 4. Case-Driven Extensions (Utah Christensen Press Release) and CAC Ontology v2.2.0
+
+The November 2025 Utah ICAC / Garfield County press release about Dominic Lynn Christensen surfaced several recurring investigative and legal concepts that were only partially represented in the ontology family. This section documents both the **extensions implemented in CAC Ontology v2.2.0** and additional proposals for future versions.
+
+In **v2.2.0**, the following design work from this section has been realized:
+
+- A comprehensive Utah recidivism and registry-focused example graph in `examples_knowledge_graphs/utah-dominic-christensen-example.ttl`.
+- Supporting analytics in `example_SPARQL_queries/utah-dominic-christensen-analytics.rq`.
+- Targeted refinements to:
+  - `cacontology-grooming.ttl` and `cacontology-grooming-shapes.ttl` (offline / physical-space grooming patterns such as `SexualConsequenceGameGrooming` and related SHACL constraints).
+  - `cacontology-sentencing.ttl` and `cacontology-sentencing-shapes.ttl` (state charges, concurrent sentences, and bail / held-without-bail modeling guidance).
+  - `cacontology-sex-offender-registry.ttl` and `cacontology-sex-offender-registry-shapes.ttl` (registration records, compliance history, and post-registration recidivism analytics).
+
+The remaining bullets in this section are intentionally kept at the narrative / roadmap level so they can be reviewed against additional cases before being formalized into TTL modules and shapes in a future release.
+
+#### 4.1 Sex Offender Registry and Recidivism Gaps
+
+- **Failure-to-register offenses as first-class charges**
+  - Current state:
+    - `cacontology-registry:ConvictingOffense` captures registry-triggering crimes with a free-text `offenseDescription`.
+    - `cacontology-registry:ComplianceViolation` captures generic violations of registration requirements.
+  - Gap:
+    - No structured way to distinguish **failure-to-register** vs **false-information** violations as legal offenses that can be charged and analyzed longitudinally.
+  - Proposed direction:
+    - Introduce subclasses of `cacontology-registry:ConvictingOffense` (and/or `cacontology-sentencing:StateCharge`) such as:
+      - `FailureToRegisterOffense`
+      - `FalseInformationRegistrationOffense`
+    - Add simple datatype properties (or controlled-code properties) to characterize the violation type, e.g. `violationCategory` with values like `failure_to_register`, `false_information`, `late_update`.
+    - Align these with `cacontology-registry:ComplianceViolation` so that a single violation instance can both:
+      - express registration-rule non-compliance, and
+      - serve as the basis for a concrete criminal charge in the sentencing module.
+
+- **Registry-aware recidivism analytics**
+  - Current state:
+    - `cacontology-registry:RecidivistSexOffender`, `DigitalRecidivismPattern`, and `CrossStateRecidivism` already support high-level pattern analysis.
+  - Gap:
+    - The Christensen narrative shows **post-registration reoffending** tightly bound to both:
+      - new CSAM/abuse conduct, and
+      - concurrent or subsequent registry violations in a new county.
+  - Proposed direction:
+    - Add narrative guidance (and potentially lightweight properties) that make it easy to:
+      - link `RecidivistSexOffender` instances directly to both `cacontology:ChildSexualAbuseEvent` and `cacontology:CSAMIncident` events occurring after an initial `ConvictingOffense`.
+      - tag specific events as **post-registration** using a boolean or temporal comparison helper (e.g. `occursAfterRegistration` or SHACL/SPARQL rules comparing event time to `registrationDate`).
+
+#### 4.2 Bail, Pretrial Detention, and Sentence Concurrency
+
+- **Explicit modeling of bail / held-without-bail status**
+  - Current state:
+    - `cacontology-sentencing` provides detailed modeling for legal proceedings and sentences, but does not distinguish:
+      - defendants released on bail vs held in custody pretrial,
+      - bail conditions, or
+      - decisions to hold without bail.
+  - Gap (illustrated by Christensen case):
+    - The article contrasts 2021 conduct where Christensen was **released after posting bail** with the 2025 case where he is **held without bail**, which is operationally and analytically important.
+  - Proposed direction:
+    - Introduce a light-weight **bail status pattern**, potentially in `cacontology-sentencing`:
+      - Either a `BailStatus` value object class or simple datatype property on `LegalProceeding` / `ArraignmentProceeding`, e.g.:
+        - `bailStatus` with values such as `released_on_bail`, `held_without_bail`, `released_on_own_recognizance`.
+      - Optional numeric/property support for bail amount and basic conditions if required in future press-release–driven models.
+
+- **Sentence concurrency vs consecutiveness**
+  - Current state:
+    - Sentences use `sentenceLength` and `sentenceDuration`, but concurrency semantics are described only in free-text comments in examples.
+  - Gap:
+    - The Christensen narrative explicitly states that jail and probation terms for separate counts are **to be served at the same time**, which is important for analytics (e.g., total custodial exposure vs number of convictions).
+  - Proposed direction:
+    - Add a simple concurrency indicator on `cacontology-sentencing:CriminalSentence`, such as:
+      - `sentenceConcurrency` with values `concurrent` / `consecutive` / `mixed`.
+      - Optionally allow a link to other sentence resources when explicitly modeling which sentences are concurrent with which (`concurrentWith` object property).
+
+#### 4.3 Offline “Sexual Consequence Game” Grooming Pattern
+
+- **Physical-space, multi-victim sexualized games**
+  - Current state:
+    - `cacontology-grooming` already models:
+      - online grooming (`OnlineGroomingSituation`),
+      - physical space grooming (`PhysicalSpaceGrooming`, `PublicToPrivateGrooming`, etc.),
+      - substance-facilitated grooming, rapid escalation, sexual content exchange.
+  - Gap:
+    - The article describes Christensen “playing a game with sexual consequences with several juveniles” in a **non-digital, group setting**. This is distinctive enough (game framing, multi-victim, rule-based “consequences”) that it merits a reusable pattern.
+  - Proposed direction:
+    - Add a specialized subclass of `PhysicalSpaceGrooming`, tentatively:
+      - `SexualConsequenceGameGrooming` (or similar naming),
+      with properties such as:
+        - `participantCount` (number of juveniles involved),
+        - `gameContext` (e.g., `sleepover`, `peer_group`, `family_gathering`),
+        - `ruleStructureDescription` (short textual description of the “game” rules).
+    - Ensure it can be applied in both purely physical-space contexts and in hybrid online/offline scenarios (e.g., games proposed online and executed offline).
+
+These proposals are intentionally kept at the narrative/design level so they can be reviewed against additional cases before being formalized into TTL modules and SHACL shapes in a future release beyond v2.2.0.
+
 ## Implementation Details
 
 ### 1. Current File Organization
 
+The block below reflected an earlier ICAC-era layout. The **current CAC Ontology v2.2.0 repository layout** at the top level is:
+
 ```
-ontology/
-├── README.md                          # Main project documentation
-├── CONTRIBUTING.md                     # Contribution guidelines
-├── CHANGELOG.md                        # Version history
-├── license.md                          # License information
-│
-├── cacontology-core.ttl                # Core investigation ontology
-├── cacontology-hotlines-core.ttl       # Hotline operations ontology
-├── cacontology-us-ncmec.ttl            # Enhanced NCMEC integration & analysis
-│
-├── cacontology-international.ttl       # Global coordination & cross-border operations
-├── cacontology-training.ttl            # Professional development & capacity building
-├── cacontology-prevention.ttl          # Prevention programs & education
-├── cacontology-legal-harmonization.ttl  # International legal framework
-│
-├── cacontology-production.ttl          # CSAM production operations
-├── cacontology-custodial.ttl           # Custodial relationships & trust
-├── cacontology-grooming.ttl            # Online grooming & enticement
-├── cacontology-victim-impact.ttl       # Victim impact assessment & recovery
-├── cacontology-taskforce.ttl           # CAC task force organization
-│
-├── cacontology-undercover.ttl          # Undercover operations
-├── cacontology-physical-evidence.ttl    # Physical evidence & procurement
-├── cacontology-tactical.ttl            # Tactical operations
-├── cacontology-multi-jurisdiction.ttl  # Multi-jurisdictional coordination
-├── cacontology-sentencing.ttl          # Legal outcomes & sentencing
-│
-├── cacontology-forensics.ttl           # Digital forensics
-├── cacontology-detection.ttl           # Content detection & classification
-├── cacontology-platforms.ttl           # Technology platforms
-├── cacontology-specialized-units.ttl    # Specialized units & advanced capabilities
-├── cacontology-sex-offender-registry.ttl # Sex offender registry management
-│
-├── cacontology-forensics-shapes.ttl    # SHACL validation shapes
-├── cacontology-core-shapes.ttl         # Core validation shapes
-├── cacontology-hotlines-core-shapes.ttl # Hotline validation shapes
-├── cacontology-educational-shapes.ttl   # Educational exploitation validation
-├── cacontology-trafficking-shapes.ttl  # Sex trafficking validation
-├── cacontology-athletic-exploitation-shapes.ttl # Athletic coaching exploitation validation
-├── cacontology-specialized-units-shapes.ttl # Specialized units validation
-├── cacontology-platforms-shapes.ttl   # Technology platforms validation
-├── cacontology-detection-shapes.ttl    # Content detection validation
-├── cacontology-sex-offender-registry-shapes.ttl # Registry management validation
-├── cacontology-ai-generated-content-shapes.ttl # AI content detection validation
-├── cacontology-platform-infrastructure-shapes.ttl # Platform infrastructure validation
-├── cacontology-international-shapes.ttl # International coordination validation
-├── cacontology-training-shapes.ttl     # Training and capacity building validation
-├── cacontology-prevention-shapes.ttl   # Prevention programs validation
-├── cacontology-legal-harmonization-shapes.ttl # Legal framework validation
-├── cacontology-us-ncmec-shapes.ttl     # US NCMEC operations validation
-│
-├── examples/
-│   ├── hotline-lifecycle.ttl          # Basic hotline workflow
-│   ├── investigation-lifecycle.ttl    # Basic investigation workflow
-│   ├── enhanced-investigation-lifecycle.ttl # Advanced investigation with forensics
-│   ├── douglas-comprehensive-case.ttl  # Multi-ontology integration example
-│   ├── rhode-island-production-case.ttl # Production case example
-│   ├── idaho-operation-unhinged-example.ttl # K9 detection and officer wellness
-│   ├── arkansas-operation-cyber-highway-safety-check-example.ttl # Large-scale seasonal operations
-│   ├── sex-offender-registry-integration-example.ttl # Registry system integration
-│   ├── illinois-attorney-general-case-example.ttl # State-level prosecution
-│   └── international-coordination-example.ttl # Cross-border operations
-│
-├── queries/
-│   ├── comprehensive-case-analytics.rq # Cross-ontology analytics
-│   ├── find_platform_cooperation_analytics.rq # Platform cooperation metrics
-│   ├── find_automated_reports.rq      # Automated reporting analysis
-│   ├── find_live_stream_incidents.rq  # Live streaming detection
-│   ├── find_unhandled_reports.rq      # Report status monitoring
-│   ├── find_rescue_chains.rq          # Victim rescue tracking
-│   ├── find_report_statistics.rq      # Statistical analysis
-│   ├── find_open_reports.rq           # Active case monitoring
-│   ├── find_duplicate_evidence.rq     # Evidence deduplication
-│   ├── find_cross_border_actions.rq   # International coordination tracking
-│   └── find_rescue_statistics.rq      # Rescue operation metrics
-│
-├── contexts/
-│   ├── hotlines-core.jsonld           # Complete context for hotline operations
-│   └── cacontology-core.jsonld        # Core investigation context (planned)
-│
-└── docs/
-    ├── architecture.md                # Complete system architecture
-    ├── design.md                      # Design document (this file)
-    ├── PRD.md                         # Product requirements
-    ├── user_doc.md                    # User documentation
-    └── glossary.md                    # Terminology and acronyms
+.
+├── ontology/                     # All ontology modules (30+ files)
+├── examples_knowledge_graphs/    # Real-world example graphs (including Utah recidivism & registry examples)
+├── example_SPARQL_queries/       # Analytics and query examples (including Utah recidivism & NCMEC analytics)
+├── docs/                         # Architecture, design, user docs, PRD, glossary
+├── testing/                      # Docker-based validation and development environment
+├── contexts/                     # JSON-LD context files
+├── CHANGELOG.md                  # Version history (v2.2.0 and earlier)
+└── README.md                     # Top-level project overview
 ```
+
+Within `ontology/`, the CAC Ontology family retains the module structure described earlier in this document (core, international, criminal activities, investigation, technical, victim services & legal, and validation components), with additional gUFO-enhanced modules and SHACL shapes files introduced in the 2.x line.
 
 ### 2. Versioning Strategy
 - Semantic versioning (MAJOR.MINOR.PATCH)
 - Backward compatibility for minor releases
 - Clear deprecation policy with migration guides
-- Coordinated releases across all 23 modules
+- Coordinated releases across all 30+ modules
 - Version alignment with UCO/CASE releases
 
 ### 3. Testing Strategy

@@ -33,7 +33,7 @@ pip install -r requirements.txt
 
 3. Start the validation server:
 ```bash
-docker compose -f docker-compose.yaml up -d
+docker compose -f testing/docker-compose.yaml up -d
 ```
 
 4. **NEW**: Load gUFO-enhanced ontologies:
@@ -55,6 +55,8 @@ curl -X POST http://localhost:3030/cac/data \
 ```
 
 ## Core Concepts
+
+> **Note on examples and namespaces:** Many of the examples in this document use legacy `icac-*` prefixes and `https://ontology.unifiedcyberontology.org/...` IRIs from the original ICAC ontology work. In CAC Ontology v2.x, the corresponding production modules use `cacontology-*` prefixes and `https://cacontology.projectvic.org/{module-name}#` IRIs; the ICAC-style examples are retained here to illustrate modeling patterns that are now realized in the CAC Ontology family.
 
 ### 1. Hotline Reports
 We use hotline reports as a foundation of the ontology. They represent the initial reports of potential child exploitation material.
@@ -852,8 +854,8 @@ time sparql --query queries/find_open_reports.rq --data your-5m-triple-dataset.t
 
 ### 1. Local Development Setup
 ```bash
-# Start complete development environment
-docker compose up -d
+# Start complete development environment (from repository root)
+docker compose -f testing/docker-compose.yaml up -d
 
 # Validate all ontologies
 docker exec icac-robot robot validate *.ttl
@@ -924,10 +926,10 @@ icac:investigation-001 icac:exportFormat "CASE-JSON", "UCO-Turtle", "STIX-JSON" 
 ## License and Support
 
 ### 1. Versioning
-- Current Version: 0.9.0 (December 2024)
+- Current Version: 2.2.0 (23 November 2025)
 - See CHANGELOG.md for complete version history
 - Follows semantic versioning (MAJOR.MINOR.PATCH)
-- Coordinated releases across all 23 ontology modules
+- Coordinated releases across all 30+ ontology modules
 
 ### 2. Support Channels
 - GitHub issues for bug reports and feature requests

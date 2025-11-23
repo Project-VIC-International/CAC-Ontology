@@ -1,0 +1,299 @@
+# SPARQL Queries: Utah ICAC – Dominic Lynn Christensen Case Analytics
+# These queries operate over `examples_knowledge_graphs/utah-dominic-christensen-example.ttl`
+# and demonstrate how the Christensen press release is modeled in CAC Ontology.
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core/>
+PREFIX uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/>
+PREFIX uco-location: <https://ontology.unifiedcyberontology.org/uco/location/>
+PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/>
+PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/>
+PREFIX gufo: <http://purl.org/nemo/gufo#>
+PREFIX cacontology: <https://cacontology.projectvic.org#>
+PREFIX cacontology-registry: <https://cacontology.projectvic.org/sex-offender-registry#>
+PREFIX cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#>
+PREFIX cacontology-us-ncmec: <https://cacontology.projectvic.org/us/ncmec/2.1.0#>
+PREFIX cacontology-grooming: <https://cacontology.projectvic.org/grooming#>
+PREFIX ex: <https://example.org/kb/utah-dominic-christensen/>
+
+################################################################################
+## 1) Christensen Case Timeline: Incidents, Charges, and Proceedings by Year ##
+################################################################################
+#
+# Purpose:
+#   Show the key abuse/CSAM events, related charges, and major legal proceedings
+#   for Dominic Christensen, grouped by year and county.
+
+SELECT DISTINCT
+    ?year
+    ?event
+    ?eventLabel
+    ?countyLabel
+    ?eventType
+    ?charge
+    ?chargeLabel
+    ?proceeding
+    ?proceedingLabel
+WHERE {
+    BIND (ex:DominicChristensen AS ?subject)
+
+    # Core child sexual abuse and CSAM events
+    {
+        ?event rdf:type ?eventType ;
+               rdfs:label ?eventLabel ;
+               cacontology:involvesOffender ?subject .
+        FILTER (?eventType IN (cacontology:ChildSexualAbuseEvent,
+                               cacontology:CSAMIncident))
+
+        OPTIONAL {
+            ?event uco-location:location ?county .
+            ?county rdfs:label ?countyLabel .
+        }
+
+        OPTIONAL {
+            ?event uco-core:startTime ?eventTime .
+        }
+    }
+
+    # Charges linked to this subject
+    OPTIONAL {
+        ?subject cacontology-sentencing:chargedWith ?charge .
+        ?charge rdfs:label ?chargeLabel .
+    }
+
+    # Proceedings (e.g., sentencing or initial appearance) that reference sentences
+    OPTIONAL {
+        ?proceeding rdf:type ?pType ;
+                    rdfs:label ?proceedingLabel .
+        FILTER (?pType IN (cacontology-sentencing:SentencingHearing,
+                           cacontology-sentencing:ArraignmentProceeding))
+    }
+
+    # Derive calendar year from event or fallback to 2025 if missing time
+    BIND (
+        IF(BOUND(?eventTime),
+           STR(YEAR(?eventTime)),
+           IF(?event = ex:CSAMIncident_2025, "2025", "2021")
+        ) AS ?year
+    )
+}
+ORDER BY ?year ?eventLabel ?chargeLabel ?proceedingLabel
+
+;
+
+##############################################################################
+## 2) Registry Recidivism and Compliance: Post-Registration Reoffending    ##
+##############################################################################
+#
+# Purpose:
+#   Identify Christensen as a registered sex offender who:
+#     - has a registration record and compliance history,
+#     - has at least one registration-related compliance violation, and
+#     - commits new CSAM or abuse incidents after the registration date.
+#
+# This illustrates how registry data, recidivism, and new incidents connect.
+
+SELECT DISTINCT
+    ?offender
+    ?offenderLabel
+    ?registrationRecord
+    ?registrationDate
+    ?violation
+    ?violationLabel
+    ?postRegEvent
+    ?postRegEventLabel
+    ?postRegEventType
+WHERE {
+    BIND (ex:DominicChristensen AS ?offender)
+
+    ?offender rdfs:label ?offenderLabel ;
+              cacontology-registry:hasRegistrationRecord ?registrationRecord ;
+              cacontology-registry:hasCompliance ?complianceHistory .
+
+    ?registrationRecord cacontology-registry:registrationDate ?registrationDate .
+
+    # Registration compliance violation (e.g., failure-to-register / false info)
+    ?offender cacontology-registry:subjectToRestriction ?violation .
+    ?violation rdf:type cacontology-registry:ComplianceViolation ;
+               rdfs:label ?violationLabel .
+
+    # New post-registration incidents
+    ?postRegEvent rdf:type ?postRegEventType ;
+                  rdfs:label ?postRegEventLabel ;
+                  cacontology:involvesOffender ?offender ;
+                  uco-location:location ?loc .
+    FILTER (?postRegEventType IN (cacontology:ChildSexualAbuseEvent,
+                                  cacontology:CSAMIncident))
+
+    OPTIONAL { ?postRegEvent uco-core:startTime ?postTime . }
+
+    # Ensure the event is in Garfield County and post-dates registration
+    ?loc rdfs:label ?locLabel .
+    FILTER (CONTAINS(LCASE(STR(?locLabel)), "garfield county"))
+
+    FILTER (
+        !BOUND(?postTime) ||
+        (?postTime > ?registrationDate)
+    )
+}
+ORDER BY ?offenderLabel ?postRegEventLabel
+
+;
+
+##############################################################################
+## 3) NCMEC CyberTip Linkage: From Tip to Account, Registry, and Incident  ##
+##############################################################################
+#
+# Purpose:
+#   Starting from the 21 August 2025 NCMEC cybertip, show how:
+#     - the tip links to a digital account and IP address,
+#     - the account is tied to Christensen and his registry record,
+#     - and how the investigation and CSAM incident are connected.
+
+SELECT DISTINCT
+    ?cyberTip
+    ?cyberTipLabel
+    ?account
+    ?accountLabel
+    ?ip
+    ?ipLabel
+    ?offender
+    ?offenderLabel
+    ?registrationRecord
+    ?csamIncident
+    ?csamLabel
+    ?investigation
+    ?investigationLabel
+WHERE {
+    BIND (ex:NCMECReport_2025_08_21 AS ?cyberTip)
+    BIND (ex:DominicChristensen AS ?offender)
+
+    ?cyberTip rdfs:label ?cyberTipLabel .
+
+    # Account and IP captured in the tip
+    BIND (ex:ChristensenEmailAccount AS ?account)
+    BIND (ex:ChristensenIPAddress AS ?ip)
+
+    ?account rdfs:label ?accountLabel .
+    ?ip rdfs:label ?ipLabel .
+
+    # Registry link for the offender
+    ?offender rdfs:label ?offenderLabel ;
+              cacontology-registry:hasRegistrationRecord ?registrationRecord .
+
+    # Investigation and CSAM incident connected to this cybertip
+    BIND (ex:ChristensenInvestigation_2025 AS ?investigation)
+    BIND (ex:CSAMIncident_2025 AS ?csamIncident)
+
+    ?investigation rdfs:label ?investigationLabel .
+    ?csamIncident rdfs:label ?csamLabel ;
+                  cacontology:involvesOffender ?offender .
+}
+ORDER BY ?cyberTipLabel ?offenderLabel
+
+;
+
+##############################################################################
+## 4) Victim-Centric Summary: Juvenile Victims and Context Across Years    ##
+##############################################################################
+#
+# Purpose:
+#   Summarize known juvenile victims associated with Christensen, including:
+#     - whether they appear in 2021 or 2025 conduct,
+#     - brief context for the abuse or exploitation,
+#     - and the county where the associated incident occurred.
+
+SELECT DISTINCT
+    ?victim
+    ?victimLabel
+    ?context
+    ?event
+    ?eventLabel
+    ?year
+    ?countyLabel
+WHERE {
+    BIND (ex:DominicChristensen AS ?offender)
+
+    VALUES ?victim {
+        ex:Victim_15yo_2021
+        ex:Victim_11yo_2021
+        ex:OnlineVictim_2025
+    }
+
+    ?victim rdfs:label ?victimLabel .
+
+    # Events involving offender and victim
+    ?event rdf:type ?etype ;
+           rdfs:label ?eventLabel ;
+           cacontology:involvesOffender ?offender ;
+           cacontology:involvesVictim ?victim .
+
+    OPTIONAL {
+        ?event uco-location:location ?county .
+        ?county rdfs:label ?countyLabel .
+    }
+
+    OPTIONAL { ?event uco-core:startTime ?t . }
+
+    BIND (
+        IF(BOUND(?t), STR(YEAR(?t)),
+           IF(?event = ex:CSAMIncident_2025, "2025", "2021")
+        ) AS ?year
+    )
+
+    # Human-readable context derived from which victim is bound
+    BIND (
+        IF(?victim = ex:Victim_15yo_2021,
+           "15-year-old victim in 2021 relationship and abuse",
+           IF(?victim = ex:Victim_11yo_2021,
+              "11-year-old victim depicted in 2021 photos while asleep",
+              "Online juvenile victim in 2025 email/CSAM case")
+        ) AS ?context
+    )
+}
+ORDER BY ?victimLabel ?year ?eventLabel
+
+;
+
+##############################################################################
+## 5) gUFO Event Overview: All Events Involving Christensen                 ##
+##############################################################################
+#
+# Purpose:
+#   Demonstrate gUFO-level modeling by listing all gufo:Event instances that
+#   are directly tied to Christensen via CAC Ontology relationships.
+
+SELECT DISTINCT
+    ?event
+    ?eventLabel
+    ?eventType
+    ?begin
+    ?end
+WHERE {
+    BIND (ex:DominicChristensen AS ?offender)
+
+    ?event rdf:type gufo:Event ;
+           rdfs:label ?eventLabel .
+
+    # Keep the most specific non-gufo type when available
+    OPTIONAL {
+        ?event rdf:type ?eventType .
+        FILTER (?eventType != gufo:Event)
+    }
+
+    OPTIONAL { ?event uco-core:startTime ?begin . }
+    OPTIONAL { ?event uco-core:endTime ?end . }
+
+    # Restrict to events meaningfully associated with Christensen
+    FILTER (
+        EXISTS { ?event cacontology:involvesOffender ?offender } ||
+        EXISTS {
+            ?offender cacontology-sentencing:chargedWith ?charge .
+            ?event cacontology-sentencing:hasCharge ?charge .
+        }
+    )
+}
+ORDER BY ?eventLabel
+

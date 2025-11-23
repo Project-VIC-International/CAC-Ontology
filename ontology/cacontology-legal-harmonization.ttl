@@ -18,11 +18,11 @@
 # Enhanced with gUFO (gentle Unified Foundational Ontology) integration
 # =============================================================================
 
-<https://cacontology.projectvic.org/legal-harmonization/2.1.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/legal-harmonization/2.2.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Legal Harmonization Ontology"@en ;
     rdfs:comment "An ontology for modeling international legal frameworks, policy harmonization, and CSAM legislation analysis across 196 countries based on ICMEC's Global Review. Enhanced with gUFO (gentle Unified Foundational Ontology) integration for improved semantic precision and validation capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/legal-harmonization/2.1.0> ;
-    owl:versionInfo "2.1.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/legal-harmonization/2.2.0> ;
+    owl:versionInfo "2.2.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
     owl:imports <http://purl.org/nemo/gufo#> .

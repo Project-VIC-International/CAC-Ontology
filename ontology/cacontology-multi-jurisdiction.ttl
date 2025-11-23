@@ -16,10 +16,10 @@
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/multi-jurisdiction/2.1.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/multi-jurisdiction/2.2.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Multi-Jurisdictional Operations Ontology"@en ;
     rdfs:comment "An ontology for representing multi-jurisdictional investigations, inter-agency coordination, resource sharing, and jurisdictional challenges in Internet Crimes Against Children cases, extending UCO and CASE with gUFO foundational ontology enhancements."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/multi-jurisdiction/2.1.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/multi-jurisdiction/2.2.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
@@ -29,7 +29,7 @@
                 <https://ontology.unifiedcyberontology.org/uco/action> ,
                 <https://ontology.unifiedcyberontology.org/uco/location> ,
                 <https://ontology.unifiedcyberontology.org/uco/role> ,
-                <https://cacontology.projectvic.org/2.1.0> ,
+                <https://cacontology.projectvic.org/2.2.0> ,
                 <http://purl.org/nemo/gufo> .
 
 # =============================================================================

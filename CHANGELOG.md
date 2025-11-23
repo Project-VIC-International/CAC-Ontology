@@ -5,6 +5,61 @@ All notable changes to the CAC ontology family will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2.2.0 - 23 November 2025
+
+### Added - Utah Recidivism & NCMEC Analytics (Dominic Christensen Case)
+
+- **Utah Dominic Christensen Example Graph (`examples_knowledge_graphs/utah-dominic-christensen-example.ttl`)**
+  - Models prior **2021 Sanpete County** cases (forcible sexual abuse, sexual exploitation of a minor, sexual abuse of a child) alongside the **2025 Garfield County** NCMEC-driven investigation.
+  - Captures **sex offender registry status and compliance** using `cacontology-sex-offender-registry` (registration record, registered address, compliance history, and a combined 2025 registration compliance violation).
+  - Reuses `cacontology-core`, `cacontology-grooming`, `cacontology-sentencing`, and `cacontology-sex-offender-registry` to tie together investigations, abuse/CSAM events, charges, sentences, registry records, and compliance violations in a single example.
+  - Applies **gUFO** patterns (Events, Objects, Situations) for investigations, lifecycle actions, and sentencing/arraignment style events so that temporal reasoning and analytics are grounded in the ontology’s foundational layer.
+
+- **Utah Dominic Christensen Analytics (`example_SPARQL_queries/utah-dominic-christensen-analytics.rq`)**
+  - Case timeline query that groups **key abuse and CSAM events**, state charges, and major legal proceedings by **year and county** for Dominic Christensen.
+  - Registry recidivism and compliance query that links **post-registration reoffending** in Garfield County back to the offender’s registration record and compliance violations.
+  - NCMEC CyberTip linkage query that traces the path from **cybertip → digital account/IP → registry record → CSAM incident and investigation**, showing how federal tip data flows into state cases.
+  - Victim-centric and gUFO-centric queries that summarize **juvenile victims across years** and list all `gufo:Event` instances tied to the offender via CAC Ontology relationships.
+
+### Changed - Utah Operation Hive Strike gUFO Alignment
+
+- **Updated Operation Hive Strike Example (`examples_knowledge_graphs/utah-operation-hive-strike-example.ttl`)**
+  - Refined modeling of `ex:OperationHiveStrike` and related coordination structures as **gUFO `Event` and `Situation`** instances, aligning undercover operations, multi-county coordination, and agent deployment with the same foundational patterns used in the Christensen example.
+  - Clarified the use of `cacontology-multi-jurisdiction` **NamedOperation** and task-force-hosted operation patterns across both Utah examples so analytics can reason consistently about hosted statewide operations.
+  - Ensured Utah-specific charge instances (e.g., `Utah_SexualExploitationOfMinor`, `Utah_EnticingAMinor`, `Utah_AggravatedSexualExploitationOfMinor`) are modeled in a way that lines up with the sentencing ontology used for the Christensen case.
+
+### Changed - Grooming, Sentencing, and Registry Ontologies for Utah Analytics
+
+- **Grooming Ontology (`ontology/cacontology-grooming.ttl`)**
+  - Updated ontology declaration to **`https://cacontology.projectvic.org/grooming/2.2.0`** with a `owl:versionIRI` and imports aligned to the **v2.2.0** core, keeping grooming in step with the global versioning strategy.
+  - Introduced and refined **physical-space grooming** patterns for offline contexts, including `SexualConsequenceGameGrooming`, to represent “sexual consequence game” behaviors involving multiple juveniles (sleepovers, peer-group games, youth activities).
+  - Added supporting properties such as `participantCount`, `gameContext`, and `ruleStructureDescription` so that investigators can describe and analyze **group game mechanics** and the number of juveniles involved.
+  - Strengthened guidance in `ChildVictim` and `OnlinePredator` comments recommending the use of `cacontology-temporal:AgeAtTimeSituation` for precise **age-at-time reasoning** (e.g., “victims 13-or-under groomed online in 2025”, offender/victim age-gap analytics).
+
+- **Sentencing Ontology (`ontology/cacontology-sentencing.ttl`)**
+  - Enhanced modeling of **state-level charges** and sentencing structures to better support multi-count cases like Christensen’s 2021 and 2025 matters (separate `StateCharge` instances, concurrent jail and probation sentences, and explicit per-charge linkage).
+  - Clarified how **arraignment/initial-appearance style events** and **bail/held-without-bail status** can be represented so that pretrial detention facts (e.g., “held without bail in Garfield County Jail”) can be surfaced in analytics.
+  - Ensured that sentencing constructs used in the Utah examples (including Utah-specific charges for Operation Hive Strike) remain compatible with existing federal and state sentencing patterns already present in this module.
+
+- **Sex Offender Registry Ontology (`ontology/cacontology-sex-offender-registry.ttl`)**
+  - Expanded and aligned registry structures such as `RegistrationRecord`, `RegisteredAddress`, `ComplianceHistory`, and `ComplianceViolation` to support **recidivism and post-registration reoffense** analytics illustrated in the Christensen example.
+  - Clarified how offenders should be linked to registry records (`registeredIn`, `hasRegistrationRecord`, `residesAt`, `hasCompliance`, `subjectToRestriction`) so that **analytic queries can reliably traverse** from people to registry state and violations.
+  - Improved the conceptual bridge between registry violations and sentencing by ensuring that `ComplianceViolation` instances can be connected to related **failure-to-register / false-information charges** in the sentencing ontology.
+
+### Added/Changed - SHACL Validation for Utah Recidivism and Grooming Patterns
+
+- **Grooming Shapes (`ontology/cacontology-grooming-shapes.ttl`)**
+  - Added and refined SHACL node shapes to cover new **physical-space grooming** patterns, including `SexualConsequenceGameGrooming`, validating fields such as `participantCount`, `gameContext`, and `ruleStructureDescription`.
+  - Extended grooming shapes to reinforce age-at-time guidance by checking that where age-dependent analytics are expected, models can be linked to `cacontology-temporal:AgeAtTimeSituation` instances.
+
+- **Sentencing Shapes (`ontology/cacontology-sentencing-shapes.ttl`)**
+  - Strengthened validation for **state charges, sentences, and proceedings** used in the Utah examples, including patterns for multi-count state charges, concurrent jail and probation sentences, and arraignment/initial-appearance style events.
+  - Introduced constraints that make it easier to ensure **bail status / pretrial detention** information is represented in a consistent, machine-checkable way when present.
+
+- **Sex Offender Registry Shapes (`ontology/cacontology-sex-offender-registry-shapes.ttl`)**
+  - Added shapes that validate `RegistrationRecord`, `RegisteredAddress`, `ComplianceHistory`, and `ComplianceViolation` structures and their links to offenders, enabling robust **recidivism and compliance** analytics.
+  - Ensured registry shapes work coherently with the sentencing module so that analytic queries can reliably traverse from **registry violations to related charges and cases**, building on the Utah Christensen example as a reference pattern.
+
 ## v2.1.0 - 18 November 2025
 
 ### Added - SHACL Shapes for Sex Trafficking and Temporal gUFO Modules

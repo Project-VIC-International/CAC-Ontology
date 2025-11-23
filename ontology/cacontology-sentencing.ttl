@@ -17,10 +17,10 @@
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/sentencing/2.1.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/sentencing/2.2.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Legal Outcomes & Sentencing Ontology"@en ;
     rdfs:comment "An ontology for representing legal outcomes, federal sentences, judicial proceedings, and punishment guidelines in Internet Crimes Against Children cases with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, and validation capabilities, extending UCO and CASE."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/sentencing/2.1.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/sentencing/2.2.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
@@ -30,7 +30,7 @@
                 <https://ontology.unifiedcyberontology.org/uco/action> ,
                 <https://ontology.unifiedcyberontology.org/uco/location> ,
                 <https://ontology.unifiedcyberontology.org/uco/role> ,
-                <https://cacontology.projectvic.org/2.1.0> ,
+                <https://cacontology.projectvic.org/2.2.0> ,
                 <http://purl.org/nemo/gufo> .
 
 # =============================================================================
@@ -442,3 +442,23 @@ cacontology-sentencing:involvesParticipantCount rdf:type owl:DatatypeProperty ;
     rdfs:comment "Number of participants involved in legal situation."@en ;
     rdfs:domain gufo:Situation ;
     rdfs:range xsd:integer . 
+
+# Bail and Pretrial Status Properties
+cacontology-sentencing:bailStatus rdf:type owl:DatatypeProperty ;
+    rdfs:label "bail status"@en ;
+    rdfs:comment "Status of the defendant's pretrial release for a legal proceeding (e.g., released_on_bail, held_without_bail, released_on_own_recognizance)."@en ;
+    rdfs:domain cacontology-sentencing:LegalProceeding ;
+    rdfs:range xsd:string .
+
+# Sentence Concurrency Properties
+cacontology-sentencing:sentenceConcurrency rdf:type owl:DatatypeProperty ;
+    rdfs:label "sentence concurrency"@en ;
+    rdfs:comment "Indicates whether a criminal sentence is concurrent, consecutive, or mixed with respect to other sentences (values: concurrent, consecutive, mixed)."@en ;
+    rdfs:domain cacontology-sentencing:CriminalSentence ;
+    rdfs:range xsd:string .
+
+cacontology-sentencing:concurrentWith rdf:type owl:ObjectProperty ;
+    rdfs:label "concurrent with"@en ;
+    rdfs:comment "Links one criminal sentence to another sentence that is ordered to run concurrently."@en ;
+    rdfs:domain cacontology-sentencing:CriminalSentence ;
+    rdfs:range cacontology-sentencing:CriminalSentence .

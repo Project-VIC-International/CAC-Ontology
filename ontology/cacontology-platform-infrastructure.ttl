@@ -14,11 +14,11 @@
 @prefix cacontology-infrastructure: <https://cacontology.projectvic.org/infrastructure#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/infrastructure/2.1.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/infrastructure/2.2.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Platform Infrastructure Ontology with gUFO Integration"@en ;
     rdfs:comment "An ontology for representing technical infrastructure supporting child exploitation platforms, including server architecture, content delivery networks, payment processing, and hosting infrastructure. Enhanced with comprehensive gUFO (gentle Unified Foundational Ontology) integration for enhanced semantic precision, temporal modeling, and quality assessment. Based on analysis of large-scale operations like the Kidflix/Europol takedown involving nearly 2 million users."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/infrastructure/2.1.0> ;
-    owl:versionInfo "2.1.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/infrastructure/2.2.0> ;
+    owl:versionInfo "2.2.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-05-23"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
@@ -27,7 +27,7 @@
                 <https://ontology.unifiedcyberontology.org/uco/observable> ,
                 <https://ontology.unifiedcyberontology.org/uco/action> ,
                 <https://ontology.unifiedcyberontology.org/uco/location> ,
-                <https://cacontology.projectvic.org/2.1.0> ,
+                <https://cacontology.projectvic.org/2.2.0> ,
                 <http://purl.org/nemo/gufo#> .
 
 # =============================================================================

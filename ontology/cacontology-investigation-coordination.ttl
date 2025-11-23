@@ -15,14 +15,14 @@
 @prefix cacontology-coord: <https://cacontology.projectvic.org/investigation-coordination#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/investigation-coordination/2.1.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/investigation-coordination/2.2.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Investigation Coordination Ontology"@en ;
     rdfs:comment "Comprehensive ontology for modeling investigation coordination processes, information sharing, resource sharing, communication protocols, and inter-agency collaboration within ICAC investigations. Enhanced with gUFO (gentle Unified Foundational Ontology) integration for improved semantic precision and validation capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/investigation-coordination/2.1.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/investigation-coordination/2.2.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-01-27"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:versionInfo "2.1.0" ;
+    owl:versionInfo "2.2.0" ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
                 <https://ontology.caseontology.org/case> ,
                 <http://purl.org/nemo/gufo#> .
