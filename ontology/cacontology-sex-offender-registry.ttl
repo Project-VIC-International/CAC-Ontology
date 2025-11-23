@@ -14,11 +14,11 @@
 @prefix cacontology-registry: <https://cacontology.projectvic.org/sex-offender-registry#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
-<https://cacontology.projectvic.org/sex-offender-registry/2.1.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/sex-offender-registry/2.2.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Sex Offender Registry Ontology"@en ;
     rdfs:comment "An ontology for modeling sex offender registry data, registration requirements, and registry management systems for child protection investigations."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/sex-offender-registry/2.1.0> ;
-    owl:versionInfo "2.1.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/sex-offender-registry/2.2.0> ;
+    owl:versionInfo "2.2.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date .
 
@@ -69,6 +69,16 @@ cacontology-registry:VictimInformation rdf:type owl:Class ;
     rdfs:subClassOf uco-core:UcoObject ;
     rdfs:label "Victim Information"@en ;
     rdfs:comment "Information about victims relevant to registration (age, relationship, count)."@en .
+
+cacontology-registry:FailureToRegisterOffense rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-registry:ConvictingOffense ;
+    rdfs:label "Failure to Register Offense"@en ;
+    rdfs:comment "Criminal offense for failing to register or update required information in a sex offender registry. Typically serves as a registry-triggering or enhancing offense for compliance analytics."@en .
+
+cacontology-registry:FalseInformationRegistrationOffense rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-registry:ConvictingOffense ;
+    rdfs:label "False Information Registration Offense"@en ;
+    rdfs:comment "Criminal offense for knowingly providing false or misleading information in connection with sex offender registration (e.g., false address, contact information, or online identifiers)."@en .
 
 cacontology-registry:CourtOrder rdf:type owl:Class ;
     rdfs:subClassOf uco-observable:ObservableObject ;
@@ -434,6 +444,12 @@ cacontology-registry:victimRelationship rdf:type owl:DatatypeProperty ;
     rdfs:label "victim relationship"@en ;
     rdfs:comment "Relationship between offender and victim (stranger, known, family)."@en .
 
+cacontology-registry:violationCategory rdf:type owl:DatatypeProperty ;
+    rdfs:domain cacontology-registry:ComplianceViolation ;
+    rdfs:range xsd:string ;
+    rdfs:label "violation category"@en ;
+    rdfs:comment "Categorization of a registry compliance violation (e.g., failure_to_register, false_information, late_update, residency_restriction_violation)."@en .
+
 # =============================================================================
 # OBJECT PROPERTIES - RELATIONSHIPS
 # =============================================================================
@@ -742,6 +758,12 @@ cacontology-registry:involvesBidirectionalExchange rdf:type owl:ObjectProperty ;
     rdfs:range cacontology-registry:BidirectionalContentExchange ;
     rdfs:label "involves bidirectional exchange"@en ;
     rdfs:comment "Links high-volume exploitation to bidirectional content exchange."@en .
+
+cacontology-registry:postRegistrationEvent rdf:type owl:ObjectProperty ;
+    rdfs:domain cacontology-registry:RecidivistSexOffender ;
+    rdfs:range cacontology:ChildSexualAbuseEvent ;
+    rdfs:label "post-registration event"@en ;
+    rdfs:comment "Links a recidivist sex offender to child sexual abuse or CSAM incidents that occurred after their initial sex offender registration date."@en .
 
 # Compliance and Investigation Relationships
 cacontology-registry:coordinatedWithCompliance rdf:type owl:ObjectProperty ;

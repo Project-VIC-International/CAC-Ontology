@@ -19,10 +19,10 @@
 @prefix cacontology-temporal: <https://cacontology.projectvic.org/temporal#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/grooming/2.1.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/grooming/2.2.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Online Grooming & Enticement Ontology"@en ;
     rdfs:comment "An ontology for representing online grooming behaviors, enticement patterns, and predatory communication tactics in Internet Crimes Against Children cases, extending UCO and CASE with gUFO foundational ontology enhancements."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/grooming/2.1.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/grooming/2.2.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
@@ -31,7 +31,7 @@
                 <https://ontology.unifiedcyberontology.org/uco/observable> ,
                 <https://ontology.unifiedcyberontology.org/uco/action> ,
                 <https://ontology.unifiedcyberontology.org/uco/pattern> ,
-                <https://cacontology.projectvic.org/2.1.0> ,
+                <https://cacontology.projectvic.org/2.2.0> ,
                 <http://purl.org/nemo/gufo> .
 
 # =============================================================================
@@ -816,6 +816,11 @@ cacontology-grooming:PublicToPrivateGrooming rdf:type owl:Class ;
     rdfs:comment "Grooming that transitions from public contact to private exploitation."@en ;
     rdfs:subClassOf cacontology-grooming:PhysicalSpaceGrooming .
 
+cacontology-grooming:SexualConsequenceGameGrooming rdf:type owl:Class ;
+    rdfs:label "Sexual Consequence Game Grooming"@en ;
+    rdfs:comment "Physical-space grooming pattern where the perpetrator frames sexualized contact as part of a game with consequences, typically involving multiple juveniles in a group context (e.g., sleepovers, peer gatherings, family events)."@en ;
+    rdfs:subClassOf cacontology-grooming:PhysicalSpaceGrooming .
+
 # =============================================================================
 # RAPID ESCALATION PROPERTIES
 # =============================================================================
@@ -917,6 +922,24 @@ cacontology-grooming:transitionSpeed rdf:type owl:DatatypeProperty ;
     rdfs:label "transition speed"@en ;
     rdfs:comment "Speed of transition from public to private space (immediate, rapid, gradual)."@en ;
     rdfs:domain cacontology-grooming:PublicToPrivateGrooming ;
+    rdfs:range xsd:string .
+
+cacontology-grooming:participantCount rdf:type owl:DatatypeProperty ;
+    rdfs:label "participant count"@en ;
+    rdfs:comment "Number of juvenile participants involved in the sexual consequence game."@en ;
+    rdfs:domain cacontology-grooming:SexualConsequenceGameGrooming ;
+    rdfs:range xsd:nonNegativeInteger .
+
+cacontology-grooming:gameContext rdf:type owl:DatatypeProperty ;
+    rdfs:label "game context"@en ;
+    rdfs:comment "Context for the sexualized game (e.g., sleepover, peer_group, family_gathering, youth_activity)."@en ;
+    rdfs:domain cacontology-grooming:SexualConsequenceGameGrooming ;
+    rdfs:range xsd:string .
+
+cacontology-grooming:ruleStructureDescription rdf:type owl:DatatypeProperty ;
+    rdfs:label "rule structure description"@en ;
+    rdfs:comment "Short description of the rules and consequence mechanics used to structure the sexualized game."@en ;
+    rdfs:domain cacontology-grooming:SexualConsequenceGameGrooming ;
     rdfs:range xsd:string .
 
 # =============================================================================

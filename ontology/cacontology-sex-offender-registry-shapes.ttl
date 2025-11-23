@@ -14,14 +14,14 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/sex-offender-registry/shapes/2.1.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/sex-offender-registry/shapes/2.2.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Sex Offender Registry SHACL Shapes"@en ;
     rdfs:comment "SHACL validation shapes for the ICAC Sex Offender Registry Ontology, providing validation for registry data, registration requirements, and registry management systems."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/sex-offender-registry/shapes/2.1.0> ;
-    owl:versionInfo "2.1.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/sex-offender-registry/shapes/2.2.0> ;
+    owl:versionInfo "2.2.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/sex-offender-registry/2.1.0> ,
+    owl:imports <https://cacontology.projectvic.org/sex-offender-registry/2.2.0> ,
                 <http://purl.org/nemo/gufo> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 
@@ -466,6 +466,14 @@ cacontology-registry:ComplianceViolationShape rdf:type sh:NodeShape ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Violation must specify occurrence time."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-registry:violationCategory ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "failure_to_register" "false_information" "late_update" "residency_restriction_violation" ) ;
+        sh:message "Violation category, when provided, must be one of: failure_to_register, false_information, late_update, residency_restriction_violation."@en
     ] .
 
 cacontology-registry:VerificationCheckShape rdf:type sh:NodeShape ;
@@ -675,4 +683,36 @@ cacontology-registry:AgeValidationShape rdf:type sh:NodeShape ;
                 FILTER (?age < 18)
             }
         """
-    ] . 
+    ] .
+
+# =============================================================================
+# RECIDIVISM SHAPES
+# =============================================================================
+
+cacontology-registry:RecidivistSexOffenderShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-registry:RecidivistSexOffender ;
+    rdfs:label "Recidivist Sex Offender Shape"@en ;
+    rdfs:comment "Validation shape for recidivist sex offenders, ensuring post-registration offending events can be linked for analytics (e.g., Utah Christensen Garfield County CSAM case)."@en ;
+    sh:property [
+        sh:path cacontology-registry:postRegistrationEvent ;
+        sh:class cacontology:ChildSexualAbuseEvent ;
+        sh:minCount 0 ;
+        sh:message "Post-registration events must be modeled as ChildSexualAbuseEvent (or subclasses) when present."@en
+    ] .
+
+cacontology-registry:RecidivismPostRegistrationBusinessRule rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-registry:RecidivistSexOffender ;
+    rdfs:label "Recidivism Post-Registration Business Rule"@en ;
+    rdfs:comment "Business rule: a recidivist sex offender SHOULD have at least one postRegistrationEvent linked to post-registration abuse/CSAM incidents."@en ;
+    sh:sparql [
+        sh:message "Recidivist sex offenders should have at least one postRegistrationEvent representing post-registration abuse or CSAM incidents."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this a cacontology-registry:RecidivistSexOffender .
+                FILTER NOT EXISTS {
+                    $this cacontology-registry:postRegistrationEvent ?event .
+                }
+            }
+        """
+    ] .

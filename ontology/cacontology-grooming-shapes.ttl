@@ -14,14 +14,14 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/grooming/shapes/2.1.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/grooming/shapes/2.2.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Grooming SHACL Shapes with gUFO Validation"@en ;
     rdfs:comment "SHACL validation shapes for gUFO-enhanced ICAC grooming ontology, including anti-rigidity constraints, temporal validation, phase transitions, and foundational type compliance."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/grooming/shapes/2.1.0> ;
-    owl:versionInfo "2.1.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/grooming/shapes/2.2.0> ;
+    owl:versionInfo "2.2.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/grooming/2.1.0> ,
+    owl:imports <https://cacontology.projectvic.org/grooming/2.2.0> ,
                 <http://purl.org/nemo/gufo> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 
@@ -492,6 +492,58 @@ cacontology-grooming:EscalationPatternShape rdf:type sh:NodeShape ;
         sh:maxInclusive 1.0 ;
         sh:maxCount 1 ;
         sh:message "Escalation predictability must be between 0.0 and 1.0 (gUFO quality aspect)"@en ;
+    ] .
+
+# =============================================================================
+# SEXUAL CONSEQUENCE GAME GROOMING SHAPES
+# =============================================================================
+
+cacontology-grooming:SexualConsequenceGameGroomingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-grooming:SexualConsequenceGameGrooming ;
+    rdfs:label "Sexual Consequence Game Grooming Shape"@en ;
+    rdfs:comment "Validation shape for physical-space 'sexual consequence game' grooming behaviors (Utah Christensen case), ensuring participant count and game context are captured for analytics."@en ;
+    sh:property [
+        sh:path cacontology-grooming:participantCount ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 1 ;
+        sh:message "Sexual consequence game grooming should record at least one juvenile participant when participantCount is provided."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-grooming:gameContext ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "sleepover" "peer_group" "family_gathering" "youth_activity" ) ;
+        sh:message "Game context, when provided, must be one of: sleepover, peer_group, family_gathering, youth_activity."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-grooming:ruleStructureDescription ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 10 ;
+        sh:maxLength 500 ;
+        sh:message "Rule structure description, when provided, should be between 10 and 500 characters."@en
+    ] .
+
+cacontology-grooming:SexualConsequenceGameBusinessRule rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-grooming:SexualConsequenceGameGrooming ;
+    rdfs:label "Sexual Consequence Game Business Rule"@en ;
+    rdfs:comment "Business rule: when multiple juveniles participate in a sexual consequence game, a gameContext SHOULD be recorded (Utah Christensen case modeling)."@en ;
+    sh:sparql [
+        sh:message "Sexual consequence games with more than one juvenile participant SHOULD specify a gameContext (e.g., sleepover, peer_group)."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this cacontology-grooming:participantCount ?count .
+                FILTER (?count > 1)
+                FILTER NOT EXISTS {
+                    $this cacontology-grooming:gameContext ?ctx .
+                }
+            }
+        """
     ] .
 
 cacontology-grooming:OnlineToOfflineProgressionShape rdf:type sh:NodeShape ;

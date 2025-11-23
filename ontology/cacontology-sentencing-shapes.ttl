@@ -13,14 +13,14 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/sentencing/shapes/2.1.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/sentencing/shapes/2.2.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Sentencing SHACL Shapes"@en ;
     rdfs:comment "SHACL validation shapes for the ICAC Sentencing Ontology, providing validation for legal outcomes, federal sentences, judicial proceedings, and punishment guidelines."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/sentencing/shapes/2.1.0> ;
-    owl:versionInfo "2.1.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/sentencing/shapes/2.2.0> ;
+    owl:versionInfo "2.2.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/sentencing/2.1.0> ,
+    owl:imports <https://cacontology.projectvic.org/sentencing/2.2.0> ,
                 <http://purl.org/nemo/gufo> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 
@@ -130,6 +130,56 @@ cacontology-sentencing:ProbationSentenceShape rdf:type sh:NodeShape ;
         sh:maxCount 1 ;
         sh:in ( "monthly" "bi_weekly" "weekly" "daily" "as_directed" "none" ) ;
         sh:message "Probation sentence must specify reporting frequency from the allowed list."@en
+    ] .
+
+# =============================================================================
+# LEGAL PROCEEDING AND SENTENCE STRUCTURE SHAPES
+# =============================================================================
+
+cacontology-sentencing:LegalProceedingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sentencing:LegalProceeding ;
+    rdfs:label "Legal Proceeding Shape"@en ;
+    rdfs:comment "Validation shape for legal proceeding instances, including pretrial bail status (e.g., held without bail in the Utah Christensen case)."@en ;
+    sh:property [
+        sh:path cacontology-sentencing:bailStatus ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "released_on_bail" "held_without_bail" "released_on_own_recognizance" "bail_denied" "bail_revoked" ) ;
+        sh:message "Bail status, when provided, must be one of: released_on_bail, held_without_bail, released_on_own_recognizance, bail_denied, bail_revoked."@en
+    ] .
+
+cacontology-sentencing:CriminalSentenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sentencing:CriminalSentence ;
+    rdfs:label "Criminal Sentence Shape"@en ;
+    rdfs:comment "Validation shape for criminal sentences, including concurrency semantics for concurrent jail/probation terms (as in the Utah Christensen 2021 sentences)."@en ;
+    sh:property [
+        sh:path cacontology-sentencing:sentenceConcurrency ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "concurrent" "consecutive" "mixed" ) ;
+        sh:message "Sentence concurrency, when provided, must be one of: concurrent, consecutive, mixed."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-sentencing:concurrentWith ;
+        sh:class cacontology-sentencing:CriminalSentence ;
+        sh:minCount 0 ;
+        sh:message "Sentences linked via concurrentWith must point to other CriminalSentence instances."@en
+    ] .
+
+cacontology-sentencing:CriminalSentenceConcurrencyBusinessRule rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sentencing:CriminalSentence ;
+    rdfs:label "Criminal Sentence Concurrency Business Rule"@en ;
+    rdfs:comment "Business rule: a sentence MUST NOT be declared concurrent with itself."@en ;
+    sh:sparql [
+        sh:message "A criminal sentence cannot be concurrentWith itself."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this cacontology-sentencing:concurrentWith $this .
+            }
+        """
     ] .
 
 # =============================================================================

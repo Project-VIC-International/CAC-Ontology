@@ -1,6 +1,6 @@
 # CAC Ontology Family Architecture
 
-## gUFO Foundational Ontology Integration (**NEW**)
+## gUFO Foundational Ontology Integration
 
 The CAC ontology family now includes comprehensive integration with gUFO (Unified Foundational Ontology), providing enhanced semantic precision, temporal modeling, and validation capabilities. This integration consists of three completed phases:
 
@@ -221,7 +221,7 @@ graph TD
 
 ### Release Versioning Policy
 
-- The CAC Ontology family uses a **global release version** recorded in `CHANGELOG.md` (for example, `v2.1.0`) to describe the state of the full ontology suite.
+- The CAC Ontology family uses a **global release version** recorded in `CHANGELOG.md` (for example, `v2.2.0`) to describe the state of the full ontology suite.
 - Individual ontology modules (and their SHACL shapes) retain **module-specific `owl:versionIRI` values**, which are only incremented when that particular module’s semantics change.
 - This approach avoids churn in ontology IRIs while still providing a clear project-wide release history for implementers and downstream tools.
 
@@ -515,7 +515,7 @@ The enhanced ontology family maximally reuses UCO and CASE concepts:
 - **`contexts/hotlines-core.jsonld`:** Complete context for hotline operations
 - **`contexts/cacontology-core.jsonld`:** Core investigation context (to be created)
 
-### Example Data Sets (10 files)
+### Example Data Sets (selected files)
 - **`hotline-lifecycle.ttl`:** Basic hotline workflow
 - **`investigation-lifecycle.ttl`:** Basic investigation workflow
 - **`enhanced-investigation-lifecycle.ttl`:** Advanced investigation with forensics
@@ -526,8 +526,9 @@ The enhanced ontology family maximally reuses UCO and CASE concepts:
 - **`sex-offender-registry-integration-example.ttl`:** Registry system integration
 - **`illinois-attorney-general-case-example.ttl`:** State-level prosecution and multi-agency coordination
 - **`international-coordination-example.ttl`:** Cross-border operations
+- **`utah-dominic-christensen-example.ttl`:** Utah recidivism, registry compliance, and NCMEC-driven investigation (introduced in v2.2.0)
 
-### Analytics Queries (11 files)
+### Analytics Queries (selected files)
 - **`comprehensive-case-analytics.rq`:** Cross-ontology analytics
 - **`find_platform_cooperation_analytics.rq`:** Platform cooperation metrics
 - **`find_automated_reports.rq`:** Automated reporting analysis
@@ -539,6 +540,7 @@ The enhanced ontology family maximally reuses UCO and CASE concepts:
 - **`find_duplicate_evidence.rq`:** Evidence deduplication
 - **`find_cross_border_actions.rq`:** International coordination tracking
 - **`find_rescue_statistics.rq`:** Rescue operation metrics
+ - **`utah-dominic-christensen-analytics.rq`:** Utah recidivism and NCMEC/registry analytics (timeline, compliance, and victim-centric queries)
 
 ## Development and Validation
 

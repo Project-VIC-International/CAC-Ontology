@@ -111,12 +111,13 @@ Comprehensive documentation is available:
 
 The repository includes 30+ real-world example files based on actual law enforcement cases:
 
-- `examples/brooklyn-morton-october-2024-example.ttl` - Athletic coaching exploitation
-- `examples/arkansas-operation-cyber-highway-safety-check-example.ttl` - Large-scale operations
-- `examples/operation-restore-justice-example.ttl` - Nationwide coordination
+- `examples_knowledge_graphs/brooklyn-morton-october-2024-example.ttl` - Athletic coaching exploitation
+- `examples_knowledge_graphs/arkansas-operation-cyber-highway-safety-check-example.ttl` - Large-scale operations
+- `examples_knowledge_graphs/operation-restore-justice-example.ttl` - Nationwide coordination
+- `examples_knowledge_graphs/utah-dominic-christensen-example.ttl` - Utah recidivism, registry compliance, and NCMEC-driven investigation
 - And many more...
 
-See the `examples/` directory for complete list.
+See the `examples_knowledge_graphs/` directory for complete list.
 
 ## Repository Structure
 
@@ -126,8 +127,8 @@ See the `examples/` directory for complete list.
 │   ├── cacontology-core.ttl
 │   ├── cacontology-*.ttl        # Specialized domain modules
 │   └── cacontology-*-shapes.ttl # SHACL validation modules
-├── examples/                     # Real-world example files (30+ files)
-├── example_SPARQL_queries/       # Analytics and query examples
+├── examples_knowledge_graphs/    # Real-world example files (30+ files)
+├── example_SPARQL_queries/       # Analytics and query examples (including Utah recidivism & registry analytics)
 ├── docs/                         # Documentation files
 ├── testing/                      # Testing and validation infrastructure
 ├── contexts/                     # JSON-LD context files
