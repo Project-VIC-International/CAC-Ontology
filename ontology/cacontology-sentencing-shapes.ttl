@@ -13,14 +13,14 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/sentencing/shapes/2.2.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/sentencing/shapes/2.3.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Sentencing SHACL Shapes"@en ;
     rdfs:comment "SHACL validation shapes for the ICAC Sentencing Ontology, providing validation for legal outcomes, federal sentences, judicial proceedings, and punishment guidelines."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/sentencing/shapes/2.2.0> ;
-    owl:versionInfo "2.2.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/sentencing/shapes/2.3.0> ;
+    owl:versionInfo "2.3.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/sentencing/2.2.0> ,
+    dcterms:modified "2026-01-01"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/sentencing/2.3.0> ,
                 <http://purl.org/nemo/gufo> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 
@@ -251,6 +251,98 @@ cacontology-sentencing:FelonyChargeShape rdf:type sh:NodeShape ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Felony charge must specify if it is a violent crime."@en
+    ] .
+
+# =============================================================================
+# FLORIDA STATE CHARGE SHAPES
+# Based on Miami ICAC undercover operation press release
+# =============================================================================
+
+cacontology-sentencing:FloridaStateChargeShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sentencing:FloridaStateCharge ;
+    rdfs:label "Florida State Charge Shape"@en ;
+    rdfs:comment "Validation shape for Florida state charge instances in ICAC cases."@en ;
+    sh:property [
+        sh:path cacontology-sentencing:floridaStatute ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:pattern "^F\\.S\\. [0-9]+\\.[0-9]+.*$" ;
+        sh:message "Florida state charge must specify Florida Statute reference (e.g., 'F.S. 847.0135')."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-sentencing:chargeClassification ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "capital_felony" "life_felony" "first_degree_felony" "second_degree_felony" "third_degree_felony" "first_degree_misdemeanor" "second_degree_misdemeanor" ) ;
+        sh:message "Florida charge must specify classification from the allowed list."@en
+    ] .
+
+cacontology-sentencing:TravelingToMeetAfterComputerLureShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sentencing:TravelingToMeetAfterComputerLure ;
+    rdfs:label "Traveling To Meet After Computer Lure Shape"@en ;
+    rdfs:comment "Validation shape for F.S. 847.0135(4) traveling to meet a minor after computer lure charges."@en ;
+    sh:property [
+        sh:path cacontology-sentencing:travelOccurred ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Must specify whether actual travel occurred."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-sentencing:electronicCommunicationUsed ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:hasValue true ;
+        sh:message "Electronic communication must have been used for this charge."@en
+    ] .
+
+cacontology-sentencing:ComputerSeduceSolicitLureShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sentencing:ComputerSeduceSolicitLure ;
+    rdfs:label "Computer Seduce Solicit Lure Shape"@en ;
+    rdfs:comment "Validation shape for F.S. 847.0135(3) computer solicitation charges."@en ;
+    sh:property [
+        sh:path cacontology-sentencing:solicitationType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "seduce" "solicit" "lure" "entice" "multiple" ) ;
+        sh:message "Must specify type of solicitation from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-sentencing:communicationPlatform ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May specify the communication platform used."@en
+    ] .
+
+cacontology-sentencing:DirectPromotionOfSexualPerformanceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sentencing:DirectPromotionOfSexualPerformance ;
+    rdfs:label "Direct Promotion of Sexual Performance Shape"@en ;
+    rdfs:comment "Validation shape for F.S. 827.071(4) promoting sexual performance by a child charges."@en ;
+    sh:property [
+        sh:path cacontology-sentencing:promotionType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "direct_promotion" "directing" "producing" "facilitating" ) ;
+        sh:message "Must specify type of promotion from the allowed list."@en
+    ] .
+
+cacontology-sentencing:ContributingToDelinquencyShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sentencing:ContributingToDelinquency ;
+    rdfs:label "Contributing to Delinquency Shape"@en ;
+    rdfs:comment "Validation shape for F.S. 827.04 contributing to delinquency charges."@en ;
+    sh:property [
+        sh:path cacontology-sentencing:contributionType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "delinquency" "dependency" "both" ) ;
+        sh:message "Must specify whether contribution was to delinquency, dependency, or both."@en
     ] .
 
 # =============================================================================
@@ -644,4 +736,120 @@ cacontology-sentencing:DataQualityShape rdf:type sh:NodeShape ;
         sh:minLength 10 ;
         sh:maxLength 1000 ;
         sh:message "Comment should be between 10 and 1000 characters when provided."@en
+    ] .
+
+# =============================================================================
+# FLORIDA STATE CHARGE SHAPES (Miami ICAC Case Enhancement)
+# =============================================================================
+
+cacontology-sentencing:FloridaStateChargeShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sentencing:FloridaStateCharge ;
+    rdfs:label "Florida State Charge Shape"@en ;
+    rdfs:comment "Validation shape for Florida state criminal charges."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype rdf:langString ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Florida charge should have a label."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-sentencing:floridaStatute ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:pattern "^F\\.S\\. [0-9]+\\.[0-9]+.*$" ;
+        sh:message "Florida statute should follow F.S. format (e.g., 'F.S. 847.0135')."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-sentencing:chargeClassification ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "Capital Felony" "Life Felony" "First Degree Felony" "Second Degree Felony" "Third Degree Felony" "First Degree Misdemeanor" "Second Degree Misdemeanor" ) ;
+        sh:message "Charge classification must be from the allowed Florida list."@en
+    ] .
+
+cacontology-sentencing:TravelingToMeetAfterComputerLureShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sentencing:TravelingToMeetAfterComputerLure ;
+    rdfs:label "Traveling to Meet After Computer Lure Shape"@en ;
+    rdfs:comment "Validation shape for Florida traveling to meet charges."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype rdf:langString ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Traveling charge should have a label."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-sentencing:travelOccurred ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May specify if travel to the location occurred."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-sentencing:electronicCommunicationUsed ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May specify if electronic communication was used."@en
+    ] .
+
+cacontology-sentencing:DirectPromotionOfSexualPerformanceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sentencing:DirectPromotionOfSexualPerformance ;
+    rdfs:label "Direct Promotion of Sexual Performance Shape"@en ;
+    rdfs:comment "Validation shape for Florida direct promotion charges."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype rdf:langString ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Direct promotion charge should have a label."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-sentencing:sexualPerformancePromotion ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May specify if sexual performance promotion occurred."@en
+    ] .
+
+cacontology-sentencing:ComputerSeduceSolicitLureShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sentencing:ComputerSeduceSolicitLure ;
+    rdfs:label "Computer Seduce Solicit Lure Shape"@en ;
+    rdfs:comment "Validation shape for Florida computer lure charges."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype rdf:langString ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Computer lure charge should have a label."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-sentencing:computerLureMethod ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "messaging app" "social media" "email" "chat room" "gaming platform" "video chat" "other" ) ;
+        sh:message "Computer lure method should be from the allowed list."@en
+    ] .
+
+cacontology-sentencing:ContributingToDelinquencyShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sentencing:ContributingToDelinquency ;
+    rdfs:label "Contributing to Delinquency Shape"@en ;
+    rdfs:comment "Validation shape for Florida contributing to delinquency charges."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype rdf:langString ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Contributing charge should have a label."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-sentencing:childDelinquencyContribution ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May specify if contribution to child delinquency occurred."@en
     ] . 

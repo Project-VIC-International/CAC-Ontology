@@ -20,14 +20,14 @@
 # Enhanced with comprehensive gUFO (gentle Unified Foundational Ontology) validation
 # =============================================================================
 
-<https://cacontology.projectvic.org/physical/shapes/2.2.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/physical/shapes/2.3.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Physical Evidence SHACL Shapes with gUFO Integration"@en ;
     rdfs:comment "SHACL shapes for validating physical evidence in ICAC investigations with comprehensive gUFO foundational ontology integration for enhanced semantic precision and validation capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/physical/shapes/2.2.0> ;
-    owl:versionInfo "2.2.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/physical/shapes/2.3.0> ;
+    owl:versionInfo "2.3.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/physical/2.2.0> ,
+    dcterms:modified "2026-01-01"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/physical/2.3.0> ,
                 <http://purl.org/nemo/gufo#> .
 
 # =============================================================================
@@ -963,4 +963,271 @@ cacontology-physical-shapes:CustodyIntegrityShape rdf:type sh:NodeShape ;
                 FILTER (?completeness > 0.8)
             }
         """
+    ] .
+
+# =============================================================================
+# SUSPECT VEHICLE SHAPES (Miami ICAC Case Enhancement)
+# =============================================================================
+
+cacontology-physical-shapes:SuspectVehicleShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-physical:SuspectVehicle ;
+    rdfs:label "Suspect Vehicle Shape"@en ;
+    rdfs:comment "Validation shape for suspect vehicles used in ICAC offenses."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype rdf:langString ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Suspect vehicle should have a label."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-physical:vehicleMake ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 1 ;
+        sh:maxLength 50 ;
+        sh:message "Vehicle make should be between 1 and 50 characters."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-physical:vehicleModel ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 1 ;
+        sh:maxLength 50 ;
+        sh:message "Vehicle model should be between 1 and 50 characters."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-physical:vehicleYear ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 1900 ;
+        sh:maxInclusive 2030 ;
+        sh:message "Vehicle year must be between 1900 and 2030."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-physical:vehicleColor ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May specify the vehicle color."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-physical:vehicleLicensePlate ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 1 ;
+        sh:maxLength 20 ;
+        sh:message "License plate should be between 1 and 20 characters."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-physical:vehicleVIN ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:pattern "^[A-HJ-NPR-Z0-9]{17}$" ;
+        sh:message "VIN must be exactly 17 alphanumeric characters (no I, O, Q)."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-physical:registeredToSuspect ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May specify if vehicle is registered to suspect."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-physical:usedInOffense ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May specify if vehicle was used in offense."@en
+    ] .
+
+# =============================================================================
+# ABUSE FACILITATION ITEM SHAPES (Miami ICAC Case Enhancement)
+# =============================================================================
+
+cacontology-physical-shapes:VapeDeviceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-physical:VapeDevice ;
+    rdfs:label "Vape Device Shape"@en ;
+    rdfs:comment "Validation shape for vape devices found as evidence."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype rdf:langString ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Vape device should have a label."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-physical:vapeFlavor ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May specify the vape flavor."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-physical:vapeBrand ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May specify the vape brand."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-physical:foundInLocation ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May specify where the vape was found."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-physical:agreedToBring ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May specify if suspect agreed to bring this item."@en
+    ] .
+
+cacontology-physical-shapes:CondomsShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-physical:Condoms ;
+    rdfs:label "Condoms Shape"@en ;
+    rdfs:comment "Validation shape for condoms found as evidence."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype rdf:langString ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Condoms evidence should have a label."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-physical:condomBrand ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May specify the condom brand."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-physical:condomQuantity ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 1 ;
+        sh:maxInclusive 100 ;
+        sh:message "Condom quantity should be between 1 and 100."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-physical:foundInLocation ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May specify where the condoms were found."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-physical:agreedToBring ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May specify if suspect agreed to bring this item."@en
+    ] .
+
+# =============================================================================
+# CONSENT SEARCH AUTHORIZATION SHAPES (Miami ICAC Case Enhancement)
+# =============================================================================
+
+cacontology-physical-shapes:ConsentToSearchAuthorizationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-physical:ConsentToSearchAuthorization ;
+    rdfs:label "Consent to Search Authorization Shape"@en ;
+    rdfs:comment "Validation shape for consent-based search authorizations."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype rdf:langString ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Consent authorization should have a label."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-physical:consentGiven ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May specify if consent was given."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-physical:consentType ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "verbal" "written" "implied" ) ;
+        sh:message "Consent type must be from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-physical:consentScope ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "vehicle_only" "device_only" "full_search" "limited" ) ;
+        sh:message "Consent scope must be from the allowed list."@en
+    ] .
+
+cacontology-physical-shapes:VehicleConsentSearchShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-physical:VehicleConsentSearch ;
+    rdfs:label "Vehicle Consent Search Shape"@en ;
+    rdfs:comment "Validation shape for vehicle consent search authorizations."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype rdf:langString ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Vehicle consent search should have a label."@en
+    ] .
+
+cacontology-physical-shapes:DeviceConsentSearchShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-physical:DeviceConsentSearch ;
+    rdfs:label "Device Consent Search Shape"@en ;
+    rdfs:comment "Validation shape for device consent search authorizations."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype rdf:langString ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Device consent search should have a label."@en
+    ] .
+
+# =============================================================================
+# BODYCAM FOOTAGE SHAPES (Miami ICAC Case Enhancement)
+# =============================================================================
+
+cacontology-physical-shapes:BodycamFootageShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-physical:BodycamFootage ;
+    rdfs:label "Bodycam Footage Shape"@en ;
+    rdfs:comment "Validation shape for bodycam footage evidence."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype rdf:langString ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Bodycam footage should have a label."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-physical:recordingDate ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May specify the recording date."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-physical:usedForIdentification ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May specify if used for suspect identification."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-physical:matchesSelfie ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May specify if footage was matched to suspect selfies."@en
     ] . 

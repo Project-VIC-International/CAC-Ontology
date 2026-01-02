@@ -1,0 +1,468 @@
+# SPARQL Queries: Miami ICAC – Enrique Gilberto Felipe Lopez Case Analytics
+# These queries operate over `examples_knowledge_graphs/miami-icac-felipe-lopez-example.ttl`
+# and demonstrate how investigators can analyze undercover operations, physical evidence,
+# consent-based searches, Florida criminal charges, and immigration holds.
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core/>
+PREFIX uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/>
+PREFIX uco-location: <https://ontology.unifiedcyberontology.org/uco/location/>
+PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/>
+PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/>
+PREFIX investigation: <https://ontology.caseontology.org/case/investigation/>
+PREFIX gufo: <http://purl.org/nemo/gufo#>
+PREFIX cacontology: <https://cacontology.projectvic.org#>
+PREFIX cacontology-undercover: <https://cacontology.projectvic.org/undercover#>
+PREFIX cacontology-physical: <https://cacontology.projectvic.org/physical#>
+PREFIX cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#>
+PREFIX cacontology-tactical: <https://cacontology.projectvic.org/tactical#>
+PREFIX ex: <https://example.org/miami-icac-felipe-lopez/>
+
+################################################################################
+## 1) Undercover Operation Timeline: All Actions During the Operation         ##
+################################################################################
+#
+# Purpose:
+#   Show all suspect communication actions that occurred during the sibling
+#   persona undercover operation, including requests, acknowledgments, and
+#   arrangements made by the suspect.
+
+SELECT DISTINCT
+    ?action
+    ?actionLabel
+    ?actionType
+WHERE {
+    BIND (ex:sibling-persona-operation AS ?operation)
+
+    ?action cacontology-undercover:occurredDuringOperation ?operation ;
+            rdfs:label ?actionLabel .
+
+    ?action rdf:type ?actionType .
+    FILTER (?actionType != owl:NamedIndividual)
+}
+ORDER BY ?actionLabel
+
+;
+
+################################################################################
+## 2) Age Acknowledgment Evidence: Instances Where Suspect Knew Victim Ages   ##
+################################################################################
+#
+# Purpose:
+#   Find all instances where the suspect acknowledged the stated ages of the
+#   fictitious minor personas. Critical for proving criminal intent.
+
+SELECT DISTINCT
+    ?acknowledgment
+    ?acknowledgmentLabel
+    ?statedAge
+    ?acknowledgedCount
+WHERE {
+    ?acknowledgment rdf:type cacontology-undercover:AgeAcknowledgment ;
+                    rdfs:label ?acknowledgmentLabel ;
+                    cacontology-undercover:ageStatedToSuspect ?statedAge ;
+                    cacontology-undercover:acknowledgedCount ?acknowledgedCount .
+}
+ORDER BY ?statedAge
+
+;
+
+################################################################################
+## 3) Physical Evidence Chain: Items Agreed to Bring vs. Items Found          ##
+################################################################################
+#
+# Purpose:
+#   Link physical evidence found in the suspect's vehicle to items he agreed
+#   to bring during undercover communications. Demonstrates corroboration
+#   between digital communications and physical evidence.
+
+SELECT DISTINCT
+    ?evidence
+    ?evidenceLabel
+    ?foundLocation
+    ?agreedToBring
+    ?vehicle
+    ?vehicleLabel
+WHERE {
+    ?evidence rdf:type ?evidenceType ;
+              rdfs:label ?evidenceLabel ;
+              cacontology-physical:foundInLocation ?foundLocation ;
+              cacontology-physical:agreedToBring ?agreedToBring ;
+              cacontology-physical:evidenceFoundInVehicle ?vehicle .
+
+    ?vehicle rdfs:label ?vehicleLabel .
+
+    FILTER (?evidenceType IN (cacontology-physical:VapeDevice,
+                               cacontology-physical:Condoms))
+}
+ORDER BY ?evidenceLabel
+
+;
+
+################################################################################
+## 4) Prior Encounter Identification: Bodycam to Selfie Match                 ##
+################################################################################
+#
+# Purpose:
+#   Show how investigators identified the suspect by matching bodycam footage
+#   from a prior traffic stop to selfies sent during undercover communication.
+#   Demonstrates cross-reference identification techniques.
+
+SELECT DISTINCT
+    ?bodycam
+    ?bodycamLabel
+    ?recordingDate
+    ?usedForIdentification
+    ?matchesSelfie
+WHERE {
+    ?bodycam rdf:type cacontology-physical:BodycamFootage ;
+             rdfs:label ?bodycamLabel .
+
+    OPTIONAL { ?bodycam cacontology-physical:recordingDate ?recordingDate . }
+    OPTIONAL { ?bodycam cacontology-physical:usedForIdentification ?usedForIdentification . }
+    OPTIONAL { ?bodycam cacontology-physical:matchesSelfie ?matchesSelfie . }
+}
+ORDER BY ?recordingDate
+
+;
+
+################################################################################
+## 5) Florida Charges Summary: All Charges with Statute References            ##
+################################################################################
+#
+# Purpose:
+#   List all Florida criminal charges filed against the defendant with
+#   their corresponding Florida statute references and classifications.
+
+SELECT DISTINCT
+    ?charge
+    ?chargeLabel
+    ?chargeType
+    ?floridaStatute
+    ?classification
+WHERE {
+    ?defendant cacontology-sentencing:chargedWith ?charge .
+
+    ?charge rdfs:label ?chargeLabel ;
+            rdf:type ?chargeType .
+
+    OPTIONAL { ?charge cacontology-sentencing:floridaStatute ?floridaStatute . }
+    OPTIONAL { ?charge cacontology-sentencing:chargeClassification ?classification . }
+
+    FILTER (?chargeType != owl:NamedIndividual)
+}
+ORDER BY ?chargeLabel
+
+;
+
+################################################################################
+## 6) Consent Authorization Audit: Track All Consent-Based Search Authorizations
+################################################################################
+#
+# Purpose:
+#   Audit all consent-based search authorizations obtained during the
+#   investigation. Important for legal review and chain of custody.
+
+SELECT DISTINCT
+    ?authorization
+    ?authorizationLabel
+    ?authorizationType
+    ?consentGiven
+    ?consentType
+    ?consentScope
+WHERE {
+    ?authorization rdf:type ?authorizationType ;
+                   rdfs:label ?authorizationLabel .
+
+    FILTER (?authorizationType IN (cacontology-physical:VehicleConsentSearch,
+                                    cacontology-physical:DeviceConsentSearch,
+                                    cacontology-physical:ConsentToSearchAuthorization))
+
+    OPTIONAL { ?authorization cacontology-physical:consentGiven ?consentGiven . }
+    OPTIONAL { ?authorization cacontology-physical:consentType ?consentType . }
+    OPTIONAL { ?authorization cacontology-physical:consentScope ?consentScope . }
+}
+ORDER BY ?authorizationLabel
+
+;
+
+################################################################################
+## 7) Immigration and Detention Status: Booking and Immigration Hold Info     ##
+################################################################################
+#
+# Purpose:
+#   Query the booking information and immigration hold details for the
+#   defendant. Relevant for custody and deportation proceedings.
+
+SELECT DISTINCT
+    ?defendant
+    ?defendantLabel
+    ?nationality
+    ?facility
+    ?facilityName
+    ?immigrationHold
+    ?holdReason
+WHERE {
+    ?defendant rdf:type uco-identity:Person ;
+               rdfs:label ?defendantLabel .
+
+    OPTIONAL { ?defendant cacontology:nationality ?nationality . }
+    OPTIONAL {
+        ?defendant cacontology-tactical:hasImmigrationHold ?immigrationHold .
+        ?immigrationHold cacontology-tactical:immigrationHoldReason ?holdReason .
+    }
+    OPTIONAL {
+        ?booking cacontology-tactical:occursAtFacility ?facility .
+        ?facility cacontology-tactical:correctionalFacilityName ?facilityName .
+    }
+}
+ORDER BY ?defendantLabel
+
+;
+
+################################################################################
+## 8) Communication Action Patterns: Analyze Suspect's Criminal Behavior      ##
+################################################################################
+#
+# Purpose:
+#   Comprehensive analysis of all suspect communication actions including
+#   requests, intents, and arrangements. Useful for behavioral profiling
+#   and pattern analysis across cases.
+
+SELECT DISTINCT
+    ?actionType
+    (COUNT(?action) AS ?actionCount)
+WHERE {
+    ?action rdf:type ?actionType ;
+            cacontology-undercover:occurredDuringOperation ?operation .
+
+    FILTER (STRSTARTS(STR(?actionType), STR(cacontology-undercover:)))
+}
+GROUP BY ?actionType
+ORDER BY DESC(?actionCount)
+
+;
+
+################################################################################
+## 9) Evidence Corroboration: Match Agreed Items with Found Evidence          ##
+################################################################################
+#
+# Purpose:
+#   Specifically match items the suspect agreed to bring during communications
+#   with physical evidence discovered during search. Strong corroborating
+#   evidence for prosecution.
+
+SELECT DISTINCT
+    ?agreement
+    ?agreementLabel
+    ?itemsAgreed
+    ?foundEvidence
+    ?foundEvidenceLabel
+    ?foundLocation
+WHERE {
+    ?agreement rdf:type cacontology-undercover:CriminalItemAgreementAction ;
+               rdfs:label ?agreementLabel ;
+               cacontology-undercover:itemsAgreedToBring ?itemsAgreed .
+
+    ?foundEvidence cacontology-physical:agreedToBring true ;
+                   rdfs:label ?foundEvidenceLabel ;
+                   cacontology-physical:foundInLocation ?foundLocation .
+}
+ORDER BY ?foundEvidenceLabel
+
+;
+
+################################################################################
+## 10) Multi-Persona Operation Analysis: Suspect Targeting of Multiple Minors ##
+################################################################################
+#
+# Purpose:
+#   Analyze operations where suspects targeted multiple fictitious minor
+#   personas. Shows escalation patterns and comprehensive criminal intent.
+
+SELECT DISTINCT
+    ?operation
+    ?operationLabel
+    ?personaCount
+    ?primaryAge
+    ?secondaryAge
+    ?relationship
+    ?targetedBoth
+WHERE {
+    ?operation rdf:type cacontology-undercover:SiblingPersonaOperation ;
+               rdfs:label ?operationLabel .
+
+    OPTIONAL { ?operation cacontology-undercover:personaCount ?personaCount . }
+    OPTIONAL { ?operation cacontology-undercover:primaryPersonaAge ?primaryAge . }
+    OPTIONAL { ?operation cacontology-undercover:secondaryPersonaAge ?secondaryAge . }
+    OPTIONAL { ?operation cacontology-undercover:siblingRelationship ?relationship . }
+
+    # Check if suspect targeted both personas
+    OPTIONAL {
+        ?intent rdf:type cacontology-undercover:SexualIntentStatement ;
+                cacontology-undercover:targetedBothPersonas ?targetedBoth ;
+                cacontology-undercover:occurredDuringOperation ?operation .
+    }
+}
+ORDER BY ?operationLabel
+
+;
+
+################################################################################
+## 11) Suspect Vehicle Analysis: Vehicle Used in Offense                       ##
+################################################################################
+#
+# Purpose:
+#   Retrieve details about the suspect's vehicle used in the offense,
+#   including registration status and evidence found within.
+
+SELECT DISTINCT
+    ?vehicle
+    ?vehicleLabel
+    ?make
+    ?model
+    ?year
+    ?color
+    ?registeredToSuspect
+    ?usedInOffense
+    ?evidenceFound
+    ?evidenceLabel
+WHERE {
+    ?vehicle rdf:type cacontology-physical:SuspectVehicle ;
+             rdfs:label ?vehicleLabel .
+
+    OPTIONAL { ?vehicle cacontology-physical:vehicleMake ?make . }
+    OPTIONAL { ?vehicle cacontology-physical:vehicleModel ?model . }
+    OPTIONAL { ?vehicle cacontology-physical:vehicleYear ?year . }
+    OPTIONAL { ?vehicle cacontology-physical:vehicleColor ?color . }
+    OPTIONAL { ?vehicle cacontology-physical:registeredToSuspect ?registeredToSuspect . }
+    OPTIONAL { ?vehicle cacontology-physical:usedInOffense ?usedInOffense . }
+    OPTIONAL {
+        ?evidenceFound cacontology-physical:evidenceFoundInVehicle ?vehicle ;
+                       rdfs:label ?evidenceLabel .
+    }
+}
+ORDER BY ?vehicleLabel
+
+;
+
+################################################################################
+## 12) Sexual Intent Documentation: Explicit Intent Statements                ##
+################################################################################
+#
+# Purpose:
+#   Document all explicit sexual intent statements made by the suspect,
+#   including types of acts intended and whether multiple victims were targeted.
+#   Critical evidence for charging decisions.
+
+SELECT DISTINCT
+    ?statement
+    ?statementLabel
+    ?sexualActsIntended
+    ?targetedBothPersonas
+    ?operation
+    ?operationLabel
+WHERE {
+    ?statement rdf:type cacontology-undercover:SexualIntentStatement ;
+               rdfs:label ?statementLabel ;
+               cacontology-undercover:occurredDuringOperation ?operation .
+
+    ?operation rdfs:label ?operationLabel .
+
+    OPTIONAL { ?statement cacontology-undercover:sexualActsIntended ?sexualActsIntended . }
+    OPTIONAL { ?statement cacontology-undercover:targetedBothPersonas ?targetedBothPersonas . }
+}
+ORDER BY ?statementLabel
+
+;
+
+################################################################################
+## 13) Disguise and Evasion Tactics: Consciousness of Guilt Evidence          ##
+################################################################################
+#
+# Purpose:
+#   Find evidence of suspect's consciousness of guilt through requests
+#   for disguise items or other evasion tactics. "If not I can get in trouble"
+#   demonstrates awareness of criminal nature of intended conduct.
+
+SELECT DISTINCT
+    ?action
+    ?actionLabel
+    ?disguiseItem
+    ?disguisePurpose
+WHERE {
+    ?action rdf:type cacontology-undercover:DisguiseRequestAction ;
+            rdfs:label ?actionLabel .
+
+    OPTIONAL { ?action cacontology-undercover:disguiseItemRequested ?disguiseItem . }
+    OPTIONAL { ?action cacontology-undercover:disguisePurpose ?disguisePurpose . }
+}
+ORDER BY ?actionLabel
+
+;
+
+################################################################################
+## 14) Complete Case Summary: Defendant with All Related Entities             ##
+################################################################################
+#
+# Purpose:
+#   Comprehensive summary of the defendant with all charges, evidence items,
+#   and case details for case file preparation.
+
+SELECT DISTINCT
+    ?defendant
+    ?defendantLabel
+    ?age
+    ?nationality
+    ?charge
+    ?chargeLabel
+    ?statute
+WHERE {
+    BIND (ex:defendant-felipe-lopez AS ?defendant)
+
+    ?defendant rdfs:label ?defendantLabel .
+
+    OPTIONAL { ?defendant cacontology:age ?age . }
+    OPTIONAL { ?defendant cacontology:nationality ?nationality . }
+
+    OPTIONAL {
+        ?defendant cacontology-sentencing:chargedWith ?charge .
+        ?charge rdfs:label ?chargeLabel .
+        OPTIONAL { ?charge cacontology-sentencing:floridaStatute ?statute . }
+    }
+}
+ORDER BY ?chargeLabel
+
+;
+
+################################################################################
+## 15) Meeting Location Arrangements: Motel/Hotel Meeting Plans               ##
+################################################################################
+#
+# Purpose:
+#   Find all meeting location arrangements made during undercover operations,
+#   useful for identifying patterns in predator behavior regarding
+#   preferred meeting locations.
+
+SELECT DISTINCT
+    ?arrangement
+    ?arrangementLabel
+    ?locationType
+    ?locationName
+    ?meetingLocation
+    ?meetingLocationLabel
+WHERE {
+    ?arrangement rdf:type cacontology-undercover:MeetingLocationArrangement ;
+                 rdfs:label ?arrangementLabel .
+
+    OPTIONAL { ?arrangement cacontology-undercover:meetingLocationType ?locationType . }
+    OPTIONAL { ?arrangement cacontology-undercover:meetingLocationName ?locationName . }
+    OPTIONAL {
+        ?arrangement cacontology-undercover:arrangedForMeeting ?meetingLocation .
+        ?meetingLocation rdfs:label ?meetingLocationLabel .
+    }
+}
+ORDER BY ?arrangementLabel
+

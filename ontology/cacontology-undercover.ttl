@@ -16,19 +16,19 @@
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/undercover/2.2.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/undercover/2.3.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Undercover Operations Ontology"@en ;
     rdfs:comment "An ontology for representing undercover law enforcement operations in Internet Crimes Against Children investigations, extending UCO and CASE with gUFO foundational ontology enhancements. This ontology covers undercover identities, infiltration tactics, surveillance operations, and evidence collection through covert means."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/undercover/2.2.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/undercover/2.3.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
+    dcterms:modified "2026-01-01"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable> ,
                 <https://ontology.unifiedcyberontology.org/uco/action> ,
                 <https://ontology.unifiedcyberontology.org/uco/role> ,
-                <https://cacontology.projectvic.org/2.2.0> ,
+                <https://cacontology.projectvic.org/2.3.0> ,
                 <http://purl.org/nemo/gufo> .
 
 # =============================================================================
@@ -589,6 +589,70 @@ cacontology-undercover:PredatorTargetingOperation rdf:type owl:Class ;
     rdfs:subClassOf cacontology-undercover:UndercoverOperation .
 
 # =============================================================================
+# MULTIPLE PERSONA UNDERCOVER OPERATIONS (Miami ICAC Case)
+# =============================================================================
+
+cacontology-undercover:MultiplePersonaOperation rdf:type owl:Class ;
+    rdfs:label "Multiple Persona Operation"@en ;
+    rdfs:comment "Undercover operation where agent poses as multiple fictitious minors (e.g., 14-year-old and 12-year-old sisters). Extends MinorPersonaOperation."@en ;
+    rdfs:subClassOf cacontology-undercover:MinorPersonaOperation .
+
+cacontology-undercover:SiblingPersonaOperation rdf:type owl:Class ;
+    rdfs:label "Sibling Persona Operation"@en ;
+    rdfs:comment "Undercover operation where agent creates related minor personas (siblings)."@en ;
+    rdfs:subClassOf cacontology-undercover:MultiplePersonaOperation .
+
+# =============================================================================
+# SUSPECT COMMUNICATION ACTIONS (extending UCO Action)
+# Actions initiated by suspect during undercover communication
+# =============================================================================
+
+cacontology-undercover:SuspectCommunicationAction rdf:type owl:Class ;
+    rdfs:label "Suspect Communication Action"@en ;
+    rdfs:comment "Base class for criminal communication actions initiated by suspect during undercover operation."@en ;
+    rdfs:subClassOf uco-action:Action, gufo:Event .
+
+cacontology-undercover:ExplicitMessageRequestAction rdf:type owl:Class ;
+    rdfs:label "Explicit Message Request Action"@en ;
+    rdfs:comment "Suspect requesting explicit pictures or content from undercover persona."@en ;
+    rdfs:subClassOf cacontology-undercover:SuspectCommunicationAction .
+
+cacontology-undercover:VideoCallRequestAction rdf:type owl:Class ;
+    rdfs:label "Video Call Request Action"@en ;
+    rdfs:comment "Suspect requesting video call with undercover persona, often to confirm alone or for explicit purposes."@en ;
+    rdfs:subClassOf cacontology-undercover:SuspectCommunicationAction .
+
+cacontology-undercover:TransportArrangementAction rdf:type owl:Class ;
+    rdfs:label "Transport Arrangement Action"@en ;
+    rdfs:comment "Suspect arranging to pick up and transport alleged minor to meeting location."@en ;
+    rdfs:subClassOf cacontology-undercover:SuspectCommunicationAction .
+
+cacontology-undercover:DisguiseRequestAction rdf:type owl:Class ;
+    rdfs:label "Disguise Request Action"@en ;
+    rdfs:comment "Suspect requesting alleged minor wear disguise items (sunglasses, etc.) to avoid detection."@en ;
+    rdfs:subClassOf cacontology-undercover:SuspectCommunicationAction .
+
+cacontology-undercover:CriminalItemAgreementAction rdf:type owl:Class ;
+    rdfs:label "Criminal Item Agreement Action"@en ;
+    rdfs:comment "Suspect agreeing to bring items for abuse (condoms, vape, alcohol, etc.)."@en ;
+    rdfs:subClassOf cacontology-undercover:SuspectCommunicationAction .
+
+cacontology-undercover:MeetingLocationArrangement rdf:type owl:Class ;
+    rdfs:label "Meeting Location Arrangement"@en ;
+    rdfs:comment "Suspect arranging specific meeting location (motel, hotel, other private location)."@en ;
+    rdfs:subClassOf cacontology-undercover:SuspectCommunicationAction .
+
+cacontology-undercover:AgeAcknowledgment rdf:type owl:Class ;
+    rdfs:label "Age Acknowledgment"@en ;
+    rdfs:comment "Suspect explicitly acknowledging the stated age of the minor persona during communication."@en ;
+    rdfs:subClassOf cacontology-undercover:SuspectCommunicationAction .
+
+cacontology-undercover:SexualIntentStatement rdf:type owl:Class ;
+    rdfs:label "Sexual Intent Statement"@en ;
+    rdfs:comment "Explicit statement by suspect expressing intent to engage in sexual acts with alleged minor."@en ;
+    rdfs:subClassOf cacontology-undercover:SuspectCommunicationAction .
+
+# =============================================================================
 # UNDERCOVER AGENT ROLES  
 # =============================================================================
 
@@ -746,4 +810,189 @@ cacontology-undercover:generatesEvidence rdf:type owl:ObjectProperty ;
     rdfs:label "generates evidence"@en ;
     rdfs:comment "Links undercover operation to evidence generated."@en ;
     rdfs:domain cacontology-undercover:SocialMediaUndercoverOperation ;
-    rdfs:range cacontology-undercover:UndercoverEvidence . 
+    rdfs:range cacontology-undercover:UndercoverEvidence .
+
+# =============================================================================
+# MULTIPLE PERSONA OPERATION PROPERTIES (Miami ICAC Case)
+# =============================================================================
+
+cacontology-undercover:personaCount rdf:type owl:DatatypeProperty ;
+    rdfs:label "persona count"@en ;
+    rdfs:comment "Number of distinct minor personas used in the operation."@en ;
+    rdfs:domain cacontology-undercover:MultiplePersonaOperation ;
+    rdfs:range xsd:nonNegativeInteger .
+
+cacontology-undercover:primaryPersonaAge rdf:type owl:DatatypeProperty ;
+    rdfs:label "primary persona age"@en ;
+    rdfs:comment "Age of the primary minor persona."@en ;
+    rdfs:domain cacontology-undercover:MultiplePersonaOperation ;
+    rdfs:range xsd:nonNegativeInteger .
+
+cacontology-undercover:secondaryPersonaAge rdf:type owl:DatatypeProperty ;
+    rdfs:label "secondary persona age"@en ;
+    rdfs:comment "Age of the secondary minor persona (e.g., younger sibling)."@en ;
+    rdfs:domain cacontology-undercover:MultiplePersonaOperation ;
+    rdfs:range xsd:nonNegativeInteger .
+
+cacontology-undercover:siblingRelationship rdf:type owl:DatatypeProperty ;
+    rdfs:label "sibling relationship"@en ;
+    rdfs:comment "Relationship between personas (e.g., 'sisters', 'brothers')."@en ;
+    rdfs:domain cacontology-undercover:SiblingPersonaOperation ;
+    rdfs:range xsd:string .
+
+# =============================================================================
+# SUSPECT COMMUNICATION ACTION PROPERTIES
+# =============================================================================
+
+cacontology-undercover:requestType rdf:type owl:DatatypeProperty ;
+    rdfs:label "request type"@en ;
+    rdfs:comment "Type of explicit content requested (images, videos, video_call)."@en ;
+    rdfs:domain cacontology-undercover:ExplicitMessageRequestAction ;
+    rdfs:range xsd:string .
+
+cacontology-undercover:whenParentAbsent rdf:type owl:DatatypeProperty ;
+    rdfs:label "when parent absent"@en ;
+    rdfs:comment "Whether request was conditional on parent being absent."@en ;
+    rdfs:domain cacontology-undercover:VideoCallRequestAction ;
+    rdfs:range xsd:boolean .
+
+cacontology-undercover:pickupLocation rdf:type owl:DatatypeProperty ;
+    rdfs:label "pickup location"@en ;
+    rdfs:comment "Location where suspect agreed to pick up alleged minor."@en ;
+    rdfs:domain cacontology-undercover:TransportArrangementAction ;
+    rdfs:range xsd:string .
+
+cacontology-undercover:destinationLocation rdf:type owl:DatatypeProperty ;
+    rdfs:label "destination location"@en ;
+    rdfs:comment "Destination where suspect planned to take alleged minor (motel, hotel, residence)."@en ;
+    rdfs:domain cacontology-undercover:TransportArrangementAction ;
+    rdfs:range xsd:string .
+
+cacontology-undercover:disguiseItemRequested rdf:type owl:DatatypeProperty ;
+    rdfs:label "disguise item requested"@en ;
+    rdfs:comment "Item requested for disguise (sunglasses, hat, hoodie)."@en ;
+    rdfs:domain cacontology-undercover:DisguiseRequestAction ;
+    rdfs:range xsd:string .
+
+cacontology-undercover:disguisePurpose rdf:type owl:DatatypeProperty ;
+    rdfs:label "disguise purpose"@en ;
+    rdfs:comment "Stated or implied purpose for disguise request (avoid_detection, conceal_identity)."@en ;
+    rdfs:domain cacontology-undercover:DisguiseRequestAction ;
+    rdfs:range xsd:string .
+
+cacontology-undercover:itemsAgreedToBring rdf:type owl:DatatypeProperty ;
+    rdfs:label "items agreed to bring"@en ;
+    rdfs:comment "Items suspect agreed to bring (condoms, vape, alcohol, etc.)."@en ;
+    rdfs:domain cacontology-undercover:CriminalItemAgreementAction ;
+    rdfs:range xsd:string .
+
+cacontology-undercover:meetingLocationType rdf:type owl:DatatypeProperty ;
+    rdfs:label "meeting location type"@en ;
+    rdfs:comment "Type of meeting location arranged (motel, hotel, residence, vehicle, outdoor)."@en ;
+    rdfs:domain cacontology-undercover:MeetingLocationArrangement ;
+    rdfs:range xsd:string .
+
+cacontology-undercover:meetingLocationName rdf:type owl:DatatypeProperty ;
+    rdfs:label "meeting location name"@en ;
+    rdfs:comment "Name of specific meeting location (e.g., 'Princess Motel')."@en ;
+    rdfs:domain cacontology-undercover:MeetingLocationArrangement ;
+    rdfs:range xsd:string .
+
+cacontology-undercover:ageStatedToSuspect rdf:type owl:DatatypeProperty ;
+    rdfs:label "age stated to suspect"@en ;
+    rdfs:comment "Age that was explicitly stated to the suspect."@en ;
+    rdfs:domain cacontology-undercover:AgeAcknowledgment ;
+    rdfs:range xsd:nonNegativeInteger .
+
+cacontology-undercover:acknowledgedCount rdf:type owl:DatatypeProperty ;
+    rdfs:label "acknowledged count"@en ;
+    rdfs:comment "Number of times suspect acknowledged the stated age."@en ;
+    rdfs:domain cacontology-undercover:AgeAcknowledgment ;
+    rdfs:range xsd:nonNegativeInteger .
+
+cacontology-undercover:sexualActsIntended rdf:type owl:DatatypeProperty ;
+    rdfs:label "sexual acts intended"@en ;
+    rdfs:comment "Types of sexual acts explicitly stated by suspect (vaginal, oral, anal, etc.)."@en ;
+    rdfs:domain cacontology-undercover:SexualIntentStatement ;
+    rdfs:range xsd:string .
+
+cacontology-undercover:targetedBothPersonas rdf:type owl:DatatypeProperty ;
+    rdfs:label "targeted both personas"@en ;
+    rdfs:comment "Whether suspect expressed intent toward both minor personas in sibling operation."@en ;
+    rdfs:domain cacontology-undercover:SexualIntentStatement ;
+    rdfs:range xsd:boolean .
+
+# =============================================================================
+# SUSPECT COMMUNICATION ACTION RELATIONSHIPS
+# =============================================================================
+
+cacontology-undercover:occurredDuringOperation rdf:type owl:ObjectProperty ;
+    rdfs:label "occurred during operation"@en ;
+    rdfs:comment "Links suspect communication action to the undercover operation."@en ;
+    rdfs:domain cacontology-undercover:SuspectCommunicationAction ;
+    rdfs:range cacontology-undercover:UndercoverOperation .
+
+cacontology-undercover:triggeredBy rdf:type owl:ObjectProperty ;
+    rdfs:label "triggered by"@en ;
+    rdfs:comment "Links communication action to the message that triggered it."@en ;
+    rdfs:domain cacontology-undercover:SuspectCommunicationAction ;
+    rdfs:range cacontology-undercover:UndercoverCommunication .
+
+cacontology-undercover:leadToArrest rdf:type owl:ObjectProperty ;
+    rdfs:label "lead to arrest"@en ;
+    rdfs:comment "Links meeting arrangement to resulting arrest operation."@en ;
+    rdfs:domain cacontology-undercover:MeetingLocationArrangement ;
+    rdfs:range uco-action:Action .
+
+# =============================================================================
+# MEETING LOCATION CLASSES (Miami ICAC Case)
+# Physical locations arranged for meeting with alleged minors
+# =============================================================================
+
+cacontology-undercover:MeetingLocation rdf:type owl:Class ;
+    rdfs:label "Meeting Location"@en ;
+    rdfs:comment "Physical location arranged for meeting with alleged minor. Extends uco-location:Location as this represents a physical place."@en ;
+    rdfs:subClassOf uco-location:Location, gufo:Object .
+
+cacontology-undercover:Motel rdf:type owl:Class ;
+    rdfs:label "Motel"@en ;
+    rdfs:comment "Motel used or intended for sexual exploitation of minors (e.g., 'Princess Motel'). Physical location."@en ;
+    rdfs:subClassOf cacontology-undercover:MeetingLocation .
+
+cacontology-undercover:Hotel rdf:type owl:Class ;
+    rdfs:label "Hotel"@en ;
+    rdfs:comment "Hotel used or intended for sexual exploitation of minors. Physical location."@en ;
+    rdfs:subClassOf cacontology-undercover:MeetingLocation .
+
+cacontology-undercover:ShortTermRental rdf:type owl:Class ;
+    rdfs:label "Short Term Rental"@en ;
+    rdfs:comment "Short-term rental property (Airbnb, VRBO, etc.) used for sexual exploitation. Physical location."@en ;
+    rdfs:subClassOf cacontology-undercover:MeetingLocation .
+
+# =============================================================================
+# MEETING LOCATION PROPERTIES
+# =============================================================================
+
+cacontology-undercover:locationName rdf:type owl:DatatypeProperty ;
+    rdfs:label "location name"@en ;
+    rdfs:comment "Name of the meeting location (e.g., 'Princess Motel')."@en ;
+    rdfs:domain cacontology-undercover:MeetingLocation ;
+    rdfs:range xsd:string .
+
+cacontology-undercover:roomNumber rdf:type owl:DatatypeProperty ;
+    rdfs:label "room number"@en ;
+    rdfs:comment "Room or unit number at the meeting location."@en ;
+    rdfs:domain cacontology-undercover:MeetingLocation ;
+    rdfs:range xsd:string .
+
+cacontology-undercover:arrangedTime rdf:type owl:DatatypeProperty ;
+    rdfs:label "arranged time"@en ;
+    rdfs:comment "Date and time arranged for meeting."@en ;
+    rdfs:domain cacontology-undercover:MeetingLocation ;
+    rdfs:range xsd:dateTime .
+
+cacontology-undercover:arrangedForMeeting rdf:type owl:ObjectProperty ;
+    rdfs:label "arranged for meeting"@en ;
+    rdfs:comment "Links a meeting location arrangement action to the meeting location."@en ;
+    rdfs:domain cacontology-undercover:MeetingLocationArrangement ;
+    rdfs:range cacontology-undercover:MeetingLocation . 

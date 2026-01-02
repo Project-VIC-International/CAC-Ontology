@@ -12,14 +12,14 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/forensics/shapes/2.2.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/forensics/shapes/2.3.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Forensics SHACL Shapes with gUFO Validation"@en ;
     rdfs:comment "SHACL validation shapes for gUFO-enhanced ICAC forensics ontology, including anti-rigidity constraints, temporal validation, and foundational type compliance."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/forensics/shapes/2.2.0> ;
-    owl:versionInfo "2.2.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/forensics/shapes/2.3.0> ;
+    owl:versionInfo "2.3.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/forensics/2.2.0> ,
+    owl:imports <https://cacontology.projectvic.org/forensics/2.3.0> ,
                 <http://purl.org/nemo/gufo> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 
