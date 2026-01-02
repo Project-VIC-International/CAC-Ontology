@@ -138,6 +138,16 @@ services:
              echo 'Validating brooklyn-trafficking-ring example...' && \
              pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/brooklyn-trafficking-ring-example.ttl -f human && \
              echo '' && \
+             echo '=== Miami ICAC Undercover Case ===' && \
+             echo 'Validating miami-icac-felipe-lopez example with undercover shapes...' && \
+             pyshacl -s /app/cacontology/ontology/cacontology-undercover-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/miami-icac-felipe-lopez-example.ttl -f human && \
+             echo 'Validating miami-icac-felipe-lopez example with physical-evidence shapes...' && \
+             pyshacl -s /app/cacontology/ontology/cacontology-physical-evidence-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/miami-icac-felipe-lopez-example.ttl -f human && \
+             echo 'Validating miami-icac-felipe-lopez example with tactical shapes...' && \
+             pyshacl -s /app/cacontology/ontology/cacontology-tactical-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/miami-icac-felipe-lopez-example.ttl -f human && \
+             echo 'Validating miami-icac-felipe-lopez example with sentencing shapes...' && \
+             pyshacl -s /app/cacontology/ontology/cacontology-sentencing-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/miami-icac-felipe-lopez-example.ttl -f human && \
+             echo '' && \
              echo '=== Validation Complete ===' && \
              echo 'All ontologies and examples validated successfully!' && \
              echo 'Sleeping to keep container alive for inspection if needed.' && sleep infinity"

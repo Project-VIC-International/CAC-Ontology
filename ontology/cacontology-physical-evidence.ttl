@@ -10,24 +10,26 @@
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
+@prefix investigation: <https://ontology.caseontology.org/case/investigation/> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-physical: <https://cacontology.projectvic.org/physical#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/physical/2.2.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/physical/2.3.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Physical Evidence & Procurement Ontology with gUFO Integration"@en ;
-    rdfs:comment "An ontology for representing physical evidence, criminal procurement patterns, and abuse facilitation items in Internet Crimes Against Children investigations, extending UCO and CASE with comprehensive gUFO (gentle Unified Foundational Ontology) integration for enhanced semantic precision and quality assessment."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/physical/2.2.0> ;
-    owl:versionInfo "2.2.0" ;
+    rdfs:comment "An ontology for representing physical evidence, criminal procurement patterns, and abuse facilitation items in Internet Crimes Against Children investigations, extending UCO and CASE with comprehensive gUFO (gentle Unified Foundational Ontology) integration for enhanced semantic precision and quality assessment, and CASE Investigation ontology for evidence provenance tracking."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/physical/2.3.0> ;
+    owl:versionInfo "2.3.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
+    dcterms:modified "2026-01-01"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable> ,
                 <https://ontology.unifiedcyberontology.org/uco/action> ,
                 <https://ontology.unifiedcyberontology.org/uco/location> ,
-                <https://cacontology.projectvic.org/2.2.0> ,
+                <https://ontology.caseontology.org/case/investigation/> ,
+                <https://cacontology.projectvic.org/2.3.0> ,
                 <http://purl.org/nemo/gufo#> .
 
 # =============================================================================
@@ -123,25 +125,109 @@ cacontology-physical:DisguiseItem rdf:type owl:Class ;
     rdfs:subClassOf cacontology-physical:PersonalItem .
 
 # =============================================================================
+# ABUSE FACILITATION EVIDENCE ITEMS (Miami ICAC Case)
+# Physical items found that corroborate criminal intent
+# =============================================================================
+
+cacontology-physical:VapeDevice rdf:type owl:Class ;
+    rdfs:label "Vape Device"@en ;
+    rdfs:comment "Electronic vaporizer or e-cigarette found as evidence. Often brought to lure or facilitate abuse of minors. Extends AbuseFacilitationItem as physical evidence (NOT a digital observable)."@en ;
+    rdfs:subClassOf cacontology-physical:AbuseFacilitationItem .
+
+cacontology-physical:Condoms rdf:type owl:Class ;
+    rdfs:label "Condoms"@en ;
+    rdfs:comment "Contraceptive devices found as evidence corroborating intent to engage in sexual activity. Extends AbuseFacilitationItem as physical evidence (NOT a digital observable)."@en ;
+    rdfs:subClassOf cacontology-physical:AbuseFacilitationItem .
+
+cacontology-physical:IntoxicatingSubstance rdf:type owl:Class ;
+    rdfs:label "Intoxicating Substance"@en ;
+    rdfs:comment "Alcohol, drugs, or other intoxicating substances intended to impair victim judgment. Extends AbuseFacilitationItem."@en ;
+    rdfs:subClassOf cacontology-physical:AbuseFacilitationItem .
+
+# =============================================================================
+# CONSENT AND AUTHORIZATION CLASSES (extending CASE Investigation)
+# =============================================================================
+
+cacontology-physical:ConsentToSearchAuthorization rdf:type owl:Class ;
+    rdfs:label "Consent to Search Authorization"@en ;
+    rdfs:comment "Authorization obtained through suspect's consent to search property or devices. Extends investigation:Authorization for CASE ontology integration."@en ;
+    rdfs:subClassOf investigation:Authorization, gufo:Object .
+
+cacontology-physical:VehicleConsentSearch rdf:type owl:Class ;
+    rdfs:label "Vehicle Consent Search"@en ;
+    rdfs:comment "Consent authorization specific to vehicle search."@en ;
+    rdfs:subClassOf cacontology-physical:ConsentToSearchAuthorization .
+
+cacontology-physical:DeviceConsentSearch rdf:type owl:Class ;
+    rdfs:label "Device Consent Search"@en ;
+    rdfs:comment "Consent authorization specific to electronic device search (cellphone, computer, etc.)."@en ;
+    rdfs:subClassOf cacontology-physical:ConsentToSearchAuthorization .
+
+# =============================================================================
+# BODYCAM AND SURVEILLANCE EVIDENCE (extending UCO Observable)
+# These ARE digital observables as they are digital recordings
+# =============================================================================
+
+cacontology-physical:BodycamFootage rdf:type owl:Class ;
+    rdfs:label "Bodycam Footage"@en ;
+    rdfs:comment "Body camera footage from law enforcement officers. Used for suspect identification and evidence. IS a digital observable as it is a digital recording."@en ;
+    rdfs:subClassOf uco-observable:ObservableObject, gufo:Object .
+
+cacontology-physical:SurveillanceRecording rdf:type owl:Class ;
+    rdfs:label "Surveillance Recording"@en ;
+    rdfs:comment "Recording from surveillance or security cameras. Digital observable."@en ;
+    rdfs:subClassOf uco-observable:ObservableObject, gufo:Object .
+
+cacontology-physical:DashcamFootage rdf:type owl:Class ;
+    rdfs:label "Dashcam Footage"@en ;
+    rdfs:comment "Dashboard camera footage from police vehicles. Digital observable."@en ;
+    rdfs:subClassOf cacontology-physical:BodycamFootage .
+
+# =============================================================================
+# EVIDENCE PROVENANCE TRACKING (extending CASE Investigation)
+# =============================================================================
+
+cacontology-physical:PhysicalEvidenceProvenanceRecord rdf:type owl:Class ;
+    rdfs:label "Physical Evidence Provenance Record"@en ;
+    rdfs:comment "Provenance record tracking chain of custody and handling of physical evidence. Extends investigation:ProvenanceRecord for CASE ontology integration."@en ;
+    rdfs:subClassOf investigation:ProvenanceRecord, gufo:Object .
+
+# =============================================================================
 # SEARCH AND SEIZURE CLASSES (extending UCO Action and gUFO Event)
 # =============================================================================
 
 cacontology-physical:PhysicalSearch rdf:type owl:Class ;
     rdfs:label "Physical Search"@en ;
-    rdfs:comment "Law enforcement search of physical premises for evidence (gUFO Event)."@en ;
-    rdfs:subClassOf uco-action:Action ,
+    rdfs:comment "Law enforcement search of physical premises for evidence. Extends investigation:InvestigativeAction for CASE ontology integration (gUFO Event)."@en ;
+    rdfs:subClassOf investigation:InvestigativeAction ,
                     gufo:Event .
 
 cacontology-physical:EvidenceSeizure rdf:type owl:Class ;
     rdfs:label "Evidence Seizure"@en ;
-    rdfs:comment "Legal seizure of physical items as evidence (gUFO Event)."@en ;
-    rdfs:subClassOf uco-action:Action ,
+    rdfs:comment "Legal seizure of physical items as evidence. Extends investigation:InvestigativeAction (gUFO Event)."@en ;
+    rdfs:subClassOf investigation:InvestigativeAction ,
+                    gufo:Event .
+
+cacontology-physical:EvidenceCollectionAction rdf:type owl:Class ;
+    rdfs:label "Evidence Collection Action"@en ;
+    rdfs:comment "Action of collecting and documenting physical evidence during search. Extends investigation:InvestigativeAction (gUFO Event)."@en ;
+    rdfs:subClassOf investigation:InvestigativeAction ,
                     gufo:Event .
 
 cacontology-physical:VehicleSearch rdf:type owl:Class ;
     rdfs:label "Vehicle Search"@en ;
-    rdfs:comment "Search of motor vehicles for evidence or contraband (gUFO Event)."@en ;
+    rdfs:comment "Search of motor vehicles for evidence or contraband. May be conducted with consent or warrant (gUFO Event)."@en ;
     rdfs:subClassOf cacontology-physical:PhysicalSearch .
+
+cacontology-physical:CellphoneSearch rdf:type owl:Class ;
+    rdfs:label "Cellphone Search"@en ;
+    rdfs:comment "Search of cellphone or mobile device for evidence. Typically requires consent or warrant (gUFO Event)."@en ;
+    rdfs:subClassOf cacontology-physical:PhysicalSearch .
+
+cacontology-physical:GloveCompartmentSearch rdf:type owl:Class ;
+    rdfs:label "Glove Compartment Search"@en ;
+    rdfs:comment "Search of vehicle glove compartment as specific evidence location (gUFO Event)."@en ;
+    rdfs:subClassOf cacontology-physical:VehicleSearch .
 
 cacontology-physical:ResidenceSearch rdf:type owl:Class ;
     rdfs:label "Residence Search"@en ;
@@ -613,4 +699,209 @@ cacontology-physical:hiddenCompartment rdf:type owl:DatatypeProperty ;
     rdfs:label "hidden compartment"@en ;
     rdfs:comment "Whether the item contains hidden compartments or concealed areas."@en ;
     rdfs:domain cacontology-physical:PhysicalEvidence ;
-    rdfs:range xsd:boolean . 
+    rdfs:range xsd:boolean .
+
+# =============================================================================
+# CONSENT AND AUTHORIZATION PROPERTIES
+# =============================================================================
+
+cacontology-physical:consentGiven rdf:type owl:DatatypeProperty ;
+    rdfs:label "consent given"@en ;
+    rdfs:comment "Whether consent was given for the search."@en ;
+    rdfs:domain cacontology-physical:ConsentToSearchAuthorization ;
+    rdfs:range xsd:boolean .
+
+cacontology-physical:consentType rdf:type owl:DatatypeProperty ;
+    rdfs:label "consent type"@en ;
+    rdfs:comment "Type of consent obtained (verbal, written, implied)."@en ;
+    rdfs:domain cacontology-physical:ConsentToSearchAuthorization ;
+    rdfs:range xsd:string .
+
+cacontology-physical:consentScope rdf:type owl:DatatypeProperty ;
+    rdfs:label "consent scope"@en ;
+    rdfs:comment "Scope of consent given (vehicle_only, device_only, full_search)."@en ;
+    rdfs:domain cacontology-physical:ConsentToSearchAuthorization ;
+    rdfs:range xsd:string .
+
+cacontology-physical:consentWithdrawn rdf:type owl:DatatypeProperty ;
+    rdfs:label "consent withdrawn"@en ;
+    rdfs:comment "Whether consent was subsequently withdrawn."@en ;
+    rdfs:domain cacontology-physical:ConsentToSearchAuthorization ;
+    rdfs:range xsd:boolean .
+
+cacontology-physical:hasConsentAuthorization rdf:type owl:ObjectProperty ;
+    rdfs:label "has consent authorization"@en ;
+    rdfs:comment "Links search action to consent authorization. Uses investigation:relevantAuthorization pattern."@en ;
+    rdfs:subPropertyOf investigation:relevantAuthorization ;
+    rdfs:domain cacontology-physical:PhysicalSearch ;
+    rdfs:range cacontology-physical:ConsentToSearchAuthorization .
+
+# =============================================================================
+# BODYCAM AND SURVEILLANCE PROPERTIES
+# =============================================================================
+
+cacontology-physical:recordingDate rdf:type owl:DatatypeProperty ;
+    rdfs:label "recording date"@en ;
+    rdfs:comment "Date and time when the recording was made."@en ;
+    rdfs:domain cacontology-physical:BodycamFootage ;
+    rdfs:range xsd:dateTime .
+
+cacontology-physical:recordingOfficer rdf:type owl:ObjectProperty ;
+    rdfs:label "recording officer"@en ;
+    rdfs:comment "Officer whose bodycam made the recording."@en ;
+    rdfs:domain cacontology-physical:BodycamFootage ;
+    rdfs:range uco-identity:Person .
+
+cacontology-physical:recordingDuration rdf:type owl:DatatypeProperty ;
+    rdfs:label "recording duration"@en ;
+    rdfs:comment "Duration of the recording in seconds."@en ;
+    rdfs:domain cacontology-physical:BodycamFootage ;
+    rdfs:range xsd:decimal .
+
+cacontology-physical:usedForIdentification rdf:type owl:DatatypeProperty ;
+    rdfs:label "used for identification"@en ;
+    rdfs:comment "Whether the recording was used to identify suspects."@en ;
+    rdfs:domain cacontology-physical:BodycamFootage ;
+    rdfs:range xsd:boolean .
+
+cacontology-physical:matchesSelfie rdf:type owl:DatatypeProperty ;
+    rdfs:label "matches selfie"@en ;
+    rdfs:comment "Whether the bodycam footage was matched to selfies sent by suspect (as in Miami ICAC case)."@en ;
+    rdfs:domain cacontology-physical:BodycamFootage ;
+    rdfs:range xsd:boolean .
+
+cacontology-physical:linkedToTrafficStop rdf:type owl:ObjectProperty ;
+    rdfs:label "linked to traffic stop"@en ;
+    rdfs:comment "Links bodycam footage to the traffic stop during which it was recorded."@en ;
+    rdfs:domain cacontology-physical:BodycamFootage ;
+    rdfs:range cacontology-physical:PhysicalSearch .
+
+# =============================================================================
+# VAPE AND CONTRABAND PROPERTIES
+# =============================================================================
+
+cacontology-physical:vapeFlavor rdf:type owl:DatatypeProperty ;
+    rdfs:label "vape flavor"@en ;
+    rdfs:comment "Flavor of the vape device (e.g., 'strawberry')."@en ;
+    rdfs:domain cacontology-physical:VapeDevice ;
+    rdfs:range xsd:string .
+
+cacontology-physical:vapeBrand rdf:type owl:DatatypeProperty ;
+    rdfs:label "vape brand"@en ;
+    rdfs:comment "Brand of the vape device."@en ;
+    rdfs:domain cacontology-physical:VapeDevice ;
+    rdfs:range xsd:string .
+
+cacontology-physical:condomBrand rdf:type owl:DatatypeProperty ;
+    rdfs:label "condom brand"@en ;
+    rdfs:comment "Brand of the condoms (e.g., 'Durex')."@en ;
+    rdfs:domain cacontology-physical:Condoms ;
+    rdfs:range xsd:string .
+
+cacontology-physical:condomQuantity rdf:type owl:DatatypeProperty ;
+    rdfs:label "condom quantity"@en ;
+    rdfs:comment "Number of condoms found."@en ;
+    rdfs:domain cacontology-physical:Condoms ;
+    rdfs:range xsd:nonNegativeInteger .
+
+cacontology-physical:foundInLocation rdf:type owl:DatatypeProperty ;
+    rdfs:label "found in location"@en ;
+    rdfs:comment "Specific location where evidence was found (e.g., 'glove compartment')."@en ;
+    rdfs:domain cacontology-physical:AbuseFacilitationItem ;
+    rdfs:range xsd:string .
+
+cacontology-physical:agreedToBring rdf:type owl:DatatypeProperty ;
+    rdfs:label "agreed to bring"@en ;
+    rdfs:comment "Whether suspect agreed to bring this item during undercover communication."@en ;
+    rdfs:domain cacontology-physical:AbuseFacilitationItem ;
+    rdfs:range xsd:boolean .
+
+# =============================================================================
+# EVIDENCE PROVENANCE RELATIONSHIPS
+# =============================================================================
+
+cacontology-physical:hasProvenanceRecord rdf:type owl:ObjectProperty ;
+    rdfs:label "has provenance record"@en ;
+    rdfs:comment "Links physical evidence to its provenance record for chain of custody tracking."@en ;
+    rdfs:domain cacontology-physical:PhysicalEvidence ;
+    rdfs:range cacontology-physical:PhysicalEvidenceProvenanceRecord .
+
+cacontology-physical:collectedDuring rdf:type owl:ObjectProperty ;
+    rdfs:label "collected during"@en ;
+    rdfs:comment "Links evidence to the collection action."@en ;
+    rdfs:domain cacontology-physical:PhysicalEvidence ;
+    rdfs:range cacontology-physical:EvidenceCollectionAction .
+
+# =============================================================================
+# SUSPECT VEHICLE EVIDENCE CLASSES (Miami ICAC Case)
+# Vehicles used by suspects in ICAC offenses
+# =============================================================================
+
+cacontology-physical:SuspectVehicle rdf:type owl:Class ;
+    rdfs:label "Suspect Vehicle"@en ;
+    rdfs:comment "Vehicle registered to or used by suspect in ICAC offense. Used for evidence tracking when suspect travels to meet alleged minor. Physical evidence item."@en ;
+    rdfs:subClassOf cacontology-physical:PhysicalEvidence .
+
+# =============================================================================
+# SUSPECT VEHICLE PROPERTIES
+# =============================================================================
+
+cacontology-physical:vehicleMake rdf:type owl:DatatypeProperty ;
+    rdfs:label "vehicle make"@en ;
+    rdfs:comment "Manufacturer of the vehicle (e.g., 'Toyota')."@en ;
+    rdfs:domain cacontology-physical:SuspectVehicle ;
+    rdfs:range xsd:string .
+
+cacontology-physical:vehicleModel rdf:type owl:DatatypeProperty ;
+    rdfs:label "vehicle model"@en ;
+    rdfs:comment "Model of the vehicle (e.g., 'Corolla')."@en ;
+    rdfs:domain cacontology-physical:SuspectVehicle ;
+    rdfs:range xsd:string .
+
+cacontology-physical:vehicleYear rdf:type owl:DatatypeProperty ;
+    rdfs:label "vehicle year"@en ;
+    rdfs:comment "Model year of the vehicle (e.g., 2015)."@en ;
+    rdfs:domain cacontology-physical:SuspectVehicle ;
+    rdfs:range xsd:nonNegativeInteger .
+
+cacontology-physical:vehicleColor rdf:type owl:DatatypeProperty ;
+    rdfs:label "vehicle color"@en ;
+    rdfs:comment "Exterior color of the vehicle (e.g., 'white')."@en ;
+    rdfs:domain cacontology-physical:SuspectVehicle ;
+    rdfs:range xsd:string .
+
+cacontology-physical:vehicleLicensePlate rdf:type owl:DatatypeProperty ;
+    rdfs:label "vehicle license plate"@en ;
+    rdfs:comment "License plate number of the vehicle."@en ;
+    rdfs:domain cacontology-physical:SuspectVehicle ;
+    rdfs:range xsd:string .
+
+cacontology-physical:vehicleVIN rdf:type owl:DatatypeProperty ;
+    rdfs:label "vehicle VIN"@en ;
+    rdfs:comment "Vehicle Identification Number."@en ;
+    rdfs:domain cacontology-physical:SuspectVehicle ;
+    rdfs:range xsd:string .
+
+cacontology-physical:registeredToSuspect rdf:type owl:DatatypeProperty ;
+    rdfs:label "registered to suspect"@en ;
+    rdfs:comment "Whether the vehicle is registered to the suspect."@en ;
+    rdfs:domain cacontology-physical:SuspectVehicle ;
+    rdfs:range xsd:boolean .
+
+cacontology-physical:usedInOffense rdf:type owl:DatatypeProperty ;
+    rdfs:label "used in offense"@en ;
+    rdfs:comment "Whether the vehicle was used in the commission of the offense."@en ;
+    rdfs:domain cacontology-physical:SuspectVehicle ;
+    rdfs:range xsd:boolean .
+
+cacontology-physical:arrivedAtLocation rdf:type owl:ObjectProperty ;
+    rdfs:label "arrived at location"@en ;
+    rdfs:comment "Links vehicle to the location it arrived at for meeting."@en ;
+    rdfs:domain cacontology-physical:SuspectVehicle ;
+    rdfs:range uco-location:Location .
+
+cacontology-physical:evidenceFoundInVehicle rdf:type owl:ObjectProperty ;
+    rdfs:label "evidence found in vehicle"@en ;
+    rdfs:comment "Links physical evidence to the vehicle it was found in."@en ;
+    rdfs:domain cacontology-physical:PhysicalEvidence ;
+    rdfs:range cacontology-physical:SuspectVehicle . 

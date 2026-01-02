@@ -15,14 +15,14 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/forensics/extended-shapes/2.2.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/forensics/extended-shapes/2.3.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Forensics Extended SHACL Shapes"@en ;
     rdfs:comment "Extended SHACL validation shapes for the ICAC Forensics Ontology, providing comprehensive validation for digital evidence processing, analysis, and management."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/forensics/extended-shapes/2.2.0> ;
-    owl:versionInfo "2.2.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/forensics/extended-shapes/2.3.0> ;
+    owl:versionInfo "2.3.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/forensics/2.2.0> ,
+    owl:imports <https://cacontology.projectvic.org/forensics/2.3.0> ,
                 <http://purl.org/nemo/gufo> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 

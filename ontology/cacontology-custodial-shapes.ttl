@@ -17,14 +17,14 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Enhanced Ontology Declaration with gUFO Validation
-<https://cacontology.projectvic.org/custodial/shapes/2.2.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/custodial/shapes/2.3.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Custodial SHACL Shapes with gUFO Validation"@en ;
     rdfs:comment "Comprehensive SHACL validation shapes for gUFO-enhanced ICAC custodial ontology, including anti-rigidity constraints, temporal validation, phase transitions, role validation, trust violation patterns, and foundational type compliance."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/custodial/shapes/2.2.0> ;
-    owl:versionInfo "2.2.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/custodial/shapes/2.3.0> ;
+    owl:versionInfo "2.3.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/custodial/2.2.0> ,
+    owl:imports <https://cacontology.projectvic.org/custodial/2.3.0> ,
                 <http://purl.org/nemo/gufo> ,
                 <https://ontology.unifiedcyberontology.org/uco/core> .
 

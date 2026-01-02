@@ -10,24 +10,28 @@
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
+@prefix investigation: <https://ontology.caseontology.org/case/investigation/> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-tactical: <https://cacontology.projectvic.org/tactical#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/tactical/2.2.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/tactical/2.3.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Tactical Law Enforcement Operations Ontology"@en ;
-    rdfs:comment "An ontology for representing tactical law enforcement operations including SWAT operations, high-risk arrests, and specialized tactical procedures in Internet Crimes Against Children investigations, extending UCO and CASE."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/tactical/2.2.0> ;
+    rdfs:comment "An ontology for representing tactical law enforcement operations including SWAT operations, high-risk arrests, and specialized tactical procedures in Internet Crimes Against Children investigations, extending UCO and CASE with CASE Investigation ontology integration."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/tactical/2.3.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
+    dcterms:modified "2026-01-01"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable> ,
                 <https://ontology.unifiedcyberontology.org/uco/action> ,
                 <https://ontology.unifiedcyberontology.org/uco/location> ,
                 <https://ontology.unifiedcyberontology.org/uco/role> ,
-                <https://cacontology.projectvic.org/2.2.0> .
+                <https://ontology.caseontology.org/case/investigation/> ,
+                <http://purl.org/nemo/gufo#> ,
+                <https://cacontology.projectvic.org/2.3.0> .
 
 # =============================================================================
 # TACTICAL OPERATION CLASSES (extending UCO Action)
@@ -62,6 +66,160 @@ cacontology-tactical:SurrenderNegotiation rdf:type owl:Class ;
     rdfs:label "Surrender Negotiation"@en ;
     rdfs:comment "Attempt to negotiate peaceful surrender of barricaded or resistant suspects."@en ;
     rdfs:subClassOf cacontology-tactical:TacticalOperation .
+
+# =============================================================================
+# ARREST AND BOOKING CLASSES (extending CASE Investigation)
+# Based on Miami ICAC undercover operation press release
+# =============================================================================
+
+cacontology-tactical:ArrestOperation rdf:type owl:Class ;
+    rdfs:label "Arrest Operation"@en ;
+    rdfs:comment "Law enforcement operation to apprehend and take suspect into custody. Extends investigation:InvestigativeAction for proper CASE ontology integration."@en ;
+    rdfs:subClassOf investigation:InvestigativeAction, gufo:Event .
+
+cacontology-tactical:TrafficStop rdf:type owl:Class ;
+    rdfs:label "Traffic Stop"@en ;
+    rdfs:comment "Investigative traffic stop used as part of undercover operation or to apprehend suspect. Extends investigation:InvestigativeAction."@en ;
+    rdfs:subClassOf investigation:InvestigativeAction, gufo:Event .
+
+cacontology-tactical:BookingAction rdf:type owl:Class ;
+    rdfs:label "Booking Action"@en ;
+    rdfs:comment "Process of booking a suspect into a correctional facility including fingerprinting, photography, and data entry. Extends investigation:InvestigativeAction for CASE ontology integration."@en ;
+    rdfs:subClassOf investigation:InvestigativeAction, gufo:Event .
+
+cacontology-tactical:InterviewWithoutCounsel rdf:type owl:Class ;
+    rdfs:label "Interview Without Counsel"@en ;
+    rdfs:comment "Suspect interview conducted after suspect waives right to legal counsel. Extends investigation:InvestigativeAction."@en ;
+    rdfs:subClassOf investigation:InvestigativeAction, gufo:Event .
+
+cacontology-tactical:ArrestReport rdf:type owl:Class ;
+    rdfs:label "Arrest Report"@en ;
+    rdfs:comment "Formal arrest report documenting the arrest including charges, evidence, and suspect information. Extends investigation:ProvenanceRecord for evidence tracking."@en ;
+    rdfs:subClassOf investigation:ProvenanceRecord, gufo:Object .
+
+cacontology-tactical:CorrectionalFacility rdf:type owl:Class ;
+    rdfs:label "Correctional Facility"@en ;
+    rdfs:comment "Physical correctional facility where suspects are booked and held. Examples include county jails and correctional centers. Extends uco-core:UcoObject as physical location (NOT digital observable)."@en ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object .
+
+cacontology-tactical:ImmigrationHold rdf:type owl:Class ;
+    rdfs:label "Immigration Hold"@en ;
+    rdfs:comment "Immigration detainer placed on suspect due to immigration status. Links booking to immigration enforcement coordination."@en ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object .
+
+# =============================================================================
+# ARREST AND BOOKING PROPERTIES
+# =============================================================================
+
+cacontology-tactical:arrestType rdf:type owl:DatatypeProperty ;
+    rdfs:label "arrest type"@en ;
+    rdfs:comment "Type of arrest (warrant_arrest, probable_cause_arrest, consensual_arrest, traffic_stop_arrest, field_arrest, coordinated_arrest)."@en ;
+    rdfs:domain cacontology-tactical:ArrestOperation ;
+    rdfs:range xsd:string .
+
+cacontology-tactical:targetCount rdf:type owl:DatatypeProperty ;
+    rdfs:label "target count"@en ;
+    rdfs:comment "Number of individuals targeted for arrest."@en ;
+    rdfs:domain cacontology-tactical:ArrestOperation ;
+    rdfs:range xsd:nonNegativeInteger .
+
+cacontology-tactical:resistanceExpected rdf:type owl:DatatypeProperty ;
+    rdfs:label "resistance expected"@en ;
+    rdfs:comment "Whether resistance was expected during arrest."@en ;
+    rdfs:domain cacontology-tactical:ArrestOperation ;
+    rdfs:range xsd:boolean .
+
+cacontology-tactical:weaponsExpected rdf:type owl:DatatypeProperty ;
+    rdfs:label "weapons expected"@en ;
+    rdfs:comment "Whether weapons were expected during arrest."@en ;
+    rdfs:domain cacontology-tactical:ArrestOperation ;
+    rdfs:range xsd:boolean .
+
+cacontology-tactical:facilityName rdf:type owl:DatatypeProperty ;
+    rdfs:label "facility name"@en ;
+    rdfs:comment "Name of the correctional facility (e.g., 'Turner Guilford Knight Correctional Center')."@en ;
+    rdfs:domain cacontology-tactical:CorrectionalFacility ;
+    rdfs:range xsd:string .
+
+cacontology-tactical:facilityType rdf:type owl:DatatypeProperty ;
+    rdfs:label "facility type"@en ;
+    rdfs:comment "Type of correctional facility (county_jail, state_prison, federal_prison, detention_center, holding_facility)."@en ;
+    rdfs:domain cacontology-tactical:CorrectionalFacility ;
+    rdfs:range xsd:string .
+
+cacontology-tactical:bookingNumber rdf:type owl:DatatypeProperty ;
+    rdfs:label "booking number"@en ;
+    rdfs:comment "Unique booking identifier assigned during intake."@en ;
+    rdfs:domain cacontology-tactical:BookingAction ;
+    rdfs:range xsd:string .
+
+cacontology-tactical:bookingTime rdf:type owl:DatatypeProperty ;
+    rdfs:label "booking time"@en ;
+    rdfs:comment "Date and time of booking into facility."@en ;
+    rdfs:domain cacontology-tactical:BookingAction ;
+    rdfs:range xsd:dateTime .
+
+cacontology-tactical:counselWaived rdf:type owl:DatatypeProperty ;
+    rdfs:label "counsel waived"@en ;
+    rdfs:comment "Whether suspect waived right to legal counsel."@en ;
+    rdfs:domain cacontology-tactical:InterviewWithoutCounsel ;
+    rdfs:range xsd:boolean .
+
+cacontology-tactical:mirandaGiven rdf:type owl:DatatypeProperty ;
+    rdfs:label "miranda given"@en ;
+    rdfs:comment "Whether Miranda rights were read to suspect."@en ;
+    rdfs:domain cacontology-tactical:InterviewWithoutCounsel ;
+    rdfs:range xsd:boolean .
+
+cacontology-tactical:immigrationStatus rdf:type owl:DatatypeProperty ;
+    rdfs:label "immigration status"@en ;
+    rdfs:comment "Immigration status of the suspect."@en ;
+    rdfs:domain cacontology-tactical:ImmigrationHold ;
+    rdfs:range xsd:string .
+
+cacontology-tactical:holdingAgency rdf:type owl:DatatypeProperty ;
+    rdfs:label "holding agency"@en ;
+    rdfs:comment "Agency requesting the immigration hold (e.g., ICE)."@en ;
+    rdfs:domain cacontology-tactical:ImmigrationHold ;
+    rdfs:range xsd:string .
+
+cacontology-tactical:nationality rdf:type owl:DatatypeProperty ;
+    rdfs:label "nationality"@en ;
+    rdfs:comment "Nationality of the suspect subject to immigration hold."@en ;
+    rdfs:domain cacontology-tactical:ImmigrationHold ;
+    rdfs:range xsd:string .
+
+# Arrest and Booking Relationships
+cacontology-tactical:resultsInBooking rdf:type owl:ObjectProperty ;
+    rdfs:label "results in booking"@en ;
+    rdfs:comment "Links arrest operation to the booking action."@en ;
+    rdfs:domain cacontology-tactical:ArrestOperation ;
+    rdfs:range cacontology-tactical:BookingAction .
+
+cacontology-tactical:bookedAt rdf:type owl:ObjectProperty ;
+    rdfs:label "booked at"@en ;
+    rdfs:comment "Links booking action to correctional facility."@en ;
+    rdfs:domain cacontology-tactical:BookingAction ;
+    rdfs:range cacontology-tactical:CorrectionalFacility .
+
+cacontology-tactical:hasArrestReport rdf:type owl:ObjectProperty ;
+    rdfs:label "has arrest report"@en ;
+    rdfs:comment "Links arrest operation to its formal arrest report."@en ;
+    rdfs:domain cacontology-tactical:ArrestOperation ;
+    rdfs:range cacontology-tactical:ArrestReport .
+
+cacontology-tactical:hasImmigrationHold rdf:type owl:ObjectProperty ;
+    rdfs:label "has immigration hold"@en ;
+    rdfs:comment "Links booking to immigration hold status."@en ;
+    rdfs:domain cacontology-tactical:BookingAction ;
+    rdfs:range cacontology-tactical:ImmigrationHold .
+
+cacontology-tactical:informedByTrafficStop rdf:type owl:ObjectProperty ;
+    rdfs:label "informed by traffic stop"@en ;
+    rdfs:comment "Links arrest to prior traffic stop that provided suspect identification. Uses CASE investigation:wasInformedBy pattern."@en ;
+    rdfs:subPropertyOf investigation:wasInformedBy ;
+    rdfs:domain cacontology-tactical:ArrestOperation ;
+    rdfs:range cacontology-tactical:TrafficStop .
 
 # =============================================================================
 # TACTICAL TEAM ROLES (extending UCO Role)

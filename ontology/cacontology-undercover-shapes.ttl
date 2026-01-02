@@ -13,14 +13,14 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/undercover/shapes/2.2.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/undercover/shapes/2.3.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Undercover Operations SHACL Shapes"@en ;
     rdfs:comment "SHACL validation shapes for the ICAC Undercover Operations Ontology, providing validation for undercover identities, infiltration tactics, surveillance operations, and evidence collection through covert means."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/undercover/shapes/2.2.0> ;
-    owl:versionInfo "2.2.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/undercover/shapes/2.3.0> ;
+    owl:versionInfo "2.3.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/undercover/2.2.0> ,
+    dcterms:modified "2026-01-01"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/undercover/2.3.0> ,
                 <http://purl.org/nemo/gufo> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 
@@ -614,7 +614,7 @@ cacontology-undercover:DataQualityShape rdf:type sh:NodeShape ;
     rdfs:comment "Validates data quality for undercover operations."@en ;
     sh:property [
         sh:path rdfs:label ;
-        sh:datatype xsd:string ;
+        sh:nodeKind sh:Literal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:minLength 5 ;
@@ -623,10 +623,302 @@ cacontology-undercover:DataQualityShape rdf:type sh:NodeShape ;
     ] ;
     sh:property [
         sh:path rdfs:comment ;
-        sh:datatype xsd:string ;
+        sh:nodeKind sh:Literal ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:minLength 10 ;
         sh:maxLength 1000 ;
         sh:message "Comment should be between 10 and 1000 characters when provided."@en
+    ] .
+
+# =============================================================================
+# MEETING LOCATION SHAPES (Miami ICAC Case Enhancement)
+# =============================================================================
+
+cacontology-undercover:MeetingLocationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-undercover:MeetingLocation ;
+    rdfs:label "Meeting Location Shape"@en ;
+    rdfs:comment "Validation shape for meeting location instances used in undercover operations."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype rdf:langString ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Meeting location should have a label."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-undercover:locationName ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 1 ;
+        sh:maxLength 200 ;
+        sh:message "Location name should be between 1 and 200 characters."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-undercover:roomNumber ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Meeting location may specify a room number."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-undercover:arrangedTime ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Meeting location may specify an arranged meeting time."@en
+    ] .
+
+cacontology-undercover:MotelShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-undercover:Motel ;
+    rdfs:label "Motel Shape"@en ;
+    rdfs:comment "Validation shape for motel meeting location instances."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype rdf:langString ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Motel should have a label."@en
+    ] .
+
+cacontology-undercover:HotelShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-undercover:Hotel ;
+    rdfs:label "Hotel Shape"@en ;
+    rdfs:comment "Validation shape for hotel meeting location instances."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype rdf:langString ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Hotel should have a label."@en
+    ] .
+
+cacontology-undercover:ShortTermRentalShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-undercover:ShortTermRental ;
+    rdfs:label "Short Term Rental Shape"@en ;
+    rdfs:comment "Validation shape for short-term rental meeting location instances."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype rdf:langString ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Short-term rental should have a label."@en
+    ] .
+
+# =============================================================================
+# MULTIPLE PERSONA OPERATION SHAPES (Miami ICAC Case Enhancement)
+# =============================================================================
+
+cacontology-undercover:MultiplePersonaOperationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-undercover:MultiplePersonaOperation ;
+    rdfs:label "Multiple Persona Operation Shape"@en ;
+    rdfs:comment "Validation shape for undercover operations using multiple minor personas."@en ;
+    sh:property [
+        sh:path cacontology-undercover:personaCount ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 2 ;
+        sh:maxInclusive 10 ;
+        sh:message "Multiple persona operation must use between 2 and 10 personas."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-undercover:primaryPersonaAge ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 10 ;
+        sh:maxInclusive 17 ;
+        sh:message "Primary persona age must be between 10 and 17 years old."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-undercover:secondaryPersonaAge ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 8 ;
+        sh:maxInclusive 17 ;
+        sh:message "Secondary persona age must be between 8 and 17 years old."@en
+    ] .
+
+cacontology-undercover:SiblingPersonaOperationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-undercover:SiblingPersonaOperation ;
+    rdfs:label "Sibling Persona Operation Shape"@en ;
+    rdfs:comment "Validation shape for undercover operations using related sibling personas."@en ;
+    sh:property [
+        sh:path cacontology-undercover:siblingRelationship ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "sisters" "brothers" "brother_sister" "sister_brother" ) ;
+        sh:message "Sibling relationship must be from the allowed list."@en
+    ] .
+
+# =============================================================================
+# SUSPECT COMMUNICATION ACTION SHAPES (Miami ICAC Case Enhancement)
+# =============================================================================
+
+cacontology-undercover:SuspectCommunicationActionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-undercover:SuspectCommunicationAction ;
+    rdfs:label "Suspect Communication Action Shape"@en ;
+    rdfs:comment "Validation shape for criminal communication actions by suspects."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype rdf:langString ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Suspect communication action should have a label."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-undercover:occurredDuringOperation ;
+        sh:class cacontology-undercover:UndercoverOperation ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Suspect communication action should link to an undercover operation."@en
+    ] .
+
+cacontology-undercover:ExplicitMessageRequestActionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-undercover:ExplicitMessageRequestAction ;
+    rdfs:label "Explicit Message Request Action Shape"@en ;
+    rdfs:comment "Validation shape for suspect requests for explicit content."@en ;
+    sh:property [
+        sh:path cacontology-undercover:requestType ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "images" "videos" "video_call" "live_stream" ) ;
+        sh:message "Request type must be from the allowed list."@en
+    ] .
+
+cacontology-undercover:VideoCallRequestActionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-undercover:VideoCallRequestAction ;
+    rdfs:label "Video Call Request Action Shape"@en ;
+    rdfs:comment "Validation shape for suspect requests for video calls."@en ;
+    sh:property [
+        sh:path cacontology-undercover:whenParentAbsent ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May specify if request was conditional on parent being absent."@en
+    ] .
+
+cacontology-undercover:DisguiseRequestActionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-undercover:DisguiseRequestAction ;
+    rdfs:label "Disguise Request Action Shape"@en ;
+    rdfs:comment "Validation shape for suspect requests for victim to wear disguise items."@en ;
+    sh:property [
+        sh:path cacontology-undercover:disguiseItemRequested ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May specify the disguise item requested."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-undercover:disguisePurpose ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "avoid_detection" "conceal_identity" "evade_witnesses" "other" ) ;
+        sh:message "Disguise purpose must be from the allowed list."@en
+    ] .
+
+cacontology-undercover:CriminalItemAgreementActionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-undercover:CriminalItemAgreementAction ;
+    rdfs:label "Criminal Item Agreement Action Shape"@en ;
+    rdfs:comment "Validation shape for suspect agreements to bring items for abuse."@en ;
+    sh:property [
+        sh:path cacontology-undercover:itemsAgreedToBring ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May specify items suspect agreed to bring."@en
+    ] .
+
+cacontology-undercover:MeetingLocationArrangementShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-undercover:MeetingLocationArrangement ;
+    rdfs:label "Meeting Location Arrangement Shape"@en ;
+    rdfs:comment "Validation shape for suspect arrangements of meeting locations."@en ;
+    sh:property [
+        sh:path cacontology-undercover:meetingLocationType ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "motel" "hotel" "residence" "vehicle" "outdoor" "short_term_rental" "other" ) ;
+        sh:message "Meeting location type must be from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-undercover:meetingLocationName ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May specify the name of the meeting location."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-undercover:arrangedForMeeting ;
+        sh:class cacontology-undercover:MeetingLocation ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May link to the specific meeting location."@en
+    ] .
+
+cacontology-undercover:AgeAcknowledgmentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-undercover:AgeAcknowledgment ;
+    rdfs:label "Age Acknowledgment Shape"@en ;
+    rdfs:comment "Validation shape for suspect acknowledgments of minor's age."@en ;
+    sh:property [
+        sh:path cacontology-undercover:ageStatedToSuspect ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 1 ;
+        sh:maxInclusive 17 ;
+        sh:message "Age stated to suspect must be between 1 and 17."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-undercover:acknowledgedCount ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 1 ;
+        sh:maxInclusive 100 ;
+        sh:message "Acknowledged count must be between 1 and 100."@en
+    ] .
+
+cacontology-undercover:SexualIntentStatementShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-undercover:SexualIntentStatement ;
+    rdfs:label "Sexual Intent Statement Shape"@en ;
+    rdfs:comment "Validation shape for explicit sexual intent statements by suspects."@en ;
+    sh:property [
+        sh:path cacontology-undercover:sexualActsIntended ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May specify types of sexual acts intended."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-undercover:targetedBothPersonas ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May specify if suspect targeted both personas in sibling operation."@en
+    ] .
+
+cacontology-undercover:TransportArrangementActionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-undercover:TransportArrangementAction ;
+    rdfs:label "Transport Arrangement Action Shape"@en ;
+    rdfs:comment "Validation shape for suspect arrangements to transport alleged minor."@en ;
+    sh:property [
+        sh:path cacontology-undercover:pickupLocation ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May specify the pickup location."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-undercover:destinationLocation ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "May specify the destination location."@en
     ] . 

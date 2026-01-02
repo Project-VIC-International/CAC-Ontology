@@ -17,20 +17,20 @@
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/sentencing/2.2.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/sentencing/2.3.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Legal Outcomes & Sentencing Ontology"@en ;
     rdfs:comment "An ontology for representing legal outcomes, federal sentences, judicial proceedings, and punishment guidelines in Internet Crimes Against Children cases with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, and validation capabilities, extending UCO and CASE."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/sentencing/2.2.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/sentencing/2.3.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
+    dcterms:modified "2026-01-01"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable> ,
                 <https://ontology.unifiedcyberontology.org/uco/action> ,
                 <https://ontology.unifiedcyberontology.org/uco/location> ,
                 <https://ontology.unifiedcyberontology.org/uco/role> ,
-                <https://cacontology.projectvic.org/2.2.0> ,
+                <https://cacontology.projectvic.org/2.3.0> ,
                 <http://purl.org/nemo/gufo> .
 
 # =============================================================================
@@ -202,6 +202,42 @@ cacontology-sentencing:SexTrafficking rdf:type owl:Class ;
     rdfs:label "Sex Trafficking"@en ;
     rdfs:comment "Charge for sex trafficking of minors. Modeled as gUFO Object."@en ;
     rdfs:subClassOf cacontology-sentencing:FederalCharge .
+
+# =============================================================================
+# FLORIDA STATE CHARGES (gUFO Object)
+# Based on Miami ICAC undercover operation press release
+# =============================================================================
+
+cacontology-sentencing:FloridaStateCharge rdf:type owl:Class ;
+    rdfs:label "Florida State Charge"@en ;
+    rdfs:comment "Criminal charge under Florida state law and jurisdiction for ICAC-related offenses. Modeled as gUFO Object."@en ;
+    rdfs:subClassOf cacontology-sentencing:StateCharge .
+
+cacontology-sentencing:TravelingToMeetAfterComputerLure rdf:type owl:Class ;
+    rdfs:label "Traveling To Meet After Computer Lure"@en ;
+    rdfs:comment "Florida state charge for traveling to meet after using a computer to lure a child. Applies when defendant uses electronic communication to lure a child and then travels to meet them. Modeled as gUFO Object."@en ;
+    rdfs:subClassOf cacontology-sentencing:FloridaStateCharge ;
+    skos:altLabel "Traveling to Meet a Minor"@en ;
+    skos:definition "F.S. 847.0135(4) - Traveling to meet a minor after using computer services or devices."@en .
+
+cacontology-sentencing:DirectPromotionOfSexualPerformance rdf:type owl:Class ;
+    rdfs:label "Direct Promotion of Sexual Performance by a Child"@en ;
+    rdfs:comment "Florida state charge for direct promotion of a sexual performance by a child. Applies when defendant promotes, directs, or produces sexual conduct involving a minor. Modeled as gUFO Object."@en ;
+    rdfs:subClassOf cacontology-sentencing:FloridaStateCharge ;
+    skos:definition "F.S. 827.071(4) - Promoting sexual performance by a child."@en .
+
+cacontology-sentencing:ComputerSeduceSolicitLure rdf:type owl:Class ;
+    rdfs:label "Using Computer to Seduce Solicit or Lure Child"@en ;
+    rdfs:comment "Florida state charge for using a computer to seduce, solicit, or lure a child to engage in sexual conduct. Covers electronic communication with minors for sexual purposes. Modeled as gUFO Object."@en ;
+    rdfs:subClassOf cacontology-sentencing:FloridaStateCharge ;
+    skos:altLabel "Computer Solicitation of a Minor"@en ;
+    skos:definition "F.S. 847.0135(3) - Use of computer services to solicit, lure, or entice a child."@en .
+
+cacontology-sentencing:ContributingToDelinquency rdf:type owl:Class ;
+    rdfs:label "Contributing to Delinquency or Dependency of Child"@en ;
+    rdfs:comment "Florida state charge for contributing to the delinquency or dependency of a child. Applies when adult actions contribute to a child becoming delinquent or dependent. Modeled as gUFO Object."@en ;
+    rdfs:subClassOf cacontology-sentencing:FloridaStateCharge ;
+    skos:definition "F.S. 827.04 - Contributing to the delinquency or dependency of a child."@en .
 
 # =============================================================================
 # SENTENCE CLASSES (extending UCO Observable with gUFO Object)
@@ -462,3 +498,55 @@ cacontology-sentencing:concurrentWith rdf:type owl:ObjectProperty ;
     rdfs:comment "Links one criminal sentence to another sentence that is ordered to run concurrently."@en ;
     rdfs:domain cacontology-sentencing:CriminalSentence ;
     rdfs:range cacontology-sentencing:CriminalSentence .
+
+# =============================================================================
+# FLORIDA STATE CHARGE PROPERTIES
+# =============================================================================
+
+cacontology-sentencing:floridaStatute rdf:type owl:DatatypeProperty ;
+    rdfs:label "florida statute"@en ;
+    rdfs:comment "Reference to Florida Statute section for the charge (e.g., 'F.S. 847.0135')."@en ;
+    rdfs:domain cacontology-sentencing:FloridaStateCharge ;
+    rdfs:range xsd:string .
+
+cacontology-sentencing:chargeClassification rdf:type owl:DatatypeProperty ;
+    rdfs:label "charge classification"@en ;
+    rdfs:comment "Florida charge classification (capital_felony, life_felony, first_degree_felony, etc.)."@en ;
+    rdfs:domain cacontology-sentencing:FloridaStateCharge ;
+    rdfs:range xsd:string .
+
+cacontology-sentencing:travelOccurred rdf:type owl:DatatypeProperty ;
+    rdfs:label "travel occurred"@en ;
+    rdfs:comment "Indicates whether actual travel occurred in traveling to meet charges."@en ;
+    rdfs:domain cacontology-sentencing:TravelingToMeetAfterComputerLure ;
+    rdfs:range xsd:boolean .
+
+cacontology-sentencing:electronicCommunicationUsed rdf:type owl:DatatypeProperty ;
+    rdfs:label "electronic communication used"@en ;
+    rdfs:comment "Indicates whether electronic communication was used in the offense."@en ;
+    rdfs:domain cacontology-sentencing:FloridaStateCharge ;
+    rdfs:range xsd:boolean .
+
+cacontology-sentencing:solicitationType rdf:type owl:DatatypeProperty ;
+    rdfs:label "solicitation type"@en ;
+    rdfs:comment "Type of solicitation in computer solicitation charges (seduce, solicit, lure, entice, multiple)."@en ;
+    rdfs:domain cacontology-sentencing:ComputerSeduceSolicitLure ;
+    rdfs:range xsd:string .
+
+cacontology-sentencing:communicationPlatform rdf:type owl:DatatypeProperty ;
+    rdfs:label "communication platform"@en ;
+    rdfs:comment "Platform used for electronic communication in the offense."@en ;
+    rdfs:domain cacontology-sentencing:FloridaStateCharge ;
+    rdfs:range xsd:string .
+
+cacontology-sentencing:promotionType rdf:type owl:DatatypeProperty ;
+    rdfs:label "promotion type"@en ;
+    rdfs:comment "Type of promotion in sexual performance charges (direct_promotion, directing, producing, facilitating)."@en ;
+    rdfs:domain cacontology-sentencing:DirectPromotionOfSexualPerformance ;
+    rdfs:range xsd:string .
+
+cacontology-sentencing:contributionType rdf:type owl:DatatypeProperty ;
+    rdfs:label "contribution type"@en ;
+    rdfs:comment "Type of contribution in delinquency charges (delinquency, dependency, both)."@en ;
+    rdfs:domain cacontology-sentencing:ContributingToDelinquency ;
+    rdfs:range xsd:string .

@@ -5,6 +5,209 @@ All notable changes to the CAC ontology family will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2.3.0 - 1 January 2026
+
+### Added - Miami ICAC Undercover Operation Framework (Felipe Lopez Case)
+
+Major enhancement to the CAC Ontology based on analysis of Miami Police ICAC undercover operation press release regarding Enrique Gilberto Felipe Lopez arrest for attempting to meet minors for sex. This enhancement significantly expands modeling capabilities for undercover operations, sibling persona tactics, physical evidence collection, consent-based searches, Florida criminal charges, and immigration holds.
+
+#### Enhanced Undercover Operations Module (`ontology/cacontology-undercover.ttl`)
+
+**Multiple Persona Operations (4 new classes):**
+- `MultiplePersonaOperation` - Undercover operations utilizing more than one fictitious persona
+- `SiblingPersonaOperation` - Operations where personas are presented as siblings (e.g., 14yo and 12yo sisters)
+- `ChildPersona` - Fictitious child persona used in undercover operations
+- `OperationPlan` - Operational plan for undercover investigations
+
+**Suspect Communication Actions (9 new classes):**
+- `SuspectCommunicationAction` - Base class for suspect communications during operations
+- `ExplicitMessageRequestAction` - Suspect requests for explicit pictures from undercover persona
+- `VideoCallRequestAction` - Suspect requests for video calls, often when parents absent
+- `TransportArrangementAction` - Suspect arrangements to transport alleged minors
+- `DisguiseRequestAction` - Suspect requests for disguise items (consciousness of guilt)
+- `CriminalItemAgreementAction` - Suspect agreements to bring contraband items
+- `MeetingLocationArrangement` - Arrangements for specific meeting locations
+- `AgeAcknowledgment` - Instances where suspect acknowledged victim's stated age
+- `SexualIntentStatement` - Explicit statements of sexual intent toward minors
+
+**Meeting Location Classes (relocated from asset-forfeiture):**
+- `MeetingLocation` - Base class for exploitation meeting locations
+- `Motel` - Motel locations arranged for meetings
+- `Hotel` - Hotel locations arranged for meetings
+- `ShortTermRental` - Short-term rental locations
+
+**New Properties (15 properties):**
+- `personaCount`, `personaRelationship`, `primaryPersonaAge`, `secondaryPersonaAge`
+- `explicitContentRequested`, `videoCallRequested`, `whenParentAbsent`
+- `disguiseItemRequested`, `disguisePurpose`
+- `itemsAgreedToBring`, `meetingLocationType`, `meetingLocationName`
+- `ageStatedToSuspect`, `acknowledgedCount`, `sexualActsIntended`, `targetedBothPersonas`
+
+#### Enhanced Physical Evidence Module (`ontology/cacontology-physical-evidence.ttl`)
+
+**Evidence Collection Classes (5 new classes):**
+- `EvidenceCollectionAction` - Investigative action for evidence collection
+- `CellphoneSearch` - Search of suspect's cellphone device
+- `GloveCompartmentSearch` - Search of vehicle glove compartment
+- `PhysicalEvidenceProvenanceRecord` - Chain of custody for physical evidence
+
+**Abuse Facilitation Items (3 new classes):**
+- `VapeDevice` - Vaping devices as abuse facilitation items
+- `Condoms` - Condoms as abuse facilitation items
+- `IntoxicatingSubstance` - Intoxicating substances for victim impairment
+
+**Consent-Based Authorization Classes (3 new classes):**
+- `ConsentToSearchAuthorization` - Base class for consent-based search authorization
+- `VehicleConsentSearch` - Consent authorization for vehicle searches
+- `DeviceConsentSearch` - Consent authorization for electronic device searches
+
+**Digital Recording Evidence (3 new classes):**
+- `BodycamFootage` - Law enforcement bodycam recordings
+- `SurveillanceRecording` - Surveillance recordings
+- `DashcamFootage` - Dashboard camera footage
+
+**Suspect Vehicle (relocated from asset-forfeiture):**
+- `SuspectVehicle` - Vehicle owned/operated by suspect with evidence linkages
+
+**New Properties (12 properties):**
+- `consentGiven`, `consentType`, `consentScope`
+- `vapeFlavor`, `condomBrand`, `substanceType`
+- `recordingDate`, `usedForIdentification`, `matchesSelfie`
+- `foundInLocation`, `agreedToBring`, `evidentiarySignificance`
+
+#### Enhanced Tactical Operations Module (`ontology/cacontology-tactical.ttl`)
+
+**Arrest and Booking Classes (4 new classes):**
+- `ArrestOperation` - Tactical arrest operation (extends `investigation:InvestigativeAction`)
+- `BookingAction` - Booking of arrestee at correctional facility
+- `CorrectionalFacility` - Correctional facility for detention
+- `ImmigrationHold` - Immigration hold on foreign national
+
+**Interview and Documentation Classes (2 new classes):**
+- `InterviewWithoutCounsel` - Interview after rights waiver without counsel
+- `ArrestReport` - Official arrest report documentation
+
+**New Properties (12 properties):**
+- `arrestType`, `targetCount`, `resistanceExpected`, `weaponsExpected`
+- `bookingDate`, `bookingOfficer`
+- `correctionalFacilityName`
+- `immigrationStatus`, `immigrationHoldReason`
+- `reportIdentifier`, `reportDate`, `reportAuthor`
+
+#### Enhanced Sentencing Module (`ontology/cacontology-sentencing.ttl`)
+
+**Florida State Charges (5 new classes):**
+- `FloridaStateCharge` - Base class for Florida state criminal charges
+- `TravelingToMeetAfterComputerLure` - F.S. 847.0135(4) - Second Degree Felony
+- `DirectPromotionOfSexualPerformance` - F.S. 827.071 - Second Degree Felony
+- `ComputerSeduceSolicitLure` - F.S. 847.0135(3) - Third Degree Felony
+- `ContributingToDelinquency` - F.S. 827.04 - First Degree Misdemeanor
+
+**New Properties (9 properties):**
+- `floridaStatute`, `chargeClassification`
+- `travelOccurred`, `electronicCommunicationUsed`
+- `sexualPerformancePromotion`, `computerLureMethod`
+- `childDelinquencyContribution`
+- `promotionType`, `solicitationType`, `contributionType`
+
+#### New Example Knowledge Graph
+
+**Miami ICAC Felipe Lopez Example (`examples_knowledge_graphs/miami-icac-felipe-lopez-example.ttl`)**
+- Comprehensive 400+ line knowledge graph demonstrating the Miami ICAC case
+- Models defendant Enrique Gilberto Felipe Lopez (33, Guatemalan national)
+- Sibling persona undercover operation with 14yo and 12yo sister personas
+- 10 suspect communication actions with detailed evidence
+- Physical evidence: strawberry vape, Durex condoms, suspect cellphone
+- Suspect vehicle: 2015 white Toyota Corolla with evidence linkages
+- Bodycam identification from June traffic stop matched to suspect selfies
+- Consent authorizations for vehicle and cellphone searches
+- Arrest at Turner Guilford Knight Correctional Center
+- Immigration hold on Guatemalan national
+- 4 Florida criminal charges with statute references
+
+#### New SPARQL Query Collection
+
+**Miami ICAC Analytics (`example_SPARQL_queries/miami-icac-felipe-lopez-analytics.rq`)**
+- 15 investigative queries for case analysis:
+  - Undercover Operation Timeline
+  - Age Acknowledgment Evidence
+  - Physical Evidence Chain
+  - Prior Encounter Identification (bodycam matching)
+  - Florida Charges Summary with statute references
+  - Consent Authorization Audit
+  - Immigration and Detention Status
+  - Communication Action Patterns
+  - Evidence Corroboration
+  - Multi-Persona Operation Analysis
+  - Suspect Vehicle Analysis
+  - Sexual Intent Documentation
+  - Disguise and Evasion Tactics (consciousness of guilt)
+  - Complete Case Summary
+  - Meeting Location Arrangements
+
+### Changed - SHACL Validation and Shapes
+
+**Updated Undercover Shapes (`ontology/cacontology-undercover-shapes.ttl`)**
+- Added shapes for all new undercover operation classes
+- Validation for meeting location arrangements
+- Constraints on age acknowledgment values (0-17 range)
+- SPARQL-based cross-validation for operation consistency
+
+**Updated Physical Evidence Shapes (`ontology/cacontology-physical-evidence-shapes.ttl`)**
+- Added shapes for VapeDevice, Condoms, SuspectVehicle
+- Validation for consent authorization properties
+- Constraints on bodycam footage and identification evidence
+
+**Updated Tactical Shapes (`ontology/cacontology-tactical-shapes.ttl`)**
+- Added shapes for ArrestOperation, BookingAction, CorrectionalFacility, ImmigrationHold
+- Consolidated arrestType allowed values across shapes
+- Validation for tactical operation properties
+
+**Updated Sentencing Shapes (`ontology/cacontology-sentencing-shapes.ttl`)**
+- Added shapes for all Florida state charge classes
+- Validation for Florida statute references
+- Constraints on charge classification values
+
+### Changed - Ontology Reorganization
+
+**Relocated Classes for Logical Grouping:**
+- Moved `MeetingLocation`, `Motel`, `Hotel`, `ShortTermRental` from `cacontology-asset-forfeiture.ttl` to `cacontology-undercover.ttl`
+- Moved `SuspectVehicle` from `cacontology-asset-forfeiture.ttl` to `cacontology-physical-evidence.ttl`
+- Updated `cacontology-physical:PhysicalEvidence` to extend `uco-core:UcoObject` instead of `uco-observable:ObservableObject` for proper classification of non-digital physical items
+
+### Changed - Docker Validation Pipeline
+
+**Updated `testing/docker-compose.yaml`**
+- Added validation commands for Miami ICAC example against all relevant shape files
+- Validates against undercover, physical-evidence, tactical, and sentencing shapes
+
+### Technical Summary
+
+**New Semantic Elements:**
+- **30+ new classes** across 4 enhanced ontology modules
+- **48+ new properties** (datatype and object properties)
+- **12+ new relationships** enabling complex pattern modeling
+- **400+ triples** in new Miami ICAC example
+- **469 lines** of investigative SPARQL queries
+
+**SHACL Validation:**
+- All example knowledge graphs validate against corresponding shape files
+- Fixed conflicting shape definitions for consistent validation
+- Added parent class types for proper SHACL validation without reasoning
+
+**UCO/CASE Integration:**
+- New investigative actions extend `investigation:InvestigativeAction`
+- New authorizations extend `investigation:Authorization`
+- New provenance records extend `investigation:ProvenanceRecord`
+- Physical items properly classified as `uco-core:UcoObject` (non-digital)
+
+**Real-World Applications:**
+- **Law Enforcement**: Complete framework for ICAC undercover operation documentation
+- **Prosecution**: Florida-specific charges with statute references for charging decisions
+- **Evidence Management**: Physical evidence chain with consent authorization tracking
+- **Immigration**: Immigration hold and detention status modeling
+- **Analytics**: 15 ready-to-use SPARQL queries for investigative analysis
+
 ## v2.2.0 - 23 November 2025
 
 ### Added - Utah Recidivism & NCMEC Analytics (Dominic Christensen Case)
