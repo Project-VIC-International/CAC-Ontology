@@ -19,10 +19,10 @@
 @prefix cacontology-temporal: <https://cacontology.projectvic.org/temporal#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/trafficking/2.3.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/trafficking/2.4.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Sex Trafficking Ontology"@en ;
     rdfs:comment "Specialized ontology for modeling sex trafficking of minors and related criminal enterprises with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, organization structure modeling, and validation capabilities. Based on cases like Brooklyn DA v. Eight Defendants (2025)."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/trafficking/2.3.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/trafficking/2.4.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-05-28"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;

@@ -5,6 +5,154 @@ All notable changes to the CAC ontology family will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2.4.0 - 27 January 2026
+
+### Added - Raven US Extensions Integration (Legislative & Organizational Framework)
+
+Major enhancement integrating Raven US Extensions for legislative tracking, advocacy workflows, and legal harmonization. This release introduces comprehensive modeling for U.S. federal organizational hierarchy, legislative processes, advocacy workflows, and international legal framework extensions.
+
+#### New USA Legislative Module (`ontology/cacontology-usa-legislative.ttl`)
+
+**U.S. Federal Organization Hierarchy (5 new classes):**
+- `USCabinetAgency` - Cabinet-level departments (DOJ, DHS)
+- `USSubCabinetAgency` - Sub-cabinet law enforcement agencies (FBI, USMS, ICE)
+- `USFederalDirectorate` - Directorates within sub-cabinet agencies (HSI within ICE)
+- `USFederalAgencyOffice` - Offices within federal agencies (OJJDP within DOJ)
+- Instances: DOJ, DHS, FBI, USMS, ICE, HSI, OJJDP, USPS-OIG, NCMEC
+
+**U.S. Congressional Classes (1 new class + 6 instances):**
+- `USCongressionalCommittee` - Congressional committee class
+- Instances: House/Senate Judiciary, Appropriations, Energy/Commerce committees
+
+**U.S. State-Level Classes (4 new classes):**
+- `USStateAgency` - State government agencies
+- `USStateAttorneyGeneral` - State attorney general offices
+- `USStateLegislature` - State legislative bodies
+- `USStateICACtaskForce` - State-level ICAC task forces
+
+**U.S. Legislative Stage Classes (1 class + 8 instances, modeled as gUFO Phase):**
+- `LegislativeStage` - Stage in U.S. legislative process
+- Instances: introduced, in_committee, reported, passed_chamber, passed_both, conference, enacted, vetoed
+
+**U.S. Funding/Appropriation Classes (4 classes + instances):**
+- `AppropriationType` - Types of Congressional appropriations
+- `FundingStream` - Sources of ICAC program funding
+- `FundingNeed` - Task force funding requirements
+- `Outcome` - Results of advocacy efforts
+
+**U.S.-Specific Legislative Processes (4 classes, modeled as gUFO EventType):**
+- `USConferenceCommittee` - Bicameral reconciliation process
+- `USExecutiveAction` - Presidential signing/veto
+- `USRulemakingProcess` - Administrative Procedure Act rulemaking
+- `USReconciliation` - Budget reconciliation process
+
+**New Properties (15+ properties):**
+- Organization: `acronym`, `organizationType`, `parentAgency`, `hasSubAgency`, `chamber`, `servesOn`
+- Legislative: `stageOrder`, `isFinal`, `isPositive`
+- Funding: `needDescription`, `requestedAmount`, `priorityLevel`, `expressesFundingNeed`, `addressedBy`
+- Alignment: `usStateFederalHarmonization`, `implementsUSModelLaw`, `alignedWithFederalLaw`
+
+#### Enhanced Legal Harmonization Module (`ontology/cacontology-legal-harmonization.ttl`)
+
+**Jurisdiction Metadata Annotation Properties (3 properties):**
+- `jurisdictionScope` - Country/region applicability (ISO 3166-1 alpha-2)
+- `countryCode` - ISO 3166-1 alpha-2 country code
+- `isCountrySpecific` - Boolean for country-specific concepts
+
+**Legislative Role Classes (10 new classes):**
+- `LegislativeRole` - Base class for legislative ecosystem roles
+- `Legislator`, `CommitteeMember`, `BillSponsor`, `TaskForceLiaison`
+- `LegislativeAdvocate`, `ProsecutorAdvocate`, `VictimAdvocate`
+- `LawEnforcementOfficer`, `PolicyAnalyst`
+
+**Legislative Process Classes (6 new classes, modeled as gUFO EventType):**
+- `LegislativeProcess` - Base class for legislative lifecycle steps
+- `BillDrafting`, `CommitteeReview`, `FloorVote`, `PublicHearing`, `AmendmentProcess`
+
+**Advocacy Process Classes (8 new classes, modeled as gUFO EventType):**
+- `AdvocacyProcess` - Base class for advocacy activities
+- `StakeholderEngagement`, `TestimonySubmission`, `CoalitionBuilding`
+- `GrassrootsAdvocacy`, `LegislativeEducation`, `ImpactAssessment`, `MediaOutreach`
+
+**Compliance Process Classes (7 new classes, modeled as gUFO EventType):**
+- `ComplianceProcess` - Base class for compliance activities
+- `MandatoryReporting`, `AnnualReview`, `GrantCompliance`
+- `StatutoryReporting`, `AuditProcess`, `CertificationProcess`
+
+**New Child Safety Law Types (6 new classes):**
+- `SextortionLaw` - Laws addressing sextortion of children
+- `AgeVerificationLaw` - Age verification requirements for online services
+- `PlatformAccountabilityLaw` - Platform accountability for child safety
+- `OnlineSafetyLaw` - General online child safety laws
+- `ChildExploitationLaw` - Child exploitation legislation
+- `DataProtectionForMinorsLaw` - Children's data protection laws
+
+**Legal Framework Classes (4 new classes):**
+- `Statute` - Enacted law within a jurisdiction (subClassOf gufo:Norm)
+- `Correspondence` - Communication between actors regarding legislation
+- `LegislativeInstrument` - Bills, resolutions, and legislative documents
+- `HarmonizationInitiative` - Organized harmonization efforts
+
+**New Object Properties (14 properties):**
+- `hasRole`, `representsJurisdiction`, `affiliatedWith`
+- `implementsModelLaw`, `hasLegalGap`, `harmonizedWith`, `addressesGap`
+- `hasStatute`, `hasLawType`, `parentJurisdiction`
+- `advocatesFor`, `providesTestimony`, `correspondsAbout`, `involvesProcess`
+
+**New Datatype Properties (9 properties):**
+- `hasHarmonizationLevel`, `gapSeverity`, `gapType`
+- `hasComplianceScore`, `meetsStandard`, `complianceDate`
+- `jurisdictionType`, `processStatus`, `processDate`
+
+#### New SHACL Shapes (`ontology/cacontology-usa-legislative-shapes.ttl`)
+
+**Organization Shapes:**
+- `USCabinetAgencyShape`, `USSubCabinetAgencyShape`, `USFederalDirectorateShape`, `USFederalAgencyOfficeShape`
+- `USCongressionalCommitteeShape`, `USStateAgencyShape`, `USStateAttorneyGeneralShape`
+
+**Legislative Shapes:**
+- `LegislativeStageShape`, `LegislativeStageOrderingShape`
+- `USConferenceCommitteeShape`, `USExecutiveActionShape`, `USRulemakingProcessShape`, `USReconciliationShape`
+
+**Funding Shapes:**
+- `FundingNeedShape`, `AppropriationTypeShape`, `OutcomeShape`
+
+**Validation Rules:**
+- Organization hierarchy consistency validation
+- Stage ordering validation for final stages
+- gUFO EventType validation for all process classes
+
+#### Updated SHACL Shapes (`ontology/cacontology-legal-harmonization-shapes.ttl`)
+
+**New Shapes:**
+- `LegislativeRoleShape`, `PersonWithRoleShape`
+- `LegislativeProcessShape`, `BillDraftingShape`, `CommitteeReviewShape`, `FloorVoteShape`
+- `AdvocacyProcessShape`, `TestimonySubmissionShape`, `CoalitionBuildingShape`
+- `ComplianceProcessShape`, `AuditProcessShape`
+- `StatuteShape`, `LegislativeInstrumentShape`, `CorrespondenceShape`
+- `SextortionLawShape`, `AgeVerificationLawShape`, `PlatformAccountabilityLawShape`
+- `OnlineSafetyLawShape`, `ChildExploitationLawShape`, `DataProtectionForMinorsLawShape`
+- `JurisdictionWithStatutesShape`, `JurisdictionWithGapsShape`
+
+### Technical Notes
+
+- All new process classes (LegislativeProcess, AdvocacyProcess, ComplianceProcess and subtypes) are modeled as `gufo:EventType` with `rdfs:subClassOf uco-action:Action, gufo:Event` to align with existing legal-harmonization patterns
+- Reuses `cacontology-multi:Jurisdiction` from multi-jurisdiction module rather than introducing duplicate Jurisdiction class
+- Legislative stages modeled as `gufo:Phase` to match CAC phase patterns
+- Organization hierarchy uses `parentAgency` property with `rdfs:subPropertyOf gufo:isComponentOf` for proper part-whole semantics
+
+### Files Changed
+
+| File | Action |
+|------|--------|
+| `ontology/cacontology-legal-harmonization.ttl` | Modified - added ~38 classes, ~23 properties |
+| `ontology/cacontology-legal-harmonization-shapes.ttl` | Modified - added ~25 new shapes |
+| `ontology/cacontology-usa-legislative.ttl` | **Created** - ~25 classes + instances |
+| `ontology/cacontology-usa-legislative-shapes.ttl` | **Created** - ~15 new shapes |
+| All ontology files | Updated version 2.3.0 → 2.4.0 |
+
+---
+
 ## v2.3.0 - 1 January 2026
 
 ### Added - Miami ICAC Undercover Operation Framework (Felipe Lopez Case)
