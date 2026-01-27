@@ -11,6 +11,7 @@
 
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-legal: <https://cacontology.projectvic.org/legal-harmonization#> .
+@prefix cacontology-multi: <https://cacontology.projectvic.org/multi-jurisdiction#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # =============================================================================
@@ -18,14 +19,15 @@
 # Enhanced with gUFO (gentle Unified Foundational Ontology) integration
 # =============================================================================
 
-<https://cacontology.projectvic.org/legal-harmonization/2.3.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/legal-harmonization/2.4.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Legal Harmonization Ontology"@en ;
     rdfs:comment "An ontology for modeling international legal frameworks, policy harmonization, and CSAM legislation analysis across 196 countries based on ICMEC's Global Review. Enhanced with gUFO (gentle Unified Foundational Ontology) integration for improved semantic precision and validation capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/legal-harmonization/2.3.0> ;
-    owl:versionInfo "2.3.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/legal-harmonization/2.4.0> ;
+    owl:versionInfo "2.4.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <http://purl.org/nemo/gufo#> .
+    owl:imports <http://purl.org/nemo/gufo#> ,
+                <https://cacontology.projectvic.org/multi-jurisdiction/2.4.0> .
 
 # =============================================================================
 # LEGAL FRAMEWORK ANALYSIS CLASSES (gUFO: Kind - legal documents/entities)
@@ -557,4 +559,465 @@ cacontology-legal:enablesExtradition rdf:type owl:ObjectProperty ;
     rdfs:domain cacontology-legal:ExtraditionAgreement ;
     rdfs:range cacontology-legal:InternationalLawEnforcement ;
     rdfs:label "enables extradition"@en ;
-    rdfs:comment "Law enforcement action enabled by extradition agreement."@en . 
+    rdfs:comment "Law enforcement action enabled by extradition agreement."@en .
+
+# =============================================================================
+# RAVEN US EXTENSIONS - ANNOTATION PROPERTIES (Jurisdiction Metadata)
+# =============================================================================
+
+cacontology-legal:jurisdictionScope rdf:type owl:AnnotationProperty ;
+    rdfs:label "Jurisdiction Scope"@en ;
+    rdfs:comment "Indicates the country/region where this concept applies. Use ISO 3166-1 alpha-2 codes (US, GB, AU, etc.) or 'international' for universal concepts."@en .
+
+cacontology-legal:countryCode rdf:type owl:AnnotationProperty ;
+    rdfs:label "Country Code"@en ;
+    rdfs:comment "ISO 3166-1 alpha-2 country code."@en .
+
+cacontology-legal:isCountrySpecific rdf:type owl:AnnotationProperty ;
+    rdfs:label "Is Country Specific"@en ;
+    rdfs:comment "True if this concept is specific to a particular country's legal system."@en .
+
+# =============================================================================
+# RAVEN US EXTENSIONS - LEGISLATIVE ROLE CLASSES (gUFO: Role)
+# =============================================================================
+
+cacontology-legal:LegislativeRole rdf:type owl:Class ;
+    rdfs:subClassOf gufo:Role, uco-core:Role ;
+    rdfs:label "Legislative Role"@en ;
+    rdfs:comment "Role an actor plays in the legislative ecosystem."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:Legislator rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-legal:LegislativeRole ;
+    rdfs:label "Legislator"@en ;
+    rdfs:comment "Elected member of a legislative body."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:CommitteeMember rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-legal:LegislativeRole ;
+    rdfs:label "Committee Member"@en ;
+    rdfs:comment "Member of a legislative committee."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:BillSponsor rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-legal:LegislativeRole ;
+    rdfs:label "Bill Sponsor"@en ;
+    rdfs:comment "Legislator who introduces or sponsors legislation."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:TaskForceLiaison rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-legal:LegislativeRole ;
+    rdfs:label "Task Force Liaison"@en ;
+    rdfs:comment "Person who coordinates between task forces and other entities."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:LegislativeAdvocate rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-legal:LegislativeRole ;
+    rdfs:label "Legislative Advocate"@en ;
+    rdfs:comment "Person who advocates for legislative change."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:ProsecutorAdvocate rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-legal:LegislativeRole ;
+    rdfs:label "Prosecutor Advocate"@en ;
+    rdfs:comment "Prosecutor who advocates for stronger laws."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:VictimAdvocate rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-legal:LegislativeRole ;
+    rdfs:label "Victim Advocate"@en ;
+    rdfs:comment "Person who advocates on behalf of crime victims."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:LawEnforcementOfficer rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-legal:LegislativeRole ;
+    rdfs:label "Law Enforcement Officer"@en ;
+    rdfs:comment "Officer involved in child safety investigations."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:PolicyAnalyst rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-legal:LegislativeRole ;
+    rdfs:label "Policy Analyst"@en ;
+    rdfs:comment "Person who analyzes and develops policy recommendations."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+# =============================================================================
+# RAVEN US EXTENSIONS - LEGISLATIVE PROCESS CLASSES (gUFO: EventType)
+# Aligned with existing legal-harmonization pattern
+# =============================================================================
+
+cacontology-legal:LegislativeProcess rdf:type owl:Class ;
+    rdfs:subClassOf uco-action:Action, gufo:Event ;
+    rdf:type gufo:EventType ;
+    rdfs:label "Legislative Process"@en ;
+    rdfs:comment "A step in the legislative lifecycle - applicable across jurisdictions."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:BillDrafting rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-legal:LegislativeProcess ;
+    rdf:type gufo:EventType ;
+    rdfs:label "Bill Drafting"@en ;
+    rdfs:comment "Process of drafting legislation."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:CommitteeReview rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-legal:LegislativeProcess ;
+    rdf:type gufo:EventType ;
+    rdfs:label "Committee Review"@en ;
+    rdfs:comment "Review of legislation by a committee."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:FloorVote rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-legal:LegislativeProcess ;
+    rdf:type gufo:EventType ;
+    rdfs:label "Floor Vote"@en ;
+    rdfs:comment "Vote on legislation by the full legislative body."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:PublicHearing rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-legal:LegislativeProcess ;
+    rdf:type gufo:EventType ;
+    rdfs:label "Public Hearing"@en ;
+    rdfs:comment "Public hearing on proposed legislation."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:AmendmentProcess rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-legal:LegislativeProcess ;
+    rdf:type gufo:EventType ;
+    rdfs:label "Amendment Process"@en ;
+    rdfs:comment "Process of amending legislation."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+# =============================================================================
+# RAVEN US EXTENSIONS - ADVOCACY PROCESS CLASSES (gUFO: EventType)
+# =============================================================================
+
+cacontology-legal:AdvocacyProcess rdf:type owl:Class ;
+    rdfs:subClassOf uco-action:Action, gufo:Event ;
+    rdf:type gufo:EventType ;
+    rdfs:label "Advocacy Process"@en ;
+    rdfs:comment "Process used in legislative advocacy."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:StakeholderEngagement rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-legal:AdvocacyProcess ;
+    rdf:type gufo:EventType ;
+    rdfs:label "Stakeholder Engagement"@en ;
+    rdfs:comment "Engaging stakeholders in advocacy efforts."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:TestimonySubmission rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-legal:AdvocacyProcess ;
+    rdf:type gufo:EventType ;
+    rdfs:label "Testimony Submission"@en ;
+    rdfs:comment "Submitting testimony to legislative bodies."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:CoalitionBuilding rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-legal:AdvocacyProcess ;
+    rdf:type gufo:EventType ;
+    rdfs:label "Coalition Building"@en ;
+    rdfs:comment "Building coalitions to support advocacy goals."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:GrassrootsAdvocacy rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-legal:AdvocacyProcess ;
+    rdf:type gufo:EventType ;
+    rdfs:label "Grassroots Advocacy"@en ;
+    rdfs:comment "Mobilizing public support for advocacy goals."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:LegislativeEducation rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-legal:AdvocacyProcess ;
+    rdf:type gufo:EventType ;
+    rdfs:label "Legislative Education"@en ;
+    rdfs:comment "Educating legislators on issues."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:ImpactAssessment rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-legal:AdvocacyProcess ;
+    rdf:type gufo:EventType ;
+    rdfs:label "Impact Assessment"@en ;
+    rdfs:comment "Assessing the impact of proposed legislation."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:MediaOutreach rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-legal:AdvocacyProcess ;
+    rdf:type gufo:EventType ;
+    rdfs:label "Media Outreach"@en ;
+    rdfs:comment "Engaging media to support advocacy goals."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+# =============================================================================
+# RAVEN US EXTENSIONS - COMPLIANCE PROCESS CLASSES (gUFO: EventType)
+# =============================================================================
+
+cacontology-legal:ComplianceProcess rdf:type owl:Class ;
+    rdfs:subClassOf uco-action:Action, gufo:Event ;
+    rdf:type gufo:EventType ;
+    rdfs:label "Compliance Process"@en ;
+    rdfs:comment "Process for ensuring legal compliance."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:MandatoryReporting rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-legal:ComplianceProcess ;
+    rdf:type gufo:EventType ;
+    rdfs:label "Mandatory Reporting"@en ;
+    rdfs:comment "Required reporting to authorities."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:AnnualReview rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-legal:ComplianceProcess ;
+    rdf:type gufo:EventType ;
+    rdfs:label "Annual Review"@en ;
+    rdfs:comment "Annual compliance review process."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:GrantCompliance rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-legal:ComplianceProcess ;
+    rdf:type gufo:EventType ;
+    rdfs:label "Grant Compliance"@en ;
+    rdfs:comment "Compliance with grant requirements."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:StatutoryReporting rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-legal:ComplianceProcess ;
+    rdf:type gufo:EventType ;
+    rdfs:label "Statutory Reporting"@en ;
+    rdfs:comment "Reporting required by statute."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:AuditProcess rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-legal:ComplianceProcess ;
+    rdf:type gufo:EventType ;
+    rdfs:label "Audit Process"@en ;
+    rdfs:comment "Audit for compliance verification."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:CertificationProcess rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-legal:ComplianceProcess ;
+    rdf:type gufo:EventType ;
+    rdfs:label "Certification Process"@en ;
+    rdfs:comment "Process for obtaining compliance certification."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+# =============================================================================
+# RAVEN US EXTENSIONS - NEW CHILD SAFETY LAW TYPES (gUFO: Kind)
+# =============================================================================
+
+cacontology-legal:SextortionLaw rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Sextortion Law"@en ;
+    rdfs:comment "Laws addressing sextortion of children."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:AgeVerificationLaw rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Age Verification Law"@en ;
+    rdfs:comment "Laws requiring age verification for online services."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:PlatformAccountabilityLaw rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Platform Accountability Law"@en ;
+    rdfs:comment "Laws holding online platforms accountable for child safety."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:OnlineSafetyLaw rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Online Safety Law"@en ;
+    rdfs:comment "General laws addressing online child safety."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:ChildExploitationLaw rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Child Exploitation Law"@en ;
+    rdfs:comment "Laws addressing child exploitation."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:DataProtectionForMinorsLaw rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Data Protection for Minors Law"@en ;
+    rdfs:comment "Laws protecting children's personal data."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+# =============================================================================
+# RAVEN US EXTENSIONS - LEGAL FRAMEWORK / CORRESPONDENCE CLASSES
+# Note: Jurisdiction is reused from cacontology-multi:Jurisdiction
+# =============================================================================
+
+cacontology-legal:Statute rdf:type owl:Class ;
+    rdfs:subClassOf gufo:Norm ;
+    rdfs:label "Statute"@en ;
+    rdfs:comment "Enacted law within a jurisdiction."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:Correspondence rdf:type owl:Class ;
+    rdfs:subClassOf gufo:Object ;
+    rdfs:label "Correspondence"@en ;
+    rdfs:comment "Communication between actors regarding legislation."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:LegislativeInstrument rdf:type owl:Class ;
+    rdfs:subClassOf gufo:AbstractArtifact ;
+    rdfs:label "Legislative Instrument"@en ;
+    rdfs:comment "A bill, resolution, or other legislative document."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:HarmonizationInitiative rdf:type owl:Class ;
+    rdfs:subClassOf gufo:Situation ;
+    rdfs:label "Harmonization Initiative"@en ;
+    rdfs:comment "Organized effort to harmonize laws across jurisdictions."@en ;
+    cacontology-legal:isCountrySpecific false .
+
+# =============================================================================
+# RAVEN US EXTENSIONS - NEW OBJECT PROPERTIES
+# =============================================================================
+
+cacontology-legal:hasRole rdf:type owl:ObjectProperty ;
+    rdfs:label "has role"@en ;
+    rdfs:comment "Links an individual to their legislative role."@en ;
+    rdfs:domain uco-identity:Person ;
+    rdfs:range gufo:Role .
+
+cacontology-legal:representsJurisdiction rdf:type owl:ObjectProperty ;
+    rdfs:label "represents jurisdiction"@en ;
+    rdfs:comment "Links an actor to the jurisdiction they represent."@en ;
+    rdfs:domain uco-identity:Person ;
+    rdfs:range cacontology-multi:Jurisdiction .
+
+cacontology-legal:affiliatedWith rdf:type owl:ObjectProperty ;
+    rdfs:label "affiliated with"@en ;
+    rdfs:comment "Links an actor to an organization they are affiliated with."@en ;
+    rdfs:domain uco-identity:Person ;
+    rdfs:range uco-identity:Organization .
+
+cacontology-legal:implementsModelLaw rdf:type owl:ObjectProperty ;
+    rdfs:label "implements model law"@en ;
+    rdfs:comment "Links a statute to a model law it implements."@en ;
+    rdfs:domain cacontology-legal:Statute ;
+    rdfs:range cacontology-legal:CSAMModelLaw .
+
+cacontology-legal:hasLegalGap rdf:type owl:ObjectProperty ;
+    rdfs:label "has legal gap"@en ;
+    rdfs:comment "Links a jurisdiction to legal gaps it has."@en ;
+    rdfs:domain cacontology-multi:Jurisdiction ;
+    rdfs:range cacontology-legal:LegalFrameworkGap .
+
+cacontology-legal:harmonizedWith rdf:type owl:ObjectProperty ;
+    rdfs:label "harmonized with"@en ;
+    rdfs:comment "Links laws that are harmonized across jurisdictions."@en ;
+    rdfs:domain cacontology-legal:Statute ;
+    rdfs:range cacontology-legal:Statute .
+
+cacontology-legal:addressesGap rdf:type owl:ObjectProperty ;
+    rdfs:label "addresses gap"@en ;
+    rdfs:comment "Links a statute to the legal gap it addresses."@en ;
+    rdfs:domain cacontology-legal:Statute ;
+    rdfs:range cacontology-legal:LegalFrameworkGap .
+
+cacontology-legal:hasStatute rdf:type owl:ObjectProperty ;
+    rdfs:label "has statute"@en ;
+    rdfs:comment "Links a jurisdiction to its enacted statutes."@en ;
+    rdfs:domain cacontology-multi:Jurisdiction ;
+    rdfs:range cacontology-legal:Statute .
+
+cacontology-legal:hasLawType rdf:type owl:ObjectProperty ;
+    rdfs:label "has law type"@en ;
+    rdfs:comment "Links a jurisdiction to child safety law types it has enacted."@en ;
+    rdfs:domain cacontology-multi:Jurisdiction ;
+    rdfs:range uco-core:UcoObject .
+
+cacontology-legal:parentJurisdiction rdf:type owl:ObjectProperty ;
+    rdfs:label "parent jurisdiction"@en ;
+    rdfs:comment "Links a jurisdiction to its parent (e.g., state to federal)."@en ;
+    rdfs:domain cacontology-multi:Jurisdiction ;
+    rdfs:range cacontology-multi:Jurisdiction .
+
+cacontology-legal:advocatesFor rdf:type owl:ObjectProperty ;
+    rdfs:label "advocates for"@en ;
+    rdfs:comment "Links an actor to legislation they advocate for."@en ;
+    rdfs:domain uco-identity:Person ;
+    rdfs:range cacontology-legal:LegislativeInstrument .
+
+cacontology-legal:providesTestimony rdf:type owl:ObjectProperty ;
+    rdfs:label "provides testimony"@en ;
+    rdfs:comment "Links an actor to legislation they testified about."@en ;
+    rdfs:domain uco-identity:Person ;
+    rdfs:range cacontology-legal:LegislativeInstrument .
+
+cacontology-legal:correspondsAbout rdf:type owl:ObjectProperty ;
+    rdfs:label "corresponds about"@en ;
+    rdfs:comment "Links correspondence to legislation it concerns."@en ;
+    rdfs:domain cacontology-legal:Correspondence ;
+    rdfs:range cacontology-legal:LegislativeInstrument .
+
+cacontology-legal:involvesProcess rdf:type owl:ObjectProperty ;
+    rdfs:label "involves process"@en ;
+    rdfs:comment "Links legislation to the process it is going through."@en ;
+    rdfs:domain cacontology-legal:LegislativeInstrument ;
+    rdfs:range cacontology-legal:LegislativeProcess .
+
+# =============================================================================
+# RAVEN US EXTENSIONS - NEW DATATYPE PROPERTIES
+# =============================================================================
+
+cacontology-legal:hasHarmonizationLevel rdf:type owl:DatatypeProperty ;
+    rdfs:label "harmonization level"@en ;
+    rdfs:comment "Level of harmonization (full, partial, none)."@en ;
+    rdfs:domain cacontology-multi:Jurisdiction ;
+    rdfs:range xsd:string .
+
+cacontology-legal:gapSeverity rdf:type owl:DatatypeProperty ;
+    rdfs:label "gap severity"@en ;
+    rdfs:comment "Severity of legal gap (1-5 scale)."@en ;
+    rdfs:domain cacontology-legal:LegalFrameworkGap ;
+    rdfs:range xsd:integer .
+
+cacontology-legal:gapType rdf:type owl:DatatypeProperty ;
+    rdfs:label "gap type"@en ;
+    rdfs:comment "Type of legal gap (e.g., missing_law, weak_enforcement, outdated)."@en ;
+    rdfs:domain cacontology-legal:LegalFrameworkGap ;
+    rdfs:range xsd:string .
+
+cacontology-legal:hasComplianceScore rdf:type owl:DatatypeProperty ;
+    rdfs:label "compliance score"@en ;
+    rdfs:comment "Numerical compliance score."@en ;
+    rdfs:domain cacontology-multi:Jurisdiction ;
+    rdfs:range xsd:decimal .
+
+cacontology-legal:meetsStandard rdf:type owl:DatatypeProperty ;
+    rdfs:label "meets standard"@en ;
+    rdfs:comment "Whether jurisdiction meets the minimum standard."@en ;
+    rdfs:domain cacontology-multi:Jurisdiction ;
+    rdfs:range xsd:boolean .
+
+cacontology-legal:complianceDate rdf:type owl:DatatypeProperty ;
+    rdfs:label "compliance date"@en ;
+    rdfs:comment "Date of compliance assessment."@en ;
+    rdfs:domain cacontology-multi:Jurisdiction ;
+    rdfs:range xsd:date .
+
+cacontology-legal:jurisdictionType rdf:type owl:DatatypeProperty ;
+    rdfs:label "jurisdiction type"@en ;
+    rdfs:comment "Type of jurisdiction (federal, state, territory, local, national, regional)."@en ;
+    rdfs:domain cacontology-multi:Jurisdiction ;
+    rdfs:range xsd:string .
+
+cacontology-legal:processStatus rdf:type owl:DatatypeProperty ;
+    rdfs:label "process status"@en ;
+    rdfs:comment "Status of legislative process (pending, in_progress, completed, failed)."@en ;
+    rdfs:domain cacontology-legal:LegislativeProcess ;
+    rdfs:range xsd:string .
+
+cacontology-legal:processDate rdf:type owl:DatatypeProperty ;
+    rdfs:label "process date"@en ;
+    rdfs:comment "Date the process step occurred."@en ;
+    rdfs:domain cacontology-legal:LegislativeProcess ;
+    rdfs:range xsd:date . 

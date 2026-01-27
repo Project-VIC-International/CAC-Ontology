@@ -4,8 +4,8 @@ import argparse
 import os
 from pathlib import Path
 
-OLD_VERSION = "2.2.0"
-NEW_VERSION = "2.3.0"
+OLD_VERSION = "2.3.0"
+NEW_VERSION = "2.4.0"
 
 TTL_EXTENSION = ".ttl"
 SKIP_DIRS = {".git", ".idea", ".vscode", "__pycache__", "node_modules"}
