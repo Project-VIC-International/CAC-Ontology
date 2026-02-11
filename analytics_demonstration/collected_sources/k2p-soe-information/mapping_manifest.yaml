@@ -1,0 +1,187 @@
+documentId: "urn:uuid:1d896431-835d-585d-929b-f51fafce1fe2"
+caseId: "k2p-soe-information"
+concepts:
+  - conceptName: "Source Document (PDF)"
+    instanceUUID: "urn:uuid:1d896431-835d-585d-929b-f51fafce1fe2"
+    class: "uco-observable:ObservableObject"
+    facets:
+      - "uco-observable:ContentDataFacet"
+      - "uco-observable:FileFacet"
+      - "uco-observable:URLFacet"
+      - "uco-observable:HashFacet"
+    relationships:
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:c7c1694d-be76-56cd-8fca-f6d86d3db519"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:4679fef8-9687-5f7d-952e-afb7b2ac6eca"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:dccf1301-70d9-506c-a66d-0dd0463cebd0"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:34bc5c42-0f8e-5eec-9f32-23b332d30dcc"
+    evidencePointer:
+      documentId: "urn:uuid:1d896431-835d-585d-929b-f51fafce1fe2"
+      span: "K2P SOE Information.pdf (raw artifact)"
+      quote: "TIPS2PROTECT AGAINST SADISTIC ONLINE EXPLOITATION"
+    confidence: "high"
+
+  - conceptName: "Extracted Text Artifact (source.txt)"
+    instanceUUID: "urn:uuid:89cabed7-44a1-5893-b895-ab3d154f1b78"
+    class: "uco-observable:ObservableObject"
+    facets:
+      - "uco-observable:ContentDataFacet"
+      - "uco-observable:FileFacet"
+      - "uco-observable:HashFacet"
+    relationships:
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:8a4c1c19-d96a-5a44-b536-00c3a551191d"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:d85dba64-1ce8-5cab-9bfa-1c7a9766d379"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:e6313445-df64-52ad-8c6c-254ea1f77e03"
+    evidencePointer:
+      documentId: "urn:uuid:1d896431-835d-585d-929b-f51fafce1fe2"
+      span: "analytics_demonstration/collected_sources/k2p-soe-information/source.txt"
+      quote: "PDF-to-text extraction capture"
+    confidence: "high"
+
+  - conceptName: "Normalized Text Artifact (normalized.txt)"
+    instanceUUID: "urn:uuid:1b6b01b7-ece9-5ab9-a236-287f03093c52"
+    class: "uco-observable:ObservableObject"
+    facets:
+      - "uco-observable:ContentDataFacet"
+      - "uco-observable:FileFacet"
+      - "uco-observable:HashFacet"
+    relationships:
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:fe011ee6-183c-5f1b-8c94-0a1252fc059f"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:1b68717f-60d9-5a93-891f-3ad182506f68"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:f79727c7-f33e-5d21-90c8-70513234b20d"
+    evidencePointer:
+      documentId: "urn:uuid:1d896431-835d-585d-929b-f51fafce1fe2"
+      span: "generated artifact"
+      quote: "pdf_to_text + whitespace normalization + paragraph-per-line normalization"
+    confidence: "high"
+
+  - conceptName: "Publisher identity (Know2Protect)"
+    instanceUUID: "urn:uuid:b7310b51-610b-519f-90f2-64e98ad26e72"
+    class: "uco-identity:Organization"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:1d896431-835d-585d-929b-f51fafce1fe2"
+      span: "normalized.txt lines 17-18"
+      quote: "To learn more, visit know2protect.gov"
+    confidence: "medium"
+
+  - conceptName: "Enterprise: CVLT (neo-Nazi child exploitation network)"
+    instanceUUID: "urn:uuid:392f86a6-efeb-505f-98f0-4a19b2e7ac10"
+    class: "cacontology-enterprises:ChildExploitationEnterprise"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:1d896431-835d-585d-929b-f51fafce1fe2"
+      span: "normalized.txt lines 24-27"
+      quote: "CVLT ... neo-Nazi child exploitation network ... branding / cut signs ..."
+    confidence: "high"
+
+  - conceptName: "Network: 764 (global online exploitation group)"
+    instanceUUID: "urn:uuid:c927dcf1-d1fc-57d5-85d7-f07e8adc33eb"
+    class: "cacontology-enterprises:NihilisticViolentExtremismNetwork"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:1d896431-835d-585d-929b-f51fafce1fe2"
+      span: "normalized.txt lines 28-33"
+      quote: "764 ... global online exploitation group ... watch parties / cut shows ..."
+    confidence: "high"
+
+  - conceptName: "Statement: SOE networks definition + threat set"
+    instanceUUID: "urn:uuid:c7065d83-4da7-577c-a3c0-81b6c78c8a4e"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      - predicate: "uco-action:object"
+        targetUUID: "urn:uuid:b8f2892c-fc20-58b8-815e-f9bcea922db0"
+    evidencePointer:
+      documentId: "urn:uuid:1d896431-835d-585d-929b-f51fafce1fe2"
+      span: "normalized.txt lines 4-9"
+      quote: "SOE networks are online groups ... violent real-life media ... CSAM ... doxxing ... swatting ..."
+    confidence: "high"
+
+  - conceptName: "Statement: NCMEC CyberTipline violent online groups report count + growth"
+    instanceUUID: "urn:uuid:0641b757-ad38-592a-bf79-7bb7f6162fe8"
+    class: "uco-action:Action"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:1d896431-835d-585d-929b-f51fafce1fe2"
+      span: "normalized.txt line 10"
+      quote: "received over 1,300 reports ... more than 200% increase ... over 1,500% increase since 2022"
+    confidence: "high"
+
+  - conceptName: "Statement: CVLT enterprise summary"
+    instanceUUID: "urn:uuid:e5dbacbe-ec2f-5619-9950-b25a6b07cf62"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      - predicate: "uco-action:object"
+        targetUUID: "urn:uuid:392f86a6-efeb-505f-98f0-4a19b2e7ac10"
+    evidencePointer:
+      documentId: "urn:uuid:1d896431-835d-585d-929b-f51fafce1fe2"
+      span: "normalized.txt lines 24-27"
+      quote: "CVLT ... disbanded ... references still made online"
+    confidence: "high"
+
+  - conceptName: "Statement: 764 network summary + livestream 'watch parties' / 'cut shows'"
+    instanceUUID: "urn:uuid:7959aac6-a60d-57f6-922f-4cd1c241b5f2"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      - predicate: "uco-action:object"
+        targetUUID: "urn:uuid:c927dcf1-d1fc-57d5-85d7-f07e8adc33eb"
+    evidencePointer:
+      documentId: "urn:uuid:1d896431-835d-585d-929b-f51fafce1fe2"
+      span: "normalized.txt lines 28-33"
+      quote: "watch parties ... cut shows ... livestream"
+    confidence: "high"
+
+  - conceptName: "Statement: SOE involvement indicators list"
+    instanceUUID: "urn:uuid:e82c66f8-9d33-5fb2-8b8b-9511b4947c42"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      - predicate: "uco-action:object"
+        targetUUID: "urn:uuid:53d47905-dc84-5472-af6b-bfc21d8ff9ce"
+    evidencePointer:
+      documentId: "urn:uuid:1d896431-835d-585d-929b-f51fafce1fe2"
+      span: "normalized.txt lines 57-70"
+      quote: "possible indicators ... self-harm ... neo-Nazi symbology ... doxxing/swatting ..."
+    confidence: "high"
+
+  - conceptName: "Statement: HOW2RESPOND steps list"
+    instanceUUID: "urn:uuid:18ff9b72-2cf3-52a1-9515-fafc0bad6ec3"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      - predicate: "uco-action:object"
+        targetUUID: "urn:uuid:d16b7748-8c32-5506-9438-8f06c633319f"
+    evidencePointer:
+      documentId: "urn:uuid:1d896431-835d-585d-929b-f51fafce1fe2"
+      span: "normalized.txt lines 76-82"
+      quote: "Take immediate action ... airplane mode ... save communication ... do not send images ..."
+    confidence: "high"
+
+  - conceptName: "Statement: HOW2REPORT methods list"
+    instanceUUID: "urn:uuid:a9a6bb56-2c50-52f7-b75d-a14ad7e36337"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      - predicate: "uco-action:object"
+        targetUUID: "urn:uuid:2deb75b9-a931-560c-997c-c6969991e20a"
+    evidencePointer:
+      documentId: "urn:uuid:1d896431-835d-585d-929b-f51fafce1fe2"
+      span: "normalized.txt lines 84-90"
+      quote: "Know2Protect Tipline ... CyberTipline ... 911 ... Take It Down ..."
+    confidence: "high"

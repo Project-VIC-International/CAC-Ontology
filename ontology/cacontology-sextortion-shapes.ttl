@@ -19,7 +19,7 @@
     owl:versionIRI <https://cacontology.projectvic.org/sextortion/shapes/2.4.0> ;
     owl:versionInfo "2.4.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
+    dcterms:modified "2026-02-11"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/sextortion/2.4.0> ,
                 <http://purl.org/nemo/gufo> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
@@ -79,6 +79,107 @@ cacontology-sextortion:SextortionIncidentShape rdf:type sh:NodeShape ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "Sextortion incident may have an end time."@en
+    ] .
+
+cacontology-sextortion:SadisticSextortionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:SadisticSextortion ;
+    rdfs:label "Sadistic Sextortion Shape"@en ;
+    rdfs:comment "Validation shape for sadistic sextortion incidents."@en ;
+    sh:property [
+        sh:path cacontology-sextortion:employsThreat ;
+        sh:class cacontology-sextortion:ThreatMechanism ;
+        sh:minCount 1 ;
+        sh:message "Sadistic sextortion must employ at least one threat mechanism."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-sextortion:victimCount ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Sadistic sextortion must specify victim count."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-sextortion:employsThreat ;
+        sh:qualifiedValueShape [
+            sh:or (
+              [ sh:class cacontology-sextortion:SelfHarmThreat ]
+              [ sh:class cacontology-sextortion:ViolenceThreat ]
+              [ sh:class cacontology-sextortion:PropertyDestructionThreat ]
+              [ sh:class cacontology-sextortion:DoxxingThreat ]
+              [ sh:class cacontology-sextortion:SwattingThreat ]
+            )
+        ] ;
+        sh:qualifiedMinCount 1 ;
+        sh:message "Sadistic sextortion must include at least one sadistic threat subtype (self-harm/violence/destruction/doxxing/swatting)."@en
+    ] .
+
+# =============================================================================
+# ADDITIONAL THREAT MECHANISM SHAPES (SOE-aligned)
+# =============================================================================
+
+cacontology-sextortion:DoxxingThreatShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:DoxxingThreat ;
+    rdfs:label "Doxxing Threat Shape"@en ;
+    rdfs:comment "Validation shape for doxxing threat mechanisms."@en ;
+    sh:property [
+        sh:path cacontology-sextortion:threatType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:hasValue "doxxing" ;
+        sh:message "DoxxingThreat must have threatType 'doxxing'."@en
+    ] .
+
+cacontology-sextortion:SwattingThreatShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:SwattingThreat ;
+    rdfs:label "Swatting Threat Shape"@en ;
+    rdfs:comment "Validation shape for swatting threat mechanisms."@en ;
+    sh:property [
+        sh:path cacontology-sextortion:threatType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:hasValue "swatting" ;
+        sh:message "SwattingThreat must have threatType 'swatting'."@en
+    ] .
+
+cacontology-sextortion:SelfHarmThreatShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:SelfHarmThreat ;
+    rdfs:label "Self-Harm Threat Shape"@en ;
+    rdfs:comment "Validation shape for self-harm threat mechanisms."@en ;
+    sh:property [
+        sh:path cacontology-sextortion:threatType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:hasValue "self_harm" ;
+        sh:message "SelfHarmThreat must have threatType 'self_harm'."@en
+    ] .
+
+cacontology-sextortion:ViolenceThreatShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:ViolenceThreat ;
+    rdfs:label "Violence Threat Shape"@en ;
+    rdfs:comment "Validation shape for violence threat mechanisms."@en ;
+    sh:property [
+        sh:path cacontology-sextortion:threatType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:hasValue "violence" ;
+        sh:message "ViolenceThreat must have threatType 'violence'."@en
+    ] .
+
+cacontology-sextortion:PropertyDestructionThreatShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:PropertyDestructionThreat ;
+    rdfs:label "Property Destruction Threat Shape"@en ;
+    rdfs:comment "Validation shape for property destruction threat mechanisms."@en ;
+    sh:property [
+        sh:path cacontology-sextortion:threatType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:hasValue "property_destruction" ;
+        sh:message "PropertyDestructionThreat must have threatType 'property_destruction'."@en
     ] .
 
 cacontology-sextortion:FinancialSextortionShape rdf:type sh:NodeShape ;
