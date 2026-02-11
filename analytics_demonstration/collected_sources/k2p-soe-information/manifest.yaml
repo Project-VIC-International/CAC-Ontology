@@ -1,0 +1,50 @@
+# CAC Ontology ingestion manifest (single-document)
+# Source: Know2Protect (DHS) brochure PDF - "Tips2Protect Against Sadistic Online Exploitation"
+
+batch:
+  uco-core:id: "urn:uuid:beede293-fec5-5235-acea-4fa32db681b1"
+  uco-core:name: "Know2Protect SOE brochure (PDF) collection"
+  uco-core:objectCreatedTime: "2026-02-11T00:00:00Z"
+
+  agentOrchestration:
+    enabled: false
+    fetchMethod: "manual"
+    preprocessingPipeline:
+      - "pdf_to_text"
+      - "whitespace_normalize"
+      - "paragraph_per_line_normalize"
+    deconflictionEnabled: false
+
+documents:
+  - uco-core:id: "urn:uuid:1d896431-835d-585d-929b-f51fafce1fe2"
+    uco-core:name: "Know2Protect brochure PDF: Tips2Protect Against Sadistic Online Exploitation (SOE)"
+
+    # Source location (file-based; URL is referenced because it appears in the brochure)
+    observable:filePath: "K2P SOE Information.pdf"
+    observable:url: "https://know2protect.gov"
+
+    collectionAction:
+      uco-action:startTime: "2026-02-11T00:00:00Z"
+      uco-action:performer: "urn:uuid:deacef3c-7c6b-58cd-8e18-ab0c44ee1dd8"
+      uco-core:description: "manual (local PDF provided in repo workspace) by CAC Ontology agent"
+
+    # Raw content metadata (PDF)
+    observable:mimeType: "application/pdf"
+    observable:sizeInBytes: 23221236
+    observable:hash:
+      types:hashMethod: "SHA-256"
+      types:hashValue: "7e76dd7ab749bce560cb2c8ed8c75b3a6e7e725cb9795137d6e1c5bb78010742"
+
+    # Normalized output (text; paragraph-per-line normalization for stable evidence pointers)
+    normalizationAction:
+      uco-core:description: "pdf_to_text + whitespace normalization + paragraph-per-line normalization"
+      uco-action:startTime: "2026-02-11T00:00:00Z"
+      uco-action:result: "urn:uuid:1b6b01b7-ece9-5ab9-a236-287f03093c52"
+
+    normalizedOutput:
+      observable:filePath: "analytics_demonstration/collected_sources/k2p-soe-information/normalized.txt"
+      observable:mimeType: "text/plain"
+      observable:sizeInBytes: 9552
+      observable:hash:
+        types:hashMethod: "SHA-256"
+        types:hashValue: "04a9e4a262e4410b3c6556e7e02bbd01581503ba20cfa9a4377961553688fc8a"

@@ -14,10 +14,10 @@
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/platforms/2.4.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/platforms/2.5.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Technology Platforms & Service Providers Ontology"@en ;
     rdfs:comment "An ontology for representing technology platforms, digital services, and Electronic Service Provider (ESP) capabilities in the context of child protection with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, and validation capabilities, extending UCO and CASE. This ontology covers social media platforms, messaging services, content hosting, and service provider policies and capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/platforms/2.4.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/platforms/2.5.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
@@ -25,7 +25,7 @@
                 <https://ontology.unifiedcyberontology.org/uco/observable> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity> ,
                 <https://ontology.unifiedcyberontology.org/uco/action> ,
-                <https://cacontology.projectvic.org/2.4.0> ,
+                <https://cacontology.projectvic.org/2.5.0> ,
                 <http://purl.org/nemo/gufo> .
 
 # =============================================================================

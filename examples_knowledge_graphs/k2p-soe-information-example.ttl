@@ -1,0 +1,517 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
+@prefix investigation: <https://ontology.caseontology.org/case/investigation/> .
+
+@prefix cacontology-enterprises: <https://cacontology.projectvic.org/extremist-enterprises#> .
+@prefix cacontology-sextortion: <https://cacontology.projectvic.org/sextortion#> .
+@prefix cacontology-soe: <https://cacontology.projectvic.org/soe#> .
+
+@prefix ex: <urn:uuid:> .
+
+# =============================================================================
+# Example KG for:
+# Know2Protect (DHS) brochure PDF - "Tips2Protect Against Sadistic Online Exploitation"
+#
+# Evidence pointers refer to:
+#   analytics_demonstration/collected_sources/k2p-soe-information/normalized.txt
+# =============================================================================
+
+###############################################################################
+# Source artifacts (PDF + extracted + normalized text) + provenance
+###############################################################################
+
+ex:1d896431-835d-585d-929b-f51fafce1fe2 a uco-observable:ObservableObject ;
+    rdfs:label "Know2Protect brochure (PDF): Tips2Protect Against Sadistic Online Exploitation"@en ;
+    uco-core:hasFacet ex:c7c1694d-be76-56cd-8fca-f6d86d3db519 ;
+    uco-core:hasFacet ex:4679fef8-9687-5f7d-952e-afb7b2ac6eca ;
+    uco-core:hasFacet ex:dccf1301-70d9-506c-a66d-0dd0463cebd0 ;
+    uco-core:hasFacet ex:34bc5c42-0f8e-5eec-9f32-23b332d30dcc .
+
+ex:c7c1694d-be76-56cd-8fca-f6d86d3db519 a uco-observable:ContentDataFacet ;
+    uco-observable:mimeType "application/pdf" ;
+    uco-observable:sizeInBytes 23221236 .
+
+ex:4679fef8-9687-5f7d-952e-afb7b2ac6eca a uco-observable:FileFacet ;
+    uco-observable:filePath "K2P SOE Information.pdf" .
+
+ex:dccf1301-70d9-506c-a66d-0dd0463cebd0 a uco-observable:URLFacet ;
+    uco-observable:url <https://know2protect.gov> .
+
+ex:34bc5c42-0f8e-5eec-9f32-23b332d30dcc a uco-observable:HashFacet ;
+    uco-observable:hash ex:9f731870-0d4c-56f1-9d25-e51c76143d98 .
+
+ex:9f731870-0d4c-56f1-9d25-e51c76143d98 a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "7e76dd7ab749bce560cb2c8ed8c75b3a6e7e725cb9795137d6e1c5bb78010742" .
+
+ex:89cabed7-44a1-5893-b895-ab3d154f1b78 a uco-observable:ObservableObject ;
+    rdfs:label "Extracted text (source.txt): Know2Protect SOE brochure"@en ;
+    uco-core:hasFacet ex:8a4c1c19-d96a-5a44-b536-00c3a551191d ;
+    uco-core:hasFacet ex:d85dba64-1ce8-5cab-9bfa-1c7a9766d379 ;
+    uco-core:hasFacet ex:e6313445-df64-52ad-8c6c-254ea1f77e03 .
+
+ex:8a4c1c19-d96a-5a44-b536-00c3a551191d a uco-observable:ContentDataFacet ;
+    uco-observable:mimeType "text/plain" ;
+    uco-observable:sizeInBytes 12191 .
+
+ex:d85dba64-1ce8-5cab-9bfa-1c7a9766d379 a uco-observable:FileFacet ;
+    uco-observable:filePath "analytics_demonstration/collected_sources/k2p-soe-information/source.txt" .
+
+ex:e6313445-df64-52ad-8c6c-254ea1f77e03 a uco-observable:HashFacet ;
+    uco-observable:hash ex:28ac3857-8c50-5063-9359-1084885faeee .
+
+ex:28ac3857-8c50-5063-9359-1084885faeee a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "579994b7b085d1b201985150a0dc20c422feba124c7727a304a5328bf613989a" .
+
+ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 a uco-observable:ObservableObject ;
+    rdfs:label "Normalized text (normalized.txt): Know2Protect SOE brochure"@en ;
+    uco-core:hasFacet ex:fe011ee6-183c-5f1b-8c94-0a1252fc059f ;
+    uco-core:hasFacet ex:1b68717f-60d9-5a93-891f-3ad182506f68 ;
+    uco-core:hasFacet ex:f79727c7-f33e-5d21-90c8-70513234b20d .
+
+ex:fe011ee6-183c-5f1b-8c94-0a1252fc059f a uco-observable:ContentDataFacet ;
+    uco-observable:mimeType "text/plain" ;
+    uco-observable:sizeInBytes 9552 .
+
+ex:1b68717f-60d9-5a93-891f-3ad182506f68 a uco-observable:FileFacet ;
+    uco-observable:filePath "analytics_demonstration/collected_sources/k2p-soe-information/normalized.txt" .
+
+ex:f79727c7-f33e-5d21-90c8-70513234b20d a uco-observable:HashFacet ;
+    uco-observable:hash ex:de61feb8-f0f9-5770-a0cd-eb3a9d0b59a3 .
+
+ex:de61feb8-f0f9-5770-a0cd-eb3a9d0b59a3 a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "04a9e4a262e4410b3c6556e7e02bbd01581503ba20cfa9a4377961553688fc8a" .
+
+ex:deacef3c-7c6b-58cd-8e18-ab0c44ee1dd8 a uco-core:UcoObject ;
+    rdfs:label "CAC Ontology Collection Agent (Cursor)"@en ;
+    uco-core:description "Automated assistant performing collection and preprocessing for CAC Ontology ingestion."@en .
+
+ex:d30cbece-e786-58ed-a209-5d6ecd65522b a investigation:InvestigativeAction ;
+    rdfs:label "Collection action: Know2Protect SOE brochure PDF"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:deacef3c-7c6b-58cd-8e18-ab0c44ee1dd8 ;
+    uco-action:object ex:1d896431-835d-585d-929b-f51fafce1fe2 ;
+    uco-core:description "Collected from a local PDF file provided in the repository workspace."@en .
+
+ex:1eac16d6-161f-5cc5-8160-0086e7f21cb4 a uco-action:Action ;
+    rdfs:label "Normalization action: PDF to normalized.txt"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:deacef3c-7c6b-58cd-8e18-ab0c44ee1dd8 ;
+    uco-action:object ex:1d896431-835d-585d-929b-f51fafce1fe2 ;
+    uco-action:result ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ;
+    uco-core:description "pdf_to_text + whitespace normalization + paragraph-per-line normalization for stable evidence pointers."@en .
+
+ex:a2f04f5d-6fd4-5f8b-a4af-e6b045d33b83 a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance record: collection of Know2Protect SOE brochure PDF"@en ;
+    investigation:exhibitNumber "DOC-K2P-SOE-0001" ;
+    uco-core:object ex:1d896431-835d-585d-929b-f51fafce1fe2 ;
+    investigation:provenanceRecordAction ex:d30cbece-e786-58ed-a209-5d6ecd65522b .
+
+###############################################################################
+# Organizations / networks / modeled concept nodes (no victims modeled)
+###############################################################################
+
+ex:b7310b51-610b-519f-90f2-64e98ad26e72 a uco-identity:Organization ;
+    rdfs:label "Know2Protect"@en ;
+    uco-core:description "Program referenced by the brochure (know2protect.gov)."@en .
+
+ex:dd030683-ab73-5eda-959e-51e79d996254 a uco-identity:Organization ;
+    rdfs:label "U.S. Department of Homeland Security (DHS)"@en ;
+    uco-core:description "Government organization cited by the brochure for SOE definition."@en .
+
+ex:2834b390-5882-5114-92f4-8ca0da1e2f61 a uco-identity:Organization ;
+    rdfs:label "Homeland Security Investigations (HSI)"@en ;
+    uco-core:description "Organization referenced by the brochure (forensic interview specialists; investigative referrals)."@en .
+
+ex:c2ec72b6-8217-5903-afc7-bfe487689324 a uco-identity:Organization ;
+    rdfs:label "National Center for Missing and Exploited Children (NCMEC)"@en ;
+    uco-core:description "Organization referenced for CyberTipline reporting and statistics."@en .
+
+ex:b8f2892c-fc20-58b8-815e-f9bcea922db0 a uco-identity:Organization , cacontology-soe:SadisticOnlineExploitationNetwork ;
+    rdfs:label "Sadistic Online Exploitation (SOE) networks"@en ;
+    cacontology-soe:communitySlangTerm "the com" ;
+    cacontology-soe:hostsCoercionShow ex:d0126ecf-7c1e-5186-86ea-cc350f2c1db6 ;
+    uco-core:description "Brochure-defined SOE networks (modeled as a definitional organization/community type; not a case-specific network instance)."@en .
+
+ex:d0126ecf-7c1e-5186-86ea-cc350f2c1db6 a cacontology-soe:LivestreamedCoercionShow ;
+    rdfs:label "Livestreamed coercion show (\"cut show\") - brochure example pattern"@en ;
+    cacontology-soe:coercionShowType "cut_show" .
+
+ex:72dcea90-6784-5d9a-9985-9255d6b8355f a cacontology-sextortion:SadisticSextortion , cacontology-sextortion:SextortionIncident ;
+    rdfs:label "Sadistic sextortion pattern exemplar (brochure-defined)" ;
+    cacontology-sextortion:incidentType "social_media_threat" ;
+    cacontology-sextortion:severityLevel "critical" ;
+    cacontology-sextortion:victimCount "1"^^xsd:nonNegativeInteger ;
+    cacontology-sextortion:incidentDuration 1.0 ;
+    cacontology-sextortion:targetsVictim ex:d82d7bab-e1f1-559f-b061-2fc212a2c706 ;
+    cacontology-sextortion:employsThreat ex:c162bff7-e322-5890-bf75-ca67f2b12647 ,
+                                        ex:a6a96bf1-5333-55f7-9ffe-e11e1179dcb7 ,
+                                        ex:29f427a0-1812-54e7-8abe-1edfa4e90916 ,
+                                        ex:5a5d70fa-51be-5544-a5b4-c2d0e442c3ef ,
+                                        ex:e5da4fe3-49c0-5e20-a81c-3f25a4222353 ;
+    uco-core:description "Modeled to demonstrate CAC sextortion + threat-mechanism extensions for SOE contexts; grounded in normalized.txt line 46."@en .
+
+ex:d82d7bab-e1f1-559f-b061-2fc212a2c706 a uco-identity:Person ;
+    rdfs:label "Victim (unidentified placeholder for shape satisfaction)" ;
+    uco-core:description "No identifying attributes are modeled; placeholder exists only to satisfy sextortion shape cross-reference requirements."@en .
+
+ex:c162bff7-e322-5890-bf75-ca67f2b12647 a cacontology-sextortion:DoxxingThreat , cacontology-sextortion:ThreatMechanism ;
+    rdfs:label "Doxxing threat (pattern exemplar)" ;
+    cacontology-sextortion:threatType "doxxing" ;
+    cacontology-sextortion:threatSpecificity "explicit" ;
+    cacontology-sextortion:threatFollowThrough false .
+
+ex:a6a96bf1-5333-55f7-9ffe-e11e1179dcb7 a cacontology-sextortion:SwattingThreat , cacontology-sextortion:ThreatMechanism ;
+    rdfs:label "Swatting threat (pattern exemplar)" ;
+    cacontology-sextortion:threatType "swatting" ;
+    cacontology-sextortion:threatSpecificity "explicit" ;
+    cacontology-sextortion:threatFollowThrough false .
+
+ex:29f427a0-1812-54e7-8abe-1edfa4e90916 a cacontology-sextortion:SelfHarmThreat , cacontology-sextortion:ThreatMechanism ;
+    rdfs:label "Self-harm threat (pattern exemplar)" ;
+    cacontology-sextortion:threatType "self_harm" ;
+    cacontology-sextortion:threatSpecificity "explicit" ;
+    cacontology-sextortion:threatFollowThrough false .
+
+ex:5a5d70fa-51be-5544-a5b4-c2d0e442c3ef a cacontology-sextortion:ViolenceThreat , cacontology-sextortion:ThreatMechanism ;
+    rdfs:label "Violence threat (pattern exemplar)" ;
+    cacontology-sextortion:threatType "violence" ;
+    cacontology-sextortion:threatSpecificity "explicit" ;
+    cacontology-sextortion:threatFollowThrough false .
+
+ex:e5da4fe3-49c0-5e20-a81c-3f25a4222353 a cacontology-sextortion:PropertyDestructionThreat , cacontology-sextortion:ThreatMechanism ;
+    rdfs:label "Property destruction threat (pattern exemplar)" ;
+    cacontology-sextortion:threatType "property_destruction" ;
+    cacontology-sextortion:threatSpecificity "explicit" ;
+    cacontology-sextortion:threatFollowThrough false .
+
+ex:16f9fae4-2ba4-5bd4-b090-aa0d77b33699 a uco-core:UcoObject ;
+    rdfs:label "Violent real-life media (shared/spread by SOE networks)"@en .
+
+ex:e961f4f6-9455-5705-ac58-cab881451962 a uco-core:UcoObject ;
+    rdfs:label "Child sexual abuse material (CSAM)"@en .
+
+ex:a0025ef3-d390-5050-8111-f84a78daaeed a uco-core:UcoObject ;
+    rdfs:label "“the com” (SOE community slang term)"@en ;
+    uco-core:description "Brochure describes SOE networks as 'communities' or 'the com'."@en .
+
+ex:392f86a6-efeb-505f-98f0-4a19b2e7ac10 a cacontology-enterprises:ChildExploitationEnterprise , uco-identity:Organization ;
+    rdfs:label "CVLT (neo-Nazi child exploitation network)"@en ;
+    uco-core:description "Brochure-described network; disbanded but still referenced online."@en .
+
+ex:c927dcf1-d1fc-57d5-85d7-f07e8adc33eb a cacontology-enterprises:NihilisticViolentExtremismNetwork , uco-identity:Organization ;
+    rdfs:label "764 network (global online exploitation group)"@en ;
+    uco-core:description "Brochure-described network; includes youth-on-youth exploitation and livestreamed coercion content."@en .
+
+ex:dd21f5f9-513f-5d18-94ea-88278a2c964a a uco-core:UcoObject ;
+    rdfs:label "Manipulation tactics to engage in violence (definition)"@en .
+
+ex:134186e8-5bc3-5276-a672-caff8919e265 a uco-core:UcoObject ;
+    rdfs:label "Threats/violence used to intimidate (definition)"@en .
+
+ex:982ce7c1-afbb-5103-8871-fad12de4f5cf a uco-core:UcoObject ;
+    rdfs:label "Online grooming (definition, expanded for SOE)"@en .
+
+ex:34e445a9-5b7a-5ecb-99c7-ee547ee9280d a uco-core:UcoObject ;
+    rdfs:label "Traditional sextortion (definition)"@en .
+
+ex:1fd0624d-2058-5793-a529-14ca8aa44f10 a uco-core:UcoObject ;
+    rdfs:label "Financial sextortion (definition)"@en .
+
+ex:95cb028d-dad2-5919-9d58-f7d6b9757f4c a uco-core:UcoObject ;
+    rdfs:label "Sadistic sextortion (definition)"@en .
+
+ex:bba73ce0-b980-5ff4-9716-2ec77b8550be a uco-core:UcoObject ;
+    rdfs:label "Cyberbullying (definition)"@en .
+
+ex:b50fae6f-9d33-5e51-8649-95411824ded7 a uco-core:UcoObject ;
+    rdfs:label "“Blackout Challenge” (viral challenge example)"@en .
+
+ex:88c3d9ea-a11a-56af-afad-020b8bbae144 a uco-core:UcoObject ;
+    rdfs:label "“Tide Pod Challenge” (viral challenge example)"@en .
+
+###############################################################################
+# Indicators / response steps / reporting methods (modeled as list objects)
+###############################################################################
+
+ex:53d47905-dc84-5472-af6b-bfc21d8ff9ce a uco-core:UcoObject ;
+    rdfs:label "Tips2Identify involvement in SOE (indicator set)"@en .
+
+ex:d16b7748-8c32-5506-9438-8f06c633319f a uco-core:UcoObject ;
+    rdfs:label "HOW2RESPOND steps list"@en .
+
+ex:2deb75b9-a931-560c-997c-c6969991e20a a uco-core:UcoObject ;
+    rdfs:label "HOW2REPORT methods list"@en .
+
+# Indicator items
+ex:8cdbe869-ff43-569a-bdd9-6b630ba32070 a uco-core:UcoObject ; rdfs:label "Indicator: self-harm symbols/characters (carving/writing)"@en .
+ex:3a0c780d-c9cd-5aa9-8b8c-c631732d9cb2 a uco-core:UcoObject ; rdfs:label "Indicator: interest in Neo-Nazi symbology"@en .
+ex:9b8a3b63-1f2a-533d-a3f1-68eacd6c7a46 a uco-core:UcoObject ; rdfs:label "Indicator: obsession with mass attackers/mass shooters"@en .
+ex:c50e015c-82a0-5c28-967f-1d91f9685e92 a uco-core:UcoObject ; rdfs:label "Indicator: interest in satanic symbology"@en .
+ex:03ecbbea-c807-55b2-9ab1-2a266c0e7280 a uco-core:UcoObject ; rdfs:label "Indicator: alphanumeric nomenclature in names/symbols"@en .
+ex:f9265c16-a809-566e-851b-39311ff4966d a uco-core:UcoObject ; rdfs:label "Indicator: scars, often in patterns"@en .
+ex:6015f1c7-f734-53f8-82eb-95aa8def6d7a a uco-core:UcoObject ; rdfs:label "Indicator: fresh cuts/scratches/bruises/bite marks/burns/wounds"@en .
+ex:1e7bc16a-274f-5c34-be07-a0e36d39c558 a uco-core:UcoObject ; rdfs:label "Indicator: writing in blood or what appears to be blood"@en .
+ex:65797ecc-d27d-5a07-979f-1a18c17215fc a uco-core:UcoObject ; rdfs:label "Indicator: suicidal ideations"@en .
+ex:788d0b6c-03c0-506d-9f25-6bcec41ea5e1 a uco-core:UcoObject ; rdfs:label "Indicator: lack of empathy / nihilistic framing"@en .
+ex:7958fa5c-a8c5-5ae5-9a65-a6df50cd1a06 a uco-core:UcoObject ; rdfs:label "Indicator: harming pets/animals or animals fear child/teen"@en .
+ex:51641131-4004-56a1-9f95-19eef8442442 a uco-core:UcoObject ; rdfs:label "Indicator: false law enforcement calls (doxxing/swatting)"@en .
+ex:0d8156f3-4afd-559f-ba0a-f940a6c5bb52 a uco-core:UcoObject ; rdfs:label "Indicator: unexpected deliveries / harassment at address"@en .
+
+# Response step items
+ex:5b2485d3-4080-5e30-a331-a92f0789b022 a uco-core:UcoObject ; rdfs:label "Respond: remain calm (deescalate)"@en .
+ex:5b1ea306-acf5-58f2-99a8-4466148d063b a uco-core:UcoObject ; rdfs:label "Respond: take device offline (airplane mode)"@en .
+ex:176b2be5-6fe1-5e4e-a2ca-bcbb1f5958a3 a uco-core:UcoObject ; rdfs:label "Respond: save all communication (do not delete)"@en .
+ex:8c76ef7f-050d-5077-a525-41adde5c3632 a uco-core:UcoObject ; rdfs:label "Respond: do not contact network/community; ignore messages"@en .
+ex:59548c16-413e-5f76-871d-a04390cebd16 a uco-core:UcoObject ; rdfs:label "Respond: contact law enforcement; allow access to info/devices"@en .
+ex:121bfae8-d8eb-5aeb-bbf2-0583e2d4e2c3 a uco-core:UcoObject ; rdfs:label "Respond: do not send images to other devices (CSAM dissemination illegal)"@en .
+
+# Reporting method items
+ex:bf9c2a90-53b8-548b-8de7-b070652e0ae8 a uco-core:UcoObject ; rdfs:label "Report: Know2Protect Tipline 833-591-KNOW (5669)"@en .
+ex:bb64315c-1a9b-52bf-a2e9-f2064bb2d7b6 a uco-core:UcoObject ; rdfs:label "Report: local/state/tribal law enforcement; emergency 911"@en .
+ex:27ad4d1b-bb45-557a-aabc-7092011ec828 a uco-core:UcoObject ; rdfs:label "Report: NCMEC CyberTipline (report.cybertip.org)"@en .
+ex:ed759ae6-dc77-5ba7-83d7-9227f2f81426 a uco-core:UcoObject ; rdfs:label "Report: DHS Know2Protect how-to-report webpage"@en .
+
+###############################################################################
+# Brochure-grounded statements (uco-action:Action) + provenance records
+###############################################################################
+
+ex:c7065d83-4da7-577c-a3c0-81b6c78c8a4e a uco-action:Action ;
+    rdfs:label "Brochure states: SOE networks definition + threat set"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:b7310b51-610b-519f-90f2-64e98ad26e72 ;
+    uco-action:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ,
+                    ex:b8f2892c-fc20-58b8-815e-f9bcea922db0 ,
+                    ex:16f9fae4-2ba4-5bd4-b090-aa0d77b33699 ,
+                    ex:e961f4f6-9455-5705-ac58-cab881451962 ;
+    uco-core:description "Grounded in normalized.txt lines 4-7. Confidence: high."@en .
+
+ex:4ba69aea-14c8-5736-a8de-4baa2c561aa1 a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance: SOE networks definition + threat set"@en ;
+    uco-core:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ;
+    investigation:provenanceRecordAction ex:c7065d83-4da7-577c-a3c0-81b6c78c8a4e ;
+    uco-core:description "Evidence pointer: normalized.txt lines 4-7."@en .
+
+ex:d6fc9b48-a3d3-544d-a309-e2999227ec4d a uco-action:Action ;
+    rdfs:label "Brochure states: SOE networks as communities ('the com') with hierarchy and cross-border reach"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:b7310b51-610b-519f-90f2-64e98ad26e72 ;
+    uco-action:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ,
+                    ex:a0025ef3-d390-5050-8111-f84a78daaeed ,
+                    ex:b8f2892c-fc20-58b8-815e-f9bcea922db0 ;
+    uco-core:description "Grounded in normalized.txt lines 8-9. Confidence: high."@en .
+
+ex:4975c20c-4b40-5773-abf7-26d6d12d653b a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance: 'the com' + hierarchy + cross-border claim"@en ;
+    uco-core:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ;
+    investigation:provenanceRecordAction ex:d6fc9b48-a3d3-544d-a309-e2999227ec4d ;
+    uco-core:description "Evidence pointer: normalized.txt lines 8-9."@en .
+
+ex:0641b757-ad38-592a-bf79-7bb7f6162fe8 a uco-action:Action ;
+    rdfs:label "Brochure states: NCMEC CyberTipline violent online groups report volume and growth"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:b7310b51-610b-519f-90f2-64e98ad26e72 ;
+    uco-action:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ,
+                    ex:c2ec72b6-8217-5903-afc7-bfe487689324 ;
+    uco-core:description "Grounded in normalized.txt line 10. Confidence: high."@en .
+
+ex:e1e16f5c-1244-54da-8b59-b79f4eb8b5c4 a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance: NCMEC CyberTipline report volume/growth claim"@en ;
+    uco-core:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ;
+    investigation:provenanceRecordAction ex:0641b757-ad38-592a-bf79-7bb7f6162fe8 ;
+    uco-core:description "Evidence pointer: normalized.txt line 10."@en .
+
+ex:b0696d54-0605-5dd1-9e8c-e364fb22a781 a uco-action:Action ;
+    rdfs:label "Brochure states: SOE networks target vulnerable minors (mental health/self-harm)"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:b7310b51-610b-519f-90f2-64e98ad26e72 ;
+    uco-action:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ,
+                    ex:b8f2892c-fc20-58b8-815e-f9bcea922db0 ;
+    uco-core:description "Grounded in normalized.txt lines 11-14. Confidence: high."@en .
+
+ex:c37b8274-1a2e-5d79-952f-e37eee9ed4d2 a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance: vulnerable-minors targeting claim"@en ;
+    uco-core:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ;
+    investigation:provenanceRecordAction ex:b0696d54-0605-5dd1-9e8c-e364fb22a781 ;
+    uco-core:description "Evidence pointer: normalized.txt lines 11-14."@en .
+
+ex:e5dbacbe-ec2f-5619-9950-b25a6b07cf62 a uco-action:Action ;
+    rdfs:label "Brochure states: CVLT enterprise summary (neo-Nazi network; branding/cut signs)"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:b7310b51-610b-519f-90f2-64e98ad26e72 ;
+    uco-action:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ,
+                    ex:392f86a6-efeb-505f-98f0-4a19b2e7ac10 ;
+    uco-core:description "Grounded in normalized.txt lines 24-27. Confidence: high."@en .
+
+ex:fe4d8f1b-b625-52cd-80a4-5b12ccaa962b a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance: CVLT enterprise summary"@en ;
+    uco-core:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ;
+    investigation:provenanceRecordAction ex:e5dbacbe-ec2f-5619-9950-b25a6b07cf62 ;
+    uco-core:description "Evidence pointer: normalized.txt lines 24-27."@en .
+
+ex:7959aac6-a60d-57f6-922f-4cd1c241b5f2 a uco-action:Action ;
+    rdfs:label "Brochure states: 764 network summary + livestreamed 'watch parties'/'cut shows'"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:b7310b51-610b-519f-90f2-64e98ad26e72 ;
+    uco-action:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ,
+                    ex:c927dcf1-d1fc-57d5-85d7-f07e8adc33eb ,
+                    ex:d0126ecf-7c1e-5186-86ea-cc350f2c1db6 ;
+    uco-core:description "Grounded in normalized.txt lines 28-33. Confidence: high."@en .
+
+ex:f05b4c12-e3a0-5012-9958-f06a7bc74b19 a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance: 764 network summary"@en ;
+    uco-core:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ;
+    investigation:provenanceRecordAction ex:7959aac6-a60d-57f6-922f-4cd1c241b5f2 ;
+    uco-core:description "Evidence pointer: normalized.txt lines 28-33."@en .
+
+ex:bb528afc-1ef6-5c60-8a92-8896f1b429db a uco-action:Action ;
+    rdfs:label "Brochure defines: manipulation and intimidation tactics used by SOE networks"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:b7310b51-610b-519f-90f2-64e98ad26e72 ;
+    uco-action:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ,
+                    ex:dd21f5f9-513f-5d18-94ea-88278a2c964a ,
+                    ex:134186e8-5bc3-5276-a672-caff8919e265 ,
+                    ex:c162bff7-e322-5890-bf75-ca67f2b12647 ,
+                    ex:a6a96bf1-5333-55f7-9ffe-e11e1179dcb7 ,
+                    ex:29f427a0-1812-54e7-8abe-1edfa4e90916 ;
+    uco-core:description "Grounded in normalized.txt lines 39-40. Confidence: high."@en .
+
+ex:b8623482-5f83-5291-acbc-43e9cf5faf02 a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance: manipulation/intimidation definitions"@en ;
+    uco-core:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ;
+    investigation:provenanceRecordAction ex:bb528afc-1ef6-5c60-8a92-8896f1b429db ;
+    uco-core:description "Evidence pointer: normalized.txt lines 39-40."@en .
+
+ex:890c7741-4e5c-5918-96c6-4b7f1ce2d606 a uco-action:Action ;
+    rdfs:label "Brochure defines: online grooming (expanded framing for SOE coercion)"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:b7310b51-610b-519f-90f2-64e98ad26e72 ;
+    uco-action:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ,
+                    ex:982ce7c1-afbb-5103-8871-fad12de4f5cf ;
+    uco-core:description "Grounded in normalized.txt line 41. Confidence: high."@en .
+
+ex:5915daac-9c1d-5014-a889-79f802aa8100 a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance: online grooming definition"@en ;
+    uco-core:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ;
+    investigation:provenanceRecordAction ex:890c7741-4e5c-5918-96c6-4b7f1ce2d606 ;
+    uco-core:description "Evidence pointer: normalized.txt line 41."@en .
+
+ex:dd880b85-472c-569f-a126-88ef7c61de0a a uco-action:Action ;
+    rdfs:label "Brochure defines: sextortion variants (traditional, financial, sadistic)"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:b7310b51-610b-519f-90f2-64e98ad26e72 ;
+    uco-action:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ,
+                    ex:34e445a9-5b7a-5ecb-99c7-ee547ee9280d ,
+                    ex:1fd0624d-2058-5793-a529-14ca8aa44f10 ,
+                    ex:95cb028d-dad2-5919-9d58-f7d6b9757f4c ,
+                    ex:72dcea90-6784-5d9a-9985-9255d6b8355f ;
+    uco-core:description "Grounded in normalized.txt lines 44-46. Confidence: high."@en .
+
+ex:4b98fad4-57b9-5a53-81af-ff04f2fd4ad6 a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance: sextortion variants definitions"@en ;
+    uco-core:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ;
+    investigation:provenanceRecordAction ex:dd880b85-472c-569f-a126-88ef7c61de0a ;
+    uco-core:description "Evidence pointer: normalized.txt lines 44-46."@en .
+
+ex:604b56ad-700e-5ac7-ac53-dd70b47b274a a uco-action:Action ;
+    rdfs:label "Brochure defines: cyberbullying (noted as rising with SOE networks)"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:b7310b51-610b-519f-90f2-64e98ad26e72 ;
+    uco-action:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ,
+                    ex:bba73ce0-b980-5ff4-9716-2ec77b8550be ;
+    uco-core:description "Grounded in normalized.txt line 47. Confidence: high."@en .
+
+ex:207774f4-09cd-517b-9675-548ebf9f5ef9 a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance: cyberbullying definition"@en ;
+    uco-core:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ;
+    investigation:provenanceRecordAction ex:604b56ad-700e-5ac7-ac53-dd70b47b274a ;
+    uco-core:description "Evidence pointer: normalized.txt line 47."@en .
+
+ex:52eccef6-c086-5767-b851-1c753b362f58 a uco-action:Action ;
+    rdfs:label "Brochure states: viral challenges cited as exploitation enterprise examples"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:b7310b51-610b-519f-90f2-64e98ad26e72 ;
+    uco-action:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ,
+                    ex:b50fae6f-9d33-5e51-8649-95411824ded7 ,
+                    ex:88c3d9ea-a11a-56af-afad-020b8bbae144 ;
+    uco-core:description "Grounded in normalized.txt lines 53-55. Confidence: medium. Privacy: no victim identity modeled."@en .
+
+ex:0092f2b0-6e64-59fe-b59d-da8ab655379c a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance: viral challenges example claim"@en ;
+    uco-core:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ;
+    investigation:provenanceRecordAction ex:52eccef6-c086-5767-b851-1c753b362f58 ;
+    uco-core:description "Evidence pointer: normalized.txt lines 53-55."@en .
+
+ex:e82c66f8-9d33-5fb2-8b8b-9511b4947c42 a uco-action:Action ;
+    rdfs:label "Brochure lists: indicators a child/teen may be in danger from SOE"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:b7310b51-610b-519f-90f2-64e98ad26e72 ;
+    uco-action:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ,
+                    ex:53d47905-dc84-5472-af6b-bfc21d8ff9ce ,
+                    ex:8cdbe869-ff43-569a-bdd9-6b630ba32070 ,
+                    ex:3a0c780d-c9cd-5aa9-8b8c-c631732d9cb2 ,
+                    ex:9b8a3b63-1f2a-533d-a3f1-68eacd6c7a46 ,
+                    ex:c50e015c-82a0-5c28-967f-1d91f9685e92 ,
+                    ex:03ecbbea-c807-55b2-9ab1-2a266c0e7280 ,
+                    ex:f9265c16-a809-566e-851b-39311ff4966d ,
+                    ex:6015f1c7-f734-53f8-82eb-95aa8def6d7a ,
+                    ex:1e7bc16a-274f-5c34-be07-a0e36d39c558 ,
+                    ex:65797ecc-d27d-5a07-979f-1a18c17215fc ,
+                    ex:788d0b6c-03c0-506d-9f25-6bcec41ea5e1 ,
+                    ex:7958fa5c-a8c5-5ae5-9a65-a6df50cd1a06 ,
+                    ex:51641131-4004-56a1-9f95-19eef8442442 ,
+                    ex:0d8156f3-4afd-559f-ba0a-f940a6c5bb52 ;
+    uco-core:description "Grounded in normalized.txt lines 57-70. Confidence: high."@en .
+
+ex:269ce62a-2b18-56ac-bf51-77a5e1eec2a6 a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance: SOE indicators list"@en ;
+    uco-core:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ;
+    investigation:provenanceRecordAction ex:e82c66f8-9d33-5fb2-8b8b-9511b4947c42 ;
+    uco-core:description "Evidence pointer: normalized.txt lines 57-70."@en .
+
+ex:18ff9b72-2cf3-52a1-9515-fafc0bad6ec3 a uco-action:Action ;
+    rdfs:label "Brochure lists: HOW2RESPOND recommended steps"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:b7310b51-610b-519f-90f2-64e98ad26e72 ;
+    uco-action:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ,
+                    ex:d16b7748-8c32-5506-9438-8f06c633319f ,
+                    ex:5b2485d3-4080-5e30-a331-a92f0789b022 ,
+                    ex:5b1ea306-acf5-58f2-99a8-4466148d063b ,
+                    ex:176b2be5-6fe1-5e4e-a2ca-bcbb1f5958a3 ,
+                    ex:8c76ef7f-050d-5077-a525-41adde5c3632 ,
+                    ex:59548c16-413e-5f76-871d-a04390cebd16 ,
+                    ex:121bfae8-d8eb-5aeb-bbf2-0583e2d4e2c3 ;
+    uco-core:description "Grounded in normalized.txt lines 76-82. Confidence: high."@en .
+
+ex:e448c311-0ffe-5e40-8d15-204fc6bd56b3 a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance: HOW2RESPOND steps list"@en ;
+    uco-core:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ;
+    investigation:provenanceRecordAction ex:18ff9b72-2cf3-52a1-9515-fafc0bad6ec3 ;
+    uco-core:description "Evidence pointer: normalized.txt lines 76-82."@en .
+
+ex:a9a6bb56-2c50-52f7-b75d-a14ad7e36337 a uco-action:Action ;
+    rdfs:label "Brochure lists: HOW2REPORT methods"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:b7310b51-610b-519f-90f2-64e98ad26e72 ;
+    uco-action:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ,
+                    ex:2deb75b9-a931-560c-997c-c6969991e20a ,
+                    ex:bf9c2a90-53b8-548b-8de7-b070652e0ae8 ,
+                    ex:bb64315c-1a9b-52bf-a2e9-f2064bb2d7b6 ,
+                    ex:27ad4d1b-bb45-557a-aabc-7092011ec828 ,
+                    ex:ed759ae6-dc77-5ba7-83d7-9227f2f81426 ;
+    uco-core:description "Grounded in normalized.txt lines 84-90. Confidence: high."@en .
+
+ex:7d8961e4-f456-59e6-91fd-733af1ac20e7 a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance: HOW2REPORT methods list"@en ;
+    uco-core:object ex:1b6b01b7-ece9-5ab9-a236-287f03093c52 ;
+    investigation:provenanceRecordAction ex:a9a6bb56-2c50-52f7-b75d-a14ad7e36337 ;
+    uco-core:description "Evidence pointer: normalized.txt lines 84-90."@en .

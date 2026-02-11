@@ -14,11 +14,11 @@
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
-<https://cacontology.projectvic.org/specialized-units/2.4.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/specialized-units/2.5.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Specialized Units Ontology"@en ;
     rdfs:comment "An ontology for modeling specialized units including K9 detection programs, officer wellness support, advanced investigative capabilities, seasonal operations, and affiliate management in ICAC operations with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, and validation capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/specialized-units/2.4.0> ;
-    owl:versionInfo "2.4.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/specialized-units/2.5.0> ;
+    owl:versionInfo "2.5.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
     owl:imports <http://purl.org/nemo/gufo> .

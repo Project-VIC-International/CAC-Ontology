@@ -1,0 +1,249 @@
+# =============================================================================
+# Analytics Queries: Know2Protect SOE brochure (PDF)
+# Dataset: examples_knowledge_graphs/k2p-soe-information-example.ttl
+# =============================================================================
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core/>
+PREFIX uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/>
+PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/>
+PREFIX uco-types: <https://ontology.unifiedcyberontology.org/uco/types/>
+PREFIX investigation: <https://ontology.caseontology.org/case/investigation/>
+
+PREFIX cacontology-enterprises: <https://cacontology.projectvic.org/extremist-enterprises#>
+PREFIX cacontology-sextortion: <https://cacontology.projectvic.org/sextortion#>
+PREFIX cacontology-soe: <https://cacontology.projectvic.org/soe#>
+
+PREFIX ex: <urn:uuid:>
+
+# -----------------------------------------------------------------------------
+# Q1: List collected PDF document metadata (file path, URL, mime, size, SHA-256).
+# Returns: doc, filePath, url, mimeType, sizeInBytes, hashValue
+# -----------------------------------------------------------------------------
+SELECT ?doc ?filePath ?url ?mime ?size ?hashValue WHERE {
+  ?doc a uco-observable:ObservableObject ;
+       uco-core:hasFacet ?fileFacet ;
+       uco-core:hasFacet ?urlFacet ;
+       uco-core:hasFacet ?contentFacet ;
+       uco-core:hasFacet ?hashFacet .
+
+  ?fileFacet a uco-observable:FileFacet ;
+            uco-observable:filePath ?filePath .
+
+  ?urlFacet a uco-observable:URLFacet ;
+           uco-observable:url ?url .
+
+  ?contentFacet a uco-observable:ContentDataFacet ;
+               uco-observable:mimeType ?mime ;
+               uco-observable:sizeInBytes ?size .
+
+  ?hashFacet a uco-observable:HashFacet ;
+            uco-observable:hash ?hash .
+  ?hash a uco-types:Hash ;
+        uco-types:hashValue ?hashValue .
+
+  FILTER(CONTAINS(LCASE(STR(?filePath)), "k2p") || CONTAINS(LCASE(STR(?filePath)), "soe information.pdf"))
+}
+ORDER BY ?doc
+;
+
+# -----------------------------------------------------------------------------
+# Q2: Show collection action(s) and normalization action(s).
+# Returns: action, type, time, performer, object, result, description
+# -----------------------------------------------------------------------------
+SELECT ?action ?type ?time ?performer ?object ?result ?desc WHERE {
+  ?action a ?type ;
+          uco-action:startTime ?time ;
+          uco-action:performer ?performer ;
+          uco-action:object ?object ;
+          uco-core:description ?desc .
+  OPTIONAL { ?action uco-action:result ?result }
+  FILTER(?type IN (investigation:InvestigativeAction, uco-action:Action))
+}
+ORDER BY ?time ?action
+;
+
+# -----------------------------------------------------------------------------
+# Q3: List brochure-grounded statement actions (claims).
+# Returns: statement, label, description
+# -----------------------------------------------------------------------------
+SELECT ?statement ?label ?desc WHERE {
+  ?statement a uco-action:Action ;
+             rdfs:label ?label ;
+             uco-core:description ?desc .
+  FILTER(CONTAINS(LCASE(STR(?desc)), "grounded in normalized.txt"))
+}
+ORDER BY ?statement
+;
+
+# -----------------------------------------------------------------------------
+# Q4: List all provenance records and which actions they point to.
+# Returns: provRecord, label, action, evidenceDescription
+# -----------------------------------------------------------------------------
+SELECT ?prov ?label ?action ?desc WHERE {
+  ?prov a investigation:ProvenanceRecord ;
+        rdfs:label ?label ;
+        investigation:provenanceRecordAction ?action ;
+        uco-core:description ?desc .
+}
+ORDER BY ?prov
+;
+
+# -----------------------------------------------------------------------------
+# Q5: List named networks/enterprises mentioned (CVLT, 764) and their types.
+# Returns: org, type, label, description
+# -----------------------------------------------------------------------------
+SELECT ?org ?type ?label ?desc WHERE {
+  ?org a ?type ;
+       rdfs:label ?label .
+  OPTIONAL { ?org uco-core:description ?desc }
+  FILTER(?type IN (
+    cacontology-enterprises:ChildExploitationEnterprise,
+    cacontology-enterprises:NihilisticViolentExtremismNetwork,
+    cacontology-soe:SadisticOnlineExploitationNetwork,
+    uco-identity:Organization
+  ))
+  FILTER(
+    CONTAINS(LCASE(STR(?label)), "cvlt") ||
+    CONTAINS(LCASE(STR(?label)), "764") ||
+    CONTAINS(LCASE(STR(?label)), "sadistic online exploitation")
+  )
+}
+ORDER BY ?org ?type
+;
+
+# -----------------------------------------------------------------------------
+# Q13: List SOE network instances and any slang terms / hosted coercion shows.
+# Returns: soeNetwork, label, slangTerm, coercionShow, coercionShowType
+# -----------------------------------------------------------------------------
+SELECT ?net ?label ?slang ?show ?showType WHERE {
+  ?net a cacontology-soe:SadisticOnlineExploitationNetwork ;
+       rdfs:label ?label .
+  OPTIONAL { ?net cacontology-soe:communitySlangTerm ?slang }
+  OPTIONAL {
+    ?net cacontology-soe:hostsCoercionShow ?show .
+    OPTIONAL { ?show cacontology-soe:coercionShowType ?showType }
+  }
+}
+ORDER BY ?net ?show
+;
+
+# -----------------------------------------------------------------------------
+# Q14: List livestreamed coercion shows and their types.
+# Returns: show, label, showType
+# -----------------------------------------------------------------------------
+SELECT ?show ?label ?showType WHERE {
+  ?show a cacontology-soe:LivestreamedCoercionShow ;
+        rdfs:label ?label ;
+        cacontology-soe:coercionShowType ?showType .
+}
+ORDER BY ?show
+;
+
+# -----------------------------------------------------------------------------
+# Q15: List sadistic sextortion pattern exemplars with their threats.
+# Returns: incident, incidentLabel, threat, threatType
+# -----------------------------------------------------------------------------
+SELECT ?incident ?incidentLabel ?threat ?threatType WHERE {
+  ?incident a cacontology-sextortion:SadisticSextortion ;
+            rdfs:label ?incidentLabel ;
+            cacontology-sextortion:employsThreat ?threat .
+  OPTIONAL { ?threat cacontology-sextortion:threatType ?threatType }
+}
+ORDER BY ?incident ?threat
+;
+
+# -----------------------------------------------------------------------------
+# Q6: Expand the SOE indicator list (indicator items referenced by the indicator statement).
+# Returns: indicator, indicatorLabel
+# -----------------------------------------------------------------------------
+SELECT ?indicator ?indicatorLabel WHERE {
+  ex:e82c66f8-9d33-5fb2-8b8b-9511b4947c42 uco-action:object ?indicator .
+  ?indicator rdfs:label ?indicatorLabel .
+  FILTER(STRSTARTS(LCASE(STR(?indicatorLabel)), "indicator:"))
+}
+ORDER BY ?indicator
+;
+
+# -----------------------------------------------------------------------------
+# Q7: Expand the HOW2RESPOND steps list.
+# Returns: step, stepLabel
+# -----------------------------------------------------------------------------
+SELECT ?step ?stepLabel WHERE {
+  ex:18ff9b72-2cf3-52a1-9515-fafc0bad6ec3 uco-action:object ?step .
+  ?step rdfs:label ?stepLabel .
+  FILTER(STRSTARTS(LCASE(STR(?stepLabel)), "respond:"))
+}
+ORDER BY ?step
+;
+
+# -----------------------------------------------------------------------------
+# Q8: Expand the HOW2REPORT methods list.
+# Returns: method, methodLabel
+# -----------------------------------------------------------------------------
+SELECT ?method ?methodLabel WHERE {
+  ex:a9a6bb56-2c50-52f7-b75d-a14ad7e36337 uco-action:object ?method .
+  ?method rdfs:label ?methodLabel .
+  FILTER(STRSTARTS(LCASE(STR(?methodLabel)), "report:"))
+}
+ORDER BY ?method
+;
+
+# -----------------------------------------------------------------------------
+# Q9: Find statement actions that define sextortion variants.
+# Returns: action, label, description
+# -----------------------------------------------------------------------------
+SELECT ?action ?label ?desc WHERE {
+  ?action a uco-action:Action ;
+          rdfs:label ?label ;
+          uco-core:description ?desc .
+  FILTER(CONTAINS(LCASE(STR(?label)), "sextortion"))
+}
+ORDER BY ?action
+;
+
+# -----------------------------------------------------------------------------
+# Q10: Show all modeled conceptual nodes referenced by the SOE definition statement.
+# Returns: object, label, type
+# -----------------------------------------------------------------------------
+SELECT ?obj ?label ?type WHERE {
+  ex:c7065d83-4da7-577c-a3c0-81b6c78c8a4e uco-action:object ?obj .
+  OPTIONAL { ?obj rdfs:label ?label }
+  OPTIONAL { ?obj a ?type }
+}
+ORDER BY ?obj
+;
+
+# -----------------------------------------------------------------------------
+# Q11: UUID coverage check (find any subject IRIs that are not urn:uuid: and not http IRIs).
+# Returns: s (expected: none for instances)
+# -----------------------------------------------------------------------------
+SELECT DISTINCT ?s WHERE {
+  ?s ?p ?o .
+  FILTER(isIRI(?s) && !STRSTARTS(STR(?s), "urn:uuid:") && !STRSTARTS(STR(?s), "http"))
+}
+;
+
+# -----------------------------------------------------------------------------
+# Q12: Provenance completeness check (collection actions missing required fields).
+# Returns: action (expected: 0 results)
+# -----------------------------------------------------------------------------
+SELECT ?action WHERE {
+  ?action a investigation:InvestigativeAction .
+  FILTER NOT EXISTS { ?action uco-action:startTime ?t }
+  UNION
+  {
+    ?action a investigation:InvestigativeAction .
+    FILTER NOT EXISTS { ?action uco-action:performer ?p }
+  }
+  UNION
+  {
+    ?action a investigation:InvestigativeAction .
+    FILTER NOT EXISTS { ?action uco-action:object ?o }
+  }
+}
+;
