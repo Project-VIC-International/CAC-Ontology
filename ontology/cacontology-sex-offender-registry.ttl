@@ -14,11 +14,11 @@
 @prefix cacontology-registry: <https://cacontology.projectvic.org/sex-offender-registry#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
-<https://cacontology.projectvic.org/sex-offender-registry/2.4.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/sex-offender-registry/2.5.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Sex Offender Registry Ontology"@en ;
     rdfs:comment "An ontology for modeling sex offender registry data, registration requirements, and registry management systems for child protection investigations."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/sex-offender-registry/2.4.0> ;
-    owl:versionInfo "2.4.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/sex-offender-registry/2.5.0> ;
+    owl:versionInfo "2.5.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date .
 

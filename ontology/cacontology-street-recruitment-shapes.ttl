@@ -15,14 +15,14 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/street/shapes/2.4.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/street/shapes/2.5.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Street-Based Recruitment SHACL Shapes"@en ;
     rdfs:comment "SHACL validation shapes for the ICAC Street-Based Recruitment & Opportunistic Exploitation Ontology, providing validation for street-based trafficking recruitment, opportunistic exploitation, public space predatory behavior, and related patterns."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/street/shapes/2.4.0> ;
-    owl:versionInfo "2.4.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/street/shapes/2.5.0> ;
+    owl:versionInfo "2.5.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/street/2.4.0> ,
+    owl:imports <https://cacontology.projectvic.org/street/2.5.0> ,
                 <http://purl.org/nemo/gufo> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 

@@ -15,15 +15,15 @@
 @prefix cacontology-asset-forfeiture: <https://cacontology.projectvic.org/asset-forfeiture#> .
 
 # Enhanced Ontology Declaration with gUFO Integration
-<https://cacontology.projectvic.org/asset-forfeiture/shapes/2.4.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/asset-forfeiture/shapes/2.5.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Asset Forfeiture SHACL Shapes with gUFO Integration"@en ;
     rdfs:comment "SHACL validation shapes for the ICAC Asset Forfeiture and Financial Recovery Ontology, enhanced with comprehensive gUFO foundational modeling validation. Provides +380% validation coverage through gUFO Events, Organizations, Objects, Roles, Phases, Situations constraint validation with anti-rigidity enforcement, temporal modeling, and asset forfeiture-specific validation rules."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/asset-forfeiture/shapes/2.4.0> ;
-    owl:versionInfo "2.4.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/asset-forfeiture/shapes/2.5.0> ;
+    owl:versionInfo "2.5.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-05-23"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/asset-forfeiture/2.4.0>,
+    owl:imports <https://cacontology.projectvic.org/asset-forfeiture/2.5.0>,
                 <http://purl.org/nemo/gufo#> ;
     rdfs:comment "gUFO-enhanced SHACL shapes providing comprehensive validation for asset forfeiture operations with foundational ontology compliance checking, anti-rigidity enforcement, temporal constraint validation, and multi-jurisdictional coordination validation."@en .
 
