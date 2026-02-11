@@ -1,0 +1,37 @@
+Community & Intelligence Beyond Detection — Global Emancipation Network (GEN)
+LinkedIn article text captured via web search result excerpt for ontology enhancement provenance.
+URL: https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/
+Captured: 2026-02-11
+
+Dear friends,
+
+As the world celebrates Safer Internet Day today, we wanted to similarly celebrate where Global Emancipation Network (GEN) stands as we approach our 10-year anniversary. We take the “Network” part of our name seriously because we have witnessed, as practitioners, that it takes a community to reach our mission of applying technology to end human trafficking and child sexual exploitation. Appropriately, the theme of this year’s Safer Internet Day is “Together for a Better Internet.”
+
+Twenty years ago, I started working in counter-exploitation at a legal policy nonprofit, helping draft legislation around the world. I thought I'd spend my career in policy work. Then I saw the growing gap between what policymakers envisioned and what practitioners on the ground actually needed. As I recently told the Social World podcast, once you see this problem, it's really hard to look away.
+
+Since founding GEN a decade ago, I have liaised between worlds that rarely talk to each other: sitting with federal investigators discussing evidence admissibility one day, advising Silicon Valley platforms on content moderation the next, working with international agencies on cross-border intelligence sharing and then consulting with corporate teams on due diligence frameworks. In 2026, such bridges matter more than ever, particularly as GenAI innovation accelerates and end-consumers demand more transparency from technology providers.
+
+Why Cross-Sector Collaboration Matters
+
+The hard part of battling child sexual exploitation isn't detection. The technology solutions for this exist, and responsible platforms deploy these already. The challenge is what comes next, and the coordination required to get it right.
+
+The volume of child sexual abuse material (CSAM) across digital platforms has ballooned. If and when a commercial platform flags – ie “detects” – 100,000 potential child sexual abuse files in just one month, how do they realistically operationalize the review of and distribution to law enforcement? What documentation proves to regulators that they acted appropriately? How do law enforcement agencies turn raw flags into courtroom-ready evidence while protecting content analysts and investigators from traumatic content?
+
+After spending years listening to investigators describe reviewing traumatic content as the hardest part of their job, I’ve applied this truth to our technical development: if we're building tools that require human beings to review this material, we have an ethical obligation to minimize their exposure while maximizing their effectiveness.
+
+At the same time, technology platforms, content clearing houses like NCMEC, law enforcement and end users themselves each have nuanced incentives to relieve bottlenecks and improve content moderation. Like members of a three-legged race, each stakeholder must communicate and move with one another to proceed. Falling to the ground, in this case, means failing to protect children & analysts along with exposing digital platforms to large volumes of litigation.
+
+What Legislators Need to Do
+
+New US Congressional bills like the DEFIANCE Act aim to support sexual exploitation victims after content has been posted, or “after-the-fact.” This approach lends a helping hand to one of the stages of abuse, but it doesn’t cover the earlier stages where digital abuse content originates. To be more proactive from the beginning: let’s make nudifying apps illegal. Global Emancipation Network, together with Child Helpline International, INHOPE, the Internet Watch Foundation, Offlimits, Safe Online and WeProtect Global Alliance, are deeply concerned with the rise of AI tools and functionalities capable of nudifying children. This functionality serves no good purpose and should be explicitly and universally illegal. Today this coalition calls for more safety-by-design in AI tools and a global ban on nudifying functionalities. Governments & legislators, we call for you to ban nudifying tools, establish criminal and civil liability with safeguards, ensure enforcement and support survivors.
+
+Next, the 2018 US SESTA-FOSTA law, while well-intended, created what we call the "knowing paradox": platforms face liability both for detecting content (because that creates "knowledge") and for failing to detect it. This discourages the proactive detection that actually protects children. Global Emancipation Network advocates for policy solutions that recognize HOW we detect matters as much as WHAT we detect:
+
+- Create safe harbors for platforms using verified compliance intelligence frameworks that provide risk-stratified analysis with documentation trails, distinguishing good faith efforts from negligence
+- Incentivize intelligence beyond simple detection systems through tax incentives and grant programs supporting verified frameworks that protect investigator capacity and preserve evidence quality
+- Support verification standards for compliance documentation so platforms can demonstrate good faith while creating market demand for solutions that work
+- Focus legislation on what helps practitioners rather than compliance theater that generates overwhelming alert volumes without protecting victims
+
+Our Path Forward: Risk-Stratified Intelligence
+
+Global Emancipation Network has been commercializing our AI-powered platform that provides what enterprises and law enforcement need: investigation intelligence that protects analyst mental health, documents compliance efforts and enables informed, risk-stratified action.

@@ -19,14 +19,14 @@
 # Enhanced with gUFO (gentle Unified Foundational Ontology) integration
 # =============================================================================
 
-<https://cacontology.projectvic.org/law-enforcement-corruption/shapes/2.5.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/law-enforcement-corruption/shapes/2.6.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Law Enforcement Corruption SHACL Shapes"@en ;
     rdfs:comment "SHACL shapes for validating law enforcement corruption ontology instances with comprehensive gUFO integration for enhanced semantic validation."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/law-enforcement-corruption/shapes/2.5.0> ;
-    owl:versionInfo "2.5.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/law-enforcement-corruption/shapes/2.6.0> ;
+    owl:versionInfo "2.6.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/law-enforcement-corruption/2.5.0> ,
+    owl:imports <https://cacontology.projectvic.org/law-enforcement-corruption/2.6.0> ,
                 <http://purl.org/nemo/gufo#> ,
                 <http://www.w3.org/ns/shacl#> .
 

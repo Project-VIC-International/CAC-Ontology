@@ -14,18 +14,18 @@
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/platforms/2.5.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/platforms/2.6.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Technology Platforms & Service Providers Ontology"@en ;
     rdfs:comment "An ontology for representing technology platforms, digital services, and Electronic Service Provider (ESP) capabilities in the context of child protection with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, and validation capabilities, extending UCO and CASE. This ontology covers social media platforms, messaging services, content hosting, and service provider policies and capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/platforms/2.5.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/platforms/2.6.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
+    dcterms:modified "2026-02-11"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity> ,
                 <https://ontology.unifiedcyberontology.org/uco/action> ,
-                <https://cacontology.projectvic.org/2.5.0> ,
+                <https://cacontology.projectvic.org/2.6.0> ,
                 <http://purl.org/nemo/gufo> .
 
 # =============================================================================
@@ -96,6 +96,31 @@ cacontology-platforms:TechnicalServiceProvider rdf:type owl:Class ;
 cacontology-platforms:ContentModerationCapability rdf:type owl:Class ;
     rdfs:label "Content Moderation Capability"@en ;
     rdfs:comment "The ability and methods a platform uses to detect, review, and remove inappropriate content. Modeled as gUFO Object."@en ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object .
+
+# =============================================================================
+# TRUST & SAFETY OPERATIONS AT SCALE (queues, backlogs, throughput)
+# =============================================================================
+
+cacontology-platforms:ContentModerationQueue rdf:type owl:Class ;
+    rdfs:label "Content Moderation Queue"@en ;
+    rdfs:comment "A queue/backlog of content items awaiting moderation review and operational handling at scale (e.g., large volumes of flagged CSAM candidates)."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object .
+
+cacontology-platforms:ReviewBacklogSituation rdf:type owl:Class ;
+    rdfs:label "Review Backlog Situation"@en ;
+    rdfs:comment "Situation in which moderation review demand exceeds capacity, producing review backlog/latency risks."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:subClassOf gufo:Situation .
+
+cacontology-platforms:ModerationThroughputMetrics rdf:type owl:Class ;
+    rdfs:label "Moderation Throughput Metrics"@en ;
+    rdfs:comment "Operational metrics describing moderation throughput and latency (e.g., queue size, review latency, flagged volume)."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
     rdfs:subClassOf uco-core:UcoObject, gufo:Object .
 
 cacontology-platforms:DataRetentionPolicy rdf:type owl:Class ;
@@ -335,11 +360,75 @@ cacontology-platforms:hasContentModerationCapability rdf:type owl:ObjectProperty
     rdfs:comment "Links a platform to its content moderation capabilities."@en ;
     rdfs:range cacontology-platforms:ContentModerationCapability .
 
+cacontology-platforms:enqueuedForModeration rdf:type owl:ObjectProperty ;
+    rdfs:label "enqueued for moderation"@en ;
+    rdfs:comment "Links a content item or moderation-relevant observable object to a moderation queue for review/processing."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:domain uco-observable:ObservableObject ;
+    rdfs:range cacontology-platforms:ContentModerationQueue .
+
+cacontology-platforms:queueOperatedBy rdf:type owl:ObjectProperty ;
+    rdfs:label "queue operated by"@en ;
+    rdfs:comment "Links a moderation queue to the electronic service provider operating the queue."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:domain cacontology-platforms:ContentModerationQueue ;
+    rdfs:range cacontology-platforms:ElectronicServiceProvider .
+
+cacontology-platforms:hasBacklogSituation rdf:type owl:ObjectProperty ;
+    rdfs:label "has backlog situation"@en ;
+    rdfs:comment "Links a moderation queue to a backlog situation indicating capacity constraints."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:domain cacontology-platforms:ContentModerationQueue ;
+    rdfs:range cacontology-platforms:ReviewBacklogSituation .
+
+cacontology-platforms:reportsThroughputMetrics rdf:type owl:ObjectProperty ;
+    rdfs:label "reports throughput metrics"@en ;
+    rdfs:comment "Links a moderation queue to operational throughput/latency metrics."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:domain cacontology-platforms:ContentModerationQueue ;
+    rdfs:range cacontology-platforms:ModerationThroughputMetrics .
+
 cacontology-platforms:moderationMethod rdf:type owl:DatatypeProperty ;
     rdfs:label "moderation method"@en ;
     rdfs:comment "The method used for content moderation (e.g., 'automated', 'human review', 'hybrid', 'user reporting')."@en ;
     rdfs:domain cacontology-platforms:ContentModerationCapability ;
     rdfs:range xsd:string .
+
+cacontology-platforms:queueSize rdf:type owl:DatatypeProperty ;
+    rdfs:label "queue size"@en ;
+    rdfs:comment "Number of items currently in a content moderation queue."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:domain cacontology-platforms:ContentModerationQueue ;
+    rdfs:range xsd:nonNegativeInteger .
+
+cacontology-platforms:reviewLatencyHours rdf:type owl:DatatypeProperty ;
+    rdfs:label "review latency hours"@en ;
+    rdfs:comment "Latency from flagging/enqueue to human or automated review completion, expressed in hours."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:domain cacontology-platforms:ModerationThroughputMetrics ;
+    rdfs:range xsd:decimal .
+
+cacontology-platforms:throughputPerDay rdf:type owl:DatatypeProperty ;
+    rdfs:label "throughput per day"@en ;
+    rdfs:comment "Number of items reviewed/processed per day in the moderation pipeline."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:domain cacontology-platforms:ModerationThroughputMetrics ;
+    rdfs:range xsd:nonNegativeInteger .
+
+cacontology-platforms:flagVolumePerMonth rdf:type owl:DatatypeProperty ;
+    rdfs:label "flag volume per month"@en ;
+    rdfs:comment "Volume of flagged items generated per month (e.g., potential CSAM files flagged)."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:domain cacontology-platforms:ModerationThroughputMetrics ;
+    rdfs:range xsd:nonNegativeInteger .
 
 cacontology-platforms:csaiDetectionEnabled rdf:type owl:DatatypeProperty ;
     rdfs:label "CSAI detection enabled"@en ;

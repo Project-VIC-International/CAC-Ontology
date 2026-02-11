@@ -15,14 +15,14 @@
 # ONTOLOGY DECLARATION - SEX TRAFFICKING SHACL SHAPES (MINIMAL CORE)
 # =============================================================================
 
-<https://cacontology.projectvic.org/trafficking/shapes/2.5.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/trafficking/shapes/2.6.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Sex Trafficking SHACL Shapes - Minimal Core"@en ;
     rdfs:comment "Minimal SHACL validation shapes for the CAC Sex Trafficking Ontology, focusing on core gUFO-aligned structures (organizations, roles, events) and key temporal and quantitative properties."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/trafficking/shapes/2.5.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/trafficking/shapes/2.6.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-11-18"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/trafficking/2.5.0> ,
+    owl:imports <https://cacontology.projectvic.org/trafficking/2.6.0> ,
                 <http://purl.org/nemo/gufo> .
 
 # =============================================================================

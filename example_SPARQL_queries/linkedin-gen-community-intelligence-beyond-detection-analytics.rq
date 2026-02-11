@@ -1,0 +1,187 @@
+# =============================================================================
+# SPARQL Analytics Queries: GEN LinkedIn Article
+# Target KG: examples_knowledge_graphs/linkedin-gen-community-intelligence-beyond-detection-example.ttl
+# Source: https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/
+# =============================================================================
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core/>
+PREFIX uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/>
+PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/>
+PREFIX uco-types: <https://ontology.unifiedcyberontology.org/uco/types/>
+
+PREFIX investigation: <https://ontology.caseontology.org/case/investigation/>
+
+PREFIX cacontology-ai: <https://cacontology.projectvic.org/ai-generated#>
+PREFIX cacontology-analyst: <https://cacontology.projectvic.org/analyst-wellbeing#>
+PREFIX cacontology-detection: <https://cacontology.projectvic.org/detection#>
+PREFIX cacontology-legal: <https://cacontology.projectvic.org/legal-harmonization#>
+PREFIX cacontology-platforms: <https://cacontology.projectvic.org/platforms#>
+
+PREFIX ex: <urn:uuid:>
+
+################################################################################
+## 1) Source Document Provenance: URL + File + Hash + Collection Action       ##
+################################################################################
+
+SELECT DISTINCT ?docLabel ?url ?path ?hashValue ?collectedAt ?collectorLabel
+WHERE {
+  BIND(ex:96d98ba3-2586-562b-b6e3-d49e8544b318 AS ?doc)
+
+  ?doc rdfs:label ?docLabel ;
+       uco-core:hasFacet ?urlFacet ;
+       uco-core:hasFacet ?fileFacet ;
+       uco-core:hasFacet ?hashFacet .
+
+  ?urlFacet a uco-observable:URLFacet ;
+           uco-observable:url ?url .
+
+  ?fileFacet a uco-observable:FileFacet ;
+            uco-observable:filePath ?path .
+
+  ?hashFacet a uco-observable:HashFacet ;
+            uco-observable:hash ?hashNode .
+
+  ?hashNode a uco-types:Hash ;
+            uco-types:hashValue ?hashValue .
+
+  ?action a investigation:InvestigativeAction ;
+          uco-action:object ?doc ;
+          uco-action:startTime ?collectedAt ;
+          uco-action:performer ?collector .
+
+  OPTIONAL { ?collector rdfs:label ?collectorLabel }
+}
+ORDER BY ?collectedAt
+;
+
+################################################################################
+## 2) Moderation Queue Snapshot: size + latency + throughput + operator       ##
+################################################################################
+
+SELECT DISTINCT ?queueLabel ?operatorLabel ?queueSize ?latencyHours ?throughput ?flagVolume
+WHERE {
+  BIND(ex:0c6ed1ac-f24a-5636-8742-7fce6ad7e8c0 AS ?queue)
+
+  ?queue a cacontology-platforms:ContentModerationQueue ;
+         rdfs:label ?queueLabel ;
+         cacontology-platforms:queueOperatedBy ?operator ;
+         cacontology-platforms:queueSize ?queueSize ;
+         cacontology-platforms:reportsThroughputMetrics ?metrics .
+
+  OPTIONAL { ?operator rdfs:label ?operatorLabel }
+
+  ?metrics a cacontology-platforms:ModerationThroughputMetrics ;
+           cacontology-platforms:reviewLatencyHours ?latencyHours ;
+           cacontology-platforms:throughputPerDay ?throughput ;
+           cacontology-platforms:flagVolumePerMonth ?flagVolume .
+}
+;
+
+################################################################################
+## 3) Detection → Risk-Stratified Intelligence (result + rationale)           ##
+################################################################################
+
+SELECT DISTINCT ?detResultLabel ?confidence ?riskTier ?riskScore ?rationale
+WHERE {
+  BIND(ex:1e8883c2-adf0-5d77-be61-664c3ecf0cae AS ?detResult)
+
+  ?detResult rdfs:label ?detResultLabel .
+  OPTIONAL { ?detResult cacontology-detection:confidenceScore ?confidence }
+
+  ?riskAction a cacontology-detection:RiskStratificationAction ;
+              cacontology-detection:stratifiesDetectionResult ?detResult ;
+              cacontology-detection:producesRiskStratificationResult ?riskResult .
+
+  ?riskResult a cacontology-detection:RiskStratificationResult ;
+              cacontology-detection:riskTier ?riskTier ;
+              cacontology-detection:riskScore ?riskScore ;
+              cacontology-detection:riskRationale ?rationale .
+}
+;
+
+################################################################################
+## 4) Analyst Wellbeing: exposure mitigation + occupational harm              ##
+################################################################################
+
+SELECT DISTINCT ?analystLabel ?actionLabel ?mitigationLabel ?mitigationType ?harmLabel ?harmSeverity
+WHERE {
+  BIND(ex:0a6834d5-4387-5ae0-8c7d-81586e3715fa AS ?analyst)
+
+  ?analyst rdfs:label ?analystLabel .
+
+  ?action a cacontology-detection:ManualClassificationAction ;
+          rdfs:label ?actionLabel ;
+          uco-action:performer ?analyst ;
+          cacontology-analyst:usesExposureMitigation ?mitigation .
+
+  ?mitigation a cacontology-analyst:ExposureMitigationMeasure ;
+              rdfs:label ?mitigationLabel ;
+              cacontology-analyst:mitigationType ?mitigationType .
+
+  OPTIONAL {
+    ?analyst cacontology-analyst:experiencesOccupationalHarm ?harm .
+    ?harm rdfs:label ?harmLabel ;
+          cacontology-analyst:harmSeverity ?harmSeverity .
+  }
+}
+ORDER BY ?actionLabel
+;
+
+################################################################################
+## 5) Nudification: tool + source media + nudified output                     ##
+################################################################################
+
+SELECT DISTINCT ?actionLabel ?technique ?toolLabel ?sourceLabel ?outputLabel
+WHERE {
+  BIND(ex:81619e9c-c027-5d9c-a581-97288af406a3 AS ?action)
+
+  ?action a cacontology-ai:Nudification ;
+          rdfs:label ?actionLabel ;
+          cacontology-ai:nudificationTechnique ?technique ;
+          cacontology-ai:usesNudificationTool ?tool ;
+          uco-action:object ?source ;
+          uco-action:result ?output .
+
+  OPTIONAL { ?tool rdfs:label ?toolLabel }
+  OPTIONAL { ?source rdfs:label ?sourceLabel }
+  OPTIONAL { ?output rdfs:label ?outputLabel }
+}
+;
+
+################################################################################
+## 6) Safe Harbor + Compliance Framework + Knowing Paradox                     ##
+################################################################################
+
+SELECT DISTINCT ?statuteLabel ?paradoxLabel ?safeHarborLabel ?criteria ?frameworkLabel ?docLabel ?verificationStatus
+WHERE {
+  BIND(ex:bb12b750-676e-5bc5-bbc7-c3ad5e920646 AS ?statute)
+
+  ?statute a cacontology-legal:Statute ;
+          rdfs:label ?statuteLabel ;
+          cacontology-legal:createsIncentiveConflict ?paradox ;
+          cacontology-legal:hasSafeHarbor ?safeHarbor .
+
+  ?paradox a cacontology-legal:KnowingParadox ;
+           rdfs:label ?paradoxLabel .
+
+  ?safeHarbor a cacontology-legal:SafeHarbor ;
+              rdfs:label ?safeHarborLabel ;
+              cacontology-legal:goodFaithCriteria ?criteria ;
+              cacontology-legal:supportedByFramework ?framework .
+
+  OPTIONAL { ?framework rdfs:label ?frameworkLabel }
+
+  OPTIONAL {
+    ?audit a cacontology-legal:AuditProcess ;
+           cacontology-legal:producesComplianceDocumentation ?doc .
+    ?doc a cacontology-legal:ComplianceDocumentationArtifact ;
+         rdfs:label ?docLabel ;
+         cacontology-legal:verificationStatus ?verificationStatus .
+  }
+}
+;

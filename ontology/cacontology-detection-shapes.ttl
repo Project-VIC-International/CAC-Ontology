@@ -19,16 +19,16 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Enhanced Ontology Declaration with gUFO Validation
-<https://cacontology.projectvic.org/detection/shapes/2.5.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/detection/shapes/2.6.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Detection SHACL Shapes with gUFO Validation"@en ;
     rdfs:comment "Comprehensive SHACL validation shapes for gUFO-enhanced ICAC detection ontology, including foundational type validation, anti-rigidity constraints for detection roles and phases, temporal consistency validation, detection workflow validation, and advanced cross-reference validation for content detection systems."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/detection/shapes/2.5.0> ;
-    owl:imports <https://cacontology.projectvic.org/detection/2.5.0> ,
+    owl:versionIRI <https://cacontology.projectvic.org/detection/shapes/2.6.0> ;
+    owl:imports <https://cacontology.projectvic.org/detection/2.6.0> ,
                 <http://purl.org/nemo/gufo> ,
                 <https://ontology.unifiedcyberontology.org/uco/core> ;
-    owl:versionInfo "2.5.0" ;
+    owl:versionInfo "2.6.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2025-11-18"^^xsd:date .
+    dcterms:modified "2026-02-11"^^xsd:date .
 
 # =============================================================================
 # gUFO DETECTION TOOL VALIDATION (Objects)
@@ -118,7 +118,8 @@ cacontology-detection:DetectionActionGUFOShape rdf:type sh:NodeShape ;
                    cacontology-detection:AutomatedDetectionAction ,
                    cacontology-detection:ManualClassificationAction ,
                    cacontology-detection:DatabaseMatchAction ,
-                   cacontology-detection:FalsePositiveAnalysisAction ;
+                   cacontology-detection:FalsePositiveAnalysisAction ,
+                   cacontology-detection:RiskStratificationAction ;
     rdfs:label "gUFO Detection Action Shape"@en ;
     rdfs:comment "Validates detection actions as gUFO Events with temporal boundaries."@en ;
     sh:property [
@@ -1005,4 +1006,50 @@ cacontology-detection:HashFormatValidationShape rdf:type sh:NodeShape ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "Hash creation time should be specified when available"@en
-    ] . 
+    ] .
+
+# =============================================================================
+# RISK STRATIFICATION SHAPES (beyond raw detection flags; GEN 2026-02-10)
+# =============================================================================
+
+cacontology-detection:RiskStratificationActionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:RiskStratificationAction ;
+    rdfs:label "Risk Stratification Action Shape"@en ;
+    rdfs:comment "Validates risk stratification actions that produce explainable prioritization outputs."@en ;
+    sh:property [
+        sh:path cacontology-detection:producesRiskStratificationResult ;
+        sh:minCount 1 ;
+        sh:message "Risk stratification action must produce at least one risk stratification result."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-detection:stratifiesDetectionResult ;
+        sh:minCount 0 ;
+        sh:message "Risk stratification action may link to a detection result it stratifies."@en
+    ] .
+
+cacontology-detection:RiskStratificationResultShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-detection:RiskStratificationResult ;
+    rdfs:label "Risk Stratification Result Shape"@en ;
+    rdfs:comment "Validates risk stratification result artifacts with optional tier/score and explainability rationale."@en ;
+    sh:property [
+        sh:path cacontology-detection:riskTier ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "critical" "high" "medium" "low" "unknown" ) ;
+        sh:message "Risk tier must be one of: critical/high/medium/low/unknown (when present)."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-detection:riskScore ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Risk score must be a decimal when present."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-detection:riskRationale ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Risk rationale must be a string when present."@en
+    ] .

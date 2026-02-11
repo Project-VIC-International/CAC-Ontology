@@ -19,15 +19,15 @@
 # Enhanced with gUFO (gentle Unified Foundational Ontology) integration
 # =============================================================================
 
-<https://cacontology.projectvic.org/legal-harmonization/shapes/2.5.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/legal-harmonization/shapes/2.6.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Legal Harmonization SHACL Shapes"@en ;
     rdfs:comment "SHACL shapes for validating ICAC legal harmonization ontology instances with comprehensive gUFO integration for enhanced semantic validation, covering international legal frameworks, policy harmonization, and CSAM legislation analysis across 196 countries."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/legal-harmonization/shapes/2.5.0> ;
-    owl:versionInfo "2.5.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/legal-harmonization/shapes/2.6.0> ;
+    owl:versionInfo "2.6.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/legal-harmonization/2.5.0> ,
-                <https://cacontology.projectvic.org/multi-jurisdiction/2.5.0> ,
+    dcterms:modified "2026-02-11"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/legal-harmonization/2.6.0> ,
+                <https://cacontology.projectvic.org/multi-jurisdiction/2.6.0> ,
                 <http://purl.org/nemo/gufo#> ,
                 <http://www.w3.org/ns/shacl#> .
 
@@ -1215,4 +1215,82 @@ cacontology-legal-shapes:JurisdictionWithGapsShape rdf:type sh:NodeShape ;
         sh:minCount 1 ;
         sh:severity sh:Info ;
         sh:message "Jurisdiction should reference valid legal framework gaps"@en
-    ] . 
+    ] .
+
+# =============================================================================
+# COMPLIANCE INTELLIGENCE / SAFE HARBOR SHAPES (GEN 2026-02-10)
+# =============================================================================
+
+cacontology-legal-shapes:ComplianceIntelligenceFrameworkShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal:ComplianceIntelligenceFramework ;
+    rdfs:label "Compliance Intelligence Framework Shape"@en ;
+    rdfs:comment "Validates compliance intelligence framework objects as gUFO Kind."@en ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Kind ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "Compliance intelligence frameworks must be classified as gUFO Kind"@en
+    ] .
+
+cacontology-legal-shapes:SafeHarborShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal:SafeHarbor ;
+    rdfs:label "Safe Harbor Shape"@en ;
+    rdfs:comment "Validates safe harbor objects and their good-faith criteria."@en ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Kind ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "Safe harbors must be classified as gUFO Kind"@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal:goodFaithCriteria ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:severity sh:Info ;
+        sh:message "Safe harbor may specify good-faith criteria as a string."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal:supportedByFramework ;
+        sh:class cacontology-legal:ComplianceIntelligenceFramework ;
+        sh:minCount 0 ;
+        sh:severity sh:Info ;
+        sh:message "Safe harbor may reference a supporting compliance intelligence framework."@en
+    ] .
+
+cacontology-legal-shapes:ComplianceDocumentationArtifactShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal:ComplianceDocumentationArtifact ;
+    rdfs:label "Compliance Documentation Artifact Shape"@en ;
+    rdfs:comment "Validates compliance documentation artifacts and their verification status."@en ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue gufo:Kind ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "Compliance documentation artifacts must be classified as gUFO Kind"@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal:verificationStatus ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "verified" "unverified" "contested" "unknown" ) ;
+        sh:severity sh:Info ;
+        sh:message "Verification status must be from allowed list when present."@en
+    ] .
+
+cacontology-legal-shapes:KnowingParadoxShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal:KnowingParadox ;
+    rdfs:label "Knowing Paradox Shape"@en ;
+    rdfs:comment "Validates knowing paradox as a gUFO Situation."@en ;
+    sh:property [
+        sh:path rdfs:subClassOf ;
+        sh:qualifiedValueShape [
+            sh:class gufo:Situation
+        ] ;
+        sh:qualifiedMinCount 1 ;
+        sh:severity sh:Info ;
+        sh:message "Knowing paradox should extend gUFO Situation."@en
+    ] .

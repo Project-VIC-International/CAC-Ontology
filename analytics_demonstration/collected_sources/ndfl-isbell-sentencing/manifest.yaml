@@ -1,0 +1,52 @@
+# Phase -1 Manifest: NDFL Isbell Sentencing Press Release
+# Source: https://www.justice.gov/usao-ndfl/pr/tallahassee-man-sentenced-twenty-years-federal-prison-child-exploitation-crime
+
+batch:
+  uco-core:id: "urn:uuid:4a3b2c1d-5e6f-5a7b-8c9d-0e1f2a3b4c5d"
+  uco-core:name: "NDFL Isbell Sentencing Press Release Collection"
+  uco-core:objectCreatedTime: "2026-01-07T04:00:43Z"
+
+documents:
+  - uco-core:id: "urn:uuid:e95cbf40-5762-5b4a-9b3a-f2d438d47aff"
+    uco-core:name: "DOJ USAO-NDFL Press Release - Tallahassee Man Sentenced to Twenty Years"
+    observable:url: "https://www.justice.gov/usao-ndfl/pr/tallahassee-man-sentenced-twenty-years-federal-prison-child-exploitation-crime"
+    
+    collectionAction:
+      uco-core:id: "urn:uuid:b8c9d0e1-f2a3-5b4c-5d6e-7f8a9b0c1d2e"
+      uco-action:startTime: "2026-01-07T04:00:43Z"
+      uco-action:performer: "urn:uuid:a1b2c3d4-e5f6-5a7b-8c9d-0e1f2a3b4c5d"
+      uco-core:description: "Web page collected via browser automation (Cursor IDE browser)"
+    
+    observable:mimeType: "text/html"
+    observable:sizeInBytes: 98312  # Approximate from browser snapshot
+    observable:hash:
+      types:hashMethod: "SHA-256"
+      types:hashValue: "content-captured-via-browser-snapshot"  # Browser capture, not direct fetch
+    
+    normalizedOutput:
+      uco-core:id: "urn:uuid:16754b4d-d711-52c2-a5f7-6aabdd64a673"
+      observable:filePath: "analytics_demonstration/collected_sources/ndfl-isbell-sentencing/normalized.txt"
+      observable:sizeInBytes: 3068
+      observable:hash:
+        types:hashMethod: "SHA-256"
+        types:hashValue: "72d619874021101fc6062a834d8eb070033f09722602142dc5ba5a5f96ef4581"
+
+# UUIDs used (UUIDv5 for determinism)
+uuids:
+  batch: "4a3b2c1d-5e6f-5a7b-8c9d-0e1f2a3b4c5d"
+  raw_doc: "e95cbf40-5762-5b4a-9b3a-f2d438d47aff"
+  normalized_doc: "16754b4d-d711-52c2-a5f7-6aabdd64a673"
+  collection_action: "b8c9d0e1-f2a3-5b4c-5d6e-7f8a9b0c1d2e"
+  normalization_action: "c9d0e1f2-a3b4-5c5d-6e7f-8a9b0c1d2e3f"
+  provenance_record: "d0e1f2a3-b4c5-5d6e-7f8a-9b0c1d2e3f4a"
+  agent: "a1b2c3d4-e5f6-5a7b-8c9d-0e1f2a3b4c5d"
+
+# Scope decision
+scope:
+  status: "IN_SCOPE"
+  categories:
+    - "CSEA investigation"
+    - "Federal prosecution"
+    - "Sentencing"
+    - "Child pornography production"
+  excluded_topics: []

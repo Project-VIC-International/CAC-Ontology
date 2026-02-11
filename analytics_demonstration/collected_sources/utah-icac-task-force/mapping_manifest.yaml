@@ -1,0 +1,102 @@
+documentId: "urn:uuid:82588a71-7176-4cd0-aaee-56cffc467f86"
+caseId: "utah-icac-task-force-webpage"
+concepts:
+  - conceptName: "Source Webpage (HTML)"
+    instanceUUID: "urn:uuid:82588a71-7176-4cd0-aaee-56cffc467f86"
+    class: "uco-observable:ObservableObject"
+    facets:
+      - "uco-observable:ContentDataFacet"
+      - "uco-observable:URLFacet"
+      - "uco-observable:HashFacet"
+    relationships:
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:ab6bd6f6-aed2-4471-bee6-0c58cbaaa1ce"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:696200db-f29d-4b5e-9f66-ed2563784d21"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:9287668e-b466-4391-8df5-e1371fd29801"
+    evidencePointer:
+      documentId: "urn:uuid:82588a71-7176-4cd0-aaee-56cffc467f86"
+      span: "normalized.txt lines 35-45"
+      quote: "ICAC Task Force ... Utah’s ICAC has 65 (affiliates)..."
+    confidence: "high"
+
+  - conceptName: "Normalized Text Artifact"
+    instanceUUID: "urn:uuid:475e52e8-e517-4370-bfb2-93f3e771ef26"
+    class: "uco-observable:ObservableObject"
+    facets:
+      - "uco-observable:ContentDataFacet"
+      - "uco-observable:FileFacet"
+      - "uco-observable:HashFacet"
+    relationships:
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:522f2167-266e-4f7a-9346-20b7b5b2ffff"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:7770a786-cd2f-4b3f-814b-e1ea25aeee18"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:2d6c0309-825b-4821-9777-6142962c2c12"
+    evidencePointer:
+      documentId: "urn:uuid:82588a71-7176-4cd0-aaee-56cffc467f86"
+      span: "generated artifact"
+      quote: "Normalized from HTML via html_clean + whitespace normalization + de-dup consecutive text nodes."
+    confidence: "high"
+
+  - conceptName: "Utah Attorney General ICAC Task Force (Organization)"
+    instanceUUID: "urn:uuid:af3aaac8-c561-4223-bcb3-0787f90c14b9"
+    class: "uco-identity:Organization"
+    facets: []
+    relationships:
+      - predicate: "uco-action:performer"
+        targetUUID: "urn:uuid:107c5358-ad85-417f-a60f-86d7410b52ef"
+    evidencePointer:
+      documentId: "urn:uuid:82588a71-7176-4cd0-aaee-56cffc467f86"
+      span: "normalized.txt lines 35-45"
+      quote: "The Utah Attorney General ICAC Task Force was created in 2000..."
+    confidence: "high"
+
+  - conceptName: "Published Reporting Contacts (Tip Line + Email)"
+    instanceUUID: "urn:uuid:107c5358-ad85-417f-a60f-86d7410b52ef"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      - predicate: "uco-action:object"
+        targetUUID: "urn:uuid:37634478-f5d4-46e5-8702-5360ecb6f3ec"
+      - predicate: "uco-action:object"
+        targetUUID: "urn:uuid:61dd2432-e06d-408e-bb0c-73439fd152b3"
+    evidencePointer:
+      documentId: "urn:uuid:82588a71-7176-4cd0-aaee-56cffc467f86"
+      span: "normalized.txt lines 41-42"
+      quote: "ICAC Tip Line: 801.281.1211 / ICAC Email: utahicac@agutah.gov"
+    confidence: "high"
+
+  - conceptName: "Crimes Investigated List (3 categories)"
+    instanceUUID: "urn:uuid:58b513d2-af3c-57a2-9f5c-d71c5741b5e3"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      - predicate: "uco-action:object"
+        targetUUID: "urn:uuid:ac3fdc87-634a-5a19-b6ab-bf5a22f3ba32"
+      - predicate: "uco-action:object"
+        targetUUID: "urn:uuid:2b66a85d-fb4a-5e7e-984a-bd542f7517a1"
+      - predicate: "uco-action:object"
+        targetUUID: "urn:uuid:ae35e4a2-7479-5a0a-b2b5-c23e3c5d2036"
+    evidencePointer:
+      documentId: "urn:uuid:82588a71-7176-4cd0-aaee-56cffc467f86"
+      span: "normalized.txt lines 49-52"
+      quote: "Crimes We Investigate ..."
+    confidence: "high"
+
+  - conceptName: "Affiliates List Action"
+    instanceUUID: "urn:uuid:955200b5-668a-5bfa-bbc5-2fa5f62acd16"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      - predicate: "uco-action:object"
+        targetUUID: "urn:uuid:82588a71-7176-4cd0-aaee-56cffc467f86"
+      # 64 affiliate orgs are also objects of this action (see example KG)
+    evidencePointer:
+      documentId: "urn:uuid:82588a71-7176-4cd0-aaee-56cffc467f86"
+      span: "normalized.txt lines 64-128"
+      quote: "Utah Attorney General ICAC Affiliates ..."
+    confidence: "high"
+

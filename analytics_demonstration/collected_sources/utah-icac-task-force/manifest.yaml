@@ -1,0 +1,51 @@
+# CAC Ontology ingestion manifest (single-document)
+# Source: Utah Attorney General - ICAC Task Force webpage
+
+batch:
+  uco-core:id: "urn:uuid:a66be0b8-3532-4b1f-9957-7de6e1aa70a7"
+  uco-core:name: "Utah ICAC Task Force webpage collection"
+  uco-core:objectCreatedTime: "2026-01-07T02:59:19Z"
+
+  agentOrchestration:
+    enabled: false
+    fetchMethod: "manual"
+    preprocessingPipeline:
+      - "html_clean"
+      - "whitespace_normalize"
+      - "dedupe_consecutive_text_nodes"
+    deconflictionEnabled: false
+
+documents:
+  - uco-core:id: "urn:uuid:82588a71-7176-4cd0-aaee-56cffc467f86"
+    uco-core:name: "Utah Attorney General ICAC Task Force - ICAC Task Force webpage"
+
+    # Source location
+    observable:url: "https://attorneygeneral.utah.gov/icac/"
+    observable:filePath: "analytics_demonstration/collected_sources/utah-icac-task-force/source.html"
+
+    collectionAction:
+      uco-action:startTime: "2026-01-07T02:59:19Z"
+      uco-action:performer: "urn:uuid:eabf2658-dd9e-4306-95f2-6d8ddb1c1ebf"
+      uco-core:description: "manual (curl via WSL) by CAC Ontology agent"
+
+    # Raw content metadata
+    observable:mimeType: "text/html"
+    observable:sizeInBytes: 35953
+    observable:hash:
+      types:hashMethod: "SHA-256"
+      types:hashValue: "6ec7cea6c9da98611f732bfe65039531dd032678ebb6fe3b4e961a5f7fe076c2"
+
+    # Normalized output
+    normalizationAction:
+      uco-core:description: "html_clean (strip tags) + whitespace normalization + de-dup consecutive text nodes"
+      uco-action:startTime: "2026-01-07T02:59:19Z"
+      uco-action:result: "urn:uuid:475e52e8-e517-4370-bfb2-93f3e771ef26"
+
+    normalizedOutput:
+      observable:filePath: "analytics_demonstration/collected_sources/utah-icac-task-force/normalized.txt"
+      observable:mimeType: "text/plain"
+      observable:sizeInBytes: 17554
+      observable:hash:
+        types:hashMethod: "SHA-256"
+        types:hashValue: "0555fc5ae78a4fb7db4e617c31e3dcacd5ee3a5813317b889b6f23ad3ac2f1f7"
+

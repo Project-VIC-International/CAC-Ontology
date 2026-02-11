@@ -12,16 +12,16 @@
 # ONTOLOGY DECLARATION
 # =============================================================================
 
-<https://cacontology.projectvic.org/gufo-strategy/2.5.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/gufo-strategy/2.6.0> rdf:type owl:Ontology ;
     rdfs:label "CAC gUFO Integration Strategy - Phase 3"@en ;
     rdfs:comment "Phase 3 gUFO integration strategy for extending foundational concepts across all 26 ICAC ontology modules. Provides comprehensive patterns, validation frameworks, and integration guidelines."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/gufo-strategy/2.5.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/gufo-strategy/2.6.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-01-03"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
     dcterms:description "Comprehensive strategy for Phase 3 full integration of gUFO across ICAC ontology family, including validation patterns, module mapping, and integration guidelines."@en ;
-    owl:imports <https://cacontology.projectvic.org/gufo/2.5.0> ,
-                <https://cacontology.projectvic.org/temporal/2.5.0> ,
+    owl:imports <https://cacontology.projectvic.org/gufo/2.6.0> ,
+                <https://cacontology.projectvic.org/temporal/2.6.0> ,
                 <http://purl.org/nemo/gufo> .
 
 # =============================================================================

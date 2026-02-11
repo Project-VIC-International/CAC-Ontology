@@ -6,14 +6,14 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
-@prefix cacontology: <https://cacontology.projectvic.org/2.5.0#> .
-@prefix cacontology-us-ncmec: <https://cacontology.projectvic.org/us/ncmec/2.5.0#> .
+@prefix cacontology: <https://cacontology.projectvic.org/2.6.0#> .
+@prefix cacontology-us-ncmec: <https://cacontology.projectvic.org/us/ncmec/2.6.0#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/us/ncmec/2.5.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/us/ncmec/2.6.0> rdf:type owl:Ontology ;
     rdfs:label "NCMEC Cybertip Report Ontology (US Extension)"@en ;
-    rdfs:comment "An ontology for representing concepts specific to NCMEC Cybertip reports as an extension to the core ICAC ontology. Version 2.5.0."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/us/ncmec/2.5.0> ;
+    rdfs:comment "An ontology for representing concepts specific to NCMEC Cybertip reports as an extension to the core ICAC ontology. Version 2.6.0."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/us/ncmec/2.6.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-03-20"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
