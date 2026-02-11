@@ -54,6 +54,36 @@ Major enhancement based on analysis of Global Emancipation Network (GEN) article
 
 ---
 
+## v2.5.0 - 11 February 2026
+
+### Added - SOE Module, Sadistic Sextortion Threats, and K2P Example Suite
+
+Introduces a new Statement of Evidence (SOE) module and expands sextortion modeling for sadistic threat patterns. Adds an end-to-end example suite and verification artifacts for the K2P SOE information source.
+
+#### New SOE Module (`ontology/cacontology-soe.ttl`)
+
+- Added `cacontology-soe` module and SHACL shapes:
+  - `ontology/cacontology-soe.ttl`
+  - `ontology/cacontology-soe-shapes.ttl`
+
+#### Enhanced Sextortion Module (`ontology/cacontology-sextortion.ttl`)
+
+- Added sadistic sextortion threat modeling updates.
+- Updated SHACL shapes: `ontology/cacontology-sextortion-shapes.ttl`
+
+#### Example KG + SPARQL Analytics (K2P SOE Information)
+
+- Added example KG: `examples_knowledge_graphs/k2p-soe-information-example.ttl`
+- Added analytics queries: `example_SPARQL_queries/k2p-soe-information-analytics.rq`
+- Added supporting evidence collection artifacts under `analytics_demonstration/collected_sources/k2p-soe-information/`
+
+### Changed
+
+- Bumped ontology family version IRIs to `2.5.0` across modules (supporting tooling: `update_version.py`).
+- Updated `testing/docker-compose.yaml` to support validation workflows.
+
+---
+
 ## v2.4.0 - 27 January 2026
 
 ### Added - Raven US Extensions Integration (Legislative & Organizational Framework)
