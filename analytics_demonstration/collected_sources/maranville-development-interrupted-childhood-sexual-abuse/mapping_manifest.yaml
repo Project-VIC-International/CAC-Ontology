@@ -1,0 +1,129 @@
+documentId: "urn:uuid:582ed787-34e0-5fbd-b457-ffb11e94c3af"
+caseId: "maranville-development-interrupted-childhood-sexual-abuse"
+concepts:
+  - conceptName: "Source Document (captured text)"
+    instanceUUID: "urn:uuid:582ed787-34e0-5fbd-b457-ffb11e94c3af"
+    class: "uco-observable:ObservableObject"
+    facets:
+      - "uco-observable:ContentDataFacet"
+      - "uco-observable:URLFacet"
+      - "uco-observable:FileFacet"
+      - "uco-observable:HashFacet"
+    relationships:
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:62225337-94a4-5c83-9780-d87237407db9"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:12c24db7-e8bb-5f1b-918a-327529a42d54"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:68505b6f-1a84-51a4-8643-842a43821a7f"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:74b83d43-9a45-5eac-a704-ad3e720394cf"
+    evidencePointer:
+      documentId: "urn:uuid:582ed787-34e0-5fbd-b457-ffb11e94c3af"
+      span: "source.txt (captured artifact)"
+      quote: "When Development Is Interrupted by Childhood Sexual Abuse"
+    confidence: "high"
+
+  - conceptName: "Normalized Text Artifact"
+    instanceUUID: "urn:uuid:32a91353-795c-5689-86df-9035ac482f56"
+    class: "uco-observable:ObservableObject"
+    facets:
+      - "uco-observable:ContentDataFacet"
+      - "uco-observable:FileFacet"
+      - "uco-observable:HashFacet"
+    relationships:
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:cc310f2c-522b-5858-ac4d-9baab899f0ca"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:3732ee2e-ff77-54ae-bdf6-fa769c201fa7"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:9e529170-b4e8-5e2a-aeff-204ce93f9ef8"
+    evidencePointer:
+      documentId: "urn:uuid:582ed787-34e0-5fbd-b457-ffb11e94c3af"
+      span: "generated artifact"
+      quote: "Normalized from source.txt via whitespace normalization + paragraph-per-line normalization."
+    confidence: "high"
+
+  - conceptName: "Author (as stated)"
+    instanceUUID: "urn:uuid:709f78ce-f849-5d35-8929-5a6ef687980c"
+    class: "uco-identity:Person"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:582ed787-34e0-5fbd-b457-ffb11e94c3af"
+      span: "normalized.txt lines 1-3"
+      quote: "Author: Melissa Maranville, PhD"
+    confidence: "high"
+
+  - conceptName: "Platform publisher (LinkedIn)"
+    instanceUUID: "urn:uuid:6820a49d-33a0-5f9a-b5bf-1b7952f970db"
+    class: "uco-identity:Organization"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:582ed787-34e0-5fbd-b457-ffb11e94c3af"
+      span: "normalized.txt line 4"
+      quote: "Source URL: https://www.linkedin.com/..."
+    confidence: "medium"
+
+  - conceptName: "Collection Action"
+    instanceUUID: "urn:uuid:e03234be-c0d8-5e69-ad8a-986315148b03"
+    class: "investigation:InvestigativeAction"
+    facets: []
+    relationships:
+      - predicate: "uco-action:object"
+        targetUUID: "urn:uuid:582ed787-34e0-5fbd-b457-ffb11e94c3af"
+    evidencePointer:
+      documentId: "urn:uuid:582ed787-34e0-5fbd-b457-ffb11e94c3af"
+      span: "manifest.yaml"
+      quote: "collectionAction: manual text capture"
+    confidence: "high"
+
+  - conceptName: "Statement: early CSA shapes development while forming"
+    instanceUUID: "urn:uuid:ea3bb8b2-e0d8-5da7-8bab-f9f0c1587379"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      - predicate: "uco-action:object"
+        targetUUID: "urn:uuid:1ef7227d-e7fa-5f34-80b3-58662932122b"
+    evidencePointer:
+      documentId: "urn:uuid:582ed787-34e0-5fbd-b457-ffb11e94c3af"
+      span: "normalized.txt lines 6-8"
+      quote: "When childhood sexual abuse begins early, it ... shapes development while it is still forming."
+    confidence: "high"
+
+  - conceptName: "Modeled psychological harm: Developmental Impact"
+    instanceUUID: "urn:uuid:1ef7227d-e7fa-5f34-80b3-58662932122b"
+    class: "cacontology-impact:DevelopmentalImpact"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:582ed787-34e0-5fbd-b457-ffb11e94c3af"
+      span: "normalized.txt lines 6-10"
+      quote: "development ... shapes development while it is still forming ... process ... altered."
+    confidence: "high"
+
+  - conceptName: "Statement: developmental trauma / complex trauma framing"
+    instanceUUID: "urn:uuid:5bb982a7-8aa2-5117-9511-2fe21f764a99"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      - predicate: "uco-action:object"
+        targetUUID: "urn:uuid:375d47a3-8227-5eea-8590-c52d40c12825"
+    evidencePointer:
+      documentId: "urn:uuid:582ed787-34e0-5fbd-b457-ffb11e94c3af"
+      span: "normalized.txt line 12"
+      quote: "developmental trauma or complex trauma"
+    confidence: "high"
+
+  - conceptName: "Modeled psychological harm: Complex Trauma"
+    instanceUUID: "urn:uuid:375d47a3-8227-5eea-8590-c52d40c12825"
+    class: "cacontology-impact:ComplexTrauma"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:582ed787-34e0-5fbd-b457-ffb11e94c3af"
+      span: "normalized.txt line 12"
+      quote: "developmental trauma or complex trauma"
+    confidence: "high"
+

@@ -16,18 +16,18 @@
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/detection/2.5.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/detection/2.6.0> rdf:type owl:Ontology ;
     rdfs:label "CAC CSAM Detection & Classification Ontology"@en ;
     rdfs:comment "An ontology for representing Child Sexual Abuse Material detection and classification systems with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, and validation capabilities, extending UCO and CASE. This ontology covers automated detection tools, hash matching, machine learning models, and classification scales used in CSAM identification."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/detection/2.5.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/detection/2.6.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
+    dcterms:modified "2026-02-11"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable> ,
                 <https://ontology.unifiedcyberontology.org/uco/action> ,
                 <https://ontology.unifiedcyberontology.org/uco/tool> ,
-                <https://cacontology.projectvic.org/2.5.0> ,
+                <https://cacontology.projectvic.org/2.6.0> ,
                 <http://purl.org/nemo/gufo> .
 
 # =============================================================================
@@ -158,6 +158,13 @@ cacontology-detection:FalsePositiveAnalysisAction rdf:type owl:Class ;
     rdfs:comment "The action of analyzing and documenting false positive detections to improve accuracy. Modeled as gUFO Event."@en ;
     rdfs:subClassOf uco-action:Action, gufo:Event .
 
+cacontology-detection:RiskStratificationAction rdf:type owl:Class ;
+    rdfs:label "Risk Stratification Action"@en ;
+    rdfs:comment "The action of producing a risk-stratified assessment to prioritize downstream review and operational response beyond raw detection flags (e.g., risk-tiering, scoring, rationale)."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:subClassOf uco-action:Action, gufo:Event .
+
 # =============================================================================
 # HASH AND DETECTION ARTIFACT CLASSES (extending UCO Observable with gUFO Object)
 # =============================================================================
@@ -181,6 +188,13 @@ cacontology-detection:DetectionResult rdf:type owl:Class ;
 cacontology-detection:ClassificationResult rdf:type owl:Class ;
     rdfs:label "Classification Result"@en ;
     rdfs:comment "The result of content classification using standard scales like SAR or COPINE. Modeled as gUFO Object."@en ;
+    rdfs:subClassOf uco-observable:ObservableObject, gufo:Object .
+
+cacontology-detection:RiskStratificationResult rdf:type owl:Class ;
+    rdfs:label "Risk Stratification Result"@en ;
+    rdfs:comment "A risk-stratified output artifact (tier/score/rationale) produced from detection or tip signals to support explainable prioritization."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
     rdfs:subClassOf uco-observable:ObservableObject, gufo:Object .
 
 # =============================================================================
@@ -356,6 +370,30 @@ cacontology-detection:confidenceScore rdf:type owl:DatatypeProperty ;
     rdfs:domain cacontology-detection:DetectionResult ;
     rdfs:range xsd:decimal .
 
+cacontology-detection:riskScore rdf:type owl:DatatypeProperty ;
+    rdfs:label "risk score"@en ;
+    rdfs:comment "Numeric risk score used for prioritization (0.0-1.0 or other documented scale). Exact scale should be documented in risk rationale or associated documentation."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:domain cacontology-detection:RiskStratificationResult ;
+    rdfs:range xsd:decimal .
+
+cacontology-detection:riskTier rdf:type owl:DatatypeProperty ;
+    rdfs:label "risk tier"@en ;
+    rdfs:comment "Categorical risk tier assigned for prioritization (e.g., critical/high/medium/low)."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:domain cacontology-detection:RiskStratificationResult ;
+    rdfs:range xsd:string .
+
+cacontology-detection:riskRationale rdf:type owl:DatatypeProperty ;
+    rdfs:label "risk rationale"@en ;
+    rdfs:comment "Explainable rationale describing why a given tier/score was assigned (features, rules, evidentiary factors, or analyst judgment summary)."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:domain cacontology-detection:RiskStratificationResult ;
+    rdfs:range xsd:string .
+
 cacontology-detection:detectionThreshold rdf:type owl:DatatypeProperty ;
     rdfs:label "detection threshold"@en ;
     rdfs:comment "The threshold value used for determining positive detection."@en ;
@@ -431,6 +469,31 @@ cacontology-detection:detectedContent rdf:type owl:ObjectProperty ;
     rdfs:label "detected content"@en ;
     rdfs:comment "Links a detection action to the content that was analyzed."@en ;
     rdfs:domain cacontology-detection:AutomatedDetectionAction ;
+    rdfs:range uco-observable:ObservableObject .
+
+cacontology-detection:stratifiesDetectionResult rdf:type owl:ObjectProperty ;
+    rdfs:label "stratifies detection result"@en ;
+    rdfs:comment "Links a risk stratification action to the detection result it stratifies for prioritization."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:domain cacontology-detection:RiskStratificationAction ;
+    rdfs:range cacontology-detection:DetectionResult .
+
+cacontology-detection:producesRiskStratificationResult rdf:type owl:ObjectProperty ;
+    rdfs:label "produces risk stratification result"@en ;
+    rdfs:comment "Links a risk stratification action to the risk stratification result it produced."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:domain cacontology-detection:RiskStratificationAction ;
+    rdfs:range cacontology-detection:RiskStratificationResult ;
+    rdfs:subPropertyOf uco-action:result .
+
+cacontology-detection:riskResultFor rdf:type owl:ObjectProperty ;
+    rdfs:label "risk result for"@en ;
+    rdfs:comment "Links a risk stratification result to the observable object it pertains to (e.g., detected content, a tip artifact, or another observable signal)."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:domain cacontology-detection:RiskStratificationResult ;
     rdfs:range uco-observable:ObservableObject .
 
 cacontology-detection:generatedHash rdf:type owl:ObjectProperty ;

@@ -1,0 +1,277 @@
+# SPARQL Queries: Utah ICAC Task Force Webpage (Ingestion + Affiliates + Focus Areas)
+# These queries operate over:
+#   - examples_knowledge_graphs/utah-icac-task-force-webpage-example.ttl
+#
+# Source page: https://attorneygeneral.utah.gov/icac/
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core/>
+PREFIX uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/>
+PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/>
+PREFIX uco-types: <https://ontology.unifiedcyberontology.org/uco/types/>
+PREFIX investigation: <https://ontology.caseontology.org/case/investigation/>
+
+PREFIX ex: <urn:uuid:>
+
+################################################################################
+## 1) Source Document Provenance: URL + Hash + Collection Action             ##
+################################################################################
+#
+# Purpose:
+#   Show the collected webpage (HTML) with its URL facet, hash, and the collection action.
+
+SELECT DISTINCT ?doc ?docLabel ?url ?hashValue ?collectedAt ?collectorLabel
+WHERE {
+  BIND(ex:82588a71-7176-4cd0-aaee-56cffc467f86 AS ?doc)
+
+  ?doc rdfs:label ?docLabel ;
+       uco-core:hasFacet ?urlFacet ;
+       uco-core:hasFacet ?hashFacet .
+
+  ?urlFacet a uco-observable:URLFacet ;
+           uco-observable:url ?url .
+
+  ?hashFacet a uco-observable:HashFacet ;
+            uco-observable:hash ?hashNode .
+
+  ?hashNode a uco-types:Hash ;
+            uco-types:hashValue ?hashValue .
+
+  ?action a investigation:InvestigativeAction ;
+          uco-action:object ?doc ;
+          uco-action:startTime ?collectedAt ;
+          uco-action:performer ?collector .
+
+  OPTIONAL { ?collector rdfs:label ?collectorLabel }
+}
+ORDER BY ?collectedAt
+;
+
+################################################################################
+## 2) Normalized Output Artifact: File Path + Hash                            ##
+################################################################################
+#
+# Purpose:
+#   Show the normalized text ObservableObject, its file path facet, and hash.
+
+SELECT DISTINCT ?norm ?normLabel ?path ?hashValue
+WHERE {
+  BIND(ex:475e52e8-e517-4370-bfb2-93f3e771ef26 AS ?norm)
+
+  ?norm rdfs:label ?normLabel ;
+        uco-core:hasFacet ?fileFacet ;
+        uco-core:hasFacet ?hashFacet .
+
+  ?fileFacet a uco-observable:FileFacet ;
+            uco-observable:filePath ?path .
+
+  ?hashFacet a uco-observable:HashFacet ;
+            uco-observable:hash ?hashNode .
+
+  ?hashNode a uco-types:Hash ;
+            uco-types:hashValue ?hashValue .
+}
+;
+
+################################################################################
+## 3) All Actions Tied to the Webpage (timeline-ish)                          ##
+################################################################################
+#
+# Purpose:
+#   List all actions that reference the source document as an object, with start times.
+
+SELECT DISTINCT ?action ?actionLabel ?start ?desc
+WHERE {
+  BIND(ex:82588a71-7176-4cd0-aaee-56cffc467f86 AS ?doc)
+
+  ?action a ?type ;
+          rdfs:label ?actionLabel ;
+          uco-action:object ?doc .
+  OPTIONAL { ?action uco-action:startTime ?start }
+  OPTIONAL { ?action uco-core:description ?desc }
+}
+ORDER BY ?start ?actionLabel
+;
+
+################################################################################
+## 4) Task Force Organization + Published Contacts                             ##
+################################################################################
+#
+# Purpose:
+#   Retrieve the task force org plus the tip line and email objects.
+
+SELECT DISTINCT ?orgLabel ?contact ?contactLabel ?value
+WHERE {
+  BIND(ex:af3aaac8-c561-4223-bcb3-0787f90c14b9 AS ?org)
+
+  ?org rdfs:label ?orgLabel .
+
+  # “publishes contacts” action connects org + doc + contact objects
+  ?a rdfs:label ?aLabel ;
+     uco-action:performer ?org ;
+     uco-action:object ?contact .
+  FILTER(CONTAINS(LCASE(STR(?aLabel)), "publishes icac reporting contacts"))
+
+  ?contact rdfs:label ?contactLabel ;
+           uco-core:description ?value .
+}
+ORDER BY ?contactLabel
+;
+
+################################################################################
+## 5) Crimes Investigated (focus areas)                                       ##
+################################################################################
+#
+# Purpose:
+#   List the “Crimes We Investigate” categories modeled from the webpage.
+
+SELECT DISTINCT ?crime ?crimeLabel ?crimeDesc
+WHERE {
+  ?a rdfs:label ?label ;
+     uco-action:object ?crime .
+  FILTER(CONTAINS(LCASE(STR(?label)), "lists crimes investigated"))
+
+  ?crime rdfs:label ?crimeLabel .
+  OPTIONAL { ?crime uco-core:description ?crimeDesc }
+}
+ORDER BY ?crimeLabel
+;
+
+################################################################################
+## 6) Affiliates List (all organizations)                                     ##
+################################################################################
+#
+# Purpose:
+#   List all organizations connected as affiliates via the “lists affiliates” action.
+
+SELECT DISTINCT ?affiliate ?affiliateLabel
+WHERE {
+  ?a rdfs:label ?label ;
+     uco-action:object ?affiliate .
+  FILTER(CONTAINS(LCASE(STR(?label)), "lists utah icac affiliates"))
+
+  ?affiliate a uco-identity:Organization ;
+            rdfs:label ?affiliateLabel .
+
+  # exclude the source doc itself if present in uco-action:object
+  FILTER(!STRENDS(STR(?affiliate), \"82588a71-7176-4cd0-aaee-56cffc467f86\"))
+}
+ORDER BY ?affiliateLabel
+;
+
+################################################################################
+## 7) Affiliates Count (sanity check)                                         ##
+################################################################################
+#
+# Purpose:
+#   Count affiliate orgs referenced by the affiliates listing action.
+
+SELECT (COUNT(DISTINCT ?affiliate) AS ?affiliateCount)
+WHERE {
+  ?a rdfs:label ?label ;
+     uco-action:object ?affiliate .
+  FILTER(CONTAINS(LCASE(STR(?label)), "lists utah icac affiliates"))
+  ?affiliate a uco-identity:Organization .
+}
+;
+
+################################################################################
+## 8) Agencies by Keyword (e.g., Sheriff / Police / Attorney / Federal)       ##
+################################################################################
+#
+# Purpose:
+#   Filter affiliates by keyword in label; tweak the keyword in the FILTER.
+
+SELECT DISTINCT ?affiliate ?affiliateLabel
+WHERE {
+  ?a rdfs:label ?label ;
+     uco-action:object ?affiliate .
+  FILTER(CONTAINS(LCASE(STR(?label)), "lists utah icac affiliates"))
+
+  ?affiliate rdfs:label ?affiliateLabel .
+
+  # Example keyword: "sheriff"
+  FILTER(CONTAINS(LCASE(STR(?affiliateLabel)), "sheriff"))
+}
+ORDER BY ?affiliateLabel
+;
+
+################################################################################
+## 9) Provenance Records and Their Linked Actions                             ##
+################################################################################
+#
+# Purpose:
+#   Show provenance records created in this example, and the action they reference.
+
+SELECT DISTINCT ?prov ?provLabel ?action ?actionLabel ?provDesc
+WHERE {
+  ?prov a investigation:ProvenanceRecord ;
+        rdfs:label ?provLabel ;
+        investigation:provenanceRecordAction ?action .
+  OPTIONAL { ?action rdfs:label ?actionLabel }
+  OPTIONAL { ?prov uco-core:description ?provDesc }
+}
+ORDER BY ?provLabel
+;
+
+################################################################################
+## 10) Funding/Admin Context Entities                                         ##
+################################################################################
+#
+# Purpose:
+#   Find the organizations referenced in the funding/admin action.
+
+SELECT DISTINCT ?org ?orgLabel
+WHERE {
+  ?a rdfs:label ?label ;
+     uco-action:object ?org .
+  FILTER(CONTAINS(LCASE(STR(?label)), "funding/admin context"))
+
+  ?org a uco-identity:Organization ;
+       rdfs:label ?orgLabel .
+}
+ORDER BY ?orgLabel
+;
+
+################################################################################
+## 11) Digital Respons-Ability Program Statement                              ##
+################################################################################
+#
+# Purpose:
+#   Retrieve the program node and its description.
+
+SELECT DISTINCT ?program ?programLabel ?programDesc
+WHERE {
+  ?a rdfs:label ?label ;
+     uco-action:object ?program .
+  FILTER(CONTAINS(LCASE(STR(?label)), "digital respons-ability"))
+
+  ?program rdfs:label ?programLabel .
+  OPTIONAL { ?program uco-core:description ?programDesc }
+}
+;
+
+################################################################################
+## 12) Everything Directly Connected to the Webpage (graph neighborhood)      ##
+################################################################################
+#
+# Purpose:
+#   Pull a “neighborhood” view: all triples where the source doc is subject or object,
+#   excluding rdf:type, to support explainable review.
+
+SELECT DISTINCT ?s ?p ?o
+WHERE {
+  BIND(ex:82588a71-7176-4cd0-aaee-56cffc467f86 AS ?doc)
+
+  { ?doc ?p ?o . BIND(?doc AS ?s) }
+  UNION
+  { ?s ?p ?doc . BIND(?doc AS ?o) }
+
+  FILTER(?p != rdf:type)
+}
+ORDER BY ?p
+

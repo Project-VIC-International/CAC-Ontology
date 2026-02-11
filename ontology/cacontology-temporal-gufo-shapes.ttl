@@ -14,14 +14,14 @@
 # ONTOLOGY DECLARATION - TEMPORAL gUFO SHACL SHAPES (MINIMAL CORE)
 # =============================================================================
 
-<https://cacontology.projectvic.org/temporal/shapes/2.5.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/temporal/shapes/2.6.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Temporal gUFO SHACL Shapes - Minimal Core"@en ;
     rdfs:comment "Minimal SHACL validation shapes for CAC temporal gUFO extensions, focusing on phase duration/deadline properties and role/phase transition relationships."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/temporal/shapes/2.5.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/temporal/shapes/2.6.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-11-18"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/temporal/2.5.0> ,
+    owl:imports <https://cacontology.projectvic.org/temporal/2.6.0> ,
                 <http://purl.org/nemo/gufo> .
 
 # =============================================================================

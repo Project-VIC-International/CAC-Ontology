@@ -18,16 +18,16 @@
 @prefix cacontology-temporal: <https://cacontology.projectvic.org/temporal#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/2.5.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/2.6.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Ontology Core"@en ;
     rdfs:comment "A core ontology for representing concepts and relationships specific to Crimes Against Children investigations, extending UCO and CASE with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, and validation capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/2.5.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/2.6.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-03-20"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
                 <https://ontology.caseontology.org/case> ,
-                <https://cacontology.projectvic.org/hotlines/core/2.5.0> ,
+                <https://cacontology.projectvic.org/hotlines/core/2.6.0> ,
                 <http://purl.org/nemo/gufo> .
 
 # =============================================================================

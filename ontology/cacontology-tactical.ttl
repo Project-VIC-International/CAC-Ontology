@@ -16,10 +16,10 @@
 @prefix cacontology-tactical: <https://cacontology.projectvic.org/tactical#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/tactical/2.5.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/tactical/2.6.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Tactical Law Enforcement Operations Ontology"@en ;
     rdfs:comment "An ontology for representing tactical law enforcement operations including SWAT operations, high-risk arrests, and specialized tactical procedures in Internet Crimes Against Children investigations, extending UCO and CASE with CASE Investigation ontology integration."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/tactical/2.5.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/tactical/2.6.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
     dcterms:modified "2026-01-01"^^xsd:date ;
@@ -31,7 +31,7 @@
                 <https://ontology.unifiedcyberontology.org/uco/role> ,
                 <https://ontology.caseontology.org/case/investigation/> ,
                 <http://purl.org/nemo/gufo#> ,
-                <https://cacontology.projectvic.org/2.5.0> .
+                <https://cacontology.projectvic.org/2.6.0> .
 
 # =============================================================================
 # TACTICAL OPERATION CLASSES (extending UCO Action)

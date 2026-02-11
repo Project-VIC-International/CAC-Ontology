@@ -1,0 +1,305 @@
+# =============================================================================
+# SPARQL Analytics Queries: NDFL Isbell Sentencing Case
+# Target KG: examples_knowledge_graphs/ndfl-isbell-sentencing-example.ttl
+# Source: DOJ USAO-NDFL Press Release
+# =============================================================================
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core/>
+PREFIX uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/>
+PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/>
+PREFIX uco-types: <https://ontology.unifiedcyberontology.org/uco/types/>
+PREFIX investigation: <https://ontology.caseontology.org/case/investigation/>
+PREFIX cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#>
+PREFIX cacontology-multi: <https://cacontology.projectvic.org/multi-jurisdiction#>
+PREFIX cacontology-registry: <https://cacontology.projectvic.org/sex-offender-registry#>
+PREFIX ex: <urn:uuid:>
+
+# =============================================================================
+# QUERY 1: Document Provenance - Get source document with collection metadata
+# Purpose: Verify provenance chain for the press release
+# Returns: Document label, URL, hash, collection time, collector
+# =============================================================================
+
+SELECT DISTINCT ?doc ?label ?url ?hashValue ?collectedAt ?collectorLabel
+WHERE {
+  ?doc a uco-observable:ObservableObject ;
+       rdfs:label ?label ;
+       uco-core:hasFacet ?urlFacet ;
+       uco-core:hasFacet ?hashFacet .
+  
+  ?urlFacet a uco-observable:URLFacet ;
+            uco-observable:url ?url .
+  
+  ?hashFacet a uco-observable:HashFacet ;
+             uco-observable:hash ?hashNode .
+  ?hashNode uco-types:hashValue ?hashValue .
+  
+  ?action a investigation:InvestigativeAction ;
+          uco-action:object ?doc ;
+          uco-action:startTime ?collectedAt ;
+          uco-action:performer ?collector .
+  
+  OPTIONAL { ?collector rdfs:label ?collectorLabel }
+}
+;
+
+# =============================================================================
+# QUERY 2: Defendant Summary - Get defendant info and all sentence components
+# Purpose: Complete view of defendant and imposed sentences
+# Returns: Defendant name, description, all sentence types and details
+# =============================================================================
+
+SELECT ?defendant ?defLabel ?defDesc ?sentence ?sentenceLabel ?sentenceDesc
+WHERE {
+  ?defendant a uco-identity:Person ;
+             rdfs:label ?defLabel ;
+             uco-core:description ?defDesc .
+  FILTER(CONTAINS(?defDesc, "Defendant"))
+  
+  ?hearing a cacontology-sentencing:SentencingHearing ;
+           uco-action:object ?defendant ;
+           uco-action:result ?sentence .
+  
+  ?sentence rdfs:label ?sentenceLabel .
+  OPTIONAL { ?sentence uco-core:description ?sentenceDesc }
+}
+ORDER BY ?sentenceLabel
+;
+
+# =============================================================================
+# QUERY 3: Investigation Timeline - Actions in chronological order
+# Purpose: Reconstruct investigation sequence
+# Returns: Action type, label, timestamp, performer
+# =============================================================================
+
+SELECT ?action ?actionType ?label ?timestamp ?performerLabel
+WHERE {
+  ?action a ?actionType ;
+          rdfs:label ?label .
+  FILTER(?actionType IN (investigation:InvestigativeAction, investigation:ForensicAction, 
+                         cacontology-sentencing:SentencingHearing, uco-action:Action))
+  
+  OPTIONAL { ?action uco-action:startTime ?timestamp }
+  OPTIONAL { 
+    ?action uco-action:performer ?performer .
+    ?performer rdfs:label ?performerLabel 
+  }
+}
+ORDER BY ?timestamp
+;
+
+# =============================================================================
+# QUERY 4: Law Enforcement Agencies Involved
+# Purpose: Identify all agencies that participated in investigation
+# Returns: Agency name, type, role description
+# =============================================================================
+
+SELECT DISTINCT ?agency ?agencyLabel ?agencyType ?roleDesc
+WHERE {
+  ?agency a uco-identity:Organization ;
+          rdfs:label ?agencyLabel .
+  
+  OPTIONAL { ?agency a ?agencyType . FILTER(?agencyType != uco-identity:Organization) }
+  OPTIONAL { ?agency uco-core:description ?roleDesc }
+  
+  # Connected to an investigative action
+  ?action uco-action:performer ?agency .
+}
+;
+
+# =============================================================================
+# QUERY 5: Evidence Chain - Devices and accounts with seizure info
+# Purpose: Track digital evidence and how it was obtained
+# Returns: Evidence item, type, seizure action, authorization used
+# =============================================================================
+
+SELECT ?evidence ?evidenceLabel ?evidenceType ?seizureAction ?authorization ?authLabel
+WHERE {
+  { ?evidence a uco-observable:Device } UNION { ?evidence a uco-observable:Account }
+  ?evidence rdfs:label ?evidenceLabel .
+  
+  OPTIONAL { ?evidence a ?evidenceType . FILTER(?evidenceType NOT IN (uco-observable:Device, uco-observable:Account)) }
+  
+  OPTIONAL {
+    ?seizureAction a investigation:InvestigativeAction ;
+                   uco-action:object ?evidence ;
+                   uco-action:instrument ?authorization .
+    ?authorization rdfs:label ?authLabel .
+  }
+}
+;
+
+# =============================================================================
+# QUERY 6: Sentence Duration Analysis
+# Purpose: Calculate total sentence duration
+# Returns: Sentence type, duration in months, duration in years
+# =============================================================================
+
+SELECT ?sentence ?label ?durationMonths (xsd:decimal(?durationMonths / 12) AS ?durationYears)
+WHERE {
+  ?sentence a ?type ;
+            rdfs:label ?label ;
+            cacontology-sentencing:sentenceDurationMonths ?durationMonths .
+  FILTER(?type IN (cacontology-sentencing:PrisonSentence, cacontology-sentencing:SupervisedRelease))
+}
+ORDER BY DESC(?durationMonths)
+;
+
+# =============================================================================
+# QUERY 7: Provenance Records - Evidence pointers for key assertions
+# Purpose: Trace assertions back to source text
+# Returns: Provenance record, source document, action, evidence pointer text
+# =============================================================================
+
+SELECT ?provRecord ?label ?sourceDoc ?action ?evidencePointer
+WHERE {
+  ?provRecord a investigation:ProvenanceRecord ;
+              rdfs:label ?label ;
+              uco-core:object ?sourceDoc ;
+              investigation:provenanceRecordAction ?action ;
+              uco-core:description ?evidencePointer .
+}
+;
+
+# =============================================================================
+# QUERY 8: Prosecutor Information
+# Purpose: Identify prosecutors who handled the case
+# Returns: Prosecutor name, description, connected to which action
+# =============================================================================
+
+SELECT ?prosecutor ?name ?description ?action ?actionLabel
+WHERE {
+  ?prosecutor a uco-identity:Person ;
+              rdfs:label ?name ;
+              uco-core:description ?description .
+  FILTER(CONTAINS(?description, "Attorney") || CONTAINS(?description, "prosecuted"))
+  
+  ?stmtAction uco-action:object ?prosecutor .
+  ?stmtAction rdfs:label ?actionLabel .
+}
+;
+
+# =============================================================================
+# QUERY 9: Victim Information (anonymized)
+# Purpose: Identify victim references while respecting anonymization
+# Returns: Victim reference, description (should be anonymized)
+# =============================================================================
+
+SELECT ?victim ?label ?description
+WHERE {
+  ?victim a uco-identity:Person ;
+          rdfs:label ?label ;
+          uco-core:description ?description .
+  FILTER(CONTAINS(LCASE(?label), "victim"))
+}
+;
+
+# =============================================================================
+# QUERY 10: Project Safe Childhood Connection
+# Purpose: Link case to broader DOJ initiative
+# Returns: Initiative info and connection to case
+# =============================================================================
+
+SELECT ?initiative ?label ?description ?stmtAction ?stmtLabel
+WHERE {
+  ?initiative a uco-identity:Organization ;
+              rdfs:label ?label ;
+              uco-core:description ?description .
+  FILTER(CONTAINS(?label, "Project Safe Childhood"))
+  
+  ?stmtAction uco-action:object ?initiative ;
+              rdfs:label ?stmtLabel .
+}
+;
+
+# =============================================================================
+# QUERY 11: Criminal Charge Details
+# Purpose: Get details of federal charge
+# Returns: Charge label, description, connected defendant
+# =============================================================================
+
+SELECT ?charge ?chargeLabel ?chargeDesc ?defendant ?defendantLabel
+WHERE {
+  ?charge a cacontology-sentencing:FederalCharge ;
+          rdfs:label ?chargeLabel .
+  OPTIONAL { ?charge uco-core:description ?chargeDesc }
+  
+  ?stmtAction uco-action:object ?charge, ?defendant .
+  ?defendant a uco-identity:Person ;
+             rdfs:label ?defendantLabel .
+  FILTER(CONTAINS(?defendantLabel, "Isbell"))
+}
+;
+
+# =============================================================================
+# QUERY 12: Forensic Action Results
+# Purpose: Track forensic examination and findings
+# Returns: Forensic action, objects examined, performer, description
+# =============================================================================
+
+SELECT ?forensicAction ?label ?deviceExamined ?deviceLabel ?performer ?performerLabel ?description
+WHERE {
+  ?forensicAction a investigation:ForensicAction ;
+                  rdfs:label ?label ;
+                  uco-action:object ?deviceExamined ;
+                  uco-action:performer ?performer ;
+                  uco-core:description ?description .
+  
+  ?deviceExamined rdfs:label ?deviceLabel .
+  ?performer rdfs:label ?performerLabel .
+}
+;
+
+# =============================================================================
+# QUERY 13: Sex Offender Registration Requirement
+# Purpose: Identify registration requirements imposed
+# Returns: Registration requirement, linked to defendant
+# =============================================================================
+
+SELECT ?requirement ?label ?description ?defendant ?defendantLabel
+WHERE {
+  ?requirement a cacontology-registry:RegistrationRequirement ;
+               rdfs:label ?label .
+  OPTIONAL { ?requirement uco-core:description ?description }
+  
+  ?stmtAction uco-action:object ?requirement, ?defendant .
+  ?defendant a uco-identity:Person ;
+             rdfs:label ?defendantLabel .
+}
+;
+
+# =============================================================================
+# QUERY 14: All Persons Mentioned in Press Release
+# Purpose: Complete list of named individuals
+# Returns: Person name, description, role implied
+# =============================================================================
+
+SELECT ?person ?name ?description
+WHERE {
+  ?person a uco-identity:Person ;
+          rdfs:label ?name .
+  OPTIONAL { ?person uco-core:description ?description }
+}
+ORDER BY ?name
+;
+
+# =============================================================================
+# QUERY 15: Graph Connectivity Check (Verification)
+# Purpose: Verify all nodes are connected (no isolates)
+# Returns: Any isolated nodes (should be empty for valid KG)
+# =============================================================================
+
+SELECT ?node ?type
+WHERE {
+  ?node a ?type .
+  FILTER(STRSTARTS(STR(?node), "urn:uuid:"))
+  FILTER NOT EXISTS { ?node ?anyPred ?anyObj . FILTER(?anyPred != rdf:type) }
+  FILTER NOT EXISTS { ?anySubj ?anyPred ?node . FILTER(?anyPred != rdf:type) }
+}
+# Expected: 0 results (all nodes connected)
+;
+

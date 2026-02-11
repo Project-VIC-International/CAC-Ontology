@@ -5,6 +5,85 @@ All notable changes to the CAC ontology family will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2.6.0 - 11 February 2026
+
+### Added - Detection-to-Action Operations & Policy Patterns (GEN Article)
+
+Major enhancement based on analysis of Global Emancipation Network (GEN) article “Community & Intelligence Beyond Detection” emphasizing coordination beyond detection, risk-stratified intelligence, compliance documentation trails, and analyst exposure minimization.
+
+#### Enhanced AI-Generated Content Module (`ontology/cacontology-ai-generated-content.ttl`)
+
+- Added nudification modeling:
+  - `Nudification` (AI content generation/manipulation process)
+  - `NudificationTool` (tool capable of nudification)
+  - `NudifiedCSAM` (nudified synthetic-nudity output)
+  - Properties: `nudificationTechnique`, `usesNudificationTool`, `nudifiedFrom`
+
+#### Enhanced Detection Module (`ontology/cacontology-detection.ttl`)
+
+- Added risk-stratified intelligence outputs:
+  - `RiskStratificationAction`, `RiskStratificationResult`
+  - Properties: `riskScore`, `riskTier`, `riskRationale`
+  - Relationships: `stratifiesDetectionResult`, `producesRiskStratificationResult`, `riskResultFor`
+
+#### Enhanced Platforms Module (`ontology/cacontology-platforms.ttl`)
+
+- Added Trust & Safety operations-at-scale modeling:
+  - `ContentModerationQueue`, `ReviewBacklogSituation`, `ModerationThroughputMetrics`
+  - Properties: `queueSize`, `reviewLatencyHours`, `throughputPerDay`, `flagVolumePerMonth`
+  - Relationships: `enqueuedForModeration`, `queueOperatedBy`, `hasBacklogSituation`, `reportsThroughputMetrics`
+
+#### Enhanced Legal Harmonization Module (`ontology/cacontology-legal-harmonization.ttl`)
+
+- Added safe-harbor and compliance intelligence framework concepts:
+  - `ComplianceIntelligenceFramework`, `SafeHarbor`, `ComplianceDocumentationArtifact`, `KnowingParadox`
+  - Relationships: `hasSafeHarbor`, `supportedByFramework`, `producesComplianceDocumentation`, `documentsGoodFaithEffort`, `createsIncentiveConflict`
+  - Properties: `goodFaithCriteria`, `verificationStatus`
+
+#### New Analyst Wellbeing Module
+
+- `ontology/cacontology-analyst-wellbeing.ttl` (new)
+- `ontology/cacontology-analyst-wellbeing-shapes.ttl` (new)
+  - Models exposure mitigation measures and occupational harms connected to manual review workflows:
+    - `ExposureMitigationMeasure`, `OccupationalHarm`, `VicariousTrauma`, `SecondaryTraumaticStress`
+    - Properties: `usesExposureMitigation`, `experiencesOccupationalHarm`, `mitigationType`, `harmSeverity`
+
+#### SHACL Shapes Updated
+
+- Updated: `cacontology-ai-generated-content-shapes.ttl`, `cacontology-detection-shapes.ttl`, `cacontology-platforms-shapes.ttl`, `cacontology-legal-harmonization-shapes.ttl`
+
+---
+
+## v2.5.0 - 11 February 2026
+
+### Added - SOE Module, Sadistic Sextortion Threats, and K2P Example Suite
+
+Introduces a new Statement of Evidence (SOE) module and expands sextortion modeling for sadistic threat patterns. Adds an end-to-end example suite and verification artifacts for the K2P SOE information source.
+
+#### New SOE Module (`ontology/cacontology-soe.ttl`)
+
+- Added `cacontology-soe` module and SHACL shapes:
+  - `ontology/cacontology-soe.ttl`
+  - `ontology/cacontology-soe-shapes.ttl`
+
+#### Enhanced Sextortion Module (`ontology/cacontology-sextortion.ttl`)
+
+- Added sadistic sextortion threat modeling updates.
+- Updated SHACL shapes: `ontology/cacontology-sextortion-shapes.ttl`
+
+#### Example KG + SPARQL Analytics (K2P SOE Information)
+
+- Added example KG: `examples_knowledge_graphs/k2p-soe-information-example.ttl`
+- Added analytics queries: `example_SPARQL_queries/k2p-soe-information-analytics.rq`
+- Added supporting evidence collection artifacts under `analytics_demonstration/collected_sources/k2p-soe-information/`
+
+### Changed
+
+- Bumped ontology family version IRIs to `2.5.0` across modules (supporting tooling: `update_version.py`).
+- Updated `testing/docker-compose.yaml` to support validation workflows.
+
+---
+
 ## v2.4.0 - 27 January 2026
 
 ### Added - Raven US Extensions Integration (Legislative & Organizational Framework)

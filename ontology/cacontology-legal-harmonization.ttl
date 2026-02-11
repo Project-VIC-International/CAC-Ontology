@@ -19,15 +19,15 @@
 # Enhanced with gUFO (gentle Unified Foundational Ontology) integration
 # =============================================================================
 
-<https://cacontology.projectvic.org/legal-harmonization/2.5.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/legal-harmonization/2.6.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Legal Harmonization Ontology"@en ;
     rdfs:comment "An ontology for modeling international legal frameworks, policy harmonization, and CSAM legislation analysis across 196 countries based on ICMEC's Global Review. Enhanced with gUFO (gentle Unified Foundational Ontology) integration for improved semantic precision and validation capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/legal-harmonization/2.5.0> ;
-    owl:versionInfo "2.5.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/legal-harmonization/2.6.0> ;
+    owl:versionInfo "2.6.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
+    dcterms:modified "2026-02-11"^^xsd:date ;
     owl:imports <http://purl.org/nemo/gufo#> ,
-                <https://cacontology.projectvic.org/multi-jurisdiction/2.5.0> .
+                <https://cacontology.projectvic.org/multi-jurisdiction/2.6.0> .
 
 # =============================================================================
 # LEGAL FRAMEWORK ANALYSIS CLASSES (gUFO: Kind - legal documents/entities)
@@ -802,6 +802,47 @@ cacontology-legal:CertificationProcess rdf:type owl:Class ;
     cacontology-legal:isCountrySpecific false .
 
 # =============================================================================
+# COMPLIANCE INTELLIGENCE / SAFE HARBOR PATTERNS (platform detection-to-action)
+# =============================================================================
+
+cacontology-legal:ComplianceIntelligenceFramework rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Compliance Intelligence Framework"@en ;
+    rdfs:comment "A verified compliance intelligence framework used to document good-faith content moderation and reporting efforts (beyond simple detection) and support risk-stratified operational decisions."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:SafeHarbor rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Safe Harbor"@en ;
+    rdfs:comment "A statutory or regulatory safe harbor provision intended to distinguish good-faith compliance efforts from negligence (e.g., incentives for verified compliance intelligence frameworks)."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:ComplianceDocumentationArtifact rdf:type owl:Class ;
+    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdf:type gufo:Kind ;
+    rdfs:label "Compliance Documentation Artifact"@en ;
+    rdfs:comment "Documentation artifact (record/report/audit trail element) used to prove appropriate action to regulators and support claims of good-faith compliance."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    cacontology-legal:isCountrySpecific false .
+
+cacontology-legal:KnowingParadox rdf:type owl:Class ;
+    rdfs:subClassOf gufo:Situation ;
+    rdfs:label "Knowing Paradox"@en ;
+    rdfs:comment "A policy incentive conflict where platforms face liability both for detecting content (creating knowledge) and for failing to detect content, discouraging proactive detection."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    cacontology-legal:isCountrySpecific true ;
+    cacontology-legal:jurisdictionScope "US" ;
+    cacontology-legal:countryCode "US" .
+
+# =============================================================================
 # RAVEN US EXTENSIONS - NEW CHILD SAFETY LAW TYPES (gUFO: Kind)
 # =============================================================================
 
@@ -964,6 +1005,46 @@ cacontology-legal:involvesProcess rdf:type owl:ObjectProperty ;
     rdfs:domain cacontology-legal:LegislativeInstrument ;
     rdfs:range cacontology-legal:LegislativeProcess .
 
+cacontology-legal:hasSafeHarbor rdf:type owl:ObjectProperty ;
+    rdfs:label "has safe harbor"@en ;
+    rdfs:comment "Links a statute to a safe harbor provision it establishes."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:domain cacontology-legal:Statute ;
+    rdfs:range cacontology-legal:SafeHarbor .
+
+cacontology-legal:supportedByFramework rdf:type owl:ObjectProperty ;
+    rdfs:label "supported by framework"@en ;
+    rdfs:comment "Links a safe harbor provision to a compliance intelligence framework it relies on or is defined around."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:domain cacontology-legal:SafeHarbor ;
+    rdfs:range cacontology-legal:ComplianceIntelligenceFramework .
+
+cacontology-legal:producesComplianceDocumentation rdf:type owl:ObjectProperty ;
+    rdfs:label "produces compliance documentation"@en ;
+    rdfs:comment "Links a compliance process to compliance documentation artifacts produced (documentation trails, audit evidence)."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:domain cacontology-legal:ComplianceProcess ;
+    rdfs:range cacontology-legal:ComplianceDocumentationArtifact .
+
+cacontology-legal:documentsGoodFaithEffort rdf:type owl:ObjectProperty ;
+    rdfs:label "documents good faith effort"@en ;
+    rdfs:comment "Links a compliance documentation artifact to the organization whose good-faith effort it documents."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:domain cacontology-legal:ComplianceDocumentationArtifact ;
+    rdfs:range uco-identity:Organization .
+
+cacontology-legal:createsIncentiveConflict rdf:type owl:ObjectProperty ;
+    rdfs:label "creates incentive conflict"@en ;
+    rdfs:comment "Links a statute to a policy incentive-conflict situation it creates or reinforces (e.g., the 'knowing paradox')."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:domain cacontology-legal:Statute ;
+    rdfs:range cacontology-legal:KnowingParadox .
+
 # =============================================================================
 # RAVEN US EXTENSIONS - NEW DATATYPE PROPERTIES
 # =============================================================================
@@ -1021,3 +1102,19 @@ cacontology-legal:processDate rdf:type owl:DatatypeProperty ;
     rdfs:comment "Date the process step occurred."@en ;
     rdfs:domain cacontology-legal:LegislativeProcess ;
     rdfs:range xsd:date . 
+
+cacontology-legal:goodFaithCriteria rdf:type owl:DatatypeProperty ;
+    rdfs:label "good faith criteria"@en ;
+    rdfs:comment "Textual criteria describing what constitutes a good-faith effort under a safe harbor provision."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:domain cacontology-legal:SafeHarbor ;
+    rdfs:range xsd:string .
+
+cacontology-legal:verificationStatus rdf:type owl:DatatypeProperty ;
+    rdfs:label "verification status"@en ;
+    rdfs:comment "Verification status of a compliance documentation artifact (e.g., verified, unverified, contested)."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:domain cacontology-legal:ComplianceDocumentationArtifact ;
+    rdfs:range xsd:string .

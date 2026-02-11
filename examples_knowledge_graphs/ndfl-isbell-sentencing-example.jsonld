@@ -1,0 +1,715 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "uco-action": "https://ontology.unifiedcyberontology.org/uco/action/",
+    "uco-core": "https://ontology.unifiedcyberontology.org/uco/core/",
+    "uco-identity": "https://ontology.unifiedcyberontology.org/uco/identity/",
+    "uco-observable": "https://ontology.unifiedcyberontology.org/uco/observable/",
+    "uco-types": "https://ontology.unifiedcyberontology.org/uco/types/",
+    "uco-role": "https://ontology.unifiedcyberontology.org/uco/role/",
+    "investigation": "https://ontology.caseontology.org/case/investigation/",
+    "cacontology": "https://cacontology.projectvic.org#",
+    "cacontology-sentencing": "https://cacontology.projectvic.org/sentencing#",
+    "cacontology-multi": "https://cacontology.projectvic.org/multi-jurisdiction#",
+    "cacontology-registry": "https://cacontology.projectvic.org/sex-offender-registry#",
+    "label": {
+      "@id": "rdfs:label",
+      "@language": "en"
+    },
+    "type": "@type",
+    "description": {
+      "@id": "uco-core:description",
+      "@language": "en"
+    },
+    "hasFacet": {
+      "@id": "uco-core:hasFacet",
+      "@type": "@id"
+    },
+    "object": {
+      "@id": "uco-action:object",
+      "@type": "@id"
+    },
+    "performer": {
+      "@id": "uco-action:performer",
+      "@type": "@id"
+    },
+    "startTime": {
+      "@id": "uco-action:startTime",
+      "@type": "xsd:dateTime"
+    },
+    "result": {
+      "@id": "uco-action:result",
+      "@type": "@id"
+    },
+    "instrument": {
+      "@id": "uco-action:instrument",
+      "@type": "@id"
+    },
+    "provenanceRecordAction": {
+      "@id": "investigation:provenanceRecordAction",
+      "@type": "@id"
+    },
+    "exhibitNumber": "investigation:exhibitNumber",
+    "mimeType": "uco-observable:mimeType",
+    "url": {
+      "@id": "uco-observable:url",
+      "@type": "@id"
+    },
+    "hash": {
+      "@id": "uco-observable:hash",
+      "@type": "@id"
+    },
+    "hashMethod": "uco-types:hashMethod",
+    "hashValue": "uco-types:hashValue",
+    "birthdate": {
+      "@id": "uco-identity:birthdate",
+      "@type": "xsd:date"
+    },
+    "deviceType": "uco-observable:deviceType",
+    "sentenceDurationMonths": {
+      "@id": "cacontology-sentencing:sentenceDurationMonths",
+      "@type": "xsd:integer"
+    }
+  },
+  "@graph": [
+    {
+      "@id": "urn:uuid:h1a2b3c4-d5e6-5f7a-8b9c-0d1e2f3a4b5c",
+      "@type": "https://ontology.unifiedcyberontology.org/uco/types/Hash",
+      "https://ontology.unifiedcyberontology.org/uco/types/hashMethod": {
+        "@value": "SHA-256"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/types/hashValue": {
+        "@value": "72d619874021101fc6062a834d8eb070033f09722602142dc5ba5a5f96ef4581"
+      }
+    },
+    {
+      "@id": "urn:uuid:04hsi901-2345-5678-9abc-def012345678",
+      "@type": "https://ontology.unifiedcyberontology.org/uco/identity/Person",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "David Pezzutti"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "HSI Tallahassee Assistant Special Agent in Charge."
+      }
+    },
+    {
+      "@id": "urn:uuid:01def123-facet-birth",
+      "@type": "https://ontology.unifiedcyberontology.org/uco/identity/BirthInformationFacet",
+      "https://ontology.unifiedcyberontology.org/uco/identity/birthdate": {
+        "@type": "http://www.w3.org/2001/XMLSchema#date",
+        "@value": "1990-01-01"
+      }
+    },
+    {
+      "@id": "urn:uuid:f1a2b3c4-d5e6-5f7a-8b9c-0d1e2f3a4b5c",
+      "@type": "https://ontology.unifiedcyberontology.org/uco/observable/ContentDataFacet",
+      "https://ontology.unifiedcyberontology.org/uco/observable/mimeType": {
+        "@value": "text/html"
+      }
+    },
+    {
+      "@id": "urn:uuid:53sen123-4567-5890-abcd-ef0123456789",
+      "@type": "https://cacontology.projectvic.org/sentencing#SentencingHearing",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Sentencing Hearing - United States v. Isbell"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/action/object": {
+        "@id": "urn:uuid:01def123-4567-5890-abcd-ef0123456789"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/action/performer": {
+        "@id": "urn:uuid:10usao12-3456-5789-0abc-def012345678"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/action/result": [
+        {
+          "@id": "urn:uuid:30prs456-7890-5abc-def0-123456789abc"
+        },
+        {
+          "@id": "urn:uuid:31sup789-0123-5def-0123-456789abcdef"
+        },
+        {
+          "@id": "urn:uuid:32res012-3456-5789-0abc-def012345678"
+        },
+        {
+          "@id": "urn:uuid:33sor345-6789-5012-3456-789012345678"
+        }
+      ],
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "Federal sentencing hearing where 20-year prison sentence was imposed."
+      }
+    },
+    {
+      "@id": "urn:uuid:b8c9d0e1-f2a3-5b4c-5d6e-7f8a9b0c1d2e",
+      "@type": "https://ontology.caseontology.org/case/investigation/InvestigativeAction",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Collection: DOJ USAO-NDFL Isbell Press Release"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/action/object": {
+        "@id": "urn:uuid:e95cbf40-5762-5b4a-9b3a-f2d438d47aff"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/action/performer": {
+        "@id": "urn:uuid:a1b2c3d4-e5f6-5a7b-8c9d-0e1f2a3b4c5d"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/action/startTime": {
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2026-01-07T04:00:43+00:00"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "Collected via browser automation from DOJ public webpage. Confidence: high."
+      }
+    },
+    {
+      "@id": "urn:uuid:61stmt45-6789-5012-3456-789012345678",
+      "@type": "https://ontology.unifiedcyberontology.org/uco/action/Action",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Press release states investigation agencies and evidence"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/action/object": [
+        {
+          "@id": "urn:uuid:e95cbf40-5762-5b4a-9b3a-f2d438d47aff"
+        },
+        {
+          "@id": "urn:uuid:11tpd345-6789-5012-3456-789012345678"
+        },
+        {
+          "@id": "urn:uuid:12hsi678-9012-5345-6789-012345678901"
+        },
+        {
+          "@id": "urn:uuid:40dev678-9012-5345-6789-012345678901"
+        },
+        {
+          "@id": "urn:uuid:41sma901-2345-5678-9012-345678901234"
+        },
+        {
+          "@id": "urn:uuid:50war234-5678-5901-2345-678901234567"
+        }
+      ],
+      "https://ontology.unifiedcyberontology.org/uco/action/performer": {
+        "@id": "urn:uuid:10usao12-3456-5789-0abc-def012345678"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/action/startTime": {
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2026-01-07T04:00:43+00:00"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "Grounded in normalized.txt lines 11, 17. Confidence: high."
+      }
+    },
+    {
+      "@id": "urn:uuid:60stmt12-3456-5789-0abc-def012345678",
+      "@type": "https://ontology.unifiedcyberontology.org/uco/action/Action",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Press release states defendant and sentence information"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/action/object": [
+        {
+          "@id": "urn:uuid:e95cbf40-5762-5b4a-9b3a-f2d438d47aff"
+        },
+        {
+          "@id": "urn:uuid:01def123-4567-5890-abcd-ef0123456789"
+        },
+        {
+          "@id": "urn:uuid:30prs456-7890-5abc-def0-123456789abc"
+        },
+        {
+          "@id": "urn:uuid:31sup789-0123-5def-0123-456789abcdef"
+        },
+        {
+          "@id": "urn:uuid:20chg123-4567-5890-abcd-ef0123456789"
+        }
+      ],
+      "https://ontology.unifiedcyberontology.org/uco/action/performer": {
+        "@id": "urn:uuid:10usao12-3456-5789-0abc-def012345678"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/action/startTime": {
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2026-01-07T04:00:43+00:00"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "Grounded in normalized.txt line 7. Confidence: high."
+      }
+    },
+    {
+      "@id": "urn:uuid:40dev678-9012-5345-6789-012345678901",
+      "@type": "https://ontology.unifiedcyberontology.org/uco/observable/Device",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Electronic Devices Seized from Isbell Residence"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "Multiple electronic devices seized during November 2020 arrest warrant execution."
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/hasFacet": {
+        "@id": "urn:uuid:40dev678-facet"
+      }
+    },
+    {
+      "@id": "urn:uuid:12hsi678-9012-5345-6789-012345678901",
+      "@type": [
+        "https://ontology.unifiedcyberontology.org/uco/identity/Organization",
+        "https://cacontology.projectvic.org/multi-jurisdiction#FederalAgency"
+      ],
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Homeland Security Investigations (HSI)"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "Federal law enforcement agency (ICE/HSI) that jointly investigated the case."
+      }
+    },
+    {
+      "@id": "urn:uuid:70prov12-3456-5789-0abc-def012345678",
+      "@type": "https://ontology.caseontology.org/case/investigation/ProvenanceRecord",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Provenance: defendant and sentence"
+      },
+      "https://ontology.caseontology.org/case/investigation/provenanceRecordAction": {
+        "@id": "urn:uuid:60stmt12-3456-5789-0abc-def012345678"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "Evidence pointer: normalized.txt line 7. Quote: 'Ryan Isbell, 36, of Tallahassee, Florida, was sentenced to 20 years in federal prison'."
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/object": {
+        "@id": "urn:uuid:e95cbf40-5762-5b4a-9b3a-f2d438d47aff"
+      }
+    },
+    {
+      "@id": "urn:uuid:13psc901-2345-5678-9012-345678901234",
+      "@type": "https://ontology.unifiedcyberontology.org/uco/identity/Organization",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Project Safe Childhood"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "DOJ nationwide initiative to combat child sexual exploitation. Launched May 2006."
+      }
+    },
+    {
+      "@id": "urn:uuid:10usao12-3456-5789-0abc-def012345678",
+      "@type": "https://ontology.unifiedcyberontology.org/uco/identity/Organization",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "U.S. Attorney's Office, Northern District of Florida"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "Federal prosecutor's office that handled the Isbell case."
+      }
+    },
+    {
+      "@id": "urn:uuid:32res012-3456-5789-0abc-def012345678",
+      "@type": "https://cacontology.projectvic.org/sentencing#MonetaryPenalty",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Restitution Order"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "Ordered to pay restitution to the victim."
+      }
+    },
+    {
+      "@id": "urn:uuid:30prs456-7890-5abc-def0-123456789abc",
+      "@type": "https://cacontology.projectvic.org/sentencing#PrisonSentence",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "20-Year Federal Prison Sentence"
+      },
+      "https://cacontology.projectvic.org/sentencing#sentenceDurationMonths": {
+        "@type": "http://www.w3.org/2001/XMLSchema#integer",
+        "@value": 240
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "Twenty years imprisonment in federal prison."
+      }
+    },
+    {
+      "@id": "urn:uuid:63stmt01-2345-5678-9012-345678901234",
+      "@type": "https://ontology.unifiedcyberontology.org/uco/action/Action",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Press release states victim and additional sentence components"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/action/object": [
+        {
+          "@id": "urn:uuid:e95cbf40-5762-5b4a-9b3a-f2d438d47aff"
+        },
+        {
+          "@id": "urn:uuid:05vic234-5678-5901-2345-678901234567"
+        },
+        {
+          "@id": "urn:uuid:32res012-3456-5789-0abc-def012345678"
+        },
+        {
+          "@id": "urn:uuid:33sor345-6789-5012-3456-789012345678"
+        }
+      ],
+      "https://ontology.unifiedcyberontology.org/uco/action/performer": {
+        "@id": "urn:uuid:10usao12-3456-5789-0abc-def012345678"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/action/startTime": {
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2026-01-07T04:00:43+00:00"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "Grounded in normalized.txt lines 11, 15. Confidence: high."
+      }
+    },
+    {
+      "@id": "urn:uuid:71prov45-6789-5012-3456-789012345678",
+      "@type": "https://ontology.caseontology.org/case/investigation/ProvenanceRecord",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Provenance: investigation and evidence"
+      },
+      "https://ontology.caseontology.org/case/investigation/provenanceRecordAction": {
+        "@id": "urn:uuid:61stmt45-6789-5012-3456-789012345678"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "Evidence pointer: normalized.txt lines 11, 17. Quote: 'joint investigation by the Tallahassee Police Department and HSI'."
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/object": {
+        "@id": "urn:uuid:e95cbf40-5762-5b4a-9b3a-f2d438d47aff"
+      }
+    },
+    {
+      "@id": "urn:uuid:d0e1f2a3-b4c5-5d6e-7f8a-9b0c1d2e3f4a",
+      "@type": "https://ontology.caseontology.org/case/investigation/ProvenanceRecord",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Provenance: NDFL Isbell Sentencing press release collection"
+      },
+      "https://ontology.caseontology.org/case/investigation/exhibitNumber": {
+        "@value": "DOC-NDFL-ISBELL-2026-001"
+      },
+      "https://ontology.caseontology.org/case/investigation/provenanceRecordAction": {
+        "@id": "urn:uuid:b8c9d0e1-f2a3-5b4c-5d6e-7f8a9b0c1d2e"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/object": {
+        "@id": "urn:uuid:e95cbf40-5762-5b4a-9b3a-f2d438d47aff"
+      }
+    },
+    {
+      "@id": "urn:uuid:f2b3c4d5-e6f7-5a8b-9c0d-1e2f3a4b5c6d",
+      "@type": "https://ontology.unifiedcyberontology.org/uco/observable/URLFacet",
+      "https://ontology.unifiedcyberontology.org/uco/observable/url": {
+        "@id": "https://www.justice.gov/usao-ndfl/pr/tallahassee-man-sentenced-twenty-years-federal-prison-child-exploitation-crime"
+      }
+    },
+    {
+      "@id": "urn:uuid:33sor345-6789-5012-3456-789012345678",
+      "@type": "https://cacontology.projectvic.org/sex-offender-registry#RegistrationRequirement",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Sex Offender Registration Requirement"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "Required to register as a sex offender."
+      }
+    },
+    {
+      "@id": "urn:uuid:41sma901-2345-5678-9012-345678901234",
+      "@type": "https://ontology.unifiedcyberontology.org/uco/observable/Account",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Defendant's Social Media Account"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "Social media account reported to contain child pornography in 2020."
+      }
+    },
+    {
+      "@id": "urn:uuid:50war234-5678-5901-2345-678901234567",
+      "@type": "https://ontology.caseontology.org/case/investigation/Authorization",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "November 2020 Arrest Warrant"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "Arrest warrant executed in November 2020 at Isbell's residence."
+      }
+    },
+    {
+      "@id": "urn:uuid:51seiz56-7890-5123-4567-890123456789",
+      "@type": "https://ontology.caseontology.org/case/investigation/InvestigativeAction",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Device Seizure - Isbell Residence"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/action/instrument": {
+        "@id": "urn:uuid:50war234-5678-5901-2345-678901234567"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/action/object": {
+        "@id": "urn:uuid:40dev678-9012-5345-6789-012345678901"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/action/performer": {
+        "@id": "urn:uuid:11tpd345-6789-5012-3456-789012345678"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/action/startTime": {
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2020-11-01T00:00:00+00:00"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "Law enforcement seized multiple electronic devices during warrant execution."
+      }
+    },
+    {
+      "@id": "urn:uuid:64stmt34-5678-5901-2345-678901234567",
+      "@type": "https://ontology.unifiedcyberontology.org/uco/action/Action",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Press release mentions Project Safe Childhood initiative"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/action/object": [
+        {
+          "@id": "urn:uuid:e95cbf40-5762-5b4a-9b3a-f2d438d47aff"
+        },
+        {
+          "@id": "urn:uuid:13psc901-2345-5678-9012-345678901234"
+        }
+      ],
+      "https://ontology.unifiedcyberontology.org/uco/action/performer": {
+        "@id": "urn:uuid:10usao12-3456-5789-0abc-def012345678"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/action/startTime": {
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2026-01-07T04:00:43+00:00"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "Grounded in normalized.txt line 19. Confidence: high."
+      }
+    },
+    {
+      "@id": "urn:uuid:52for890-1234-5567-8901-234567890123",
+      "@type": "https://ontology.caseontology.org/case/investigation/ForensicAction",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Forensic Examination of Seized Devices"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/action/object": {
+        "@id": "urn:uuid:40dev678-9012-5345-6789-012345678901"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/action/performer": {
+        "@id": "urn:uuid:12hsi678-9012-5345-6789-012345678901"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "Forensic examination revealed defendant produced CSAM depicting minor victim."
+      }
+    },
+    {
+      "@id": "urn:uuid:01def123-4567-5890-abcd-ef0123456789",
+      "@type": "https://ontology.unifiedcyberontology.org/uco/identity/Person",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Ryan Isbell"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "Defendant, age 36, of Tallahassee, Florida. Sentenced to 20 years federal prison for CSAM production."
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/hasFacet": {
+        "@id": "urn:uuid:01def123-facet-birth"
+      }
+    },
+    {
+      "@id": "urn:uuid:e95cbf40-5762-5b4a-9b3a-f2d438d47aff",
+      "@type": "https://ontology.unifiedcyberontology.org/uco/observable/ObservableObject",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "DOJ USAO-NDFL Press Release - Isbell Sentencing (HTML source)"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/hasFacet": [
+        {
+          "@id": "urn:uuid:f1a2b3c4-d5e6-5f7a-8b9c-0d1e2f3a4b5c"
+        },
+        {
+          "@id": "urn:uuid:f2b3c4d5-e6f7-5a8b-9c0d-1e2f3a4b5c6d"
+        },
+        {
+          "@id": "urn:uuid:f3c4d5e6-f7a8-5b9c-0d1e-2f3a4b5c6d7e"
+        }
+      ]
+    },
+    {
+      "@id": "urn:uuid:31sup789-0123-5def-0123-456789abcdef",
+      "@type": "https://cacontology.projectvic.org/sentencing#SupervisedRelease",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "15-Year Supervised Release"
+      },
+      "https://cacontology.projectvic.org/sentencing#sentenceDurationMonths": {
+        "@type": "http://www.w3.org/2001/XMLSchema#integer",
+        "@value": 180
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "Fifteen-year term of supervised release following imprisonment."
+      }
+    },
+    {
+      "@id": "urn:uuid:a1b2c3d4-e5f6-5a7b-8c9d-0e1f2a3b4c5d",
+      "@type": "https://ontology.unifiedcyberontology.org/uco/core/UcoObject",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "CAC Ontology Collection Agent (Cursor)"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "Automated assistant performing web collection for CAC Ontology."
+      }
+    },
+    {
+      "@id": "urn:uuid:05vic234-5678-5901-2345-678901234567",
+      "@type": "https://ontology.unifiedcyberontology.org/uco/identity/Person",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Minor Victim (anonymized)"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "Minor victim depicted in CSAM produced by defendant. Identity protected."
+      }
+    },
+    {
+      "@id": "urn:uuid:f3c4d5e6-f7a8-5b9c-0d1e-2f3a4b5c6d7e",
+      "@type": "https://ontology.unifiedcyberontology.org/uco/observable/HashFacet",
+      "https://ontology.unifiedcyberontology.org/uco/observable/hash": {
+        "@id": "urn:uuid:h1a2b3c4-d5e6-5f7a-8b9c-0d1e2f3a4b5c"
+      }
+    },
+    {
+      "@id": "urn:uuid:02usa456-7890-5abc-def0-123456789abc",
+      "@type": "https://ontology.unifiedcyberontology.org/uco/identity/Person",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Jason R. Heekin"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "U.S. Attorney for the Northern District of Florida who announced the sentence."
+      }
+    },
+    {
+      "@id": "urn:uuid:40dev678-facet",
+      "@type": "https://ontology.unifiedcyberontology.org/uco/observable/DeviceFacet",
+      "https://ontology.unifiedcyberontology.org/uco/observable/deviceType": {
+        "@value": "Electronic Device"
+      }
+    },
+    {
+      "@id": "urn:uuid:62stmt78-9012-5345-6789-012345678901",
+      "@type": "https://ontology.unifiedcyberontology.org/uco/action/Action",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Press release states prosecutor and agency personnel"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/action/object": [
+        {
+          "@id": "urn:uuid:e95cbf40-5762-5b4a-9b3a-f2d438d47aff"
+        },
+        {
+          "@id": "urn:uuid:02usa456-7890-5abc-def0-123456789abc"
+        },
+        {
+          "@id": "urn:uuid:03ausa78-9012-5def-0123-456789abcdef"
+        },
+        {
+          "@id": "urn:uuid:04hsi901-2345-5678-9abc-def012345678"
+        }
+      ],
+      "https://ontology.unifiedcyberontology.org/uco/action/performer": {
+        "@id": "urn:uuid:10usao12-3456-5789-0abc-def012345678"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/action/startTime": {
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2026-01-07T04:00:43+00:00"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "Grounded in normalized.txt lines 7, 13, 17. Confidence: high."
+      }
+    },
+    {
+      "@id": "urn:uuid:03ausa78-9012-5def-0123-456789abcdef",
+      "@type": "https://ontology.unifiedcyberontology.org/uco/identity/Person",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Stephen Kunz"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "Assistant United States Attorney who prosecuted the case."
+      }
+    },
+    {
+      "@id": "urn:uuid:72prov78-9012-5345-6789-012345678901",
+      "@type": "https://ontology.caseontology.org/case/investigation/ProvenanceRecord",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Provenance: supervised release and registration"
+      },
+      "https://ontology.caseontology.org/case/investigation/provenanceRecordAction": {
+        "@id": "urn:uuid:63stmt01-2345-5678-9012-345678901234"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "Evidence pointer: normalized.txt line 15. Quote: '15-year term of supervised release... required to register as a sex offender'."
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/object": {
+        "@id": "urn:uuid:e95cbf40-5762-5b4a-9b3a-f2d438d47aff"
+      }
+    },
+    {
+      "@id": "urn:uuid:20chg123-4567-5890-abcd-ef0123456789",
+      "@type": "https://cacontology.projectvic.org/sentencing#FederalCharge",
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Production of Child Pornography (18 U.S.C. § 2251)"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "Federal charge for producing child sexual abuse material."
+      }
+    },
+    {
+      "@id": "urn:uuid:11tpd345-6789-5012-3456-789012345678",
+      "@type": [
+        "https://ontology.unifiedcyberontology.org/uco/identity/Organization",
+        "https://cacontology.projectvic.org/multi-jurisdiction#LocalAgency"
+      ],
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Tallahassee Police Department"
+      },
+      "https://ontology.unifiedcyberontology.org/uco/core/description": {
+        "@language": "en",
+        "@value": "Local law enforcement agency that initiated the investigation."
+      }
+    }
+  ]
+}

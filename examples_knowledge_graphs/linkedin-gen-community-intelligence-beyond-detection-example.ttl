@@ -1,0 +1,235 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
+
+@prefix investigation: <https://ontology.caseontology.org/case/investigation/> .
+
+@prefix cacontology-ai: <https://cacontology.projectvic.org/ai-generated#> .
+@prefix cacontology-analyst: <https://cacontology.projectvic.org/analyst-wellbeing#> .
+@prefix cacontology-detection: <https://cacontology.projectvic.org/detection#> .
+@prefix cacontology-legal: <https://cacontology.projectvic.org/legal-harmonization#> .
+@prefix cacontology-platforms: <https://cacontology.projectvic.org/platforms#> .
+
+@prefix ex: <urn:uuid:> .
+
+# =============================================================================
+# GEN ARTICLE EXAMPLE (v2.6.0): “Community & Intelligence Beyond Detection”
+# Demonstrates new v2.6.0 concepts:
+# - Nudification (AI functionality)
+# - Risk stratification (beyond raw detection flags)
+# - Moderation queues/backlogs/metrics
+# - Safe harbor + compliance intelligence + knowing paradox patterns
+# - Analyst exposure mitigation + occupational harm
+# =============================================================================
+
+# =============================================================================
+# SOURCE DOCUMENT + NORMALIZED ARTIFACT (provenance scaffold)
+# =============================================================================
+
+ex:96d98ba3-2586-562b-b6e3-d49e8544b318 a uco-observable:ObservableObject ;
+  rdfs:label "GEN LinkedIn Article: Community & Intelligence Beyond Detection"@en ;
+  uco-core:description "Source article used to derive this example graph."@en ;
+  uco-core:hasFacet ex:2c2a83d0-6da9-5d96-8e62-d9c1c77f686f ; # URLFacet
+  uco-core:hasFacet ex:0ff3e4f2-2979-5b55-9d7a-60c2a9d22b53 ; # FileFacet (captured source)
+  uco-core:hasFacet ex:6e29de77-4a5d-5c21-a00e-7f4e81d49d5a . # HashFacet (captured source)
+
+ex:2c2a83d0-6da9-5d96-8e62-d9c1c77f686f a uco-observable:URLFacet ;
+  uco-observable:url "https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/"^^xsd:anyURI .
+
+ex:0ff3e4f2-2979-5b55-9d7a-60c2a9d22b53 a uco-observable:FileFacet ;
+  uco-observable:filePath "analytics_demonstration/collected_sources/linkedin-gen-community-intelligence-beyond-detection/source.txt"@en .
+
+ex:6e29de77-4a5d-5c21-a00e-7f4e81d49d5a a uco-observable:HashFacet ;
+  uco-observable:hash ex:9b7ed6da-c3ab-5f1a-9819-0bcdb5c0b2a3 .
+
+ex:9b7ed6da-c3ab-5f1a-9819-0bcdb5c0b2a3 a uco-types:Hash ;
+  uco-types:hashMethod "SHA-256"@en ;
+  uco-types:hashValue "1a832e4a035c22972406f1e35ef8b3b4b2bbac73f0a9a5bc9c686fa2ca2ffe78"@en .
+
+ex:3a208003-5ae0-58ff-bce8-b6b7eafcf94b a uco-identity:Organization ;
+  rdfs:label "CAC Ontology Enhancement Agent (example collector)"@en .
+
+ex:6c537da5-bfb7-57c5-b8c0-62eb1541eb79 a investigation:InvestigativeAction ;
+  rdfs:label "Collect GEN LinkedIn Article"@en ;
+  uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+  uco-action:performer ex:3a208003-5ae0-58ff-bce8-b6b7eafcf94b ;
+  uco-action:object ex:96d98ba3-2586-562b-b6e3-d49e8544b318 ;
+  uco-core:description "Collected source text and recorded URL + file + hash facets."@en .
+
+ex:4c32e3fb-f573-588e-86f2-4b45c8f05fbb a uco-observable:ObservableObject ;
+  rdfs:label "Normalized excerpt (GEN article)"@en ;
+  uco-core:description "Normalized excerpt used as evidence pointers for the example."@en ;
+  uco-core:hasFacet ex:70c73e52-0ad0-50fe-beb9-a471b2bbf16d ; # FileFacet
+  uco-core:hasFacet ex:4b1e2b93-6f15-5aef-ae8a-812a43e1f5d8 . # HashFacet
+
+ex:70c73e52-0ad0-50fe-beb9-a471b2bbf16d a uco-observable:FileFacet ;
+  uco-observable:filePath "analytics_demonstration/collected_sources/linkedin-gen-community-intelligence-beyond-detection/normalized.txt"@en .
+
+ex:4b1e2b93-6f15-5aef-ae8a-812a43e1f5d8 a uco-observable:HashFacet ;
+  uco-observable:hash ex:7b406d0a-7f44-5b46-8c37-2f3f6dc5f6bd .
+
+ex:7b406d0a-7f44-5b46-8c37-2f3f6dc5f6bd a uco-types:Hash ;
+  uco-types:hashMethod "SHA-256"@en ;
+  uco-types:hashValue "b898e371dbb5b9b335584c131a82260ceb53a52abb3e6533610b12600d8b454e"@en .
+
+ex:154f64b7-1230-543a-8b5f-028e46ac5143 a investigation:InvestigativeAction ;
+  rdfs:label "Normalize GEN Article Text (excerpt)"@en ;
+  uco-action:startTime "2026-02-11T00:00:05Z"^^xsd:dateTime ;
+  uco-action:performer ex:3a208003-5ae0-58ff-bce8-b6b7eafcf94b ;
+  uco-action:object ex:96d98ba3-2586-562b-b6e3-d49e8544b318 ;
+  uco-action:result ex:4c32e3fb-f573-588e-86f2-4b45c8f05fbb ;
+  uco-core:description "Produced normalized excerpt for evidence pointers (see normalized.txt)."@en .
+
+# =============================================================================
+# PLATFORM / MODERATION QUEUE (100k flags/month operational bottleneck)
+# =============================================================================
+
+ex:801c7c02-dbfa-5f80-999e-88b2b11d92ca a cacontology-platforms:ElectronicServiceProvider ;
+  rdfs:label "Example Electronic Service Provider"@en ;
+  cacontology-platforms:headquarteredIn "US"@en .
+
+ex:0c6ed1ac-f24a-5636-8742-7fce6ad7e8c0 a cacontology-platforms:ContentModerationQueue ;
+  rdfs:label "CSAM Flag Review Queue"@en ;
+  cacontology-platforms:queueOperatedBy ex:801c7c02-dbfa-5f80-999e-88b2b11d92ca ;
+  cacontology-platforms:queueSize 100000 ;
+  cacontology-platforms:hasBacklogSituation ex:b1fdedcc-c19c-5989-b2e2-b67739eb93b7 ;
+  cacontology-platforms:reportsThroughputMetrics ex:7fb376e7-0796-53d0-be6b-b9faa29e1270 .
+
+ex:b1fdedcc-c19c-5989-b2e2-b67739eb93b7 a cacontology-platforms:ReviewBacklogSituation ;
+  rdfs:label "Backlog due to flag volume"@en ;
+  uco-core:description "Backlog situation: review demand exceeds analyst capacity."@en .
+
+ex:7fb376e7-0796-53d0-be6b-b9faa29e1270 a cacontology-platforms:ModerationThroughputMetrics ;
+  rdfs:label "Moderation throughput snapshot"@en ;
+  cacontology-platforms:flagVolumePerMonth 100000 ;
+  cacontology-platforms:throughputPerDay 2500 ;
+  cacontology-platforms:reviewLatencyHours 48.0 .
+
+# A single flagged item entering the queue
+ex:9b9af705-65ce-590a-a82b-6c8782bb3ce1 a uco-observable:ObservableObject ;
+  rdfs:label "Flagged content item (potential CSAM)"@en ;
+  uco-core:description "Representative flagged item (placeholder) to demonstrate queue + detection workflow modeling."@en ;
+  cacontology-platforms:enqueuedForModeration ex:0c6ed1ac-f24a-5636-8742-7fce6ad7e8c0 .
+
+# =============================================================================
+# DETECTION → RISK STRATIFICATION → MANUAL REVIEW (protect analysts)
+# =============================================================================
+
+ex:5a8ca2fb-cf10-54ae-8f2a-35b2f1c7fede a cacontology-detection:MachineLearningDetectionTool ;
+  uco-core:name "Example CSAI classifier"@en ;
+  rdfs:label "Example CSAI classifier tool"@en .
+
+ex:7564545d-8e32-5c24-81c5-136aabbc80b7 a cacontology-detection:AutomatedDetectionAction ;
+  rdfs:label "Automated detection action (flagging)"@en ;
+  uco-core:startTime "2026-02-11T00:10:00Z"^^xsd:dateTime ;
+  uco-action:instrument ex:5a8ca2fb-cf10-54ae-8f2a-35b2f1c7fede ;
+  cacontology-detection:detectedContent ex:9b9af705-65ce-590a-a82b-6c8782bb3ce1 ;
+  uco-action:result ex:1e8883c2-adf0-5d77-be61-664c3ecf0cae ;
+  uco-core:description "Represents the platform detection step that produces a detection result from flagged content."@en .
+
+ex:1e8883c2-adf0-5d77-be61-664c3ecf0cae a cacontology-detection:DetectionResult ;
+  rdfs:label "Detection result (candidate CSAM)"@en ;
+  cacontology-detection:confidenceScore 0.92 .
+
+ex:a916b9c5-cd14-59e6-a860-4ef9707085e7 a cacontology-detection:RiskStratificationAction ;
+  rdfs:label "Risk stratification action (beyond detection)"@en ;
+  uco-action:startTime "2026-02-11T00:10:10Z"^^xsd:dateTime ;
+  cacontology-detection:stratifiesDetectionResult ex:1e8883c2-adf0-5d77-be61-664c3ecf0cae ;
+  cacontology-detection:producesRiskStratificationResult ex:0708d550-c23a-5133-97f1-b47db04a9ea6 ;
+  uco-core:description "Produces explainable risk-tiering for prioritization (risk-stratified intelligence)."@en .
+
+ex:0708d550-c23a-5133-97f1-b47db04a9ea6 a cacontology-detection:RiskStratificationResult ;
+  rdfs:label "Risk stratification result"@en ;
+  cacontology-detection:riskTier "high"@en ;
+  cacontology-detection:riskScore 0.86 ;
+  cacontology-detection:riskRationale "High confidence + SAR-indicative signals; prioritize reviewer workload to minimize exposure while preserving evidence quality."@en ;
+  cacontology-detection:riskResultFor ex:9b9af705-65ce-590a-a82b-6c8782bb3ce1 .
+
+# Manual review + exposure mitigation
+ex:0a6834d5-4387-5ae0-8c7d-81586e3715fa a uco-identity:Person ;
+  rdfs:label "Content analyst (example)"@en .
+
+ex:9ee7492d-9ddd-5d29-bec2-06e8b5cf7438 a cacontology-analyst:ExposureMitigationMeasure ;
+  rdfs:label "Blurred preview + progressive reveal"@en ;
+  cacontology-analyst:mitigationType "progressive_reveal"@en .
+
+ex:b84c3453-2075-535e-9d6d-18055bc25d27 a cacontology-detection:ManualClassificationAction ;
+  rdfs:label "Manual classification action (review)"@en ;
+  uco-core:startTime "2026-02-11T01:00:00Z"^^xsd:dateTime ;
+  uco-action:performer ex:0a6834d5-4387-5ae0-8c7d-81586e3715fa ;
+  cacontology-detection:reviewDecision "requires_further_review"@en ;
+  cacontology-analyst:usesExposureMitigation ex:9ee7492d-9ddd-5d29-bec2-06e8b5cf7438 ;
+  uco-core:description "Manual review step using exposure mitigation measures."@en .
+
+ex:c2e3ddd1-3ca7-581c-89a8-101d01a0ed34 a cacontology-analyst:VicariousTrauma ;
+  rdfs:label "Vicarious trauma (example occupational harm)"@en ;
+  cacontology-analyst:harmSeverity "medium"@en .
+
+ex:0a6834d5-4387-5ae0-8c7d-81586e3715fa cacontology-analyst:experiencesOccupationalHarm ex:c2e3ddd1-3ca7-581c-89a8-101d01a0ed34 .
+
+# =============================================================================
+# NUDIFICATION (policy-targeted AI functionality)
+# =============================================================================
+
+ex:48596bf1-9bc3-5b26-9cf7-27d96a6cf746 a cacontology-ai:NudificationTool ;
+  rdfs:label "Nudification tool (example)"@en .
+
+ex:46bdf58c-4ea0-566e-a069-5ea1c4f81253 a uco-observable:ObservableObject ;
+  rdfs:label "Source media (clothed image/video)"@en ;
+  uco-core:description "Representative source media used to demonstrate nudification modeling."@en .
+
+ex:32ef41bd-6bbc-50b4-aa8d-731030e2b16c a cacontology-ai:NudifiedCSAM ;
+  rdfs:label "Nudified synthetic-nudity output"@en ;
+  cacontology-ai:nudifiedFrom ex:46bdf58c-4ea0-566e-a069-5ea1c4f81253 .
+
+ex:81619e9c-c027-5d9c-a581-97288af406a3 a cacontology-ai:Nudification ;
+  rdfs:label "Nudification action"@en ;
+  uco-action:startTime "2026-02-11T02:00:00Z"^^xsd:dateTime ;
+  cacontology-ai:nudificationTechnique "nudify"@en ;
+  cacontology-ai:usesNudificationTool ex:48596bf1-9bc3-5b26-9cf7-27d96a6cf746 ;
+  uco-action:object ex:46bdf58c-4ea0-566e-a069-5ea1c4f81253 ;
+  uco-action:result ex:32ef41bd-6bbc-50b4-aa8d-731030e2b16c ;
+  uco-core:description "Demonstrates policy-relevant 'nudifying functionalities' as a modeled AI action and output."@en .
+
+# =============================================================================
+# POLICY / COMPLIANCE: SAFE HARBOR + KNOWING PARADOX + DOCUMENTATION TRAILS
+# =============================================================================
+
+ex:bb12b750-676e-5bc5-bbc7-c3ad5e920646 a cacontology-legal:Statute ;
+  rdfs:label "SESTA-FOSTA (2018) (example statute instance)"@en ;
+  uco-core:name "SESTA-FOSTA (2018)"@en ;
+  uco-core:description "Statute referenced in GEN article as contributing to a detection knowledge/liability incentive conflict ('knowing paradox')."@en ;
+  cacontology-legal:createsIncentiveConflict ex:607a6b4f-e8ec-52bb-9411-85bf76374c31 ;
+  cacontology-legal:hasSafeHarbor ex:62fcb9b9-5df4-574f-9ecf-2c4012e84adb .
+
+ex:607a6b4f-e8ec-52bb-9411-85bf76374c31 a cacontology-legal:KnowingParadox ;
+  rdfs:label "Knowing paradox incentive conflict"@en ;
+  uco-core:description "Modeled incentive conflict: liability for knowledge vs liability for failing to detect."@en .
+
+ex:16b574ef-4685-5c8a-ba09-b319620178ca a cacontology-legal:ComplianceIntelligenceFramework ;
+  rdfs:label "Verified compliance intelligence framework (example)"@en ;
+  uco-core:description "Framework providing risk-stratified analysis + documentation trails to distinguish good faith from negligence."@en .
+
+ex:62fcb9b9-5df4-574f-9ecf-2c4012e84adb a cacontology-legal:SafeHarbor ;
+  rdfs:label "Safe harbor provision (example)"@en ;
+  cacontology-legal:goodFaithCriteria "Uses verified compliance intelligence framework; maintains documentation trails; distinguishes good faith from negligence."@en ;
+  cacontology-legal:supportedByFramework ex:16b574ef-4685-5c8a-ba09-b319620178ca .
+
+ex:e8ab0bb7-caf2-5c8f-8bde-f972b1416d40 a cacontology-legal:ComplianceDocumentationArtifact ;
+  rdfs:label "Compliance documentation artifact (example audit trail)"@en ;
+  cacontology-legal:verificationStatus "verified"@en ;
+  cacontology-legal:documentsGoodFaithEffort ex:801c7c02-dbfa-5f80-999e-88b2b11d92ca ;
+  uco-core:description "Represents documentation trail used to demonstrate appropriate action to regulators."@en .
+
+ex:92b2e5c6-231c-587a-ad9c-31a3b4ce2a5a a cacontology-legal:AuditProcess ;
+  rdfs:label "Audit process (example) producing compliance documentation"@en ;
+  uco-action:startTime "2026-02-11T03:00:00Z"^^xsd:dateTime ;
+  uco-action:performer ex:801c7c02-dbfa-5f80-999e-88b2b11d92ca ;
+  cacontology-legal:producesComplianceDocumentation ex:e8ab0bb7-caf2-5c8f-8bde-f972b1416d40 ;
+  uco-core:description "Example compliance process producing documentation artifacts supporting safe-harbor compliance claims."@en .

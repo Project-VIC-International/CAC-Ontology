@@ -1,0 +1,51 @@
+# CAC Ontology ingestion manifest (single-document)
+# Source: LinkedIn Pulse article (text capture) by Melissa Maranville, PhD
+
+batch:
+  uco-core:id: "urn:uuid:0c0e4ddd-0a31-4a95-9f92-86f4a07ac0aa"
+  uco-core:name: "LinkedIn Pulse article collection: development interrupted by childhood sexual abuse"
+  uco-core:objectCreatedTime: "2026-02-11T00:00:00Z"
+
+  agentOrchestration:
+    enabled: false
+    fetchMethod: "manual"
+    preprocessingPipeline:
+      - "manual_text_capture"
+      - "whitespace_normalize"
+      - "paragraph_per_line"
+    deconflictionEnabled: false
+
+documents:
+  - uco-core:id: "urn:uuid:582ed787-34e0-5fbd-b457-ffb11e94c3af"
+    uco-core:name: "LinkedIn Pulse - When Development Is Interrupted by Childhood Sexual Abuse (Melissa Maranville, PhD)"
+
+    # Source location
+    observable:url: "https://www.linkedin.com/pulse/when-development-interrupted-childhood-sexual-abuse-maranville-phd-wlrje/"
+    observable:filePath: "analytics_demonstration/collected_sources/maranville-development-interrupted-childhood-sexual-abuse/source.txt"
+
+    collectionAction:
+      uco-action:startTime: "2026-02-11T00:00:00Z"
+      uco-action:performer: "urn:uuid:9e136eff-5c90-52a9-a1f3-564749b54150"
+      uco-core:description: "manual text capture (page content extracted to source.txt) by CAC Ontology agent"
+
+    # Raw content metadata (captured text)
+    observable:mimeType: "text/plain"
+    observable:sizeInBytes: 4651
+    observable:hash:
+      types:hashMethod: "SHA-256"
+      types:hashValue: "611b43884049f6ef55e8516f28888b25aaa964e5b2a63b57b54ce653aef11d4e"
+
+    # Normalized output
+    normalizationAction:
+      uco-core:description: "whitespace normalization + paragraph-per-line normalization for stable evidence pointers"
+      uco-action:startTime: "2026-02-11T00:00:00Z"
+      uco-action:result: "urn:uuid:32a91353-795c-5689-86df-9035ac482f56"
+
+    normalizedOutput:
+      observable:filePath: "analytics_demonstration/collected_sources/maranville-development-interrupted-childhood-sexual-abuse/normalized.txt"
+      observable:mimeType: "text/plain"
+      observable:sizeInBytes: 4254
+      observable:hash:
+        types:hashMethod: "SHA-256"
+        types:hashValue: "d92d4f4360ff4febf259fdb7eb6eab8fba9a1ecf5e547c7dd501d9949186fea8"
+

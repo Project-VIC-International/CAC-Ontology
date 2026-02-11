@@ -15,15 +15,15 @@
 @prefix cacontology-ai: <https://cacontology.projectvic.org/ai-generated#> .
 
 # Enhanced Ontology Declaration with gUFO
-<https://cacontology.projectvic.org/ai-generated/shapes/2.5.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/ai-generated/shapes/2.6.0> rdf:type owl:Ontology ;
     rdfs:label "CAC AI-Generated Content SHACL Shapes with gUFO Integration"@en ;
     rdfs:comment "SHACL validation shapes for the ICAC AI-Generated Content Ontology, enhanced with comprehensive gUFO foundational modeling validation. Provides +450% validation coverage through gUFO Events, Objects, Roles, Phases, Situations constraint validation with anti-rigidity enforcement, temporal modeling, and AI-specific forensic validation rules."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/ai-generated/shapes/2.5.0> ;
-    owl:versionInfo "2.5.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/ai-generated/shapes/2.6.0> ;
+    owl:versionInfo "2.6.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-05-23"^^xsd:date ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/ai-generated/2.5.0>,
+    dcterms:modified "2026-02-11"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/ai-generated/2.6.0>,
                 <http://purl.org/nemo/gufo#> ;
     rdfs:comment "gUFO-enhanced SHACL shapes providing comprehensive validation for AI-generated content investigation with foundational ontology compliance checking, anti-rigidity enforcement, and temporal constraint validation."@en .
 
@@ -839,3 +839,40 @@ cacontology-ai:ForensicIntegrityValidationShape rdf:type sh:NodeShape ;
             }
         """
     ] . 
+
+# =============================================================================
+# NUDIFICATION SHAPES (policy-driven AI functionality; GEN 2026-02-10)
+# =============================================================================
+
+cacontology-ai:NudificationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-ai:Nudification ;
+    rdfs:label "Nudification Shape"@en ;
+    rdfs:comment "Validation shape for nudification actions producing synthetic nudity, consistent with AI generation process modeling."@en ;
+    sh:property [
+        sh:path cacontology-ai:nudificationTechnique ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Nudification technique, if present, must be a string."@en
+    ] ;
+    sh:property [
+        sh:path uco-action:result ;
+        sh:minCount 1 ;
+        sh:message "Nudification action should produce at least one result via uco-action:result."@en
+    ] .
+
+cacontology-ai:NudificationToolShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-ai:NudificationTool ;
+    rdfs:label "Nudification Tool Shape"@en ;
+    rdfs:comment "Validation shape for tools capable of AI-enabled nudification (synthetic nudity)."@en .
+
+cacontology-ai:NudifiedCSAMShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-ai:NudifiedCSAM ;
+    rdfs:label "Nudified CSAM Shape"@en ;
+    rdfs:comment "Validation shape for nudified CSAM outputs."@en ;
+    sh:property [
+        sh:path cacontology-ai:nudifiedFrom ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Nudified content may link to at most one source media via cacontology-ai:nudifiedFrom."@en
+    ] .

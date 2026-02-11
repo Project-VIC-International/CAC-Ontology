@@ -1,0 +1,190 @@
+# =============================================================================
+# Analytics Queries: Maranville "Development Interrupted by CSA" (LinkedIn Pulse)
+# Dataset: examples_knowledge_graphs/maranville-development-interrupted-childhood-sexual-abuse-example.ttl
+# =============================================================================
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core/>
+PREFIX uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/>
+PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/>
+PREFIX uco-types: <https://ontology.unifiedcyberontology.org/uco/types/>
+PREFIX investigation: <https://ontology.caseontology.org/case/investigation/>
+
+PREFIX cacontology-impact: <https://cacontology.projectvic.org/victim-impact#>
+
+PREFIX ex: <urn:uuid:>
+
+# -----------------------------------------------------------------------------
+# Q1: List collected document(s) with URL, mime, size, and SHA-256.
+# Returns: doc, url, mimeType, sizeInBytes, hashValue
+# -----------------------------------------------------------------------------
+SELECT ?doc ?url ?mime ?size ?hashValue WHERE {
+  ?doc a uco-observable:ObservableObject ;
+       uco-core:hasFacet ?urlFacet ;
+       uco-core:hasFacet ?contentFacet ;
+       uco-core:hasFacet ?hashFacet .
+
+  ?urlFacet a uco-observable:URLFacet ;
+           uco-observable:url ?url .
+
+  ?contentFacet a uco-observable:ContentDataFacet ;
+               uco-observable:mimeType ?mime ;
+               uco-observable:sizeInBytes ?size .
+
+  ?hashFacet a uco-observable:HashFacet ;
+            uco-observable:hash ?hash .
+  ?hash a uco-types:Hash ;
+        uco-types:hashValue ?hashValue .
+}
+ORDER BY ?doc
+;
+
+# -----------------------------------------------------------------------------
+# Q2: Show collection action(s) and their performer(s) and targets.
+# Returns: action, time, performer, object, description
+# -----------------------------------------------------------------------------
+SELECT ?action ?time ?performer ?object ?desc WHERE {
+  ?action a investigation:InvestigativeAction ;
+          uco-action:startTime ?time ;
+          uco-action:performer ?performer ;
+          uco-action:object ?object ;
+          uco-core:description ?desc .
+}
+ORDER BY ?time
+;
+
+# -----------------------------------------------------------------------------
+# Q3: Show normalization action(s) and their results.
+# Returns: action, time, object, result, description
+# -----------------------------------------------------------------------------
+SELECT ?action ?time ?object ?result ?desc WHERE {
+  ?action a uco-action:Action ;
+          uco-action:startTime ?time ;
+          uco-action:object ?object ;
+          uco-action:result ?result ;
+          uco-core:description ?desc .
+}
+ORDER BY ?time
+;
+
+# -----------------------------------------------------------------------------
+# Q4: List statement actions (claims) with evidence pointers embedded in descriptions.
+# Returns: statementAction, performer, description
+# -----------------------------------------------------------------------------
+SELECT ?statement ?performer ?desc WHERE {
+  ?statement a uco-action:Action ;
+             uco-action:performer ?performer ;
+             uco-core:description ?desc .
+  FILTER(CONTAINS(LCASE(STR(?desc)), "grounded in normalized.txt"))
+}
+ORDER BY ?statement
+;
+
+# -----------------------------------------------------------------------------
+# Q5: List all provenance records and which actions they point to.
+# Returns: provRecord, label, provenanceRecordAction, evidenceDescription
+# -----------------------------------------------------------------------------
+SELECT ?prov ?label ?action ?desc WHERE {
+  ?prov a investigation:ProvenanceRecord ;
+        rdfs:label ?label ;
+        investigation:provenanceRecordAction ?action ;
+        uco-core:description ?desc .
+}
+ORDER BY ?prov
+;
+
+# -----------------------------------------------------------------------------
+# Q6: Find the modeled psychological harms (CAC victim-impact module) present in the KG.
+# Returns: harm, type, label, traumaType
+# -----------------------------------------------------------------------------
+SELECT ?harm ?type ?label ?traumaType WHERE {
+  ?harm a ?type ;
+        rdfs:label ?label .
+  FILTER(?type IN (cacontology-impact:ComplexTrauma, cacontology-impact:DevelopmentalImpact))
+  OPTIONAL { ?harm cacontology-impact:traumaType ?traumaType }
+}
+ORDER BY ?type ?harm
+;
+
+# -----------------------------------------------------------------------------
+# Q7: For each claim action, list the non-document objects it connects to.
+# Returns: statementAction, object, objectLabel
+# -----------------------------------------------------------------------------
+SELECT ?statement ?obj ?objLabel WHERE {
+  ?statement a uco-action:Action ;
+             uco-action:object ?obj .
+  FILTER(?obj != ex:32a91353-795c-5689-86df-9035ac482f56)  # normalized doc
+  FILTER(?obj != ex:582ed787-34e0-5fbd-b457-ffb11e94c3af)  # source doc
+  OPTIONAL { ?obj rdfs:label ?objLabel }
+}
+ORDER BY ?statement ?obj
+;
+
+# -----------------------------------------------------------------------------
+# Q8: Timeline of all actions (collection + statements) by startTime.
+# Returns: action, type, label, time
+# -----------------------------------------------------------------------------
+SELECT ?action ?type ?label ?time WHERE {
+  ?action a ?type ;
+          uco-action:startTime ?time ;
+          rdfs:label ?label .
+  FILTER(?type IN (investigation:InvestigativeAction, uco-action:Action))
+}
+ORDER BY ?time ?action
+;
+
+# -----------------------------------------------------------------------------
+# Q9: Show author identity node(s) and what they authored (as performer of claims).
+# Returns: person, personLabel, action, actionLabel
+# -----------------------------------------------------------------------------
+SELECT ?person ?personLabel ?action ?actionLabel WHERE {
+  ?person a uco-identity:Person ;
+          rdfs:label ?personLabel .
+  ?action a uco-action:Action ;
+          uco-action:performer ?person ;
+          rdfs:label ?actionLabel .
+}
+ORDER BY ?person ?action
+;
+
+# -----------------------------------------------------------------------------
+# Q10: Find statements about attachment stability (simple keyword match).
+# Returns: action, label, description
+# -----------------------------------------------------------------------------
+SELECT ?action ?label ?desc WHERE {
+  ?action a uco-action:Action ;
+          rdfs:label ?label ;
+          uco-core:description ?desc .
+  FILTER(CONTAINS(LCASE(STR(?label)), "attachment") || CONTAINS(LCASE(STR(?desc)), "attachment"))
+}
+ORDER BY ?action
+;
+
+# -----------------------------------------------------------------------------
+# Q11: Find statements about "healing" language (simple keyword match).
+# Returns: action, label, description
+# -----------------------------------------------------------------------------
+SELECT ?action ?label ?desc WHERE {
+  ?action a uco-action:Action ;
+          rdfs:label ?label ;
+          uco-core:description ?desc .
+  FILTER(CONTAINS(LCASE(STR(?label)), "healing") || CONTAINS(LCASE(STR(?desc)), "healing"))
+}
+ORDER BY ?action
+;
+
+# -----------------------------------------------------------------------------
+# Q12: Verify there are no isolated non-facet nodes (degree >= 1 excluding rdf:type).
+# Returns: node (candidates with zero non-type edges) - expected: 0 results
+# -----------------------------------------------------------------------------
+SELECT ?node WHERE {
+  ?node rdf:type ?t .
+  FILTER NOT EXISTS { ?node ?p ?o . FILTER(?p != rdf:type) }
+  FILTER NOT EXISTS { ?s ?p2 ?node . FILTER(?p2 != rdf:type) }
+}
+;
+

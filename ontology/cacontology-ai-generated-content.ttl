@@ -15,19 +15,19 @@
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/ai-generated/2.5.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/ai-generated/2.6.0> rdf:type owl:Ontology ;
     rdfs:label "CAC AI-Generated Content Ontology with gUFO Integration"@en ;
     rdfs:comment "An ontology for representing artificial intelligence-generated child sexual abuse material and related detection, investigation, and prosecution challenges. Enhanced with gUFO foundational ontology for improved semantic precision, anti-rigidity modeling, and temporal constraint validation. Based on analysis of Operation Cumberland 2025 and emerging AI-CSAM threats identified by Europol and international law enforcement."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/ai-generated/2.5.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/ai-generated/2.6.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-05-23"^^xsd:date ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
+    dcterms:modified "2026-02-11"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable> ,
                 <https://ontology.unifiedcyberontology.org/uco/action> ,
                 <https://ontology.unifiedcyberontology.org/uco/tool> ,
-                <https://cacontology.projectvic.org/2.5.0> ,
+                <https://cacontology.projectvic.org/2.6.0> ,
                 <http://purl.org/nemo/gufo> .
 
 # =============================================================================
@@ -65,6 +65,14 @@ cacontology-ai:AIAlteredCSAM rdf:type owl:Class ;
     rdfs:label "AI-Altered CSAM"@en ;
     rdfs:comment "Existing CSAM that has been modified using AI techniques to alter appearance, age, or other characteristics. Enhanced as gUFO Object with alteration tracking."@en ;
     rdfs:subClassOf cacontology-ai:DeepfakeCSAM ,
+                    gufo:Object .
+
+cacontology-ai:NudifiedCSAM rdf:type owl:Class ;
+    rdfs:label "Nudified CSAM"@en ;
+    rdfs:comment "Child sexual abuse material created by AI-enabled nudification (synthetic nudity) of an existing image or video. This models 'nudifying functionalities' discussed in policy contexts."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:subClassOf cacontology-ai:AIAlteredCSAM ,
                     gufo:Object .
 
 # =============================================================================
@@ -107,6 +115,14 @@ cacontology-ai:FaceSwapping rdf:type owl:Class ;
 cacontology-ai:AgeProgression rdf:type owl:Class ;
     rdfs:label "Age Progression"@en ;
     rdfs:comment "AI technique for artificially aging or de-aging subjects in content, potentially creating illegal material from legal content. Enhanced as gUFO Event."@en ;
+    rdfs:subClassOf cacontology-ai:AIContentGeneration ,
+                    gufo:Event .
+
+cacontology-ai:Nudification rdf:type owl:Class ;
+    rdfs:label "Nudification"@en ;
+    rdfs:comment "AI content generation/manipulation process that produces synthetic nudity (e.g., 'nudifying apps' / nudifying functionalities) from existing media. Modeled as a gUFO Event and UCO Action."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
     rdfs:subClassOf cacontology-ai:AIContentGeneration ,
                     gufo:Event .
 
@@ -172,6 +188,18 @@ cacontology-ai:MetadataAnalysisTool rdf:type owl:Class ;
     rdfs:label "Metadata Analysis Tool"@en ;
     rdfs:comment "Tool for analyzing metadata patterns that may indicate AI generation or manipulation. Enhanced as gUFO Object."@en ;
     rdfs:subClassOf cacontology-ai:AIDetectionTool ,
+                    gufo:Object .
+
+# =============================================================================
+# AI GENERATION TOOLS (extending UCO Tool and gUFO Objects)
+# =============================================================================
+
+cacontology-ai:NudificationTool rdf:type owl:Class ;
+    rdfs:label "Nudification Tool"@en ;
+    rdfs:comment "Software tool or functionality capable of performing AI-enabled nudification (synthetic nudity) of existing media."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:subClassOf uco-tool:Tool ,
                     gufo:Object .
 
 # =============================================================================
@@ -349,6 +377,14 @@ cacontology-ai:renderingQuality rdf:type owl:DatatypeProperty ;
     rdfs:domain cacontology-ai:AIGeneratedCSAM ;
     rdfs:range xsd:string .
 
+cacontology-ai:nudificationTechnique rdf:type owl:DatatypeProperty ;
+    rdfs:label "nudification technique"@en ;
+    rdfs:comment "Technique used for nudification (synthetic nudity) generation (e.g., 'nudify', 'clothing_removal', 'synthetic_nudity')."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:domain cacontology-ai:Nudification ;
+    rdfs:range xsd:string .
+
 # Detection Properties
 cacontology-ai:detectionConfidence rdf:type owl:DatatypeProperty ;
     rdfs:label "detection confidence"@en ;
@@ -446,6 +482,23 @@ cacontology-ai:utilizesTool rdf:type owl:ObjectProperty ;
     rdfs:comment "Links generation process to tools used for creation."@en ;
     rdfs:domain cacontology-ai:AIContentGeneration ;
     rdfs:range uco-tool:Tool .
+
+cacontology-ai:usesNudificationTool rdf:type owl:ObjectProperty ;
+    rdfs:label "uses nudification tool"@en ;
+    rdfs:comment "Links a nudification process to the nudification tool/functionality used."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:domain cacontology-ai:Nudification ;
+    rdfs:range cacontology-ai:NudificationTool ;
+    rdfs:subPropertyOf cacontology-ai:utilizesTool .
+
+cacontology-ai:nudifiedFrom rdf:type owl:ObjectProperty ;
+    rdfs:label "nudified from"@en ;
+    rdfs:comment "Links nudified content to its source media from which synthetic nudity was generated."@en ;
+    dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
+    rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
+    rdfs:domain cacontology-ai:NudifiedCSAM ;
+    rdfs:range uco-observable:ObservableObject .
 
 # Detection Relationships
 cacontology-ai:detectedBy rdf:type owl:ObjectProperty ;
