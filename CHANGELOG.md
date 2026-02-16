@@ -5,7 +5,7 @@ All notable changes to the CAC ontology family will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## v2.9.0 - 16 February 2026
+
 
 ## v2.10.0 - 16 February 2026
 
@@ -34,6 +34,9 @@ Adds explicit modeling for Emergency Disclosure Requests (EDRs) used in time-sen
 #### Versioning
 
 - Bumped ontology family version IRIs to `2.10.0` (tooling: `update_version.py`)
+
+
+## v2.9.0 - 16 February 2026
 
 ### Added - Missing Child Rescue Operation Modeling + Example Suite (NCPTF Westchester Operation)
 
