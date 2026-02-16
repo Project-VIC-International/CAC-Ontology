@@ -1,0 +1,189 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
+
+@prefix investigation: <https://ontology.caseontology.org/case/investigation/> .
+
+@prefix cacontology-platforms: <https://cacontology.projectvic.org/platforms#> .
+@prefix cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#> .
+@prefix cacontology-trafficking: <https://cacontology.projectvic.org/sex-trafficking#> .
+@prefix cacontology-registry: <https://cacontology.projectvic.org/sex-offender-registry#> .
+
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+
+@prefix ex: <https://example.org/cac/ga-hart-county-trafficking-snapchat/> .
+
+# =============================================================================
+# GEORGIA CASE EXAMPLE: Hart County trafficking (Snapchat contact)
+# Source: Georgia AG press release (2026-02-14)
+# =============================================================================
+
+# =============================================================================
+# SOURCE DOCUMENT + NORMALIZED ARTIFACT (provenance scaffold)
+# =============================================================================
+
+ex:source_document a uco-observable:ObservableObject ;
+  rdfs:label "Georgia AG Press Release: Hart County Man Convicted of Trafficking Teen (Snapchat)"@en ;
+  uco-core:description "Source press release used to derive this example graph."@en ;
+  uco-core:hasFacet ex:source_url_facet ;
+  uco-core:hasFacet ex:source_file_facet ;
+  uco-core:hasFacet ex:source_hash_facet .
+
+ex:source_url_facet a uco-observable:URLFacet ;
+  uco-observable:url "https://law.georgia.gov/press-releases/2026-02-14/carr-hart-county-man-convicted-trafficking-teen-targeting-victim-snapchat"^^xsd:anyURI .
+
+ex:source_file_facet a uco-observable:FileFacet ;
+  uco-observable:filePath "analytics_demonstration/collected_sources/ga-hart-county-trafficking-snapchat/source.txt"@en .
+
+ex:source_hash_facet a uco-observable:HashFacet ;
+  uco-observable:hash ex:source_hash .
+
+ex:source_hash a uco-types:Hash ;
+  uco-types:hashMethod "SHA-256"@en ;
+  uco-types:hashValue "c3b860ceb75ab77d1e05b65694eff45cfb4ec7909d2d77d05f207d20c980c96f"@en .
+
+ex:normalized_excerpt a uco-observable:ObservableObject ;
+  rdfs:label "Normalized excerpt (Georgia AG press release)"@en ;
+  uco-core:description "Normalized excerpt used as evidence pointers for modeling decisions."@en ;
+  uco-core:hasFacet ex:normalized_file_facet ;
+  uco-core:hasFacet ex:normalized_hash_facet .
+
+ex:normalized_file_facet a uco-observable:FileFacet ;
+  uco-observable:filePath "analytics_demonstration/collected_sources/ga-hart-county-trafficking-snapchat/normalized.txt"@en .
+
+ex:normalized_hash_facet a uco-observable:HashFacet ;
+  uco-observable:hash ex:normalized_hash .
+
+ex:normalized_hash a uco-types:Hash ;
+  uco-types:hashMethod "SHA-256"@en ;
+  uco-types:hashValue "77264166e62241236a8283556c08fb392d06d3fdd919950d2babe3702cd737dd"@en .
+
+# =============================================================================
+# CORE IDENTITIES
+# =============================================================================
+
+ex:offender a uco-identity:Person ;
+  rdfs:label "Reed Cohen Skelton"@en ;
+  uco-core:description "Defendant described in Georgia AG press release (26 years old; former ICU nurse)."@en .
+
+ex:victim a uco-identity:Person ;
+  rdfs:label "Victim (16-year-old female)"@en ;
+  uco-core:description "Minor victim described in press release."@en .
+
+# =============================================================================
+# PLATFORM CONTEXT (Snapchat contact; Roblox mentioned as comparable app)
+# =============================================================================
+
+ex:snapchat a cacontology-platforms:SocialMediaPlatform ;
+  rdfs:label "Snapchat"@en ;
+  uco-core:description "Social media app used for communication between offender and victim (per press release)."@en .
+
+ex:roblox a cacontology-platforms:GamePlatform ;
+  rdfs:label "Roblox"@en ;
+  uco-core:description "Gaming platform referenced in quote about predators using 'Snapchat or Roblox or any other app'."@en .
+
+# A representative digital artifact of communications (placeholder)
+ex:explicit_content_exchange a uco-observable:ObservableObject ;
+  rdfs:label "Sexually explicit content exchange (digital artifact)"@en ;
+  uco-core:description "Represents requested/sent sexually explicit content to the minor; actual content omitted."@en .
+
+# =============================================================================
+# LOCATIONS (counties + hotel)
+# =============================================================================
+
+ex:cobb_county_ga a uco-location:Location ;
+  rdfs:label "Cobb County, Georgia"@en .
+
+ex:fulton_county_ga a uco-location:Location ;
+  rdfs:label "Fulton County, Georgia"@en .
+
+ex:hotel_location a uco-location:Location ;
+  rdfs:label "Hotel (Fulton County, Georgia)"@en ;
+  uco-core:description "Hotel where the room was rented and commercial sex occurred (per press release)."@en .
+
+ex:vehicle_unknown a uco-core:UcoObject ;
+  rdfs:label "Vehicle (unspecified)"@en ;
+  uco-core:description "Transportation method not specified in press release."@en .
+
+# =============================================================================
+# TRAFFICKING WORKFLOW (transport + earnings)
+# NOTE: Only include trafficking classes with known SHACL requirements.
+# =============================================================================
+
+ex:transport_event a cacontology-trafficking:VictimTransportation, gufo:Event ;
+  rdfs:label "Victim transportation (Cobb County → Fulton County hotel)"@en ;
+  cacontology-trafficking:originLocation ex:cobb_county_ga ;
+  cacontology-trafficking:destinationLocation ex:hotel_location ;
+  cacontology-trafficking:transportationMethod ex:vehicle_unknown ;
+  uco-core:description "Offender traveled to pick up victim and transported her to a Fulton County hotel (per press release)."@en .
+
+ex:earnings_collection a cacontology-trafficking:EarningsCollection, gufo:Event ;
+  rdfs:label "Earnings collection ($500 payment)"@en ;
+  cacontology-trafficking:earningsAmount "500.00"^^xsd:decimal ;
+  uco-core:description "Press release reports $500 paid to victim."@en .
+
+# =============================================================================
+# SENTENCING / CHARGES (Georgia-specific subclasses) + license surrender
+# =============================================================================
+
+ex:plea_bargaining a cacontology-sentencing:PleaBargaining ;
+  rdfs:label "Plea bargaining / guilty plea (2026-02-12)"@en ;
+  uco-action:startTime "2026-02-12T00:00:00Z"^^xsd:dateTime ;
+  uco-core:description "Plea event where defendant pleaded guilty (per press release)."@en ;
+  uco-action:result ex:license_surrender_condition .
+
+ex:license_surrender_condition a cacontology-sentencing:ProfessionalLicenseSurrenderCondition ;
+  rdfs:label "License surrender condition (nursing license)"@en ;
+  cacontology-sentencing:conditionAppliesToPerson ex:offender ;
+  cacontology-sentencing:requiresLicenseSurrender ex:nursing_license ;
+  uco-core:description "Press release states defendant surrendered nursing license as part of guilty plea."@en .
+
+ex:nursing_license a cacontology-registry:ProfessionalLicense ;
+  rdfs:label "Nursing license (surrendered)"@en ;
+  uco-core:description "Professional nursing license surrendered as part of guilty plea."@en .
+
+ex:sentencing_hearing a cacontology-sentencing:SentencingHearing ;
+  rdfs:label "Sentencing (25 years total; 10 prison + strict probation remainder)"@en ;
+  uco-action:startTime "2026-02-12T00:00:00Z"^^xsd:dateTime ;
+  cacontology-sentencing:hasCharge ex:charge_servitude_1 , ex:charge_servitude_2 , ex:charge_sex_exploitation ;
+  cacontology-sentencing:resultsSentence ex:prison_term , ex:probation_term ;
+  uco-core:description "Sentenced to 25 years: first 10 in prison, remainder on strict probation (per press release)."@en .
+
+ex:charge_servitude_1 a cacontology-sentencing:TraffickingOfPersonsForSexualServitudeCharge ;
+  rdfs:label "Charge: Trafficking of Persons for Sexual Servitude (Count 1)"@en .
+
+ex:charge_servitude_2 a cacontology-sentencing:TraffickingOfPersonsForSexualServitudeCharge ;
+  rdfs:label "Charge: Trafficking of Persons for Sexual Servitude (Count 2)"@en .
+
+ex:charge_sex_exploitation a cacontology-sentencing:SexualExploitationOfMinorCharge ;
+  rdfs:label "Charge: Sexual Exploitation of a Minor (Count 1)"@en .
+
+ex:prison_term a cacontology-sentencing:PrisonSentence ;
+  rdfs:label "Prison sentence (10 years)"@en ;
+  cacontology-sentencing:sentenceDuration "P10Y"^^xsd:duration ;
+  uco-core:description "First 10 years to be served in prison (per press release)."@en ;
+  cacontology-sentencing:appliesTo ex:charge_servitude_1 .
+
+ex:probation_term a cacontology-sentencing:ProbationSentence ;
+  rdfs:label "Probation sentence (15 years; strict probation)"@en ;
+  cacontology-sentencing:sentenceDuration "P15Y"^^xsd:duration ;
+  cacontology-sentencing:probationConditions "10"^^xsd:nonNegativeInteger ;
+  cacontology-sentencing:supervisionLevel "intensive" ;
+  cacontology-sentencing:reportingFrequency "as_directed" ;
+  uco-core:description "Remainder of sentence on strict probation (approximated as intensive supervision)."@en ;
+  cacontology-sentencing:appliesTo ex:charge_sex_exploitation .
+
+# =============================================================================
+# DIGITAL FILES CREATED/POSSESSED (placeholder evidence)
+# =============================================================================
+
+ex:digital_files_of_act a uco-observable:ObservableObject ;
+  rdfs:label "Digital files of the act (created/possessed)"@en ;
+  uco-core:description "Represents digital files created and possessed of the act with the minor; actual content omitted."@en .

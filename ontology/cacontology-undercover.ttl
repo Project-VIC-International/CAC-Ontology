@@ -16,10 +16,10 @@
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/undercover/2.6.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/undercover/2.7.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Undercover Operations Ontology"@en ;
     rdfs:comment "An ontology for representing undercover law enforcement operations in Internet Crimes Against Children investigations, extending UCO and CASE with gUFO foundational ontology enhancements. This ontology covers undercover identities, infiltration tactics, surveillance operations, and evidence collection through covert means."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/undercover/2.6.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/undercover/2.7.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
     dcterms:modified "2026-01-01"^^xsd:date ;
@@ -28,7 +28,7 @@
                 <https://ontology.unifiedcyberontology.org/uco/observable> ,
                 <https://ontology.unifiedcyberontology.org/uco/action> ,
                 <https://ontology.unifiedcyberontology.org/uco/role> ,
-                <https://cacontology.projectvic.org/2.6.0> ,
+                <https://cacontology.projectvic.org/2.7.0> ,
                 <http://purl.org/nemo/gufo> .
 
 # =============================================================================

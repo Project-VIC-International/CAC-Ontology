@@ -20,11 +20,11 @@
 # Enhanced with gUFO (gentle Unified Foundational Ontology) integration
 # =============================================================================
 
-<https://cacontology.projectvic.org/law-enforcement-corruption/2.6.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/law-enforcement-corruption/2.7.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Law Enforcement Corruption Ontology"@en ;
     rdfs:comment "Ontology for modeling law enforcement corruption and insider threats in child exploitation cases, including uniform-based production and officer trafficking. Enhanced with gUFO (gentle Unified Foundational Ontology) integration for improved semantic precision and validation capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/law-enforcement-corruption/2.6.0> ;
-    owl:versionInfo "2.6.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/law-enforcement-corruption/2.7.0> ;
+    owl:versionInfo "2.7.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
     owl:imports <http://purl.org/nemo/gufo#> .

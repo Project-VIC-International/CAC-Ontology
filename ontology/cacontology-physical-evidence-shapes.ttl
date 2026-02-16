@@ -20,14 +20,14 @@
 # Enhanced with comprehensive gUFO (gentle Unified Foundational Ontology) validation
 # =============================================================================
 
-<https://cacontology.projectvic.org/physical/shapes/2.6.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/physical/shapes/2.7.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Physical Evidence SHACL Shapes with gUFO Integration"@en ;
     rdfs:comment "SHACL shapes for validating physical evidence in ICAC investigations with comprehensive gUFO foundational ontology integration for enhanced semantic precision and validation capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/physical/shapes/2.6.0> ;
-    owl:versionInfo "2.6.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/physical/shapes/2.7.0> ;
+    owl:versionInfo "2.7.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2026-01-01"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/physical/2.6.0> ,
+    owl:imports <https://cacontology.projectvic.org/physical/2.7.0> ,
                 <http://purl.org/nemo/gufo#> .
 
 # =============================================================================
