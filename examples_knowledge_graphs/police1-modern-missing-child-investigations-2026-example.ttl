@@ -1,0 +1,98 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
+
+@prefix cacontology-platforms: <https://cacontology.projectvic.org/platforms#> .
+@prefix cacontology-case: <https://cacontology.projectvic.org/case-management#> .
+
+# =============================================================================
+# Example KG: Police1 modern missing-child investigations (2026-01-30)
+# UUID policy: UUIDv5 using document UUID namespace (deterministic)
+# documentId namespace: 75ea4a92-b4e8-4f9c-90f3-5ef01a53b17e
+# =============================================================================
+
+<urn:uuid:75ea4a92-b4e8-4f9c-90f3-5ef01a53b17e> a uco-observable:ObservableObject ;
+    rdfs:label "Police1 article: How police are adapting to modern missing-child investigations (2026-01-30)"@en ;
+    uco-core:hasFacet <urn:uuid:6f9fa9fd-7171-5c45-bd82-9d7943377b53> ,
+                    <urn:uuid:f63fbd7e-d62c-5a53-90f4-b8342480b01d> ,
+                    <urn:uuid:761369ba-097d-5c87-abbf-7cf17baeee9d> ,
+                    <urn:uuid:7d58b6c5-aa58-5942-8920-047c14cc43f5> .
+
+<urn:uuid:6f9fa9fd-7171-5c45-bd82-9d7943377b53> a uco-observable:URLFacet ;
+    uco-observable:url "https://www.police1.com/investigations/how-police-are-adapting-to-modern-missing-child-investigations"^^xsd:anyURI .
+
+<urn:uuid:f63fbd7e-d62c-5a53-90f4-b8342480b01d> a uco-observable:FileFacet ;
+    uco-observable:filePath "analytics_demonstration/collected_sources/police1-modern-missing-child-investigations-2026/source.txt"@en .
+
+<urn:uuid:7d58b6c5-aa58-5942-8920-047c14cc43f5> a uco-observable:ContentDataFacet ;
+    uco-observable:mimeType "text/plain"@en ;
+    uco-observable:sizeInBytes 7659 .
+
+<urn:uuid:761369ba-097d-5c87-abbf-7cf17baeee9d> a uco-observable:HashFacet ;
+    uco-observable:hash <urn:uuid:3baa825e-5661-5536-9f9b-657f6dad6ff9> .
+
+<urn:uuid:3baa825e-5661-5536-9f9b-657f6dad6ff9> a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256"@en ;
+    uco-types:hashValue "160d12ebecc26a47323a9a130548dd04409e9f05aa8e9226a51c117927060b48"@en .
+
+# Publisher / actor nodes
+<urn:uuid:c0f5bd43-a614-55d0-9fdf-86c0d8e5b426> a uco-identity:Organization ;
+    rdfs:label "Police1"@en .
+
+<urn:uuid:4161c90e-974c-51ed-8c40-80eaf69b05b3> a uco-identity:Organization ;
+    rdfs:label "National Child Protection Task Force (NCPTF)"@en .
+
+<urn:uuid:18e53fce-169b-5676-9260-bb33e1f19220> a uco-identity:Person ;
+    rdfs:label "Kevin Branzetti"@en .
+
+<urn:uuid:ad3d01c5-42ce-571a-a2da-901a63f51adc> a uco-identity:Organization ;
+    rdfs:label "Law enforcement investigators (unspecified)"@en .
+
+# -----------------------------------------------------------------------------
+# Core modeled assertions (anchored with statement actions)
+# -----------------------------------------------------------------------------
+
+<urn:uuid:5f7f39cc-8e91-50e0-808c-d3b14799a302> a uco-action:Action ;
+    rdfs:label "Article states key legal tools in missing-child cases"@en ;
+    uco-action:performer <urn:uuid:c0f5bd43-a614-55d0-9fdf-86c0d8e5b426> ;
+    uco-action:object <urn:uuid:75ea4a92-b4e8-4f9c-90f3-5ef01a53b17e> ,
+                      <urn:uuid:41880913-ac3f-5477-a280-bf421cd11d4c> ,
+                      <urn:uuid:1f727d1b-56ba-58d7-a953-7d076d787bda> ;
+    uco-core:description "Grounded in normalized.txt lines 13-18. Quote: \"Two key legal tools... Emergency Disclosure Requests (EDRs) and search warrants.\" Confidence: high."@en .
+
+<urn:uuid:41880913-ac3f-5477-a280-bf421cd11d4c> a cacontology-platforms:EmergencyDisclosureRequest ;
+    rdfs:label "Emergency Disclosure Request (EDR) used in time-sensitive missing-child investigations"@en ;
+    uco-action:performer <urn:uuid:ad3d01c5-42ce-571a-a2da-901a63f51adc> ;
+    uco-action:object <urn:uuid:75ea4a92-b4e8-4f9c-90f3-5ef01a53b17e> ;
+    uco-core:startTime "2026-02-16T05:20:33Z"^^xsd:dateTime ;
+    uco-core:description "Grounded in normalized.txt lines 14-16. Quotes: \"danger of death or serious physical injury\"; missing child can meet \"threshold of imminent danger\" and investigators must \"clearly explain why\". Confidence: high."^^xsd:string .
+
+<urn:uuid:1f727d1b-56ba-58d7-a953-7d076d787bda> a cacontology-case:SearchWarrant ;
+    rdfs:label "Search warrant (context: missing is not itself a crime)"@en .
+
+<urn:uuid:987764a2-9133-5be6-a8a5-12be721ef068> a uco-action:Action ;
+    rdfs:label "Article states search-warrant constraint and workaround offenses"@en ;
+    uco-action:performer <urn:uuid:c0f5bd43-a614-55d0-9fdf-86c0d8e5b426> ;
+    uco-action:object <urn:uuid:75ea4a92-b4e8-4f9c-90f3-5ef01a53b17e> ,
+                      <urn:uuid:1f727d1b-56ba-58d7-a953-7d076d787bda> ;
+    uco-core:description "Grounded in normalized.txt lines 17-18. Quote: \"being missing is not, in itself, a crime\" and investigators rely on related offenses \"such as child endangerment\". Confidence: high."@en .
+
+<urn:uuid:62c2e1bd-8f18-509f-bee1-cbc41823ab4a> a uco-action:Action ;
+    rdfs:label "Article warns 'runaway' labeling can reduce urgency"@en ;
+    uco-action:performer <urn:uuid:c0f5bd43-a614-55d0-9fdf-86c0d8e5b426> ;
+    uco-action:object <urn:uuid:75ea4a92-b4e8-4f9c-90f3-5ef01a53b17e> ;
+    uco-core:description "Grounded in normalized.txt lines 8-9. Quote: \"'Runaway' labeling can reduce urgency\" and may be a symptom of abuse/neglect/coercion/online grooming. Confidence: high."@en .
+
+<urn:uuid:fd75aa48-5698-5551-9ef0-a7eac1e30c7f> a uco-action:Action ;
+    rdfs:label "Article describes offender countermeasures to avoid tracking"@en ;
+    uco-action:performer <urn:uuid:c0f5bd43-a614-55d0-9fdf-86c0d8e5b426> ;
+    uco-action:object <urn:uuid:75ea4a92-b4e8-4f9c-90f3-5ef01a53b17e> ;
+    uco-core:description "Grounded in normalized.txt line 12. Quote: offenders \"coach kids to shut down accounts, abandon devices and avoid being tracked.\" Confidence: high."@en .
+

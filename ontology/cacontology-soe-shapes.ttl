@@ -12,14 +12,14 @@
 @prefix cacontology-soe: <https://cacontology.projectvic.org/soe#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/soe/shapes/2.9.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/soe/shapes/2.10.0> rdf:type owl:Ontology ;
     rdfs:label "CAC SOE SHACL Shapes"@en ;
     rdfs:comment "SHACL validation shapes for the CAC Sadistic Online Exploitation (SOE) Ontology."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/soe/shapes/2.9.0> ;
-    owl:versionInfo "2.9.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/soe/shapes/2.10.0> ;
+    owl:versionInfo "2.10.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2026-02-11"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/soe/2.9.0> ,
+    owl:imports <https://cacontology.projectvic.org/soe/2.10.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 
 # =============================================================================

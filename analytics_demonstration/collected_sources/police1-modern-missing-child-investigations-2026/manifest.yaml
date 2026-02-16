@@ -1,0 +1,51 @@
+# CAC Ontology ingestion manifest (single-document)
+# Source: Police1 Investigations article (missing-child investigations + legal tools)
+
+batch:
+  uco-core:id: "urn:uuid:d3fd87b3-6168-4a23-a32d-3dc03fcb1487"
+  uco-core:name: "Police1 modern missing-child investigations article collection"
+  uco-core:objectCreatedTime: "2026-02-16T05:20:33Z"
+
+  agentOrchestration:
+    enabled: false
+    fetchMethod: "manual"
+    preprocessingPipeline:
+      - "webfetch_text"
+      - "whitespace_normalize"
+      - "keypoint_normalize"
+    deconflictionEnabled: false
+
+documents:
+  - uco-core:id: "urn:uuid:75ea4a92-b4e8-4f9c-90f3-5ef01a53b17e"
+    uco-core:name: "Police1 - How police are adapting to modern missing-child investigations (2026-01-30)"
+
+    # Source location
+    observable:url: "https://www.police1.com/investigations/how-police-are-adapting-to-modern-missing-child-investigations"
+    observable:filePath: "analytics_demonstration/collected_sources/police1-modern-missing-child-investigations-2026/source.txt"
+
+    collectionAction:
+      uco-action:startTime: "2026-02-16T05:20:33Z"
+      uco-action:performer: "urn:uuid:2862c4f9-c2df-4fc2-b3fa-ae30abbb4d49"
+      uco-core:description: "manual (WebFetch) by CAC Ontology agent"
+
+    # Raw content metadata
+    observable:mimeType: "text/plain"
+    observable:sizeInBytes: 7659
+    observable:hash:
+      types:hashMethod: "SHA-256"
+      types:hashValue: "160d12ebecc26a47323a9a130548dd04409e9f05aa8e9226a51c117927060b48"
+
+    # Normalized output
+    normalizationAction:
+      uco-core:description: "webfetch_text + whitespace normalization + keypoint normalization (numbered statements)"
+      uco-action:startTime: "2026-02-16T05:20:33Z"
+      uco-action:result: "urn:uuid:71e01b3a-0e4e-53af-b0e4-f0d09bab1fd2"
+
+    normalizedOutput:
+      observable:filePath: "analytics_demonstration/collected_sources/police1-modern-missing-child-investigations-2026/normalized.txt"
+      observable:mimeType: "text/plain"
+      observable:sizeInBytes: 2823
+      observable:hash:
+        types:hashMethod: "SHA-256"
+        types:hashValue: "9b5183bee4c0fdc493cc25838827d500b47c14b151de2008369f1c5691c7d84b"
+
