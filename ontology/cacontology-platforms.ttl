@@ -14,18 +14,18 @@
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/platforms/2.9.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/platforms/2.10.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Technology Platforms & Service Providers Ontology"@en ;
     rdfs:comment "An ontology for representing technology platforms, digital services, and Electronic Service Provider (ESP) capabilities in the context of child protection with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, and validation capabilities, extending UCO and CASE. This ontology covers social media platforms, messaging services, content hosting, and service provider policies and capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/platforms/2.9.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/platforms/2.10.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2026-02-11"^^xsd:date ;
+    dcterms:modified "2026-02-16"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity> ,
                 <https://ontology.unifiedcyberontology.org/uco/action> ,
-                <https://cacontology.projectvic.org/2.9.0> ,
+                <https://cacontology.projectvic.org/2.10.0> ,
                 <http://purl.org/nemo/gufo> .
 
 # =============================================================================
@@ -162,6 +162,13 @@ cacontology-platforms:LegalDataDisclosureAction rdf:type owl:Class ;
     rdfs:label "Legal Data Disclosure Action"@en ;
     rdfs:comment "An action to disclose user data to law enforcement in response to legal process. Modeled as gUFO Event."@en ;
     rdfs:subClassOf uco-action:Action, gufo:Event .
+
+cacontology-platforms:EmergencyDisclosureRequest rdf:type owl:Class ;
+    rdfs:label "Emergency Disclosure Request"@en ;
+    rdfs:comment "Time-sensitive request by law enforcement/investigators to an electronic service provider for immediate disclosure of information based on an asserted emergency involving imminent danger (e.g., danger of death or serious physical injury). Modeled as gUFO Event."@en ;
+    rdfs:subClassOf uco-action:Action, gufo:Event ;
+    dcterms:source "Police1 (Lexipol) article, \"How police are adapting to modern missing-child investigations\", 2026-01-30."@en ;
+    rdfs:seeAlso <https://www.police1.com/investigations/how-police-are-adapting-to-modern-missing-child-investigations> .
 
 cacontology-platforms:ContentHashingAction rdf:type owl:Class ;
     rdfs:label "Content Hashing Action"@en ;

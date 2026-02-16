@@ -14,14 +14,14 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/sex-offender-registry/shapes/2.9.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/sex-offender-registry/shapes/2.10.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Sex Offender Registry SHACL Shapes"@en ;
     rdfs:comment "SHACL validation shapes for the ICAC Sex Offender Registry Ontology, providing validation for registry data, registration requirements, and registry management systems."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/sex-offender-registry/shapes/2.9.0> ;
-    owl:versionInfo "2.9.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/sex-offender-registry/shapes/2.10.0> ;
+    owl:versionInfo "2.10.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/sex-offender-registry/2.9.0> ,
+    owl:imports <https://cacontology.projectvic.org/sex-offender-registry/2.10.0> ,
                 <http://purl.org/nemo/gufo> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 

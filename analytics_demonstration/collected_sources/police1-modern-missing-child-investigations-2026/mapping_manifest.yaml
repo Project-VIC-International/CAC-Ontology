@@ -1,0 +1,78 @@
+documentId: "urn:uuid:75ea4a92-b4e8-4f9c-90f3-5ef01a53b17e"
+caseId: "police1-modern-missing-child-investigations-2026"
+concepts:
+  - conceptName: "Source Article Text Artifact"
+    instanceUUID: "urn:uuid:75ea4a92-b4e8-4f9c-90f3-5ef01a53b17e"
+    class: "uco-observable:ObservableObject"
+    facets:
+      - "uco-observable:ContentDataFacet"
+      - "uco-observable:URLFacet"
+      - "uco-observable:FileFacet"
+      - "uco-observable:HashFacet"
+    relationships:
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:6f9fa9fd-7171-5c45-bd82-9d7943377b53"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:f63fbd7e-d62c-5a53-90f4-b8342480b01d"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:761369ba-097d-5c87-abbf-7cf17baeee9d"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:7d58b6c5-aa58-5942-8920-047c14cc43f5"
+    evidencePointer:
+      documentId: "urn:uuid:75ea4a92-b4e8-4f9c-90f3-5ef01a53b17e"
+      span: "source.txt (header + full text)"
+      quote: "How police are adapting to modern missing-child investigations"
+    confidence: "high"
+
+  - conceptName: "Normalized Text Artifact (Keypoint Statements)"
+    instanceUUID: "urn:uuid:71e01b3a-0e4e-53af-b0e4-f0d09bab1fd2"
+    class: "uco-observable:ObservableObject"
+    facets:
+      - "uco-observable:ContentDataFacet"
+      - "uco-observable:FileFacet"
+      - "uco-observable:HashFacet"
+    relationships:
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:3831623d-f213-546f-ab0d-b46502021891"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:e1607851-bc03-5f38-b5c9-7d6b6f0065f5"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:ddab1b7b-2f07-56fe-a461-9a62bc185ee8"
+    evidencePointer:
+      documentId: "urn:uuid:75ea4a92-b4e8-4f9c-90f3-5ef01a53b17e"
+      span: "generated artifact"
+      quote: "Normalized from source.txt into numbered keypoint statements."
+    confidence: "high"
+
+  - conceptName: "Collection Action"
+    instanceUUID: "urn:uuid:ee9a47e5-6bef-5134-b530-c51f883ff204"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      - predicate: "uco-action:performer"
+        targetUUID: "urn:uuid:2862c4f9-c2df-4fc2-b3fa-ae30abbb4d49"
+      - predicate: "uco-action:object"
+        targetUUID: "urn:uuid:75ea4a92-b4e8-4f9c-90f3-5ef01a53b17e"
+    evidencePointer:
+      documentId: "urn:uuid:75ea4a92-b4e8-4f9c-90f3-5ef01a53b17e"
+      span: "manifest.yaml collectionAction"
+      quote: "manual (WebFetch) by CAC Ontology agent"
+    confidence: "high"
+
+  - conceptName: "Normalization Action"
+    instanceUUID: "urn:uuid:f72bacee-7dc5-5e50-9658-9b2e4f3f932a"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      - predicate: "uco-action:performer"
+        targetUUID: "urn:uuid:2862c4f9-c2df-4fc2-b3fa-ae30abbb4d49"
+      - predicate: "uco-action:object"
+        targetUUID: "urn:uuid:75ea4a92-b4e8-4f9c-90f3-5ef01a53b17e"
+      - predicate: "uco-action:result"
+        targetUUID: "urn:uuid:71e01b3a-0e4e-53af-b0e4-f0d09bab1fd2"
+    evidencePointer:
+      documentId: "urn:uuid:75ea4a92-b4e8-4f9c-90f3-5ef01a53b17e"
+      span: "manifest.yaml normalizationAction"
+      quote: "webfetch_text + whitespace normalization + keypoint normalization"
+    confidence: "high"
+

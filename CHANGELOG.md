@@ -5,6 +5,37 @@ All notable changes to the CAC ontology family will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+
+## v2.10.0 - 16 February 2026
+
+### Added - Emergency Disclosure Request (EDR) Modeling + Example Suite (Police1 missing-child investigations)
+
+Adds explicit modeling for Emergency Disclosure Requests (EDRs) used in time-sensitive missing-child investigations, based on Police1 reporting describing emergency disclosure thresholds and request framing. Includes a new example knowledge graph and SPARQL analytics suite, plus captured evidence artifacts.
+
+#### Enhanced Platforms Module (`ontology/cacontology-platforms.ttl`)
+
+- Added `EmergencyDisclosureRequest`
+
+#### SHACL Shapes Updated
+
+- Updated: `ontology/cacontology-platforms-shapes.ttl` (new `EmergencyDisclosureRequestShape`)
+
+#### New Example KG + SPARQL Analytics
+
+- Example KG: `examples_knowledge_graphs/police1-modern-missing-child-investigations-2026-example.ttl`
+- SPARQL suite: `example_SPARQL_queries/police1-modern-missing-child-investigations-2026-analytics.rq`
+- Evidence artifacts captured under: `analytics_demonstration/collected_sources/police1-modern-missing-child-investigations-2026/`
+
+#### Validation
+
+- `python -m pyshacl -s ontology/cacontology-platforms-shapes.ttl -d examples_knowledge_graphs/police1-modern-missing-child-investigations-2026-example.ttl` → **Conforms: True**
+
+#### Versioning
+
+- Bumped ontology family version IRIs to `2.10.0` (tooling: `update_version.py`)
+
+
 ## v2.9.0 - 16 February 2026
 
 ### Added - Missing Child Rescue Operation Modeling + Example Suite (NCPTF Westchester Operation)

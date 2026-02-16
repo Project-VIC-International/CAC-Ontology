@@ -1,0 +1,118 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core/>
+PREFIX uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/>
+PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/>
+PREFIX uco-types: <https://ontology.unifiedcyberontology.org/uco/types/>
+
+PREFIX cacontology-platforms: <https://cacontology.projectvic.org/platforms#>
+PREFIX cacontology-case: <https://cacontology.projectvic.org/case-management#>
+
+# =============================================================================
+# Police1 modern missing-child investigations (2026) — analytics suite
+# Target KG:
+#   examples_knowledge_graphs/police1-modern-missing-child-investigations-2026-example.ttl
+# =============================================================================
+
+#################################################################
+# Q1: List source document and URL
+#################################################################
+SELECT ?doc ?label ?url WHERE {
+  ?doc a uco-observable:ObservableObject ;
+       rdfs:label ?label ;
+       uco-core:hasFacet ?urlFacet .
+  ?urlFacet a uco-observable:URLFacet ;
+           uco-observable:url ?url .
+}
+
+#################################################################
+# Q2: Show source hashes (doc -> hashValue)
+#################################################################
+SELECT ?doc ?hashValue WHERE {
+  ?doc a uco-observable:ObservableObject ;
+       uco-core:hasFacet ?hashFacet .
+  ?hashFacet a uco-observable:HashFacet ;
+            uco-observable:hash ?hashNode .
+  ?hashNode a uco-types:Hash ;
+           uco-types:hashValue ?hashValue .
+}
+
+#################################################################
+# Q3: List all Emergency Disclosure Requests (EDR) in KG
+#################################################################
+SELECT ?edr ?label ?startTime ?desc WHERE {
+  ?edr a cacontology-platforms:EmergencyDisclosureRequest ;
+       rdfs:label ?label ;
+       uco-core:startTime ?startTime ;
+       uco-core:description ?desc .
+}
+
+#################################################################
+# Q4: Verify EDR description mentions emergency basis keywords
+#################################################################
+SELECT ?edr ?desc WHERE {
+  ?edr a cacontology-platforms:EmergencyDisclosureRequest ;
+       uco-core:description ?desc .
+  FILTER(CONTAINS(LCASE(STR(?desc)), "imminent") || CONTAINS(LCASE(STR(?desc)), "danger") || CONTAINS(LCASE(STR(?desc)), "serious physical injury"))
+}
+
+#################################################################
+# Q5: List statement actions and what they connect to
+#################################################################
+SELECT ?action ?label ?object ?objectLabel WHERE {
+  ?action a uco-action:Action ;
+          rdfs:label ?label ;
+          uco-action:object ?object .
+  OPTIONAL { ?object rdfs:label ?objectLabel . }
+}
+ORDER BY ?action ?object
+
+#################################################################
+# Q6: Find the SearchWarrant documentation object
+#################################################################
+SELECT ?warrant ?label WHERE {
+  ?warrant a cacontology-case:SearchWarrant ;
+          rdfs:label ?label .
+}
+
+#################################################################
+# Q7: Show all organizations and persons referenced
+#################################################################
+SELECT ?entity ?type ?label WHERE {
+  ?entity a ?type ;
+          rdfs:label ?label .
+  FILTER(?type IN (uco-identity:Organization, uco-identity:Person))
+}
+ORDER BY ?type ?label
+
+#################################################################
+# Q8: Identify low-connectivity nodes (degree count, excluding rdf:type)
+#################################################################
+SELECT ?node (COUNT(?pOut) + COUNT(?pIn) AS ?degree) WHERE {
+  {
+    ?node ?pOut ?o .
+    FILTER(?pOut != rdf:type)
+  }
+  UNION
+  {
+    ?s ?pIn ?node .
+    FILTER(?pIn != rdf:type)
+  }
+}
+GROUP BY ?node
+ORDER BY ?degree ?node
+
+#################################################################
+# Q9: Confirm the article-states-legal-tools action ties EDR + warrant + doc
+#################################################################
+SELECT ?action ?label ?obj ?objLabel WHERE {
+  ?action rdfs:label ?label ;
+          uco-action:object ?obj .
+  FILTER(CONTAINS(LCASE(STR(?label)), "legal tools"))
+  OPTIONAL { ?obj rdfs:label ?objLabel . }
+}
+ORDER BY ?objLabel
+

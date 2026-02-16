@@ -19,13 +19,13 @@
 # ONTOLOGY DECLARATION
 # =============================================================================
 
-<https://cacontology.projectvic.org/core/shapes/2.9.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/core/shapes/2.10.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Core SHACL Shapes with gUFO Validation"@en ;
     rdfs:comment "Comprehensive SHACL validation shapes for gUFO-enhanced ICAC core ontology, including anti-rigidity constraints, temporal validation, phase transitions, and foundational type compliance."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/core/shapes/2.9.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/core/shapes/2.10.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/gufo/2.9.0> ,
+    owl:imports <https://cacontology.projectvic.org/gufo/2.10.0> ,
                 <http://purl.org/nemo/gufo> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 

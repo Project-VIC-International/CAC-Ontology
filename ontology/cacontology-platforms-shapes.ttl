@@ -12,14 +12,14 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/platforms/shapes/2.9.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/platforms/shapes/2.10.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Platforms SHACL Shapes"@en ;
     rdfs:comment "SHACL validation shapes for the ICAC Platforms Ontology, providing validation for technology platforms, digital services, and Electronic Service Provider capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/platforms/shapes/2.9.0> ;
-    owl:versionInfo "2.9.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/platforms/shapes/2.10.0> ;
+    owl:versionInfo "2.10.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-02-11"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/platforms/2.9.0> ,
+    dcterms:modified "2026-02-16"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/platforms/2.10.0> ,
                 <http://purl.org/nemo/gufo> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 
@@ -417,6 +417,27 @@ cacontology-platforms:LegalDataDisclosureActionShape rdf:type sh:NodeShape ;
         sh:maxCount 1 ;
         sh:in ( "search_warrant" "subpoena" "court_order" "emergency_request" "preservation_request" ) ;
         sh:message "Legal process used must be from the allowed list."@en
+    ] .
+
+cacontology-platforms:EmergencyDisclosureRequestShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:EmergencyDisclosureRequest ;
+    rdfs:label "Emergency Disclosure Request Shape"@en ;
+    rdfs:comment "Validation shape for emergency disclosure request instances (EDR)."@en ;
+    sh:property [
+        sh:path uco-core:startTime ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Emergency disclosure request must specify start time."@en
+    ] ;
+    sh:property [
+        sh:path uco-core:description ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minLength 10 ;
+        sh:maxLength 2000 ;
+        sh:message "Emergency disclosure request must include a grounded description (10-2000 chars)."@en
     ] .
 
 # =============================================================================
