@@ -1,0 +1,230 @@
+# =============================================================================
+# SPARQL Analytics Queries: United States v. McCormack (9th Cir. 2017)
+# Target KG: examples_knowledge_graphs/us-v-mccormack-ninth-circuit-2017-example.ttl
+# Source: https://www.courtlistener.com/opinion/8700418/united-states-v-mccormack/
+# =============================================================================
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core/>
+PREFIX uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/>
+PREFIX uco-location: <https://ontology.unifiedcyberontology.org/uco/location/>
+PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/>
+PREFIX uco-types: <https://ontology.unifiedcyberontology.org/uco/types/>
+
+PREFIX cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#>
+
+PREFIX ex: <https://example.org/cac/us-v-mccormack-ninth-circuit-2017/>
+
+################################################################################
+## 1) Source document provenance: URL + PDF URL + file paths + hashes         ##
+################################################################################
+
+SELECT DISTINCT ?docLabel ?opinionUrl ?pdfUrl ?sourcePath ?sourceHash ?normPath ?normHash
+WHERE {
+  ex:source_document rdfs:label ?docLabel ;
+    uco-core:hasFacet ?opinionUrlFacet ;
+    uco-core:hasFacet ?pdfUrlFacet ;
+    uco-core:hasFacet ?fileFacet ;
+    uco-core:hasFacet ?hashFacet .
+
+  ?opinionUrlFacet a uco-observable:URLFacet ;
+    uco-observable:url ?opinionUrl .
+
+  ?pdfUrlFacet a uco-observable:URLFacet ;
+    uco-observable:url ?pdfUrl .
+
+  ?fileFacet a uco-observable:FileFacet ;
+    uco-observable:filePath ?sourcePath .
+
+  ?hashFacet a uco-observable:HashFacet ;
+    uco-observable:hash ?hashNode .
+
+  ?hashNode a uco-types:Hash ;
+    uco-types:hashValue ?sourceHash .
+
+  ex:normalized_excerpt uco-core:hasFacet ?normFileFacet ;
+    uco-core:hasFacet ?normHashFacet .
+
+  ?normFileFacet a uco-observable:FileFacet ;
+    uco-observable:filePath ?normPath .
+
+  ?normHashFacet a uco-observable:HashFacet ;
+    uco-observable:hash ?normHashNode .
+
+  ?normHashNode a uco-types:Hash ;
+    uco-types:hashValue ?normHash .
+}
+;
+
+################################################################################
+## 2) Persons: defendant + anonymized victims                                  ##
+################################################################################
+
+SELECT DISTINCT ?person ?label ?desc
+WHERE {
+  ?person a uco-identity:Person ;
+    rdfs:label ?label .
+  OPTIONAL { ?person uco-core:description ?desc }
+}
+ORDER BY ?label
+;
+
+################################################################################
+## 3) Locations referenced                                                     ##
+################################################################################
+
+SELECT DISTINCT ?loc ?label ?desc
+WHERE {
+  ?loc a uco-location:Location ;
+    rdfs:label ?label .
+  OPTIONAL { ?loc uco-core:description ?desc }
+}
+ORDER BY ?label
+;
+
+################################################################################
+## 4) Charge and sentence summary                                              ##
+################################################################################
+
+SELECT DISTINCT ?chargeLabel ?sentenceLabel ?sentenceType
+WHERE {
+  ex:appeal cacontology-sentencing:hasCharge ?charge ;
+            cacontology-sentencing:resultsSentence ?sentence .
+
+  ?charge rdfs:label ?chargeLabel .
+  ?sentence rdfs:label ?sentenceLabel ;
+           a ?sentenceType .
+}
+ORDER BY ?chargeLabel
+;
+
+################################################################################
+## 5) Appellate issues raised in the appeal                                    ##
+################################################################################
+
+SELECT DISTINCT ?issue ?issueLabel ?issueType
+WHERE {
+  ex:appeal cacontology-sentencing:raisesIssue ?issue .
+  ?issue rdfs:label ?issueLabel ;
+         a ?issueType .
+
+  FILTER(?issueType != rdf:Resource)
+}
+ORDER BY ?issueLabel
+;
+
+################################################################################
+## 6) Issue → disposition (with disposition type)                              ##
+################################################################################
+
+SELECT DISTINCT ?issueLabel ?dispLabel ?dispType
+WHERE {
+  ex:appeal cacontology-sentencing:raisesIssue ?issue .
+  ?issue rdfs:label ?issueLabel ;
+         cacontology-sentencing:issueDisposition ?disp .
+
+  ?disp rdfs:label ?dispLabel ;
+        cacontology-sentencing:dispositionType ?dispType .
+}
+ORDER BY ?issueLabel
+;
+
+################################################################################
+## 7) Standards of review applied per issue                                    ##
+################################################################################
+
+SELECT DISTINCT ?issueLabel ?sorLabel ?sorType
+WHERE {
+  ex:appeal cacontology-sentencing:raisesIssue ?issue .
+  ?issue rdfs:label ?issueLabel ;
+         cacontology-sentencing:appliesStandardOfReview ?sor .
+
+  ?sor rdfs:label ?sorLabel ;
+       cacontology-sentencing:standardOfReviewType ?sorType .
+}
+ORDER BY ?issueLabel
+;
+
+################################################################################
+## 8) Evidence rules cited per issue                                           ##
+################################################################################
+
+SELECT DISTINCT ?issueLabel ?ruleLabel ?ruleCitation
+WHERE {
+  ex:appeal cacontology-sentencing:raisesIssue ?issue .
+  ?issue rdfs:label ?issueLabel ;
+         cacontology-sentencing:citesEvidenceRule ?rule .
+
+  ?rule rdfs:label ?ruleLabel ;
+        cacontology-sentencing:ruleCitation ?ruleCitation .
+}
+ORDER BY ?issueLabel ?ruleCitation
+;
+
+################################################################################
+## 9) Evidence artifacts referenced (high-level placeholders)                  ##
+################################################################################
+
+SELECT DISTINCT ?artifact ?label ?desc
+WHERE {
+  VALUES ?artifact { ex:photos_and_videos ex:email_and_chat_logs ex:telephone_use }
+  ?artifact rdfs:label ?label .
+  OPTIONAL { ?artifact uco-core:description ?desc }
+}
+ORDER BY ?label
+;
+
+################################################################################
+## 10) Issues that were affirmed                                               ##
+################################################################################
+
+SELECT DISTINCT ?issueLabel
+WHERE {
+  ex:appeal cacontology-sentencing:raisesIssue ?issue .
+  ?issue rdfs:label ?issueLabel ;
+         cacontology-sentencing:issueDisposition ?disp .
+  ?disp cacontology-sentencing:dispositionType "affirmed" .
+}
+ORDER BY ?issueLabel
+;
+
+################################################################################
+## 11) Crosswalk: issue + standard-of-review + evidence rules + disposition    ##
+################################################################################
+
+SELECT DISTINCT ?issueLabel ?sorType ?dispType (GROUP_CONCAT(DISTINCT ?ruleCitation; separator=", ") AS ?rules)
+WHERE {
+  ex:appeal cacontology-sentencing:raisesIssue ?issue .
+  ?issue rdfs:label ?issueLabel ;
+         cacontology-sentencing:issueDisposition ?disp ;
+         cacontology-sentencing:appliesStandardOfReview ?sor .
+
+  ?disp cacontology-sentencing:dispositionType ?dispType .
+  ?sor cacontology-sentencing:standardOfReviewType ?sorType .
+
+  OPTIONAL {
+    ?issue cacontology-sentencing:citesEvidenceRule ?rule .
+    ?rule cacontology-sentencing:ruleCitation ?ruleCitation .
+  }
+}
+GROUP BY ?issueLabel ?sorType ?dispType
+ORDER BY ?issueLabel
+;
+
+################################################################################
+## 12) Disposition counts (how many issues share each disposition type)        ##
+################################################################################
+
+SELECT ?dispType (COUNT(DISTINCT ?issue) AS ?issueCount)
+WHERE {
+  ex:appeal cacontology-sentencing:raisesIssue ?issue .
+  ?issue cacontology-sentencing:issueDisposition ?disp .
+  ?disp cacontology-sentencing:dispositionType ?dispType .
+}
+GROUP BY ?dispType
+ORDER BY DESC(?issueCount)
+;
+

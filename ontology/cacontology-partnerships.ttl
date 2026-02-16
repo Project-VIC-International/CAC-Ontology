@@ -15,10 +15,10 @@
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/partnerships/2.7.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/partnerships/2.8.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Public-Private Partnerships Ontology"@en ;
     rdfs:comment "An ontology for representing public-private partnerships, multi-stakeholder coordination, and collaborative frameworks in child protection with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, and validation capabilities. Based on analysis of Europol's collaborative approaches with technology companies, NGOs, and civil society organizations in initiatives like 'Stop Child Abuse - Trace an Object'."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/partnerships/2.7.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/partnerships/2.8.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-05-23"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
@@ -27,7 +27,7 @@
                 <https://ontology.unifiedcyberontology.org/uco/observable> ,
                 <https://ontology.unifiedcyberontology.org/uco/action> ,
                 <https://ontology.unifiedcyberontology.org/uco/role> ,
-                <https://cacontology.projectvic.org/2.7.0> ,
+                <https://cacontology.projectvic.org/2.8.0> ,
                 <http://purl.org/nemo/gufo> .
 
 # =============================================================================

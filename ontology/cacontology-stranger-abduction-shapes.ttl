@@ -15,14 +15,14 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/abduction/shapes/2.7.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/abduction/shapes/2.8.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Stranger Abduction SHACL Shapes"@en ;
     rdfs:comment "SHACL validation shapes for the ICAC Stranger Abduction Ontology, providing validation for stranger abduction patterns, weapon-based coercion, and opportunistic predation."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/abduction/shapes/2.7.0> ;
-    owl:versionInfo "2.7.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/abduction/shapes/2.8.0> ;
+    owl:versionInfo "2.8.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/abduction/2.7.0> ,
+    owl:imports <https://cacontology.projectvic.org/abduction/2.8.0> ,
                 <http://purl.org/nemo/gufo> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 

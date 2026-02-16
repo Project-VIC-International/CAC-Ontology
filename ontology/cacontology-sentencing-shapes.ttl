@@ -14,15 +14,15 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/sentencing/shapes/2.7.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/sentencing/shapes/2.8.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Sentencing SHACL Shapes"@en ;
     rdfs:comment "SHACL validation shapes for the ICAC Sentencing Ontology, providing validation for legal outcomes, federal sentences, judicial proceedings, and punishment guidelines."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/sentencing/shapes/2.7.0> ;
-    owl:versionInfo "2.7.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/sentencing/shapes/2.8.0> ;
+    owl:versionInfo "2.8.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2026-02-16"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/sentencing/2.7.0> ,
-                <https://cacontology.projectvic.org/sex-offender-registry/2.7.0> ,
+    owl:imports <https://cacontology.projectvic.org/sentencing/2.8.0> ,
+                <https://cacontology.projectvic.org/sex-offender-registry/2.8.0> ,
                 <http://purl.org/nemo/gufo> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 
@@ -149,6 +149,93 @@ cacontology-sentencing:LegalProceedingShape rdf:type sh:NodeShape ;
         sh:maxCount 1 ;
         sh:in ( "released_on_bail" "held_without_bail" "released_on_own_recognizance" "bail_denied" "bail_revoked" ) ;
         sh:message "Bail status, when provided, must be one of: released_on_bail, held_without_bail, released_on_own_recognizance, bail_denied, bail_revoked."@en
+    ] .
+
+# =============================================================================
+# APPELLATE REVIEW SHAPES (McCormack / appellate-opinion modeling)
+# =============================================================================
+
+cacontology-sentencing:AppellateIssueShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sentencing:AppellateIssue ;
+    rdfs:label "Appellate Issue Shape"@en ;
+    rdfs:comment "Validation shape for appellate issues (issue → disposition, optional evidence-rule and standard-of-review links)."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Appellate issue must have an rdfs:label."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-sentencing:issueDisposition ;
+        sh:class cacontology-sentencing:AppellateDisposition ;
+        sh:minCount 1 ;
+        sh:message "Appellate issue must link to at least one AppellateDisposition via issueDisposition."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-sentencing:appliesStandardOfReview ;
+        sh:class cacontology-sentencing:StandardOfReview ;
+        sh:minCount 0 ;
+        sh:message "appliesStandardOfReview must point to a StandardOfReview."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-sentencing:citesEvidenceRule ;
+        sh:class cacontology-sentencing:EvidenceRule ;
+        sh:minCount 0 ;
+        sh:message "citesEvidenceRule must point to an EvidenceRule."@en
+    ] .
+
+cacontology-sentencing:AppellateDispositionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sentencing:AppellateDisposition ;
+    rdfs:label "Appellate Disposition Shape"@en ;
+    rdfs:comment "Validation shape for appellate dispositions."@en ;
+    sh:property [
+        sh:path cacontology-sentencing:dispositionType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "affirmed" "reversed" "vacated" "remanded" "affirmed_in_part_reversed_in_part" "dismissed" "other" ) ;
+        sh:message "Disposition type must be one of: affirmed, reversed, vacated, remanded, affirmed_in_part_reversed_in_part, dismissed, other."@en
+    ] ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Appellate disposition should have an rdfs:label."@en
+    ] .
+
+cacontology-sentencing:StandardOfReviewShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sentencing:StandardOfReview ;
+    rdfs:label "Standard of Review Shape"@en ;
+    rdfs:comment "Validation shape for standards of review."@en ;
+    sh:property [
+        sh:path cacontology-sentencing:standardOfReviewType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "abuse_of_discretion" "de_novo" "clear_error" "plain_error" "substantial_evidence" "reasonableness" "other" ) ;
+        sh:message "Standard of review type must be one of: abuse_of_discretion, de_novo, clear_error, plain_error, substantial_evidence, reasonableness, other."@en
+    ] ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Standard of review should have an rdfs:label."@en
+    ] .
+
+cacontology-sentencing:EvidenceRuleShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sentencing:EvidenceRule ;
+    rdfs:label "Evidence Rule Shape"@en ;
+    rdfs:comment "Validation shape for evidence rules cited in appellate issues."@en ;
+    sh:property [
+        sh:path cacontology-sentencing:ruleCitation ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minLength 5 ;
+        sh:maxLength 200 ;
+        sh:message "Evidence rule must include a ruleCitation string (5-200 chars)."@en
+    ] ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Evidence rule should have an rdfs:label."@en
     ] .
 
 cacontology-sentencing:CriminalSentenceShape rdf:type sh:NodeShape ;

@@ -13,14 +13,14 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/undercover/shapes/2.7.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/undercover/shapes/2.8.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Undercover Operations SHACL Shapes"@en ;
     rdfs:comment "SHACL validation shapes for the ICAC Undercover Operations Ontology, providing validation for undercover identities, infiltration tactics, surveillance operations, and evidence collection through covert means."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/undercover/shapes/2.7.0> ;
-    owl:versionInfo "2.7.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/undercover/shapes/2.8.0> ;
+    owl:versionInfo "2.8.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2026-01-01"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/undercover/2.7.0> ,
+    owl:imports <https://cacontology.projectvic.org/undercover/2.8.0> ,
                 <http://purl.org/nemo/gufo> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 

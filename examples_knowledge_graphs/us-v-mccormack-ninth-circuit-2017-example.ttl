@@ -1,0 +1,180 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
+
+@prefix cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#> .
+
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+
+@prefix ex: <https://example.org/cac/us-v-mccormack-ninth-circuit-2017/> .
+
+# =============================================================================
+# CASE EXAMPLE: United States v. McCormack (9th Cir. 2017) — appellate concepts
+# Source: https://www.courtlistener.com/opinion/8700418/united-states-v-mccormack/
+# Target: CAC Ontology v2.8.0 (sentencing module appellate terms)
+# =============================================================================
+
+# =============================================================================
+# SOURCE DOCUMENT + NORMALIZED ARTIFACT (provenance scaffold)
+# =============================================================================
+
+ex:source_document a uco-observable:ObservableObject ;
+  rdfs:label "CourtListener opinion: United States v. McCormack (9th Cir. 2017-07-03)"@en ;
+  uco-core:description "CourtListener opinion and PDF excerpt used to derive this example graph."@en ;
+  uco-core:hasFacet ex:source_url_facet ;
+  uco-core:hasFacet ex:source_file_facet ;
+  uco-core:hasFacet ex:source_hash_facet ;
+  uco-core:hasFacet ex:source_pdf_url_facet .
+
+ex:source_url_facet a uco-observable:URLFacet ;
+  uco-observable:url "https://www.courtlistener.com/opinion/8700418/united-states-v-mccormack/"^^xsd:anyURI .
+
+ex:source_pdf_url_facet a uco-observable:URLFacet ;
+  uco-observable:url "https://storage.courtlistener.com/harvard_pdf/8700418.pdf"^^xsd:anyURI .
+
+ex:source_file_facet a uco-observable:FileFacet ;
+  uco-observable:filePath "analytics_demonstration/collected_sources/us-v-mccormack-ninth-circuit-2017/source.txt"@en .
+
+ex:source_hash_facet a uco-observable:HashFacet ;
+  uco-observable:hash ex:source_hash .
+
+ex:source_hash a uco-types:Hash ;
+  uco-types:hashMethod "SHA-256"@en ;
+  uco-types:hashValue "20ae784182d644567e3e536be29c5a7549e9ab90ea32e83c5bf366e34e1fb753"@en .
+
+ex:normalized_excerpt a uco-observable:ObservableObject ;
+  rdfs:label "Normalized excerpt (CourtListener opinion)"@en ;
+  uco-core:description "Normalized excerpt used as evidence pointers for modeling decisions."@en ;
+  uco-core:hasFacet ex:normalized_file_facet ;
+  uco-core:hasFacet ex:normalized_hash_facet .
+
+ex:normalized_file_facet a uco-observable:FileFacet ;
+  uco-observable:filePath "analytics_demonstration/collected_sources/us-v-mccormack-ninth-circuit-2017/normalized.txt"@en .
+
+ex:normalized_hash_facet a uco-observable:HashFacet ;
+  uco-observable:hash ex:normalized_hash .
+
+ex:normalized_hash a uco-types:Hash ;
+  uco-types:hashMethod "SHA-256"@en ;
+  uco-types:hashValue "7b847f157adc383b6d4c8fe989ee39eada91e697e110e3fc60bda1929b9e150e"@en .
+
+# =============================================================================
+# CORE IDENTITIES (minimized; victims anonymized)
+# =============================================================================
+
+ex:defendant a uco-identity:Person ;
+  rdfs:label "Shawn McCormack"@en ;
+  uco-core:description "Defendant/appellant described in the CourtListener opinion excerpt."@en .
+
+ex:child_victim_1 a uco-identity:Person ;
+  rdfs:label "Child victim 1 (anonymized)"@en .
+
+ex:child_victim_2 a uco-identity:Person ;
+  rdfs:label "Child victim 2 (anonymized)"@en .
+
+# =============================================================================
+# LOCATIONS + COMMUNICATION / EVIDENCE ARTIFACTS (high-level placeholders)
+# =============================================================================
+
+ex:colorado a uco-location:Location ;
+  rdfs:label "Colorado, USA"@en .
+
+ex:bakersfield_ca a uco-location:Location ;
+  rdfs:label "Bakersfield, California, USA"@en .
+
+ex:hotel_location a uco-location:Location ;
+  rdfs:label "Hotel (California; unspecified)"@en ;
+  uco-core:description "Hotel referenced in the opinion where photographic/video evidence of sexual abuse was discovered."@en .
+
+ex:photos_and_videos a uco-observable:ObservableObject ;
+  rdfs:label "Photographic and video evidence (sexual abuse)"@en ;
+  uco-core:description "Represents photographic/video evidence referenced in the opinion; actual media omitted."@en .
+
+ex:email_and_chat_logs a uco-observable:ObservableObject ;
+  rdfs:label "Email and chat logs (written exchanges)"@en ;
+  uco-core:description "Represents written exchanges referenced in the opinion; full content omitted."@en .
+
+ex:telephone_use a uco-observable:ObservableObject ;
+  rdfs:label "Telephone use (instrumentality of interstate commerce)"@en ;
+  uco-core:description "Represents telephone use referenced as an instrumentality of interstate commerce in the kidnapping analysis."@en .
+
+# =============================================================================
+# CHARGES + SENTENCE (minimal charge instances; focus is appellate modeling)
+# =============================================================================
+
+ex:charge_2251 a cacontology-sentencing:FederalCharge ;
+  rdfs:label "Sexual exploitation of children charge(s) (18 U.S.C. § 2251)"@en .
+
+ex:charge_1201 a cacontology-sentencing:FederalCharge ;
+  rdfs:label "Kidnapping charge(s) (18 U.S.C. § 1201)"@en .
+
+ex:life_sentence a cacontology-sentencing:LifeImprisonmentSentence ;
+  rdfs:label "Life imprisonment sentence (as challenged on appeal)"@en ;
+  uco-core:description "Life imprisonment sentence referenced in the opinion; linked here to the conviction context as an example."@en ;
+  cacontology-sentencing:appliesTo ex:charge_2251 .
+
+# =============================================================================
+# APPEAL PROCESS + APPELLATE ISSUES / DISPOSITIONS / STANDARDS / RULES
+# =============================================================================
+
+ex:appeal a cacontology-sentencing:AppealProcess, gufo:Event ;
+  rdfs:label "Appeal process (9th Cir.)"@en ;
+  uco-core:description "Appeal described in CourtListener opinion; issues include evidentiary admission, sufficiency, and sentencing reasonableness."@en ;
+  cacontology-sentencing:hasCharge ex:charge_2251, ex:charge_1201 ;
+  cacontology-sentencing:resultsSentence ex:life_sentence ;
+  cacontology-sentencing:raisesIssue ex:issue_evidence_admission, ex:issue_sufficiency, ex:issue_sentencing_reasonableness .
+
+ex:disp_affirmed a cacontology-sentencing:AppellateDisposition ;
+  rdfs:label "Affirmed (appellate disposition)"@en ;
+  cacontology-sentencing:dispositionType "affirmed" .
+
+ex:sor_abuse_of_discretion a cacontology-sentencing:StandardOfReview ;
+  rdfs:label "Abuse of discretion (standard of review)"@en ;
+  cacontology-sentencing:standardOfReviewType "abuse_of_discretion" .
+
+ex:sor_substantial_evidence a cacontology-sentencing:StandardOfReview ;
+  rdfs:label "Substantial evidence / sufficiency standard (standard of review)"@en ;
+  cacontology-sentencing:standardOfReviewType "substantial_evidence" .
+
+ex:sor_reasonableness a cacontology-sentencing:StandardOfReview ;
+  rdfs:label "Reasonableness (standard of review)"@en ;
+  cacontology-sentencing:standardOfReviewType "reasonableness" .
+
+ex:rule_403 a cacontology-sentencing:EvidenceRule ;
+  rdfs:label "Federal Rule of Evidence 403"@en ;
+  cacontology-sentencing:ruleCitation "Fed. R. Evid. 403" .
+
+ex:rule_404b a cacontology-sentencing:EvidenceRule ;
+  rdfs:label "Federal Rule of Evidence 404(b)"@en ;
+  cacontology-sentencing:ruleCitation "Fed. R. Evid. 404(b)" .
+
+ex:rule_414 a cacontology-sentencing:EvidenceRule ;
+  rdfs:label "Federal Rule of Evidence 414"@en ;
+  cacontology-sentencing:ruleCitation "Fed. R. Evid. 414" .
+
+ex:issue_evidence_admission a cacontology-sentencing:EvidentiaryRuling ;
+  rdfs:label "Issue: Admission of photos/videos and written exchanges"@en ;
+  uco-core:description "Challenges admission of photos/videos and email/chat logs; opinion discusses probative value vs prejudice and exceptions."@en ;
+  cacontology-sentencing:issueDisposition ex:disp_affirmed ;
+  cacontology-sentencing:appliesStandardOfReview ex:sor_abuse_of_discretion ;
+  cacontology-sentencing:citesEvidenceRule ex:rule_403, ex:rule_404b, ex:rule_414 .
+
+ex:issue_sufficiency a cacontology-sentencing:SufficiencyOfEvidenceIssue ;
+  rdfs:label "Issue: Sufficiency of evidence (kidnapping + sexual exploitation counts)"@en ;
+  uco-core:description "Challenges sufficiency of evidence as to one kidnapping count and one sexual exploitation count; opinion references interstate-commerce elements."@en ;
+  cacontology-sentencing:issueDisposition ex:disp_affirmed ;
+  cacontology-sentencing:appliesStandardOfReview ex:sor_substantial_evidence .
+
+ex:issue_sentencing_reasonableness a cacontology-sentencing:SentencingReasonablenessIssue ;
+  rdfs:label "Issue: Life sentence harsher than necessary (18 U.S.C. § 3553(a))"@en ;
+  uco-core:description "Challenges whether life imprisonment is harsher than necessary; opinion indicates district court analyzed circumstances and applied sentencing factors."@en ;
+  cacontology-sentencing:issueDisposition ex:disp_affirmed ;
+  cacontology-sentencing:appliesStandardOfReview ex:sor_reasonableness .
+

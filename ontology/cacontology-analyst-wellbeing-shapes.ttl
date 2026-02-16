@@ -12,16 +12,16 @@
 @prefix cacontology-detection: <https://cacontology.projectvic.org/detection#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/analyst-wellbeing/shapes/2.7.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/analyst-wellbeing/shapes/2.8.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Analyst Wellbeing SHACL Shapes"@en ;
     rdfs:comment "SHACL shapes for validating analyst wellbeing and exposure mitigation concepts used in manual review workflows."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/analyst-wellbeing/shapes/2.7.0> ;
-    owl:versionInfo "2.7.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/analyst-wellbeing/shapes/2.8.0> ;
+    owl:versionInfo "2.8.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2026-02-11"^^xsd:date ;
     dcterms:modified "2026-02-11"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/analyst-wellbeing/2.7.0> ,
-                <https://cacontology.projectvic.org/detection/2.7.0> ,
+    owl:imports <https://cacontology.projectvic.org/analyst-wellbeing/2.8.0> ,
+                <https://cacontology.projectvic.org/detection/2.8.0> ,
                 <http://purl.org/nemo/gufo#> .
 
 # =============================================================================
