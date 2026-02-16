@@ -16,11 +16,11 @@
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
-<https://cacontology.projectvic.org/international/2.7.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/international/2.8.0> rdf:type owl:Ontology ;
     rdfs:label "CAC International Cooperation Ontology"@en ;
     rdfs:comment "An ontology for modeling international cooperation, cross-border investigations, diplomatic protocols, and multilateral frameworks in Internet Crimes Against Children cases with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, and validation capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/international/2.7.0> ;
-    owl:versionInfo "2.7.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/international/2.8.0> ;
+    owl:versionInfo "2.8.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
     owl:imports <http://purl.org/nemo/gufo> .

@@ -1,0 +1,20 @@
+Source URL: https://www.courtlistener.com/opinion/8700418/united-states-v-mccormack/
+PDF URL: https://storage.courtlistener.com/harvard_pdf/8700418.pdf
+Court: United States Court of Appeals for the Ninth Circuit
+Citation: 700 F. App'x 643
+Docket Number: 15-10500
+Filed: 2017-07-03
+
+MEMORANDUM (excerpted from CourtListener PDF text)
+
+Shawn McCormack appeals his convictions and sentences for charges of sexually exploiting two young children and twice kidnapping one of the children. McCormack, a resident of Colorado, was intercepted by police officers in Bakersfield, California, after McCormack had traveled to California and taken one of the two children from his parents’ home in the middle of the night. Later, police uncovered photographic and video evidence of sexual abuse after McCormack had taken the child to a hotel. Other photographs and videos captured an adult male abusing children and exposing his genitals, a sleeping child below him. A jury found McCormack guilty of four counts of sexual exploitation of children, 18 U.S.C. § 2251, and two counts of kidnapping, 18 U.S.C. § 1201. We have jurisdiction under 18 U.S.C. § 1291 and affirm.
+
+McCormack challenges the admission of the photos and videos, as well as email and chat logs of McCormack discussing the crimes and seeking to exchange child pornography with others. The district court did not abuse its discretion in admitting this evidence. See Fed. R. Evid. 403, 404(b). The evidence was highly probative of the crimes, serving to identify the perpetrator and the location of the crime. That value was not substantially outweighed by the risk of unfair prejudice. The district court was careful to limit the jury’s exposure to such visual evidence.
+
+There was no abuse of discretion in admitting written exchanges, even if they could be viewed as evidence of “other acts” establishing propensity pursuant to Fed. R. Evid. 404(b). The written exchanges also provided evidence of scienter, identity, and opportunity. Moreover, the evidence falls within an evidentiary exception, Fed. R. Evid. 414, which allows admission of evidence of child molestation in cases where the defendant is charged with a child pornography offense.
+
+McCormack challenges the sufficiency of the evidence to support his convictions for one of the kidnapping counts and one of the sexual exploitation of children counts. The evidence in this case was more than sufficient to establish sexual exploitation. Nor did the district court err in denying acquittal on the kidnapping count. The federal statute allows for a conviction where “the offender travels in interstate or foreign commerce or uses ... any means, facility, or instrumentality of interstate or foreign commerce in committing or in furtherance of the commission of the offense.” 18 U.S.C. § 1201(a)(1). Viewing the evidence in the light most favorable to the prosecution, a reasonable jury could conclude that McCormack drove from Colorado to California and used a telephone, both in furtherance of his kidnapping scheme.
+
+Lastly, McCormack argues that the district court did not adequately consider whether a sentence of life imprisonment was harsher than necessary. The district court did not abuse its discretion. It extensively analyzed the circumstances of McCormack’s crime and correctly applied the sentencing factors. See 18 U.S.C. § 3553(a). The district court thus fulfilled its duty to impose a sentence that was sufficient but not greater than necessary.
+
+AFFIRMED.

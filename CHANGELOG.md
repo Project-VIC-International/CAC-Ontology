@@ -5,6 +5,50 @@ All notable changes to the CAC ontology family will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2.8.0 - 16 February 2026
+
+### Added - Appellate Opinion Concepts + Example Suite (CourtListener: United States v. McCormack)
+
+Adds appellate-opinion modeling concepts to the sentencing module to support representing issues raised on appeal, cited evidence rules, standards of review, dispositions, and life-imprisonment sentences, based on the Ninth Circuit memorandum disposition in *United States v. McCormack* (CourtListener).
+
+#### Enhanced Sentencing Module (`ontology/cacontology-sentencing.ttl`)
+
+- Added appellate vocabulary:
+  - `AppellateIssue`
+  - `EvidentiaryRuling` (issue class for evidentiary-admission challenges)
+  - `SufficiencyOfEvidenceIssue`
+  - `SentencingReasonablenessIssue`
+  - `EvidenceRule`
+  - `StandardOfReview`
+  - `AppellateDisposition`
+- Added sentence subclass:
+  - `LifeImprisonmentSentence`
+- Added object properties:
+  - `raisesIssue` (appeal → issue)
+  - `issueDisposition` (issue → disposition)
+  - `citesEvidenceRule` (issue → evidence rule)
+  - `appliesStandardOfReview` (issue → standard)
+- Added datatype properties:
+  - `standardOfReviewType`
+  - `dispositionType`
+  - `ruleCitation`
+
+#### SHACL Shapes Updated
+
+- Updated: `ontology/cacontology-sentencing-shapes.ttl` (AppellateIssue / Disposition / StandardOfReview / EvidenceRule validation)
+
+#### New Example KG + SPARQL Analytics
+
+- Example KG: `examples_knowledge_graphs/us-v-mccormack-ninth-circuit-2017-example.ttl`
+- SPARQL suite: `example_SPARQL_queries/us-v-mccormack-ninth-circuit-2017-analytics.rq`
+- Evidence artifacts captured under: `analytics_demonstration/collected_sources/us-v-mccormack-ninth-circuit-2017/`
+
+#### Versioning
+
+- Bumped ontology family version IRIs to `2.8.0` (tooling: `update_version.py`)
+
+---
+
 ## v2.7.0 - 16 February 2026
 
 ### Added - Georgia Trafficking/Sentencing Concepts + Example Suite (GA AG Press Release)

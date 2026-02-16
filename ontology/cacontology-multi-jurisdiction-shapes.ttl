@@ -19,14 +19,14 @@
 # Enhanced with comprehensive gUFO (gentle Unified Foundational Ontology) validation
 # =============================================================================
 
-<https://cacontology.projectvic.org/multi-jurisdiction/shapes/2.7.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/multi-jurisdiction/shapes/2.8.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Multi-Jurisdiction SHACL Shapes with gUFO Integration"@en ;
     rdfs:comment "SHACL shapes for validating multi-jurisdictional operations with comprehensive gUFO foundational ontology integration for enhanced semantic precision and validation capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/multi-jurisdiction/shapes/2.7.0> ;
-    owl:versionInfo "2.7.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/multi-jurisdiction/shapes/2.8.0> ;
+    owl:versionInfo "2.8.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/multi-jurisdiction/2.7.0> ,
+    owl:imports <https://cacontology.projectvic.org/multi-jurisdiction/2.8.0> ,
                 <http://purl.org/nemo/gufo#> .
 
 # =============================================================================
