@@ -15,11 +15,11 @@
 @prefix cacontology-physical: <https://cacontology.projectvic.org/physical#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/physical/2.8.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/physical/2.9.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Physical Evidence & Procurement Ontology with gUFO Integration"@en ;
     rdfs:comment "An ontology for representing physical evidence, criminal procurement patterns, and abuse facilitation items in Internet Crimes Against Children investigations, extending UCO and CASE with comprehensive gUFO (gentle Unified Foundational Ontology) integration for enhanced semantic precision and quality assessment, and CASE Investigation ontology for evidence provenance tracking."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/physical/2.8.0> ;
-    owl:versionInfo "2.8.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/physical/2.9.0> ;
+    owl:versionInfo "2.9.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
     dcterms:modified "2026-01-01"^^xsd:date ;
@@ -29,7 +29,7 @@
                 <https://ontology.unifiedcyberontology.org/uco/action> ,
                 <https://ontology.unifiedcyberontology.org/uco/location> ,
                 <https://ontology.caseontology.org/case/investigation/> ,
-                <https://cacontology.projectvic.org/2.8.0> ,
+                <https://cacontology.projectvic.org/2.9.0> ,
                 <http://purl.org/nemo/gufo#> .
 
 # =============================================================================

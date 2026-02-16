@@ -1,0 +1,195 @@
+# =============================================================================
+# SPARQL Analytics Queries: Westchester Missing Child Rescue Operation (NCPTF)
+# Target KG: examples_knowledge_graphs/westchester-missing-child-rescue-operation-2026-example.ttl
+# Source: https://ncptf.org/westchester-missing-child-rescue-operation-results-in-successful-location-of-44-children-and-teens/
+# =============================================================================
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core/>
+PREFIX uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/>
+PREFIX uco-location: <https://ontology.unifiedcyberontology.org/uco/location/>
+PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/>
+PREFIX uco-types: <https://ontology.unifiedcyberontology.org/uco/types/>
+
+PREFIX case-investigation: <https://ontology.caseontology.org/case/investigation/>
+
+PREFIX cacontology-coord: <https://cacontology.projectvic.org/investigation-coordination#>
+PREFIX cacontology-usa-leg: <https://cacontology.projectvic.org/usa-legislative#>
+
+PREFIX ex: <https://example.org/cac/westchester-missing-child-rescue-operation-2026/>
+
+################################################################################
+## 1) Provenance: source URL + file paths + hashes                            ##
+################################################################################
+
+SELECT DISTINCT ?docLabel ?url ?sourcePath ?sourceHash ?normPath ?normHash
+WHERE {
+  ex:source_document rdfs:label ?docLabel ;
+    uco-core:hasFacet ?urlFacet ;
+    uco-core:hasFacet ?fileFacet ;
+    uco-core:hasFacet ?hashFacet .
+
+  ?urlFacet a uco-observable:URLFacet ;
+    uco-observable:url ?url .
+
+  ?fileFacet a uco-observable:FileFacet ;
+    uco-observable:filePath ?sourcePath .
+
+  ?hashFacet a uco-observable:HashFacet ;
+    uco-observable:hash ?hashNode .
+
+  ?hashNode a uco-types:Hash ;
+    uco-types:hashValue ?sourceHash .
+
+  ex:normalized_excerpt uco-core:hasFacet ?normFileFacet ;
+    uco-core:hasFacet ?normHashFacet .
+
+  ?normFileFacet a uco-observable:FileFacet ;
+    uco-observable:filePath ?normPath .
+
+  ?normHashFacet a uco-observable:HashFacet ;
+    uco-observable:hash ?normHashNode .
+
+  ?normHashNode a uco-types:Hash ;
+    uco-types:hashValue ?normHash .
+}
+;
+
+################################################################################
+## 2) Operation summary: located count + start/end times                       ##
+################################################################################
+
+SELECT ?opLabel ?locatedCount ?start ?end
+WHERE {
+  ex:westchester_operation a cacontology-coord:MissingChildRescueOperation ;
+    rdfs:label ?opLabel ;
+    cacontology-coord:childrenLocatedCount ?locatedCount ;
+    uco-action:startTime ?start ;
+    uco-action:endTime ?end .
+}
+;
+
+################################################################################
+## 3) Operation performers (partners/participants listed in KG)                ##
+################################################################################
+
+SELECT DISTINCT ?performer ?label
+WHERE {
+  ex:westchester_operation uco-action:performer ?performer .
+  OPTIONAL { ?performer rdfs:label ?label }
+}
+ORDER BY ?label
+;
+
+################################################################################
+## 4) Partners by type (organizations explicitly typed in KG)                  ##
+################################################################################
+
+SELECT DISTINCT ?org ?label ?type
+WHERE {
+  ?org a uco-identity:Organization ;
+    rdfs:label ?label ;
+    a ?type .
+}
+ORDER BY ?label
+;
+
+################################################################################
+## 5) Federal/national partners reused from CAC org registry                    ##
+################################################################################
+
+SELECT DISTINCT ?org ?label
+WHERE {
+  VALUES ?org { cacontology-usa-leg:FBI cacontology-usa-leg:USMS cacontology-usa-leg:NCMEC }
+  ?org rdfs:label ?label .
+}
+ORDER BY ?label
+;
+
+################################################################################
+## 6) Command center / facility object used by the operation                   ##
+################################################################################
+
+SELECT DISTINCT ?facility ?label ?desc
+WHERE {
+  ex:westchester_operation uco-action:object ?facility .
+  ?facility rdfs:label ?label .
+  OPTIONAL { ?facility uco-core:description ?desc }
+}
+;
+
+################################################################################
+## 7) Instruments used by the operation (e.g., secure Wi-Fi enablement)        ##
+################################################################################
+
+SELECT DISTINCT ?instrument ?label ?desc
+WHERE {
+  ex:westchester_operation uco-action:instrument ?instrument .
+  ?instrument rdfs:label ?label .
+  OPTIONAL { ?instrument uco-core:description ?desc }
+}
+;
+
+################################################################################
+## 8) MissingChildRescueOperation instances present in the KG                  ##
+################################################################################
+
+SELECT DISTINCT ?op ?label ?located
+WHERE {
+  ?op a cacontology-coord:MissingChildRescueOperation ;
+    rdfs:label ?label ;
+    cacontology-coord:childrenLocatedCount ?located .
+}
+ORDER BY ?label
+;
+
+################################################################################
+## 9) Sanity check: located count datatype                                     ##
+################################################################################
+
+SELECT ?opLabel ?locatedCount (DATATYPE(?locatedCount) AS ?dt)
+WHERE {
+  ex:westchester_operation rdfs:label ?opLabel ;
+    cacontology-coord:childrenLocatedCount ?locatedCount .
+}
+;
+
+################################################################################
+## 10) Timeline window (duration in days approximation)                        ##
+################################################################################
+
+SELECT ?opLabel ((?end - ?start) AS ?duration)
+WHERE {
+  ex:westchester_operation rdfs:label ?opLabel ;
+    uco-action:startTime ?start ;
+    uco-action:endTime ?end .
+}
+;
+
+################################################################################
+## 11) All labeled nodes (quick index)                                         ##
+################################################################################
+
+SELECT DISTINCT ?s ?label
+WHERE {
+  ?s rdfs:label ?label .
+}
+ORDER BY ?label
+;
+
+################################################################################
+## 12) Find all provenance file paths referenced by the KG                     ##
+################################################################################
+
+SELECT DISTINCT ?path
+WHERE {
+  ?facet a uco-observable:FileFacet ;
+    uco-observable:filePath ?path .
+}
+ORDER BY ?path
+;
+

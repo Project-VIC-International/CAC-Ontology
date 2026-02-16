@@ -1,0 +1,115 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
+
+@prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
+
+@prefix cacontology-coord: <https://cacontology.projectvic.org/investigation-coordination#> .
+
+@prefix cacontology-usa-leg: <https://cacontology.projectvic.org/usa-legislative#> .
+
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+
+@prefix ex: <https://example.org/cac/westchester-missing-child-rescue-operation-2026/> .
+
+# =============================================================================
+# CASE EXAMPLE: Westchester Missing Child Rescue Operation (NCPTF/DCJS/OCFS)
+# Source: https://ncptf.org/westchester-missing-child-rescue-operation-results-in-successful-location-of-44-children-and-teens/
+# Target: CAC Ontology v2.8.x+ (investigation coordination module enhancements)
+# =============================================================================
+
+# =============================================================================
+# SOURCE DOCUMENT + NORMALIZED ARTIFACT (provenance scaffold)
+# =============================================================================
+
+ex:source_document a uco-observable:ObservableObject ;
+  rdfs:label "NCPTF: Westchester Missing Child Rescue Operation (press release, 2026-02-13)"@en ;
+  uco-core:description "NCPTF article describing a 3-day multi-party missing-child rescue operation in Westchester County, NY."@en ;
+  uco-core:hasFacet ex:source_url_facet ;
+  uco-core:hasFacet ex:source_file_facet ;
+  uco-core:hasFacet ex:source_hash_facet .
+
+ex:source_url_facet a uco-observable:URLFacet ;
+  uco-observable:url "https://ncptf.org/westchester-missing-child-rescue-operation-results-in-successful-location-of-44-children-and-teens/"^^xsd:anyURI .
+
+ex:source_file_facet a uco-observable:FileFacet ;
+  uco-observable:filePath "analytics_demonstration/collected_sources/westchester-missing-child-rescue-operation-2026/source.txt"@en .
+
+ex:source_hash_facet a uco-observable:HashFacet ;
+  uco-observable:hash ex:source_hash .
+
+ex:source_hash a uco-types:Hash ;
+  uco-types:hashMethod "SHA-256"@en ;
+  uco-types:hashValue "055e74a20519175fd098825b3dc166ceb81cd2f4a27b809dd49fced586e02b41"@en .
+
+ex:normalized_excerpt a uco-observable:ObservableObject ;
+  rdfs:label "Normalized excerpt (NCPTF Westchester operation)"@en ;
+  uco-core:description "Normalized excerpt used as evidence pointers for modeling decisions."@en ;
+  uco-core:hasFacet ex:normalized_file_facet ;
+  uco-core:hasFacet ex:normalized_hash_facet .
+
+ex:normalized_file_facet a uco-observable:FileFacet ;
+  uco-observable:filePath "analytics_demonstration/collected_sources/westchester-missing-child-rescue-operation-2026/normalized.txt"@en .
+
+ex:normalized_hash_facet a uco-observable:HashFacet ;
+  uco-observable:hash ex:normalized_hash .
+
+ex:normalized_hash a uco-types:Hash ;
+  uco-types:hashMethod "SHA-256"@en ;
+  uco-types:hashValue "9c5ca894918da4b4bd9df167bc97c2ecd3e8c078c5968f42f57fb086de228042"@en .
+
+# =============================================================================
+# CORE ORGANIZATIONS (minimal; not exhaustive)
+# =============================================================================
+
+ex:dcjs a uco-identity:Organization ;
+  rdfs:label "New York State Division of Criminal Justice Services (DCJS)"@en .
+
+ex:ocfs a uco-identity:Organization ;
+  rdfs:label "New York State Office of Children and Family Services (OCFS)"@en .
+
+ex:ncptf a uco-identity:Organization ;
+  rdfs:label "National Child Protection Task Force (NCPTF)"@en .
+
+# Reuse CAC-defined org instances where available
+# - cacontology-usa-leg:FBI
+# - cacontology-usa-leg:USMS
+# - cacontology-usa-leg:NCMEC
+
+ex:verizon_frontline a uco-identity:Organization ;
+  rdfs:label "Verizon Frontline"@en ;
+  uco-core:description "Private partner providing secure Wi-Fi for the operation command center per the article."@en .
+
+ex:cares_914 a uco-identity:Organization ;
+  rdfs:label "914 Cares"@en ;
+  uco-core:description "Nonprofit partner embedded in the command center providing essential items for children located during the operation."@en .
+
+# =============================================================================
+# OPERATION CONTEXT (focus: MissingChildRescueOperation + located-count semantics)
+# =============================================================================
+
+ex:command_center a uco-location:Location ;
+  rdfs:label "Operation command center (Westchester County, NY)"@en ;
+  uco-core:description "Command center referenced in the article as a shared coordination facility."@en .
+
+ex:secure_wifi_network a uco-core:UcoObject ;
+  rdfs:label "Secure Wi-Fi network (command center enablement)"@en ;
+  uco-core:description "Mission-critical secure Wi-Fi network enabling command center communications (article cites Verizon Frontline support)."@en .
+
+ex:westchester_operation a cacontology-coord:MissingChildRescueOperation, case-investigation:InvestigativeAction, gufo:Event ;
+  rdfs:label "Westchester Missing Child Rescue Operation (3-day operation)"@en ;
+  uco-core:description "Three-day operation to explore new leads, review case notes, and leverage technology to locate missing children/teens at risk of endangerment, exploitation, or harm; article reports 43 located via the operation (and 46 located as of Feb 14, 2026 noon) with additional cases in progress."@en ;
+  cacontology-coord:childrenLocatedCount "43"^^xsd:nonNegativeInteger ;
+  uco-action:performer ex:dcjs, ex:ocfs, ex:ncptf, cacontology-usa-leg:FBI, cacontology-usa-leg:USMS, cacontology-usa-leg:NCMEC, ex:verizon_frontline, ex:cares_914 ;
+  uco-action:object ex:command_center ;
+  uco-action:instrument ex:secure_wifi_network ;
+  uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+  uco-action:endTime "2026-02-13T23:59:59Z"^^xsd:dateTime .
+

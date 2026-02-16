@@ -17,10 +17,10 @@
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 
 # Ontology Declaration with gUFO Integration
-<https://cacontology.projectvic.org/custodial/2.8.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/custodial/2.9.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Custodial Relationship & Position of Trust Ontology with gUFO Integration"@en ;
     rdfs:comment "An ontology for representing custodial relationships, positions of trust, and authority figure violations in Internet Crimes Against Children investigations, extending UCO and CASE with comprehensive gUFO foundational ontology enhancements for improved semantic precision, anti-rigidity modeling, temporal constraint validation, and enhanced situational modeling. Enhanced with gUFO Events, Objects, Roles, Phases, and Situations for formal ontological rigor."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/custodial/2.8.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/custodial/2.9.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
@@ -29,10 +29,10 @@
                 <https://ontology.unifiedcyberontology.org/uco/observable> ,
                 <https://ontology.unifiedcyberontology.org/uco/action> ,
                 <https://ontology.unifiedcyberontology.org/uco/role> ,
-                <https://cacontology.projectvic.org/2.8.0> ,
+                <https://cacontology.projectvic.org/2.9.0> ,
                 <http://purl.org/nemo/gufo> ;
     dcterms:description "Enhanced with gUFO foundational ontology for formal semantic modeling of custodial relationships, trust violations, authority positions, and temporal custody lifecycle management."@en ;
-    owl:versionInfo "2.8.0" .
+    owl:versionInfo "2.9.0" .
 
 # =============================================================================
 # CUSTODIAL RELATIONSHIP CLASSES (extending UCO Core with gUFO Objects)

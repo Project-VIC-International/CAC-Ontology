@@ -14,10 +14,10 @@
 @prefix cacontology-sextortion: <https://cacontology.projectvic.org/sextortion#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/sextortion/2.8.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/sextortion/2.9.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Sextortion Ontology"@en ;
     rdfs:comment "An ontology for representing sextortion incidents, progression patterns, and investigation approaches in Internet Crimes Against Children cases. Sextortion is online blackmail where offenders trick or coerce someone into sending sexual images, then threaten to share unless demands are met."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/sextortion/2.8.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/sextortion/2.9.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-05-23"^^xsd:date ;
     dcterms:modified "2026-02-11"^^xsd:date ;
@@ -27,7 +27,7 @@
                 <https://ontology.unifiedcyberontology.org/uco/action> ,
                 <https://ontology.unifiedcyberontology.org/uco/role> ,
                 <https://ontology.unifiedcyberontology.org/uco/types> ,
-                <https://cacontology.projectvic.org/2.8.0> .
+                <https://cacontology.projectvic.org/2.9.0> .
 
 # =============================================================================
 # SEXTORTION INCIDENT CLASSES (extending ICAC Core)

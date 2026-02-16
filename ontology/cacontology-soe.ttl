@@ -14,17 +14,17 @@
 @prefix cacontology-soe: <https://cacontology.projectvic.org/soe#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/soe/2.8.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/soe/2.9.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Sadistic Online Exploitation (SOE) Ontology"@en ;
     rdfs:comment "An ontology for representing Sadistic Online Exploitation (SOE) networks and SOE-specific ritualized/coordinated coercion event patterns, aligned to DHS/Know2Protect definitional framing. This module is intentionally narrow and is designed to reuse extremist-enterprises concepts (e.g., cross-platform coordination, platform migration, self-harm coercion) when an extremist-enterprise modeling frame is evidenced."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/soe/2.8.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/soe/2.9.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2026-02-11"^^xsd:date ;
     dcterms:modified "2026-02-11"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity/> ,
                 <https://ontology.unifiedcyberontology.org/uco/action/> ,
-                <https://cacontology.projectvic.org/2.8.0> ,
+                <https://cacontology.projectvic.org/2.9.0> ,
                 <http://purl.org/nemo/gufo> .
 
 # =============================================================================

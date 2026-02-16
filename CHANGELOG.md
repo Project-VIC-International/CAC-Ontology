@@ -5,6 +5,39 @@ All notable changes to the CAC ontology family will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2.9.0 - 16 February 2026
+
+### Added - Missing Child Rescue Operation Modeling + Example Suite (NCPTF Westchester Operation)
+
+Adds explicit modeling for missing-child rescue operations that “locate” missing children/teens (distinct from “rescued from ongoing abuse”), based on NCPTF/DCJS reporting on the Westchester Missing Child Rescue Operation. Includes a new example knowledge graph and SPARQL analytics suite.
+
+#### Enhanced Investigation Coordination Module (`ontology/cacontology-investigation-coordination.ttl`)
+
+- Added `MissingChildRescueOperation`
+- Added outcome metrics:
+  - `childrenLocatedCount`
+  - `casesInProgressCount`
+
+#### SHACL Shapes Updated
+
+- Updated: `ontology/cacontology-investigation-coordination-shapes.ttl` (new `MissingChildRescueOperationShape`)
+
+#### New Example KG + SPARQL Analytics
+
+- Example KG: `examples_knowledge_graphs/westchester-missing-child-rescue-operation-2026-example.ttl`
+- SPARQL suite: `example_SPARQL_queries/westchester-missing-child-rescue-operation-2026-analytics.rq`
+- Evidence artifacts captured under: `analytics_demonstration/collected_sources/westchester-missing-child-rescue-operation-2026/`
+
+#### Validation
+
+- `python -m pyshacl -s ontology/cacontology-investigation-coordination-shapes.ttl -d examples_knowledge_graphs/westchester-missing-child-rescue-operation-2026-example.ttl` → **Conforms: True**
+
+#### Versioning
+
+- Bumped ontology family version IRIs to `2.9.0` (tooling: `update_version.py`)
+
+---
+
 ## v2.8.0 - 16 February 2026
 
 ### Added - Appellate Opinion Concepts + Example Suite (CourtListener: United States v. McCormack)
