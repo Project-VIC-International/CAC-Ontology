@@ -13,24 +13,26 @@
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#> .
 @prefix cacontology-educational: <https://cacontology.projectvic.org/educational#> .
+@prefix cacontology-registry: <https://cacontology.projectvic.org/sex-offender-registry#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/sentencing/2.6.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/sentencing/2.7.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Legal Outcomes & Sentencing Ontology"@en ;
     rdfs:comment "An ontology for representing legal outcomes, federal sentences, judicial proceedings, and punishment guidelines in Internet Crimes Against Children cases with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, and validation capabilities, extending UCO and CASE."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/sentencing/2.6.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/sentencing/2.7.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2026-01-01"^^xsd:date ;
+    dcterms:modified "2026-02-16"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable> ,
                 <https://ontology.unifiedcyberontology.org/uco/action> ,
                 <https://ontology.unifiedcyberontology.org/uco/location> ,
                 <https://ontology.unifiedcyberontology.org/uco/role> ,
-                <https://cacontology.projectvic.org/2.6.0> ,
+                <https://cacontology.projectvic.org/sex-offender-registry/2.7.0> ,
+                <https://cacontology.projectvic.org/2.7.0> ,
                 <http://purl.org/nemo/gufo> .
 
 # =============================================================================
@@ -238,6 +240,45 @@ cacontology-sentencing:ContributingToDelinquency rdf:type owl:Class ;
     rdfs:comment "Florida state charge for contributing to the delinquency or dependency of a child. Applies when adult actions contribute to a child becoming delinquent or dependent. Modeled as gUFO Object."@en ;
     rdfs:subClassOf cacontology-sentencing:FloridaStateCharge ;
     skos:definition "F.S. 827.04 - Contributing to the delinquency or dependency of a child."@en .
+
+# =============================================================================
+# GEORGIA STATE CHARGES (gUFO Object)
+# Based on Georgia Attorney General press release (Hart County trafficking case)
+# =============================================================================
+
+cacontology-sentencing:GeorgiaStateCharge rdf:type owl:Class ;
+    rdfs:label "Georgia State Charge"@en ;
+    rdfs:comment "Criminal charge under Georgia state law and jurisdiction for CAC-related offenses. Modeled as gUFO Object."@en ;
+    rdfs:subClassOf cacontology-sentencing:StateCharge ;
+    dcterms:source "Georgia Office of the Attorney General press release, 2026-02-14."@en ;
+    rdfs:seeAlso <https://law.georgia.gov/press-releases/2026-02-14/carr-hart-county-man-convicted-trafficking-teen-targeting-victim-snapchat> .
+
+cacontology-sentencing:TraffickingOfPersonsForSexualServitudeCharge rdf:type owl:Class ;
+    rdfs:label "Trafficking of Persons for Sexual Servitude (GA)"@en ;
+    rdfs:comment "Georgia state charge for trafficking of persons for sexual servitude, as reported in a Georgia Attorney General press release. Modeled as gUFO Object."@en ;
+    rdfs:subClassOf cacontology-sentencing:GeorgiaStateCharge ;
+    skos:altLabel "Trafficking for Sexual Servitude"@en ;
+    dcterms:source "Georgia Office of the Attorney General press release, 2026-02-14."@en ;
+    rdfs:seeAlso <https://law.georgia.gov/press-releases/2026-02-14/carr-hart-county-man-convicted-trafficking-teen-targeting-victim-snapchat> .
+
+cacontology-sentencing:SexualExploitationOfMinorCharge rdf:type owl:Class ;
+    rdfs:label "Sexual Exploitation of a Minor (GA)"@en ;
+    rdfs:comment "Georgia state charge for sexual exploitation of a minor, as reported in a Georgia Attorney General press release. Modeled as gUFO Object."@en ;
+    rdfs:subClassOf cacontology-sentencing:GeorgiaStateCharge ;
+    skos:altLabel "Sexual Exploitation of a Minor"@en ;
+    dcterms:source "Georgia Office of the Attorney General press release, 2026-02-14."@en ;
+    rdfs:seeAlso <https://law.georgia.gov/press-releases/2026-02-14/carr-hart-county-man-convicted-trafficking-teen-targeting-victim-snapchat> .
+
+# =============================================================================
+# PLEA / SENTENCING CONDITIONS (gUFO Object)
+# =============================================================================
+
+cacontology-sentencing:ProfessionalLicenseSurrenderCondition rdf:type owl:Class ;
+    rdfs:label "Professional License Surrender Condition"@en ;
+    rdfs:comment "Condition associated with a plea agreement or sentencing outcome requiring the defendant to surrender a professional license (e.g., a nursing license)."@en ;
+    rdfs:subClassOf uco-observable:ObservableObject, gufo:Object ;
+    dcterms:source "Georgia Office of the Attorney General press release, 2026-02-14."@en ;
+    rdfs:seeAlso <https://law.georgia.gov/press-releases/2026-02-14/carr-hart-county-man-convicted-trafficking-teen-targeting-victim-snapchat> .
 
 # =============================================================================
 # SENTENCE CLASSES (extending UCO Observable with gUFO Object)
@@ -550,3 +591,19 @@ cacontology-sentencing:contributionType rdf:type owl:DatatypeProperty ;
     rdfs:comment "Type of contribution in delinquency charges (delinquency, dependency, both)."@en ;
     rdfs:domain cacontology-sentencing:ContributingToDelinquency ;
     rdfs:range xsd:string .
+
+# =============================================================================
+# PLEA / SENTENCING CONDITION PROPERTIES
+# =============================================================================
+
+cacontology-sentencing:requiresLicenseSurrender rdf:type owl:ObjectProperty ;
+    rdfs:label "requires license surrender"@en ;
+    rdfs:comment "Links a professional license surrender condition to the professional license that must be surrendered."@en ;
+    rdfs:domain cacontology-sentencing:ProfessionalLicenseSurrenderCondition ;
+    rdfs:range cacontology-registry:ProfessionalLicense .
+
+cacontology-sentencing:conditionAppliesToPerson rdf:type owl:ObjectProperty ;
+    rdfs:label "condition applies to person"@en ;
+    rdfs:comment "Links a plea/sentencing condition to the person it applies to (typically the defendant)."@en ;
+    rdfs:domain cacontology-sentencing:ProfessionalLicenseSurrenderCondition ;
+    rdfs:range uco-identity:Person .

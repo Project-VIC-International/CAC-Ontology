@@ -19,15 +19,15 @@
 # Raven US Extensions - USA-Specific Validation Shapes
 # =============================================================================
 
-<https://cacontology.projectvic.org/usa-legislative/shapes/2.6.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/usa-legislative/shapes/2.7.0> rdf:type owl:Ontology ;
     rdfs:label "CAC USA Legislative Framework SHACL Shapes"@en ;
     rdfs:comment "SHACL shapes for validating USA-specific legislative framework instances including federal agencies, congressional committees, state organizations, legislative stages, and funding mechanisms."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/usa-legislative/shapes/2.6.0> ;
-    owl:versionInfo "2.6.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/usa-legislative/shapes/2.7.0> ;
+    owl:versionInfo "2.7.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:created "2026-01-27"^^xsd:date ;
     dcterms:modified "2026-01-27"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/usa-legislative/2.6.0> ,
+    owl:imports <https://cacontology.projectvic.org/usa-legislative/2.7.0> ,
                 <http://purl.org/nemo/gufo#> ,
                 <http://www.w3.org/ns/shacl#> .
 

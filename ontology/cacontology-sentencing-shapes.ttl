@@ -9,18 +9,20 @@
 @prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#> .
+@prefix cacontology-registry: <https://cacontology.projectvic.org/sex-offender-registry#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/sentencing/shapes/2.6.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/sentencing/shapes/2.7.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Sentencing SHACL Shapes"@en ;
     rdfs:comment "SHACL validation shapes for the ICAC Sentencing Ontology, providing validation for legal outcomes, federal sentences, judicial proceedings, and punishment guidelines."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/sentencing/shapes/2.6.0> ;
-    owl:versionInfo "2.6.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/sentencing/shapes/2.7.0> ;
+    owl:versionInfo "2.7.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-01-01"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/sentencing/2.6.0> ,
+    dcterms:modified "2026-02-16"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/sentencing/2.7.0> ,
+                <https://cacontology.projectvic.org/sex-offender-registry/2.7.0> ,
                 <http://purl.org/nemo/gufo> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 
@@ -343,6 +345,62 @@ cacontology-sentencing:ContributingToDelinquencyShape rdf:type sh:NodeShape ;
         sh:maxCount 1 ;
         sh:in ( "delinquency" "dependency" "both" ) ;
         sh:message "Must specify whether contribution was to delinquency, dependency, or both."@en
+    ] .
+
+# =============================================================================
+# GEORGIA STATE CHARGE SHAPES
+# Based on Georgia Attorney General press release (Hart County trafficking case)
+# =============================================================================
+
+cacontology-sentencing:GeorgiaStateChargeShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sentencing:GeorgiaStateCharge ;
+    rdfs:label "Georgia State Charge Shape"@en ;
+    rdfs:comment "Validation shape for Georgia state charge instances in CAC cases."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Georgia state charge should have an rdfs:label."@en
+    ] .
+
+cacontology-sentencing:TraffickingOfPersonsForSexualServitudeChargeShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sentencing:TraffickingOfPersonsForSexualServitudeCharge ;
+    rdfs:label "Trafficking of Persons for Sexual Servitude (GA) Charge Shape"@en ;
+    rdfs:comment "Validation shape for Georgia trafficking-for-sexual-servitude charge instances."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Charge instance should have an rdfs:label."@en
+    ] .
+
+cacontology-sentencing:SexualExploitationOfMinorChargeShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sentencing:SexualExploitationOfMinorCharge ;
+    rdfs:label "Sexual Exploitation of a Minor (GA) Charge Shape"@en ;
+    rdfs:comment "Validation shape for Georgia sexual exploitation of a minor charge instances."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Charge instance should have an rdfs:label."@en
+    ] .
+
+# =============================================================================
+# PLEA / SENTENCING CONDITION SHAPES
+# =============================================================================
+
+cacontology-sentencing:ProfessionalLicenseSurrenderConditionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sentencing:ProfessionalLicenseSurrenderCondition ;
+    rdfs:label "Professional License Surrender Condition Shape"@en ;
+    rdfs:comment "Validation shape for conditions requiring surrender of a professional license."@en ;
+    sh:property [
+        sh:path cacontology-sentencing:requiresLicenseSurrender ;
+        sh:class cacontology-registry:ProfessionalLicense ;
+        sh:minCount 1 ;
+        sh:message "License surrender condition must reference at least one ProfessionalLicense via requiresLicenseSurrender."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-sentencing:conditionAppliesToPerson ;
+        sh:class uco-identity:Person ;
+        sh:minCount 1 ;
+        sh:message "License surrender condition must specify the person it applies to via conditionAppliesToPerson."@en
     ] .
 
 # =============================================================================

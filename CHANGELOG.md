@@ -5,6 +5,38 @@ All notable changes to the CAC ontology family will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2.7.0 - 16 February 2026
+
+### Added - Georgia Trafficking/Sentencing Concepts + Example Suite (GA AG Press Release)
+
+Adds Georgia-specific state charge subclasses and plea/sentencing condition modeling to support a Georgia Attorney General press release describing trafficking of a minor facilitated by social media communications (Snapchat) and post-conviction outcomes including prison, strict probation, sex-offender registration, and professional license surrender.
+
+#### Enhanced Sentencing Module (`ontology/cacontology-sentencing.ttl`)
+
+- Added Georgia state charge framework:
+  - `GeorgiaStateCharge`
+  - `TraffickingOfPersonsForSexualServitudeCharge`
+  - `SexualExploitationOfMinorCharge`
+- Added plea/sentencing condition modeling:
+  - `ProfessionalLicenseSurrenderCondition`
+  - Properties: `requiresLicenseSurrender`, `conditionAppliesToPerson`
+
+#### SHACL Shapes Updated
+
+- Updated: `ontology/cacontology-sentencing-shapes.ttl` (Georgia charge shapes + license surrender condition validation)
+
+#### New Example KG + SPARQL Analytics
+
+- Example KG: `examples_knowledge_graphs/ga-hart-county-trafficking-snapchat-example.ttl`
+- SPARQL suite: `example_SPARQL_queries/ga-hart-county-trafficking-snapchat-analytics.rq`
+- Evidence artifacts captured under: `analytics_demonstration/collected_sources/ga-hart-county-trafficking-snapchat/`
+
+#### Versioning
+
+- Bumped ontology family version IRIs to `2.7.0` (tooling: `update_version.py`)
+
+---
+
 ## v2.6.0 - 11 February 2026
 
 ### Added - Detection-to-Action Operations & Policy Patterns (GEN Article)
@@ -58,7 +90,7 @@ Major enhancement based on analysis of Global Emancipation Network (GEN) article
 
 ### Added - SOE Module, Sadistic Sextortion Threats, and K2P Example Suite
 
-Introduces a new Statement of Evidence (SOE) module and expands sextortion modeling for sadistic threat patterns. Adds an end-to-end example suite and verification artifacts for the K2P SOE information source.
+Introduces a new Sadistic Online Exploitation (SOE) module and expands sextortion modeling for sadistic threat patterns. Adds an end-to-end example suite and verification artifacts for the K2P SOE information source.
 
 #### New SOE Module (`ontology/cacontology-soe.ttl`)
 

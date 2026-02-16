@@ -1,0 +1,222 @@
+# =============================================================================
+# SPARQL Analytics Queries: Georgia AG Press Release (Hart County trafficking; Snapchat)
+# Target KG: examples_knowledge_graphs/ga-hart-county-trafficking-snapchat-example.ttl
+# Source: https://law.georgia.gov/press-releases/2026-02-14/carr-hart-county-man-convicted-trafficking-teen-targeting-victim-snapchat
+# =============================================================================
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core/>
+PREFIX uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/>
+PREFIX uco-location: <https://ontology.unifiedcyberontology.org/uco/location/>
+PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/>
+PREFIX uco-types: <https://ontology.unifiedcyberontology.org/uco/types/>
+
+PREFIX cacontology-platforms: <https://cacontology.projectvic.org/platforms#>
+PREFIX cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#>
+PREFIX cacontology-trafficking: <https://cacontology.projectvic.org/sex-trafficking#>
+PREFIX cacontology-registry: <https://cacontology.projectvic.org/sex-offender-registry#>
+
+PREFIX ex: <https://example.org/cac/ga-hart-county-trafficking-snapchat/>
+
+################################################################################
+## 1) Source document provenance: URL + file paths + hashes                   ##
+################################################################################
+
+SELECT DISTINCT ?docLabel ?url ?sourcePath ?sourceHash ?normPath ?normHash
+WHERE {
+  ex:source_document rdfs:label ?docLabel ;
+    uco-core:hasFacet ?urlFacet ;
+    uco-core:hasFacet ?fileFacet ;
+    uco-core:hasFacet ?hashFacet .
+
+  ?urlFacet a uco-observable:URLFacet ;
+    uco-observable:url ?url .
+
+  ?fileFacet a uco-observable:FileFacet ;
+    uco-observable:filePath ?sourcePath .
+
+  ?hashFacet a uco-observable:HashFacet ;
+    uco-observable:hash ?hashNode .
+
+  ?hashNode a uco-types:Hash ;
+    uco-types:hashValue ?sourceHash .
+
+  ex:normalized_excerpt uco-core:hasFacet ?normFileFacet ;
+    uco-core:hasFacet ?normHashFacet .
+
+  ?normFileFacet a uco-observable:FileFacet ;
+    uco-observable:filePath ?normPath .
+
+  ?normHashFacet a uco-observable:HashFacet ;
+    uco-observable:hash ?normHashNode .
+
+  ?normHashNode a uco-types:Hash ;
+    uco-types:hashValue ?normHash .
+}
+;
+
+################################################################################
+## 2) Case identities: offender + victim                                      ##
+################################################################################
+
+SELECT DISTINCT ?person ?label ?desc
+WHERE {
+  ?person a uco-identity:Person ;
+    rdfs:label ?label .
+  OPTIONAL { ?person uco-core:description ?desc }
+}
+ORDER BY ?label
+;
+
+################################################################################
+## 3) Platforms referenced: Snapchat + Roblox                                 ##
+################################################################################
+
+SELECT DISTINCT ?platform ?label ?type ?desc
+WHERE {
+  VALUES ?platform { ex:snapchat ex:roblox }
+  ?platform rdfs:label ?label ;
+    a ?type .
+  OPTIONAL { ?platform uco-core:description ?desc }
+}
+ORDER BY ?label
+;
+
+################################################################################
+## 4) Digital artifacts asserted in narrative                                 ##
+################################################################################
+
+SELECT DISTINCT ?artifact ?label ?desc
+WHERE {
+  VALUES ?artifact { ex:explicit_content_exchange ex:digital_files_of_act }
+  ?artifact a uco-observable:ObservableObject ;
+    rdfs:label ?label .
+  OPTIONAL { ?artifact uco-core:description ?desc }
+}
+ORDER BY ?label
+;
+
+################################################################################
+## 5) Transportation event: origin + destination + method                      ##
+################################################################################
+
+SELECT DISTINCT ?eventLabel ?originLabel ?destLabel ?methodLabel
+WHERE {
+  ex:transport_event rdfs:label ?eventLabel ;
+    cacontology-trafficking:originLocation ?origin ;
+    cacontology-trafficking:destinationLocation ?dest ;
+    cacontology-trafficking:transportationMethod ?method .
+
+  ?origin rdfs:label ?originLabel .
+  ?dest rdfs:label ?destLabel .
+  ?method rdfs:label ?methodLabel .
+}
+;
+
+################################################################################
+## 6) Earnings collection: amount                                              ##
+################################################################################
+
+SELECT DISTINCT ?eventLabel ?amount
+WHERE {
+  ex:earnings_collection rdfs:label ?eventLabel ;
+    cacontology-trafficking:earningsAmount ?amount .
+}
+;
+
+################################################################################
+## 7) Charges summary (Georgia-specific charge subclasses)                     ##
+################################################################################
+
+SELECT DISTINCT ?charge ?chargeLabel ?chargeType
+WHERE {
+  ?charge a ?chargeType ;
+    rdfs:label ?chargeLabel .
+  FILTER(?chargeType IN (
+    cacontology-sentencing:TraffickingOfPersonsForSexualServitudeCharge,
+    cacontology-sentencing:SexualExploitationOfMinorCharge
+  ))
+}
+ORDER BY ?chargeLabel
+;
+
+################################################################################
+## 8) Count charges by type                                                    ##
+################################################################################
+
+SELECT ?chargeType (COUNT(?charge) AS ?count)
+WHERE {
+  ?charge a ?chargeType .
+  FILTER(?chargeType IN (
+    cacontology-sentencing:TraffickingOfPersonsForSexualServitudeCharge,
+    cacontology-sentencing:SexualExploitationOfMinorCharge
+  ))
+}
+GROUP BY ?chargeType
+ORDER BY DESC(?count)
+;
+
+################################################################################
+## 9) Sentencing hearing: charges + sentences                                  ##
+################################################################################
+
+SELECT DISTINCT ?hearingLabel ?chargeLabel ?sentenceLabel ?duration
+WHERE {
+  ex:sentencing_hearing rdfs:label ?hearingLabel ;
+    cacontology-sentencing:hasCharge ?charge ;
+    cacontology-sentencing:resultsSentence ?sentence .
+
+  ?charge rdfs:label ?chargeLabel .
+  ?sentence rdfs:label ?sentenceLabel .
+  OPTIONAL { ?sentence cacontology-sentencing:sentenceDuration ?duration }
+}
+ORDER BY ?chargeLabel ?sentenceLabel
+;
+
+################################################################################
+## 10) Probation detail (strict probation approximation)                       ##
+################################################################################
+
+SELECT DISTINCT ?label ?duration ?conditions ?supervision ?reporting
+WHERE {
+  ex:probation_term a cacontology-sentencing:ProbationSentence ;
+    rdfs:label ?label ;
+    cacontology-sentencing:probationConditions ?conditions ;
+    cacontology-sentencing:supervisionLevel ?supervision ;
+    cacontology-sentencing:reportingFrequency ?reporting .
+  OPTIONAL { ex:probation_term cacontology-sentencing:sentenceDuration ?duration }
+}
+;
+
+################################################################################
+## 11) License surrender condition audit                                       ##
+################################################################################
+
+SELECT DISTINCT ?conditionLabel ?personLabel ?licenseLabel
+WHERE {
+  ex:license_surrender_condition a cacontology-sentencing:ProfessionalLicenseSurrenderCondition ;
+    rdfs:label ?conditionLabel ;
+    cacontology-sentencing:conditionAppliesToPerson ?person ;
+    cacontology-sentencing:requiresLicenseSurrender ?license .
+
+  ?person rdfs:label ?personLabel .
+  ?license rdfs:label ?licenseLabel .
+}
+;
+
+################################################################################
+## 12) Timeline-ish: key dated actions in the KG                               ##
+################################################################################
+
+SELECT DISTINCT ?action ?label ?t
+WHERE {
+  ?action rdfs:label ?label ;
+    uco-action:startTime ?t .
+}
+ORDER BY ?t ?label
+;
+
