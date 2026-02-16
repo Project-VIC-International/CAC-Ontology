@@ -13,15 +13,15 @@
 @prefix hotline: <https://cacontology.projectvic.org/hotlines/core#> .
 
 # Enhanced Ontology Declaration with gUFO
-<https://cacontology.projectvic.org/hotlines/core/shapes/2.8.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/hotlines/core/shapes/2.9.0> rdf:type owl:Ontology ;
     rdfs:label "Hotline Core Ontology SHACL Shapes"@en ;
     rdfs:comment "SHACL validation shapes for the Hotline Core Ontology, enhanced with comprehensive gUFO foundational modeling validation. Provides +420% validation coverage through gUFO Events, Organizations, Roles, Phases, Situations, and Objects constraint validation with anti-rigidity enforcement and temporal modeling rules."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/hotlines/core/shapes/2.8.0> ;
-    owl:versionInfo "2.8.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/hotlines/core/shapes/2.9.0> ;
+    owl:versionInfo "2.9.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:created "2024-03-20"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/hotlines/core/2.8.0>,
+    owl:imports <https://cacontology.projectvic.org/hotlines/core/2.9.0>,
                 <http://purl.org/nemo/gufo#> ;
     rdfs:comment "gUFO-enhanced SHACL shapes providing comprehensive validation for hotline operations with foundational ontology compliance checking."@en .
 

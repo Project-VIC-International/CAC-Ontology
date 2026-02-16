@@ -12,14 +12,14 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/training/shapes/2.8.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/training/shapes/2.9.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Training SHACL Shapes"@en ;
     rdfs:comment "SHACL validation shapes for the ICAC Training Ontology, providing validation for professional development, training programs, and capacity building initiatives."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/training/shapes/2.8.0> ;
-    owl:versionInfo "2.8.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/training/shapes/2.9.0> ;
+    owl:versionInfo "2.9.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/training/2.8.0> ,
+    owl:imports <https://cacontology.projectvic.org/training/2.9.0> ,
                 <http://purl.org/nemo/gufo> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 

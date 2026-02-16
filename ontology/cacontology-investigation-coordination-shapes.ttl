@@ -15,14 +15,14 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/investigation-coordination/shapes/2.8.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/investigation-coordination/shapes/2.9.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Investigation Coordination SHACL Shapes with gUFO Validation"@en ;
     rdfs:comment "SHACL validation shapes for gUFO-enhanced ICAC investigation coordination ontology, including anti-rigidity constraints, temporal validation, and foundational type compliance."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/investigation-coordination/shapes/2.8.0> ;
-    owl:versionInfo "2.8.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/investigation-coordination/shapes/2.9.0> ;
+    owl:versionInfo "2.9.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/investigation-coordination/2.8.0> ,
+    dcterms:modified "2026-02-16"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/investigation-coordination/2.9.0> ,
                 <http://purl.org/nemo/gufo> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 
@@ -265,6 +265,34 @@ cacontology-coord:InvestigationCoordinationShape rdf:type sh:NodeShape ;
         sh:maxInclusive 1.0 ;
         sh:maxCount 1 ;
         sh:message "Success rate must be between 0.0 and 1.0 (gUFO quality aspect)"@en ;
+    ] .
+
+# =============================================================================
+# MISSING-CHILD RESCUE OPERATION SHAPES (located-count semantics)
+# =============================================================================
+
+cacontology-coord:MissingChildRescueOperationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-coord:MissingChildRescueOperation ;
+    rdfs:label "Missing Child Rescue Operation Shape"@en ;
+    rdfs:comment "Validation shape for missing-child rescue operation instances, including explicit located-count outcomes."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Missing child rescue operation must have an rdfs:label."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-coord:childrenLocatedCount ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Missing child rescue operation must specify childrenLocatedCount as a non-negative integer."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-coord:casesInProgressCount ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "casesInProgressCount, when provided, must be a non-negative integer."@en
     ] .
 
 cacontology-coord:JointInvestigationShape rdf:type sh:NodeShape ;

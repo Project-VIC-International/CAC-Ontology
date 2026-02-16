@@ -15,14 +15,14 @@
 @prefix cacontology-coord: <https://cacontology.projectvic.org/investigation-coordination#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/investigation-coordination/2.8.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/investigation-coordination/2.9.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Investigation Coordination Ontology"@en ;
     rdfs:comment "Comprehensive ontology for modeling investigation coordination processes, information sharing, resource sharing, communication protocols, and inter-agency collaboration within ICAC investigations. Enhanced with gUFO (gentle Unified Foundational Ontology) integration for improved semantic precision and validation capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/investigation-coordination/2.8.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/investigation-coordination/2.9.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-01-27"^^xsd:date ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:versionInfo "2.8.0" ;
+    dcterms:modified "2026-02-16"^^xsd:date ;
+    owl:versionInfo "2.9.0" ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
                 <https://ontology.caseontology.org/case> ,
                 <http://purl.org/nemo/gufo#> .
@@ -60,6 +60,19 @@ cacontology-coord:MultiAgencyCoordination rdf:type owl:Class ;
     rdfs:comment "Coordination involving multiple law enforcement agencies at various jurisdictional levels."@en ;
     rdfs:subClassOf cacontology-coord:InvestigationCoordination ;
     rdf:type gufo:EventType .
+
+# =============================================================================
+# MISSING-CHILD RECOVERY OPERATIONS (event-focused coordination)
+# Based on NCPTF/DCJS Westchester Missing Child Rescue Operation press release
+# Source: https://ncptf.org/westchester-missing-child-rescue-operation-results-in-successful-location-of-44-children-and-teens/
+# =============================================================================
+
+cacontology-coord:MissingChildRescueOperation rdf:type owl:Class ;
+    rdfs:label "Missing Child Rescue Operation"@en ;
+    rdfs:comment "Time-boxed, multi-party operation focused on locating missing children/teens at risk of endangerment, exploitation, or harm, and connecting them with appropriate services and supports. Modeled as an investigative action and gUFO Event."@en ;
+    rdfs:subClassOf case-investigation:InvestigativeAction, uco-action:Action, gufo:Event ;
+    dcterms:source "National Child Protection Task Force (NCPTF) press release, 2026-02-13 (Westchester Missing Child Rescue Operation)."@en ;
+    rdfs:seeAlso <https://ncptf.org/westchester-missing-child-rescue-operation-results-in-successful-location-of-44-children-and-teens/> .
 
 # =============================================================================
 # INFORMATION SHARING CLASSES (gUFO: EventType)
@@ -411,6 +424,23 @@ cacontology-coord:coordinationStatus rdf:type owl:DatatypeProperty ;
     rdfs:comment "Current status of the coordination (active, inactive, pending, completed, suspended, terminated)."@en ;
     rdfs:domain cacontology-coord:InvestigationCoordination ;
     rdfs:range xsd:string .
+
+# Missing-child rescue operation outcome/scale properties
+cacontology-coord:childrenLocatedCount rdf:type owl:DatatypeProperty ;
+    rdfs:label "children located count"@en ;
+    rdfs:comment "Number of missing children/teens located through the operation (located does not necessarily imply rescued from ongoing abuse)."@en ;
+    rdfs:domain cacontology-coord:MissingChildRescueOperation ;
+    rdfs:range xsd:nonNegativeInteger ;
+    dcterms:source "National Child Protection Task Force (NCPTF) press release, 2026-02-13 (Westchester Missing Child Rescue Operation)."@en ;
+    rdfs:seeAlso <https://ncptf.org/westchester-missing-child-rescue-operation-results-in-successful-location-of-44-children-and-teens/> .
+
+cacontology-coord:casesInProgressCount rdf:type owl:DatatypeProperty ;
+    rdfs:label "cases in progress count"@en ;
+    rdfs:comment "Number of missing-child cases still in progress as of a reported timepoint during the operation."@en ;
+    rdfs:domain cacontology-coord:MissingChildRescueOperation ;
+    rdfs:range xsd:nonNegativeInteger ;
+    dcterms:source "National Child Protection Task Force (NCPTF) press release, 2026-02-13 (Westchester Missing Child Rescue Operation)."@en ;
+    rdfs:seeAlso <https://ncptf.org/westchester-missing-child-rescue-operation-results-in-successful-location-of-44-children-and-teens/> .
 
 # Joint Investigation Properties
 cacontology-coord:investigationScope rdf:type owl:DatatypeProperty ;

@@ -20,17 +20,17 @@
 # Raven US Extensions - USA-Specific Legislative and Organizational Classes
 # =============================================================================
 
-<https://cacontology.projectvic.org/usa-legislative/2.8.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/usa-legislative/2.9.0> rdf:type owl:Ontology ;
     rdfs:label "CAC USA Legislative Framework Ontology"@en ;
     rdfs:comment "USA-specific legislative framework ontology for modeling U.S. federal agencies, congressional committees, state organizations, legislative stages, and funding mechanisms. Extends CAC Legal Harmonization with gUFO integration."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/usa-legislative/2.8.0> ;
-    owl:versionInfo "2.8.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/usa-legislative/2.9.0> ;
+    owl:versionInfo "2.9.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:created "2026-01-27"^^xsd:date ;
     dcterms:modified "2026-01-27"^^xsd:date ;
     owl:imports <http://purl.org/nemo/gufo#> ,
-                <https://cacontology.projectvic.org/legal-harmonization/2.8.0> ,
-                <https://cacontology.projectvic.org/multi-jurisdiction/2.8.0> .
+                <https://cacontology.projectvic.org/legal-harmonization/2.9.0> ,
+                <https://cacontology.projectvic.org/multi-jurisdiction/2.9.0> .
 
 # =============================================================================
 # ORGANIZATION METADATA PROPERTIES
