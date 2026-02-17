@@ -1,0 +1,148 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
+
+@prefix cacontology-platforms: <https://cacontology.projectvic.org/platforms#> .
+@prefix cacontology-production: <https://cacontology.projectvic.org/production#> .
+@prefix cacontology-infrastructure: <https://cacontology.projectvic.org/platform-infrastructure#> .
+
+# =============================================================================
+# Example KG: The Sun livestreamed CSEA facilitation pattern (harm-minimized)
+# UUID policy: UUIDv5 using document UUID namespace (deterministic)
+# documentId namespace: 0470e6ed-988a-4a59-9385-e5a6be42f69a
+# =============================================================================
+
+<urn:uuid:0470e6ed-988a-4a59-9385-e5a6be42f69a> a uco-observable:ObservableObject ;
+    rdfs:label "The Sun article (harm-minimized excerpt): livestreamed CSEA 'made to order' (2026-02-15)"@en ;
+    uco-core:hasFacet <urn:uuid:305136d8-cc2a-57c1-a177-929ad44d778f> ,
+                    <urn:uuid:4dce9b59-e4f0-5f23-84bb-375c829ec854> ,
+                    <urn:uuid:0b1b4e02-ea6f-5454-8f3b-21e17cf5fccf> ,
+                    <urn:uuid:ed6faee1-b4ec-5a70-878a-baf2d3b05459> .
+
+<urn:uuid:305136d8-cc2a-57c1-a177-929ad44d778f> a uco-observable:URLFacet ;
+    uco-observable:url "https://www.thesun.co.uk/news/38229815/girls-knifepoint-orphans-child-abuse-brit-paedos/"^^xsd:anyURI .
+
+<urn:uuid:4dce9b59-e4f0-5f23-84bb-375c829ec854> a uco-observable:FileFacet ;
+    uco-observable:filePath "analytics_demonstration/collected_sources/thesun-livestreamed-csea-philippines-2026/source.txt"@en .
+
+<urn:uuid:ed6faee1-b4ec-5a70-878a-baf2d3b05459> a uco-observable:ContentDataFacet ;
+    uco-observable:mimeType "text/plain"@en ;
+    uco-observable:sizeInBytes 2300 .
+
+<urn:uuid:0b1b4e02-ea6f-5454-8f3b-21e17cf5fccf> a uco-observable:HashFacet ;
+    uco-observable:hash <urn:uuid:d3299873-67b5-5680-a62d-b6a8afd8dbe9> .
+
+<urn:uuid:d3299873-67b5-5680-a62d-b6a8afd8dbe9> a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256"@en ;
+    uco-types:hashValue "16ba10c3e56c2a1167b66fda28dfb0b409d7c8afdcb507cf70603160cdc8259f"@en .
+
+<urn:uuid:e40b2895-ae34-5137-91a9-fd4a68545ece> a uco-observable:ObservableObject ;
+    rdfs:label "Normalized keypoints (harm-minimized)"@en ;
+    uco-core:hasFacet <urn:uuid:ace674cd-bf81-5eeb-b072-65b186350d9d> ,
+                    <urn:uuid:db1d30d1-4bb4-5d38-82c3-e060b5ae0c96> ,
+                    <urn:uuid:ee417954-fc32-5650-88fa-f4ccce0f15bc> .
+
+<urn:uuid:ace674cd-bf81-5eeb-b072-65b186350d9d> a uco-observable:FileFacet ;
+    uco-observable:filePath "analytics_demonstration/collected_sources/thesun-livestreamed-csea-philippines-2026/normalized.txt"@en .
+
+<urn:uuid:ee417954-fc32-5650-88fa-f4ccce0f15bc> a uco-observable:ContentDataFacet ;
+    uco-observable:mimeType "text/plain"@en ;
+    uco-observable:sizeInBytes 1724 .
+
+<urn:uuid:db1d30d1-4bb4-5d38-82c3-e060b5ae0c96> a uco-observable:HashFacet ;
+    uco-observable:hash <urn:uuid:a10469c7-0dc1-5a36-a7a7-d973a16902e4> .
+
+<urn:uuid:a10469c7-0dc1-5a36-a7a7-d973a16902e4> a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256"@en ;
+    uco-types:hashValue "64c47e0c3472cab4de099cb5e04a1fd9c734c66f303473dba204c13dd67f4beb"@en .
+
+# Organizations (publisher + referenced orgs)
+<urn:uuid:dbf14795-8015-565b-a3b4-3360fc3d6c8f> a uco-identity:Organization ;
+    rdfs:label "The Sun"@en .
+
+<urn:uuid:c5926fe7-f5ac-504a-b89d-3dfba238e729> a uco-identity:Organization ;
+    rdfs:label "International Justice Mission (IJM)"@en .
+
+<urn:uuid:856a375f-5c08-5dfc-8548-fb71b5ce74b2> a uco-identity:Organization ;
+    rdfs:label "UK National Crime Agency (NCA)"@en .
+
+<urn:uuid:6c0c133b-474f-5def-bdb0-24bbb69ba440> a uco-identity:Organization ;
+    rdfs:label "Philippine authorities (as described)"@en .
+
+<urn:uuid:aecdacb7-048a-5059-bf39-bf1e155ef189> a uco-identity:Organization ;
+    rdfs:label "U.S. Homeland Security (as described)"@en .
+
+# Services (named examples; modeled as MessagingService for simplicity)
+<urn:uuid:455fb2a4-24bb-5841-ab8b-5859fe5cd46f> a cacontology-platforms:MessagingService ;
+    rdfs:label "WhatsApp"@en .
+
+<urn:uuid:93229d94-d403-5cf7-a0d0-2cd2aac0b8b4> a cacontology-platforms:MessagingService ;
+    rdfs:label "Facebook Messenger"@en .
+
+<urn:uuid:4231475e-7dc9-50ea-a353-38099fb75eac> a cacontology-platforms:MessagingService ;
+    rdfs:label "FaceTime"@en .
+
+# -----------------------------------------------------------------------------
+# Modeled pattern: livestreamed live production event, using existing production + infrastructure terms.
+# -----------------------------------------------------------------------------
+
+<urn:uuid:e5949411-e44b-566a-bb98-00320fc485ad> a cacontology-production:LiveProductionEvent ;
+    rdfs:label "Livestreamed CSEA live production event (abstract; harm-minimized)"@en ;
+    cacontology-production:streamingPlatform "mainstream messaging/video-call services"^^xsd:string ;
+    uco-core:description "Grounded in normalized.txt lines 1-4. High-level only; no explicit details retained. Confidence: medium (summarized excerpt)."^^xsd:string .
+
+<urn:uuid:7a8cd0ba-9fa7-5386-b6cb-9f7aacc5aeb9> a cacontology-production:LiveStreamContent ;
+    rdfs:label "Live stream content (not stored; referenced at high level)"@en .
+
+<urn:uuid:3b506c0e-7dad-527f-a46d-b87ef031fa0e> a cacontology-infrastructure:PaymentProcessing ;
+    rdfs:label "Payment processing for livestream sessions (prepaid/top-up mechanism)"@en ;
+    cacontology-infrastructure:paymentMethods "prepaid_cards"^^xsd:string ;
+    uco-core:description "Grounded in normalized.txt line 7: payments via 'mobile phone top-ups' described. Modeled as prepaid value transfer. Confidence: high."^^xsd:string .
+
+# -----------------------------------------------------------------------------
+# Provenance-anchored statement actions (connectivity + evidence pointers)
+# -----------------------------------------------------------------------------
+
+<urn:uuid:7eb22d5e-cfc9-5e11-b018-62e18fa59001> a uco-action:Action ;
+    rdfs:label "Article describes 'made-to-order' real-time direction pattern"@en ;
+    uco-action:performer <urn:uuid:dbf14795-8015-565b-a3b4-3360fc3d6c8f> ;
+    uco-action:object <urn:uuid:0470e6ed-988a-4a59-9385-e5a6be42f69a> ,
+                      <urn:uuid:e5949411-e44b-566a-bb98-00320fc485ad> ;
+    uco-core:description "Evidence pointer: normalized.txt lines 1-3 (harm-minimized). Confidence: medium."^^xsd:string .
+
+<urn:uuid:401a5c16-34c5-5bd0-a1a4-16197c04b3a6> a uco-action:Action ;
+    rdfs:label "Article lists mainstream platforms used for livestream sessions"@en ;
+    uco-action:performer <urn:uuid:dbf14795-8015-565b-a3b4-3360fc3d6c8f> ;
+    uco-action:object <urn:uuid:0470e6ed-988a-4a59-9385-e5a6be42f69a> ,
+                      <urn:uuid:455fb2a4-24bb-5841-ab8b-5859fe5cd46f> ,
+                      <urn:uuid:93229d94-d403-5cf7-a0d0-2cd2aac0b8b4> ,
+                      <urn:uuid:4231475e-7dc9-50ea-a353-38099fb75eac> ;
+    uco-core:description "Evidence pointer: normalized.txt lines 3-4. Confidence: high."^^xsd:string .
+
+<urn:uuid:c6e3892f-027b-5dcd-a444-6bda82a8bd00> a uco-action:Action ;
+    rdfs:label "Article describes payment mechanism for sessions"@en ;
+    uco-action:performer <urn:uuid:dbf14795-8015-565b-a3b4-3360fc3d6c8f> ;
+    uco-action:object <urn:uuid:0470e6ed-988a-4a59-9385-e5a6be42f69a> ,
+                      <urn:uuid:3b506c0e-7dad-527f-a46d-b87ef031fa0e> ;
+    uco-core:description "Evidence pointer: normalized.txt line 7. Confidence: high."^^xsd:string .
+
+<urn:uuid:e895135c-bb0e-5850-9adc-458f380460ee> a uco-action:Action ;
+    rdfs:label "Article references rescue operations by authorities/partners"@en ;
+    uco-action:performer <urn:uuid:dbf14795-8015-565b-a3b4-3360fc3d6c8f> ;
+    uco-action:object <urn:uuid:0470e6ed-988a-4a59-9385-e5a6be42f69a> ,
+                      <urn:uuid:6c0c133b-474f-5def-bdb0-24bbb69ba440> ,
+                      <urn:uuid:aecdacb7-048a-5059-bf39-bf1e155ef189> ;
+    uco-core:description "Evidence pointer: normalized.txt line 6. Confidence: medium (summary)."^^xsd:string .
+
+<urn:uuid:b30334d0-e7da-5f81-a5fa-b504a04b0628> a uco-action:Action ;
+    rdfs:label "Article describes downstream harm via recording/redistribution"@en ;
+    uco-action:performer <urn:uuid:dbf14795-8015-565b-a3b4-3360fc3d6c8f> ;
+    uco-action:object <urn:uuid:0470e6ed-988a-4a59-9385-e5a6be42f69a> ;
+    uco-core:description "Evidence pointer: normalized.txt line 8. Confidence: medium (harm-minimized summary)."^^xsd:string .
+
