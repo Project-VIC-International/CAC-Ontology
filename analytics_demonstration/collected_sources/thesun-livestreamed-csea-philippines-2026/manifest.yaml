@@ -1,0 +1,52 @@
+# CAC Ontology ingestion manifest (single-document)
+# Source: The Sun (UK) article describing livestreamed CSEA facilitation/consumption patterns
+
+batch:
+  uco-core:id: "urn:uuid:238c1ced-1d07-4189-bb33-8f246b8da866"
+  uco-core:name: "The Sun livestreamed CSEA article collection"
+  uco-core:objectCreatedTime: "2026-02-17T14:12:12Z"
+
+  agentOrchestration:
+    enabled: false
+    fetchMethod: "manual"
+    preprocessingPipeline:
+      - "session_web_snapshot_extract"
+      - "harm_minimized_redaction"
+      - "whitespace_normalize"
+      - "keypoint_normalize"
+    deconflictionEnabled: false
+
+documents:
+  - uco-core:id: "urn:uuid:0470e6ed-988a-4a59-9385-e5a6be42f69a"
+    uco-core:name: "The Sun - livestreamed CSEA 'made to order' article (2026-02-15)"
+
+    # Source location
+    observable:url: "https://www.thesun.co.uk/news/38229815/girls-knifepoint-orphans-child-abuse-brit-paedos/"
+    observable:filePath: "analytics_demonstration/collected_sources/thesun-livestreamed-csea-philippines-2026/source.txt"
+
+    collectionAction:
+      uco-action:startTime: "2026-02-17T14:12:12Z"
+      uco-action:performer: "urn:uuid:8924328b-4315-4510-8c86-b4a2969371be"
+      uco-core:description: "manual (blocked by device verification; session snapshot excerpt) by CAC Ontology agent"
+
+    # Raw content metadata (harm-minimized excerpt)
+    observable:mimeType: "text/plain"
+    observable:sizeInBytes: 2300
+    observable:hash:
+      types:hashMethod: "SHA-256"
+      types:hashValue: "16ba10c3e56c2a1167b66fda28dfb0b409d7c8afdcb507cf70603160cdc8259f"
+
+    # Normalized output
+    normalizationAction:
+      uco-core:description: "session_web_snapshot_extract + harm-minimized redaction + keypoint normalization"
+      uco-action:startTime: "2026-02-17T14:12:12Z"
+      uco-action:result: "urn:uuid:e40b2895-ae34-5137-91a9-fd4a68545ece"
+
+    normalizedOutput:
+      observable:filePath: "analytics_demonstration/collected_sources/thesun-livestreamed-csea-philippines-2026/normalized.txt"
+      observable:mimeType: "text/plain"
+      observable:sizeInBytes: 1724
+      observable:hash:
+        types:hashMethod: "SHA-256"
+        types:hashValue: "64c47e0c3472cab4de099cb5e04a1fd9c734c66f303473dba204c13dd67f4beb"
+

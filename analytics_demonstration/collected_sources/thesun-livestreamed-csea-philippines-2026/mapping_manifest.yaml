@@ -1,0 +1,78 @@
+documentId: "urn:uuid:0470e6ed-988a-4a59-9385-e5a6be42f69a"
+caseId: "thesun-livestreamed-csea-philippines-2026"
+concepts:
+  - conceptName: "Source Article Text Artifact (harm-minimized excerpt)"
+    instanceUUID: "urn:uuid:0470e6ed-988a-4a59-9385-e5a6be42f69a"
+    class: "uco-observable:ObservableObject"
+    facets:
+      - "uco-observable:ContentDataFacet"
+      - "uco-observable:URLFacet"
+      - "uco-observable:FileFacet"
+      - "uco-observable:HashFacet"
+    relationships:
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:305136d8-cc2a-57c1-a177-929ad44d778f"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:4dce9b59-e4f0-5f23-84bb-375c829ec854"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:0b1b4e02-ea6f-5454-8f3b-21e17cf5fccf"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:ed6faee1-b4ec-5a70-878a-baf2d3b05459"
+    evidencePointer:
+      documentId: "urn:uuid:0470e6ed-988a-4a59-9385-e5a6be42f69a"
+      span: "source.txt (metadata + non-graphic excerpt)"
+      quote: "livestreamed child sexual abuse / harm-minimized excerpt"
+    confidence: "high"
+
+  - conceptName: "Normalized Text Artifact (Keypoint Statements; harm-minimized)"
+    instanceUUID: "urn:uuid:e40b2895-ae34-5137-91a9-fd4a68545ece"
+    class: "uco-observable:ObservableObject"
+    facets:
+      - "uco-observable:ContentDataFacet"
+      - "uco-observable:FileFacet"
+      - "uco-observable:HashFacet"
+    relationships:
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:ace674cd-bf81-5eeb-b072-65b186350d9d"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:db1d30d1-4bb4-5d38-82c3-e060b5ae0c96"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:ee417954-fc32-5650-88fa-f4ccce0f15bc"
+    evidencePointer:
+      documentId: "urn:uuid:0470e6ed-988a-4a59-9385-e5a6be42f69a"
+      span: "generated artifact"
+      quote: "Keypoint normalization (non-graphic)."
+    confidence: "high"
+
+  - conceptName: "Collection Action"
+    instanceUUID: "urn:uuid:3af724b0-1551-5651-b794-d565e5aa0e1c"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      - predicate: "uco-action:performer"
+        targetUUID: "urn:uuid:8924328b-4315-4510-8c86-b4a2969371be"
+      - predicate: "uco-action:object"
+        targetUUID: "urn:uuid:0470e6ed-988a-4a59-9385-e5a6be42f69a"
+    evidencePointer:
+      documentId: "urn:uuid:0470e6ed-988a-4a59-9385-e5a6be42f69a"
+      span: "manifest.yaml collectionAction"
+      quote: "blocked by device verification; session snapshot excerpt"
+    confidence: "high"
+
+  - conceptName: "Normalization Action"
+    instanceUUID: "urn:uuid:f3e25db3-8919-50c8-82b4-0b3f0e6acb8b"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      - predicate: "uco-action:performer"
+        targetUUID: "urn:uuid:8924328b-4315-4510-8c86-b4a2969371be"
+      - predicate: "uco-action:object"
+        targetUUID: "urn:uuid:0470e6ed-988a-4a59-9385-e5a6be42f69a"
+      - predicate: "uco-action:result"
+        targetUUID: "urn:uuid:e40b2895-ae34-5137-91a9-fd4a68545ece"
+    evidencePointer:
+      documentId: "urn:uuid:0470e6ed-988a-4a59-9385-e5a6be42f69a"
+      span: "manifest.yaml normalizationAction"
+      quote: "harm-minimized redaction + keypoint normalization"
+    confidence: "high"
+
