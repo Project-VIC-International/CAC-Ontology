@@ -1,0 +1,238 @@
+# ipie-sr2026-1-tf-csea-systematic-review - analytics queries
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core/>
+PREFIX uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/>
+PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/>
+PREFIX investigation: <https://ontology.caseontology.org/case/investigation/>
+PREFIX uco-types: <https://ontology.unifiedcyberontology.org/uco/types/>
+PREFIX cacontology-detection: <https://cacontology.projectvic.org/detection#>
+PREFIX cacontology-prevention: <https://cacontology.projectvic.org/prevention#>
+PREFIX cacontology-legal: <https://cacontology.projectvic.org/legal-harmonization#>
+PREFIX cacontology-synthesis: <https://cacontology.projectvic.org/synthesis#>
+PREFIX cacontology-multi: <https://cacontology.projectvic.org/multi-jurisdiction#>
+
+# Q1: List collected document + facets
+SELECT ?doc ?label ?facetType ?facet WHERE {
+  ?doc a uco-observable:ObservableObject ; rdfs:label ?label ; uco-core:hasFacet ?facet .
+  ?facet a ?facetType .
+}
+
+# Q2: Show SHA-256 hash values for collected artifacts
+SELECT ?doc ?hashValue WHERE {
+  ?doc uco-core:hasFacet ?hf .
+  ?hf a uco-observable:HashFacet ; uco-observable:hash ?h .
+  ?h uco-types:hashValue ?hashValue .
+}
+
+# Q3: Collection actions and performers
+SELECT ?action ?start ?performerLabel WHERE {
+  ?action a investigation:InvestigativeAction ; uco-action:startTime ?start ; uco-action:performer ?perf .
+  OPTIONAL { ?perf rdfs:label ?performerLabel }
+}
+
+# Q4: Normalization actions + results
+SELECT ?action ?resultLabel ?result WHERE {
+  ?action a uco-action:Action ; uco-action:result ?result .
+  OPTIONAL { ?result rdfs:label ?resultLabel }
+}
+
+# Q5: Organizations present in the example KG
+SELECT ?org ?label WHERE {
+  ?org a uco-identity:Organization ; rdfs:label ?label .
+} ORDER BY ?label
+
+# Q6: All first-class claims with descriptions
+SELECT ?claim ?label ?desc WHERE {
+  ?claim a cacontology-synthesis:Claim ; rdfs:label ?label ; uco-core:description ?desc .
+}
+
+# Q7: Claims with resolvable evidence pointer line ranges
+SELECT ?claim ?label ?lineStart ?lineEnd WHERE {
+  ?claim a cacontology-synthesis:Claim ;
+         rdfs:label ?label ;
+         cacontology-synthesis:supportedByEvidencePointer ?ep .
+  ?ep cacontology-synthesis:lineStart ?lineStart ;
+      cacontology-synthesis:lineEnd ?lineEnd .
+}
+
+# Q8: Find statements about financial systems / payments leverage
+SELECT ?claim ?label ?desc WHERE {
+  ?claim a cacontology-synthesis:Claim ; rdfs:label ?label ; uco-core:description ?desc .
+  FILTER(CONTAINS(LCASE(STR(?desc)), "financial systems"))
+}
+
+# Q9: Find statements about technical tools + legal authority
+SELECT ?claim ?label ?desc WHERE {
+  ?claim a cacontology-synthesis:Claim ; rdfs:label ?label ; uco-core:description ?desc .
+  FILTER(CONTAINS(LCASE(STR(?desc)), "technical tools"))
+}
+
+# Q10: Find statements about behavioral/educational interventions
+SELECT ?claim ?label ?desc WHERE {
+  ?claim a cacontology-synthesis:Claim ; rdfs:label ?label ; uco-core:description ?desc .
+  FILTER(CONTAINS(LCASE(STR(?desc)), "behavioral"))
+}
+
+# Q11: Intervention types and structured count observations
+SELECT ?type ?typeLabel ?obs ?count ?denom WHERE {
+  ?type a cacontology-synthesis:InterventionType ;
+        rdfs:label ?typeLabel .
+  ?obs a cacontology-synthesis:DistributionObservation ;
+       cacontology-synthesis:category ?type ;
+       cacontology-synthesis:count ?count ;
+       cacontology-synthesis:denominator ?denom .
+}
+
+# Q12: Locus categories with structured count observations
+SELECT ?locus ?label ?count ?denom WHERE {
+  ?locus a cacontology-synthesis:InterventionLocus ;
+         rdfs:label ?label .
+  ?obs a cacontology-synthesis:DistributionObservation ;
+       cacontology-synthesis:category ?locus ;
+       cacontology-synthesis:count ?count ;
+       cacontology-synthesis:denominator ?denom .
+}
+
+# Q13: Legal instruments mentioned (legal harmonization classes)
+SELECT ?inst ?label ?desc ?class WHERE {
+  ?inst a ?class ;
+        rdfs:label ?label ;
+        uco-core:description ?desc .
+  FILTER(STRSTARTS(STR(?class), STR(cacontology-legal:)) )
+}
+
+# Q14: Promising/deployed tools (detection classes)
+SELECT ?tool ?label ?desc ?class WHERE {
+  ?tool a ?class ;
+        rdfs:label ?label ;
+        uco-core:description ?desc .
+  FILTER(STRSTARTS(STR(?class), STR(cacontology-detection:)) )
+}
+
+# Q15: Recommendations (by label match)
+SELECT ?rec ?label ?num WHERE {
+  ?rec a cacontology-synthesis:Recommendation ;
+       rdfs:label ?label ;
+       cacontology-synthesis:recommendationNumber ?num .
+} ORDER BY ?num
+ 
+# Q22: claim -> about -> category nodes
+SELECT ?claim ?claimLabel ?about ?aboutLabel WHERE {
+  ?claim a cacontology-synthesis:Claim ;
+         rdfs:label ?claimLabel ;
+         cacontology-synthesis:about ?about .
+  OPTIONAL { ?about rdfs:label ?aboutLabel }
+} ORDER BY ?claimLabel ?aboutLabel
+
+# Q23: evidence pointer -> SHA-256 hash value (UCO hash facet)
+SELECT ?ep ?lineStart ?lineEnd ?hashValue WHERE {
+  ?ep a cacontology-synthesis:TextEvidencePointer ;
+      cacontology-synthesis:lineStart ?lineStart ;
+      cacontology-synthesis:lineEnd ?lineEnd ;
+      uco-core:hasFacet ?facet .
+  ?facet a uco-observable:HashFacet ;
+         uco-observable:hash ?h .
+  ?h a uco-types:Hash ;
+     uco-types:hashMethod "SHA-256" ;
+     uco-types:hashValue ?hashValue .
+}
+
+# Q16: Key findings as first-class nodes (numbered + evidence pointers)
+SELECT ?finding ?findingNumber ?label ?lineStart ?lineEnd ?quote WHERE {
+  ?finding a cacontology-synthesis:KeyFinding ;
+           cacontology-synthesis:findingNumber ?findingNumber ;
+           rdfs:label ?label ;
+           cacontology-synthesis:supportedByEvidencePointer ?ep .
+  ?ep cacontology-synthesis:lineStart ?lineStart ;
+      cacontology-synthesis:lineEnd ?lineEnd .
+  OPTIONAL { ?ep cacontology-synthesis:exactQuote ?quote }
+} ORDER BY ?findingNumber
+
+# Q17: Intervention type frequencies (structured counts)
+SELECT ?type ?typeLabel ?count ?denom WHERE {
+  ?obs a cacontology-synthesis:DistributionObservation ;
+       cacontology-synthesis:category ?type ;
+       cacontology-synthesis:count ?count ;
+       cacontology-synthesis:denominator ?denom .
+  ?type a cacontology-synthesis:InterventionType ;
+        rdfs:label ?typeLabel .
+} ORDER BY DESC(?count)
+
+# Q18: Locus frequencies (structured counts, including zero)
+SELECT ?locus ?locusLabel ?count ?denom WHERE {
+  ?obs a cacontology-synthesis:DistributionObservation ;
+       cacontology-synthesis:category ?locus ;
+       cacontology-synthesis:count ?count ;
+       cacontology-synthesis:denominator ?denom .
+  ?locus a cacontology-synthesis:InterventionLocus ;
+         rdfs:label ?locusLabel .
+} ORDER BY DESC(?count)
+
+# Q19: Numbered recommendations as first-class nodes
+SELECT ?rec ?recNumber ?label ?lineStart ?lineEnd WHERE {
+  ?rec a cacontology-synthesis:Recommendation ;
+       cacontology-synthesis:recommendationNumber ?recNumber ;
+       rdfs:label ?label ;
+       cacontology-synthesis:supportedByEvidencePointer ?ep .
+  ?ep cacontology-synthesis:lineStart ?lineStart ;
+      cacontology-synthesis:lineEnd ?lineEnd .
+} ORDER BY ?recNumber
+
+# Q20: Evidence pointers resolved to the referenced text artifact path
+SELECT ?claim ?claimLabel ?lineStart ?lineEnd ?filePath WHERE {
+  ?claim a cacontology-synthesis:Claim ;
+         rdfs:label ?claimLabel ;
+         cacontology-synthesis:supportedByEvidencePointer ?ep .
+  ?ep cacontology-synthesis:referencesArtifact ?artifact ;
+      cacontology-synthesis:lineStart ?lineStart ;
+      cacontology-synthesis:lineEnd ?lineEnd .
+  ?artifact uco-core:hasFacet ?ff .
+  ?ff a uco-observable:FileFacet ;
+      uco-observable:filePath ?filePath .
+} ORDER BY ?claimLabel ?lineStart
+
+# Q21: Legal instruments and the jurisdictions they influenced (as modeled)
+SELECT ?inst ?instLabel ?jur ?jurLabel WHERE {
+  ?inst cacontology-synthesis:influencedJurisdiction ?jur ;
+        rdfs:label ?instLabel .
+  ?jur rdfs:label ?jurLabel .
+} ORDER BY ?instLabel ?jurLabel
+
+# Q24: Recommendation evidence integrity (number should match quote marker)
+SELECT ?rec ?num ?lineStart ?lineEnd ?quote WHERE {
+  ?rec a cacontology-synthesis:Recommendation ;
+       cacontology-synthesis:recommendationNumber ?num ;
+       cacontology-synthesis:supportedByEvidencePointer ?ep .
+  ?ep cacontology-synthesis:lineStart ?lineStart ;
+      cacontology-synthesis:lineEnd ?lineEnd ;
+      cacontology-synthesis:exactQuote ?quote .
+  BIND(CONCAT("recommendation ", STR(?num), ":") AS ?needle)
+  FILTER(!CONTAINS(LCASE(STR(?quote)), ?needle))
+}
+
+# Q25: Report-direct distribution observations via hasObservation shortcut
+SELECT ?report ?reportLabel ?obs ?obsLabel ?count ?denom WHERE {
+  ?report a cacontology-synthesis:Report ;
+          rdfs:label ?reportLabel ;
+          cacontology-synthesis:hasObservation ?obs .
+  ?obs a cacontology-synthesis:DistributionObservation ;
+       rdfs:label ?obsLabel ;
+       cacontology-synthesis:count ?count ;
+       cacontology-synthesis:denominator ?denom .
+} ORDER BY ?reportLabel DESC(?count)
+
+# Q26: Action-shape sanity check (missing performer/object/startTime)
+SELECT ?action WHERE {
+  ?action a ?actionType .
+  FILTER(?actionType IN (uco-action:Action, investigation:InvestigativeAction))
+  {
+    FILTER NOT EXISTS { ?action uco-action:performer ?performer . }
+  } UNION {
+    FILTER NOT EXISTS { ?action uco-action:object ?object . }
+  } UNION {
+    FILTER NOT EXISTS { ?action uco-action:startTime ?startTime . }
+  }
+}

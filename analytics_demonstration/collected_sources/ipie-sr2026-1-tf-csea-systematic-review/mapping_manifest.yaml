@@ -1,0 +1,815 @@
+documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+caseId: "ipie-sr2026-1-tf-csea-systematic-review"
+concepts:
+  -
+    conceptName: "Source Document (PDF)"
+    instanceUUID: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+    class: "uco-observable:ObservableObject"
+    facets:
+      - "uco-observable:ContentDataFacet"
+      - "uco-observable:FileFacet"
+      - "uco-observable:HashFacet"
+    relationships:
+      -
+        predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:05c43e7c-90de-4edf-bdea-d5b3d22c8804"
+      -
+        predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:564b460b-ccf9-4bd2-bc08-7e87d1f5082b"
+      -
+        predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:82c0ca23-b0ca-4c5f-ac32-506940908ff0"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "6992e1611ee3b0705bf51862_SR2026.1 - CPSM - Final Report.pdf (raw artifact)"
+      quote: "Detecting, Deterring, Investigating, and Prosecuting Technology-Facilitated Child Sexual Exploitation and Sexual Abuse"
+    confidence: "high"
+  -
+    conceptName: "Extracted Text Artifact (source.txt)"
+    instanceUUID: "urn:uuid:943a1319-3420-470a-bbc0-3126d1642147"
+    class: "uco-observable:ObservableObject"
+    facets:
+      - "uco-observable:ContentDataFacet"
+      - "uco-observable:FileFacet"
+      - "uco-observable:HashFacet"
+    relationships:
+      -
+        predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:8fb1419c-7168-409e-b41b-dcdec53d15b8"
+      -
+        predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:489e4403-63a5-4c62-96ca-6ef0206bc4b9"
+      -
+        predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:15318fb6-af7e-42e8-b3a0-c750fa5d9d88"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "analytics_demonstration/collected_sources/ipie-sr2026-1-tf-csea-systematic-review/source.txt"
+      quote: "PDF-to-text extraction capture"
+    confidence: "high"
+  -
+    conceptName: "Normalized Text Artifact (normalized.txt)"
+    instanceUUID: "urn:uuid:9048a300-05a1-495c-bdb3-c19a7f06cdb9"
+    class: "uco-observable:ObservableObject"
+    facets:
+      - "uco-observable:ContentDataFacet"
+      - "uco-observable:FileFacet"
+      - "uco-observable:HashFacet"
+    relationships:
+      -
+        predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:2c2e2655-b1fd-4fea-8049-a8c689150a3f"
+      -
+        predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:e05f8fb9-be39-4080-a066-736a6663cbba"
+      -
+        predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:e4db7ecb-4cb2-4b2b-9405-6c9e57b6e0e1"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "generated artifact"
+      quote: "pdf_to_text + whitespace normalization + paragraph-per-line normalization"
+    confidence: "high"
+  -
+    conceptName: "Organization (as reported): UNICEF"
+    instanceUUID: "urn:uuid:33923540-eddf-4dad-bbd5-a81deed3fc64"
+    class: "uco-identity:Organization"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 37"
+      quote: "UNICEF"
+    confidence: "medium"
+  -
+    conceptName: "Organization (as reported): WeProtect Global Alliance"
+    instanceUUID: "urn:uuid:11f6400a-2925-43ac-967d-06a7dbc83c5a"
+    class: "uco-identity:Organization"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 37"
+      quote: "WeProtect Global Alliance"
+    confidence: "medium"
+  -
+    conceptName: "Organization (as reported): INTERPOL"
+    instanceUUID: "urn:uuid:3198d27d-844f-44b1-bc3b-281a819993de"
+    class: "uco-identity:Organization"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 41"
+      quote: "INTERPOL"
+    confidence: "medium"
+  -
+    conceptName: "Organization (as reported): Europol"
+    instanceUUID: "urn:uuid:56a3b6a1-97b2-4b86-a5e8-d11a753a6ce8"
+    class: "uco-identity:Organization"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 41"
+      quote: "Europol"
+    confidence: "medium"
+  -
+    conceptName: "Organization (as reported): National Center for Missing & Exploited Children (NCMEC)"
+    instanceUUID: "urn:uuid:18aa9bd4-5aee-44f5-b636-b111c67be307"
+    class: "uco-identity:Organization"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 41"
+      quote: "National Center for Missing & Exploited Children (NCMEC)"
+    confidence: "medium"
+  -
+    conceptName: "Organization (as reported): Internet Watch Foundation (IWF)"
+    instanceUUID: "urn:uuid:09253ee4-f5a6-4cf7-9d62-7e30e6f410b4"
+    class: "uco-identity:Organization"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 41"
+      quote: "Internet Watch Foundation (IWF)"
+    confidence: "medium"
+  -
+    conceptName: "Organization (as reported): ECPAT"
+    instanceUUID: "urn:uuid:9d9729f2-0af2-4524-a92e-1dd49c33253d"
+    class: "uco-identity:Organization"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 41"
+      quote: "ECPAT"
+    confidence: "medium"
+  -
+    conceptName: "Statement: TF-CSEA definition"
+    instanceUUID: "urn:uuid:bd6d238b-0705-42b4-9706-74dadd572fc5"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 12"
+      quote: "Technology-facilitated child sexual exploitation and sexual abuse (TF-CSEA) is an"
+    confidence: "high"
+  -
+    conceptName: "Statement: CyberTipline growth (online enticement / sextortion / GenAI)"
+    instanceUUID: "urn:uuid:45eb9c40-8c27-4b48-b9e8-a8d0afb5688e"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 49"
+      quote: "CyberTipline report, online enticement rose"
+    confidence: "high"
+  -
+    conceptName: "Finding 1 (as reported)"
+    instanceUUID: "urn:uuid:11b67d42-b624-409d-8a34-78430d4de6f8"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 15"
+      quote: "Most interventions focus on detecting abuse after it occurs"
+    confidence: "high"
+  -
+    conceptName: "Finding 2 (as reported)"
+    instanceUUID: "urn:uuid:8396661b-d7f9-42f1-b001-5b6f90b4f4f2"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 15"
+      quote: "Technical tools reduce harm at scale"
+    confidence: "high"
+  -
+    conceptName: "Finding 3 (as reported)"
+    instanceUUID: "urn:uuid:9a89b5e5-bdd2-412a-9684-1123e8344091"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 15"
+      quote: "Behavioral and educational interventions reduce risk"
+    confidence: "high"
+  -
+    conceptName: "Finding 4 (as reported)"
+    instanceUUID: "urn:uuid:c9111a52-c760-4fb3-8b7a-be355d3bea94"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 15"
+      quote: "Financial systems are the most underused leverage point"
+    confidence: "high"
+
+  -
+    conceptName: "Systematic review methodology (as reported)"
+    instanceUUID: "urn:uuid:8eeddee8-5795-5df5-97ae-780e7354ed32"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt lines 53-78"
+      quote: "systematic review follows PRISMA; search range Jan 2015 to July 2025; databases Web of Science, ACM Digital Library, OpenAlex"
+    confidence: "high"
+
+  -
+    conceptName: "Rayyan platform (as reported)"
+    instanceUUID: "urn:uuid:281647a7-439c-56cd-ab8a-9c1cb56529ef"
+    class: "uco-core:UcoObject"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 65"
+      quote: "uploaded to Rayyan"
+    confidence: "high"
+
+  -
+    conceptName: "PRISMA/Rayyan flow counts (as reported)"
+    instanceUUID: "urn:uuid:a0565ee7-bf7d-582f-861b-6315fd3e6578"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:281647a7-439c-56cd-ab8a-9c1cb56529ef"
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt lines 65-70"
+      quote: "1,003 uploaded; 145 duplicates removed; 834 academic + 21 org reports screened; 86 academic + 18 org reports included"
+    confidence: "high"
+
+  -
+    conceptName: "Intervention type: technological tools and protocols"
+    instanceUUID: "urn:uuid:f0f11050-ecab-5041-9bfe-c13f00c21b4d"
+    class: "uco-core:UcoObject"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 86"
+      quote: "Technological tools and protocols ... hashing and voice analysis"
+    confidence: "high"
+
+  -
+    conceptName: "Distribution: technological tools and protocols (n=36)"
+    instanceUUID: "urn:uuid:94385e8e-608b-5f5c-8318-6f0864817eae"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:f0f11050-ecab-5041-9bfe-c13f00c21b4d"
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 86"
+      quote: "Technological tools and protocols (n = 36)"
+    confidence: "high"
+
+  -
+    conceptName: "Intervention type: policing and investigation"
+    instanceUUID: "urn:uuid:55cd3278-396f-58ef-8b36-f5d4a81a007b"
+    class: "uco-core:UcoObject"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 86"
+      quote: "policing and investigation"
+    confidence: "high"
+
+  -
+    conceptName: "Distribution: policing and investigation (n=21)"
+    instanceUUID: "urn:uuid:bbb4f1a3-30d1-5891-b09b-7a1707fc3156"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:55cd3278-396f-58ef-8b36-f5d4a81a007b"
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 86"
+      quote: "policing and investigation (n = 21)"
+    confidence: "high"
+
+  -
+    conceptName: "Intervention type: behavioral interventions"
+    instanceUUID: "urn:uuid:cecc66c1-23a7-5ee4-9e12-b87034e74f12"
+    class: "uco-core:UcoObject"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 90"
+      quote: "behavioral interventions"
+    confidence: "high"
+
+  -
+    conceptName: "Distribution: behavioral interventions (n=12)"
+    instanceUUID: "urn:uuid:9efe637a-7c83-5395-8da3-c12a5171796f"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:cecc66c1-23a7-5ee4-9e12-b87034e74f12"
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 90"
+      quote: "both with 12 items"
+    confidence: "high"
+
+  -
+    conceptName: "Intervention type: legal and regulatory interventions"
+    instanceUUID: "urn:uuid:694532de-382c-5116-84d9-3320b45d299a"
+    class: "uco-core:UcoObject"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt lines 90-96"
+      quote: "legal duties for service providers; CSA regulation proposal; DSA"
+    confidence: "high"
+
+  -
+    conceptName: "Distribution: legal/regulatory interventions (n=12)"
+    instanceUUID: "urn:uuid:c23cb510-f99c-596f-a2b8-ac298ecfc81d"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:694532de-382c-5116-84d9-3320b45d299a"
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 90"
+      quote: "legal and regulatory interventions"
+    confidence: "high"
+
+  -
+    conceptName: "Operations distribution (ranked)"
+    instanceUUID: "urn:uuid:fdbc3a4f-41ba-5fa2-bfa6-2015573f9f8b"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt lines 99-104"
+      quote: "online dominates; hybrid second; offline least discussed"
+    confidence: "high"
+
+  -
+    conceptName: "Objectives distribution (ranked) + gaps"
+    instanceUUID: "urn:uuid:30bdb66c-763b-5ba1-b41d-ce9d02c65958"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:df73f482-bc62-5db0-914d-0967b892f28c"
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:cd3431a3-9f50-5cb9-aee8-77c674b48b6d"
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt lines 108-114"
+      quote: "policing effectiveness, CSAM detection; gaps for judiciary and parents"
+    confidence: "high"
+
+  -
+    conceptName: "Locus distribution (counts + tail)"
+    instanceUUID: "urn:uuid:646b609b-b67e-5013-95c9-8770f7c36a45"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:5eae945f-5b2f-52df-82dc-f033ad52a6ca"
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:0a2e02d4-671f-5c7b-8273-68a762388d51"
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt lines 118-123"
+      quote: "detection/investigation (n=28); ... grooming (n=13); digital payment systems (n=1)"
+    confidence: "high"
+
+  -
+    conceptName: "Legal instrument: Lanzarote Convention"
+    instanceUUID: "urn:uuid:bb711ed6-a4c5-5f7a-a858-fc8e8f017d3f"
+    class: "cacontology-legal:TreatyFramework"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt lines 24, 165-169"
+      quote: "Lanzarote Convention"
+    confidence: "high"
+
+  -
+    conceptName: "Legal instrument: EU Digital Services Act (2022)"
+    instanceUUID: "urn:uuid:49860627-2cd8-5e18-a4c6-20c5c64e6f42"
+    class: "cacontology-legal:LegalReform"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt lines 169, 185"
+      quote: "EU Digital Services Act 2022"
+    confidence: "high"
+
+  -
+    conceptName: "Promising tool: PhotoDNA"
+    instanceUUID: "urn:uuid:2ecdd681-354f-5e3d-97f5-e4c245bd9a6f"
+    class: "cacontology-detection:ContentHashingTool"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt lines 157-161"
+      quote: "PhotoDNA"
+    confidence: "high"
+
+  -
+    conceptName: "Recommendations set (1-6)"
+    instanceUUID: "urn:uuid:604200cd-ecd0-5b15-9c48-66b9419c6b8a"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:2f4c1e80-3054-56c0-80e5-4723050a788c"
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:7133f01c-e4cf-5454-b707-42c4eff84885"
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:e0b98b79-de83-5fa4-9ac7-d2c90d69447f"
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:f62b7235-c5dc-5648-80ec-46b005d51d95"
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:6d8dc97b-d9d6-5e44-9286-08f14fb8b7c6"
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:300c730d-83cc-5913-9756-2387f16c786f"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt lines 193-209"
+      quote: "Recommendation 1 ... Recommendation 6"
+    confidence: "high"
+
+  -
+    conceptName: "Recommendation 1: evidence repositories (as reported)"
+    instanceUUID: "urn:uuid:2f4c1e80-3054-56c0-80e5-4723050a788c"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 193"
+      quote: "Recommendation 1"
+    confidence: "high"
+
+  -
+    conceptName: "Recommendation 2: safe CSAM data collaboration (as reported)"
+    instanceUUID: "urn:uuid:7133f01c-e4cf-5454-b707-42c4eff84885"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt lines 197-198"
+      quote: "Recommendation 2"
+    confidence: "high"
+
+  -
+    conceptName: "Recommendation 3: LEA capacity building (as reported)"
+    instanceUUID: "urn:uuid:e0b98b79-de83-5fa4-9ac7-d2c90d69447f"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt lines 201-201"
+      quote: "Recommendation 3"
+    confidence: "high"
+
+  -
+    conceptName: "Recommendation 4: harmonize sanctions + extraterritorial enforcement (as reported)"
+    instanceUUID: "urn:uuid:f62b7235-c5dc-5648-80ec-46b005d51d95"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt lines 201-205"
+      quote: "Recommendation 4"
+    confidence: "high"
+
+  -
+    conceptName: "Recommendation 5: financial reporting + disruption obligations (as reported)"
+    instanceUUID: "urn:uuid:6d8dc97b-d9d6-5e44-9286-08f14fb8b7c6"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt lines 205-206"
+      quote: "Recommendation 5"
+    confidence: "high"
+
+  -
+    conceptName: "Recommendation 6: recalibrate funding (as reported)"
+    instanceUUID: "urn:uuid:300c730d-83cc-5913-9756-2387f16c786f"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt lines 205-209"
+      quote: "Recommendation 6"
+    confidence: "high"
+
+  -
+    conceptName: "Legal instrument: UNCRC (1989)"
+    instanceUUID: "urn:uuid:7c1ad5c5-0e9d-5f20-8fff-3b676ecb1c9f"
+    class: "cacontology-legal:InternationalStandard"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 24"
+      quote: "United Nations Convention on the Rights of the Child (UNCRC)"
+    confidence: "high"
+
+  -
+    conceptName: "Legal instrument: ILO Convention No. 182 (1999)"
+    instanceUUID: "urn:uuid:791a2ae1-5c04-54ac-8ea4-5814820cb4e6"
+    class: "cacontology-legal:InternationalStandard"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 24"
+      quote: "Worst Forms of Child Labour Convention, 1999 (Convention No. 182)"
+    confidence: "high"
+
+  -
+    conceptName: "Legal instrument: UN Convention against Cybercrime (2024)"
+    instanceUUID: "urn:uuid:a936c2ec-0c06-54a4-bae5-2f73320e0932"
+    class: "cacontology-legal:TreatyFramework"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 24"
+      quote: "UN Convention against Cybercrime, 2024"
+    confidence: "high"
+
+  -
+    conceptName: "Legal instrument: EU Directive 2011/93/EU"
+    instanceUUID: "urn:uuid:7014e6c8-1a8a-5d2c-bc22-34245317666f"
+    class: "cacontology-legal:InternationalStandard"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 41"
+      quote: "Directive 2011/93/EU"
+    confidence: "high"
+
+  -
+    conceptName: "Legal instrument: Australian Online Safety Act (2021)"
+    instanceUUID: "urn:uuid:9659287a-bea3-54fa-970c-5dba1fdc21a8"
+    class: "cacontology-legal:LegalReform"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 169"
+      quote: "Australian Online Safety Act 2021"
+    confidence: "high"
+
+  -
+    conceptName: "Legal instrument: UK Online Safety Act (2023)"
+    instanceUUID: "urn:uuid:26e80b29-49a8-5eb6-a57d-b25580c1a149"
+    class: "cacontology-legal:LegalReform"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 169"
+      quote: "UK Online Safety Act 2023"
+    confidence: "high"
+
+  -
+    conceptName: "Cross-functional linkage: technical ↔ policing/investigation"
+    instanceUUID: "urn:uuid:88c4ea8f-b441-57e5-888c-e82c1ba776b5"
+    class: "uco-action:Action"
+    facets: []
+    relationships:
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:f0f11050-ecab-5041-9bfe-c13f00c21b4d"
+      -
+        predicate: "uco-action:object"
+        targetUUID: "urn:uuid:55cd3278-396f-58ef-8b36-f5d4a81a007b"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt lines 86-90, 193-195"
+      quote: "technical tools and policing/investigation are often interrelated"
+    confidence: "high"
+
+  -
+    conceptName: "Promising tool: Thorn Safer Predict"
+    instanceUUID: "urn:uuid:f30732e6-8890-560d-8cb2-01e321793d3e"
+    class: "cacontology-detection:MachineLearningDetectionTool"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt lines 157-161"
+      quote: "Thorn’s Safer Predict"
+    confidence: "high"
+
+  -
+    conceptName: "Promising tool: IWF URL and Hash list"
+    instanceUUID: "urn:uuid:b93f324f-d7fe-59bb-9c30-78dadfb222b0"
+    class: "cacontology-detection:DatabaseMatchingTool"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt lines 157-161"
+      quote: "IWF’s URL and Hash list"
+    confidence: "high"
+
+  -
+    conceptName: "Promising intervention: Stop It Now! helpline"
+    instanceUUID: "urn:uuid:30972372-d5d3-5baa-9e2b-d47b37e3ee93"
+    class: "uco-core:UcoObject"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 177"
+      quote: "Stop It Now!"
+    confidence: "high"
+
+  -
+    conceptName: "Promising intervention: EVAC educational game"
+    instanceUUID: "urn:uuid:40218f50-4cff-573e-a12c-32dfa5b4e286"
+    class: "cacontology-prevention:PublicAwareness"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt lines 181-189"
+      quote: "EVAC game"
+    confidence: "high"
+
+  -
+    conceptName: "Report Section: Synopsis"
+    instanceUUID: "urn:uuid:d6332cae-6b55-584e-acb0-d512d68521c8"
+    class: "cacontology-synthesis:ReportSection"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt lines 11-16"
+      quote: "SYNOPSIS"
+    confidence: "medium"
+
+  -
+    conceptName: "Evidence Pointer (normalized.txt 86)"
+    instanceUUID: "urn:uuid:d3090399-7be9-5709-8e13-089236ca7a77"
+    class: "cacontology-synthesis:TextEvidencePointer"
+    facets: []
+    relationships:
+      -
+        predicate: "cacontology-synthesis:referencesArtifact"
+        targetUUID: "urn:uuid:9048a300-05a1-495c-bdb3-c19a7f06cdb9"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 86"
+      quote: "Technological tools and protocols (n = 36) ... policing and investigation (n = 21)"
+    confidence: "high"
+
+  -
+    conceptName: "Key Finding 1 (structured)"
+    instanceUUID: "urn:uuid:50627a0e-879b-56a8-ba01-ad912abb59a6"
+    class: "cacontology-synthesis:KeyFinding"
+    facets: []
+    relationships:
+      -
+        predicate: "cacontology-synthesis:assertedInSection"
+        targetUUID: "urn:uuid:d6332cae-6b55-584e-acb0-d512d68521c8"
+      -
+        predicate: "cacontology-synthesis:supportedByEvidencePointer"
+        targetUUID: "urn:uuid:1a663863-5089-5780-9f4e-3c3fa48e01e3"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt line 15"
+      quote: "Most interventions focus on detecting abuse after it occurs."
+    confidence: "high"
+
+  -
+    conceptName: "Intervention Type Frequency: Technological tools and protocols (n=36/104)"
+    instanceUUID: "urn:uuid:823446d4-00bb-51f9-bc17-70a31fbac90c"
+    class: "cacontology-synthesis:DistributionObservation"
+    facets: []
+    relationships:
+      -
+        predicate: "cacontology-synthesis:category"
+        targetUUID: "urn:uuid:f0f11050-ecab-5041-9bfe-c13f00c21b4d"
+      -
+        predicate: "cacontology-synthesis:derivedFromFigure"
+        targetUUID: "urn:uuid:b29c1d40-1e33-5a46-95c3-4dd42db5fb34"
+      -
+        predicate: "cacontology-synthesis:supportedByEvidencePointer"
+        targetUUID: "urn:uuid:d3090399-7be9-5709-8e13-089236ca7a77"
+    evidencePointer:
+      documentId: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+      span: "normalized.txt lines 86-91"
+      quote: "Figure 3 ... n = 104"
+    confidence: "high"

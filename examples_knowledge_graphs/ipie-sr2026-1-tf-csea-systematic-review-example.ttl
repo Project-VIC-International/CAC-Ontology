@@ -1,0 +1,1169 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
+@prefix investigation: <https://ontology.caseontology.org/case/investigation/> .
+
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-detection: <https://cacontology.projectvic.org/detection#> .
+@prefix cacontology-prevention: <https://cacontology.projectvic.org/prevention#> .
+@prefix cacontology-legal: <https://cacontology.projectvic.org/legal-harmonization#> .
+@prefix cacontology-multi: <https://cacontology.projectvic.org/multi-jurisdiction#> .
+@prefix cacontology-synthesis: <https://cacontology.projectvic.org/synthesis#> .
+
+@prefix ex: <urn:uuid:> .
+
+# =============================================================================
+# IPIE Synthesis Report SR2026.1 (collection + provenance)
+# Source: local PDF `6992e1611ee3b0705bf51862_SR2026.1 - CPSM - Final Report.pdf`
+# DOI: 10.61452/UZUS7376
+# Collected: 2026-02-20T00:55:36Z (UTC)
+# =============================================================================
+
+ex:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee a uco-observable:ObservableObject ;
+    rdfs:label "IPIE Synthesis Report SR2026.1: Detecting, Deterring, Investigating, and Prosecuting TF-CSEA (PDF)"@en ;
+    uco-core:hasFacet ex:05c43e7c-90de-4edf-bdea-d5b3d22c8804 ;
+    uco-core:hasFacet ex:564b460b-ccf9-4bd2-bc08-7e87d1f5082b ;
+    uco-core:hasFacet ex:82c0ca23-b0ca-4c5f-ac32-506940908ff0 .
+
+ex:05c43e7c-90de-4edf-bdea-d5b3d22c8804 a uco-observable:ContentDataFacet ;
+    uco-observable:mimeType "application/pdf" ;
+    uco-observable:sizeInBytes "3053511"^^xsd:integer .
+
+ex:564b460b-ccf9-4bd2-bc08-7e87d1f5082b a uco-observable:FileFacet ;
+    uco-observable:filePath "6992e1611ee3b0705bf51862_SR2026.1 - CPSM - Final Report.pdf" .
+
+ex:82c0ca23-b0ca-4c5f-ac32-506940908ff0 a uco-observable:HashFacet ;
+    uco-observable:hash ex:cfb2c6f4-7e02-45bc-bc96-0a3375ac9929 .
+
+ex:cfb2c6f4-7e02-45bc-bc96-0a3375ac9929 a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "2742d6bdd868928fc37d89a59a2315fbb3c80f3bb4ea5da73e7534782efd11d1" .
+
+ex:f830548c-dc51-534c-9eee-64aceae0bb23 a uco-core:UcoObject, uco-identity:Identity ;
+    rdfs:label "CAC Ontology Collection Agent (Cursor)"@en ;
+    uco-core:description "Automated assistant performing collection and preprocessing for CAC Ontology ingestion."@en .
+
+ex:59d971fc-b8de-41d7-80a4-96fafa4db00f a investigation:InvestigativeAction ;
+    rdfs:label "Collection action: IPIE SR2026.1 PDF"@en ;
+    uco-action:startTime "2026-02-20T00:55:36Z"^^xsd:dateTime ;
+    uco-action:performer ex:f830548c-dc51-534c-9eee-64aceae0bb23 ;
+    uco-action:object ex:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee ;
+    uco-core:description "Collected via local PDF present in workspace."@en .
+
+ex:9c77ca22-41af-49ca-aec7-24c2634de525 a uco-action:Action ;
+    rdfs:label "Normalization action: PDF to source.txt and normalized.txt"@en ;
+    uco-action:startTime "2026-02-20T00:55:36Z"^^xsd:dateTime ;
+    uco-action:performer ex:f830548c-dc51-534c-9eee-64aceae0bb23 ;
+    uco-action:object ex:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee ;
+    uco-action:result ex:943a1319-3420-470a-bbc0-3126d1642147 ;
+    uco-action:result ex:9048a300-05a1-495c-bdb3-c19a7f06cdb9 ;
+    uco-core:description "pdf_to_text (pypdf) + whitespace normalization + paragraph-per-line normalization for stable evidence pointers."@en .
+
+ex:943a1319-3420-470a-bbc0-3126d1642147 a uco-observable:ObservableObject ;
+    rdfs:label "Extracted text: IPIE SR2026.1 (source.txt)"@en ;
+    uco-core:hasFacet ex:8fb1419c-7168-409e-b41b-dcdec53d15b8 ;
+    uco-core:hasFacet ex:489e4403-63a5-4c62-96ca-6ef0206bc4b9 ;
+    uco-core:hasFacet ex:15318fb6-af7e-42e8-b3a0-c750fa5d9d88 .
+
+ex:8fb1419c-7168-409e-b41b-dcdec53d15b8 a uco-observable:ContentDataFacet ;
+    uco-observable:mimeType "text/plain" ;
+    uco-observable:sizeInBytes "172816"^^xsd:integer .
+
+ex:489e4403-63a5-4c62-96ca-6ef0206bc4b9 a uco-observable:FileFacet ;
+    # Relative filePath values are resolved from the CAC-Ontology repository root.
+    uco-observable:filePath "analytics_demonstration/collected_sources/ipie-sr2026-1-tf-csea-systematic-review/source.txt" .
+
+ex:15318fb6-af7e-42e8-b3a0-c750fa5d9d88 a uco-observable:HashFacet ;
+    uco-observable:hash ex:51bb3321-c2dc-4e78-a083-4baa740f8c9c .
+
+ex:51bb3321-c2dc-4e78-a083-4baa740f8c9c a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "c9480ad838a8b136c559819ffdec8866d6fc68ef954b070d68c9d9a748964c4e" .
+
+ex:9048a300-05a1-495c-bdb3-c19a7f06cdb9 a uco-observable:ObservableObject ;
+    rdfs:label "Normalized text: IPIE SR2026.1 (normalized.txt)"@en ;
+    cacontology-synthesis:lineNumbering "1-based"^^xsd:string ;
+    cacontology-synthesis:lineNumberStart "1"^^xsd:integer ;
+    uco-core:hasFacet ex:2c2e2655-b1fd-4fea-8049-a8c689150a3f ;
+    uco-core:hasFacet ex:e05f8fb9-be39-4080-a066-736a6663cbba ;
+    uco-core:hasFacet ex:e4db7ecb-4cb2-4b2b-9405-6c9e57b6e0e1 .
+
+ex:2c2e2655-b1fd-4fea-8049-a8c689150a3f a uco-observable:ContentDataFacet ;
+    uco-observable:mimeType "text/plain" ;
+    uco-observable:sizeInBytes "165808"^^xsd:integer .
+
+ex:e05f8fb9-be39-4080-a066-736a6663cbba a uco-observable:FileFacet ;
+    uco-observable:filePath "analytics_demonstration/collected_sources/ipie-sr2026-1-tf-csea-systematic-review/normalized.txt" .
+
+ex:e4db7ecb-4cb2-4b2b-9405-6c9e57b6e0e1 a uco-observable:HashFacet ;
+    uco-observable:hash ex:f4b66f9b-6e48-401d-b755-cd6ff4741a9a .
+
+ex:f4b66f9b-6e48-401d-b755-cd6ff4741a9a a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "ad6ec4e6df1b4daedef16414a1230c27cd18e8e477d11cf3b79789fcef0a5dfd" .
+
+ex:f65a98e8-a659-48e8-aa0c-6df3552d19cb a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance record: collection of IPIE SR2026.1 PDF"@en ;
+    investigation:exhibitNumber "DOC-IPIE-SR2026-1-0001" ;
+    uco-core:object ex:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee ;
+    investigation:provenanceRecordAction ex:59d971fc-b8de-41d7-80a4-96fafa4db00f .
+
+# =============================================================================
+# Minimal in-scope nodes (connected; policy/research source)
+# =============================================================================
+
+ex:33923540-eddf-4dad-bbd5-a81deed3fc64 a uco-identity:Organization ;
+    rdfs:label "UNICEF"@en .
+
+ex:11f6400a-2925-43ac-967d-06a7dbc83c5a a uco-identity:Organization ;
+    rdfs:label "WeProtect Global Alliance"@en .
+
+ex:3198d27d-844f-44b1-bc3b-281a819993de a uco-identity:Organization ;
+    rdfs:label "INTERPOL"@en .
+
+ex:56a3b6a1-97b2-4b86-a5e8-d11a753a6ce8 a uco-identity:Organization ;
+    rdfs:label "Europol"@en .
+
+ex:18aa9bd4-5aee-44f5-b636-b111c67be307 a uco-identity:Organization ;
+    rdfs:label "National Center for Missing & Exploited Children (NCMEC)"@en .
+
+ex:09253ee4-f5a6-4cf7-9d62-7e30e6f410b4 a uco-identity:Organization ;
+    rdfs:label "Internet Watch Foundation (IWF)"@en .
+
+ex:9d9729f2-0af2-4524-a92e-1dd49c33253d a uco-identity:Organization ;
+    rdfs:label "ECPAT"@en .
+
+ex:151f1aba-6c63-439a-806c-cb7572be99ba a cacontology-synthesis:Claim ;
+    rdfs:label "TF-CSEA definition (as reported)"@en ;
+    cacontology-synthesis:about ex:797e4cbb-9f30-5f30-8170-d398d12de867 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:adcddab3-6e0c-528b-9f33-482434e659ca ;
+    uco-core:description "Definition statement for TF-CSEA as used by the report."@en .
+
+ex:24c345ed-60f8-483c-99a2-66ef6114259c a cacontology-synthesis:Claim ;
+    rdfs:label "CyberTipline growth statistics (as reported)"@en ;
+    cacontology-synthesis:about ex:ba09db7a-133c-50ff-8720-7f49d526cb9e ;
+    cacontology-synthesis:about ex:797e4cbb-9f30-5f30-8170-d398d12de867 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:d40bcf5d-aefa-5fe3-a13d-741295c074fc ;
+    uco-core:description "Claim that report-level statistics indicate growth in CyberTipline-relevant reporting trends."@en .
+
+
+# =============================================================================
+# Comprehensive modeling: intervention distributions, legal instruments,
+# cross-functional linkages, stakeholders, promising interventions, challenges,
+# and recommendations (grounded in normalized.txt)
+# =============================================================================
+
+# --- Systematic review workflow (PRISMA / sampling / coding) -------------------
+
+ex:8eeddee8-5795-5df5-97ae-780e7354ed32 a cacontology-synthesis:MethodologyStatement ;
+    rdfs:label "Systematic review methodology (as reported)"@en ;
+    cacontology-synthesis:about ex:797e4cbb-9f30-5f30-8170-d398d12de867 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:4abdd542-2958-5659-8d76-baad0bce866e ;
+    uco-core:description "Method statement: the review follows a systematic methodology with PRISMA-aligned workflow and defined source/time boundaries."@en .
+
+ex:281647a7-439c-56cd-ab8a-9c1cb56529ef a uco-core:UcoObject, uco-observable:ObservableObject ;
+    rdfs:label "Rayyan (systematic review management platform)"@en ;
+    uco-core:description "Evidence: normalized.txt line 65. Quote: 'uploaded to Rayyan, an AI-powered online platform'."@en .
+
+ex:a6675735-442f-55c9-8b78-9750274205c3 a uco-core:UcoObject ;
+    rdfs:label "Primary dataset: peer-reviewed publications (as reported)"@en ;
+    uco-core:description "Evidence: normalized.txt lines 70-74. Quote: 'Primary dataset: Peer-reviewed academic publications, reporting empirical research'."@en .
+
+ex:272aee76-0587-5ac6-a1dd-f3c5fa325127 a uco-core:UcoObject ;
+    rdfs:label "Secondary dataset: gray literature (as reported)"@en ;
+    uco-core:description "Evidence: normalized.txt lines 70-74. Quote: 'Secondary dataset: Gray literature (i.e., organizations’ reports)'."@en .
+
+ex:542beac7-f0e1-57ae-bab2-a5f239ccbe93 a uco-core:UcoObject, uco-observable:ObservableObject ;
+    rdfs:label "Database: Web of Science"@en ;
+    uco-core:description "Evidence: normalized.txt line 57. Quote: 'Web of Science'."@en .
+
+ex:cee7462a-c53f-5ddf-af1e-54246d6b72b1 a uco-core:UcoObject, uco-observable:ObservableObject ;
+    rdfs:label "Database: ACM Digital Library"@en ;
+    uco-core:description "Evidence: normalized.txt line 57. Quote: 'Association for Computing Machinery (ACM) Digital Library'."@en .
+
+ex:5ace7aad-0618-5715-90b9-1c2ca020fc53 a uco-core:UcoObject, uco-observable:ObservableObject ;
+    rdfs:label "Database: OpenAlex"@en ;
+    uco-core:description "Evidence: normalized.txt line 57. Quote: 'OpenAlex'."@en .
+
+ex:a0565ee7-bf7d-582f-861b-6315fd3e6578 a cacontology-synthesis:MethodologyStatement ;
+    rdfs:label "PRISMA/Rayyan flow counts (as reported)"@en ;
+    cacontology-synthesis:about ex:797e4cbb-9f30-5f30-8170-d398d12de867 ;
+    cacontology-synthesis:about ex:281647a7-439c-56cd-ab8a-9c1cb56529ef ;
+    cacontology-synthesis:about ex:a6675735-442f-55c9-8b78-9750274205c3 ;
+    cacontology-synthesis:about ex:272aee76-0587-5ac6-a1dd-f3c5fa325127 ;
+    cacontology-synthesis:about ex:542beac7-f0e1-57ae-bab2-a5f239ccbe93 ;
+    cacontology-synthesis:about ex:cee7462a-c53f-5ddf-af1e-54246d6b72b1 ;
+    cacontology-synthesis:about ex:5ace7aad-0618-5715-90b9-1c2ca020fc53 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:4abdd542-2958-5659-8d76-baad0bce866e ;
+    uco-core:description "Method statement summarizing PRISMA/Rayyan workflow counts and screened/included records."@en .
+
+# --- Intervention taxonomy: types + distribution ------------------------------
+
+ex:f0f11050-ecab-5041-9bfe-c13f00c21b4d a cacontology-synthesis:InterventionType ;
+    rdfs:label "Intervention type: technological tools and protocols"@en ;
+    uco-core:description "Coded intervention category for tools/protocols using digital applications, products, or services to detect, deter, or curb TF-CSEA."@en .
+
+ex:55cd3278-396f-58ef-8b36-f5d4a81a007b a cacontology-synthesis:InterventionType ;
+    rdfs:label "Intervention type: policing and investigation"@en ;
+    uco-core:description "Coded intervention category for law enforcement efforts to police, investigate, arrest, and prosecute TF-CSEA."@en .
+
+ex:cecc66c1-23a7-5ee4-9e12-b87034e74f12 a cacontology-synthesis:InterventionType ;
+    rdfs:label "Intervention type: behavioral interventions"@en ;
+    uco-core:description "Coded intervention category for interventions aimed at behavioral change (often potential or ex-offenders), including warnings and deterrent/therapeutic messaging."@en .
+
+ex:694532de-382c-5116-84d9-3320b45d299a a cacontology-synthesis:InterventionType ;
+    rdfs:label "Intervention type: legal and regulatory interventions"@en ;
+    uco-core:description "Coded intervention category for legal/regulatory measures (e.g., sanctions, duties, mandates, transparency requirements) addressing TF-CSEA."@en .
+
+ex:31af2cb8-c11c-5ecf-96cd-46a2bc4fa26e a cacontology-synthesis:InterventionType ;
+    rdfs:label "Intervention type: education, literacy, or awareness-raising campaigns"@en ;
+    uco-core:description "Coded intervention category for education/literacy/awareness-raising campaigns."@en .
+
+ex:231047f5-bbfe-5e0b-b6a2-12b8f25111c2 a cacontology-synthesis:InterventionType ;
+    rdfs:label "Intervention type: financial interventions"@en ;
+    uco-core:description "Coded intervention category for financial interventions (e.g., collaborations and reporting/disruption mechanisms involving financial institutions/payment services)."@en .
+
+
+# --- Intervention operations (domain of operation) ----------------------------
+
+ex:448e02a2-9e64-5ae0-b671-52dc952878c1 a uco-core:UcoObject ;
+    rdfs:label "Operation domain: online"@en ;
+    uco-core:description "Evidence: normalized.txt line 99. Quote: online operations dominated; online interventions most frequently mentioned."@en .
+
+ex:efb64ed0-a44a-5ca4-990f-56e2a878c4f7 a uco-core:UcoObject ;
+    rdfs:label "Operation domain: hybrid (online + offline)"@en ;
+    uco-core:description "Evidence: normalized.txt line 103. Quote: hybrid approaches were the second most common operations reported."@en .
+
+ex:0ece7039-924a-5186-b80a-bf1ab1850475 a uco-core:UcoObject ;
+    rdfs:label "Operation domain: offline single-agency"@en ;
+    uco-core:description "Evidence: normalized.txt line 103. Quote: offline single-agency among the least discussed."@en .
+
+ex:7d47a2ff-851b-5dcc-a59d-f5a085f6d43a a uco-core:UcoObject ;
+    rdfs:label "Operation domain: offline multi-agency"@en ;
+    uco-core:description "Evidence: normalized.txt line 103. Quote: offline multi-agency among the least discussed."@en .
+
+ex:fdbc3a4f-41ba-5fa2-bfa6-2015573f9f8b a cacontology-synthesis:Claim ;
+    rdfs:label "Operations distribution (ranked) (as reported)"@en ;
+    cacontology-synthesis:about ex:448e02a2-9e64-5ae0-b671-52dc952878c1 ;
+    cacontology-synthesis:about ex:efb64ed0-a44a-5ca4-990f-56e2a878c4f7 ;
+    cacontology-synthesis:about ex:0ece7039-924a-5186-b80a-bf1ab1850475 ;
+    cacontology-synthesis:about ex:7d47a2ff-851b-5dcc-a59d-f5a085f6d43a ;
+    cacontology-synthesis:about ex:797e4cbb-9f30-5f30-8170-d398d12de867 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:cd88def7-cb53-5704-89f5-7194fbd34881 ;
+    uco-core:description "Claim that operations are ranked online first, hybrid second, and offline modalities as the least discussed."@en .
+
+# --- Objectives + gaps ---------------------------------------------------------
+
+ex:575d947f-cae9-5a2c-8f1d-62b1445c2721 a uco-core:UcoObject ;
+    rdfs:label "Objective: improve effectiveness of policing and investigation"@en ;
+    uco-core:description "Evidence: normalized.txt line 108. Quote: most interventions geared towards making policing and investigation more effective."@en .
+
+ex:1e37276c-0143-5772-ad3f-b639c202652c a uco-core:UcoObject ;
+    rdfs:label "Objective: CSAM/livestreaming detection and analysis"@en ;
+    uco-core:description "Evidence: normalized.txt line 108. Quote: CSAM detection followed as a top objective; see Appendix A coding frame excerpt around normalized.txt line 295."@en .
+
+ex:ffbd8cd4-4a31-5f1a-84cb-b2f0c944c7fd a uco-core:UcoObject ;
+    rdfs:label "Objective: behavioral/attitude change among offenders"@en ;
+    uco-core:description "Evidence: normalized.txt line 108 and line 295. Quote: behavioral/attitude change for offenders is a common objective."@en .
+
+ex:a49f45bc-b74a-56a1-b6ad-f964727ee2c2 a uco-core:UcoObject ;
+    rdfs:label "Objective: integrate child online safety measures"@en ;
+    uco-core:description "Evidence: normalized.txt line 108. Quote: integration of child online safety measures mentioned six times in coded publications."@en .
+
+ex:df73f482-bc62-5db0-914d-0967b892f28c a cacontology-legal:LegalFrameworkGap ;
+    rdfs:label "Gap: interventions improving judiciary effectiveness (none reported)"@en ;
+    uco-core:description "Evidence: normalized.txt line 114. Quote: 'none of the interventions studied improved the judiciary’s effectiveness in handling TF-CSEA'."@en .
+
+ex:cd3431a3-9f50-5cb9-aee8-77c674b48b6d a uco-core:UcoObject ;
+    rdfs:label "Gap: interventions targeting behavioral/attitudinal change among parents (none reported)"@en ;
+    uco-core:description "Evidence: normalized.txt line 114. Quote: 'Nor do existing and available interventions serve the objective of behavioral or attitudinal change among parents'."@en .
+
+ex:30bdb66c-763b-5ba1-b41d-ce9d02c65958 a cacontology-synthesis:Claim ;
+    rdfs:label "Objectives distribution (ranked) + noted gaps (as reported)"@en ;
+    cacontology-synthesis:about ex:575d947f-cae9-5a2c-8f1d-62b1445c2721 ;
+    cacontology-synthesis:about ex:1e37276c-0143-5772-ad3f-b639c202652c ;
+    cacontology-synthesis:about ex:ffbd8cd4-4a31-5f1a-84cb-b2f0c944c7fd ;
+    cacontology-synthesis:about ex:a49f45bc-b74a-56a1-b6ad-f964727ee2c2 ;
+    cacontology-synthesis:about ex:df73f482-bc62-5db0-914d-0967b892f28c ;
+    cacontology-synthesis:about ex:cd3431a3-9f50-5cb9-aee8-77c674b48b6d ;
+    cacontology-synthesis:about ex:797e4cbb-9f30-5f30-8170-d398d12de867 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:cd88def7-cb53-5704-89f5-7194fbd34881 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:e5f0c839-3bc3-5da6-b578-901c0f45ab37 ;
+    uco-core:description "Claim summarizing ranked intervention objectives and explicitly reported objective-level gaps."@en .
+
+# --- Locus within the TF-CSEA ecosystem (counts) ------------------------------
+
+ex:5eae945f-5b2f-52df-82dc-f033ad52a6ca a cacontology-synthesis:InterventionLocus ;
+    rdfs:label "Intervention locus: detection and investigation"@en ;
+    uco-core:description "Locus category in the TF-CSEA ecosystem/offending chain coding (detection and investigation)."@en .
+
+ex:376a8f85-05ff-5ac5-97ed-99018b0489e0 a cacontology-synthesis:InterventionLocus ;
+    rdfs:label "Intervention locus: CSAM generation, storage, and distribution"@en ;
+    uco-core:description "Locus category in the TF-CSEA ecosystem/offending chain coding (CSAM generation, storage, and distribution)."@en .
+
+ex:67a85cd9-536d-51a3-a537-c15888110bf9 a cacontology-synthesis:InterventionLocus ;
+    rdfs:label "Intervention locus: sexual offending"@en ;
+    uco-core:description "Locus category in the TF-CSEA ecosystem/offending chain coding (sexual offending)."@en .
+
+ex:f9dcd17d-e952-55d0-8941-c216eb0490bd a cacontology-synthesis:InterventionLocus ;
+    rdfs:label "Intervention locus: promotion of online safety"@en ;
+    uco-core:description "Locus category in the TF-CSEA ecosystem/offending chain coding (promotion of online safety)."@en .
+
+ex:997965d5-43e0-5d59-9dd9-3448c476b49b a cacontology-synthesis:InterventionLocus ;
+    rdfs:label "Intervention locus: grooming"@en ;
+    uco-core:description "Locus category in the TF-CSEA ecosystem/offending chain coding (grooming)."@en .
+
+ex:282884bb-78d5-5d41-82e5-41ec87853574 a cacontology-synthesis:InterventionLocus ;
+    rdfs:label "Intervention locus: prosecution (low frequency)"@en ;
+    uco-core:description "Locus category in the TF-CSEA ecosystem coding (prosecution; low frequency in coded publications)."@en .
+
+ex:6b8e77d4-3320-5e86-997b-f48ccdb24acf a cacontology-synthesis:InterventionLocus ;
+    rdfs:label "Intervention locus: recruitment (low frequency)"@en ;
+    uco-core:description "Locus category in the TF-CSEA ecosystem coding (recruitment; low frequency in coded publications)."@en .
+
+ex:f8a832bb-aa71-538c-af42-f71c67b5567b a cacontology-synthesis:InterventionLocus ;
+    rdfs:label "Intervention locus: payment systems (low frequency)"@en ;
+    uco-core:description "Locus category in the TF-CSEA ecosystem coding (payment systems; low frequency in coded publications)."@en .
+
+ex:46a9653e-42f6-51df-872c-0d9a4a490dca a cacontology-synthesis:InterventionLocus ;
+    rdfs:label "Intervention locus: TF-CSEA advertisement (none reported)"@en ;
+    uco-core:description "Locus category in the TF-CSEA ecosystem coding (TF-CSEA advertisement; not observed in coded publications)."@en .
+
+ex:0a2e02d4-671f-5c7b-8273-68a762388d51 a cacontology-synthesis:InterventionLocus ;
+    rdfs:label "Intervention locus: specific digital payment systems to purchase CSAM (n=1) (as reported)"@en ;
+    uco-core:description "Locus category in the TF-CSEA ecosystem coding (interventions targeting digital payment systems used to purchase CSAM; reported as n=1)."@en .
+
+ex:646b609b-b67e-5013-95c9-8770f7c36a45 a cacontology-synthesis:Claim ;
+    rdfs:label "Locus distribution (counts + tail) (as reported)"@en ;
+    cacontology-synthesis:about ex:5eae945f-5b2f-52df-82dc-f033ad52a6ca ;
+    cacontology-synthesis:about ex:376a8f85-05ff-5ac5-97ed-99018b0489e0 ;
+    cacontology-synthesis:about ex:67a85cd9-536d-51a3-a537-c15888110bf9 ;
+    cacontology-synthesis:about ex:f9dcd17d-e952-55d0-8941-c216eb0490bd ;
+    cacontology-synthesis:about ex:997965d5-43e0-5d59-9dd9-3448c476b49b ;
+    cacontology-synthesis:about ex:282884bb-78d5-5d41-82e5-41ec87853574 ;
+    cacontology-synthesis:about ex:6b8e77d4-3320-5e86-997b-f48ccdb24acf ;
+    cacontology-synthesis:about ex:f8a832bb-aa71-538c-af42-f71c67b5567b ;
+    cacontology-synthesis:about ex:46a9653e-42f6-51df-872c-0d9a4a490dca ;
+    cacontology-synthesis:about ex:0a2e02d4-671f-5c7b-8273-68a762388d51 ;
+    cacontology-synthesis:about ex:797e4cbb-9f30-5f30-8170-d398d12de867 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:8dfb4cec-5e56-5b22-b27f-94371e7383aa ;
+    uco-core:description "Claim summarizing locus counts and low-frequency tail categories in the TF-CSEA ecosystem."@en .
+
+# --- Cross-functional linkages (explicit) -------------------------------------
+
+ex:88c4ea8f-b441-57e5-888c-e82c1ba776b5 a cacontology-synthesis:Claim ;
+    rdfs:label "Cross-functional linkage: technical interventions ↔ policing/investigation"@en ;
+    cacontology-synthesis:about ex:f0f11050-ecab-5041-9bfe-c13f00c21b4d ;
+    cacontology-synthesis:about ex:55cd3278-396f-58ef-8b36-f5d4a81a007b ;
+    cacontology-synthesis:about ex:797e4cbb-9f30-5f30-8170-d398d12de867 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:d3090399-7be9-5709-8e13-089236ca7a77 ;
+    uco-core:description "Claim that technical and policing/investigative interventions are linked in cross-functional deployment."@en .
+
+ex:77201562-cb30-5f25-8acd-f1d21444e75c a cacontology-synthesis:Claim ;
+    rdfs:label "Cross-functional linkage: technical interventions ↔ behavioral interventions"@en ;
+    cacontology-synthesis:about ex:f0f11050-ecab-5041-9bfe-c13f00c21b4d ;
+    cacontology-synthesis:about ex:cecc66c1-23a7-5ee4-9e12-b87034e74f12 ;
+    cacontology-synthesis:about ex:797e4cbb-9f30-5f30-8170-d398d12de867 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:ff7d822f-12ce-58a8-84ba-b8657226f662 ;
+    uco-core:description "Claim that behavioral interventions are frequently linked with technical tools and protocols."@en .
+
+ex:75642546-d967-5ae1-ab75-140f75e5c9b3 a cacontology-synthesis:Claim ;
+    rdfs:label "Cross-functional linkage: technical interventions ↔ legal/regulatory interventions"@en ;
+    cacontology-synthesis:about ex:f0f11050-ecab-5041-9bfe-c13f00c21b4d ;
+    cacontology-synthesis:about ex:694532de-382c-5116-84d9-3320b45d299a ;
+    cacontology-synthesis:about ex:797e4cbb-9f30-5f30-8170-d398d12de867 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:c339a129-38da-53bf-aa95-99037d3ffa63 ;
+    uco-core:description "Claim that legal/regulatory measures and technical interventions influence each other in practice."@en .
+
+ex:858c70bd-e365-5ce0-b3df-a62445467e59 a cacontology-synthesis:Claim ;
+    rdfs:label "Cross-functional linkage: AML law ↔ financial reporting/disruption"@en ;
+    cacontology-synthesis:about ex:231047f5-bbfe-5e0b-b6a2-12b8f25111c2 ;
+    cacontology-synthesis:about ex:694532de-382c-5116-84d9-3320b45d299a ;
+    cacontology-synthesis:about ex:797e4cbb-9f30-5f30-8170-d398d12de867 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:6bee9d06-0e71-5c40-b37b-a075aec978ce ;
+    uco-core:description "Claim that AML legal mechanisms are used for financial reporting and attempted disruption in TF-CSEA contexts."@en .
+
+ex:ca64542f-e764-5d46-accd-1b64c7190674 a cacontology-synthesis:Claim ;
+    rdfs:label "Cross-functional linkage: tool capability ↔ regulatory demand (dialectic) (as reported)"@en ;
+    cacontology-synthesis:about ex:f0f11050-ecab-5041-9bfe-c13f00c21b4d ;
+    cacontology-synthesis:about ex:694532de-382c-5116-84d9-3320b45d299a ;
+    cacontology-synthesis:about ex:f30732e6-8890-560d-8cb2-01e321793d3e ;
+    cacontology-synthesis:supportedByEvidencePointer ex:c339a129-38da-53bf-aa95-99037d3ffa63 ;
+    uco-core:description "Claim that capability-demand feedback loops exist between technical tooling and legal mandates."@en .
+
+# --- Legal instruments and laws (named) ---------------------------------------
+
+ex:7c1ad5c5-0e9d-5f20-8fff-3b676ecb1c9f a cacontology-legal:InternationalStandard ;
+    rdfs:label "UN Convention on the Rights of the Child (UNCRC, 1989)"@en ;
+    uco-core:description "Evidence: normalized.txt line 24. Quote: UNCRC Article 34 referenced as international instrument."@en .
+
+ex:791a2ae1-5c04-54ac-8ea4-5814820cb4e6 a cacontology-legal:InternationalStandard ;
+    rdfs:label "ILO Worst Forms of Child Labour Convention, 1999 (Convention No. 182)"@en ;
+    uco-core:description "Evidence: normalized.txt line 24. Quote: ILO Convention No. 182 Article 3(b) referenced as instrument."@en .
+
+ex:bb711ed6-a4c5-5f7a-a858-fc8e8f017d3f a cacontology-legal:TreatyFramework ;
+    rdfs:label "Lanzarote Convention (Council of Europe, CETS No. 201)"@en ;
+    uco-core:description "Evidence: normalized.txt lines 24 and 165-169. Quote: Lanzarote Convention cited; described as cross-border legal instrument influencing national laws."@en .
+
+ex:a936c2ec-0c06-54a4-bae5-2f73320e0932 a cacontology-legal:TreatyFramework ;
+    rdfs:label "UN Convention against Cybercrime (2024)"@en ;
+    uco-core:description "Evidence: normalized.txt line 24. Quote: UN Convention against Cybercrime, 2024 (Article 14) referenced."@en .
+
+ex:7014e6c8-1a8a-5d2c-bc22-34245317666f a cacontology-legal:InternationalStandard ;
+    rdfs:label "EU Directive 2011/93/EU (minimum rules for offences/sanctions)"@en ;
+    uco-core:description "Evidence: normalized.txt line 41 and lines 165-169. Quote: Directive 2011/93/EU referenced; described as criminal sanctions with cascading effect."@en .
+
+ex:49860627-2cd8-5e18-a4c6-20c5c64e6f42 a cacontology-legal:LegalReform ;
+    rdfs:label "EU Digital Services Act (2022) (as reported)"@en ;
+    uco-core:description "Evidence: normalized.txt line 169 and line 185. Quote: DSA cited as transparency/content moderation mandate with extraterritorial scope and enforcement/reporting metric challenges."@en .
+
+ex:9659287a-bea3-54fa-970c-5dba1fdc21a8 a cacontology-legal:LegalReform ;
+    rdfs:label "Australian Online Safety Act (2021) (as reported)"@en ;
+    uco-core:description "Evidence: normalized.txt line 169 and line 185. Quote: transparency requirements; reporting metrics challenges noted."@en .
+
+ex:26e80b29-49a8-5eb6-a57d-b25580c1a149 a cacontology-legal:LegalReform ;
+    rdfs:label "UK Online Safety Act (2023) (as reported)"@en ;
+    uco-core:description "Evidence: normalized.txt line 169 and line 185. Quote: transparency requirements; reporting metrics challenges noted."@en .
+
+ex:c831ddd3-20df-5859-9550-64df1f33046e a cacontology-synthesis:Claim ;
+    rdfs:label "Cross-border legal instruments influence national law (as reported)"@en ;
+    cacontology-synthesis:about ex:bb711ed6-a4c5-5f7a-a858-fc8e8f017d3f ;
+    cacontology-synthesis:about ex:7014e6c8-1a8a-5d2c-bc22-34245317666f ;
+    cacontology-synthesis:about ex:797e4cbb-9f30-5f30-8170-d398d12de867 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:07aeca27-d249-5abb-beaa-e7d5c1002e8e ;
+    uco-core:description "Claim that cross-border instruments drive downstream national and regional legal change."@en .
+
+# --- Promising / deployed interventions (named examples) ----------------------
+
+ex:2ecdd681-354f-5e3d-97f5-e4c245bd9a6f a cacontology-detection:ContentHashingTool ;
+    rdfs:label "PhotoDNA (as reported)"@en ;
+    uco-core:description "Evidence: normalized.txt lines 157-161. Quote: PhotoDNA cited as deployed tool for detecting/filtering CSAM."@en .
+
+ex:f30732e6-8890-560d-8cb2-01e321793d3e a cacontology-detection:MachineLearningDetectionTool ;
+    rdfs:label "Thorn Safer Predict (as reported)"@en ;
+    uco-core:description "Evidence: normalized.txt lines 157-161. Quote: Thorn's Safer Predict cited as deployed tool."@en .
+
+ex:b93f324f-d7fe-59bb-9c30-78dadfb222b0 a cacontology-detection:DatabaseMatchingTool ;
+    rdfs:label "IWF URL and Hash list (as reported)"@en ;
+    uco-core:description "Evidence: normalized.txt lines 157-161. Quote: IWF URL and Hash list cited as deployed tool."@en .
+
+ex:c5e00277-1564-5621-9cf8-e0cb298ee21a a cacontology-detection:DatabaseMatchingTool ;
+    rdfs:label "INTERPOL ICSE database (as reported)"@en ;
+    uco-core:description "Evidence: normalized.txt lines 169-173 and 201. Quote: ICSE database cited as aiding international investigations and rescues."@en .
+
+ex:82b3dacc-95c2-50e2-bd76-4152afdebcf3 a uco-core:UcoObject ;
+    rdfs:label "GridCop® (child protection system) (as reported)"@en ;
+    uco-core:description "Evidence: normalized.txt line 173. Quote: GridCop used to identify local peer-to-peer traders of abuse images/videos."@en .
+
+ex:d5fca40e-26ed-5e07-bad0-ca1ca3b34d5c a uco-core:UcoObject ;
+    rdfs:label "Computer Voice Stress Analyzer (CVSA) (as reported)"@en ;
+    uco-core:description "Evidence: normalized.txt line 86 and line 173. Quote: CVSA discussed as tool used in investigations to obtain offence information."@en .
+
+ex:caa086ec-a386-5646-a28b-0d7ebff841b5 a cacontology-synthesis:Claim ;
+    rdfs:label "Trichan takedown: ancillary payment disruption (as reported)"@en ;
+    cacontology-synthesis:about ex:f8a832bb-aa71-538c-af42-f71c67b5567b ;
+    cacontology-synthesis:about ex:231047f5-bbfe-5e0b-b6a2-12b8f25111c2 ;
+    cacontology-synthesis:about ex:797e4cbb-9f30-5f30-8170-d398d12de867 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:8dfb4cec-5e56-5b22-b27f-94371e7383aa ;
+    uco-core:description "Claim that ancillary payment disruption appears only rarely in the reviewed intervention evidence."@en .
+
+ex:30972372-d5d3-5baa-9e2b-d47b37e3ee93 a uco-core:UcoObject, uco-observable:ObservableObject ;
+    rdfs:label "Stop It Now! anonymous/confidential helpline (as reported)"@en ;
+    uco-core:description "Evidence: normalized.txt line 177. Quote: Stop It Now! helpline described; self-reported behavior change stats noted."@en .
+
+ex:40218f50-4cff-573e-a12c-32dfa5b4e286 a cacontology-prevention:PublicAwareness ;
+    rdfs:label "EVAC game (ECPAT + UNICEF) (as reported)"@en ;
+    uco-core:description "Evidence: normalized.txt lines 181-189. Quote: EVAC digital educational game; educator/user feedback statistics; no longitudinal behavioral change evidence noted."@en .
+
+# --- Appraisal and stakeholder distributions ---------------------------------
+
+ex:b631629b-3b57-594c-9043-7d4fe8a2eb28 a cacontology-synthesis:Claim ;
+    rdfs:label "Intervention appraisal counts (as reported)"@en ;
+    cacontology-synthesis:about ex:797e4cbb-9f30-5f30-8170-d398d12de867 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:ef1fba4c-6bce-51c7-9f4f-0ad3181f80f7 ;
+    uco-core:description "Claim summarizing appraisal prevalence and independent appraisal counts in the reviewed publications."@en .
+
+ex:251e97f9-e74f-5178-9d8d-029ebdacb98e a cacontology-synthesis:Claim ;
+    rdfs:label "Stakeholders: developers/implementers (as reported)"@en ;
+    cacontology-synthesis:about ex:797e4cbb-9f30-5f30-8170-d398d12de867 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:6bee9d06-0e71-5c40-b37b-a075aec978ce ;
+    uco-core:description "Claim that intervention developers and implementers span academia, law enforcement, NGOs, governments, and industry with differing prominence."@en .
+
+ex:efbd76a5-3631-5594-9980-822aed2630af a cacontology-synthesis:Claim ;
+    rdfs:label "Funding distribution (as reported)"@en ;
+    cacontology-synthesis:about ex:797e4cbb-9f30-5f30-8170-d398d12de867 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:ef1fba4c-6bce-51c7-9f4f-0ad3181f80f7 ;
+    uco-core:description "Claim that reported funding is uneven across intervention types, with concentration in technical and policing categories."@en .
+
+# --- Recommendations (Section 5) ---------------------------------------------
+
+
+# =============================================================================
+# Semantic upgrades: report/sections/figures, first-class claims, structured
+# distributions, offending chain scaffolding, and resolvable evidence pointers.
+# =============================================================================
+
+# --- Report-as-work (intellectual work) realized in the PDF artifact -----------
+
+ex:797e4cbb-9f30-5f30-8170-d398d12de867 a cacontology-synthesis:Report ;
+    rdfs:label "IPIE Synthesis Report SR2026.1: Detecting, Deterring, Investigating, and Prosecuting TF-CSEA"@en ;
+    cacontology-synthesis:doi "10.61452/UZUS7376"^^xsd:string ;
+    cacontology-synthesis:realizedIn ex:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee ;
+    cacontology-synthesis:mentionsOrganization ex:33923540-eddf-4dad-bbd5-a81deed3fc64,
+                                             ex:11f6400a-2925-43ac-967d-06a7dbc83c5a,
+                                             ex:3198d27d-844f-44b1-bc3b-281a819993de,
+                                             ex:56a3b6a1-97b2-4b86-a5e8-d11a753a6ce8,
+                                             ex:18aa9bd4-5aee-44f5-b636-b111c67be307,
+                                             ex:09253ee4-f5a6-4cf7-9d62-7e30e6f410b4,
+                                             ex:9d9729f2-0af2-4524-a92e-1dd49c33253d ;
+    cacontology-synthesis:hasSection ex:d6332cae-6b55-584e-acb0-d512d68521c8 ;
+    cacontology-synthesis:hasSection ex:42966a95-0069-5a5f-867d-7a870b90a308 ;
+    cacontology-synthesis:hasSection ex:187124ba-74df-5c40-9489-ef5461a497cc ;
+    cacontology-synthesis:hasSection ex:55f99a40-ef46-512f-be57-a56e38176af7 ;
+    cacontology-synthesis:hasSection ex:43b8ccb8-c829-55b7-8bb4-a67de1da3b0d ;
+    cacontology-synthesis:hasSection ex:35ab2a2b-d240-50bf-820e-3319856368a6 ;
+    cacontology-synthesis:hasFigure ex:3c742b0b-9e8a-5dbe-a33b-eb636267a24f ;
+    cacontology-synthesis:hasFigure ex:6746dba0-90cf-5384-a5b3-651ba339d07d ;
+    cacontology-synthesis:hasFigure ex:b29c1d40-1e33-5a46-95c3-4dd42db5fb34 ;
+    cacontology-synthesis:hasFigure ex:a81c590c-9cd6-5707-80ec-3edaacad99ba ;
+    cacontology-synthesis:hasFigure ex:d762df4d-09a3-55e1-926d-a81954190ce8 ;
+    cacontology-synthesis:hasFigure ex:18eaa2bc-5375-559f-b500-c8febbb7900f ;
+    cacontology-synthesis:hasObservation ex:823446d4-00bb-51f9-bc17-70a31fbac90c,
+                                        ex:bb1ae690-70fa-5f85-8bbe-ed1beba8ab87,
+                                        ex:b9449674-9bc6-50ed-8147-33fe1b2425fa,
+                                        ex:4f9b1515-597d-534f-8780-946e5e0a4adf,
+                                        ex:768ef1a1-c1fa-56b1-8af7-3991bc4bc5df,
+                                        ex:e6b3bc12-81e8-5739-8336-6fb30ba4b99b,
+                                        ex:e74ade32-bbf4-5196-b4fa-08a13071c38e,
+                                        ex:954d4d26-5d43-580b-9452-7c3f8c59a3a0,
+                                        ex:f4fd035b-3cf8-57d2-b2d1-09703a801d3e,
+                                        ex:b02d0282-3bd0-566c-a927-01d091f04888,
+                                        ex:855d3a2c-1202-577a-9850-82132432a400 ;
+    cacontology-synthesis:hasClaim ex:cb35dc30-7da3-5a36-9f94-918ed5819e08,
+                                 ex:3e2a4f65-d625-54f0-a6f5-a1bf8176da63,
+                                 ex:75a59e5d-0af2-5ba7-9250-d299ce224e61,
+                                 ex:50627a0e-879b-56a8-ba01-ad912abb59a6,
+                                 ex:d5a85ad6-a58c-5ba6-9f3b-fd49a726f9ad,
+                                 ex:2ce5bfeb-6e62-5aba-86c3-13b39bd71d4a,
+                                 ex:5f6b1407-5839-5eca-afc3-820c5a0cd918,
+                                 ex:0f15392f-cc52-5ce8-b584-09da0b12d7d3,
+                                 ex:601318c0-589d-503a-b7da-97c80dad409e,
+                                 ex:e0a0f968-7156-5413-981a-539a5b0c1ebb,
+                                 ex:65ad55da-80d4-5a70-9873-cd4f916330b1,
+                                 ex:a058cf00-d450-524c-a6b4-e480306c0241,
+                                 ex:cf5b4e1a-b158-544d-a6e6-2c94cf69ef98,
+                                 ex:c202bf35-43fd-5f38-b0d2-69fad28a6708,
+                                 ex:02ef3ebe-5b8d-53db-9fe9-8851c205aea2 ;
+    cacontology-synthesis:hasOffendingChain ex:b5b216df-a6f6-5b85-9776-eaeed8c3637a .
+
+ex:d6332cae-6b55-584e-acb0-d512d68521c8 a cacontology-synthesis:ReportSection ;
+    rdfs:label "Synopsis"@en .
+ex:42966a95-0069-5a5f-867d-7a870b90a308 a cacontology-synthesis:ReportSection ;
+    rdfs:label "Section 1: Introduction"@en .
+ex:187124ba-74df-5c40-9489-ef5461a497cc a cacontology-synthesis:ReportSection ;
+    rdfs:label "Section 2: Research objectives and questions"@en .
+ex:55f99a40-ef46-512f-be57-a56e38176af7 a cacontology-synthesis:ReportSection ;
+    rdfs:label "Section 3: Methods"@en .
+ex:43b8ccb8-c829-55b7-8bb4-a67de1da3b0d a cacontology-synthesis:ReportSection ;
+    rdfs:label "Section 4: Findings"@en .
+ex:35ab2a2b-d240-50bf-820e-3319856368a6 a cacontology-synthesis:ReportSection ;
+    rdfs:label "Section 5: Conclusion and recommendations"@en .
+
+ex:3c742b0b-9e8a-5dbe-a33b-eb636267a24f a cacontology-synthesis:ReportFigure ;
+    rdfs:label "Figure 1: TF-CSEA offending chain (diagram referenced; labels may not be fully text-extracted)"@en .
+ex:6746dba0-90cf-5384-a5b3-651ba339d07d a cacontology-synthesis:ReportFigure ;
+    rdfs:label "Figure 2: PRISMA flow diagram"@en .
+ex:b29c1d40-1e33-5a46-95c3-4dd42db5fb34 a cacontology-synthesis:ReportFigure ;
+    rdfs:label "Figure 3: Frequency of intervention types (n=104 occurrences)"@en .
+ex:a81c590c-9cd6-5707-80ec-3edaacad99ba a cacontology-synthesis:ReportFigure ;
+    rdfs:label "Figure 4: Frequency of intervention operations (n=89 occurrences)"@en .
+ex:d762df4d-09a3-55e1-926d-a81954190ce8 a cacontology-synthesis:ReportFigure ;
+    rdfs:label "Figure 5: Frequency of intervention objectives (n=94 occurrences)"@en .
+ex:18eaa2bc-5375-559f-b500-c8febbb7900f a cacontology-synthesis:ReportFigure ;
+    rdfs:label "Figure 6: Frequency of intervention locus (n=114 occurrences)"@en .
+
+# --- Evidence pointers that can be resolved to a text artifact -----------------
+
+ex:adcddab3-6e0c-528b-9f33-482434e659ca a cacontology-synthesis:TextEvidencePointer ;
+    cacontology-synthesis:referencesArtifact ex:9048a300-05a1-495c-bdb3-c19a7f06cdb9 ;
+    cacontology-synthesis:lineStart "12"^^xsd:integer ;
+    cacontology-synthesis:lineEnd "12"^^xsd:integer ;
+    cacontology-synthesis:exactQuote "Technology-facilitated child sexual exploitation and sexual abuse (TF-CSEA) is an escalating global crisis." .
+
+ex:1a663863-5089-5780-9f4e-3c3fa48e01e3 a cacontology-synthesis:TextEvidencePointer ;
+    cacontology-synthesis:referencesArtifact ex:9048a300-05a1-495c-bdb3-c19a7f06cdb9 ;
+    cacontology-synthesis:lineStart "14"^^xsd:integer ;
+    cacontology-synthesis:lineEnd "16"^^xsd:integer ;
+    cacontology-synthesis:exactQuote "Following standard PRISMA and synthesis protocols, the review assesses technical, legal, policing, behavioral, and educational interventions and provides four key findings:" .
+
+ex:d40bcf5d-aefa-5fe3-a13d-741295c074fc a cacontology-synthesis:TextEvidencePointer ;
+    cacontology-synthesis:referencesArtifact ex:9048a300-05a1-495c-bdb3-c19a7f06cdb9 ;
+    cacontology-synthesis:lineStart "49"^^xsd:integer ;
+    cacontology-synthesis:lineEnd "49"^^xsd:integer ;
+    cacontology-synthesis:exactQuote "This systematic review deliberately focuses on interventions aimed at detecting, deterring, investigating, and prosecuting TF-CSEA offending." .
+
+ex:4abdd542-2958-5659-8d76-baad0bce866e a cacontology-synthesis:TextEvidencePointer ;
+    cacontology-synthesis:referencesArtifact ex:9048a300-05a1-495c-bdb3-c19a7f06cdb9 ;
+    cacontology-synthesis:lineStart "65"^^xsd:integer ;
+    cacontology-synthesis:lineEnd "65"^^xsd:integer ;
+    cacontology-synthesis:exactQuote "Collectively, 1,003 peer-reviewed academic publications and organization reports were uploaded to Rayyan, an AI-powered online platform for managing and conducting systematic literature reviews." .
+
+ex:d3090399-7be9-5709-8e13-089236ca7a77 a cacontology-synthesis:TextEvidencePointer ;
+    cacontology-synthesis:referencesArtifact ex:9048a300-05a1-495c-bdb3-c19a7f06cdb9 ;
+    cacontology-synthesis:lineStart "86"^^xsd:integer ;
+    cacontology-synthesis:lineEnd "86"^^xsd:integer ;
+    cacontology-synthesis:exactQuote "Technological tools and protocols (n = 36) were the most frequently studied type of intervention across all the peer-reviewed academic publications, followed by policing and investigation (n = 21)." .
+
+ex:ff7d822f-12ce-58a8-84ba-b8657226f662 a cacontology-synthesis:TextEvidencePointer ;
+    cacontology-synthesis:referencesArtifact ex:9048a300-05a1-495c-bdb3-c19a7f06cdb9 ;
+    cacontology-synthesis:lineStart "90"^^xsd:integer ;
+    cacontology-synthesis:lineEnd "90"^^xsd:integer ;
+    cacontology-synthesis:exactQuote "The next most common categories, both with 12 items, were behavioral interventions and legal and regulatory interventions." .
+
+ex:0acaf97f-82a6-56bd-843b-1aa986e01d30 a cacontology-synthesis:TextEvidencePointer ;
+    cacontology-synthesis:referencesArtifact ex:9048a300-05a1-495c-bdb3-c19a7f06cdb9 ;
+    cacontology-synthesis:lineStart "82"^^xsd:integer ;
+    cacontology-synthesis:lineEnd "82"^^xsd:integer ;
+    cacontology-synthesis:exactQuote "However, in the primary dataset, we identified five types of interventions across diverse geographical, jurisdictional, and cultural boundaries that were the most commonly reported. These include technological tools and protocols, policing and investigation, behavioral interventions, legal and regulatory interventions, and education, literacy, or awareness-raising campaigns." .
+
+ex:6bee9d06-0e71-5c40-b37b-a075aec978ce a cacontology-synthesis:TextEvidencePointer ;
+    cacontology-synthesis:referencesArtifact ex:9048a300-05a1-495c-bdb3-c19a7f06cdb9 ;
+    cacontology-synthesis:lineStart "127"^^xsd:integer ;
+    cacontology-synthesis:lineEnd "127"^^xsd:integer ;
+    cacontology-synthesis:exactQuote "There are existing financial interventions involving collaboration between financial institutions and digital payment service providers worldwide. However, these only provide evidence of transactions involving CSAM or other TF-CSEA, so that law enforcement agencies can trace them back to perpetrators ex post facto" .
+
+ex:cd88def7-cb53-5704-89f5-7194fbd34881 a cacontology-synthesis:TextEvidencePointer ;
+    cacontology-synthesis:referencesArtifact ex:9048a300-05a1-495c-bdb3-c19a7f06cdb9 ;
+    cacontology-synthesis:lineStart "108"^^xsd:integer ;
+    cacontology-synthesis:lineEnd "110"^^xsd:integer ;
+    cacontology-synthesis:exactQuote "As shown in Figure 5, most interventions were geared towards making policing and investigation more effective, followed by CSAM detection." .
+
+ex:e5f0c839-3bc3-5da6-b578-901c0f45ab37 a cacontology-synthesis:TextEvidencePointer ;
+    cacontology-synthesis:referencesArtifact ex:9048a300-05a1-495c-bdb3-c19a7f06cdb9 ;
+    cacontology-synthesis:lineStart "114"^^xsd:integer ;
+    cacontology-synthesis:lineEnd "114"^^xsd:integer ;
+    cacontology-synthesis:exactQuote "Strikingly, none of the interventions studied improved the judiciary’s effectiveness in handling TF-CSEA. Nor do existing and available interventions serve the objective of behavioral or attitudinal change among parents." .
+
+ex:8dfb4cec-5e56-5b22-b27f-94371e7383aa a cacontology-synthesis:TextEvidencePointer ;
+    cacontology-synthesis:referencesArtifact ex:9048a300-05a1-495c-bdb3-c19a7f06cdb9 ;
+    cacontology-synthesis:lineStart "118"^^xsd:integer ;
+    cacontology-synthesis:lineEnd "123"^^xsd:integer ;
+    cacontology-synthesis:exactQuote "The majority of the publications reporting on TF-CSEA interventions addressed detection and investigation (n = 28) (see Figure 6)." .
+
+ex:d83de837-1c16-5506-9d0a-026384006f98 a cacontology-synthesis:TextEvidencePointer ;
+    cacontology-synthesis:referencesArtifact ex:9048a300-05a1-495c-bdb3-c19a7f06cdb9 ;
+    cacontology-synthesis:lineStart "24"^^xsd:integer ;
+    cacontology-synthesis:lineEnd "24"^^xsd:integer ;
+    cacontology-synthesis:exactQuote "Examples of these international legal instruments include Article 34 of the UNCRC [1]; the International Labour Organization’s (ILO) Worst Forms of Child Labour Convention, 1999 (Convention No. 182, Article 3(b)) [2]; the Lanzarote Convention [3]; and the UN Convention against Cybercrime, 2024 (Article 14) [4]." .
+
+ex:ef1fba4c-6bce-51c7-9f4f-0ad3181f80f7 a cacontology-synthesis:TextEvidencePointer ;
+    cacontology-synthesis:referencesArtifact ex:9048a300-05a1-495c-bdb3-c19a7f06cdb9 ;
+    cacontology-synthesis:lineStart "193"^^xsd:integer ;
+    cacontology-synthesis:lineEnd "209"^^xsd:integer ;
+    cacontology-synthesis:hashScope "exactQuote:unicode:verbatim"^^xsd:string ;
+    cacontology-synthesis:exactQuote "Recommendation 1: International organizations, intergovernmental organizations, and/or research institutes should be funded to conduct research on TF-CSEA interventions and develop repositories of evidence- based practice to facilitate the further development and improvement of existing tools." .
+
+ex:71a92a2a-66a1-591d-b41e-b9782ca8d90f a cacontology-synthesis:TextEvidencePointer ;
+    cacontology-synthesis:referencesArtifact ex:9048a300-05a1-495c-bdb3-c19a7f06cdb9 ;
+    cacontology-synthesis:lineStart "197"^^xsd:integer ;
+    cacontology-synthesis:lineEnd "197"^^xsd:integer ;
+    cacontology-synthesis:hashScope "exactQuote:unicode:verbatim"^^xsd:string ;
+    cacontology-synthesis:exactQuote "Recommendation 2: Policymakers, law enforcement agencies (LEAs), and other organizations that hold CSAM data should foster closer collaboration with authorized academics and commercial developers to produce safe, secure, and privacy-respecting methods of leveraging CSAM data to improve the reliability of technological tools and protocols. Priority should be given to approaches that do not enable researchers or commercial developers to have direct access to CSAM, and without these sensitive data leaving agencies’ secure storage. For example, access to these data could be through remote execution, or execution by LEA partners to validate a model’s reliability [75], [78], [79], or secure data sandboxes for algorithm or model testing." .
+
+ex:733ddaf8-c3ce-5ad9-b86e-d7aed9d097fb a cacontology-synthesis:TextEvidencePointer ;
+    cacontology-synthesis:referencesArtifact ex:9048a300-05a1-495c-bdb3-c19a7f06cdb9 ;
+    cacontology-synthesis:lineStart "201"^^xsd:integer ;
+    cacontology-synthesis:lineEnd "201"^^xsd:integer ;
+    cacontology-synthesis:hashScope "exactQuote:unicode:verbatim"^^xsd:string ;
+    cacontology-synthesis:exactQuote "Recommendation 3: National governments should allocate more funding to capacity building for law enforcement officers and forensic personnel, equipping them with the knowledge, skills, technological infrastructure (such as stable internet), and tools to detect and investigate TF-CSEA, with support from international experts." .
+
+ex:4614f30b-eef2-5123-8b84-c30c0ac2895d a cacontology-synthesis:TextEvidencePointer ;
+    cacontology-synthesis:referencesArtifact ex:9048a300-05a1-495c-bdb3-c19a7f06cdb9 ;
+    cacontology-synthesis:lineStart "205"^^xsd:integer ;
+    cacontology-synthesis:lineEnd "205"^^xsd:integer ;
+    cacontology-synthesis:hashScope "exactQuote:unicode:verbatim"^^xsd:string ;
+    cacontology-synthesis:exactQuote "Recommendation 4: International organizations and national governments should work together to harmonize criminal sections for TF- CSEA, promote extraterritorial scope in relevant national and regional laws, and identify measures to consistently enforce this provision across jurisdictions." .
+
+ex:f8bd55f4-f0b5-51a4-9383-0f724c1c1009 a cacontology-synthesis:TextEvidencePointer ;
+    cacontology-synthesis:referencesArtifact ex:9048a300-05a1-495c-bdb3-c19a7f06cdb9 ;
+    cacontology-synthesis:lineStart "205"^^xsd:integer ;
+    cacontology-synthesis:lineEnd "205"^^xsd:integer ;
+    cacontology-synthesis:hashScope "exactQuote:unicode:verbatim"^^xsd:string ;
+    cacontology-synthesis:exactQuote "Recommendation 5: Legislators should update relevant laws and regulations, including extending the duty to report suspicious financial transactions to digital payment and gift exchange platforms, to bridge the gap in financial interventions to combat TF-CSEA. Where appropriate, legislators should also introduce legal requirements for financial institutions, digital payment, and gift exchange platforms known for their frequent use of financing TF-CSEA to disrupt flagged CSEA-related transactions." .
+
+ex:673ac565-20cc-57dd-896b-ce5b0f4408cd a cacontology-synthesis:TextEvidencePointer ;
+    cacontology-synthesis:referencesArtifact ex:9048a300-05a1-495c-bdb3-c19a7f06cdb9 ;
+    cacontology-synthesis:lineStart "205"^^xsd:integer ;
+    cacontology-synthesis:lineEnd "209"^^xsd:integer ;
+    cacontology-synthesis:hashScope "exactQuote:unicode:verbatim"^^xsd:string ;
+    cacontology-synthesis:exactQuote "Recommendation 6: Funding organizations should recalibrate their priorities and distribute funding resources more evenly across different types of interventions. Priority should be given to behavioral research, including longitudinal research, to determine which interventions translate to behavioral changes given the evidence gap in this area." .
+
+# --- Offending chain scaffolding (section references Figure 1) ----------------
+
+ex:73593f4c-fef1-5c26-b7b2-c90785e2906a a cacontology-synthesis:TextEvidencePointer ;
+    cacontology-synthesis:referencesArtifact ex:9048a300-05a1-495c-bdb3-c19a7f06cdb9 ;
+    cacontology-synthesis:lineStart "32"^^xsd:integer ;
+    cacontology-synthesis:lineEnd "32"^^xsd:integer ;
+    cacontology-synthesis:exactQuote "The diverse range of technology uses identified in this initial research indicates an expansive offending chain (see Figure 1)." .
+
+ex:b5b216df-a6f6-5b85-9776-eaeed8c3637a a cacontology-synthesis:OffendingChain ;
+    rdfs:label "TF-CSEA offending chain (conceptual)"@en ;
+    cacontology-synthesis:derivedFromFigure ex:3c742b0b-9e8a-5dbe-a33b-eb636267a24f ;
+    cacontology-synthesis:hasStage ex:8961db4c-4e74-58fe-8a08-8280295c89d2 ;
+    cacontology-synthesis:hasStage ex:7e7fbde7-8e71-5f1e-a2a2-1aadd0c9995f ;
+    cacontology-synthesis:hasStage ex:6c8b48a6-ba88-5e91-87a2-cf0292f8f84f ;
+    cacontology-synthesis:hasStage ex:00037591-840f-5961-ba99-20fc3b9dc4bd .
+
+ex:8961db4c-4e74-58fe-8a08-8280295c89d2 a cacontology-synthesis:OffendingChainStage ;
+    rdfs:label "Stage: victim identification and recruitment (conceptual)"@en ;
+    cacontology-synthesis:stageOrder "1"^^xsd:integer ;
+    cacontology-synthesis:nextStage ex:7e7fbde7-8e71-5f1e-a2a2-1aadd0c9995f .
+ex:7e7fbde7-8e71-5f1e-a2a2-1aadd0c9995f a cacontology-synthesis:OffendingChainStage ;
+    rdfs:label "Stage: sexual exploitation and abuse (conceptual)"@en ;
+    cacontology-synthesis:stageOrder "2"^^xsd:integer ;
+    cacontology-synthesis:nextStage ex:6c8b48a6-ba88-5e91-87a2-cf0292f8f84f .
+ex:6c8b48a6-ba88-5e91-87a2-cf0292f8f84f a cacontology-synthesis:OffendingChainStage ;
+    rdfs:label "Stage: recording and distribution (conceptual)"@en ;
+    cacontology-synthesis:stageOrder "3"^^xsd:integer ;
+    cacontology-synthesis:nextStage ex:00037591-840f-5961-ba99-20fc3b9dc4bd .
+ex:00037591-840f-5961-ba99-20fc3b9dc4bd a cacontology-synthesis:OffendingChainStage ;
+    rdfs:label "Stage: consumption/access (conceptual)"@en ;
+    cacontology-synthesis:stageOrder "4"^^xsd:integer .
+
+# --- First-class claims: research questions + scope boundary -------------------
+
+ex:cb35dc30-7da3-5a36-9f94-918ed5819e08 a cacontology-synthesis:ResearchQuestion ;
+    rdfs:label "Research question: interventions developed and deployed"@en ;
+    cacontology-synthesis:assertedInSection ex:187124ba-74df-5c40-9489-ef5461a497cc ;
+    cacontology-synthesis:supportedByEvidencePointer ex:d40bcf5d-aefa-5fe3-a13d-741295c074fc .
+
+ex:3e2a4f65-d625-54f0-a6f5-a1bf8176da63 a cacontology-synthesis:ResearchQuestion ;
+    rdfs:label "Research question: interventions evaluated and effectiveness"@en ;
+    cacontology-synthesis:assertedInSection ex:187124ba-74df-5c40-9489-ef5461a497cc ;
+    cacontology-synthesis:supportedByEvidencePointer ex:d40bcf5d-aefa-5fe3-a13d-741295c074fc .
+
+ex:75a59e5d-0af2-5ba7-9250-d299ce224e61 a cacontology-synthesis:ScopeConstraint ;
+    rdfs:label "Scope constraint: victim rescue/support interventions excluded"@en ;
+    cacontology-synthesis:assertedInSection ex:187124ba-74df-5c40-9489-ef5461a497cc ;
+    cacontology-synthesis:supportedByEvidencePointer ex:d40bcf5d-aefa-5fe3-a13d-741295c074fc .
+
+# --- First-class claims: key findings (Synopsis) ------------------------------
+
+ex:50627a0e-879b-56a8-ba01-ad912abb59a6 a cacontology-synthesis:KeyFinding ;
+    rdfs:label "Key finding 1: detection after harm dominates (as reported)"@en ;
+    cacontology-synthesis:findingNumber "1"^^xsd:integer ;
+    cacontology-synthesis:assertedInSection ex:d6332cae-6b55-584e-acb0-d512d68521c8 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:1a663863-5089-5780-9f4e-3c3fa48e01e3 .
+
+ex:d5a85ad6-a58c-5ba6-9f3b-fd49a726f9ad a cacontology-synthesis:KeyFinding ;
+    rdfs:label "Key finding 2: technical tools depend on legal authority/data access/enforcement (as reported)"@en ;
+    cacontology-synthesis:findingNumber "2"^^xsd:integer ;
+    cacontology-synthesis:assertedInSection ex:d6332cae-6b55-584e-acb0-d512d68521c8 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:1a663863-5089-5780-9f4e-3c3fa48e01e3 .
+
+ex:2ce5bfeb-6e62-5aba-86c3-13b39bd71d4a a cacontology-synthesis:KeyFinding ;
+    rdfs:label "Key finding 3: behavioral/educational interventions insufficient without enforcement (as reported)"@en ;
+    cacontology-synthesis:findingNumber "3"^^xsd:integer ;
+    cacontology-synthesis:assertedInSection ex:d6332cae-6b55-584e-acb0-d512d68521c8 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:1a663863-5089-5780-9f4e-3c3fa48e01e3 .
+
+ex:5f6b1407-5839-5eca-afc3-820c5a0cd918 a cacontology-synthesis:KeyFinding ;
+    rdfs:label "Key finding 4: financial systems underused leverage point (as reported)"@en ;
+    cacontology-synthesis:findingNumber "4"^^xsd:integer ;
+    cacontology-synthesis:assertedInSection ex:d6332cae-6b55-584e-acb0-d512d68521c8 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:1a663863-5089-5780-9f4e-3c3fa48e01e3 .
+
+# --- Evidence gaps as first-class nodes ---------------------------------------
+
+ex:0f15392f-cc52-5ce8-b584-09da0b12d7d3 a cacontology-synthesis:EvidenceGap ;
+    rdfs:label "Gap: no interventions improved judiciary effectiveness (as reported)"@en ;
+    cacontology-synthesis:assertedInSection ex:43b8ccb8-c829-55b7-8bb4-a67de1da3b0d ;
+    cacontology-synthesis:supportedByEvidencePointer ex:e5f0c839-3bc3-5da6-b578-901c0f45ab37 .
+
+ex:601318c0-589d-503a-b7da-97c80dad409e a cacontology-synthesis:EvidenceGap ;
+    rdfs:label "Gap: no interventions served parent behavior/attitude change objective (as reported)"@en ;
+    cacontology-synthesis:assertedInSection ex:43b8ccb8-c829-55b7-8bb4-a67de1da3b0d ;
+    cacontology-synthesis:supportedByEvidencePointer ex:e5f0c839-3bc3-5da6-b578-901c0f45ab37 .
+
+# --- Structured distributions (types + locus) ---------------------------------
+
+ex:823446d4-00bb-51f9-bc17-70a31fbac90c a cacontology-synthesis:DistributionObservation ;
+    rdfs:label "Intervention type frequency: technological tools and protocols"@en ;
+    cacontology-synthesis:category ex:f0f11050-ecab-5041-9bfe-c13f00c21b4d ;
+    cacontology-synthesis:count "36"^^xsd:integer ;
+    cacontology-synthesis:denominator "104"^^xsd:integer ;
+    cacontology-synthesis:derivedFromFigure ex:b29c1d40-1e33-5a46-95c3-4dd42db5fb34 ;
+    cacontology-synthesis:assertedInSection ex:43b8ccb8-c829-55b7-8bb4-a67de1da3b0d ;
+    cacontology-synthesis:inReport ex:797e4cbb-9f30-5f30-8170-d398d12de867 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:d3090399-7be9-5709-8e13-089236ca7a77 .
+
+ex:bb1ae690-70fa-5f85-8bbe-ed1beba8ab87 a cacontology-synthesis:DistributionObservation ;
+    rdfs:label "Intervention type frequency: policing and investigation"@en ;
+    cacontology-synthesis:category ex:55cd3278-396f-58ef-8b36-f5d4a81a007b ;
+    cacontology-synthesis:count "21"^^xsd:integer ;
+    cacontology-synthesis:denominator "104"^^xsd:integer ;
+    cacontology-synthesis:derivedFromFigure ex:b29c1d40-1e33-5a46-95c3-4dd42db5fb34 ;
+    cacontology-synthesis:assertedInSection ex:43b8ccb8-c829-55b7-8bb4-a67de1da3b0d ;
+    cacontology-synthesis:inReport ex:797e4cbb-9f30-5f30-8170-d398d12de867 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:d3090399-7be9-5709-8e13-089236ca7a77 .
+
+ex:b9449674-9bc6-50ed-8147-33fe1b2425fa a cacontology-synthesis:DistributionObservation ;
+    rdfs:label "Intervention type frequency: behavioral interventions"@en ;
+    cacontology-synthesis:category ex:cecc66c1-23a7-5ee4-9e12-b87034e74f12 ;
+    cacontology-synthesis:count "12"^^xsd:integer ;
+    cacontology-synthesis:denominator "104"^^xsd:integer ;
+    cacontology-synthesis:derivedFromFigure ex:b29c1d40-1e33-5a46-95c3-4dd42db5fb34 ;
+    cacontology-synthesis:assertedInSection ex:43b8ccb8-c829-55b7-8bb4-a67de1da3b0d ;
+    cacontology-synthesis:inReport ex:797e4cbb-9f30-5f30-8170-d398d12de867 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:ff7d822f-12ce-58a8-84ba-b8657226f662 .
+
+ex:4f9b1515-597d-534f-8780-946e5e0a4adf a cacontology-synthesis:DistributionObservation ;
+    rdfs:label "Intervention type frequency: legal and regulatory interventions"@en ;
+    cacontology-synthesis:category ex:694532de-382c-5116-84d9-3320b45d299a ;
+    cacontology-synthesis:count "12"^^xsd:integer ;
+    cacontology-synthesis:denominator "104"^^xsd:integer ;
+    cacontology-synthesis:derivedFromFigure ex:b29c1d40-1e33-5a46-95c3-4dd42db5fb34 ;
+    cacontology-synthesis:assertedInSection ex:43b8ccb8-c829-55b7-8bb4-a67de1da3b0d ;
+    cacontology-synthesis:inReport ex:797e4cbb-9f30-5f30-8170-d398d12de867 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:ff7d822f-12ce-58a8-84ba-b8657226f662 .
+
+ex:768ef1a1-c1fa-56b1-8af7-3991bc4bc5df a cacontology-synthesis:DistributionObservation ;
+    rdfs:label "Locus frequency: detection and investigation"@en ;
+    cacontology-synthesis:category ex:5eae945f-5b2f-52df-82dc-f033ad52a6ca ;
+    cacontology-synthesis:count "28"^^xsd:integer ;
+    cacontology-synthesis:denominator "114"^^xsd:integer ;
+    cacontology-synthesis:derivedFromFigure ex:18eaa2bc-5375-559f-b500-c8febbb7900f ;
+    cacontology-synthesis:assertedInSection ex:43b8ccb8-c829-55b7-8bb4-a67de1da3b0d ;
+    cacontology-synthesis:inReport ex:797e4cbb-9f30-5f30-8170-d398d12de867 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:8dfb4cec-5e56-5b22-b27f-94371e7383aa .
+
+ex:e6b3bc12-81e8-5739-8336-6fb30ba4b99b a cacontology-synthesis:DistributionObservation ;
+    rdfs:label "Locus frequency: CSAM generation, storage, and distribution"@en ;
+    cacontology-synthesis:category ex:376a8f85-05ff-5ac5-97ed-99018b0489e0 ;
+    cacontology-synthesis:count "20"^^xsd:integer ;
+    cacontology-synthesis:denominator "114"^^xsd:integer ;
+    cacontology-synthesis:derivedFromFigure ex:18eaa2bc-5375-559f-b500-c8febbb7900f ;
+    cacontology-synthesis:assertedInSection ex:43b8ccb8-c829-55b7-8bb4-a67de1da3b0d ;
+    cacontology-synthesis:inReport ex:797e4cbb-9f30-5f30-8170-d398d12de867 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:8dfb4cec-5e56-5b22-b27f-94371e7383aa .
+
+ex:e74ade32-bbf4-5196-b4fa-08a13071c38e a cacontology-synthesis:DistributionObservation ;
+    rdfs:label "Locus frequency: sexual offending"@en ;
+    cacontology-synthesis:category ex:67a85cd9-536d-51a3-a537-c15888110bf9 ;
+    cacontology-synthesis:count "18"^^xsd:integer ;
+    cacontology-synthesis:denominator "114"^^xsd:integer ;
+    cacontology-synthesis:derivedFromFigure ex:18eaa2bc-5375-559f-b500-c8febbb7900f ;
+    cacontology-synthesis:assertedInSection ex:43b8ccb8-c829-55b7-8bb4-a67de1da3b0d ;
+    cacontology-synthesis:inReport ex:797e4cbb-9f30-5f30-8170-d398d12de867 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:8dfb4cec-5e56-5b22-b27f-94371e7383aa .
+
+ex:954d4d26-5d43-580b-9452-7c3f8c59a3a0 a cacontology-synthesis:DistributionObservation ;
+    rdfs:label "Locus frequency: promotion of online safety"@en ;
+    cacontology-synthesis:category ex:f9dcd17d-e952-55d0-8941-c216eb0490bd ;
+    cacontology-synthesis:count "15"^^xsd:integer ;
+    cacontology-synthesis:denominator "114"^^xsd:integer ;
+    cacontology-synthesis:derivedFromFigure ex:18eaa2bc-5375-559f-b500-c8febbb7900f ;
+    cacontology-synthesis:assertedInSection ex:43b8ccb8-c829-55b7-8bb4-a67de1da3b0d ;
+    cacontology-synthesis:inReport ex:797e4cbb-9f30-5f30-8170-d398d12de867 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:8dfb4cec-5e56-5b22-b27f-94371e7383aa .
+
+ex:f4fd035b-3cf8-57d2-b2d1-09703a801d3e a cacontology-synthesis:DistributionObservation ;
+    rdfs:label "Locus frequency: grooming"@en ;
+    cacontology-synthesis:category ex:997965d5-43e0-5d59-9dd9-3448c476b49b ;
+    cacontology-synthesis:count "13"^^xsd:integer ;
+    cacontology-synthesis:denominator "114"^^xsd:integer ;
+    cacontology-synthesis:derivedFromFigure ex:18eaa2bc-5375-559f-b500-c8febbb7900f ;
+    cacontology-synthesis:assertedInSection ex:43b8ccb8-c829-55b7-8bb4-a67de1da3b0d ;
+    cacontology-synthesis:inReport ex:797e4cbb-9f30-5f30-8170-d398d12de867 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:8dfb4cec-5e56-5b22-b27f-94371e7383aa .
+
+ex:b02d0282-3bd0-566c-a927-01d091f04888 a cacontology-synthesis:DistributionObservation ;
+    rdfs:label "Locus frequency: digital payment systems"@en ;
+    cacontology-synthesis:category ex:f8a832bb-aa71-538c-af42-f71c67b5567b ;
+    cacontology-synthesis:count "1"^^xsd:integer ;
+    cacontology-synthesis:denominator "114"^^xsd:integer ;
+    cacontology-synthesis:derivedFromFigure ex:18eaa2bc-5375-559f-b500-c8febbb7900f ;
+    cacontology-synthesis:assertedInSection ex:43b8ccb8-c829-55b7-8bb4-a67de1da3b0d ;
+    cacontology-synthesis:inReport ex:797e4cbb-9f30-5f30-8170-d398d12de867 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:8dfb4cec-5e56-5b22-b27f-94371e7383aa .
+
+ex:855d3a2c-1202-577a-9850-82132432a400 a cacontology-synthesis:DistributionObservation ;
+    rdfs:label "Locus frequency: TF-CSEA advertisement"@en ;
+    cacontology-synthesis:category ex:46a9653e-42f6-51df-872c-0d9a4a490dca ;
+    cacontology-synthesis:count "0"^^xsd:integer ;
+    cacontology-synthesis:denominator "114"^^xsd:integer ;
+    cacontology-synthesis:derivedFromFigure ex:18eaa2bc-5375-559f-b500-c8febbb7900f ;
+    cacontology-synthesis:assertedInSection ex:43b8ccb8-c829-55b7-8bb4-a67de1da3b0d ;
+    cacontology-synthesis:inReport ex:797e4cbb-9f30-5f30-8170-d398d12de867 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:8dfb4cec-5e56-5b22-b27f-94371e7383aa .
+
+# --- First-class recommendations (numbered) ----------------------------------
+
+ex:e0a0f968-7156-5413-981a-539a5b0c1ebb a cacontology-synthesis:Recommendation ;
+    rdfs:label "Recommendation 1 (as reported)"@en ;
+    cacontology-synthesis:recommendationNumber "1"^^xsd:integer ;
+    cacontology-synthesis:assertedInSection ex:35ab2a2b-d240-50bf-820e-3319856368a6 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:ef1fba4c-6bce-51c7-9f4f-0ad3181f80f7 .
+
+ex:65ad55da-80d4-5a70-9873-cd4f916330b1 a cacontology-synthesis:Recommendation ;
+    rdfs:label "Recommendation 2 (as reported)"@en ;
+    cacontology-synthesis:recommendationNumber "2"^^xsd:integer ;
+    cacontology-synthesis:assertedInSection ex:35ab2a2b-d240-50bf-820e-3319856368a6 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:71a92a2a-66a1-591d-b41e-b9782ca8d90f .
+
+ex:a058cf00-d450-524c-a6b4-e480306c0241 a cacontology-synthesis:Recommendation ;
+    rdfs:label "Recommendation 3 (as reported)"@en ;
+    cacontology-synthesis:recommendationNumber "3"^^xsd:integer ;
+    cacontology-synthesis:assertedInSection ex:35ab2a2b-d240-50bf-820e-3319856368a6 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:733ddaf8-c3ce-5ad9-b86e-d7aed9d097fb .
+
+ex:cf5b4e1a-b158-544d-a6e6-2c94cf69ef98 a cacontology-synthesis:Recommendation ;
+    rdfs:label "Recommendation 4 (as reported)"@en ;
+    cacontology-synthesis:recommendationNumber "4"^^xsd:integer ;
+    cacontology-synthesis:assertedInSection ex:35ab2a2b-d240-50bf-820e-3319856368a6 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:4614f30b-eef2-5123-8b84-c30c0ac2895d .
+
+ex:c202bf35-43fd-5f38-b0d2-69fad28a6708 a cacontology-synthesis:Recommendation ;
+    rdfs:label "Recommendation 5 (as reported)"@en ;
+    cacontology-synthesis:recommendationNumber "5"^^xsd:integer ;
+    cacontology-synthesis:assertedInSection ex:35ab2a2b-d240-50bf-820e-3319856368a6 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:f8bd55f4-f0b5-51a4-9383-0f724c1c1009 .
+
+ex:02ef3ebe-5b8d-53db-9fe9-8851c205aea2 a cacontology-synthesis:Recommendation ;
+    rdfs:label "Recommendation 6 (as reported)"@en ;
+    cacontology-synthesis:recommendationNumber "6"^^xsd:integer ;
+    cacontology-synthesis:assertedInSection ex:35ab2a2b-d240-50bf-820e-3319856368a6 ;
+    cacontology-synthesis:supportedByEvidencePointer ex:673ac565-20cc-57dd-896b-ce5b0f4408cd .
+
+# --- Legal instruments + jurisdictional influence (structured) ----------------
+
+ex:07aeca27-d249-5abb-beaa-e7d5c1002e8e a cacontology-synthesis:TextEvidencePointer ;
+    cacontology-synthesis:referencesArtifact ex:9048a300-05a1-495c-bdb3-c19a7f06cdb9 ;
+    cacontology-synthesis:lineStart "165"^^xsd:integer ;
+    cacontology-synthesis:lineEnd "169"^^xsd:integer ;
+    cacontology-synthesis:exactQuote "As a legal instrument, the Lanzarote Convention has resulted in the introduction or amendment of existing national laws to criminalize child grooming and other TF-CSEA in Italy [52], the Philippines [20], Malaysia [65], Cambodia [9], Ethiopia [67], South Africa [22], and Ghana [13]." .
+
+ex:c339a129-38da-53bf-aa95-99037d3ffa63 a cacontology-synthesis:TextEvidencePointer ;
+    cacontology-synthesis:referencesArtifact ex:9048a300-05a1-495c-bdb3-c19a7f06cdb9 ;
+    cacontology-synthesis:lineStart "169"^^xsd:integer ;
+    cacontology-synthesis:lineEnd "169"^^xsd:integer ;
+    cacontology-synthesis:exactQuote "Examples of these legal instruments include the Australian Online Safety Act 2021 and UK Online Safety Act 2023 [114], and the EU Digital Services Act 2022 [54], [56], [57]. These national and regional laws have extraterritorial scope [118], [119], [120]." .
+
+ex:f9e82035-250f-5da0-ad10-c9fd176ebb39 a cacontology-synthesis:TextEvidencePointer ;
+    cacontology-synthesis:referencesArtifact ex:9048a300-05a1-495c-bdb3-c19a7f06cdb9 ;
+    cacontology-synthesis:lineStart "37"^^xsd:integer ;
+    cacontology-synthesis:lineEnd "37"^^xsd:integer ;
+    cacontology-synthesis:exactQuote "the Philippines introduced the Anti-Child Pornography Act in 2009 to criminalize the “luring” and “grooming” of a child to engage in sexual activities [20]. The Act, which was updated in 2022 [21], also imposes a reporting duty on internet service providers (ISPs), content hosts, credit card companies, banks, and other businesses with direct knowledge of CSAM to notify the Philippine National Police or the National Bureau of Investigation." .
+
+ex:e8b6b228-60bd-5782-967b-68787f6a773d a cacontology-synthesis:TextEvidencePointer ;
+    cacontology-synthesis:referencesArtifact ex:9048a300-05a1-495c-bdb3-c19a7f06cdb9 ;
+    cacontology-synthesis:lineStart "41"^^xsd:integer ;
+    cacontology-synthesis:lineEnd "41"^^xsd:integer ;
+    cacontology-synthesis:exactQuote "Similarly, the South African Cybercrimes Act criminalizes child grooming for in- person as well as online sexual exploitation and abuse [22]. At the European Union (EU) regional level, Directive 2011/93/EU [23] lays down minimum rules for member states concerning the definition of criminal offences and sanctions against child sexual exploitation and abuse." .
+
+ex:733b4143-ba8e-5c89-be0f-f8d7afb6af6f a cacontology-multi:Jurisdiction, uco-location:Location ; rdfs:label "Italy"@en .
+ex:94441304-f77b-56c8-819f-906f49575f9a a cacontology-multi:Jurisdiction, uco-location:Location ; rdfs:label "Philippines"@en .
+ex:553fc5c8-f82b-51f8-bcbf-10ea5f53d5bf a cacontology-multi:Jurisdiction, uco-location:Location ; rdfs:label "Malaysia"@en .
+ex:be34e982-7de6-55e8-9b74-a72e6f9cb6aa a cacontology-multi:Jurisdiction, uco-location:Location ; rdfs:label "Cambodia"@en .
+ex:323658e8-1671-55a3-91e0-06857f89d8a1 a cacontology-multi:Jurisdiction, uco-location:Location ; rdfs:label "Ethiopia"@en .
+ex:2ffe5253-45ee-5d46-b4d8-d7766cd8d329 a cacontology-multi:Jurisdiction, uco-location:Location ; rdfs:label "South Africa"@en .
+ex:64043e4e-3585-5d3d-891c-b4042fd7ce04 a cacontology-multi:Jurisdiction, uco-location:Location ; rdfs:label "Ghana"@en .
+ex:c637bfa8-9b3b-5341-b8d4-2c8c0ce3f021 a cacontology-multi:Jurisdiction, uco-location:Location ; rdfs:label "European Union"@en .
+ex:a88eb752-975c-5738-9a25-613235e0d72f a cacontology-multi:Jurisdiction, uco-location:Location ; rdfs:label "Australia"@en .
+ex:ba1ab767-d2ae-5a65-9e48-31365ef7b419 a cacontology-multi:Jurisdiction, uco-location:Location ; rdfs:label "United Kingdom"@en .
+
+ex:bb711ed6-a4c5-5f7a-a858-fc8e8f017d3f
+    cacontology-synthesis:influencedJurisdiction ex:733b4143-ba8e-5c89-be0f-f8d7afb6af6f ,
+                                             ex:94441304-f77b-56c8-819f-906f49575f9a ,
+                                             ex:553fc5c8-f82b-51f8-bcbf-10ea5f53d5bf ,
+                                             ex:be34e982-7de6-55e8-9b74-a72e6f9cb6aa ,
+                                             ex:323658e8-1671-55a3-91e0-06857f89d8a1 ,
+                                             ex:2ffe5253-45ee-5d46-b4d8-d7766cd8d329 ,
+                                             ex:64043e4e-3585-5d3d-891c-b4042fd7ce04 ;
+    .
+
+ex:7014e6c8-1a8a-5d2c-bc22-34245317666f
+    cacontology-synthesis:influencedJurisdiction ex:94441304-f77b-56c8-819f-906f49575f9a ;
+    .
+
+ex:9659287a-bea3-54fa-970c-5dba1fdc21a8
+    cacontology-synthesis:influencedJurisdiction ex:a88eb752-975c-5738-9a25-613235e0d72f ;
+    .
+
+ex:26e80b29-49a8-5eb6-a57d-b25580c1a149
+    cacontology-synthesis:influencedJurisdiction ex:ba1ab767-d2ae-5a65-9e48-31365ef7b419 ;
+    .
+
+ex:49860627-2cd8-5e18-a4c6-20c5c64e6f42
+    cacontology-synthesis:influencedJurisdiction ex:c637bfa8-9b3b-5341-b8d4-2c8c0ce3f021 ;
+    .
+
+# National laws and ecosystem items (examples explicitly named in the report)
+ex:702bc09c-5586-5991-95ba-21a155516c0e a cacontology-legal:NationalLegislation ;
+    rdfs:label "Philippines Anti-Child Pornography Act (2009)"@en ;
+    cacontology-legal:appliesToCountry ex:94441304-f77b-56c8-819f-906f49575f9a .
+
+ex:753a73b9-3ee1-51bf-bfc7-cc06dda078dc a cacontology-legal:LegalReform ;
+    rdfs:label "Update to Philippines Anti-Child Pornography Act (2022) (as reported)"@en ;
+    cacontology-synthesis:influencedJurisdiction ex:94441304-f77b-56c8-819f-906f49575f9a .
+
+ex:b7fb80d6-de9a-505b-99dc-b5c17308f8f2 a cacontology-legal:NationalLegislation ;
+    rdfs:label "South African Cybercrimes Act (as reported)"@en ;
+    cacontology-legal:appliesToCountry ex:2ffe5253-45ee-5d46-b4d8-d7766cd8d329 .
+
+ex:ec3e2b77-2594-54f7-bd48-89748de39690 a uco-core:UcoObject ;
+    rdfs:label "WeProtect Model National Response (MNR) (as reported)"@en ;
+    .
+
+ex:ba09db7a-133c-50ff-8720-7f49d526cb9e a uco-core:UcoObject, uco-observable:ObservableObject ;
+    rdfs:label "NCMEC CyberTipline (as reported)"@en ;
+    .
+
+# --- UCO hash facets for text evidence pointers (SHA-256 of exactQuote) -------
+ex:07aeca27-d249-5abb-beaa-e7d5c1002e8e uco-core:hasFacet ex:98a611a2-40e6-5855-86d4-5ab7f48ded15 .
+ex:98a611a2-40e6-5855-86d4-5ab7f48ded15 a uco-observable:HashFacet ;
+    uco-observable:hash ex:5494e341-7a76-59ee-ab3b-14bfa1fb7340 .
+ex:5494e341-7a76-59ee-ab3b-14bfa1fb7340 a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "ba90a500f26f23fd1f7775c46119203f8a81a326faf45cca7af8a5fdff01b1dd" .
+ex:0acaf97f-82a6-56bd-843b-1aa986e01d30 uco-core:hasFacet ex:6b6a440f-a433-576e-a16f-312ed46607a5 .
+ex:6b6a440f-a433-576e-a16f-312ed46607a5 a uco-observable:HashFacet ;
+    uco-observable:hash ex:40c8942e-0308-5417-a553-42b8b4096667 .
+ex:40c8942e-0308-5417-a553-42b8b4096667 a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "80612fc2758449ff2c84fca89e6d14c885ca05ae4786e8fb3d0210d966086f4a" .
+ex:1a663863-5089-5780-9f4e-3c3fa48e01e3 uco-core:hasFacet ex:9655bfc2-f4ef-5f3c-b598-96e83548181f .
+ex:9655bfc2-f4ef-5f3c-b598-96e83548181f a uco-observable:HashFacet ;
+    uco-observable:hash ex:0be2f6e1-d08d-5c10-a2b5-3dd61f654401 .
+ex:0be2f6e1-d08d-5c10-a2b5-3dd61f654401 a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "382cbc02e21c03f397de7e77bc15cf9d308d6ed03ef05eb7c092062d2691dc8d" .
+ex:4abdd542-2958-5659-8d76-baad0bce866e uco-core:hasFacet ex:c6b1fcd5-e978-5c42-80aa-7e3de15f388f .
+ex:c6b1fcd5-e978-5c42-80aa-7e3de15f388f a uco-observable:HashFacet ;
+    uco-observable:hash ex:124f88a1-dd43-598b-bc0c-37d415dd11c7 .
+ex:124f88a1-dd43-598b-bc0c-37d415dd11c7 a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "6e38c7fbc8e5f18a1e860c4b64573dcb74fd1b8d4ebee43bcc7c6658ad375217" .
+ex:6bee9d06-0e71-5c40-b37b-a075aec978ce uco-core:hasFacet ex:9b2d8dbe-d6a3-530f-ad68-74bf27e85cc1 .
+ex:9b2d8dbe-d6a3-530f-ad68-74bf27e85cc1 a uco-observable:HashFacet ;
+    uco-observable:hash ex:d26f22cc-7ce4-5ea1-93e4-f8dcf1615ef7 .
+ex:d26f22cc-7ce4-5ea1-93e4-f8dcf1615ef7 a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "3dc929b5fc216cb895f0f3c030a6505b89e90a2e3fe152492e55803ff4e152ba" .
+ex:73593f4c-fef1-5c26-b7b2-c90785e2906a uco-core:hasFacet ex:59f557b4-8e7d-5680-af88-9923b124a254 .
+ex:59f557b4-8e7d-5680-af88-9923b124a254 a uco-observable:HashFacet ;
+    uco-observable:hash ex:b15dbcf8-7efa-54db-82e3-7df598b63da4 .
+ex:b15dbcf8-7efa-54db-82e3-7df598b63da4 a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "07de9d535e824cb923bea03f6bc9c95d51d274a9c8aa6e56b0de1bfb5428f767" .
+ex:8dfb4cec-5e56-5b22-b27f-94371e7383aa uco-core:hasFacet ex:e80ea7f0-3248-522c-abb6-b561a704220c .
+ex:e80ea7f0-3248-522c-abb6-b561a704220c a uco-observable:HashFacet ;
+    uco-observable:hash ex:21158855-07e8-5ad6-944a-2038cdc5ee4a .
+ex:21158855-07e8-5ad6-944a-2038cdc5ee4a a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "c49bd8171e270d342cb62d5b16f6af022c659614c0d5ec73fb80d6ddbd7a2687" .
+ex:adcddab3-6e0c-528b-9f33-482434e659ca uco-core:hasFacet ex:960e2688-703c-5400-8400-ac9d6d9f6ebb .
+ex:960e2688-703c-5400-8400-ac9d6d9f6ebb a uco-observable:HashFacet ;
+    uco-observable:hash ex:19578159-8b8c-50e3-b5e4-c5aebcbddd10 .
+ex:19578159-8b8c-50e3-b5e4-c5aebcbddd10 a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "ab79d47ccb4029589a9967678209fdf883000333761ba92677327f66fd3ae671" .
+ex:c339a129-38da-53bf-aa95-99037d3ffa63 uco-core:hasFacet ex:ff7f3f5c-f483-5e50-988f-0de57e4ae00f .
+ex:ff7f3f5c-f483-5e50-988f-0de57e4ae00f a uco-observable:HashFacet ;
+    uco-observable:hash ex:71998186-cc3b-57a7-9b05-5e8c79ba1395 .
+ex:71998186-cc3b-57a7-9b05-5e8c79ba1395 a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "389d1e518bcd115e649548abd7d9321651dda5459a4df5da78bdd9688a22cbe9" .
+ex:cd88def7-cb53-5704-89f5-7194fbd34881 uco-core:hasFacet ex:9d100ba1-bfb0-5b4d-9270-ff95fc24418f .
+ex:9d100ba1-bfb0-5b4d-9270-ff95fc24418f a uco-observable:HashFacet ;
+    uco-observable:hash ex:89fa33f2-aeaf-5a77-bc05-98a5110535a4 .
+ex:89fa33f2-aeaf-5a77-bc05-98a5110535a4 a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "f176725bde17cd47ac03b84d953b66f8b67e085c764266eb8fd613879a4e3a81" .
+ex:d3090399-7be9-5709-8e13-089236ca7a77 uco-core:hasFacet ex:7fef715b-3c93-5b91-b39b-3f6b32526350 .
+ex:7fef715b-3c93-5b91-b39b-3f6b32526350 a uco-observable:HashFacet ;
+    uco-observable:hash ex:e6b03e3d-1377-53f7-8000-ae969c18b4f0 .
+ex:e6b03e3d-1377-53f7-8000-ae969c18b4f0 a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "0d196f114d671584b9ad486fa190ea91a0441edbd6591473f2a1a7b50bab7fbb" .
+ex:d40bcf5d-aefa-5fe3-a13d-741295c074fc uco-core:hasFacet ex:739524e5-ca4e-55a9-a16b-5c7f7f2a216d .
+ex:739524e5-ca4e-55a9-a16b-5c7f7f2a216d a uco-observable:HashFacet ;
+    uco-observable:hash ex:bf66c1f6-3642-5fad-8255-bd93522d1746 .
+ex:bf66c1f6-3642-5fad-8255-bd93522d1746 a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "0756954704cb39626fa57b69692f3549e9a36fb2e040159347039672174d7238" .
+ex:d83de837-1c16-5506-9d0a-026384006f98 uco-core:hasFacet ex:59f7b065-27bc-5a77-9f2d-f066d5809c7a .
+ex:59f7b065-27bc-5a77-9f2d-f066d5809c7a a uco-observable:HashFacet ;
+    uco-observable:hash ex:328449f9-6586-5fb8-8b59-dc2d69db740c .
+ex:328449f9-6586-5fb8-8b59-dc2d69db740c a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "0e5c4fdc1b94b1e8f2e0256f30396985aa6a1daa5d0876f9b138f20a40bd5aca" .
+ex:e5f0c839-3bc3-5da6-b578-901c0f45ab37 uco-core:hasFacet ex:a5f93ae0-eab0-5daa-8165-32e30a8d57f5 .
+ex:a5f93ae0-eab0-5daa-8165-32e30a8d57f5 a uco-observable:HashFacet ;
+    uco-observable:hash ex:2cba6fb9-0bc3-5c72-849a-08dd2e3d79f9 .
+ex:2cba6fb9-0bc3-5c72-849a-08dd2e3d79f9 a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "b377938cab2546dc0857350d74e48cc19bcea4223e23e3cc45a4ccb403548607" .
+ex:e8b6b228-60bd-5782-967b-68787f6a773d uco-core:hasFacet ex:6ec82e79-4096-5612-aedb-3cb4825f73af .
+ex:6ec82e79-4096-5612-aedb-3cb4825f73af a uco-observable:HashFacet ;
+    uco-observable:hash ex:4079564d-c6a0-517c-9396-5e15090a5760 .
+ex:4079564d-c6a0-517c-9396-5e15090a5760 a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "65b9f23dc3d19376f25202fe23515349f85220df200556372efacd2d435ef7c1" .
+ex:ef1fba4c-6bce-51c7-9f4f-0ad3181f80f7 uco-core:hasFacet ex:6455fb52-c68a-5614-a048-9f53f6c247d3 .
+ex:6455fb52-c68a-5614-a048-9f53f6c247d3 a uco-observable:HashFacet ;
+    uco-observable:hash ex:ec47aff6-6d5e-539f-88b2-00e2a3eafbf9 .
+ex:ec47aff6-6d5e-539f-88b2-00e2a3eafbf9 a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "1f8461257c990ee01644fc8de0584e256b421dd5aa1795350dacf224bd3c1186" .
+ex:71a92a2a-66a1-591d-b41e-b9782ca8d90f uco-core:hasFacet ex:836fd2fe-cf75-51b3-906e-a86459464640 .
+ex:836fd2fe-cf75-51b3-906e-a86459464640 a uco-observable:HashFacet ;
+    uco-observable:hash ex:f491221f-ce99-5296-afa6-e3a6d9d51f7e .
+ex:f491221f-ce99-5296-afa6-e3a6d9d51f7e a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "d2673a19d5a3a0dd296e20e344e2901b81e3affdbff54c3b2133961f1ea85aee" .
+ex:733ddaf8-c3ce-5ad9-b86e-d7aed9d097fb uco-core:hasFacet ex:809418d3-2372-5ad8-8a1a-254b2bc08e96 .
+ex:809418d3-2372-5ad8-8a1a-254b2bc08e96 a uco-observable:HashFacet ;
+    uco-observable:hash ex:0b6b5d15-478c-5027-a4a1-38e2a3f7c09e .
+ex:0b6b5d15-478c-5027-a4a1-38e2a3f7c09e a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "37746480b191a9a731c11fcae47253b8ec430dbbe8560f9bc4de4bec6c75a83d" .
+ex:4614f30b-eef2-5123-8b84-c30c0ac2895d uco-core:hasFacet ex:5b85759d-03ef-51d7-9397-1482e3568761 .
+ex:5b85759d-03ef-51d7-9397-1482e3568761 a uco-observable:HashFacet ;
+    uco-observable:hash ex:452df076-7779-5cce-ba83-14e1b1c75d7d .
+ex:452df076-7779-5cce-ba83-14e1b1c75d7d a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "a2d242d0016ac6d4a373e30758ce174e2a6ac183bf0c0085f6d757b6be935f79" .
+ex:f8bd55f4-f0b5-51a4-9383-0f724c1c1009 uco-core:hasFacet ex:73cf81e8-8488-5bc8-9819-e980f98c4d68 .
+ex:73cf81e8-8488-5bc8-9819-e980f98c4d68 a uco-observable:HashFacet ;
+    uco-observable:hash ex:d4501ba3-459b-5208-a16c-5a7c373861cb .
+ex:d4501ba3-459b-5208-a16c-5a7c373861cb a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "1cdf805083ac515fceeeb74ae506629f77795d378bd79e79be580326f71c1d85" .
+ex:673ac565-20cc-57dd-896b-ce5b0f4408cd uco-core:hasFacet ex:0feea9a7-9f79-57fd-a934-717273ad1d30 .
+ex:0feea9a7-9f79-57fd-a934-717273ad1d30 a uco-observable:HashFacet ;
+    uco-observable:hash ex:7df5bb36-27c2-50b5-bb49-1828e75c8f88 .
+ex:7df5bb36-27c2-50b5-bb49-1828e75c8f88 a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "9ba5f2db459543ba80fe9410a276fad8b20142cf269f4cbe1933dee10b55b5e0" .
+ex:f9e82035-250f-5da0-ad10-c9fd176ebb39 uco-core:hasFacet ex:41d614f0-83c4-5db5-b941-f8180d682b3e .
+ex:41d614f0-83c4-5db5-b941-f8180d682b3e a uco-observable:HashFacet ;
+    uco-observable:hash ex:1113cf66-29d1-5d15-8839-4c844cff4da7 .
+ex:1113cf66-29d1-5d15-8839-4c844cff4da7 a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "fb745727acc5b9a09e2801120149d249bb3925d85d08ca3dcf8475add23f3a3a" .
+ex:ff7d822f-12ce-58a8-84ba-b8657226f662 uco-core:hasFacet ex:cf7532a0-d7a7-505c-9e35-59552a172119 .
+ex:cf7532a0-d7a7-505c-9e35-59552a172119 a uco-observable:HashFacet ;
+    uco-observable:hash ex:55cae059-d284-5997-a13d-aac7a5a0d892 .
+ex:55cae059-d284-5997-a13d-aac7a5a0d892 a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "958dec00be950a489fcd805290bfe155d2d67c9e125aa7308f31a92ed9db3f0e" .
+
+

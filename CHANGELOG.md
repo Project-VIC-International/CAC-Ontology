@@ -7,6 +7,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+## v2.11.0 - 20 February 2026
+
+### Added - Knowledge Synthesis Module Tightening + SR2026.1 TF-CSEA Example KG Hardening
+
+Adds the new knowledge-synthesis module (`cacontology-synthesis`) and its SHACL shapes, and hardens the SR2026.1 TF-CSEA systematic review example knowledge graph with audit-safe evidence alignment (per-recommendation evidence pointers, resolvable pointers, and quote hashing conventions).
+
+#### New / Updated Synthesis Ontology Module
+
+- Added: `ontology/cacontology-synthesis.ttl`
+  - Report/work vs artifact split: `Report` is an intellectual work (`uco-core:UcoObject`) realized in an observable artifact via `realizedIn`
+  - Added optional direct linking helpers: `inReport`, `hasObservation`, `hasClaim`
+  - Added hash semantics helper: `hashScope` (verbatim Unicode exactQuote hashing convention) and clarified legacy `quoteHashSha256`
+  - Added `ReportArtifact` as an optional report-as-file class (`uco-observable:ObservableObject`)
+
+#### New / Updated SHACL Shapes
+
+- Added/Updated: `ontology/cacontology-synthesis-shapes.ttl`
+  - Evidence pointers validate line-range **or** page-range (`sh:or`)
+  - Hash validation supports either UCO `HashFacet` (preferred) or legacy inline hash fields (fallback)
+  - Added constraints for `KeyFinding`/`Recommendation` numbering and `DistributionObservation` well-formedness
+
+#### Example Knowledge Graph + Analytics
+
+- Example KG: `examples_knowledge_graphs/ipie-sr2026-1-tf-csea-systematic-review-example.ttl`
+  - Recommendations 1–6 each have their own `TextEvidencePointer` and quote hash facets; `hashScope` uses `exactQuote:unicode:verbatim`
+  - Evidence pointers are attached to claim-like nodes only (prevents evidence sprawl on non-claims)
+- SPARQL suite: `example_SPARQL_queries/ipie-sr2026-1-tf-csea-systematic-review-analytics.rq`
+
+#### Validation
+
+- `python -m pyshacl -s ontology/cacontology-synthesis-shapes.ttl -m -f human examples_knowledge_graphs/ipie-sr2026-1-tf-csea-systematic-review-example.ttl` → **Conforms: True**
+
+#### Versioning
+
+- Bumped ontology family version IRIs to `2.11.0` (tooling: `update_version.py`)
+
 ## v2.10.0 - 16 February 2026
 
 ### Added - Emergency Disclosure Request (EDR) Modeling + Example Suite (Police1 missing-child investigations)

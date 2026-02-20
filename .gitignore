@@ -29,6 +29,11 @@ venv/
 env/
 ENV/
 .venv
+.venv-pyshacl/
+
+# Large local PDFs (source docs)
+6992e1611ee3b0705bf51862_SR2026.1\ -\ CPSM\ -\ Final\ Report.pdf
+K2P\ SOE\ Information.pdf
 
 # IDE
 .vscode/
@@ -52,6 +57,11 @@ temp/
 *.ttl
 !examples/*.ttl
 !ontology/*.ttl
+
+# Allow specific new example graphs (otherwise .ttl are ignored)
+!examples_knowledge_graphs/ipie-sr2026-1-tf-csea-systematic-review-example.ttl
+!examples_knowledge_graphs/ipie-sr2026-1-tf-csea-systematic-review-skeleton.ttl
+!analytics_demonstration/collected_sources/ipie-sr2026-1-tf-csea-systematic-review/skeleton.ttl
 
 # Ontospy cache
 .ontospy_cache/

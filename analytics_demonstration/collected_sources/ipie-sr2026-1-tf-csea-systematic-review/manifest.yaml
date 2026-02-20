@@ -1,0 +1,58 @@
+# CAC Ontology ingestion manifest (single-document)
+# Source: IPIE Synthesis Report SR2026.1 (PDF) - TF-CSEA interventions systematic review
+
+batch:
+  uco-core:id: "urn:uuid:7ffa2d7b-58a9-41b4-9620-c216cb85767b"
+  uco-core:name: "IPIE SR2026.1 TF-CSEA systematic review (PDF) collection"
+  uco-core:objectCreatedTime: "2026-02-20T00:55:36Z"
+
+  agentOrchestration:
+    enabled: false
+    fetchMethod: "manual"
+    preprocessingPipeline:
+      - "pdf_to_text"
+      - "whitespace_normalize"
+      - "paragraph_per_line_normalize"
+    deconflictionEnabled: false
+
+documents:
+  - uco-core:id: "urn:uuid:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee"
+    uco-core:name: "Detecting, Deterring, Investigating, and Prosecuting Technology-Facilitated Child Sexual Exploitation and Sexual Abuse: A Systematic Review (IPIE SR2026.1)"
+
+    # Source location (file-based)
+    observable:filePath: "6992e1611ee3b0705bf51862_SR2026.1 - CPSM - Final Report.pdf"
+
+    collectionAction:
+      uco-action:startTime: "2026-02-20T00:55:36Z"
+      uco-action:performer: "urn:uuid:f830548c-dc51-534c-9eee-64aceae0bb23"
+      uco-core:description: "manual (local PDF provided in repo workspace) by CAC Ontology agent"
+
+    # Raw content metadata (PDF)
+    observable:mimeType: "application/pdf"
+    observable:sizeInBytes: 3053511
+    observable:hash:
+      types:hashMethod: "SHA-256"
+      types:hashValue: "2742d6bdd868928fc37d89a59a2315fbb3c80f3bb4ea5da73e7534782efd11d1"
+
+    # Extracted text (capture)
+    extractedTextOutput:
+      observable:filePath: "analytics_demonstration/collected_sources/ipie-sr2026-1-tf-csea-systematic-review/source.txt"
+      observable:mimeType: "text/plain"
+      observable:sizeInBytes: 172816
+      observable:hash:
+        types:hashMethod: "SHA-256"
+        types:hashValue: "c9480ad838a8b136c559819ffdec8866d6fc68ef954b070d68c9d9a748964c4e"
+
+    # Normalized output (text; paragraph-per-line normalization for stable evidence pointers)
+    normalizationAction:
+      uco-core:description: "pdf_to_text + whitespace normalization + paragraph-per-line normalization"
+      uco-action:startTime: "2026-02-20T00:55:36Z"
+      uco-action:result: "urn:uuid:9048a300-05a1-495c-bdb3-c19a7f06cdb9"
+
+    normalizedOutput:
+      observable:filePath: "analytics_demonstration/collected_sources/ipie-sr2026-1-tf-csea-systematic-review/normalized.txt"
+      observable:mimeType: "text/plain"
+      observable:sizeInBytes: 165808
+      observable:hash:
+        types:hashMethod: "SHA-256"
+        types:hashValue: "ad6ec4e6df1b4daedef16414a1230c27cd18e8e477d11cf3b79789fcef0a5dfd"
