@@ -15,10 +15,10 @@
 @prefix cacontology-case: <https://cacontology.projectvic.org/case-management#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/case-management/2.10.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/case-management/2.11.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Case Management Ontology with gUFO Integration"@en ;
     rdfs:comment "Comprehensive ontology for modeling case management processes, workflows, assignments, tracking, documentation, and metrics within ICAC investigations and prosecutions, enhanced with comprehensive gUFO foundational modeling for +85% semantic precision, +195% temporal modeling improvements, and +385% validation coverage."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/case-management/2.10.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/case-management/2.11.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-01-27"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;

@@ -13,10 +13,10 @@
 @prefix cacontology-usa-federal: <https://cacontology.projectvic.org/usa-federal-law#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/usa-federal-law/2.10.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/usa-federal-law/2.11.0> rdf:type owl:Ontology ;
     dcterms:title "ICAC USA Federal Child Exploitation and Obscenity Law Ontology"@en ;
     dcterms:description "Comprehensive semantic framework for U.S. federal child exploitation and obscenity laws with gUFO foundational ontology grounding for enhanced semantic precision, temporal modeling, and validation capabilities. Based on DOJ CEOS guidelines and models federal statutes, prosecution mechanisms, extraterritorial crimes, child support enforcement intersection, and obscenity law frameworks."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/usa-federal-law/2.10.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/usa-federal-law/2.11.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:created "2025-01-03"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;

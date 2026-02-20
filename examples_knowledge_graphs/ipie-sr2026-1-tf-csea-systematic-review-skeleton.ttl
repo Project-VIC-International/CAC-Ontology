@@ -1,0 +1,105 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
+@prefix investigation: <https://ontology.caseontology.org/case/investigation/> .
+
+@prefix ex: <urn:uuid:> .
+
+# =============================================================================
+# IPIE Synthesis Report SR2026.1 (collection + provenance)
+# Source: local PDF `6992e1611ee3b0705bf51862_SR2026.1 - CPSM - Final Report.pdf`
+# DOI: 10.61452/UZUS7376
+# Collected: 2026-02-20T00:55:36Z (UTC)
+# =============================================================================
+
+ex:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee a uco-observable:ObservableObject ;
+    rdfs:label "IPIE Synthesis Report SR2026.1: Detecting, Deterring, Investigating, and Prosecuting TF-CSEA (PDF)"@en ;
+    uco-core:hasFacet ex:05c43e7c-90de-4edf-bdea-d5b3d22c8804 ;
+    uco-core:hasFacet ex:564b460b-ccf9-4bd2-bc08-7e87d1f5082b ;
+    uco-core:hasFacet ex:82c0ca23-b0ca-4c5f-ac32-506940908ff0 .
+
+ex:05c43e7c-90de-4edf-bdea-d5b3d22c8804 a uco-observable:ContentDataFacet ;
+    uco-observable:mimeType "application/pdf" ;
+    uco-observable:sizeInBytes 3053511 .
+
+ex:564b460b-ccf9-4bd2-bc08-7e87d1f5082b a uco-observable:FileFacet ;
+    uco-observable:filePath "6992e1611ee3b0705bf51862_SR2026.1 - CPSM - Final Report.pdf" .
+
+ex:82c0ca23-b0ca-4c5f-ac32-506940908ff0 a uco-observable:HashFacet ;
+    uco-observable:hash ex:cfb2c6f4-7e02-45bc-bc96-0a3375ac9929 .
+
+ex:cfb2c6f4-7e02-45bc-bc96-0a3375ac9929 a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "2742d6bdd868928fc37d89a59a2315fbb3c80f3bb4ea5da73e7534782efd11d1" .
+
+ex:f830548c-dc51-534c-9eee-64aceae0bb23 a uco-core:UcoObject ;
+    rdfs:label "CAC Ontology Collection Agent (Cursor)"@en ;
+    uco-core:description "Automated assistant performing collection and preprocessing for CAC Ontology ingestion."@en .
+
+ex:59d971fc-b8de-41d7-80a4-96fafa4db00f a investigation:InvestigativeAction ;
+    rdfs:label "Collection action: IPIE SR2026.1 PDF"@en ;
+    uco-action:startTime "2026-02-20T00:55:36Z"^^xsd:dateTime ;
+    uco-action:performer ex:f830548c-dc51-534c-9eee-64aceae0bb23 ;
+    uco-action:object ex:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee ;
+    uco-core:description "Collected via local PDF present in workspace."@en .
+
+ex:9c77ca22-41af-49ca-aec7-24c2634de525 a uco-action:Action ;
+    rdfs:label "Normalization action: PDF to source.txt and normalized.txt"@en ;
+    uco-action:startTime "2026-02-20T00:55:36Z"^^xsd:dateTime ;
+    uco-action:performer ex:f830548c-dc51-534c-9eee-64aceae0bb23 ;
+    uco-action:object ex:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee ;
+    uco-action:result ex:943a1319-3420-470a-bbc0-3126d1642147 ;
+    uco-action:result ex:9048a300-05a1-495c-bdb3-c19a7f06cdb9 ;
+    uco-core:description "pdf_to_text (pypdf) + whitespace normalization + paragraph-per-line normalization for stable evidence pointers."@en .
+
+ex:943a1319-3420-470a-bbc0-3126d1642147 a uco-observable:ObservableObject ;
+    rdfs:label "Extracted text: IPIE SR2026.1 (source.txt)"@en ;
+    uco-core:hasFacet ex:8fb1419c-7168-409e-b41b-dcdec53d15b8 ;
+    uco-core:hasFacet ex:489e4403-63a5-4c62-96ca-6ef0206bc4b9 ;
+    uco-core:hasFacet ex:15318fb6-af7e-42e8-b3a0-c750fa5d9d88 .
+
+ex:8fb1419c-7168-409e-b41b-dcdec53d15b8 a uco-observable:ContentDataFacet ;
+    uco-observable:mimeType "text/plain" ;
+    uco-observable:sizeInBytes 172816 .
+
+ex:489e4403-63a5-4c62-96ca-6ef0206bc4b9 a uco-observable:FileFacet ;
+    uco-observable:filePath "analytics_demonstration/collected_sources/ipie-sr2026-1-tf-csea-systematic-review/source.txt" .
+
+ex:15318fb6-af7e-42e8-b3a0-c750fa5d9d88 a uco-observable:HashFacet ;
+    uco-observable:hash ex:51bb3321-c2dc-4e78-a083-4baa740f8c9c .
+
+ex:51bb3321-c2dc-4e78-a083-4baa740f8c9c a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "c9480ad838a8b136c559819ffdec8866d6fc68ef954b070d68c9d9a748964c4e" .
+
+ex:9048a300-05a1-495c-bdb3-c19a7f06cdb9 a uco-observable:ObservableObject ;
+    rdfs:label "Normalized text: IPIE SR2026.1 (normalized.txt)"@en ;
+    uco-core:hasFacet ex:2c2e2655-b1fd-4fea-8049-a8c689150a3f ;
+    uco-core:hasFacet ex:e05f8fb9-be39-4080-a066-736a6663cbba ;
+    uco-core:hasFacet ex:e4db7ecb-4cb2-4b2b-9405-6c9e57b6e0e1 .
+
+ex:2c2e2655-b1fd-4fea-8049-a8c689150a3f a uco-observable:ContentDataFacet ;
+    uco-observable:mimeType "text/plain" ;
+    uco-observable:sizeInBytes 165808 .
+
+ex:e05f8fb9-be39-4080-a066-736a6663cbba a uco-observable:FileFacet ;
+    uco-observable:filePath "analytics_demonstration/collected_sources/ipie-sr2026-1-tf-csea-systematic-review/normalized.txt" .
+
+ex:e4db7ecb-4cb2-4b2b-9405-6c9e57b6e0e1 a uco-observable:HashFacet ;
+    uco-observable:hash ex:f4b66f9b-6e48-401d-b755-cd6ff4741a9a .
+
+ex:f4b66f9b-6e48-401d-b755-cd6ff4741a9a a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "ad6ec4e6df1b4daedef16414a1230c27cd18e8e477d11cf3b79789fcef0a5dfd" .
+
+ex:f65a98e8-a659-48e8-aa0c-6df3552d19cb a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance record: collection of IPIE SR2026.1 PDF"@en ;
+    investigation:exhibitNumber "DOC-IPIE-SR2026-1-0001" ;
+    uco-core:object ex:c0ecc571-cd51-4209-9ca2-5e804ef8c8ee ;
+    investigation:provenanceRecordAction ex:59d971fc-b8de-41d7-80a4-96fafa4db00f .
