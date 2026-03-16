@@ -4,7 +4,7 @@
 
 You are enhancing the CAC Ontology (Crimes Against Children Ontology): a semantic framework for modeling child exploitation investigations, operations, legal process, and offender/victim behaviors.
 
-- **Repository root**: `D:\Project VIC\CAC-Ontology\CAC-Ontology\`
+- **Repository root**: `replace this with your working CAC Ontology directory`
 - **Ontology modules**: `ontology/*.ttl`
 - **SHACL shapes**: `ontology/*-shapes.ttl`
 - **Examples**: `examples_knowledge_graphs/*.ttl`
