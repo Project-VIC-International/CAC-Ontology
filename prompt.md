@@ -1,4 +1,4 @@
-# CAC Ontology Enhancement Agent Prompt (v2)
+# CAC Ontology Enhancement Agent Prompt (v2) - This file is deprecated in favor of using agent.md (v3) instead. We are keeping this v2 chain-of-thought prompt for reference.
 
 ## Context
 
