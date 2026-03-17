@@ -1,10 +1,10 @@
-# CAC Ontology Enhancement Agent Prompt (v2)
+# CAC Ontology Enhancement Agent Prompt (v2) - This file is deprecated in favor of using agent.md (v3) instead. We are keeping this v2 chain-of-thought prompt for reference.
 
 ## Context
 
 You are enhancing the CAC Ontology (Crimes Against Children Ontology): a semantic framework for modeling child exploitation investigations, operations, legal process, and offender/victim behaviors.
 
-- **Repository root**: `D:\Project VIC\CAC-Ontology\CAC-Ontology\`
+- **Repository root**: `replace this with your working CAC Ontology directory`
 - **Ontology modules**: `ontology/*.ttl`
 - **SHACL shapes**: `ontology/*-shapes.ttl`
 - **Examples**: `examples_knowledge_graphs/*.ttl`

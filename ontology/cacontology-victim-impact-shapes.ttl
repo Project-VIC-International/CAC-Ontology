@@ -13,14 +13,14 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/victim-impact/shapes/2.11.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/victim-impact/shapes/2.12.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Victim Impact SHACL Shapes"@en ;
     rdfs:comment "SHACL validation shapes for the ICAC Victim Impact Assessment Ontology, providing validation for victim impact assessments, psychological harm, trauma indicators, and recovery processes."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/victim-impact/shapes/2.11.0> ;
-    owl:versionInfo "2.11.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/victim-impact/shapes/2.12.0> ;
+    owl:versionInfo "2.12.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/victim-impact/2.11.0> ,
+    dcterms:modified "2026-03-13"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/victim-impact/2.12.0> ,
                 <http://purl.org/nemo/gufo> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 
@@ -296,6 +296,26 @@ cacontology-impact:SupportServiceShape rdf:type sh:NodeShape ;
         sh:maxCount 1 ;
         sh:in ( "minimal" "low" "moderate" "intensive" "crisis_level" "ongoing" ) ;
         sh:message "Service intensity must be from the allowed list."@en
+    ] .
+
+cacontology-impact:VictimSupportShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:VictimSupport ;
+    rdfs:label "Victim Support Shape"@en ;
+    rdfs:comment "Validation shape for victim support instances, including caregiver and peer support."@en ;
+    sh:property [
+        sh:path cacontology-impact:serviceType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "victim_advocacy" "safety_planning" "educational_support" "legal_support" "family_support" "peer_support" ) ;
+        sh:message "Victim support must specify a supported service type from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-impact:serviceProvider ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Victim support may specify the service provider."@en
     ] .
 
 # =============================================================================

@@ -17,14 +17,14 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Enhanced Ontology Declaration with gUFO Validation
-<https://cacontology.projectvic.org/custodial/shapes/2.11.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/custodial/shapes/2.12.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Custodial SHACL Shapes with gUFO Validation"@en ;
     rdfs:comment "Comprehensive SHACL validation shapes for gUFO-enhanced ICAC custodial ontology, including anti-rigidity constraints, temporal validation, phase transitions, role validation, trust violation patterns, and foundational type compliance."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/custodial/shapes/2.11.0> ;
-    owl:versionInfo "2.11.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/custodial/shapes/2.12.0> ;
+    owl:versionInfo "2.12.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/custodial/2.11.0> ,
+    dcterms:modified "2026-03-13"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/custodial/2.12.0> ,
                 <http://purl.org/nemo/gufo> ,
                 <https://ontology.unifiedcyberontology.org/uco/core> .
 
@@ -909,3 +909,23 @@ cacontology-custodial:DataQualityShape rdf:type sh:NodeShape ;
         sh:maxLength 1000 ;
         sh:message "Comment should be between 10 and 1000 characters when provided."@en
     ] . 
+
+cacontology-custodial:RestrictedContactArrangementShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-custodial:RestrictedContactArrangement ;
+    rdfs:label "Restricted Contact Arrangement Shape"@en ;
+    rdfs:comment "Validation shape for restricted contact arrangement instances."@en ;
+    sh:property [
+        sh:path cacontology-custodial:contactRestrictionType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "no_contact" "supervised_only" "indirect_only" "temporary_suspension" "conditional_contact" ) ;
+        sh:message "Restricted contact arrangement must specify a restriction type from the allowed list."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-custodial:custodySchedule ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Restricted contact arrangement may specify the applicable schedule."@en
+    ] .

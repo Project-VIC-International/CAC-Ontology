@@ -17,22 +17,22 @@
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 
 # Ontology Declaration with gUFO Integration
-<https://cacontology.projectvic.org/custodial/2.11.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/custodial/2.12.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Custodial Relationship & Position of Trust Ontology with gUFO Integration"@en ;
     rdfs:comment "An ontology for representing custodial relationships, positions of trust, and authority figure violations in Internet Crimes Against Children investigations, extending UCO and CASE with comprehensive gUFO foundational ontology enhancements for improved semantic precision, anti-rigidity modeling, temporal constraint validation, and enhanced situational modeling. Enhanced with gUFO Events, Objects, Roles, Phases, and Situations for formal ontological rigor."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/custodial/2.11.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/custodial/2.12.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
+    dcterms:modified "2026-03-13"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable> ,
                 <https://ontology.unifiedcyberontology.org/uco/action> ,
                 <https://ontology.unifiedcyberontology.org/uco/role> ,
-                <https://cacontology.projectvic.org/2.11.0> ,
+                <https://cacontology.projectvic.org/2.12.0> ,
                 <http://purl.org/nemo/gufo> ;
     dcterms:description "Enhanced with gUFO foundational ontology for formal semantic modeling of custodial relationships, trust violations, authority positions, and temporal custody lifecycle management."@en ;
-    owl:versionInfo "2.11.0" .
+    owl:versionInfo "2.12.0" .
 
 # =============================================================================
 # CUSTODIAL RELATIONSHIP CLASSES (extending UCO Core with gUFO Objects)
@@ -178,6 +178,13 @@ cacontology-custodial:VisitationArrangement rdf:type owl:Class, gufo:SubKind ;
     rdfs:label "Visitation Arrangement"@en ;
     rdfs:comment "Scheduled visitation or contact arrangement with child. Modeled as gUFO SubKind with temporal scheduling patterns."@en ;
     rdfs:subClassOf cacontology-custodial:CustodyArrangement .
+
+cacontology-custodial:RestrictedContactArrangement rdf:type owl:Class, gufo:SubKind ;
+    rdfs:label "Restricted Contact Arrangement"@en ;
+    rdfs:comment "A visitation or contact arrangement that restricts or suspends offender or high-risk contact after disclosure, investigation, or safeguarding concerns."@en ;
+    rdfs:subClassOf cacontology-custodial:VisitationArrangement ;
+    dcterms:source "Robert Peters, 'Winning Without Words: Prosecuting Cases with Recanting or Nonverbal Victims' (Coursing Justice presentation, 2026)."@en ;
+    rdfs:seeAlso <https://www.coursingjustice.com/> .
 
 # =============================================================================
 # CUSTODIAL PHASES (gUFO Phase Anti-Rigid Modeling)
@@ -362,6 +369,14 @@ cacontology-custodial:custodySchedule rdf:type owl:DatatypeProperty ;
     rdfs:comment "Schedule or pattern of custody (weekdays, weekends, alternating, specific_dates)."@en ;
     rdfs:domain cacontology-custodial:CustodyArrangement ;
     rdfs:range xsd:string .
+
+cacontology-custodial:contactRestrictionType rdf:type owl:DatatypeProperty ;
+    rdfs:label "contact restriction type"@en ;
+    rdfs:comment "Type of contact restriction applied to the arrangement (no_contact, supervised_only, indirect_only, temporary_suspension, conditional_contact)."@en ;
+    rdfs:domain cacontology-custodial:RestrictedContactArrangement ;
+    rdfs:range xsd:string ;
+    dcterms:source "Robert Peters, 'Winning Without Words: Prosecuting Cases with Recanting or Nonverbal Victims' (Coursing Justice presentation, 2026)."@en ;
+    rdfs:seeAlso <https://www.coursingjustice.com/> .
 
 # Trust and Vulnerability Properties
 cacontology-custodial:trustLevel rdf:type owl:DatatypeProperty ;

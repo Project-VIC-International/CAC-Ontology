@@ -12,14 +12,14 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/training/shapes/2.11.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/training/shapes/2.12.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Training SHACL Shapes"@en ;
     rdfs:comment "SHACL validation shapes for the ICAC Training Ontology, providing validation for professional development, training programs, and capacity building initiatives."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/training/shapes/2.11.0> ;
-    owl:versionInfo "2.11.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/training/shapes/2.12.0> ;
+    owl:versionInfo "2.12.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/training/2.11.0> ,
+    dcterms:modified "2026-03-13"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/training/2.12.0> ,
                 <http://purl.org/nemo/gufo> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 
@@ -294,6 +294,20 @@ cacontology-training:ChildProtectionTrainingShape rdf:type sh:NodeShape ;
         sh:message "Child protection training duration should be between 2 and 200 hours."@en
     ] .
 
+cacontology-training:CommunityEducationTrainingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:CommunityEducationTraining ;
+    rdfs:label "Community Education Training Shape"@en ;
+    rdfs:comment "Validation shape for community education training instances."@en ;
+    sh:property [
+        sh:path cacontology-training:trainingDuration ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.5 ;
+        sh:maxInclusive 40.0 ;
+        sh:message "Community education training duration should be between 0.5 and 40 hours."@en
+    ] .
+
 cacontology-training:DigitalForensicsTrainingShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-training:DigitalForensicsTraining ;
     rdfs:label "Digital Forensics Training Shape"@en ;
@@ -334,6 +348,19 @@ cacontology-training:LegalTrainingShape rdf:type sh:NodeShape ;
         sh:message "Legal training capacity level must be from the allowed list."@en
     ] .
 
+cacontology-training:JudicialEducationTrainingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:JudicialEducationTraining ;
+    rdfs:label "Judicial Education Training Shape"@en ;
+    rdfs:comment "Validation shape for judicial education training instances."@en ;
+    sh:property [
+        sh:path cacontology-training:capacityLevel ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "intermediate" "advanced" "expert" ) ;
+        sh:message "Judicial education training should be intermediate, advanced, or expert level."@en
+    ] .
+
 cacontology-training:VictimServiceTrainingShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-training:VictimServiceTraining ;
     rdfs:label "Victim Service Training Shape"@en ;
@@ -346,6 +373,28 @@ cacontology-training:VictimServiceTrainingShape rdf:type sh:NodeShape ;
         sh:minInclusive 4.0 ;
         sh:maxInclusive 200.0 ;
         sh:message "Victim service training duration should be between 4 and 200 hours."@en
+    ] .
+
+cacontology-training:RecantationResponseTrainingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-training:RecantationResponseTraining ;
+    rdfs:label "Recantation Response Training Shape"@en ;
+    rdfs:comment "Validation shape for recantation response training instances."@en ;
+    sh:property [
+        sh:path cacontology-training:trainingDuration ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 1.0 ;
+        sh:maxInclusive 80.0 ;
+        sh:message "Recantation response training duration should be between 1 and 80 hours."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-training:capacityLevel ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "intermediate" "advanced" "expert" ) ;
+        sh:message "Recantation response training should be intermediate, advanced, or expert level."@en
     ] .
 
 cacontology-training:HotlineTrainingShape rdf:type sh:NodeShape ;
