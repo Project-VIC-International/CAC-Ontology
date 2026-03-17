@@ -22,11 +22,11 @@
 # For modeling reports, structured claims, and resolvable evidence pointers.
 # =============================================================================
 
-<https://cacontology.projectvic.org/synthesis/2.11.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/synthesis/2.12.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Knowledge Synthesis Ontology"@en ;
     rdfs:comment "An ontology for representing structured knowledge extracted from research reports (sections, figures, claims, distributions, and evidence pointers) to support queryable synthesis across CAC-related sources."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/synthesis/2.11.0> ;
-    owl:versionInfo "2.11.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/synthesis/2.12.0> ;
+    owl:versionInfo "2.12.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2026-02-20"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
@@ -34,9 +34,9 @@
                 <https://ontology.unifiedcyberontology.org/uco/observable/> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity/> ,
                 <https://ontology.caseontology.org/case/investigation/> ,
-                <https://cacontology.projectvic.org/2.11.0> ,
-                <https://cacontology.projectvic.org/multi-jurisdiction/2.11.0> ,
-                <https://cacontology.projectvic.org/legal-harmonization/2.11.0> .
+                <https://cacontology.projectvic.org/2.12.0> ,
+                <https://cacontology.projectvic.org/multi-jurisdiction/2.12.0> ,
+                <https://cacontology.projectvic.org/legal-harmonization/2.12.0> .
 
 # =============================================================================
 # DOCUMENT STRUCTURE (report/section/figure)

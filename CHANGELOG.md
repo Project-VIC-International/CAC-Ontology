@@ -7,6 +7,92 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+## v2.12.0 - 13 March 2026
+
+### Added - Victim Recantation Ontology + Example Suite (Coursing Justice Recantation 101)
+
+Adds a dedicated recantation module for modeling child-victim statement change, recantation risk factors, coercive pressure, notification, and post-recantation investigative response, based on Robert Peters' Coursing Justice training materials `Winning Without Words: Prosecuting Cases with Recanting or Nonverbal Victims` and `Recantation_101.md`.
+
+#### New Recantation Ontology Module
+
+- Added: `ontology/cacontology-recantation.ttl`
+  - Statement lifecycle vocabulary:
+    - `VictimStatement`
+    - `DisclosureStatement`
+    - `TentativeDisclosureStatement`
+    - `PostDisclosureDenialStatement`
+    - `RecantationStatement`
+    - `PartialRecantationStatement`
+    - `ReaffirmedDisclosureStatement`
+  - Context and risk vocabulary:
+    - `StatementChangeContext`
+    - `RecantationRiskFactor`
+    - `UnsupportiveFamilyResponse`
+    - `OffenderContactRisk`
+    - `SiblingSeparationConcern`
+    - `SystemInterventionFear`
+    - `CommunityPressureRisk`
+    - `RecantationPressure`
+    - `RecantationNotification`
+  - Investigative response vocabulary:
+    - `RecantationAssessment`
+    - `PostRecantationForensicInterview`
+  - Added properties:
+    - `statementDate`
+    - `riskFactorCategory`
+    - `pressureMethod`
+    - `notificationChannel`
+    - `assessmentDisposition`
+    - `statementMadeBy`
+    - `statementReceivedBy`
+    - `statementAboutEvent`
+    - `retractsStatement`
+    - `reaffirmsStatement`
+    - `occursWithinContext`
+    - `hasRecantationRiskFactor`
+    - `involvesPressureAction`
+    - `reportedThroughNotification`
+    - `assessedByAction`
+    - `followedByInterview`
+
+#### Existing Modules Extended
+
+- Updated: `ontology/cacontology-case-management.ttl`
+  - Added accommodation and testimony-planning concepts:
+    - `AccommodationMotion`
+    - `CourtroomAccommodationPlan`
+    - `TestimonyContingencyPlan`
+    - `accommodationType`
+    - `contingencyType`
+    - `preparedForWitness`
+    - `supportsAccommodationPlan`
+- Updated: `ontology/cacontology-victim-impact.ttl`
+  - Added support concepts:
+    - `NonOffendingCaregiverSupport`
+    - `PeerSupportService`
+- Updated: `ontology/cacontology-training.ttl`
+  - Added training concepts:
+    - `CommunityEducationTraining`
+    - `JudicialEducationTraining`
+    - `RecantationResponseTraining`
+- Updated: `ontology/cacontology-custodial.ttl`
+  - Added contact-restriction concept:
+    - `RestrictedContactArrangement`
+    - `contactRestrictionType`
+
+#### SHACL Shapes Updated
+
+- Added: `ontology/cacontology-recantation-shapes.ttl`
+- Updated: `ontology/cacontology-case-management-shapes.ttl`
+- Updated: `ontology/cacontology-victim-impact-shapes.ttl`
+- Updated: `ontology/cacontology-training-shapes.ttl`
+- Updated: `ontology/cacontology-custodial-shapes.ttl`
+
+#### Example Knowledge Graph + Analytics
+
+- Example KG: `examples_knowledge_graphs/coursing-justice-recantation-101-example.ttl`
+- SPARQL suite: `example_SPARQL_queries/coursing-justice-recantation-101-analytics.rq`
+
 ## v2.11.0 - 20 February 2026
 
 ### Added - Knowledge Synthesis Module Tightening + SR2026.1 TF-CSEA Example KG Hardening

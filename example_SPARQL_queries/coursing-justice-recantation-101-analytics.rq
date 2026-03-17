@@ -1,0 +1,233 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core/>
+PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/>
+PREFIX uco-types: <https://ontology.unifiedcyberontology.org/uco/types/>
+
+PREFIX case-investigation: <https://ontology.caseontology.org/case/investigation/>
+
+PREFIX cacontology-case: <https://cacontology.projectvic.org/case-management#>
+PREFIX cacontology-custodial: <https://cacontology.projectvic.org/custodial#>
+PREFIX cacontology-impact: <https://cacontology.projectvic.org/victim-impact#>
+PREFIX cacontology-recantation: <https://cacontology.projectvic.org/recantation#>
+PREFIX cacontology-training: <https://cacontology.projectvic.org/training#>
+
+PREFIX kb: <urn:uuid:>
+
+################################################################################
+## 1) Source provenance: file paths, MIME types, and hashes                    ##
+################################################################################
+
+SELECT ?source ?label ?path ?mime ?size ?hash
+WHERE {
+  VALUES ?source {
+    kb:185a1583-00e6-5187-a73e-3487f5bdf037
+    kb:ed4f6738-dc3a-5a33-b78f-4260523c8be1
+  }
+  ?source rdfs:label ?label ;
+    uco-core:hasFacet ?fileFacet ;
+    uco-core:hasFacet ?contentFacet ;
+    uco-core:hasFacet ?hashFacet .
+  ?fileFacet a uco-observable:FileFacet ;
+    uco-observable:filePath ?path .
+  ?contentFacet a uco-observable:ContentDataFacet ;
+    uco-observable:mimeType ?mime ;
+    uco-observable:sizeInBytes ?size .
+  ?hashFacet a uco-observable:HashFacet ;
+    uco-observable:hash ?hashNode .
+  ?hashNode a uco-types:Hash ;
+    uco-types:hashValue ?hash .
+}
+ORDER BY ?label
+;
+
+################################################################################
+## 2) Statement timeline                                                       ##
+################################################################################
+
+SELECT ?statement ?label ?date ?type
+WHERE {
+  ?statement a cacontology-recantation:VictimStatement ;
+    rdfs:label ?label ;
+    cacontology-recantation:statementDate ?date ;
+    a ?type .
+  FILTER(?type IN (
+    cacontology-recantation:TentativeDisclosureStatement,
+    cacontology-recantation:PartialRecantationStatement,
+    cacontology-recantation:ReaffirmedDisclosureStatement
+  ))
+}
+ORDER BY ?date
+;
+
+################################################################################
+## 3) What did the recantation retract?                                        ##
+################################################################################
+
+SELECT ?recantLabel ?priorLabel
+WHERE {
+  ?recant a cacontology-recantation:RecantationStatement ;
+    rdfs:label ?recantLabel ;
+    cacontology-recantation:retractsStatement ?prior .
+  ?prior rdfs:label ?priorLabel .
+}
+;
+
+################################################################################
+## 4) Reaffirmed disclosure linkage                                            ##
+################################################################################
+
+SELECT ?reaffirmedLabel ?originalLabel
+WHERE {
+  ?reaffirmed a cacontology-recantation:ReaffirmedDisclosureStatement ;
+    rdfs:label ?reaffirmedLabel ;
+    cacontology-recantation:reaffirmsStatement ?original .
+  ?original rdfs:label ?originalLabel .
+}
+;
+
+################################################################################
+## 5) Risk-factor inventory for the statement-change context                   ##
+################################################################################
+
+SELECT ?risk ?label ?category ?specificType
+WHERE {
+  kb:adc2f23d-b392-551c-85ab-789d0c8bba61
+    cacontology-recantation:hasRecantationRiskFactor ?risk .
+  ?risk rdfs:label ?label ;
+    cacontology-recantation:riskFactorCategory ?category ;
+    a ?specificType .
+  FILTER(?specificType != cacontology-recantation:RecantationRiskFactor)
+}
+ORDER BY ?category
+;
+
+################################################################################
+## 6) Pressure and notification channels                                       ##
+################################################################################
+
+SELECT ?eventLabel ?kind ?value
+WHERE {
+  {
+    kb:b80ee4df-ea5b-5465-8722-fde17fbf1247 rdfs:label ?eventLabel ;
+      cacontology-recantation:pressureMethod ?value .
+    BIND("pressure" AS ?kind)
+  }
+  UNION
+  {
+    kb:ff173eed-491d-5d67-b65a-43fcf4942e42 rdfs:label ?eventLabel ;
+      cacontology-recantation:notificationChannel ?value .
+    BIND("notification" AS ?kind)
+  }
+}
+ORDER BY ?kind
+;
+
+################################################################################
+## 7) Assessment and post-recantation forensic interview actions               ##
+################################################################################
+
+SELECT ?action ?label ?disposition
+WHERE {
+  VALUES ?action {
+    kb:86816f1c-d97f-59ed-9dea-e056ccc8db5f
+    kb:2e4301d5-4ec0-5df0-9be6-55799b45d590
+  }
+  ?action rdfs:label ?label ;
+    cacontology-recantation:assessmentDisposition ?disposition .
+}
+ORDER BY ?label
+;
+
+################################################################################
+## 8) Victim-support responses activated in the example                        ##
+################################################################################
+
+SELECT ?support ?label ?serviceType ?provider ?duration
+WHERE {
+  ?support a cacontology-impact:VictimSupport ;
+    rdfs:label ?label ;
+    cacontology-impact:serviceType ?serviceType .
+  OPTIONAL { ?support cacontology-impact:serviceProvider ?provider }
+  OPTIONAL { ?support cacontology-impact:serviceDuration ?duration }
+}
+ORDER BY ?label
+;
+
+################################################################################
+## 9) Contact restriction model                                                ##
+################################################################################
+
+SELECT ?arrangement ?label ?restrictionType ?schedule
+WHERE {
+  ?arrangement a cacontology-custodial:RestrictedContactArrangement ;
+    rdfs:label ?label ;
+    cacontology-custodial:contactRestrictionType ?restrictionType .
+  OPTIONAL { ?arrangement cacontology-custodial:custodySchedule ?schedule }
+}
+;
+
+################################################################################
+## 10) Courtroom accommodation planning                                        ##
+################################################################################
+
+SELECT ?planLabel ?accommodationType ?witnessLabel
+WHERE {
+  kb:600597b9-3083-586b-96e6-93e3eb086bac
+    rdfs:label ?planLabel ;
+    cacontology-case:accommodationType ?accommodationType ;
+    cacontology-case:preparedForWitness ?witness .
+  ?witness rdfs:label ?witnessLabel .
+}
+ORDER BY ?accommodationType
+;
+
+################################################################################
+## 11) Testimony contingency planning                                          ##
+################################################################################
+
+SELECT ?planLabel ?contingencyType
+WHERE {
+  kb:300af97c-ee95-511e-87cc-2ba9064e6c05
+    rdfs:label ?planLabel ;
+    cacontology-case:contingencyType ?contingencyType .
+}
+ORDER BY ?contingencyType
+;
+
+################################################################################
+## 12) Accommodation motions and linked plans                                  ##
+################################################################################
+
+SELECT ?motionLabel ?planLabel ?witnessLabel
+WHERE {
+  kb:456a6e22-75ef-5bc0-9344-f843b47c1bd4
+    rdfs:label ?motionLabel ;
+    cacontology-case:supportsAccommodationPlan ?plan ;
+    cacontology-case:preparedForWitness ?witness .
+  ?plan rdfs:label ?planLabel .
+  ?witness rdfs:label ?witnessLabel .
+}
+;
+
+################################################################################
+## 13) Training events added by this modeling pass                             ##
+################################################################################
+
+SELECT ?training ?label ?type ?duration
+WHERE {
+  ?training a cacontology-training:InternationalTraining ;
+    rdfs:label ?label ;
+    a ?type .
+  FILTER(?type IN (
+    cacontology-training:RecantationResponseTraining,
+    cacontology-training:JudicialEducationTraining,
+    cacontology-training:CommunityEducationTraining
+  ))
+  OPTIONAL { ?training cacontology-training:trainingDuration ?duration }
+}
+ORDER BY ?label
+;

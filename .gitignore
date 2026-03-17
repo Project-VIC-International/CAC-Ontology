@@ -61,6 +61,7 @@ temp/
 # Allow specific new example graphs (otherwise .ttl are ignored)
 !examples_knowledge_graphs/ipie-sr2026-1-tf-csea-systematic-review-example.ttl
 !examples_knowledge_graphs/ipie-sr2026-1-tf-csea-systematic-review-skeleton.ttl
+!examples_knowledge_graphs/coursing-justice-recantation-101-example.ttl
 !analytics_demonstration/collected_sources/ipie-sr2026-1-tf-csea-systematic-review/skeleton.ttl
 
 # Ontospy cache

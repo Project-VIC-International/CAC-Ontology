@@ -14,13 +14,13 @@
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
-<https://cacontology.projectvic.org/training/2.11.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/training/2.12.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Training and Capacity Building Ontology"@en ;
     rdfs:comment "An ontology for modeling professional development, training programs, and capacity building initiatives for child protection professionals with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, and validation capabilities, based on ICMEC's training of 155,000+ professionals globally."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/training/2.11.0> ;
-    owl:versionInfo "2.11.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/training/2.12.0> ;
+    owl:versionInfo "2.12.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
+    dcterms:modified "2026-03-13"^^xsd:date ;
     owl:imports <http://purl.org/nemo/gufo> .
 
 # =============================================================================
@@ -101,6 +101,13 @@ cacontology-training:ChildProtectionTraining rdf:type owl:Class ;
     rdfs:label "Child Protection Training"@en ;
     rdfs:comment "Training focused on child protection methodologies. Modeled as gUFO Event."@en .
 
+cacontology-training:CommunityEducationTraining rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-training:ChildProtectionTraining ;
+    rdfs:label "Community Education Training"@en ;
+    rdfs:comment "Training designed to educate community members and caregivers about child abuse dynamics, disclosure support, and prevention awareness."@en ;
+    dcterms:source "Robert Peters, 'Winning Without Words: Prosecuting Cases with Recanting or Nonverbal Victims' (Coursing Justice presentation, 2026)."@en ;
+    rdfs:seeAlso <https://www.coursingjustice.com/> .
+
 cacontology-training:DigitalForensicsTraining rdf:type owl:Class ;
     rdfs:subClassOf cacontology-training:InternationalTraining ;
     rdfs:label "Digital Forensics Training"@en ;
@@ -116,10 +123,24 @@ cacontology-training:LegalTraining rdf:type owl:Class ;
     rdfs:label "Legal Training"@en ;
     rdfs:comment "Training on legal aspects of child protection. Modeled as gUFO Event."@en .
 
+cacontology-training:JudicialEducationTraining rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-training:LegalTraining ;
+    rdfs:label "Judicial Education Training"@en ;
+    rdfs:comment "Training focused on judicial understanding of trauma, recantation, and accommodation needs in child abuse cases."@en ;
+    dcterms:source "Robert Peters, 'Winning Without Words: Prosecuting Cases with Recanting or Nonverbal Victims' (Coursing Justice presentation, 2026)."@en ;
+    rdfs:seeAlso <https://www.coursingjustice.com/> .
+
 cacontology-training:VictimServiceTraining rdf:type owl:Class ;
     rdfs:subClassOf cacontology-training:InternationalTraining ;
     rdfs:label "Victim Service Training"@en ;
     rdfs:comment "Training for professionals providing victim services. Modeled as gUFO Event."@en .
+
+cacontology-training:RecantationResponseTraining rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-training:VictimServiceTraining ;
+    rdfs:label "Recantation Response Training"@en ;
+    rdfs:comment "Training for multidisciplinary teams on anticipating recantation, strengthening support, and investigating statement change."@en ;
+    dcterms:source "Robert Peters, 'Winning Without Words: Prosecuting Cases with Recanting or Nonverbal Victims' (Coursing Justice presentation, 2026)."@en ;
+    rdfs:seeAlso <https://www.coursingjustice.com/> .
 
 cacontology-training:HotlineTraining rdf:type owl:Class ;
     rdfs:subClassOf cacontology-training:InternationalTraining ;

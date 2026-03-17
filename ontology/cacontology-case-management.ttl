@@ -15,13 +15,13 @@
 @prefix cacontology-case: <https://cacontology.projectvic.org/case-management#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/case-management/2.11.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/case-management/2.12.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Case Management Ontology with gUFO Integration"@en ;
     rdfs:comment "Comprehensive ontology for modeling case management processes, workflows, assignments, tracking, documentation, and metrics within ICAC investigations and prosecutions, enhanced with comprehensive gUFO foundational modeling for +85% semantic precision, +195% temporal modeling improvements, and +385% validation coverage."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/case-management/2.11.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/case-management/2.12.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-01-27"^^xsd:date ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
+    dcterms:modified "2026-03-13"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
                 <https://ontology.caseontology.org/case> ,
                 <http://purl.org/nemo/gufo#> ;
@@ -341,6 +341,30 @@ cacontology-case:ExpertReport rdf:type owl:Class ;
     rdfs:subClassOf cacontology-case:CaseDocumentation ,
                     gufo:Object ;
     rdfs:comment "gUFO Object: Expert report documents with analytical and assessment properties."@en .
+
+cacontology-case:AccommodationMotion rdf:type owl:Class ;
+    rdfs:label "Accommodation Motion"@en ;
+    rdfs:comment "Court filing requesting witness or victim accommodations needed for testimony, accessibility, or trauma-informed participation."@en ;
+    rdfs:subClassOf cacontology-case:CourtFiling ,
+                    gufo:Object ;
+    dcterms:source "Robert Peters, 'Winning Without Words: Prosecuting Cases with Recanting or Nonverbal Victims' (Coursing Justice presentation, 2026)."@en ;
+    rdfs:seeAlso <https://www.coursingjustice.com/> .
+
+cacontology-case:CourtroomAccommodationPlan rdf:type owl:Class ;
+    rdfs:label "Courtroom Accommodation Plan"@en ;
+    rdfs:comment "Case documentation specifying planned courtroom accommodations for a child witness, including support persons, sensory adjustments, or assistive response methods."@en ;
+    rdfs:subClassOf cacontology-case:CaseDocumentation ,
+                    gufo:Object ;
+    dcterms:source "Robert Peters, 'Winning Without Words: Prosecuting Cases with Recanting or Nonverbal Victims' (Coursing Justice presentation, 2026)."@en ;
+    rdfs:seeAlso <https://www.coursingjustice.com/> .
+
+cacontology-case:TestimonyContingencyPlan rdf:type owl:Class ;
+    rdfs:label "Testimony Contingency Plan"@en ;
+    rdfs:comment "Case documentation describing fallback testimony strategies when a child witness recants, shuts down, becomes unavailable, or needs alternative response methods."@en ;
+    rdfs:subClassOf cacontology-case:CaseDocumentation ,
+                    gufo:Object ;
+    dcterms:source "Robert Peters, 'Winning Without Words: Prosecuting Cases with Recanting or Nonverbal Victims' (Coursing Justice presentation, 2026)."@en ;
+    rdfs:seeAlso <https://www.coursingjustice.com/> .
 
 # =============================================================================
 # REVIEW AND QUALITY ASSURANCE CLASSES AS gUFO EVENTS
@@ -732,6 +756,22 @@ cacontology-case:classificationLevel rdf:type owl:DatatypeProperty ;
     rdfs:domain cacontology-case:CaseDocumentation ;
     rdfs:range xsd:string .
 
+cacontology-case:accommodationType rdf:type owl:DatatypeProperty ;
+    rdfs:label "accommodation type"@en ;
+    rdfs:comment "Type of courtroom accommodation requested or planned (support_person, comfort_item, courthouse_dog, sensory_adjustment, interpreter_or_facilitator, assistive_device, yes_no_response_method, alternative_testimony_location)."@en ;
+    rdfs:domain cacontology-case:CourtroomAccommodationPlan ;
+    rdfs:range xsd:string ;
+    dcterms:source "Robert Peters, 'Winning Without Words: Prosecuting Cases with Recanting or Nonverbal Victims' (Coursing Justice presentation, 2026)."@en ;
+    rdfs:seeAlso <https://www.coursingjustice.com/> .
+
+cacontology-case:contingencyType rdf:type owl:DatatypeProperty ;
+    rdfs:label "contingency type"@en ;
+    rdfs:comment "Fallback testimony or evidentiary strategy documented for a recantation-sensitive case."@en ;
+    rdfs:domain cacontology-case:TestimonyContingencyPlan ;
+    rdfs:range xsd:string ;
+    dcterms:source "Robert Peters, 'Winning Without Words: Prosecuting Cases with Recanting or Nonverbal Victims' (Coursing Justice presentation, 2026)."@en ;
+    rdfs:seeAlso <https://www.coursingjustice.com/> .
+
 # Review Properties
 cacontology-case:reviewType rdf:type owl:DatatypeProperty ;
     rdfs:label "review type"@en ;
@@ -931,6 +971,22 @@ cacontology-case:approvedBy rdf:type owl:ObjectProperty ;
     rdfs:comment "Links documentation to approving authority."@en ;
     rdfs:domain cacontology-case:CaseDocumentation ;
     rdfs:range uco-identity:Person .
+
+cacontology-case:preparedForWitness rdf:type owl:ObjectProperty ;
+    rdfs:label "prepared for witness"@en ;
+    rdfs:comment "Links case documentation to the child or witness for whom the document was prepared."@en ;
+    rdfs:domain cacontology-case:CaseDocumentation ;
+    rdfs:range uco-identity:Person ;
+    dcterms:source "Robert Peters, 'Winning Without Words: Prosecuting Cases with Recanting or Nonverbal Victims' (Coursing Justice presentation, 2026)."@en ;
+    rdfs:seeAlso <https://www.coursingjustice.com/> .
+
+cacontology-case:supportsAccommodationPlan rdf:type owl:ObjectProperty ;
+    rdfs:label "supports accommodation plan"@en ;
+    rdfs:comment "Links an accommodation motion to the courtroom accommodation plan it seeks to establish."@en ;
+    rdfs:domain cacontology-case:AccommodationMotion ;
+    rdfs:range cacontology-case:CourtroomAccommodationPlan ;
+    dcterms:source "Robert Peters, 'Winning Without Words: Prosecuting Cases with Recanting or Nonverbal Victims' (Coursing Justice presentation, 2026)."@en ;
+    rdfs:seeAlso <https://www.coursingjustice.com/> .
 
 # Review Relationships
 cacontology-case:conductsReview rdf:type owl:ObjectProperty ;
