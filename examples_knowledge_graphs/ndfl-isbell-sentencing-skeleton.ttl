@@ -1,0 +1,90 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
+@prefix investigation: <https://ontology.caseontology.org/case/investigation/> .
+
+@prefix ex: <urn:uuid:> .
+
+# =============================================================================
+# Phase -1 Skeleton: DOJ USAO-NDFL Press Release - Isbell Sentencing
+# Source: https://www.justice.gov/usao-ndfl/pr/tallahassee-man-sentenced-twenty-years-federal-prison-child-exploitation-crime
+# Collected: 2026-01-07T04:00:43Z (UTC)
+# =============================================================================
+
+# --- Source Document (Raw HTML) ---
+ex:e95cbf40-5762-5b4a-9b3a-f2d438d47aff a uco-observable:ObservableObject ;
+    rdfs:label "DOJ USAO-NDFL Press Release - Tallahassee Man Sentenced (HTML source)"@en ;
+    uco-core:hasFacet ex:f1a2b3c4-d5e6-5f7a-8b9c-0d1e2f3a4b5c ;  # ContentDataFacet
+    uco-core:hasFacet ex:f2b3c4d5-e6f7-5a8b-9c0d-1e2f3a4b5c6d ;  # URLFacet
+    uco-core:hasFacet ex:f3c4d5e6-f7a8-5b9c-0d1e-2f3a4b5c6d7e .  # HashFacet
+
+ex:f1a2b3c4-d5e6-5f7a-8b9c-0d1e2f3a4b5c a uco-observable:ContentDataFacet ;
+    uco-observable:mimeType "text/html" ;
+    uco-observable:sizeInBytes 98312 .
+
+ex:f2b3c4d5-e6f7-5a8b-9c0d-1e2f3a4b5c6d a uco-observable:URLFacet ;
+    uco-observable:url <https://www.justice.gov/usao-ndfl/pr/tallahassee-man-sentenced-twenty-years-federal-prison-child-exploitation-crime> .
+
+ex:f3c4d5e6-f7a8-5b9c-0d1e-2f3a4b5c6d7e a uco-observable:HashFacet ;
+    uco-observable:hash ex:h1a2b3c4-d5e6-5f7a-8b9c-0d1e2f3a4b5c .
+
+ex:h1a2b3c4-d5e6-5f7a-8b9c-0d1e2f3a4b5c a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "browser-snapshot-capture" .
+
+# --- Collection Agent ---
+ex:a1b2c3d4-e5f6-5a7b-8c9d-0e1f2a3b4c5d a uco-core:UcoObject ;
+    rdfs:label "CAC Ontology Collection Agent (Cursor)"@en ;
+    uco-core:description "Automated assistant performing web collection and preprocessing for CAC Ontology ingestion."@en .
+
+# --- Collection Action ---
+ex:b8c9d0e1-f2a3-5b4c-5d6e-7f8a9b0c1d2e a investigation:InvestigativeAction ;
+    rdfs:label "Collection action: DOJ USAO-NDFL Isbell Sentencing Press Release"@en ;
+    uco-action:startTime "2026-01-07T04:00:43Z"^^xsd:dateTime ;
+    uco-action:performer ex:a1b2c3d4-e5f6-5a7b-8c9d-0e1f2a3b4c5d ;
+    uco-action:object ex:e95cbf40-5762-5b4a-9b3a-f2d438d47aff ;
+    uco-core:description "Collected via browser automation from DOJ public webpage."@en .
+
+# --- Normalization Action ---
+ex:c9d0e1f2-a3b4-5c5d-6e7f-8a9b0c1d2e3f a uco-action:Action ;
+    rdfs:label "Normalization action: HTML to text (Isbell press release)"@en ;
+    uco-action:startTime "2026-01-07T04:00:43Z"^^xsd:dateTime ;
+    uco-action:performer ex:a1b2c3d4-e5f6-5a7b-8c9d-0e1f2a3b4c5d ;
+    uco-action:object ex:e95cbf40-5762-5b4a-9b3a-f2d438d47aff ;
+    uco-action:result ex:16754b4d-d711-52c2-a5f7-6aabdd64a673 ;
+    uco-core:description "html_clean (strip tags) + whitespace normalization."@en .
+
+# --- Normalized Document ---
+ex:16754b4d-d711-52c2-a5f7-6aabdd64a673 a uco-observable:ObservableObject ;
+    rdfs:label "DOJ USAO-NDFL Isbell Sentencing Press Release (normalized text)"@en ;
+    uco-core:hasFacet ex:n1a2b3c4-d5e6-5f7a-8b9c-0d1e2f3a4b5c ;  # ContentDataFacet
+    uco-core:hasFacet ex:n2b3c4d5-e6f7-5a8b-9c0d-1e2f3a4b5c6d ;  # FileFacet
+    uco-core:hasFacet ex:n3c4d5e6-f7a8-5b9c-0d1e-2f3a4b5c6d7e .  # HashFacet
+
+ex:n1a2b3c4-d5e6-5f7a-8b9c-0d1e2f3a4b5c a uco-observable:ContentDataFacet ;
+    uco-observable:mimeType "text/plain" ;
+    uco-observable:sizeInBytes 3068 .
+
+ex:n2b3c4d5-e6f7-5a8b-9c0d-1e2f3a4b5c6d a uco-observable:FileFacet ;
+    uco-observable:filePath "analytics_demonstration/collected_sources/ndfl-isbell-sentencing/normalized.txt" .
+
+ex:n3c4d5e6-f7a8-5b9c-0d1e-2f3a4b5c6d7e a uco-observable:HashFacet ;
+    uco-observable:hash ex:nh1a2b3c4-d5e6-5f7a-8b9c-0d1e2f3a4b5c .
+
+ex:nh1a2b3c4-d5e6-5f7a-8b9c-0d1e2f3a4b5c a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "72d619874021101fc6062a834d8eb070033f09722602142dc5ba5a5f96ef4581" .
+
+# --- Provenance Record ---
+ex:d0e1f2a3-b4c5-5d6e-7f8a-9b0c1d2e3f4a a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance record: collection of NDFL Isbell Sentencing press release"@en ;
+    investigation:exhibitNumber "DOC-NDFL-ISBELL-2026-001" ;
+    uco-core:object ex:e95cbf40-5762-5b4a-9b3a-f2d438d47aff ;
+    investigation:provenanceRecordAction ex:b8c9d0e1-f2a3-5b4c-5d6e-7f8a9b0c1d2e .
+

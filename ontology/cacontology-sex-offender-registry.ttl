@@ -8,19 +8,20 @@
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
-@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
 
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-registry: <https://cacontology.projectvic.org/sex-offender-registry#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
-<https://cacontology.projectvic.org/sex-offender-registry/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/sex-offender-registry/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Sex Offender Registry Ontology"@en ;
     rdfs:comment "An ontology for modeling sex offender registry data, registration requirements, and registry management systems for child protection investigations."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/sex-offender-registry/2.12.0> ;
-    owl:versionInfo "2.12.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/sex-offender-registry/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2025-11-18"^^xsd:date .
+    dcterms:modified "2025-11-18"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/core/3.0.0> .
 
 # =============================================================================
 # REGISTRY CORE CLASSES
@@ -32,9 +33,9 @@ cacontology-registry:SexOffenderRegistry rdf:type owl:Class ;
     rdfs:comment "Registry system maintaining information about registered sex offenders."@en .
 
 cacontology-registry:RegisteredSexOffender rdf:type owl:Class ;
-    rdfs:subClassOf uco-identity:Person ;
+    rdfs:subClassOf cac-core:Role ;
     rdfs:label "Registered Sex Offender"@en ;
-    rdfs:comment "Individual required to register as a sex offender."@en .
+    rdfs:comment "Legal status/role that a person can gain or lose; individual required to register as a sex offender."@en .
 
 cacontology-registry:OffenderProfile rdf:type owl:Class ;
     rdfs:subClassOf uco-core:UcoObject ;
@@ -100,7 +101,7 @@ cacontology-registry:ComplianceHistory rdf:type owl:Class ;
     rdfs:comment "History of compliance with registration requirements."@en .
 
 cacontology-registry:RegistrationUpdate rdf:type owl:Class ;
-    rdfs:subClassOf uco-action:Action ;
+    rdfs:subClassOf cac-core:LegalEvent ;
     rdfs:label "Registration Update"@en ;
     rdfs:comment "Update to sex offender registration information."@en .
 
@@ -110,7 +111,7 @@ cacontology-registry:ComplianceViolation rdf:type owl:Class ;
     rdfs:comment "Violation of sex offender registration requirements."@en .
 
 cacontology-registry:VerificationCheck rdf:type owl:Class ;
-    rdfs:subClassOf uco-action:Action ;
+    rdfs:subClassOf cac-core:LegalEvent ;
     rdfs:label "Verification Check"@en ;
     rdfs:comment "Official verification of sex offender registration information."@en .
 
@@ -273,7 +274,7 @@ cacontology-registry:RegistryAgency rdf:type owl:Class ;
     rdfs:comment "Law enforcement agency responsible for maintaining sex offender registry."@en .
 
 cacontology-registry:RegistryOfficer rdf:type owl:Class ;
-    rdfs:subClassOf uco-role:Role ;
+    rdfs:subClassOf cac-core:Role ;
     rdfs:label "Registry Officer"@en ;
     rdfs:comment "Officer responsible for sex offender registration management."@en .
 
@@ -292,7 +293,7 @@ cacontology-registry:PublicWebsite rdf:type owl:Class ;
 # =============================================================================
 
 cacontology-registry:CommunityNotification rdf:type owl:Class ;
-    rdfs:subClassOf uco-action:Action ;
+    rdfs:subClassOf cac-core:LegalEvent ;
     rdfs:label "Community Notification"@en ;
     rdfs:comment "Notification to community about registered sex offender."@en .
 
@@ -582,7 +583,7 @@ cacontology-registry:MultiModalDigitalEvidence rdf:type owl:Class ;
 # =============================================================================
 
 cacontology-registry:ComplianceBasedArrest rdf:type owl:Class ;
-    rdfs:subClassOf uco-action:Action ;
+    rdfs:subClassOf cac-core:InvestigativeAction ;
     rdfs:label "Compliance Based Arrest"@en ;
     rdfs:comment "Arrest coordinated with scheduled compliance activity such as annual registration review."@en .
 
@@ -597,7 +598,7 @@ cacontology-registry:AnnualRegistrationReview rdf:type owl:Class ;
     rdfs:comment "Annual review and update of sex offender registration information."@en .
 
 cacontology-registry:ComplianceScheduleCoordination rdf:type owl:Class ;
-    rdfs:subClassOf uco-action:Action ;
+    rdfs:subClassOf cac-core:CoordinationEvent ;
     rdfs:label "Compliance Schedule Coordination"@en ;
     rdfs:comment "Coordination between law enforcement investigations and compliance schedules for arrest timing."@en .
 
@@ -611,7 +612,7 @@ cacontology-registry:CrossStateDigitalInvestigation rdf:type owl:Class ;
     rdfs:comment "Investigation involving registered sex offender targeting victims across state boundaries using digital platforms."@en .
 
 cacontology-registry:VictimDeviceForensics rdf:type owl:Class ;
-    rdfs:subClassOf uco-action:Action ;
+    rdfs:subClassOf cac-core:InvestigativeAction ;
     rdfs:label "Victim Device Forensics"@en ;
     rdfs:comment "Forensic examination of victim's device to recover evidence of digital exploitation."@en .
 

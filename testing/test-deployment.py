@@ -19,7 +19,7 @@ def test_phase_1_deployment():
     # Check required files
     required_files = [
         '../ontology/cacontology-core.ttl',
-        '../examples_knowledge_graphs/gufo-phase1-example.ttl'
+        '../examples_knowledge_graphs/investigation-lifecycle.ttl'
     ]
     
     for file in required_files:
@@ -39,16 +39,17 @@ def test_phase_1_deployment():
         print(f"✅ Loaded core ontology: {len(g)} triples")
         
         # Load Phase 1 example
-        g.parse('../examples_knowledge_graphs/gufo-phase1-example.ttl', format='turtle')
+        g.parse('../examples_knowledge_graphs/investigation-lifecycle.ttl', format='turtle')
         print(f"✅ Loaded with examples: {len(g)} triples")
         
         # Test basic gUFO queries
         query = """
+        PREFIX cac-core: <https://cacontology.projectvic.org/core#>
         PREFIX cacontology-gufo: <https://cacontology.projectvic.org/gufo#>
         PREFIX gufo: <http://purl.org/nemo/gufo#>
         
         SELECT (COUNT(?phase) as ?phase_count) WHERE {
-            ?phase rdfs:subClassOf cacontology-gufo:Investigation ;
+            ?phase rdfs:subClassOf* cac-core:Phase ;
                    rdf:type gufo:Phase .
         }
         """
@@ -63,11 +64,12 @@ def test_phase_1_deployment():
         
         # Test role modeling
         role_query = """
+        PREFIX cac-core: <https://cacontology.projectvic.org/core#>
         PREFIX cacontology-gufo: <https://cacontology.projectvic.org/gufo#>
         PREFIX gufo: <http://purl.org/nemo/gufo#>
         
         SELECT (COUNT(?role) as ?role_count) WHERE {
-            ?role rdfs:subClassOf cacontology-gufo:Person ;
+            ?role rdfs:subClassOf* cac-core:Role ;
                   rdf:type gufo:Role .
         }
         """
@@ -98,8 +100,8 @@ def test_phase_2_deployment():
     
     # Check required files
     required_files = [
-        '../ontology/cacontology-temporal-gufo.ttl',
-        '../examples_knowledge_graphs/gufo-phase2-temporal-example.ttl'
+        '../ontology/cacontology-temporal.ttl',
+        '../examples_knowledge_graphs/enhanced-investigation-lifecycle.ttl'
     ]
     
     for file in required_files:
@@ -116,8 +118,8 @@ def test_phase_2_deployment():
         # Load temporal framework
         g = rdflib.Graph()
         g.parse('../ontology/cacontology-core.ttl', format='turtle')
-        g.parse('../ontology/cacontology-temporal-gufo.ttl', format='turtle')
-        g.parse('../examples_knowledge_graphs/gufo-phase2-temporal-example.ttl', format='turtle')
+        g.parse('../ontology/cacontology-temporal.ttl', format='turtle')
+        g.parse('../examples_knowledge_graphs/enhanced-investigation-lifecycle.ttl', format='turtle')
         print(f"✅ Loaded temporal framework: {len(g)} triples")
         
         # Test temporal patterns
@@ -169,8 +171,7 @@ def test_phase_3_deployment():
     
     # Check required files
     required_files = [
-        'ontology/cacontology-gufo-integration-strategy.ttl',
-        'examples/gufo-integration-summary.md'
+        '../ontology/cacontology-integration-patterns.ttl',
     ]
     
     for file in required_files:
@@ -186,12 +187,12 @@ def test_phase_3_deployment():
         
         # Load integration strategy
         g = rdflib.Graph()
-        g.parse('ontology/cacontology-gufo-integration-strategy.ttl', format='turtle')
+        g.parse('../ontology/cacontology-integration-patterns.ttl', format='turtle')
         print(f"✅ Loaded integration strategy: {len(g)} triples")
         
         # Test module integration patterns
         query = """
-        PREFIX cacontology-strategy: <https://cacontology.projectvic.org/gufo-strategy#>
+        PREFIX cacontology-integration: <https://cacontology.projectvic.org/integration-patterns#>
         
         SELECT (COUNT(?pattern) as ?pattern_count) WHERE {
             ?pattern rdfs:subClassOf owl:Class ;
@@ -210,10 +211,10 @@ def test_phase_3_deployment():
         
         # Test validation strategies
         validation_query = """
-        PREFIX cacontology-strategy: <https://cacontology.projectvic.org/gufo-strategy#>
+        PREFIX cacontology-integration: <https://cacontology.projectvic.org/integration-patterns#>
         
         SELECT (COUNT(?validation) as ?validation_count) WHERE {
-            ?validation rdfs:subClassOf cacontology-strategy:ValidationStrategy .
+            ?validation rdfs:subClassOf cacontology-integration:ValidationStrategy .
         }
         """
         
@@ -243,8 +244,7 @@ def test_advanced_analytics():
     
     # Check analytics files
     analytics_files = [
-        '../example_SPARQL_queries/gufo-enhanced-analytics.rq',
-        '../analytics_demonstration/ai-integration-framework.py'
+        '../example_SPARQL_queries/gufo-enhanced-analytics.rq'
     ]
     
     for file in analytics_files:
@@ -255,19 +255,10 @@ def test_advanced_analytics():
     
     # Test analytics queries
     if os.path.exists('../example_SPARQL_queries/gufo-enhanced-analytics.rq'):
-        with open('../example_SPARQL_queries/gufo-enhanced-analytics.rq', 'r') as f:
+        with open('../example_SPARQL_queries/gufo-enhanced-analytics.rq', 'r', encoding='utf-8') as f:
             content = f.read()
             query_count = content.count('SELECT')
             print(f"✅ Analytics queries: {query_count} SPARQL queries")
-    
-    # Test AI framework
-    if os.path.exists('../analytics_demonstration/ai-integration-framework.py'):
-        with open('../analytics_demonstration/ai-integration-framework.py', 'r') as f:
-            content = f.read()
-            if 'class gUFOInvestigationAnalytics' in content:
-                print("✅ AI integration framework: Available")
-            else:
-                print("⚠️  AI integration framework: Incomplete")
     
     print("✅ Advanced analytics test: PASSED")
     return True
@@ -381,7 +372,7 @@ def main():
     print("\n📚 Next Steps:")
     print("1. Install dependencies: pip install rdflib pandas scikit-learn networkx")
     print("2. Start Docker environment: cd testing && docker-compose up -d")
-    print("3. Load data: python analytics_demonstration/ai-integration-framework.py")
+    print("3. Load data into SPARQL endpoint via Fuseki or GraphDB")
     print("4. Run queries: Use example_SPARQL_queries/gufo-enhanced-analytics.rq")
     print("5. Deploy to production: Follow project documentation")
 

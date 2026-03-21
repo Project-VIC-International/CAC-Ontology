@@ -1,0 +1,454 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
+@prefix investigation: <https://ontology.caseontology.org/case/investigation/> .
+
+@prefix ex: <urn:uuid:> .
+
+# =============================================================================
+# Utah Attorney General - ICAC Task Force webpage (collection + provenance)
+# Source: https://attorneygeneral.utah.gov/icac/
+# Collected: 2026-01-07T02:59:19Z (UTC)
+# =============================================================================
+
+ex:82588a71-7176-4cd0-aaee-56cffc467f86 a uco-observable:ObservableObject ;
+    rdfs:label "Utah Attorney General ICAC Task Force - ICAC Task Force webpage (HTML source)"@en ;
+    uco-core:hasFacet ex:ab6bd6f6-aed2-4471-bee6-0c58cbaaa1ce ;
+    uco-core:hasFacet ex:696200db-f29d-4b5e-9f66-ed2563784d21 ;
+    uco-core:hasFacet ex:9287668e-b466-4391-8df5-e1371fd29801 .
+
+ex:ab6bd6f6-aed2-4471-bee6-0c58cbaaa1ce a uco-observable:ContentDataFacet ;
+    uco-observable:mimeType "text/html" ;
+    uco-observable:sizeInBytes 35953 .
+
+ex:696200db-f29d-4b5e-9f66-ed2563784d21 a uco-observable:URLFacet ;
+    uco-observable:url <https://attorneygeneral.utah.gov/icac/> .
+
+ex:9287668e-b466-4391-8df5-e1371fd29801 a uco-observable:HashFacet ;
+    uco-observable:hash ex:1b6b2411-4313-4092-9633-73bf5bd8636e .
+
+ex:1b6b2411-4313-4092-9633-73bf5bd8636e a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "6ec7cea6c9da98611f732bfe65039531dd032678ebb6fe3b4e961a5f7fe076c2" .
+
+ex:eabf2658-dd9e-4306-95f2-6d8ddb1c1ebf a uco-core:UcoObject ;
+    rdfs:label "CAC Ontology Collection Agent (Cursor)"@en ;
+    uco-core:description "Automated assistant performing web collection and preprocessing for CAC Ontology ingestion."@en .
+
+ex:fbe66378-8cae-40ed-a28e-a416b3307b18 a investigation:InvestigativeAction ;
+    rdfs:label "Collection action: Utah AG ICAC Task Force webpage"@en ;
+    uco-action:startTime "2026-01-07T02:59:19Z"^^xsd:dateTime ;
+    uco-action:performer ex:eabf2658-dd9e-4306-95f2-6d8ddb1c1ebf ;
+    uco-action:object ex:82588a71-7176-4cd0-aaee-56cffc467f86 ;
+    uco-core:description "Collected via curl (WSL) from a public webpage."@en .
+
+ex:afb067e4-9f45-40c4-9c7a-c79d08e67b9d a uco-action:Action ;
+    rdfs:label "Normalization action: HTML to text (Utah ICAC webpage)"@en ;
+    uco-action:startTime "2026-01-07T02:59:19Z"^^xsd:dateTime ;
+    uco-action:performer ex:eabf2658-dd9e-4306-95f2-6d8ddb1c1ebf ;
+    uco-action:object ex:82588a71-7176-4cd0-aaee-56cffc467f86 ;
+    uco-action:result ex:475e52e8-e517-4370-bfb2-93f3e771ef26 ;
+    uco-core:description "html_clean (strip tags) + whitespace normalization + de-dup consecutive text nodes."@en .
+
+ex:475e52e8-e517-4370-bfb2-93f3e771ef26 a uco-observable:ObservableObject ;
+    rdfs:label "Utah AG ICAC Task Force webpage (normalized text)"@en ;
+    uco-core:hasFacet ex:522f2167-266e-4f7a-9346-20b7b5b2ffff ;
+    uco-core:hasFacet ex:7770a786-cd2f-4b3f-814b-e1ea25aeee18 ;
+    uco-core:hasFacet ex:2d6c0309-825b-4821-9777-6142962c2c12 .
+
+ex:522f2167-266e-4f7a-9346-20b7b5b2ffff a uco-observable:ContentDataFacet ;
+    uco-observable:mimeType "text/plain" ;
+    uco-observable:sizeInBytes 17554 .
+
+ex:7770a786-cd2f-4b3f-814b-e1ea25aeee18 a uco-observable:FileFacet ;
+    uco-observable:filePath "analytics_demonstration/collected_sources/utah-icac-task-force/normalized.txt" .
+
+ex:2d6c0309-825b-4821-9777-6142962c2c12 a uco-observable:HashFacet ;
+    uco-observable:hash ex:335de222-9523-4d38-9e44-54617cfaf839 .
+
+ex:335de222-9523-4d38-9e44-54617cfaf839 a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "0555fc5ae78a4fb7db4e617c31e3dcacd5ee3a5813317b889b6f23ad3ac2f1f7" .
+
+ex:d68c3881-f049-4c89-a6da-f0ecedc0d156 a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance record: collection of Utah ICAC Task Force webpage"@en ;
+    investigation:exhibitNumber "DOC-UT-ICAC-WEB-0001" ;
+    uco-core:object ex:82588a71-7176-4cd0-aaee-56cffc467f86 ;
+    investigation:provenanceRecordAction ex:fbe66378-8cae-40ed-a28e-a416b3307b18 .
+
+# =============================================================================
+# Minimal in-scope assertions grounded in the collected webpage (connected nodes)
+# =============================================================================
+
+ex:af3aaac8-c561-4223-bcb3-0787f90c14b9 a uco-identity:Organization ;
+    rdfs:label "Utah Attorney General ICAC Task Force"@en ;
+    uco-core:description "Internet Crimes Against Children (ICAC) Task Force administered through the Utah Attorney General’s Office; described on the collected webpage."@en .
+
+ex:74b27cff-2270-4685-a579-b06b20e0bbd4 a uco-action:Action ;
+    rdfs:label "Webpage describes the Utah Attorney General ICAC Task Force"@en ;
+    uco-action:startTime "2026-01-07T02:59:19Z"^^xsd:dateTime ;
+    uco-action:performer ex:af3aaac8-c561-4223-bcb3-0787f90c14b9 ;
+    uco-action:object ex:82588a71-7176-4cd0-aaee-56cffc467f86 ;
+    uco-core:description "Grounded in the collected webpage section titled 'ICAC Task Force'."@en .
+
+ex:37634478-f5d4-46e5-8702-5360ecb6f3ec a uco-observable:ObservableObject ;
+    rdfs:label "Utah ICAC Tip Line"@en ;
+    uco-core:description "801.281.1211"@en .
+
+ex:61dd2432-e06d-408e-bb0c-73439fd152b3 a uco-observable:ObservableObject ;
+    rdfs:label "Utah ICAC Email"@en ;
+    uco-core:description "utahicac@agutah.gov"@en .
+
+ex:107c5358-ad85-417f-a60f-86d7410b52ef a uco-action:Action ;
+    rdfs:label "Webpage publishes ICAC reporting contacts"@en ;
+    uco-action:startTime "2026-01-07T02:59:19Z"^^xsd:dateTime ;
+    uco-action:performer ex:af3aaac8-c561-4223-bcb3-0787f90c14b9 ;
+    uco-action:object ex:82588a71-7176-4cd0-aaee-56cffc467f86 ,
+                    ex:37634478-f5d4-46e5-8702-5360ecb6f3ec ,
+                    ex:61dd2432-e06d-408e-bb0c-73439fd152b3 ;
+    uco-core:description "Grounded in the collected webpage lines: 'ICAC Tip Line: 801.281.1211' and 'ICAC Email: utahicac@agutah.gov'."@en .
+
+
+# =============================================================================
+# Extended example modeling (affiliates, crime focus, funding, education program)
+# Source evidence: analytics_demonstration/collected_sources/utah-icac-task-force/normalized.txt
+# =============================================================================
+
+ex:dde81571-0b03-59ca-a542-19e4b370d5b1 a uco-identity:Organization ;
+    rdfs:label "Utah Attorney General's Office"@en .
+
+ex:e8df2b9e-7693-5344-a885-e764e47ab169 a uco-identity:Organization ;
+    rdfs:label "Office of Juvenile Justice and Delinquency Prevention"@en .
+
+ex:d1a06078-9912-5458-baf8-b1f0f03fbe87 a uco-action:Action ;
+    rdfs:label "Webpage states ICAC Task Force funding/admin context"@en ;
+    uco-action:startTime "2026-01-07T02:59:19Z"^^xsd:dateTime ;
+    uco-action:performer ex:af3aaac8-c561-4223-bcb3-0787f90c14b9 ;
+    uco-action:object ex:82588a71-7176-4cd0-aaee-56cffc467f86, ex:e8df2b9e-7693-5344-a885-e764e47ab169, ex:dde81571-0b03-59ca-a542-19e4b370d5b1 ;
+    uco-core:description "Grounded in normalized.txt lines 37-40: funded by a grant from OJJDP and administered through the Utah Attorney General's Office."@en .
+
+ex:2a9b5a73-8495-5607-a09f-8a4a198b691f a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance: funding/admin statements"@en ;
+    uco-core:object ex:82588a71-7176-4cd0-aaee-56cffc467f86 ;
+    investigation:provenanceRecordAction ex:d1a06078-9912-5458-baf8-b1f0f03fbe87 ;
+    uco-core:description "Evidence pointer: normalized.txt lines 37-40."@en .
+
+ex:ac3fdc87-634a-5a19-b6ab-bf5a22f3ba32 a uco-core:UcoObject ;
+    rdfs:label "Sexual Exploitation of a Minor"@en ;
+    uco-core:description "(possessing, distributing and manufacturing child pornography)"@en .
+
+ex:2b66a85d-fb4a-5e7e-984a-bd542f7517a1 a uco-core:UcoObject ;
+    rdfs:label "Enticing a Minor over the Internet"@en ;
+    uco-core:description "(with the intent of committing sexual acts to the child)"@en .
+
+ex:ae35e4a2-7479-5a0a-b2b5-c23e3c5d2036 a uco-core:UcoObject ;
+    rdfs:label "Dealing in Material Harmful to a Minor"@en ;
+    uco-core:description "(sending pornography to a minor and/or sexting)"@en .
+
+ex:58b513d2-af3c-57a2-9f5c-d71c5741b5e3 a uco-action:Action ;
+    rdfs:label "Webpage lists crimes investigated by the task force"@en ;
+    uco-action:startTime "2026-01-07T02:59:19Z"^^xsd:dateTime ;
+    uco-action:performer ex:af3aaac8-c561-4223-bcb3-0787f90c14b9 ;
+    uco-action:object ex:82588a71-7176-4cd0-aaee-56cffc467f86, ex:ac3fdc87-634a-5a19-b6ab-bf5a22f3ba32, ex:2b66a85d-fb4a-5e7e-984a-bd542f7517a1, ex:ae35e4a2-7479-5a0a-b2b5-c23e3c5d2036 ;
+    uco-core:description "Grounded in normalized.txt lines 49-52 (Crimes We Investigate)."@en .
+
+ex:a2050ea8-d2bd-5043-b16f-5b1e467057e9 a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance: crimes investigated list"@en ;
+    uco-core:object ex:82588a71-7176-4cd0-aaee-56cffc467f86 ;
+    investigation:provenanceRecordAction ex:58b513d2-af3c-57a2-9f5c-d71c5741b5e3 ;
+    uco-core:description "Evidence pointer: normalized.txt lines 49-52."@en .
+
+ex:049833bc-11b3-5155-b3e0-81e61692f6ed a uco-core:UcoObject ;
+    rdfs:label "Digital Respons-Ability program"@en ;
+    uco-core:description "Program described on the webpage; sponsored to educate children, parents, and the community on Internet safety presentations."@en .
+
+ex:bebd7ccc-8983-54a6-977e-e4c15f966ef5 a uco-action:Action ;
+    rdfs:label "Webpage states sponsorship of Digital Respons-Ability program"@en ;
+    uco-action:startTime "2026-01-07T02:59:19Z"^^xsd:dateTime ;
+    uco-action:performer ex:dde81571-0b03-59ca-a542-19e4b370d5b1 ;
+    uco-action:object ex:82588a71-7176-4cd0-aaee-56cffc467f86, ex:049833bc-11b3-5155-b3e0-81e61692f6ed ;
+    uco-core:description "Grounded in normalized.txt lines 46-48."@en .
+
+ex:091fa84e-9c57-5a39-9be7-8fa622ca552e a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance: Digital Respons-Ability program statement"@en ;
+    uco-core:object ex:82588a71-7176-4cd0-aaee-56cffc467f86 ;
+    investigation:provenanceRecordAction ex:bebd7ccc-8983-54a6-977e-e4c15f966ef5 ;
+    uco-core:description "Evidence pointer: normalized.txt lines 46-48."@en .
+
+# -- Affiliates listed on webpage (each connected via one listing action)
+
+ex:aae9f8d8-82ac-50bc-a7e5-306d9d816629 a uco-identity:Organization ;
+    rdfs:label "Utah Adult Parole & Probation, Northern Region"@en .
+
+ex:8eda6c36-7df7-5ab5-975b-a672f690ee27 a uco-identity:Organization ;
+    rdfs:label "Utah Adult Parole & Probation, Region lll Salt Lake"@en .
+
+ex:7a26c835-33c2-51a2-bb4c-a23ce587f232 a uco-identity:Organization ;
+    rdfs:label "Utah Adult Parole & Probation, Region IV Provo"@en .
+
+ex:e6a2fadc-95ab-598f-953c-54369eb7d982 a uco-identity:Organization ;
+    rdfs:label "Utah Adult Parole & Probation, Region V Hurricane/ Cedar City"@en .
+
+ex:4bb24c4c-c304-53ad-8c60-5929727f12dd a uco-identity:Organization ;
+    rdfs:label "Bluffdale Police Department"@en .
+
+ex:bb864d87-b571-5971-827f-18a95c4f0139 a uco-identity:Organization ;
+    rdfs:label "Box Elder County Attorney’s Office"@en .
+
+ex:d2f65ef3-41d2-5859-8df9-1a29411583f2 a uco-identity:Organization ;
+    rdfs:label "Brigham City Police Department"@en .
+
+ex:8b902e17-ea6e-52aa-9b5d-8245e480aa09 a uco-identity:Organization ;
+    rdfs:label "Cache County Sheriff’s Office"@en .
+
+ex:a76a3b16-1fe5-54c6-a030-3a5e25a935ee a uco-identity:Organization ;
+    rdfs:label "Carbon County Sheriff’s Office"@en .
+
+ex:5ee8abcc-4b92-5baa-91b7-39b380b69aae a uco-identity:Organization ;
+    rdfs:label "Cedar City Police Department"@en .
+
+ex:5984b079-b3db-56c5-a8b6-f2730c69d316 a uco-identity:Organization ;
+    rdfs:label "Clearfield Police Department"@en .
+
+ex:ffc7d80b-4ade-528d-88a2-06308e014f17 a uco-identity:Organization ;
+    rdfs:label "Davis County Attorney’s Office"@en .
+
+ex:ac09bae3-36ca-5b14-aa93-64abe76b6928 a uco-identity:Organization ;
+    rdfs:label "Davis County Sheriff’s Office"@en .
+
+ex:19284137-8254-549e-a971-112da64e7232 a uco-identity:Organization ;
+    rdfs:label "Department of Homeland Security (HSI) Northern, Central & Southern"@en .
+
+ex:5a5d4165-7bc6-5507-ad1a-e71d43006c8c a uco-identity:Organization ;
+    rdfs:label "Draper Police Department"@en .
+
+ex:96e61805-4e03-5482-86bf-7f695e192bf0 a uco-identity:Organization ;
+    rdfs:label "Duchesne County Sheriff’s Office"@en .
+
+ex:0fef809c-8783-5a11-a815-7203767634b0 a uco-identity:Organization ;
+    rdfs:label "Enoch City Police Department"@en .
+
+ex:6d97b752-d256-51cb-8062-83be365d7934 a uco-identity:Organization ;
+    rdfs:label "Farmington Police Department"@en .
+
+ex:5d56baa8-72f9-5dec-aba5-f0af44987acd a uco-identity:Organization ;
+    rdfs:label "Garfield County Sheriff’s Office"@en .
+
+ex:36006ecb-2b04-519c-a189-1ce8f5792c54 a uco-identity:Organization ;
+    rdfs:label "Grand County Sheriff’s Office"@en .
+
+ex:8945241a-aca0-59c0-b040-0ab4463c4ced a uco-identity:Organization ;
+    rdfs:label "Grantsville Police Department"@en .
+
+ex:87bd299c-0631-5014-823b-d403c239ab36 a uco-identity:Organization ;
+    rdfs:label "Herriman Police Department"@en .
+
+ex:740373e9-43db-51aa-90cc-e3230c0013ae a uco-identity:Organization ;
+    rdfs:label "Iron County Sheriff’s Office"@en .
+
+ex:5ef7140a-c520-521d-88c9-a40d50f603b2 a uco-identity:Organization ;
+    rdfs:label "Kane Country Sheriff’s Office"@en .
+
+ex:a8bfcdd9-ef8e-54f2-8df9-7c0db006a1c0 a uco-identity:Organization ;
+    rdfs:label "Kaysville Police Department"@en .
+
+ex:bf8ad0ee-0f78-58de-8042-2e99612b9077 a uco-identity:Organization ;
+    rdfs:label "Layton City Police Department"@en .
+
+ex:bf80c9dd-6963-5fad-ad5f-64243d03ea44 a uco-identity:Organization ;
+    rdfs:label "Lehi Police Department"@en .
+
+ex:3855b42b-876a-5ea9-9e94-5a25a513b845 a uco-identity:Organization ;
+    rdfs:label "Logan City Police Department"@en .
+
+ex:207905b9-b100-5418-8fb4-c56b4b924036 a uco-identity:Organization ;
+    rdfs:label "Moab City Police Department"@en .
+
+ex:dcf00fb0-8782-5510-9cda-98cdc3f7b390 a uco-identity:Organization ;
+    rdfs:label "Ogden Police Department"@en .
+
+ex:7e3bccd7-83cf-53c0-ab7f-db968214a772 a uco-identity:Organization ;
+    rdfs:label "Orem Police Department"@en .
+
+ex:025ec7c0-ccf5-5e9a-91de-ac98995a0de5 a uco-identity:Organization ;
+    rdfs:label "Park City Police Department"@en .
+
+ex:a53c0a51-cf6f-5780-b391-a8699665aa18 a uco-identity:Organization ;
+    rdfs:label "Payson Police Department"@en .
+
+ex:2aefd424-09f7-5a6e-bef0-3b5f15aa4401 a uco-identity:Organization ;
+    rdfs:label "Price Police Department"@en .
+
+ex:125d0c27-f1b6-5ed2-99af-8927e8b23cea a uco-identity:Organization ;
+    rdfs:label "Provo City Police Department"@en .
+
+ex:dfd2eb0b-ac3a-5184-bc7a-eb7a918b929a a uco-identity:Organization ;
+    rdfs:label "Perry Police Department"@en .
+
+ex:15aa2bc0-76ef-5ef3-a281-1afaadee5deb a uco-identity:Organization ;
+    rdfs:label "Riverton Police Department"@en .
+
+ex:d7c3ca11-84a3-5f4a-ab8f-b99b4d97c74a a uco-identity:Organization ;
+    rdfs:label "Roy City Police Department"@en .
+
+ex:ab4e670b-e8b7-5b9f-ad9d-a7b1e95e5cd2 a uco-identity:Organization ;
+    rdfs:label "Salem City Police Department"@en .
+
+ex:458de91b-c0e6-56f0-8b5f-84ce6b3cdcaf a uco-identity:Organization ;
+    rdfs:label "Sandy Police Department"@en .
+
+ex:cdf6fde6-40b4-5e0a-985c-637d9d92fc3b a uco-identity:Organization ;
+    rdfs:label "Saratoga Springs Police Department"@en .
+
+ex:c954bf58-f7ae-5651-a05f-497f8910b0e2 a uco-identity:Organization ;
+    rdfs:label "SECURE Strike Force"@en .
+
+ex:62c429cf-6931-50ec-9fb6-43c446d835d2 a uco-identity:Organization ;
+    rdfs:label "Sevier County Sheriff’s Office"@en .
+
+ex:4fe7dcd6-7857-5384-bcf3-7ecba12a0720 a uco-identity:Organization ;
+    rdfs:label "South Jordan Police Department"@en .
+
+ex:d5e6c093-714d-5f90-86e0-f4544fd0440a a uco-identity:Organization ;
+    rdfs:label "South Salt Lake Police Department"@en .
+
+ex:e52b54b1-fd68-507d-a3f6-6099a85426b6 a uco-identity:Organization ;
+    rdfs:label "St. George Police Department"@en .
+
+ex:8258e210-80e3-527c-9fe2-97507abc4a0e a uco-identity:Organization ;
+    rdfs:label "Syracuse Police Department"@en .
+
+ex:666782fd-e16d-5489-8ca7-840fdeab8ccc a uco-identity:Organization ;
+    rdfs:label "Taylorsville Police Department"@en .
+
+ex:40eb73d8-9e75-5b04-9133-3d899076cb18 a uco-identity:Organization ;
+    rdfs:label "Tremonton Police Department"@en .
+
+ex:cac634db-534c-52df-a557-c6ecdb4f68c5 a uco-identity:Organization ;
+    rdfs:label "Uintah County Sheriff’s Office"@en .
+
+ex:2738f29a-74ed-5dbf-8a56-8ae516be24dd a uco-identity:Organization ;
+    rdfs:label "United States Secret Service"@en .
+
+ex:ec0ae602-4406-5b6b-97e5-e3f3bee12b0e a uco-identity:Organization ;
+    rdfs:label "Utah Attorney General’s Office"@en .
+
+ex:7e2acdf6-51c4-5be0-b643-c5c806454f8f a uco-identity:Organization ;
+    rdfs:label "Utah County Sheriff’s Office"@en .
+
+ex:98f14b31-6fff-5867-9b42-3ad3e946bd4b a uco-identity:Organization ;
+    rdfs:label "Utah Tech University Police Department"@en .
+
+ex:99f9e500-0d4e-570d-8a80-7e3781089244 a uco-identity:Organization ;
+    rdfs:label "Vernal Police Department"@en .
+
+ex:d75e421e-04ad-5bfe-af9f-df4845e9e080 a uco-identity:Organization ;
+    rdfs:label "Wasatch County Sherriff’s Office"@en .
+
+ex:939c96fd-613f-5f74-b2e1-de97d99af178 a uco-identity:Organization ;
+    rdfs:label "Washington City Police Department"@en .
+
+ex:d21f8c3b-4064-51b3-b60f-5421fda6977a a uco-identity:Organization ;
+    rdfs:label "Washington County Sheriff’s Office"@en .
+
+ex:d5b40f6d-8147-5398-9ed9-6dcaaee0ae66 a uco-identity:Organization ;
+    rdfs:label "Weber Country Attorney’s Office"@en .
+
+ex:c48b4068-e112-537f-8824-ff6633a485a0 a uco-identity:Organization ;
+    rdfs:label "Weber County Sheriff’s Office"@en .
+
+ex:d7b95491-1154-5d3e-8556-cd533b800088 a uco-identity:Organization ;
+    rdfs:label "Weber State University Police Department"@en .
+
+ex:e9d57a11-a24c-53c7-a2fa-f4c7c0e191d9 a uco-identity:Organization ;
+    rdfs:label "West Jordan Police Department"@en .
+
+ex:0d62f398-4fbb-512c-bace-08a3571bef6d a uco-identity:Organization ;
+    rdfs:label "West Valley City Police Department"@en .
+
+ex:5edcb17f-8339-51ec-b8ec-ffa8e57a69bf a uco-identity:Organization ;
+    rdfs:label "Woods Cross Police Department"@en .
+
+ex:955200b5-668a-5bfa-bbc5-2fa5f62acd16 a uco-action:Action ;
+    rdfs:label "Webpage lists Utah ICAC affiliates"@en ;
+    uco-action:startTime "2026-01-07T02:59:19Z"^^xsd:dateTime ;
+    uco-action:performer ex:af3aaac8-c561-4223-bcb3-0787f90c14b9 ;
+    uco-action:object ex:82588a71-7176-4cd0-aaee-56cffc467f86,
+                    ex:aae9f8d8-82ac-50bc-a7e5-306d9d816629,
+                    ex:8eda6c36-7df7-5ab5-975b-a672f690ee27,
+                    ex:7a26c835-33c2-51a2-bb4c-a23ce587f232,
+                    ex:e6a2fadc-95ab-598f-953c-54369eb7d982,
+                    ex:4bb24c4c-c304-53ad-8c60-5929727f12dd,
+                    ex:bb864d87-b571-5971-827f-18a95c4f0139,
+                    ex:d2f65ef3-41d2-5859-8df9-1a29411583f2,
+                    ex:8b902e17-ea6e-52aa-9b5d-8245e480aa09,
+                    ex:a76a3b16-1fe5-54c6-a030-3a5e25a935ee,
+                    ex:5ee8abcc-4b92-5baa-91b7-39b380b69aae,
+                    ex:5984b079-b3db-56c5-a8b6-f2730c69d316,
+                    ex:ffc7d80b-4ade-528d-88a2-06308e014f17,
+                    ex:ac09bae3-36ca-5b14-aa93-64abe76b6928,
+                    ex:19284137-8254-549e-a971-112da64e7232,
+                    ex:5a5d4165-7bc6-5507-ad1a-e71d43006c8c,
+                    ex:96e61805-4e03-5482-86bf-7f695e192bf0,
+                    ex:0fef809c-8783-5a11-a815-7203767634b0,
+                    ex:6d97b752-d256-51cb-8062-83be365d7934,
+                    ex:5d56baa8-72f9-5dec-aba5-f0af44987acd,
+                    ex:36006ecb-2b04-519c-a189-1ce8f5792c54,
+                    ex:8945241a-aca0-59c0-b040-0ab4463c4ced,
+                    ex:87bd299c-0631-5014-823b-d403c239ab36,
+                    ex:740373e9-43db-51aa-90cc-e3230c0013ae,
+                    ex:5ef7140a-c520-521d-88c9-a40d50f603b2,
+                    ex:a8bfcdd9-ef8e-54f2-8df9-7c0db006a1c0,
+                    ex:bf8ad0ee-0f78-58de-8042-2e99612b9077,
+                    ex:bf80c9dd-6963-5fad-ad5f-64243d03ea44,
+                    ex:3855b42b-876a-5ea9-9e94-5a25a513b845,
+                    ex:207905b9-b100-5418-8fb4-c56b4b924036,
+                    ex:dcf00fb0-8782-5510-9cda-98cdc3f7b390,
+                    ex:7e3bccd7-83cf-53c0-ab7f-db968214a772,
+                    ex:025ec7c0-ccf5-5e9a-91de-ac98995a0de5,
+                    ex:a53c0a51-cf6f-5780-b391-a8699665aa18,
+                    ex:2aefd424-09f7-5a6e-bef0-3b5f15aa4401,
+                    ex:125d0c27-f1b6-5ed2-99af-8927e8b23cea,
+                    ex:dfd2eb0b-ac3a-5184-bc7a-eb7a918b929a,
+                    ex:15aa2bc0-76ef-5ef3-a281-1afaadee5deb,
+                    ex:d7c3ca11-84a3-5f4a-ab8f-b99b4d97c74a,
+                    ex:ab4e670b-e8b7-5b9f-ad9d-a7b1e95e5cd2,
+                    ex:458de91b-c0e6-56f0-8b5f-84ce6b3cdcaf,
+                    ex:cdf6fde6-40b4-5e0a-985c-637d9d92fc3b,
+                    ex:c954bf58-f7ae-5651-a05f-497f8910b0e2,
+                    ex:62c429cf-6931-50ec-9fb6-43c446d835d2,
+                    ex:4fe7dcd6-7857-5384-bcf3-7ecba12a0720,
+                    ex:d5e6c093-714d-5f90-86e0-f4544fd0440a,
+                    ex:e52b54b1-fd68-507d-a3f6-6099a85426b6,
+                    ex:8258e210-80e3-527c-9fe2-97507abc4a0e,
+                    ex:666782fd-e16d-5489-8ca7-840fdeab8ccc,
+                    ex:40eb73d8-9e75-5b04-9133-3d899076cb18,
+                    ex:cac634db-534c-52df-a557-c6ecdb4f68c5,
+                    ex:2738f29a-74ed-5dbf-8a56-8ae516be24dd,
+                    ex:ec0ae602-4406-5b6b-97e5-e3f3bee12b0e,
+                    ex:7e2acdf6-51c4-5be0-b643-c5c806454f8f,
+                    ex:98f14b31-6fff-5867-9b42-3ad3e946bd4b,
+                    ex:99f9e500-0d4e-570d-8a80-7e3781089244,
+                    ex:d75e421e-04ad-5bfe-af9f-df4845e9e080,
+                    ex:939c96fd-613f-5f74-b2e1-de97d99af178,
+                    ex:d21f8c3b-4064-51b3-b60f-5421fda6977a,
+                    ex:d5b40f6d-8147-5398-9ed9-6dcaaee0ae66,
+                    ex:c48b4068-e112-537f-8824-ff6633a485a0,
+                    ex:d7b95491-1154-5d3e-8556-cd533b800088,
+                    ex:e9d57a11-a24c-53c7-a2fa-f4c7c0e191d9,
+                    ex:0d62f398-4fbb-512c-bace-08a3571bef6d,
+                    ex:5edcb17f-8339-51ec-b8ec-ffa8e57a69bf ;
+    uco-core:description "Grounded in normalized.txt lines 64-128 (affiliate agency list)."@en .
+
+ex:65e3cdc5-06d7-5e9f-b137-154b839349f1 a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance: affiliates list"@en ;
+    uco-core:object ex:82588a71-7176-4cd0-aaee-56cffc467f86 ;
+    investigation:provenanceRecordAction ex:955200b5-668a-5bfa-bbc5-2fa5f62acd16 ;
+    uco-core:description "Evidence pointer: normalized.txt lines 64-128."@en .
+

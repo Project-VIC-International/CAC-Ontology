@@ -3,25 +3,20 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
-@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
-@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
-@prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
-@prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-undercover: <https://cacontology.projectvic.org/undercover#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/undercover/shapes/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/undercover/shapes/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Undercover Operations SHACL Shapes"@en ;
-    rdfs:comment "SHACL validation shapes for the ICAC Undercover Operations Ontology, providing validation for undercover identities, infiltration tactics, surveillance operations, and evidence collection through covert means."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/undercover/shapes/2.12.0> ;
-    owl:versionInfo "2.12.0" ;
+    rdfs:comment "SHACL validation shapes for the CAC Undercover Operations Ontology, providing validation for undercover identities, infiltration tactics, surveillance operations, and evidence collection through covert means."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/undercover/shapes/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2026-01-01"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/undercover/2.12.0> ,
-                <http://purl.org/nemo/gufo> ,
+    owl:imports <https://cacontology.projectvic.org/undercover/3.0.0> ,
+                <http://purl.org/nemo/gufo#> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 
 # =============================================================================
@@ -632,7 +627,7 @@ cacontology-undercover:DataQualityShape rdf:type sh:NodeShape ;
     ] .
 
 # =============================================================================
-# MEETING LOCATION SHAPES (Miami ICAC Case Enhancement)
+# MEETING LOCATION SHAPES (Miami CAC Case Enhancement)
 # =============================================================================
 
 cacontology-undercover:MeetingLocationShape rdf:type sh:NodeShape ;
@@ -707,7 +702,7 @@ cacontology-undercover:ShortTermRentalShape rdf:type sh:NodeShape ;
     ] .
 
 # =============================================================================
-# MULTIPLE PERSONA OPERATION SHAPES (Miami ICAC Case Enhancement)
+# MULTIPLE PERSONA OPERATION SHAPES (Miami CAC Case Enhancement)
 # =============================================================================
 
 cacontology-undercover:MultiplePersonaOperationShape rdf:type sh:NodeShape ;
@@ -756,7 +751,7 @@ cacontology-undercover:SiblingPersonaOperationShape rdf:type sh:NodeShape ;
     ] .
 
 # =============================================================================
-# SUSPECT COMMUNICATION ACTION SHAPES (Miami ICAC Case Enhancement)
+# SUSPECT COMMUNICATION ACTION SHAPES (Miami CAC Case Enhancement)
 # =============================================================================
 
 cacontology-undercover:SuspectCommunicationActionShape rdf:type sh:NodeShape ;

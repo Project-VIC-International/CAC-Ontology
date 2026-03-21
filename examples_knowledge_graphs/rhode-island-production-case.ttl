@@ -1,0 +1,394 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex: <http://example.org/rhode-island-case#> .
+
+# Import all required ontologies
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
+
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix icacus: <https://cacontology.projectvic.org/us/ncmec/3.0.0#> .
+@prefix cacontology-production: <https://cacontology.projectvic.org/production#> .
+@prefix cacontology-custodial: <https://cacontology.projectvic.org/custodial#> .
+@prefix cacontology-victim-impact: <https://cacontology.projectvic.org/victim-impact#> .
+@prefix cacontology-taskforce: <https://cacontology.projectvic.org/taskforce#> .
+@prefix cacontology-legal-outcomes: <https://cacontology.projectvic.org/legal-outcomes#> .
+
+# =============================================================================
+# ENHANCED NCMEC TIP ANALYSIS
+# =============================================================================
+
+ex:NCMECTip2023001 rdf:type icacus:NCMECCybertipReport ;
+    icacus:hasNCMECIncidentType icacus:ChildSexTraffickingIncident ;
+    uco-core:name "NCMEC-2023-001-RI" ;
+    uco-core:description "CyberTip report involving suspected CSAM production in Rhode Island area" .
+
+ex:TipAnalysis2023001 rdf:type icacus:CyberTipAnalysis ;
+    icacus:analysisOf ex:NCMECTip2023001 ;
+    icacus:analysisConfidence "high" ;
+    icacus:supportedBy ex:PlatformCooperation001 .
+
+ex:PossessionIndicator001 rdf:type icacus:PossessionIndicator ;
+    icacus:indicatorStrength "strong" ;
+    icacus:linkedToAccount ex:SuspectDigitalAccount .
+
+ex:AccountLinking001 rdf:type icacus:AccountLinking ;
+    icacus:accountConfidence "verified" ;
+    icacus:linkedToAccount ex:SuspectDigitalAccount ;
+    icacus:tracedToPhone ex:SuspectPhoneNumber .
+
+ex:PlatformCooperation001 rdf:type icacus:PlatformCooperation ;
+    icacus:platformResponseTime 12.5 ;
+    icacus:cooperationLevel "full" ;
+    icacus:dataProvided "account_info, user_data, content, metadata" .
+
+ex:TaskForceReferral001 rdf:type icacus:TaskForceReferral ;
+    icacus:triggeredBy ex:NCMECTip2023001 ;
+    icacus:urgencyLevel "immediate" ;
+    icacus:triggerCriteria "production_evidence, custodial_relationship" ;
+    icacus:referralJurisdiction "state" ;
+    icacus:resultedInInvestigation ex:RIInvestigation2023001 .
+
+# =============================================================================
+# ICAC TASK FORCE ORGANIZATION
+# =============================================================================
+
+ex:RhodeIslandICACtaskForce rdf:type cacontology-taskforce:StateICACtaskForce ;
+    cacontology-taskforce:taskForceId "RI-cacontology-001" ;
+    cacontology-taskforce:establishmentDate "2015-03-15T00:00:00Z"^^xsd:dateTime ;
+    cacontology-taskforce:coverageArea "Rhode Island, Southeastern Massachusetts" ;
+    cacontology-taskforce:memberCount 25 ;
+    cacontology-taskforce:agencyCount 8 ;
+    cacontology-taskforce:commandedBy ex:TaskForceCommander001 .
+
+ex:DigitalForensicsUnit001 rdf:type cacontology-taskforce:DigitalForensicsUnit ;
+    cacontology-taskforce:specializationArea "forensics" ;
+    cacontology-taskforce:capabilityLevel "advanced" ;
+    cacontology-taskforce:resourceCapacity "high" .
+
+ex:VictimServiceUnit001 rdf:type cacontology-taskforce:VictimServiceUnit ;
+    cacontology-taskforce:specializationArea "victim_services" ;
+    cacontology-taskforce:capabilityLevel "expert" ;
+    cacontology-taskforce:resourceCapacity "moderate" .
+
+ex:RhodeIslandICACtaskForce cacontology-taskforce:hasUnit ex:DigitalForensicsUnit001, ex:VictimServiceUnit001 .
+
+ex:TaskForceInvestigator001 rdf:type cacontology-taskforce:TaskForceInvestigator ;
+    cacontology-taskforce:memberRole "investigator" ;
+    cacontology-taskforce:experienceLevel "expert" ;
+    cacontology-taskforce:certificationStatus "certified" ;
+    cacontology-taskforce:yearsOfService 8 ;
+    cacontology-taskforce:assignedToUnit ex:DigitalForensicsUnit001 .
+
+ex:ReactiveOperation001 rdf:type cacontology-taskforce:ReactiveOperation ;
+    cacontology-taskforce:operationType "reactive" ;
+    cacontology-taskforce:operationScale "regional" ;
+    cacontology-taskforce:participatingUnits 2 ;
+    cacontology-taskforce:operationDuration 45 ;
+    cacontology-taskforce:operationOutcome "successful" ;
+    cacontology-taskforce:conductedBy ex:RhodeIslandICACtaskForce ;
+    cacontology-taskforce:handledInvestigation ex:RIInvestigation2023001 .
+
+# =============================================================================
+# INVESTIGATION AND SUBJECTS
+# =============================================================================
+
+ex:RIInvestigation2023001 rdf:type cacontology:CACInvestigation ;
+    cacontology:caseNumber "RI-HSI-2023-PROD-001" ;
+    cacontology:investigationStatus "completed" ;
+    uco-core:startTime "2023-02-15T08:00:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2023-06-30T17:00:00Z"^^xsd:dateTime ;
+    cacontology:hasSubject ex:Suspect001, ex:Victim001, ex:Victim002 .
+
+ex:Suspect001 rdf:type uco-identity:Person ;
+    uco-core:name "John Alexander Rodriguez" ;
+    cacontology:ageAtOffense 34 ;
+    uco-core:hasRole ex:BabysitterRole, ex:ProducerRole .
+
+ex:Victim001 rdf:type uco-identity:Person ;
+    cacontology:ageAtOffense 8 ;
+    uco-core:hasRole ex:ProductionVictimRole001 .
+
+ex:Victim002 rdf:type uco-identity:Person ;
+    cacontology:ageAtOffense 10 ;
+    uco-core:hasRole ex:ProductionVictimRole002 .
+
+# =============================================================================
+# CUSTODIAL RELATIONSHIPS AND TRUST VIOLATIONS
+# =============================================================================
+
+ex:CustodialRelationship001 rdf:type cacontology-custodial:TemporaryCustody ;
+    cacontology-custodial:relationshipType "babysitter" ;
+    cacontology-custodial:relationshipDuration 18 ;
+    cacontology-custodial:relationshipFrequency "weekly" ;
+    cacontology-custodial:relationshipIntimacy "close" ;
+    cacontology-custodial:involvesCustodian ex:BabysitterRole ;
+    cacontology-custodial:involvesChild ex:Victim001 .
+
+ex:CustodialRelationship002 rdf:type cacontology-custodial:TemporaryCustody ;
+    cacontology-custodial:relationshipType "babysitter" ;
+    cacontology-custodial:relationshipDuration 12 ;
+    cacontology-custodial:relationshipFrequency "weekly" ;
+    cacontology-custodial:relationshipIntimacy "close" ;
+    cacontology-custodial:involvesCustodian ex:BabysitterRole ;
+    cacontology-custodial:involvesChild ex:Victim002 .
+
+ex:BabysitterRole rdf:type cacontology-custodial:Babysitter ;
+    cacontology-custodial:authorityLevel "extensive" ;
+    cacontology-custodial:authorityScope "physical_care" ;
+    cacontology-custodial:supervisionLevel "none" ;
+    cacontology-custodial:trustLevel "complete" ;
+    cacontology-custodial:accessLevel "unsupervised" .
+
+ex:TrustViolation001 rdf:type cacontology-custodial:CustodialAbuse ;
+    cacontology-custodial:violationType "exploitation" ;
+    cacontology-custodial:violationSeverity "extreme" ;
+    cacontology-custodial:breachDuration 365 ;
+    cacontology-custodial:violationPattern "systematic" ;
+    cacontology-custodial:violatesPosition ex:BabysitterRole ;
+    cacontology-custodial:violatesRelationship ex:CustodialRelationship001, ex:CustodialRelationship002 ;
+    cacontology-custodial:perpetratedBy ex:BabysitterRole .
+
+# =============================================================================
+# PRODUCTION OFFENSE AND ACTIVITIES
+# =============================================================================
+
+ex:ProductionOffense001 rdf:type cacontology-production:ProductionOffense ;
+    cacontology-production:productionStartDate "2022-06-01T00:00:00Z"^^xsd:dateTime ;
+    cacontology-production:productionEndDate "2023-02-10T00:00:00Z"^^xsd:dateTime ;
+    cacontology-production:productionPeriod 254 ;
+    cacontology-production:imageCount 127 ;
+    cacontology-production:videoCount 23 ;
+    cacontology-production:victimCount 2 ;
+    cacontology-production:productionMethod "direct_recording" ;
+    cacontology-production:productionComplexity "intermediate" ;
+    cacontology-production:distributionIntent "intended_distribution" ;
+    cacontology-production:immediateDistribution false ;
+    cacontology-production:evidenceRecovered true ;
+    cacontology-production:producedBy ex:ProducerRole ;
+    cacontology-production:involvesVictim ex:ProductionVictimRole001, ex:ProductionVictimRole002 ;
+    cacontology-production:producedAt ex:ProductionLocation001 ;
+    cacontology-production:usesEquipment ex:MobileDevice001 .
+
+ex:ProductionSeries001 rdf:type cacontology-production:ProductionSeries ;
+    cacontology-production:sessionCount 15 ;
+    cacontology-production:productionPeriod 254 .
+
+ex:ProductionSession001 rdf:type cacontology-production:ProductionSession ;
+    cacontology-production:sessionDuration 45 ;
+    cacontology-production:victimAwareness "unaware" ;
+    cacontology-production:partOfSeries ex:ProductionSeries001 ;
+    cacontology-production:sessionLocation ex:ProductionLocation001 ;
+    cacontology-production:resultingContent ex:ProducedVideo001, ex:ProducedImage001 .
+
+ex:ProducerRole rdf:type cacontology-production:Producer ;
+    cacontology-production:holdsPositionOf ex:BabysitterRole .
+
+ex:ProductionVictimRole001 rdf:type cacontology-production:ProductionVictim ;
+    cacontology-production:victimAge 8 .
+
+ex:ProductionVictimRole002 rdf:type cacontology-production:ProductionVictim ;
+    cacontology-production:victimAge 10 .
+
+ex:ProductionLocation001 rdf:type cacontology-production:ResidentialProductionSite ;
+    cacontology-production:locationSecurity "isolated" ;
+    cacontology-production:locationAccess "controlled" ;
+    uco-core:name "Suspect's Residence" .
+
+ex:MobileDevice001 rdf:type cacontology-production:MobileRecordingDevice ;
+    cacontology-production:deviceBrand "Apple" ;
+    cacontology-production:deviceModel "iPhone 12" ;
+    cacontology-production:recordingCapability "both" ;
+    cacontology-production:storageCapacity 128.0 .
+
+ex:ProducedVideo001 rdf:type cacontology-production:ProducedVideo ;
+    cacontology-production:recordedWith ex:MobileDevice001 ;
+    cacontology-production:metadataPreserved true ;
+    cacontology-production:forensicValue "high" .
+
+ex:ProducedImage001 rdf:type cacontology-production:ProducedImage ;
+    cacontology-production:recordedWith ex:MobileDevice001 ;
+    cacontology-production:metadataPreserved true ;
+    cacontology-production:forensicValue "high" .
+
+# =============================================================================
+# VICTIM IMPACT ASSESSMENT
+# =============================================================================
+
+ex:VictimImpactAssessment001 rdf:type cacontology-victim-impact:ComprehensiveImpactAssessment ;
+    cacontology-victim-impact:assessmentDate "2023-04-15T10:00:00Z"^^xsd:dateTime ;
+    cacontology-victim-impact:assessmentType "forensic" ;
+    cacontology-victim-impact:severityLevel "severe" ;
+    cacontology-victim-impact:functioningLevel "impaired" ;
+    cacontology-victim-impact:assessesVictim ex:Victim001 ;
+    cacontology-victim-impact:identifiesHarm ex:ComplexTrauma001 ;
+    cacontology-victim-impact:documentedBy ex:MentalHealthProfessional001 .
+
+ex:VictimImpactAssessment002 rdf:type cacontology-victim-impact:ComprehensiveImpactAssessment ;
+    cacontology-victim-impact:assessmentDate "2023-04-16T14:00:00Z"^^xsd:dateTime ;
+    cacontology-victim-impact:assessmentType "forensic" ;
+    cacontology-victim-impact:severityLevel "moderate" ;
+    cacontology-victim-impact:functioningLevel "low" ;
+    cacontology-victim-impact:assessesVictim ex:Victim002 ;
+    cacontology-victim-impact:identifiesHarm ex:ComplexTrauma002 ;
+    cacontology-victim-impact:documentedBy ex:MentalHealthProfessional001 .
+
+ex:ComplexTrauma001 rdf:type cacontology-victim-impact:ComplexTrauma ;
+    cacontology-victim-impact:traumaType "complex" ;
+    cacontology-victim-impact:onsetDate "2022-08-01T00:00:00Z"^^xsd:dateTime ;
+    cacontology-victim-impact:duration 8 ;
+    cacontology-victim-impact:severity "severe" ;
+    cacontology-victim-impact:manifestsAs ex:BehavioralIndicator001, ex:EmotionalIndicator001, ex:SocialIndicator001 ;
+    cacontology-victim-impact:resultedFrom ex:ProductionOffense001 .
+
+ex:ComplexTrauma002 rdf:type cacontology-victim-impact:ComplexTrauma ;
+    cacontology-victim-impact:traumaType "complex" ;
+    cacontology-victim-impact:onsetDate "2022-10-15T00:00:00Z"^^xsd:dateTime ;
+    cacontology-victim-impact:duration 6 ;
+    cacontology-victim-impact:severity "moderate" ;
+    cacontology-victim-impact:manifestsAs ex:BehavioralIndicator002, ex:EmotionalIndicator002 ;
+    cacontology-victim-impact:resultedFrom ex:ProductionOffense001 .
+
+ex:BehavioralIndicator001 rdf:type cacontology-victim-impact:BehavioralIndicator ;
+    cacontology-victim-impact:indicatorType "behavioral" ;
+    cacontology-victim-impact:frequency "frequent" ;
+    cacontology-victim-impact:intensity "severe" ;
+    cacontology-victim-impact:progressionPattern "improving" .
+
+ex:EmotionalIndicator001 rdf:type cacontology-victim-impact:EmotionalIndicator ;
+    cacontology-victim-impact:indicatorType "emotional" ;
+    cacontology-victim-impact:frequency "constant" ;
+    cacontology-victim-impact:intensity "severe" ;
+    cacontology-victim-impact:progressionPattern "stable" .
+
+ex:SocialIndicator001 rdf:type cacontology-victim-impact:SocialIndicator ;
+    cacontology-victim-impact:indicatorType "social" ;
+    cacontology-victim-impact:frequency "occasional" ;
+    cacontology-victim-impact:intensity "moderate" ;
+    cacontology-victim-impact:progressionPattern "improving" .
+
+ex:BehavioralIndicator002 rdf:type cacontology-victim-impact:BehavioralIndicator ;
+    cacontology-victim-impact:indicatorType "behavioral" ;
+    cacontology-victim-impact:frequency "occasional" ;
+    cacontology-victim-impact:intensity "moderate" ;
+    cacontology-victim-impact:progressionPattern "improving" .
+
+ex:EmotionalIndicator002 rdf:type cacontology-victim-impact:EmotionalIndicator ;
+    cacontology-victim-impact:indicatorType "emotional" ;
+    cacontology-victim-impact:frequency "frequent" ;
+    cacontology-victim-impact:intensity "moderate" ;
+    cacontology-victim-impact:progressionPattern "improving" .
+
+# =============================================================================
+# THERAPEUTIC INTERVENTIONS AND RECOVERY
+# =============================================================================
+
+ex:TraumaTherapy001 rdf:type cacontology-victim-impact:TraumaTherapy ;
+    cacontology-victim-impact:interventionType "individual" ;
+    cacontology-victim-impact:treatmentModality "CBT" ;
+    cacontology-victim-impact:sessionCount 24 ;
+    cacontology-victim-impact:treatmentDuration 6 ;
+    cacontology-victim-impact:treatmentOutcome "partially_successful" ;
+    cacontology-victim-impact:addressesHarm ex:ComplexTrauma001 ;
+    cacontology-victim-impact:providedBy ex:MentalHealthProfessional001 ;
+    cacontology-victim-impact:receivedTreatment ex:Victim001 .
+
+ex:FamilyTherapy001 rdf:type cacontology-victim-impact:FamilyTherapy ;
+    cacontology-victim-impact:interventionType "family" ;
+    cacontology-victim-impact:treatmentModality "family_systems" ;
+    cacontology-victim-impact:sessionCount 12 ;
+    cacontology-victim-impact:treatmentDuration 4 ;
+    cacontology-victim-impact:treatmentOutcome "successful" ;
+    cacontology-victim-impact:addressesHarm ex:ComplexTrauma001, ex:ComplexTrauma002 .
+
+ex:VictimAdvocacy001 rdf:type cacontology-victim-impact:VictimAdvocacy ;
+    cacontology-victim-impact:serviceType "advocacy" ;
+    cacontology-victim-impact:serviceProvider "Rhode Island Children's Advocacy Center" ;
+    cacontology-victim-impact:serviceDuration 12 .
+
+ex:LegalSupport001 rdf:type cacontology-victim-impact:LegalSupport ;
+    cacontology-victim-impact:serviceType "legal" ;
+    cacontology-victim-impact:serviceProvider "Victim Advocate Office" ;
+    cacontology-victim-impact:serviceDuration 8 .
+
+ex:RecoveryProcess001 rdf:type cacontology-victim-impact:RecoveryProcess ;
+    cacontology-victim-impact:recoveryStage "progress" ;
+    cacontology-victim-impact:recoveryTimeframe 24 ;
+    cacontology-victim-impact:prognosis "good" ;
+    cacontology-victim-impact:facilitatedBy ex:TraumaTherapy001, ex:FamilyTherapy001, ex:VictimAdvocacy001 .
+
+ex:RecoveryMilestone001 rdf:type cacontology-victim-impact:RecoveryMilestone ;
+    cacontology-victim-impact:milestoneDate "2023-09-15T00:00:00Z"^^xsd:dateTime ;
+    cacontology-victim-impact:milestoneDescription "Significant reduction in nightmares and anxiety symptoms" ;
+    cacontology-victim-impact:partOfRecovery ex:RecoveryProcess001 .
+
+ex:MentalHealthProfessional001 rdf:type cacontology-victim-impact:MentalHealthProfessional .
+
+# =============================================================================
+# LEGAL PROCEEDINGS AND SENTENCING
+# =============================================================================
+
+ex:FederalCharge001 rdf:type cacontology-legal-outcomes:CSAM_Production ;
+    cacontology-legal-outcomes:chargeStatute "18 U.S.C. § 2251(a)" ;
+    cacontology-legal-outcomes:chargeLevel "federal_felony" ;
+    cacontology-legal-outcomes:maximumPenalty 30 ;
+    cacontology-legal-outcomes:minimumPenalty 15 ;
+    cacontology-legal-outcomes:chargeCount 2 .
+
+ex:FederalCharge002 rdf:type cacontology-legal-outcomes:CSAM_Possession ;
+    cacontology-legal-outcomes:chargeStatute "18 U.S.C. § 2252A(a)(5)(B)" ;
+    cacontology-legal-outcomes:chargeLevel "federal_felony" ;
+    cacontology-legal-outcomes:maximumPenalty 20 ;
+    cacontology-legal-outcomes:minimumPenalty 0 ;
+    cacontology-legal-outcomes:chargeCount 1 .
+
+ex:PleaAgreement001 rdf:type cacontology-legal-outcomes:PleaAgreement ;
+    cacontology-legal-outcomes:pleaBargainOffered true ;
+    cacontology-legal-outcomes:pleaBargainAccepted true ;
+    uco-core:name "Federal Plea Agreement - Rodriguez" .
+
+ex:PrisonSentence001 rdf:type cacontology-legal-outcomes:PrisonSentence ;
+    cacontology-legal-outcomes:sentenceLength 288 ;  # 24 years
+    cacontology-legal-outcomes:timeServed 6 ;
+    uco-core:description "24-year federal prison sentence for CSAM production and possession" .
+
+ex:SupervisedRelease001 rdf:type cacontology-legal-outcomes:SupervisedRelease ;
+    cacontology-legal-outcomes:supervisionDuration 120 ;  # 10 years
+    uco-core:description "10-year supervised release with internet restrictions and mandatory registration" .
+
+# =============================================================================
+# INVESTIGATION RELATIONSHIPS AND TRIGGERS
+# =============================================================================
+
+ex:TrustViolation001 cacontology-custodial:aggravatingFactor ex:FederalCharge001 .
+ex:VictimImpactAssessment001 cacontology-victim-impact:relevantToSentencing ex:PrisonSentence001 .
+ex:VictimImpactAssessment002 cacontology-victim-impact:relevantToSentencing ex:PrisonSentence001 .
+ex:VictimImpactAssessment001 cacontology-victim-impact:informsRestitution ex:MonetaryPenalty001 .
+
+ex:MonetaryPenalty001 rdf:type cacontology-legal-outcomes:MonetaryPenalty ;
+    uco-core:description "Restitution for victim therapy and counseling costs" .
+
+ex:ProductionOffense001 cacontology-production:triggeredInvestigation ex:RIInvestigation2023001 .
+ex:ProductionOffense001 cacontology-production:evidenceOf ex:FederalCharge001 .
+
+ex:TrustViolation001 cacontology-custodial:relevantToInvestigation ex:RIInvestigation2023001 .
+ex:CustodialRelationship001 cacontology-custodial:relevantToInvestigation ex:RIInvestigation2023001 .
+ex:CustodialRelationship002 cacontology-custodial:relevantToInvestigation ex:RIInvestigation2023001 .
+
+# =============================================================================
+# DIGITAL EVIDENCE AND FORENSICS LINKS
+# =============================================================================
+
+ex:SuspectDigitalAccount rdf:type uco-observable:DigitalAccount ;
+    uco-core:name "suspect.social.media.account" .
+
+ex:SuspectPhoneNumber rdf:type uco-observable:PhoneNumber ;
+    uco-core:name "+1-401-555-0123" .
+
+ex:AccountLinking001 icacus:linkedToAccount ex:SuspectDigitalAccount .
+ex:AccountLinking001 icacus:tracedToPhone ex:SuspectPhoneNumber . 

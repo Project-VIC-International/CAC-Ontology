@@ -3,31 +3,28 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
-@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
-@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
-@prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
-@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix cacontology-corruption: <https://cacontology.projectvic.org/law-enforcement-corruption#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # =============================================================================
-# ICAC LAW ENFORCEMENT CORRUPTION ONTOLOGY
+# CAC LAW ENFORCEMENT CORRUPTION ONTOLOGY
 # Based on Operation Restore Justice cases involving law enforcement corruption
 # Enhanced with gUFO (gentle Unified Foundational Ontology) integration
 # =============================================================================
 
-<https://cacontology.projectvic.org/law-enforcement-corruption/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/law-enforcement-corruption/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Law Enforcement Corruption Ontology"@en ;
     rdfs:comment "Ontology for modeling law enforcement corruption and insider threats in child exploitation cases, including uniform-based production and officer trafficking. Enhanced with gUFO (gentle Unified Foundational Ontology) integration for improved semantic precision and validation capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/law-enforcement-corruption/2.12.0> ;
-    owl:versionInfo "2.12.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/law-enforcement-corruption/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <http://purl.org/nemo/gufo#> .
+    owl:imports <http://purl.org/nemo/gufo#> ,
+                <https://cacontology.projectvic.org/core/3.0.0> .
 
 # =============================================================================
 # LAW ENFORCEMENT CORRUPTION CLASSES (gUFO: EventType - criminal activities)
@@ -36,7 +33,7 @@
 cacontology-corruption:LawEnforcementCorruption rdf:type owl:Class ;
     rdfs:label "Law Enforcement Corruption"@en ;
     rdfs:comment "Corruption involving law enforcement personnel in child exploitation activities."@en ;
-    rdfs:subClassOf uco-action:Action, gufo:Event ;
+    rdfs:subClassOf cac-core:ExploitationEvent ;
     rdf:type gufo:EventType .
 
 cacontology-corruption:InsiderThreat rdf:type owl:Class ;
@@ -76,7 +73,7 @@ cacontology-corruption:OfficerChildTrafficking rdf:type owl:Class ;
 cacontology-corruption:CorruptLawEnforcementOfficer rdf:type owl:Class ;
     rdfs:label "Corrupt Law Enforcement Officer"@en ;
     rdfs:comment "Law enforcement officer engaged in child exploitation activities."@en ;
-    rdfs:subClassOf uco-role:Role ;
+    rdfs:subClassOf uco-role:Role , cac-core:Role ;
     rdf:type gufo:Role .
 
 cacontology-corruption:CorruptStateTrooper rdf:type owl:Class ;
@@ -184,7 +181,7 @@ cacontology-corruption:EvidenceManipulation rdf:type owl:Class ;
 cacontology-corruption:InsiderThreatDetection rdf:type owl:Class ;
     rdfs:label "Insider Threat Detection"@en ;
     rdfs:comment "Detection of corruption within law enforcement or military personnel."@en ;
-    rdfs:subClassOf uco-action:Action, gufo:Event ;
+    rdfs:subClassOf cac-core:DetectionEvent ;
     rdf:type gufo:EventType .
 
 cacontology-corruption:InternalAffairsInvestigation rdf:type owl:Class ;

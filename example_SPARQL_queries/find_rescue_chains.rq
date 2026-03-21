@@ -5,8 +5,8 @@
 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX cacontology-hotlines: <https://cacontology.projectvic.org/hotlines/2025/core#>
-PREFIX cacontology: <https://cacontology.projectvic.org/0.3#>
+PREFIX cacontology-hotlines: <https://cacontology.projectvic.org/hotlines#>
+PREFIX cacontology: <https://cacontology.projectvic.org#>
 PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core/>
 PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/>
 PREFIX uco-confidentiality: <https://ontology.unifiedcyberontology.org/uco/confidentiality/>
@@ -41,7 +41,7 @@ WHERE {
                   cacontology-hotlines:startTime ?forwardTime ;
                   cacontology-hotlines:forwardsTo ?forwardOrg .
     
-    ?investigation a cacontology:ICACInvestigation ; # Changed from cacontology-hotlines:ICACInvestigation
+    ?investigation a cacontology:CACInvestigation ; # Changed from cacontology-hotlines:ICACInvestigation
                   cacontology:hasReport ?report ; # Changed from cacontology-hotlines:hasReport
                   cacontology:status ?investigationStatus ; # Changed from cacontology-hotlines:status
                   cacontology:conductedBy ?investigationOrg ; # Changed from cacontology-hotlines:conductedBy

@@ -10,7 +10,7 @@
 
 @prefix investigation: <https://ontology.caseontology.org/case/investigation/> .
 
-@prefix cacontology-ai: <https://cacontology.projectvic.org/ai-generated#> .
+@prefix cacontology-ai: <https://cacontology.projectvic.org/ai-csam#> .
 @prefix cacontology-analyst: <https://cacontology.projectvic.org/analyst-wellbeing#> .
 @prefix cacontology-detection: <https://cacontology.projectvic.org/detection#> .
 @prefix cacontology-legal: <https://cacontology.projectvic.org/legal-harmonization#> .

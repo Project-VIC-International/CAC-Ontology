@@ -4,20 +4,21 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
-@prefix cacontology: <https://cacontology.projectvic.org/2.12.0#> .
-@prefix cacontology-us-ncmec: <https://cacontology.projectvic.org/us/ncmec/2.12.0#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-us-ncmec: <https://cacontology.projectvic.org/us/ncmec#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/us/ncmec/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/us/ncmec/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "NCMEC Cybertip Report Ontology (US Extension)"@en ;
-    rdfs:comment "An ontology for representing concepts specific to NCMEC Cybertip reports as an extension to the core ICAC ontology. Version 2.12.0."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/us/ncmec/2.12.0> ;
+    rdfs:comment "An ontology for representing concepts specific to NCMEC Cybertip reports as an extension to the core CAC ontology. Version 3.0.0."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/us/ncmec/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-03-20"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports cacontology: .
+    owl:imports <https://cacontology.projectvic.org/3.0.0> .
 
 # NCMEC Report Structure
 cacontology-us-ncmec:NCMECCybertipReport rdf:type owl:Class ;
@@ -29,7 +30,7 @@ cacontology-us-ncmec:NCMECCybertipReport rdf:type owl:Class ;
 cacontology-us-ncmec:NCMECIncidentType rdf:type owl:Class ;
     rdfs:label "NCMEC Incident Type"@en ;
     rdfs:comment "Types of incidents as defined by NCMEC Cybertip API (Section B.1.1). This class represents the standardized incident categories used in NCMEC reporting."@en ;
-    rdfs:subClassOf cacontology-us-ncmec:NCMECCybertipReport .
+    rdfs:subClassOf cac-core:EnduringEntity .
 
 cacontology-us-ncmec:ChildSexTraffickingIncident rdf:type owl:Class ;
     rdfs:label "Child Sex Trafficking Incident"@en ;
@@ -56,7 +57,7 @@ cacontology-us-ncmec:OnlineEnticementIncident rdf:type owl:Class ;
 cacontology-us-ncmec:NCMECReportAnnotation rdf:type owl:Class ;
     rdfs:label "NCMEC Report Annotation"@en ;
     rdfs:comment "Tags to describe the NCMEC report. Source: NCMEC Cybertip API Section B.1.1, reportAnnotations element."@en ;
-    rdfs:subClassOf cacontology-us-ncmec:NCMECCybertipReport .
+    rdfs:subClassOf cac-core:EnduringEntity .
 
 cacontology-us-ncmec:SextortionAnnotation rdf:type owl:Class ;
     rdfs:label "Sextortion Annotation"@en ;
@@ -148,7 +149,7 @@ cacontology-us-ncmec:InvestigationTrigger rdf:type owl:Class ;
 
 cacontology-us-ncmec:TaskForceReferral rdf:type owl:Class ;
     rdfs:label "Task Force Referral"@en ;
-    rdfs:comment "Referral of NCMEC tip to appropriate ICAC task force for investigation."@en ;
+    rdfs:comment "Referral of NCMEC tip to appropriate CAC task force for investigation."@en ;
     rdfs:subClassOf cacontology-us-ncmec:InvestigationTrigger .
 
 cacontology-us-ncmec:LocalLawEnforcementReferral rdf:type owl:Class ;
@@ -335,7 +336,7 @@ cacontology-us-ncmec:resultedInInvestigation rdf:type owl:ObjectProperty ;
     rdfs:label "resulted in investigation"@en ;
     rdfs:comment "Links investigation trigger to the investigation it initiated."@en ;
     rdfs:domain cacontology-us-ncmec:InvestigationTrigger ;
-    rdfs:range cacontology:Investigation .
+    rdfs:range cacontology:CACInvestigation .
 
 # Cooperation Relationships
 cacontology-us-ncmec:involvesPlatform rdf:type owl:ObjectProperty ;

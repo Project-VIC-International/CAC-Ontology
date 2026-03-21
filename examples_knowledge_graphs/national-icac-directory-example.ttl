@@ -1,0 +1,314 @@
+@prefix example: <http://ontology.icac.org/examples/national-cacontology-directory#> .
+@prefix cacontology-core: <http://ontology.icac.org/cacontology-core#> .
+@prefix cacontology-taskforce: <http://ontology.icac.org/cacontology-taskforce#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# =============================================================================
+# NATIONAL ICAC TASK FORCE DIRECTORY (Based on icactaskforce.org)
+# =============================================================================
+
+example:NationalICACtaskForceDirectory_2025 rdf:type cacontology-taskforce:NationalICACtaskForceDirectory ;
+    cacontology-taskforce:totalTaskForces 61 ;
+    cacontology-taskforce:statesWithMultipleTaskForces 6 ;
+    cacontology-taskforce:nationalCoveragePercentage 100.0 ;
+    rdfs:label "National ICAC Task Force Directory 2025"@en ;
+    rdfs:comment "Complete directory of all 61 ICAC task forces in the United States as of 2025."@en .
+
+# =============================================================================
+# MARYLAND STATE POLICE HOST ORGANIZATION
+# =============================================================================
+
+example:MarylandStatePolice rdf:type cacontology-taskforce:StatePoliceHost ;
+    cacontology-taskforce:hostOrganizationType "state_police" ;
+    cacontology-taskforce:hostJurisdictionLevel "state" ;
+    cacontology-taskforce:organizationName "Maryland State Police" ;
+    uco-core:name "Maryland State Police" .
+
+example:MarylandTaskForce rdf:type cacontology-taskforce:StatewideTaskForce ;
+    cacontology-taskforce:coverageType "statewide" ;
+    cacontology-taskforce:jurisdictionPopulation 6177224 ; # Maryland population
+    cacontology-taskforce:hostedBy example:MarylandStatePolice ;
+    cacontology-taskforce:hasContactInformation example:MarylandContactInfo .
+
+example:MarylandContactInfo rdf:type cacontology-taskforce:TaskForceContactInformation ;
+    cacontology-taskforce:phoneNumber "410-694-4706" ;
+    cacontology-taskforce:emailAddress "msp.icac@maryland.gov" .
+
+# =============================================================================
+# CALIFORNIA MULTI-REGIONAL SYSTEM (5 Task Forces)
+# =============================================================================
+
+example:CaliforniaState rdf:type cacontology-taskforce:CaliforniaRegionalSystem ;
+    cacontology-taskforce:regionalTaskForceCount 5 ;
+    rdfs:label "California Multi-Regional ICAC System"@en .
+
+# Los Angeles Area Task Force
+example:LAPD rdf:type cacontology-taskforce:LocalPoliceHost ;
+    cacontology-taskforce:hostOrganizationType "local_police" ;
+    cacontology-taskforce:organizationName "Los Angeles Police Department" .
+
+example:LATaskForce rdf:type cacontology-taskforce:MetropolitanTaskForce ;
+    cacontology-taskforce:coverageType "metropolitan" ;
+    cacontology-taskforce:metropolitanArea "Los Angeles" ;
+    cacontology-taskforce:regionCovered "Los Angeles Area" ;
+    cacontology-taskforce:hostedBy example:LAPD ;
+    cacontology-taskforce:hasContactInformation example:LAContactInfo .
+
+example:LAContactInfo rdf:type cacontology-taskforce:TaskForceContactInformation ;
+    cacontology-taskforce:phoneNumber "562-254-0637" .
+
+# San Diego Area Task Force
+example:SanDiegoPD rdf:type cacontology-taskforce:LocalPoliceHost ;
+    cacontology-taskforce:organizationName "San Diego Police Department" .
+
+example:SanDiegoTaskForce rdf:type cacontology-taskforce:MetropolitanTaskForce ;
+    cacontology-taskforce:metropolitanArea "San Diego" ;
+    cacontology-taskforce:regionCovered "San Diego Area" ;
+    cacontology-taskforce:hostedBy example:SanDiegoPD ;
+    cacontology-taskforce:hasContactInformation example:SanDiegoContactInfo .
+
+example:SanDiegoContactInfo rdf:type cacontology-taskforce:TaskForceContactInformation ;
+    cacontology-taskforce:phoneNumber "858-495-4779" .
+
+# Fresno Area Task Force (County-based)
+example:FresnoCounySO rdf:type cacontology-taskforce:SheriffOfficeHost ;
+    cacontology-taskforce:hostOrganizationType "sheriff" ;
+    cacontology-taskforce:organizationName "Fresno County Sheriff's Office" .
+
+example:FresnoTaskForce rdf:type cacontology-taskforce:CountyBasedTaskForce ;
+    cacontology-taskforce:coverageType "county" ;
+    cacontology-taskforce:countyName "Fresno County" ;
+    cacontology-taskforce:regionCovered "Fresno Area" ;
+    cacontology-taskforce:hostedBy example:FresnoCounySO ;
+    cacontology-taskforce:hasContactInformation example:FresnoContactInfo .
+
+example:FresnoContactInfo rdf:type cacontology-taskforce:TaskForceContactInformation ;
+    cacontology-taskforce:phoneNumber "559-600-8144" .
+
+# California Regional Coordination
+example:CaliforniaRegionalCoordination rdf:type cacontology-taskforce:RegionalTaskForceCoordination ;
+    cacontology-taskforce:coordinationModel "peer_to_peer" ;
+    rdfs:label "California Regional Task Force Coordination"@en .
+
+# =============================================================================
+# TEXAS MULTI-REGIONAL SYSTEM (3 Task Forces)
+# =============================================================================
+
+example:TexasState rdf:type cacontology-taskforce:TexasRegionalSystem ;
+    cacontology-taskforce:regionalTaskForceCount 3 .
+
+# Texas Statewide (Attorney General)
+example:TexasAttorneyGeneral rdf:type cacontology-taskforce:AttorneyGeneralHost ;
+    cacontology-taskforce:hostOrganizationType "attorney_general" ;
+    cacontology-taskforce:hostJurisdictionLevel "state" ;
+    cacontology-taskforce:organizationName "Office of the Attorney General of Texas" .
+
+example:TexasStatewideTaskForce rdf:type cacontology-taskforce:StatewideTaskForce ;
+    cacontology-taskforce:coverageType "statewide" ;
+    cacontology-taskforce:hostedBy example:TexasAttorneyGeneral ;
+    cacontology-taskforce:hasContactInformation example:TexasStatewideContactInfo .
+
+example:TexasStatewideContactInfo rdf:type cacontology-taskforce:TaskForceContactInformation ;
+    cacontology-taskforce:phoneNumber "512-936-7863" .
+
+# Dallas Area Task Force
+example:DallasPD rdf:type cacontology-taskforce:LocalPoliceHost ;
+    cacontology-taskforce:organizationName "Dallas Police Department" .
+
+example:DallasTaskForce rdf:type cacontology-taskforce:MetropolitanTaskForce ;
+    cacontology-taskforce:metropolitanArea "Dallas-Fort Worth" ;
+    cacontology-taskforce:regionCovered "Dallas Area" ;
+    cacontology-taskforce:hostedBy example:DallasPD ;
+    cacontology-taskforce:hasContactInformation example:DallasContactInfo .
+
+example:DallasContactInfo rdf:type cacontology-taskforce:TaskForceContactInformation ;
+    cacontology-taskforce:phoneNumber "214-671-4200" .
+
+# Houston Area Task Force
+example:HoustonPD rdf:type cacontology-taskforce:LocalPoliceHost ;
+    cacontology-taskforce:organizationName "Houston Police Department" .
+
+example:HoustonTaskForce rdf:type cacontology-taskforce:MetropolitanTaskForce ;
+    cacontology-taskforce:metropolitanArea "Houston" ;
+    cacontology-taskforce:regionCovered "Houston Area" ;
+    cacontology-taskforce:hostedBy example:HoustonPD ;
+    cacontology-taskforce:hasContactInformation example:HoustonContactInfo .
+
+example:HoustonContactInfo rdf:type cacontology-taskforce:TaskForceContactInformation ;
+    cacontology-taskforce:phoneNumber "713-308-3251" .
+
+# =============================================================================
+# FLORIDA MULTI-REGIONAL SYSTEM (3 Task Forces)
+# =============================================================================
+
+example:FloridaState rdf:type cacontology-taskforce:FloridaRegionalSystem ;
+    cacontology-taskforce:regionalTaskForceCount 3 .
+
+# Florida Central (Osceola County)
+example:OsceolaSO rdf:type cacontology-taskforce:SheriffOfficeHost ;
+    cacontology-taskforce:organizationName "Osceola County Sheriff's Office" .
+
+example:FloridaCentralTaskForce rdf:type cacontology-taskforce:RegionalTaskForce ;
+    cacontology-taskforce:regionCovered "Central" ;
+    cacontology-taskforce:hostedBy example:OsceolaSO ;
+    cacontology-taskforce:hasContactInformation example:FloridaCentralContactInfo .
+
+example:FloridaCentralContactInfo rdf:type cacontology-taskforce:TaskForceContactInformation ;
+    cacontology-taskforce:phoneNumber "407-348-1100" .
+
+# Florida Southern (Broward County)
+example:BrowardSO rdf:type cacontology-taskforce:SheriffOfficeHost ;
+    cacontology-taskforce:organizationName "Broward County Sheriff's Office" .
+
+example:FloridaSouthernTaskForce rdf:type cacontology-taskforce:RegionalTaskForce ;
+    cacontology-taskforce:regionCovered "Southern" ;
+    cacontology-taskforce:hostedBy example:BrowardSO ;
+    cacontology-taskforce:hasContactInformation example:FloridaSouthernContactInfo .
+
+example:FloridaSouthernContactInfo rdf:type cacontology-taskforce:TaskForceContactInformation ;
+    cacontology-taskforce:phoneNumber "954-888-5321" .
+
+# Florida Northern (Gainesville PD)
+example:GainesvillePD rdf:type cacontology-taskforce:LocalPoliceHost ;
+    cacontology-taskforce:organizationName "Gainesville Police Department" .
+
+example:FloridaNorthernTaskForce rdf:type cacontology-taskforce:RegionalTaskForce ;
+    cacontology-taskforce:regionCovered "Northern" ;
+    cacontology-taskforce:hostedBy example:GainesvillePD ;
+    cacontology-taskforce:hasContactInformation example:FloridaNorthernContactInfo .
+
+example:FloridaNorthernContactInfo rdf:type cacontology-taskforce:TaskForceContactInformation ;
+    cacontology-taskforce:phoneNumber "352-393-7660" .
+
+# =============================================================================
+# MILITARY ICAC TASK FORCE
+# =============================================================================
+
+example:USMilitaryAgencies rdf:type cacontology-taskforce:TaskForceHostOrganization ;
+    cacontology-taskforce:hostOrganizationType "military" ;
+    cacontology-taskforce:hostJurisdictionLevel "federal" ;
+    cacontology-taskforce:organizationName "U.S. Military Agencies" .
+
+example:MilitaryTaskForce rdf:type cacontology-taskforce:MilitaryICACtaskForce ;
+    cacontology-taskforce:militaryBranches "Army, Navy, Air Force, Marines, Coast Guard, Space Force" ;
+    cacontology-taskforce:militaryJurisdiction "worldwide" ;
+    cacontology-taskforce:hostedBy example:USMilitaryAgencies ;
+    cacontology-taskforce:hasContactInformation example:MilitaryContactInfo .
+
+example:MilitaryContactInfo rdf:type cacontology-taskforce:TaskForceContactInformation ;
+    cacontology-taskforce:phoneNumber "571-225-6327" .
+
+# =============================================================================
+# STATE BUREAU EXAMPLES
+# =============================================================================
+
+# Georgia Bureau of Investigation
+example:GeorgiaBIA rdf:type cacontology-taskforce:StateBureauHost ;
+    cacontology-taskforce:hostOrganizationType "state_bureau" ;
+    cacontology-taskforce:organizationName "Georgia Bureau of Investigation" .
+
+example:GeorgiaTaskForce rdf:type cacontology-taskforce:StatewideTaskForce ;
+    cacontology-taskforce:hostedBy example:GeorgiaBIA ;
+    cacontology-taskforce:hasContactInformation example:GeorgiaContactInfo .
+
+example:GeorgiaContactInfo rdf:type cacontology-taskforce:TaskForceContactInformation ;
+    cacontology-taskforce:phoneNumber "404-270-8870" .
+
+# North Carolina State Bureau of Investigation
+example:NorthCarolinaSBI rdf:type cacontology-taskforce:StateBureauHost ;
+    cacontology-taskforce:organizationName "North Carolina State Bureau of Investigation" .
+
+example:NorthCarolinaTaskForce rdf:type cacontology-taskforce:StatewideTaskForce ;
+    cacontology-taskforce:hostedBy example:NorthCarolinaSBI ;
+    cacontology-taskforce:hasContactInformation example:NorthCarolinaContactInfo .
+
+example:NorthCarolinaContactInfo rdf:type cacontology-taskforce:TaskForceContactInformation ;
+    cacontology-taskforce:phoneNumber "984-204-2761" .
+
+# =============================================================================
+# DISTRICT ATTORNEY HOST EXAMPLES
+# =============================================================================
+
+# Pennsylvania (Delaware County DA)
+example:DelawareCountyDA rdf:type cacontology-taskforce:DistrictAttorneyHost ;
+    cacontology-taskforce:hostOrganizationType "district_attorney" ;
+    cacontology-taskforce:hostJurisdictionLevel "county" ;
+    cacontology-taskforce:organizationName "Delaware County District Attorney's Office" .
+
+example:PennsylvaniaTaskForce rdf:type cacontology-taskforce:CountyBasedTaskForce ;
+    cacontology-taskforce:countyName "Delaware County" ;
+    cacontology-taskforce:hostedBy example:DelawareCountyDA ;
+    cacontology-taskforce:hasContactInformation example:PennsylvaniaContactInfo .
+
+example:PennsylvaniaContactInfo rdf:type cacontology-taskforce:TaskForceContactInformation ;
+    cacontology-taskforce:phoneNumber "610-891-4717" .
+
+# =============================================================================
+# NATIONAL HOTLINE AND COMMUNICATION
+# =============================================================================
+
+example:NationalICACtHotline rdf:type cacontology-taskforce:NationalHotline ;
+    cacontology-taskforce:nationalHotlineNumber "877-798-7682" ;
+    cacontology-taskforce:hotlineType "general_contact" ;
+    rdfs:label "National ICAC Hotline"@en .
+
+# =============================================================================
+# DIRECTORY RELATIONSHIPS
+# =============================================================================
+
+# National directory includes all task forces
+example:NationalICACtaskForceDirectory_2025 cacontology-taskforce:includesTaskForce 
+    example:MarylandTaskForce,
+    example:LATaskForce,
+    example:SanDiegoTaskForce,
+    example:FresnoTaskForce,
+    example:TexasStatewideTaskForce,
+    example:DallasTaskForce,
+    example:HoustonTaskForce,
+    example:FloridaCentralTaskForce,
+    example:FloridaSouthernTaskForce,
+    example:FloridaNorthernTaskForce,
+    example:MilitaryTaskForce,
+    example:GeorgiaTaskForce,
+    example:NorthCarolinaTaskForce,
+    example:PennsylvaniaTaskForce .
+
+# Multi-regional state relationships
+example:CaliforniaState cacontology-taskforce:hasRegionalTaskForce 
+    example:LATaskForce,
+    example:SanDiegoTaskForce,
+    example:FresnoTaskForce .
+
+example:TexasState cacontology-taskforce:hasRegionalTaskForce 
+    example:TexasStatewideTaskForce,
+    example:DallasTaskForce,
+    example:HoustonTaskForce .
+
+example:FloridaState cacontology-taskforce:hasRegionalTaskForce 
+    example:FloridaCentralTaskForce,
+    example:FloridaSouthernTaskForce,
+    example:FloridaNorthernTaskForce .
+
+# California regional coordination
+example:LATaskForce cacontology-taskforce:coordinatesWith example:SanDiegoTaskForce .
+example:LATaskForce cacontology-taskforce:coordinatesWith example:FresnoTaskForce .
+example:SanDiegoTaskForce cacontology-taskforce:coordinatesWith example:FresnoTaskForce .
+
+# Texas regional coordination
+example:TexasStatewideTaskForce cacontology-taskforce:coordinatesWith example:DallasTaskForce .
+example:TexasStatewideTaskForce cacontology-taskforce:coordinatesWith example:HoustonTaskForce .
+example:DallasTaskForce cacontology-taskforce:coordinatesWith example:HoustonTaskForce .
+
+# Military coordination with civilian task forces
+example:MilitaryTaskForce cacontology-taskforce:coordinatesWithCivilian example:MarylandTaskForce .
+example:MilitaryTaskForce cacontology-taskforce:coordinatesWithCivilian example:TexasStatewideTaskForce .
+
+# National hotline accessibility
+example:MarylandTaskForce cacontology-taskforce:accessibleVia example:NationalICACtHotline .
+example:LATaskForce cacontology-taskforce:accessibleVia example:NationalICACtHotline .
+example:MilitaryTaskForce cacontology-taskforce:accessibleVia example:NationalICACtHotline . 

@@ -1,0 +1,116 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
+@prefix investigation: <https://ontology.caseontology.org/case/investigation/> .
+
+@prefix ex: <urn:uuid:> .
+
+# =============================================================================
+# Utah Attorney General - ICAC Task Force webpage (collection + provenance)
+# Source: https://attorneygeneral.utah.gov/icac/
+# Collected: 2026-01-07T02:59:19Z (UTC)
+# =============================================================================
+
+ex:82588a71-7176-4cd0-aaee-56cffc467f86 a uco-observable:ObservableObject ;
+    rdfs:label "Utah Attorney General ICAC Task Force - ICAC Task Force webpage (HTML source)"@en ;
+    uco-core:hasFacet ex:ab6bd6f6-aed2-4471-bee6-0c58cbaaa1ce ;
+    uco-core:hasFacet ex:696200db-f29d-4b5e-9f66-ed2563784d21 ;
+    uco-core:hasFacet ex:9287668e-b466-4391-8df5-e1371fd29801 .
+
+ex:ab6bd6f6-aed2-4471-bee6-0c58cbaaa1ce a uco-observable:ContentDataFacet ;
+    uco-observable:mimeType "text/html" ;
+    uco-observable:sizeInBytes 35953 .
+
+ex:696200db-f29d-4b5e-9f66-ed2563784d21 a uco-observable:URLFacet ;
+    uco-observable:url <https://attorneygeneral.utah.gov/icac/> .
+
+ex:9287668e-b466-4391-8df5-e1371fd29801 a uco-observable:HashFacet ;
+    uco-observable:hash ex:1b6b2411-4313-4092-9633-73bf5bd8636e .
+
+ex:1b6b2411-4313-4092-9633-73bf5bd8636e a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "6ec7cea6c9da98611f732bfe65039531dd032678ebb6fe3b4e961a5f7fe076c2" .
+
+ex:eabf2658-dd9e-4306-95f2-6d8ddb1c1ebf a uco-core:UcoObject ;
+    rdfs:label "CAC Ontology Collection Agent (Cursor)"@en ;
+    uco-core:description "Automated assistant performing web collection and preprocessing for CAC Ontology ingestion."@en .
+
+ex:fbe66378-8cae-40ed-a28e-a416b3307b18 a investigation:InvestigativeAction ;
+    rdfs:label "Collection action: Utah AG ICAC Task Force webpage"@en ;
+    uco-action:startTime "2026-01-07T02:59:19Z"^^xsd:dateTime ;
+    uco-action:performer ex:eabf2658-dd9e-4306-95f2-6d8ddb1c1ebf ;
+    uco-action:object ex:82588a71-7176-4cd0-aaee-56cffc467f86 ;
+    uco-core:description "Collected via curl (WSL) from a public webpage."@en .
+
+ex:afb067e4-9f45-40c4-9c7a-c79d08e67b9d a uco-action:Action ;
+    rdfs:label "Normalization action: HTML to text (Utah ICAC webpage)"@en ;
+    uco-action:startTime "2026-01-07T02:59:19Z"^^xsd:dateTime ;
+    uco-action:performer ex:eabf2658-dd9e-4306-95f2-6d8ddb1c1ebf ;
+    uco-action:object ex:82588a71-7176-4cd0-aaee-56cffc467f86 ;
+    uco-action:result ex:475e52e8-e517-4370-bfb2-93f3e771ef26 ;
+    uco-core:description "html_clean (strip tags) + whitespace normalization + de-dup consecutive text nodes."@en .
+
+ex:475e52e8-e517-4370-bfb2-93f3e771ef26 a uco-observable:ObservableObject ;
+    rdfs:label "Utah AG ICAC Task Force webpage (normalized text)"@en ;
+    uco-core:hasFacet ex:522f2167-266e-4f7a-9346-20b7b5b2ffff ;
+    uco-core:hasFacet ex:7770a786-cd2f-4b3f-814b-e1ea25aeee18 ;
+    uco-core:hasFacet ex:2d6c0309-825b-4821-9777-6142962c2c12 .
+
+ex:522f2167-266e-4f7a-9346-20b7b5b2ffff a uco-observable:ContentDataFacet ;
+    uco-observable:mimeType "text/plain" ;
+    uco-observable:sizeInBytes 17554 .
+
+ex:7770a786-cd2f-4b3f-814b-e1ea25aeee18 a uco-observable:FileFacet ;
+    uco-observable:filePath "analytics_demonstration/collected_sources/utah-icac-task-force/normalized.txt" .
+
+ex:2d6c0309-825b-4821-9777-6142962c2c12 a uco-observable:HashFacet ;
+    uco-observable:hash ex:335de222-9523-4d38-9e44-54617cfaf839 .
+
+ex:335de222-9523-4d38-9e44-54617cfaf839 a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "0555fc5ae78a4fb7db4e617c31e3dcacd5ee3a5813317b889b6f23ad3ac2f1f7" .
+
+ex:d68c3881-f049-4c89-a6da-f0ecedc0d156 a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance record: collection of Utah ICAC Task Force webpage"@en ;
+    investigation:exhibitNumber "DOC-UT-ICAC-WEB-0001" ;
+    uco-core:object ex:82588a71-7176-4cd0-aaee-56cffc467f86 ;
+    investigation:provenanceRecordAction ex:fbe66378-8cae-40ed-a28e-a416b3307b18 .
+
+# =============================================================================
+# Minimal in-scope assertions grounded in the collected webpage (connected nodes)
+# =============================================================================
+
+ex:af3aaac8-c561-4223-bcb3-0787f90c14b9 a uco-identity:Organization ;
+    rdfs:label "Utah Attorney General ICAC Task Force"@en ;
+    uco-core:description "Internet Crimes Against Children (ICAC) Task Force administered through the Utah Attorney General’s Office; described on the collected webpage."@en .
+
+ex:74b27cff-2270-4685-a579-b06b20e0bbd4 a uco-action:Action ;
+    rdfs:label "Webpage describes the Utah Attorney General ICAC Task Force"@en ;
+    uco-action:startTime "2026-01-07T02:59:19Z"^^xsd:dateTime ;
+    uco-action:performer ex:af3aaac8-c561-4223-bcb3-0787f90c14b9 ;
+    uco-action:object ex:82588a71-7176-4cd0-aaee-56cffc467f86 ;
+    uco-core:description "Grounded in the collected webpage section titled 'ICAC Task Force'."@en .
+
+ex:37634478-f5d4-46e5-8702-5360ecb6f3ec a uco-observable:ObservableObject ;
+    rdfs:label "Utah ICAC Tip Line"@en ;
+    uco-core:description "801.281.1211"@en .
+
+ex:61dd2432-e06d-408e-bb0c-73439fd152b3 a uco-observable:ObservableObject ;
+    rdfs:label "Utah ICAC Email"@en ;
+    uco-core:description "utahicac@agutah.gov"@en .
+
+ex:107c5358-ad85-417f-a60f-86d7410b52ef a uco-action:Action ;
+    rdfs:label "Webpage publishes ICAC reporting contacts"@en ;
+    uco-action:startTime "2026-01-07T02:59:19Z"^^xsd:dateTime ;
+    uco-action:performer ex:af3aaac8-c561-4223-bcb3-0787f90c14b9 ;
+    uco-action:object ex:82588a71-7176-4cd0-aaee-56cffc467f86 ,
+                    ex:37634478-f5d4-46e5-8702-5360ecb6f3ec ,
+                    ex:61dd2432-e06d-408e-bb0c-73439fd152b3 ;
+    uco-core:description "Grounded in the collected webpage lines: 'ICAC Tip Line: 801.281.1211' and 'ICAC Email: utahicac@agutah.gov'."@en .
+

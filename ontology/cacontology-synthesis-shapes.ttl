@@ -18,14 +18,14 @@
 # CAC Knowledge Synthesis SHACL Shapes (minimal)
 # =============================================================================
 
-<https://cacontology.projectvic.org/synthesis/shapes/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/synthesis/shapes/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Knowledge Synthesis SHACL Shapes"@en ;
     rdfs:comment "Minimal SHACL shapes for validating report/claim/evidence-pointer patterns used in knowledge-synthesis example graphs."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/synthesis/shapes/2.12.0> ;
-    owl:versionInfo "2.12.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/synthesis/shapes/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2026-02-20"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/synthesis/2.12.0> ,
+    owl:imports <https://cacontology.projectvic.org/synthesis/3.0.0> ,
                 <http://www.w3.org/ns/shacl#> .
 
 # Evidence pointers must be resolvable to a text artifact and EITHER a line range OR a page range.

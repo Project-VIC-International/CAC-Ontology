@@ -4,30 +4,25 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
-@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
-@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
-@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
-@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
-@prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
-@prefix cacontology: <https://cacontology.projectvic.org#> .
-@prefix cacontology-physical: <https://cacontology.projectvic.org/physical-evidence#> .
-@prefix cacontology-physical-shapes: <https://cacontology.projectvic.org/physical-evidence/shapes#> .
+@prefix cacontology-physical: <https://cacontology.projectvic.org/physical#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
+@prefix cacontology-physical-shapes: <https://cacontology.projectvic.org/physical/shapes#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # =============================================================================
-# ICAC PHYSICAL EVIDENCE SHACL SHAPES with gUFO INTEGRATION
+# CAC PHYSICAL EVIDENCE SHACL SHAPES with gUFO INTEGRATION
 # Enhanced with comprehensive gUFO (gentle Unified Foundational Ontology) validation
 # =============================================================================
 
-<https://cacontology.projectvic.org/physical/shapes/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/physical/shapes/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Physical Evidence SHACL Shapes with gUFO Integration"@en ;
-    rdfs:comment "SHACL shapes for validating physical evidence in ICAC investigations with comprehensive gUFO foundational ontology integration for enhanced semantic precision and validation capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/physical/shapes/2.12.0> ;
-    owl:versionInfo "2.12.0" ;
+    rdfs:comment "SHACL shapes for validating physical evidence in CAC investigations with comprehensive gUFO foundational ontology integration for enhanced semantic precision and validation capabilities."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/physical/shapes/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2026-01-01"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/physical/2.12.0> ,
+    owl:imports <https://cacontology.projectvic.org/physical/3.0.0> ,
                 <http://purl.org/nemo/gufo#> .
 
 # =============================================================================
@@ -37,30 +32,12 @@
 cacontology-physical-shapes:PhysicalEvidenceObjectTypeValidationShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-physical:PhysicalEvidence ;
     rdfs:label "Physical Evidence Object Type Validation Shape"@en ;
-    rdfs:comment "Validates gUFO Object type consistency for physical evidence."@en ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Object ;
-        sh:minCount 1 ;
-        sh:message "Physical evidence must be typed as gUFO Object."@en
-    ] ;
-    sh:property [
-        sh:path rdfs:subClassOf ;
-        sh:hasValue gufo:Object ;
-        sh:minCount 0 ;
-        sh:message "Physical evidence class should extend gUFO Object."@en
-    ] .
+    rdfs:comment "Validates gUFO Object type consistency for physical evidence."@en .
 
 cacontology-physical-shapes:SearchEventTypeValidationShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-physical:PhysicalSearch ;
     rdfs:label "Search Event Type Validation Shape"@en ;
     rdfs:comment "Validates gUFO Event type consistency for search events."@en ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Event ;
-        sh:minCount 1 ;
-        sh:message "Physical search must be typed as gUFO Event."@en
-    ] ;
     sh:sparql [
         sh:message "Search events must be properly typed as gUFO Event and extend UCO Action."@en ;
         sh:select """
@@ -68,7 +45,7 @@ cacontology-physical-shapes:SearchEventTypeValidationShape rdf:type sh:NodeShape
             WHERE {
                 $this rdf:type gufo:Event .
                 FILTER NOT EXISTS {
-                    $this rdf:type ?actionClass .
+                    $this rdf:type ?actionClass ;
                     ?actionClass rdfs:subClassOf* uco-action:Action .
                 }
             }
@@ -79,12 +56,6 @@ cacontology-physical-shapes:ProcurementEventTypeValidationShape rdf:type sh:Node
     sh:targetClass cacontology-physical:CriminalProcurement ;
     rdfs:label "Procurement Event Type Validation Shape"@en ;
     rdfs:comment "Validates gUFO Event type consistency for procurement events."@en ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Event ;
-        sh:minCount 1 ;
-        sh:message "Criminal procurement must be typed as gUFO Event."@en
-    ] ;
     sh:sparql [
         sh:message "Procurement events must be properly typed as gUFO Event and extend UCO Action."@en ;
         sh:select """
@@ -92,7 +63,7 @@ cacontology-physical-shapes:ProcurementEventTypeValidationShape rdf:type sh:Node
             WHERE {
                 $this rdf:type gufo:Event .
                 FILTER NOT EXISTS {
-                    $this rdf:type ?actionClass .
+                    $this rdf:type ?actionClass ;
                     ?actionClass rdfs:subClassOf* uco-action:Action .
                 }
             }
@@ -100,7 +71,7 @@ cacontology-physical-shapes:ProcurementEventTypeValidationShape rdf:type sh:Node
     ] .
 
 cacontology-physical-shapes:EvidencePhaseTypeValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:Phase ;
+    sh:targetClass cac-core:Phase ;
     rdfs:label "Evidence Phase Type Validation Shape"@en ;
     rdfs:comment "Validates gUFO Phase type consistency for evidence phases."@en ;
     sh:sparql [
@@ -110,7 +81,7 @@ cacontology-physical-shapes:EvidencePhaseTypeValidationShape rdf:type sh:NodeSha
             WHERE {
                 $this rdf:type gufo:Phase .
                 FILTER NOT EXISTS {
-                    $this rdf:type ?phaseClass .
+                    $this rdf:type ?phaseClass ;
                     ?phaseClass rdfs:subClassOf* cacontology-physical:PhysicalEvidence .
                 }
             }
@@ -118,32 +89,26 @@ cacontology-physical-shapes:EvidencePhaseTypeValidationShape rdf:type sh:NodeSha
     ] .
 
 cacontology-physical-shapes:ForensicRoleTypeValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:Role ;
+    sh:targetClass cac-core:Role ;
     rdfs:label "Forensic Role Type Validation Shape"@en ;
     rdfs:comment "Validates gUFO Role type consistency for forensic roles."@en ;
     sh:sparql [
-        sh:message "Forensic roles must be properly typed as gUFO Role and extend UCO Identity."@en ;
+        sh:message "Forensic roles must be properly typed as gUFO Role and extend cac-core:Role."@en ;
         sh:select """
             SELECT $this
             WHERE {
                 $this rdf:type gufo:Role .
                 FILTER NOT EXISTS {
-                    $this rdfs:subClassOf* uco-identity:Person .
+                    $this rdfs:subClassOf* cac-core:Role .
                 }
             }
         """
     ] .
 
 cacontology-physical-shapes:EvidenceSituationTypeValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:Situation ;
+    sh:targetClass cac-core:Situation ;
     rdfs:label "Evidence Situation Type Validation Shape"@en ;
-    rdfs:comment "Validates gUFO Situation type consistency for evidence situations."@en ;
-    sh:property [
-        sh:path rdfs:subClassOf ;
-        sh:hasValue gufo:Situation ;
-        sh:minCount 0 ;
-        sh:message "Evidence situation should extend gUFO Situation."@en
-    ] .
+    rdfs:comment "Validates gUFO Situation type consistency for evidence situations."@en .
 
 # =============================================================================
 # gUFO TEMPORAL CONSTRAINTS SHAPES
@@ -210,7 +175,7 @@ cacontology-physical-shapes:ProcurementEventTemporalShape rdf:type sh:NodeShape 
     ] .
 
 cacontology-physical-shapes:EvidencePhaseTemporalShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:Phase ;
+    sh:targetClass cac-core:Phase ;
     rdfs:label "Evidence Phase Temporal Shape"@en ;
     rdfs:comment "Validates gUFO temporal constraints for evidence phases."@en ;
     sh:property [
@@ -238,7 +203,7 @@ cacontology-physical-shapes:EvidencePhaseTemporalShape rdf:type sh:NodeShape ;
     ] .
 
 cacontology-physical-shapes:ForensicRoleTemporalShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:Role ;
+    sh:targetClass cac-core:Role ;
     rdfs:label "Forensic Role Temporal Shape"@en ;
     rdfs:comment "Validates gUFO temporal constraints for forensic roles."@en ;
     sh:property [
@@ -637,7 +602,7 @@ cacontology-physical-shapes:ForensicRoleParticipationShape rdf:type sh:NodeShape
             WHERE {
                 $this rdf:type cacontology-physical:ForensicAnalystRole .
                 FILTER NOT EXISTS {
-                    ?evidence cacontology-physical:forensicAnalysisRequired true .
+                    ?evidence cacontology-physical:forensicAnalysisRequired true ;
                     ?evidence cacontology-physical:analyzedBy $this .
                 }
             }
@@ -657,7 +622,7 @@ cacontology-physical-shapes:EvidenceCompositionShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this cacontology-physical:containsItem ?part .
+                $this cacontology-physical:containsItem ?part ;
                 ?part cacontology-physical:containsItem $this .
             }
         """
@@ -673,7 +638,7 @@ cacontology-physical-shapes:ComputerEquipmentCompositionShape rdf:type sh:NodeSh
             SELECT $this
             WHERE {
                 $this rdf:type cacontology-physical:ComputerEquipment .
-                $this cacontology-physical:containsItem ?storage .
+                $this cacontology-physical:containsItem ?storage ;
                 ?storage rdf:type cacontology-physical:StorageMedia .
                 FILTER NOT EXISTS {
                     ?storage cacontology-physical:storageCapacity ?capacity .
@@ -966,13 +931,13 @@ cacontology-physical-shapes:CustodyIntegrityShape rdf:type sh:NodeShape ;
     ] .
 
 # =============================================================================
-# SUSPECT VEHICLE SHAPES (Miami ICAC Case Enhancement)
+# SUSPECT VEHICLE SHAPES (Miami CAC Case Enhancement)
 # =============================================================================
 
 cacontology-physical-shapes:SuspectVehicleShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-physical:SuspectVehicle ;
     rdfs:label "Suspect Vehicle Shape"@en ;
-    rdfs:comment "Validation shape for suspect vehicles used in ICAC offenses."@en ;
+    rdfs:comment "Validation shape for suspect vehicles used in CAC offenses."@en ;
     sh:property [
         sh:path rdfs:label ;
         sh:datatype rdf:langString ;
@@ -1047,7 +1012,7 @@ cacontology-physical-shapes:SuspectVehicleShape rdf:type sh:NodeShape ;
     ] .
 
 # =============================================================================
-# ABUSE FACILITATION ITEM SHAPES (Miami ICAC Case Enhancement)
+# ABUSE FACILITATION ITEM SHAPES (Miami CAC Case Enhancement)
 # =============================================================================
 
 cacontology-physical-shapes:VapeDeviceShape rdf:type sh:NodeShape ;
@@ -1133,7 +1098,7 @@ cacontology-physical-shapes:CondomsShape rdf:type sh:NodeShape ;
     ] .
 
 # =============================================================================
-# CONSENT SEARCH AUTHORIZATION SHAPES (Miami ICAC Case Enhancement)
+# CONSENT SEARCH AUTHORIZATION SHAPES (Miami CAC Case Enhancement)
 # =============================================================================
 
 cacontology-physical-shapes:ConsentToSearchAuthorizationShape rdf:type sh:NodeShape ;
@@ -1196,7 +1161,7 @@ cacontology-physical-shapes:DeviceConsentSearchShape rdf:type sh:NodeShape ;
     ] .
 
 # =============================================================================
-# BODYCAM FOOTAGE SHAPES (Miami ICAC Case Enhancement)
+# BODYCAM FOOTAGE SHAPES (Miami CAC Case Enhancement)
 # =============================================================================
 
 cacontology-physical-shapes:BodycamFootageShape rdf:type sh:NodeShape ;

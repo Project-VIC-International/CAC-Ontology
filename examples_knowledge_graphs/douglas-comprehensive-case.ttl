@@ -1,0 +1,314 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-undercover: <https://cacontology.projectvic.org/undercover#> .
+@prefix cacontology-grooming: <https://cacontology.projectvic.org/grooming#> .
+@prefix cacontology-physical: <https://cacontology.projectvic.org/physical#> .
+@prefix cacontology-tactical: <https://cacontology.projectvic.org/tactical#> .
+@prefix cacontology-multi: <https://cacontology.projectvic.org/multi-jurisdiction#> .
+@prefix cacontology-legal-outcomes: <https://cacontology.projectvic.org/legal-outcomes#> .
+@prefix ex: <http://example.org/douglas-case#> .
+
+# =============================================================================
+# COMPREHENSIVE DOUGLAS CASE EXAMPLE
+# Michael Gordon Douglas Case - Multi-Ontology Integration
+# This example demonstrates cross-ontology integration for a complex ICAC case
+# =============================================================================
+
+# Case Overview
+ex:DouglasCase rdf:type cacontology:CACInvestigation ;
+    rdfs:label "United States v. Michael Gordon Douglas"@en ;
+    cacontology:caseNumber "CR-2024-001" ;
+    cacontology:investigationStatus "closed" ;
+    uco-core:startTime "2024-01-15T08:00:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2024-11-20T17:30:00Z"^^xsd:dateTime .
+
+# =============================================================================
+# SUBJECT AND VICTIMS
+# =============================================================================
+
+ex:MichaelDouglas rdf:type uco-identity:Person ;
+    rdfs:label "Michael Gordon Douglas" ;
+    uco-identity:birthDate "1985-03-12"^^xsd:date ;
+    cacontology:subjectRole cacontology:Suspect .
+
+ex:VictimChild1 rdf:type cacontology-grooming:ChildVictim ;
+    rdfs:label "Minor Victim 1" ;
+    uco-identity:birthDate "2012-08-15"^^xsd:date .
+
+ex:VictimChild2 rdf:type cacontology-grooming:ChildVictim ;
+    rdfs:label "Minor Victim 2" ;
+    uco-identity:birthDate "2013-02-22"^^xsd:date .
+
+# =============================================================================
+# MULTI-JURISDICTIONAL INVESTIGATION
+# =============================================================================
+
+ex:MultiJurisdictionalInvestigation rdf:type cacontology-multi:MultiJurisdictionalInvestigation ;
+    rdfs:label "Douglas Multi-Agency Investigation" ;
+    cacontology-multi:investigationScope "national" ;
+    cacontology-multi:jurisdictionCount 3 ;
+    cacontology-multi:agencyCount 4 ;
+    cacontology-multi:crossesBorders true ;
+    cacontology-multi:coordinationMechanism "task_force" ;
+    cacontology-multi:involvesAgency ex:HSI, ex:LocalPD, ex:StatePolice, ex:FBI .
+
+ex:HSI rdf:type cacontology-multi:FederalAgency ;
+    rdfs:label "Homeland Security Investigations" ;
+    cacontology-multi:operatesInJurisdiction ex:FederalJurisdiction .
+
+ex:LocalPD rdf:type cacontology-multi:LocalAgency ;
+    rdfs:label "Metro Police Department" ;
+    cacontology-multi:operatesInJurisdiction ex:LocalJurisdiction .
+
+ex:StatePolice rdf:type cacontology-multi:StateAgency ;
+    rdfs:label "State Police Bureau" ;
+    cacontology-multi:operatesInJurisdiction ex:StateJurisdiction .
+
+ex:FBI rdf:type cacontology-multi:FederalAgency ;
+    rdfs:label "Federal Bureau of Investigation" ;
+    cacontology-multi:operatesInJurisdiction ex:FederalJurisdiction .
+
+# =============================================================================
+# UNDERCOVER OPERATIONS
+# =============================================================================
+
+ex:UndercoverOperation1 rdf:type cacontology-undercover:ChatRoomInfiltration ;
+    rdfs:label "Chat Room Infiltration Operation" ;
+    cacontology-undercover:operationClassification "confidential" ;
+    cacontology-undercover:targetsSubject ex:MichaelDouglas ;
+    cacontology-undercover:handledBy ex:UndercoverHandler ;
+    cacontology-undercover:chatRoomTopic "teen_chat" ;
+    cacontology-undercover:participantCount 12 ;
+    cacontology-undercover:infiltrationDuration 48.5 ;
+    cacontology-undercover:operationOutcome "successful" ;
+    uco-core:startTime "2024-02-01T14:00:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2024-02-03T14:30:00Z"^^xsd:dateTime .
+
+ex:UndercoverAgent1 rdf:type cacontology-undercover:UndercoverAgent ;
+    rdfs:label "Agent Smith" ;
+    cacontology-undercover:operatesUnderIdentity ex:ChildPersona1 .
+
+ex:ChildPersona1 rdf:type cacontology-undercover:ChildPersona ;
+    rdfs:label "Jenny14" ;
+    cacontology-undercover:portraysAge 14 ;
+    cacontology-undercover:backstoryDetails "Lonely teenager seeking online friends" ;
+    cacontology-undercover:platformUsername "jenny_2010_cute" .
+
+ex:UndercoverHandler rdf:type cacontology-undercover:OperationHandler ;
+    rdfs:label "Supervisor Johnson" .
+
+# =============================================================================
+# GROOMING BEHAVIORS AND PATTERNS
+# =============================================================================
+
+ex:GroomingBehavior1 rdf:type cacontology-grooming:TrustBuildingBehavior ;
+    rdfs:label "Initial Trust Building with Victim 1" ;
+    cacontology-grooming:groomingStage "trust_building" ;
+    cacontology-grooming:behaviorDuration 45 ;
+    cacontology-grooming:targetsVictim ex:VictimChild1 ;
+    cacontology-grooming:primaryPlatform ex:ChatPlatform ;
+    cacontology-grooming:timeOfContact "late_night" ;
+    cacontology-grooming:contactFrequency "daily" ;
+    cacontology-grooming:usesGifts true ;
+    cacontology-grooming:requestsSecrecy true ;
+    cacontology-grooming:rolePlayingTactic "caring_adult" ;
+    cacontology-grooming:evidenceValue "high" .
+
+ex:GroomingMessage1 rdf:type cacontology-grooming:SexualSolicitation ;
+    rdfs:label "Explicit solicitation message" ;
+    cacontology-grooming:explicitnessLevel "explicit" ;
+    cacontology-grooming:emotionalTone "manipulative" ;
+    cacontology-grooming:contentType "text" ;
+    cacontology-grooming:evidentiaryValue "high" .
+
+ex:EscalationPattern1 rdf:type cacontology-grooming:EscalationPattern ;
+    rdfs:label "Progressive Sexual Content Pattern" ;
+    cacontology-grooming:patternConfidence 0.92 ;
+    cacontology-grooming:escalationRate 14 .
+
+ex:ChatPlatform rdf:type uco-observable:DigitalService ;
+    rdfs:label "TeenChat Platform" .
+
+# =============================================================================
+# PHYSICAL EVIDENCE AND PROCUREMENT
+# =============================================================================
+
+ex:ComputerEvidence1 rdf:type cacontology-physical:ComputerEquipment ;
+    rdfs:label "Dell Laptop Computer" ;
+    cacontology-physical:evidenceTag "EVIDENCE-001" ;
+    cacontology-physical:deviceBrand "Dell" ;
+    cacontology-physical:deviceModel "Inspiron 15 3000" ;
+    cacontology-physical:serialNumber "DL789456123" ;
+    cacontology-physical:encryptionStatus "unencrypted" ;
+    cacontology-physical:digitalContentFound true ;
+    cacontology-physical:evidentiarySignificance "critical" ;
+    cacontology-physical:physicalCondition "good" ;
+    cacontology-physical:functionalStatus "working" ;
+    cacontology-physical:seizureDate "2024-03-15T10:30:00Z"^^xsd:dateTime .
+
+ex:AbuseMaterial1 rdf:type cacontology-physical:AbuseFacilitationItem ;
+    rdfs:label "Camera Equipment" ;
+    cacontology-physical:evidenceTag "EVIDENCE-002" ;
+    cacontology-physical:criminalPurpose "recording_abuse" ;
+    cacontology-physical:evidentiarySignificance "high" .
+
+ex:CriminalProcurement1 rdf:type cacontology-physical:OnlinePurchase ;
+    rdfs:label "Online Purchase of Recording Equipment" ;
+    cacontology-physical:procurementDate "2024-01-10T00:00:00Z"^^xsd:dateTime ;
+    cacontology-physical:procurementMethod "online_purchase" ;
+    cacontology-physical:procurementSource "Amazon.com" ;
+    cacontology-physical:procurementCost 299.99 ;
+    cacontology-physical:paymentMethod "credit_card" .
+
+ex:ResidenceSearch1 rdf:type cacontology-physical:ResidenceSearch ;
+    rdfs:label "Search of Douglas Residence" ;
+    cacontology-physical:searchDuration 6.5 ;
+    cacontology-physical:searchingOfficer ex:SearchOfficer ;
+    cacontology-physical:searchWarrant ex:SearchWarrant1 ;
+    cacontology-physical:searchScope "entire_residence_computers_storage_media" .
+
+# =============================================================================
+# TACTICAL OPERATIONS
+# =============================================================================
+
+ex:SWATArrest rdf:type cacontology-tactical:SWATOperation ;
+    rdfs:label "SWAT Arrest of Douglas" ;
+    cacontology-tactical:operationType "arrest" ;
+    cacontology-tactical:riskLevel "high" ;
+    cacontology-tactical:teamSize 8 ;
+    cacontology-tactical:commandedBy ex:TacticalCommander1 ;
+    cacontology-tactical:operationDuration 3.2 ;
+    cacontology-tactical:entryMethod "dynamic" ;
+    cacontology-tactical:forceUsed "minimal" ;
+    cacontology-tactical:resistanceEncountered "passive" ;
+    cacontology-tactical:operationOutcome "successful" ;
+    cacontology-tactical:suspectsArrested 1 ;
+    cacontology-tactical:injuriesOccurred false ;
+    cacontology-tactical:propertyDamage false ;
+    uco-core:startTime "2024-03-15T06:00:00Z"^^xsd:dateTime .
+
+ex:BarricadeStandoff rdf:type cacontology-tactical:BarricadeSituation ;
+    rdfs:label "Douglas Barricade Incident" ;
+    cacontology-tactical:standoffDuration 2.8 ;
+    cacontology-tactical:negotiationAttempted true ;
+    cacontology-tactical:operationOutcome "successful" .
+
+ex:SurrenderNegotiation1 rdf:type cacontology-tactical:SurrenderNegotiation ;
+    rdfs:label "Negotiated Surrender" ;
+    cacontology-tactical:negotiationDuration 2.5 ;
+    cacontology-tactical:negotiationOutcome "successful_surrender" .
+
+ex:TacticalCommander1 rdf:type cacontology-tactical:TacticalCommander ;
+    rdfs:label "Commander Rodriguez" .
+
+# =============================================================================
+# LEGAL PROCEEDINGS AND SENTENCING
+# =============================================================================
+
+ex:FederalCharges rdf:type cacontology-legal-outcomes:CSAM_Possession ;
+    rdfs:label "Federal CSAM Possession Charges" ;
+    cacontology-legal-outcomes:chargeStatute "18 USC 2252A(a)(2)" ;
+    cacontology-legal-outcomes:chargeLevel "federal_felony" ;
+    cacontology-legal-outcomes:maximumPenalty 20 ;
+    cacontology-legal-outcomes:minimumPenalty 0 ;
+    cacontology-legal-outcomes:chargeCount 15 .
+
+ex:EnticementCharges rdf:type cacontology-legal-outcomes:OnlineEnticement ;
+    rdfs:label "Online Enticement Charges" ;
+    cacontology-legal-outcomes:chargeStatute "18 USC 2422(b)" ;
+    cacontology-legal-outcomes:chargeLevel "federal_felony" ;
+    cacontology-legal-outcomes:maximumPenalty 10 ;
+    cacontology-legal-outcomes:chargeCount 2 .
+
+ex:PleaAgreement1 rdf:type cacontology-legal-outcomes:PleaAgreement ;
+    rdfs:label "Douglas Plea Agreement" ;
+    cacontology-legal-outcomes:pleaBargainOffered true ;
+    cacontology-legal-outcomes:pleaBargainAccepted true .
+
+ex:SentencingHearing1 rdf:type cacontology-legal-outcomes:SentencingHearing ;
+    rdfs:label "Douglas Sentencing Hearing" ;
+    cacontology-legal-outcomes:guidelinesRange "168-210" ;
+    cacontology-legal-outcomes:offenseLevel 32 ;
+    cacontology-legal-outcomes:criminalHistory "I" ;
+    cacontology-legal-outcomes:enhancementApplied "technology, sadistic" ;
+    cacontology-legal-outcomes:downwardDeparture false ;
+    cacontology-legal-outcomes:upwardDeparture true ;
+    cacontology-legal-outcomes:projectSafeChildhood true ;
+    cacontology-legal-outcomes:victimCount 2 ;
+    cacontology-legal-outcomes:victimAgeRange "10-12" .
+
+ex:PrisonSentence1 rdf:type cacontology-legal-outcomes:PrisonSentence ;
+    rdfs:label "240 Month Federal Prison Sentence" ;
+    cacontology-legal-outcomes:sentenceLength 240 ;
+    cacontology-legal-outcomes:timeServed 8 .
+
+ex:SupervisedRelease1 rdf:type cacontology-legal-outcomes:SupervisedRelease ;
+    rdfs:label "15 Year Supervised Release" ;
+    cacontology-legal-outcomes:supervisedReleaseLength 180 ;
+    cacontology-legal-outcomes:internetRestriction "monitored_access_only" ;
+    cacontology-legal-outcomes:computerMonitoring true ;
+    cacontology-legal-outcomes:contactWithMinors "no_unsupervised_contact" ;
+    cacontology-legal-outcomes:treatmentRequired "sex_offender_counseling" ;
+    cacontology-legal-outcomes:sexOffenderRegistry true ;
+    cacontology-legal-outcomes:registryDuration 25 .
+
+ex:MonetaryPenalty1 rdf:type cacontology-legal-outcomes:MonetaryPenalty ;
+    rdfs:label "Restitution and Fines" ;
+    cacontology-legal-outcomes:fineAmount 50000.00 ;
+    cacontology-legal-outcomes:restitutionAmount 75000.00 .
+
+# =============================================================================
+# JUDICIAL PARTICIPANTS
+# =============================================================================
+
+ex:Judge1 rdf:type cacontology-legal-outcomes:Judge ;
+    rdfs:label "Judge Patricia Wilson" .
+
+ex:Prosecutor1 rdf:type cacontology-legal-outcomes:Prosecutor ;
+    rdfs:label "AUSA Michael Stevens" .
+
+ex:DefenseAttorney1 rdf:type cacontology-legal-outcomes:DefenseAttorney ;
+    rdfs:label "Public Defender Sarah Johnson" .
+
+# =============================================================================
+# RELATIONSHIPS AND LINKAGES
+# =============================================================================
+
+# Investigation Relationships
+ex:DouglasCase cacontology:hasSubject ex:MichaelDouglas ;
+    cacontology:hasVictim ex:VictimChild1, ex:VictimChild2 .
+
+# Undercover Operation Relationships
+ex:UndercoverOperation1 cacontology-undercover:evidenceCollected ex:GroomingMessage1 .
+
+# Grooming Relationships
+ex:GroomingBehavior1 cacontology-grooming:exhibitsPattern ex:EscalationPattern1 .
+
+# Physical Evidence Relationships
+ex:ComputerEvidence1 cacontology-physical:procuredBy ex:CriminalProcurement1 ;
+    cacontology-physical:seizedDuring ex:ResidenceSearch1 ;
+    cacontology-physical:associatedWithSubject ex:MichaelDouglas .
+
+# Legal Relationships
+ex:MichaelDouglas cacontology-legal-outcomes:chargedWith ex:FederalCharges, ex:EnticementCharges ;
+    cacontology-legal-outcomes:sentencedTo ex:PrisonSentence1, ex:SupervisedRelease1, ex:MonetaryPenalty1 ;
+    cacontology-legal-outcomes:defendedBy ex:DefenseAttorney1 .
+
+ex:SentencingHearing1 cacontology-legal-outcomes:presidedBy ex:Judge1 ;
+    cacontology-legal-outcomes:prosecutedBy ex:Prosecutor1 .
+
+# =============================================================================
+# CASE OUTCOMES AND IMPACT
+# =============================================================================
+
+ex:CaseOutcome rdf:type uco-core:UcoObject ;
+    rdfs:label "Douglas Case Final Outcome" ;
+    rdfs:comment "Successful prosecution resulting in 20-year federal sentence, demonstrating effective multi-jurisdictional coordination, advanced investigative techniques, and comprehensive evidence collection across digital and physical domains." . 

@@ -6,16 +6,20 @@ Current Crimes Against Children community language and data sets are siloed in o
 The ontology family now includes comprehensive gUFO (Unified Foundational Ontology) integration, providing enhanced semantic precision, temporal modeling, and validation capabilities for law enforcement investigations.
 
 ## Target Users
-1. Law Enforcement Agencies
-2. Hotline Organizations
-3. Electronic Service Providers
-4. Digital Forensics Teams
-5. Research Organizations
-6. Software Developers
-7. Athletic Organizations and Schools
-8. Child Protection Services
-9. Ontology Engineers and Semantic Web Developers
-10.AI/ML Researchers and Data Scientists
+The goal is to support the full Crimes Against Children domain of discourse, including but not limited to:
+
+1. Investigators
+2. Forensic examiners
+3. Prosecutors
+4. Victim advocates and support organizations
+5. Hotline and intake personnel
+6. Platform trust and safety teams
+7. Educators and researchers
+8. NGOs and nonprofits
+9. Intelligence and analysis teams
+10. Policy and compliance teams
+11. Software vendors and integrators
+12. AI agent development tools
 
 ## Core Requirements
 
@@ -30,6 +34,7 @@ The ontology family now includes comprehensive gUFO (Unified Foundational Ontolo
 - Must provide anti-rigid modeling for phases and roles
 - Must distinguish between Events (actions) and Situations (states)
 - Must support temporal constraints and validation
+- v3.0.0 introduces the semantic spine (`cac-core:` namespace) as the mediating layer; domain modules anchor to spine branches (`cac-core:Phase`, `cac-core:Role`, `cac-core:Event`, `cac-core:Artifact`, etc.) rather than directly to gUFO or UCO classes
 
 ### 2. Data Representation
 - Must support representation of:
@@ -58,6 +63,7 @@ The ontology family now includes comprehensive gUFO (Unified Foundational Ontolo
 - Must include validation tools for data quality
 - Must integrate with educational and athletic institution systems
 - Must maintain backward compatibility with existing CAC ontologies to the extent possible after version 2.1.0
+- v3.0.0 is the current version, introducing the semantic spine architecture (`cac-core:` namespace) as the canonical mediating layer between domain modules and foundational ontologies (gUFO, UCO, CASE)
 - Must provide equivalence mappings between original and gUFO-enhanced classes
 - Must support parallel operation of original and enhanced models
 
@@ -91,11 +97,10 @@ The ontology family now includes comprehensive gUFO (Unified Foundational Ontolo
 - Regional extensions (e.g., NCMEC)
 - Validation shapes
 - Example data sets
-- gUFO-enhanced core investigation modeling (`cacontology-core-gufo.ttl`)
-- Temporal framework for investigation lifecycle (`cacontology-temporal-gufo.ttl`)
-- Integration strategy across all modules (`cacontology-gufo-integration-strategy.ttl`)
-- Advanced analytics query library (`queries/gufo-enhanced-analytics.rq`)
-- AI integration framework (`ai-integration-framework.py`)
+- gUFO bridge module for foundational alignment (`cacontology-bridge-gufo.ttl`)
+- Temporal framework for investigation lifecycle (`cacontology-temporal.ttl`)
+- Integration strategy across all modules (`cacontology-integration-patterns.ttl`)
+- Advanced analytics query library (`example_SPARQL_queries/gufo-enhanced-analytics.rq`)
 
 ### 2. Supporting Technologies
 - SHACL validation engine
@@ -103,7 +108,7 @@ The ontology family now includes comprehensive gUFO (Unified Foundational Ontolo
 - Testing framework
 - Documentation generator
 - Example data generator
-- Docker compose (Fuseki + pySHACL + ROBOT) MUST validate every PR (see /devops)
+- Docker compose (Fuseki + pySHACL + ROBOT) MUST validate every PR (see testing/docker-compose.yaml)
 - gUFO validation engine for anti-rigidity and temporal constraints
 - Machine learning frameworks (scikit-learn, networkx)
 - Advanced analytics and visualization tools
@@ -135,7 +140,7 @@ The ontology family now includes comprehensive gUFO (Unified Foundational Ontolo
 
 ### 2. Performance
 - SPARQL query Q1 (find all open HotlineReports) on 5 M triples MUST return in ≤ 500 ms on 16 GB heap Fuseki
-  - See `/queries/Q1.rq` for the exact query
+  - See `example_SPARQL_queries/find_open_reports.rq` for the exact query
 - Must support large datasets (up to 100 M triples)
 - Must handle 10 k new reports per day
 - Must provide efficient querying

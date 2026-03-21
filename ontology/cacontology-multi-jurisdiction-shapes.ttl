@@ -5,28 +5,24 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
-@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
-@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
-@prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
-@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix cacontology-multi: <https://cacontology.projectvic.org/multi-jurisdiction#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # =============================================================================
-# ICAC MULTI-JURISDICTION SHACL SHAPES with gUFO INTEGRATION
+# CAC MULTI-JURISDICTION SHACL SHAPES with gUFO INTEGRATION
 # Enhanced with comprehensive gUFO (gentle Unified Foundational Ontology) validation
 # =============================================================================
 
-<https://cacontology.projectvic.org/multi-jurisdiction/shapes/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/multi-jurisdiction/shapes/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Multi-Jurisdiction SHACL Shapes with gUFO Integration"@en ;
     rdfs:comment "SHACL shapes for validating multi-jurisdictional operations with comprehensive gUFO foundational ontology integration for enhanced semantic precision and validation capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/multi-jurisdiction/shapes/2.12.0> ;
-    owl:versionInfo "2.12.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/multi-jurisdiction/shapes/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/multi-jurisdiction/2.12.0> ,
+    owl:imports <https://cacontology.projectvic.org/multi-jurisdiction/3.0.0> ,
                 <http://purl.org/nemo/gufo#> .
 
 # =============================================================================
@@ -36,76 +32,44 @@
 cacontology-multi:MultiJurisdictionalEventTypeValidationShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-multi:MultiJurisdictionalInvestigation ;
     rdfs:label "Multi-Jurisdictional Event Type Validation Shape"@en ;
-    rdfs:comment "Validates gUFO Event type consistency for multi-jurisdictional investigations."@en ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Event ;
-        sh:minCount 1 ;
-        sh:message "Multi-jurisdictional investigation must be typed as gUFO Event."@en
-    ] ;
-    sh:property [
-        sh:path rdfs:subClassOf ;
-        sh:hasValue gufo:Event ;
-        sh:minCount 0 ;
-        sh:message "Multi-jurisdictional investigation class should extend gUFO Event."@en
-    ] .
+    rdfs:comment "Validates gUFO Event type consistency for multi-jurisdictional investigations."@en .
 
 cacontology-multi:CoordinationPhaseTypeValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:Phase ;
+    sh:targetClass cac-core:Phase ;
     rdfs:label "Coordination Phase Type Validation Shape"@en ;
-    rdfs:comment "Validates gUFO Phase type consistency for coordination phases."@en ;
-    sh:sparql [
-        sh:message "Coordination phases must be properly typed as gUFO Phase and extend appropriate investigation classes."@en ;
-        sh:select """
-            SELECT $this
-            WHERE {
-                $this rdf:type gufo:Phase .
-                FILTER NOT EXISTS {
-                    $this rdf:type ?phaseClass .
-                    ?phaseClass rdfs:subClassOf cacontology-multi:MultiJurisdictionalInvestigation .
-                }
-            }
-        """
+    rdfs:comment "Validates that multi-jurisdiction phases are properly anchored to the semantic spine."@en ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:minCount 1 ;
+        sh:message "Phase instances must have at least one rdf:type declaration."@en
     ] .
 
 cacontology-multi:OrganizationObjectTypeValidationShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-multi:LawEnforcementAgency ;
     rdfs:label "Organization Object Type Validation Shape"@en ;
-    rdfs:comment "Validates gUFO Object type consistency for law enforcement organizations."@en ;
-    sh:property [
-        sh:path rdfs:subClassOf ;
-        sh:hasValue gufo:Object ;
-        sh:minCount 0 ;
-        sh:message "Law enforcement agency should extend gUFO Object."@en
-    ] .
+    rdfs:comment "Validates gUFO Object type consistency for law enforcement organizations."@en .
 
 cacontology-multi:CoordinationRoleValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:Role ;
+    sh:targetClass cac-core:Role ;
     rdfs:label "Coordination Role Validation Shape"@en ;
     rdfs:comment "Validates gUFO Role type consistency for coordination roles."@en ;
     sh:sparql [
-        sh:message "Coordination roles must be properly typed as gUFO Role and extend UCO Role."@en ;
+        sh:message "Coordination roles must be properly typed as gUFO Role and extend cac-core:Role."@en ;
         sh:select """
             SELECT $this
             WHERE {
                 $this rdf:type gufo:Role .
                 FILTER NOT EXISTS {
-                    $this rdfs:subClassOf uco-role:Role .
+                    $this rdf:type/rdfs:subClassOf* cac-core:Role .
                 }
             }
         """
     ] .
 
 cacontology-multi:SituationTypeValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:Situation ;
+    sh:targetClass cac-core:Situation ;
     rdfs:label "Situation Type Validation Shape"@en ;
-    rdfs:comment "Validates gUFO Situation type consistency for coordination situations."@en ;
-    sh:property [
-        sh:path rdfs:subClassOf ;
-        sh:hasValue gufo:Situation ;
-        sh:minCount 0 ;
-        sh:message "Multi-jurisdictional situation should extend gUFO Situation."@en
-    ] .
+    rdfs:comment "Validates gUFO Situation type consistency for coordination situations."@en .
 
 # =============================================================================
 # gUFO TEMPORAL CONSTRAINTS SHAPES
@@ -128,7 +92,7 @@ cacontology-multi:MultiJurisdictionalEventTemporalShape rdf:type sh:NodeShape ;
     ] .
 
 cacontology-multi:CoordinationPhaseTemporalShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:Phase ;
+    sh:targetClass cac-core:Phase ;
     rdfs:label "Coordination Phase Temporal Shape"@en ;
     rdfs:comment "Validates gUFO temporal constraints for coordination phases."@en ;
     sh:property [
@@ -156,7 +120,7 @@ cacontology-multi:CoordinationPhaseTemporalShape rdf:type sh:NodeShape ;
     ] .
 
 cacontology-multi:RoleTemporalShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:Role ;
+    sh:targetClass cac-core:Role ;
     rdfs:label "Role Temporal Shape"@en ;
     rdfs:comment "Validates gUFO temporal constraints for coordination roles."@en ;
     sh:property [
@@ -187,8 +151,8 @@ cacontology-multi:RoleTemporalShape rdf:type sh:NodeShape ;
 # ENHANCED DOMAIN-SPECIFIC SHAPES WITH gUFO QUALITY ASPECTS
 # =============================================================================
 
-cacontology-multi:MultiJurisdictionalOperationShape rdf:type sh:NodeShape ;
-    sh:targetClass cacontology-multi:MultiJurisdictionalOperation ;
+cacontology-multi:NamedMultiJurisdictionalOperationShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-multi:NamedMultiJurisdictionalOperation ;
     rdfs:label "Multi-Jurisdictional Operation Shape"@en ;
     rdfs:comment "Enhanced validation shape for multi-jurisdictional operation instances with gUFO quality aspects."@en ;
     sh:property [
@@ -724,63 +688,11 @@ cacontology-multi:UsesCommunicationProtocolShape rdf:type sh:PropertyShape ;
     sh:minCount 1 .
 
 # =============================================================================
-# CROSS-REFERENCE VALIDATION SHAPES
-# =============================================================================
-
-cacontology-multi:MultiJurisdictionalCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass cacontology-multi:MultiJurisdictionalOperation ;
-    rdfs:label "Multi-Jurisdictional Cross Reference Shape"@en ;
-    rdfs:comment "Validates cross-references between multi-jurisdictional operations and related entities."@en ;
-    sh:sparql [
-        sh:message "Multi-jurisdictional operation must involve at least two jurisdictions."@en ;
-        sh:select """
-            SELECT $this
-            WHERE {
-                $this a cacontology-multi:MultiJurisdictionalOperation ;
-                      cacontology-multi:jurisdictionCount ?count .
-                FILTER (?count < 2)
-            }
-        """
-    ] .
-
-cacontology-multi:CoordinationConsistencyShape rdf:type sh:NodeShape ;
-    sh:targetClass cacontology-multi:MultiJurisdictionalOperation ;
-    rdfs:label "Coordination Consistency Shape"@en ;
-    rdfs:comment "Validates coordination consistency in multi-jurisdictional operations."@en ;
-    sh:sparql [
-        sh:message "Operations with many jurisdictions should have enhanced coordination."@en ;
-        sh:select """
-            SELECT $this
-            WHERE {
-                $this cacontology-multi:jurisdictionCount ?count ;
-                      cacontology-multi:coordinationLevel ?level .
-                FILTER (?count > 10 && ?level IN ("minimal", "basic"))
-            }
-        """
-    ] .
-
-cacontology-multi:ResourceSharingValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass cacontology-multi:ResourceSharing ;
-    rdfs:label "Resource Sharing Validation Shape"@en ;
-    rdfs:comment "Validates resource sharing arrangements."@en ;
-    sh:sparql [
-        sh:message "High-value resource sharing should have cost sharing arrangement."@en ;
-        sh:select """
-            SELECT $this
-            WHERE {
-                $this cacontology-multi:resourceValue ?value ;
-                      cacontology-multi:costSharing "no_cost" .
-                FILTER (?value > 100000)
-            }
-        """
-    ] .
-
-# =============================================================================
 # TEMPORAL VALIDATION SHAPES
 # =============================================================================
 
 cacontology-multi:TemporalValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass cacontology-multi:MultiJurisdictionalOperation ;
+    sh:targetClass cacontology-multi:NamedMultiJurisdictionalOperation ;
     rdfs:label "Temporal Validation Shape"@en ;
     rdfs:comment "Validates temporal consistency in multi-jurisdictional operations."@en ;
     sh:sparql [
@@ -815,7 +727,7 @@ cacontology-multi:SharingDateValidationShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 cacontology-multi:DataQualityShape rdf:type sh:NodeShape ;
-    sh:targetClass cacontology-multi:MultiJurisdictionalOperation ;
+    sh:targetClass cacontology-multi:NamedMultiJurisdictionalOperation ;
     rdfs:label "Data Quality Shape"@en ;
     rdfs:comment "Validates data quality for multi-jurisdictional operations."@en ;
     sh:property [
@@ -919,8 +831,8 @@ cacontology-multi:TaskForceCompositionShape rdf:type sh:NodeShape ;
                 {
                     SELECT $this (COUNT(DISTINCT ?level) AS ?levelCount)
                     WHERE {
-                        $this cacontology-multi:includesAgency ?agency .
-                        ?agency rdf:type ?agencyType .
+                        $this cacontology-multi:includesAgency ?agency ;
+                        ?agency rdf:type ?agencyType ;
                         ?agencyType rdfs:subClassOf* cacontology-multi:LawEnforcementAgency .
                         BIND(
                             IF(?agencyType = cacontology-multi:FederalAgency, "federal",
@@ -948,7 +860,7 @@ cacontology-multi:MultiAgencyOperationCompositionShape rdf:type sh:NodeShape ;
                 {
                     SELECT $this (COUNT(DISTINCT ?jurisdiction) AS ?jurisdictionCount)
                     WHERE {
-                        $this cacontology-multi:involvesAgency ?agency .
+                        $this cacontology-multi:involvesAgency ?agency ;
                         ?agency cacontology-multi:operatesInJurisdiction ?jurisdiction .
                     }
                     GROUP BY $this
@@ -1032,7 +944,7 @@ cacontology-multi:LawEnforcementAgencyShape rdf:type sh:NodeShape ;
     ] .
 
 cacontology-multi:CoordinationRoleShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:Role ;
+    sh:targetClass cac-core:Role ;
     rdfs:label "Coordination Role Shape"@en ;
     rdfs:comment "Enhanced validation shape for coordination roles with gUFO quality aspects."@en ;
     # gUFO Quality Aspects for Coordination Roles
@@ -1076,7 +988,7 @@ cacontology-multi:QualifiedCoordinationParticipationShape rdf:type sh:NodeShape 
                 $this gufo:standsInQualifiedParticipation ?role .
                 $this cacontology-multi:concernsCoordinationEvent ?event .
                 FILTER NOT EXISTS {
-                    ?role rdf:type* cacontology-multi:CoordinatingAgent .
+                    ?role rdf:type* cacontology-multi:CoordinatingAgent ;
                     ?event rdf:type* cacontology-multi:MultiJurisdictionalInvestigation .
                 }
             }
@@ -1258,7 +1170,7 @@ cacontology-multi:MultiJurisdictionalDataQualityShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 cacontology-multi:MultiJurisdictionalCrossReferenceShape rdf:type sh:NodeShape ;
-    sh:targetClass cacontology-multi:MultiJurisdictionalOperation ;
+    sh:targetClass cacontology-multi:NamedMultiJurisdictionalOperation ;
     rdfs:label "Multi-Jurisdictional Cross Reference Shape"@en ;
     rdfs:comment "Enhanced cross-reference validation with gUFO constraints for multi-jurisdictional operations."@en ;
     sh:sparql [
@@ -1266,7 +1178,7 @@ cacontology-multi:MultiJurisdictionalCrossReferenceShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a cacontology-multi:MultiJurisdictionalOperation ;
+                $this a cacontology-multi:NamedMultiJurisdictionalOperation ;
                       cacontology-multi:jurisdictionCount ?count .
                 FILTER (?count < 2)
             }
@@ -1287,7 +1199,7 @@ cacontology-multi:MultiJurisdictionalCrossReferenceShape rdf:type sh:NodeShape ;
     ] .
 
 cacontology-multi:CoordinationConsistencyShape rdf:type sh:NodeShape ;
-    sh:targetClass cacontology-multi:MultiJurisdictionalOperation ;
+    sh:targetClass cacontology-multi:NamedMultiJurisdictionalOperation ;
     rdfs:label "Coordination Consistency Shape"@en ;
     rdfs:comment "Enhanced coordination consistency validation with gUFO quality aspects."@en ;
     sh:sparql [

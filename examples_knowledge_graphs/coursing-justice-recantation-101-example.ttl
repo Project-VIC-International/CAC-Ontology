@@ -16,6 +16,7 @@
 @prefix cacontology-impact: <https://cacontology.projectvic.org/victim-impact#> .
 @prefix cacontology-recantation: <https://cacontology.projectvic.org/recantation#> .
 @prefix cacontology-training: <https://cacontology.projectvic.org/training#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 
 @prefix gufo: <http://purl.org/nemo/gufo#> .
 @prefix kb: <urn:uuid:> .
@@ -97,7 +98,17 @@ kb:1bd0424e-a4cd-57b5-88a2-5d8cd82223a6 a uco-identity:Person ;
 kb:f377d214-366f-52ee-aaea-e2a2eb8e5d32 a cacontology-training:InternationalTrainer ;
     rdfs:label "Example trainer"@en .
 
-kb:ef61ee58-7f0d-5350-bcff-2dab0f3abff9 a cacontology:ChildSexualAbuseEvent, uco-action:Crime, gufo:Event ;
+kb:victim-role-001 a cacontology:VictimRole ;
+    rdfs:label "Victim role"@en ;
+    cacontology:hasRoleBeginPoint "2026-01-01T00:00:00Z"^^xsd:dateTimeStamp ;
+    cacontology:participatesInEvent kb:ef61ee58-7f0d-5350-bcff-2dab0f3abff9 .
+
+kb:offender-role-001 a cacontology:OffenderRole ;
+    rdfs:label "Offender role"@en ;
+    cacontology:hasRoleBeginPoint "2026-01-01T00:00:00Z"^^xsd:dateTimeStamp ;
+    cacontology:participatesInEvent kb:ef61ee58-7f0d-5350-bcff-2dab0f3abff9 .
+
+kb:ef61ee58-7f0d-5350-bcff-2dab0f3abff9 a cacontology:ChildSexualAbuseEvent, uco-action:Crime ;
     rdfs:label "Underlying abuse event"@en ;
     uco-core:description "Representative child sexual abuse event referenced by the example disclosure, recantation, and reaffirmed disclosure."@en .
 
@@ -184,8 +195,7 @@ kb:0323be92-ae60-5d3e-97e2-dc2a21901297 a cacontology-recantation:RecantationRis
     cacontology-recantation:riskFactorCategory "community_pressure" .
 
 kb:b80ee4df-ea5b-5465-8722-fde17fbf1247 a cacontology-recantation:RecantationPressure,
-        uco-action:Action,
-        gufo:Event ;
+        uco-action:Action ;
     rdfs:label "Third-party pressure communication"@en ;
     uco-core:description "A family-mediated pressure event encouraging the child to take back part of the disclosure."@en ;
     uco-action:performer kb:43b90714-dda6-5e99-8317-cae731619243 ;
@@ -193,8 +203,7 @@ kb:b80ee4df-ea5b-5465-8722-fde17fbf1247 a cacontology-recantation:RecantationPre
     cacontology-recantation:pressureMethod "third_party_communication" .
 
 kb:ff173eed-491d-5d67-b65a-43fcf4942e42 a cacontology-recantation:RecantationNotification,
-        uco-action:Action,
-        gufo:Event ;
+        uco-action:Action ;
     rdfs:label "Caregiver recantation report"@en ;
     uco-action:performer kb:43b90714-dda6-5e99-8317-cae731619243 ;
     uco-action:object kb:adc2f23d-b392-551c-85ab-789d0c8bba61 ;
@@ -202,8 +211,7 @@ kb:ff173eed-491d-5d67-b65a-43fcf4942e42 a cacontology-recantation:RecantationNot
 
 kb:86816f1c-d97f-59ed-9dea-e056ccc8db5f a cacontology-recantation:RecantationAssessment,
         case-investigation:InvestigativeAction,
-        uco-action:Action,
-        gufo:Event ;
+        uco-action:Action ;
     rdfs:label "Recantation assessment action"@en ;
     uco-action:performer kb:1bd0424e-a4cd-57b5-88a2-5d8cd82223a6 ;
     uco-action:object kb:adc2f23d-b392-551c-85ab-789d0c8bba61 ;
@@ -212,8 +220,7 @@ kb:86816f1c-d97f-59ed-9dea-e056ccc8db5f a cacontology-recantation:RecantationAss
 kb:2e4301d5-4ec0-5df0-9be6-55799b45d590 a cacontology-recantation:PostRecantationForensicInterview,
         cacontology-recantation:RecantationAssessment,
         case-investigation:InvestigativeAction,
-        uco-action:Action,
-        gufo:Event ;
+        uco-action:Action ;
     rdfs:label "Post-recantation forensic interview"@en ;
     uco-action:performer kb:fd207c30-f0fb-564c-be40-f4140e29d327 ;
     uco-action:object kb:adc2f23d-b392-551c-85ab-789d0c8bba61, kb:219a52a5-d2d6-5273-bd2d-33bb2fe7dd69 ;
@@ -248,7 +255,7 @@ kb:f5a054a6-2639-5583-859d-2a954d4f5b28 a cacontology-custodial:RestrictedContac
 
 kb:600597b9-3083-586b-96e6-93e3eb086bac a cacontology-case:CourtroomAccommodationPlan,
         cacontology-case:CaseDocumentation,
-        gufo:Object ;
+        cac-core:Artifact ;
     rdfs:label "Courtroom accommodation plan for child witness"@en ;
     cacontology-case:documentType "courtroom_accommodation_plan" ;
     cacontology-case:documentStatus "approved" ;
@@ -259,7 +266,7 @@ kb:600597b9-3083-586b-96e6-93e3eb086bac a cacontology-case:CourtroomAccommodatio
 kb:456a6e22-75ef-5bc0-9344-f843b47c1bd4 a cacontology-case:AccommodationMotion,
         cacontology-case:CourtFiling,
         cacontology-case:CaseDocumentation,
-        gufo:Object ;
+        cac-core:Artifact ;
     rdfs:label "Accommodation motion"@en ;
     cacontology-case:documentType "accommodation_motion" ;
     cacontology-case:documentStatus "filed" ;
@@ -269,7 +276,7 @@ kb:456a6e22-75ef-5bc0-9344-f843b47c1bd4 a cacontology-case:AccommodationMotion,
 
 kb:300af97c-ee95-511e-87cc-2ba9064e6c05 a cacontology-case:TestimonyContingencyPlan,
         cacontology-case:CaseDocumentation,
-        gufo:Object ;
+        cac-core:Artifact ;
     rdfs:label "Testimony contingency plan"@en ;
     cacontology-case:documentType "testimony_contingency_plan" ;
     cacontology-case:documentStatus "approved" ;
@@ -284,8 +291,7 @@ kb:300af97c-ee95-511e-87cc-2ba9064e6c05 a cacontology-case:TestimonyContingencyP
 kb:02bfc3a1-3447-5f95-be2d-f14f1287807c a cacontology-training:RecantationResponseTraining,
         cacontology-training:VictimServiceTraining,
         cacontology-training:InternationalTraining,
-        uco-action:Action,
-        gufo:Event ;
+        uco-action:Action ;
     rdfs:label "Recantation response training"@en ;
     uco-core:name "Recantation Response Training for MDT Partners" ;
     uco-core:startTime "2026-03-11T13:00:00Z"^^xsd:dateTime ;
@@ -298,8 +304,7 @@ kb:02bfc3a1-3447-5f95-be2d-f14f1287807c a cacontology-training:RecantationRespon
 kb:44de85d5-6a92-5210-8bc8-330cad7374eb a cacontology-training:JudicialEducationTraining,
         cacontology-training:LegalTraining,
         cacontology-training:InternationalTraining,
-        uco-action:Action,
-        gufo:Event ;
+        uco-action:Action ;
     rdfs:label "Judicial education training"@en ;
     uco-core:name "Judicial Education on Recantation and Child Witness Accommodation" ;
     uco-core:startTime "2026-04-02T09:00:00Z"^^xsd:dateTime ;
@@ -311,8 +316,7 @@ kb:44de85d5-6a92-5210-8bc8-330cad7374eb a cacontology-training:JudicialEducation
 kb:617c4cad-a51d-534a-bca4-f3770f689997 a cacontology-training:CommunityEducationTraining,
         cacontology-training:ChildProtectionTraining,
         cacontology-training:InternationalTraining,
-        uco-action:Action,
-        gufo:Event ;
+        uco-action:Action ;
     rdfs:label "Community education training"@en ;
     uco-core:name "Community Education on Supporting Child Disclosure" ;
     uco-core:startTime "2026-04-10T18:00:00Z"^^xsd:dateTime ;

@@ -1,0 +1,939 @@
+@prefix : <http://raven.us/ontology#> .
+@prefix cac: <https://cacontology.projectvic.org#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
+
+# Raven U.S. Legislative Extensions to CAC Ontology
+# Version: 3.0.0
+# Includes ICAC legal harmonization extensions with jurisdiction annotations
+
+:RavenUSExtensions a owl:Ontology ;
+    rdfs:label "Raven U.S. Legislative Extensions" ;
+    rdfs:comment "Extensions to the CAC legal-harmonization ontology for U.S. legislative tracking and ICAC legal harmonization" ;
+    owl:imports <https://cacontology.projectvic.org/3.0.0> ,
+               <https://cacontology.projectvic.org/core/3.0.0> .
+
+#################################################################
+# Jurisdiction Scope Annotations
+# These annotations support future international extensions by
+# clearly marking USA-specific vs. internationally applicable concepts
+#################################################################
+
+:jurisdictionScope a owl:AnnotationProperty ;
+    rdfs:label "Jurisdiction Scope" ;
+    rdfs:comment "Indicates the country/region where this concept applies. Use ISO 3166-1 alpha-2 codes (US, GB, AU, etc.) or 'international' for universal concepts." .
+
+:countryCode a owl:AnnotationProperty ;
+    rdfs:label "Country Code" ;
+    rdfs:comment "ISO 3166-1 alpha-2 country code" .
+
+:isCountrySpecific a owl:AnnotationProperty ;
+    rdfs:label "Is Country Specific" ;
+    rdfs:comment "True if this concept is specific to a particular country's legal system" .
+
+#################################################################
+# U.S. Federal Organizations (USA-Specific)
+#################################################################
+
+:USFederalAgency a owl:Class ;
+    rdfs:subClassOf cac:Organization, gufo:Organization, uco-identity:Organization ;
+    rdfs:label "U.S. Federal Agency" ;
+    rdfs:comment "United States Federal Government agency" ;
+    :jurisdictionScope "US" ;
+    :countryCode "US" ;
+    :isCountrySpecific true .
+
+:USFederalAgencyOffice a owl:Class ;
+    rdfs:subClassOf :USFederalAgency ;
+    rdfs:label "U.S. Federal Agency Office" ;
+    rdfs:comment "Office within a U.S. Federal Government agency" ;
+    :jurisdictionScope "US" ;
+    :countryCode "US" ;
+    :isCountrySpecific true .
+
+:DOJ a :USFederalAgency ;
+    rdfs:label "Department of Justice" ;
+    :acronym "DOJ" ;
+    :jurisdictionScope "US" .
+
+:OJJDP a :USFederalAgencyOffice ;
+    rdfs:label "Office of Juvenile Justice and Delinquency Prevention" ;
+    :parentAgency :DOJ ;
+    :acronym "OJJDP" ;
+    :jurisdictionScope "US" .
+
+:FBI a :USFederalAgency ;
+    rdfs:label "Federal Bureau of Investigation" ;
+    :parentAgency :DOJ ;
+    :acronym "FBI" ;
+    :jurisdictionScope "US" .
+
+:DHS a :USFederalAgency ;
+    rdfs:label "Department of Homeland Security" ;
+    :acronym "DHS" ;
+    :jurisdictionScope "US" .
+
+:HSI a :USFederalAgencyOffice ;
+    rdfs:label "Homeland Security Investigations" ;
+    :parentAgency :DHS ;
+    :acronym "HSI" ;
+    :jurisdictionScope "US" .
+
+:USMS a :USFederalAgency ;
+    rdfs:label "United States Marshals Service" ;
+    :parentAgency :DOJ ;
+    :acronym "USMS" ;
+    :jurisdictionScope "US" .
+
+:USPS_OIG a :USFederalAgencyOffice ;
+    rdfs:label "USPS Office of Inspector General" ;
+    :acronym "USPS-OIG" ;
+    :jurisdictionScope "US" .
+
+:NCMEC a cac:Organization ;
+    rdfs:label "National Center for Missing & Exploited Children" ;
+    :acronym "NCMEC" ;
+    :organizationType "nonprofit" ;
+    :jurisdictionScope "US" ;
+    :countryCode "US" .
+
+#################################################################
+# U.S. Congressional Committees (USA-Specific)
+#################################################################
+
+:USCongressionalCommittee a owl:Class ;
+    rdfs:subClassOf cac-core:OrganizationLikeEntity, uco-identity:Organization ;
+    rdfs:label "U.S. Congressional Committee" ;
+    rdfs:comment "Committee of the United States Congress" ;
+    :jurisdictionScope "US" ;
+    :countryCode "US" ;
+    :isCountrySpecific true .
+
+:house_judiciary a :USCongressionalCommittee ;
+    rdfs:label "House Judiciary Committee" ;
+    :chamber "house" ;
+    :jurisdictionScope "US" .
+
+:senate_judiciary a :USCongressionalCommittee ;
+    rdfs:label "Senate Judiciary Committee" ;
+    :chamber "senate" ;
+    :jurisdictionScope "US" .
+
+:house_appropriations a :USCongressionalCommittee ;
+    rdfs:label "House Appropriations Committee" ;
+    :chamber "house" ;
+    :jurisdictionScope "US" .
+
+:senate_appropriations a :USCongressionalCommittee ;
+    rdfs:label "Senate Appropriations Committee" ;
+    :chamber "senate" ;
+    :jurisdictionScope "US" .
+
+:house_energy_commerce a :USCongressionalCommittee ;
+    rdfs:label "House Energy and Commerce Committee" ;
+    :chamber "house" ;
+    :jurisdictionScope "US" .
+
+:senate_commerce a :USCongressionalCommittee ;
+    rdfs:label "Senate Commerce Committee" ;
+    :chamber "senate" ;
+    :jurisdictionScope "US" .
+
+#################################################################
+# U.S. State-Level Organizations (USA-Specific)
+#################################################################
+
+:USStateAgency a owl:Class ;
+    rdfs:subClassOf gufo:Organization, uco-identity:Organization ;
+    rdfs:label "U.S. State Agency" ;
+    rdfs:comment "Agency of a U.S. state government" ;
+    :jurisdictionScope "US" ;
+    :countryCode "US" ;
+    :isCountrySpecific true .
+
+:USStateAttorneyGeneral a owl:Class ;
+    rdfs:subClassOf :USStateAgency ;
+    rdfs:label "U.S. State Attorney General" ;
+    rdfs:comment "Attorney General office of a U.S. state" ;
+    :jurisdictionScope "US" ;
+    :countryCode "US" ;
+    :isCountrySpecific true .
+
+:USStateLegislature a owl:Class ;
+    rdfs:subClassOf cac-core:OrganizationLikeEntity, uco-identity:Organization ;
+    rdfs:label "U.S. State Legislature" ;
+    rdfs:comment "Legislative body of a U.S. state" ;
+    :jurisdictionScope "US" ;
+    :countryCode "US" ;
+    :isCountrySpecific true .
+
+:USStateICACtaskForce a owl:Class ;
+    rdfs:subClassOf cac:ICACtaskForce ;
+    rdfs:label "U.S. State ICAC Task Force" ;
+    rdfs:comment "State-level ICAC Task Force in the United States" ;
+    :jurisdictionScope "US" ;
+    :countryCode "US" ;
+    :isCountrySpecific true .
+
+#################################################################
+# Organization Properties
+#################################################################
+
+:acronym a owl:DatatypeProperty ;
+    rdfs:label "Acronym" ;
+    rdfs:domain cac:Organization ;
+    rdfs:range xsd:string .
+
+:parentAgency a owl:ObjectProperty ;
+    rdfs:label "Parent Agency" ;
+    rdfs:domain :USFederalAgency ;
+    rdfs:range :USFederalAgency .
+
+:organizationType a owl:DatatypeProperty ;
+    rdfs:label "Organization Type" ;
+    rdfs:domain cac:Organization ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Values: federal, state, nonprofit, private" .
+
+:chamber a owl:DatatypeProperty ;
+    rdfs:label "Chamber" ;
+    rdfs:domain :USCongressionalCommittee ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Values: house, senate" .
+
+#################################################################
+# Legislative Stage (USA-Specific)
+#################################################################
+
+:LegislativeStage a owl:Class ;
+    rdfs:subClassOf gufo:Phase ;
+    rdfs:label "Legislative Stage" ;
+    rdfs:comment "Stage in the U.S. legislative process" ;
+    :jurisdictionScope "US" ;
+    :isCountrySpecific true .
+
+:introduced a :LegislativeStage ;
+    rdfs:label "Introduced" ;
+    :stageOrder 1 .
+
+:in_committee a :LegislativeStage ;
+    rdfs:label "In Committee" ;
+    :stageOrder 2 .
+
+:reported a :LegislativeStage ;
+    rdfs:label "Reported from Committee" ;
+    :stageOrder 3 .
+
+:passed_chamber a :LegislativeStage ;
+    rdfs:label "Passed Chamber" ;
+    :stageOrder 4 .
+
+:passed_both a :LegislativeStage ;
+    rdfs:label "Passed Both Chambers" ;
+    :stageOrder 5 .
+
+:conference a :LegislativeStage ;
+    rdfs:label "In Conference" ;
+    :stageOrder 6 .
+
+:enacted a :LegislativeStage ;
+    rdfs:label "Enacted" ;
+    :stageOrder 7 ;
+    :isFinal true .
+
+:vetoed a :LegislativeStage ;
+    rdfs:label "Vetoed" ;
+    :stageOrder 7 ;
+    :isFinal true .
+
+#################################################################
+# Appropriation Type
+#################################################################
+
+:AppropriationType a owl:Class ;
+    rdfs:subClassOf cac-core:EnduringEntity ;
+    rdfs:label "Appropriation Type" ;
+    rdfs:comment "Type of Congressional appropriation" .
+
+:regular_appropriation a :AppropriationType ;
+    rdfs:label "Regular Appropriation" .
+
+:continuing_resolution a :AppropriationType ;
+    rdfs:label "Continuing Resolution" .
+
+:supplemental_appropriation a :AppropriationType ;
+    rdfs:label "Supplemental Appropriation" .
+
+#################################################################
+# Funding Stream
+#################################################################
+
+:FundingStream a owl:Class ;
+    rdfs:subClassOf cac-core:EnduringEntity ;
+    rdfs:label "Funding Stream" ;
+    rdfs:comment "Source of funding for ICAC programs" .
+
+:congressionally_directed a :FundingStream ;
+    rdfs:label "Congressionally Directed Spending" .
+
+:ojjdp_grants a :FundingStream ;
+    rdfs:label "OJJDP Grants" ;
+    :agency "Office of Juvenile Justice and Delinquency Prevention" .
+
+:state_appropriations a :FundingStream ;
+    rdfs:label "State Appropriations" .
+
+:formula_grants a :FundingStream ;
+    rdfs:label "Formula Grants" .
+
+#################################################################
+# Outcome
+#################################################################
+
+:Outcome a owl:Class ;
+    rdfs:subClassOf cac-core:AssessmentResult ;
+    rdfs:label "Outcome" ;
+    rdfs:comment "Result of advocacy efforts" .
+
+:bill_passed a :Outcome ;
+    rdfs:label "Bill Passed" ;
+    :isPositive true .
+
+:bill_failed a :Outcome ;
+    rdfs:label "Bill Failed" ;
+    :isPositive false .
+
+:grant_awarded a :Outcome ;
+    rdfs:label "Grant Awarded" ;
+    :isPositive true .
+
+:appropriation_enacted a :Outcome ;
+    rdfs:label "Appropriation Enacted" ;
+    :isPositive true .
+
+#################################################################
+# Funding Need (extends CAC ICACtaskForce)
+#################################################################
+
+:FundingNeed a owl:Class ;
+    rdfs:subClassOf cac-core:EnduringEntity ;
+    rdfs:label "Funding Need" ;
+    rdfs:comment "Funding requirement from an ICAC task force" .
+
+:needDescription a owl:DatatypeProperty ;
+    rdfs:domain :FundingNeed ;
+    rdfs:range xsd:string .
+
+:requestedAmount a owl:DatatypeProperty ;
+    rdfs:domain :FundingNeed ;
+    rdfs:range xsd:decimal .
+
+:priorityLevel a owl:DatatypeProperty ;
+    rdfs:domain :FundingNeed ;
+    rdfs:range xsd:string .
+
+:expressesFundingNeed a owl:ObjectProperty ;
+    rdfs:domain cac:ICACtaskForce ;
+    rdfs:range :FundingNeed ;
+    rdfs:comment "Links a task force to its funding needs" .
+
+:addressedBy a owl:ObjectProperty ;
+    rdfs:domain :FundingNeed ;
+    rdfs:range :LegislativeInstrument ;
+    rdfs:comment "Links a funding need to legislation that addresses it" .
+
+#################################################################
+# Object Properties
+#################################################################
+
+:stageOrder a owl:DatatypeProperty ;
+    rdfs:domain :LegislativeStage ;
+    rdfs:range xsd:integer .
+
+:isFinal a owl:DatatypeProperty ;
+    rdfs:domain :LegislativeStage ;
+    rdfs:range xsd:boolean .
+
+:isPositive a owl:DatatypeProperty ;
+    rdfs:domain :Outcome ;
+    rdfs:range xsd:boolean .
+
+:agency a owl:DatatypeProperty ;
+    rdfs:domain :FundingStream ;
+    rdfs:range xsd:string .
+
+#################################################################
+# Actor Identities and Roles (International)
+#################################################################
+
+:LegislativeRole a owl:Class ;
+    rdfs:subClassOf cac-core:Role ;
+    rdfs:label "Legislative Role" ;
+    rdfs:comment "Role an actor plays in the legislative ecosystem" ;
+    :isCountrySpecific false .
+
+:Legislator a :LegislativeRole ;
+    rdfs:label "Legislator" ;
+    rdfs:comment "Elected member of a legislative body" ;
+    :isCountrySpecific false .
+
+:CommitteeMember a :LegislativeRole ;
+    rdfs:label "Committee Member" ;
+    rdfs:comment "Member of a legislative committee" ;
+    :isCountrySpecific false .
+
+:BillSponsor a :LegislativeRole ;
+    rdfs:label "Bill Sponsor" ;
+    rdfs:comment "Legislator who introduces or sponsors legislation" ;
+    :isCountrySpecific false .
+
+:TaskForceLiaison a :LegislativeRole ;
+    rdfs:label "Task Force Liaison" ;
+    rdfs:comment "Person who coordinates between task forces and other entities" ;
+    :isCountrySpecific false .
+
+:LegislativeAdvocate a :LegislativeRole ;
+    rdfs:label "Legislative Advocate" ;
+    rdfs:comment "Person who advocates for legislative change" ;
+    :isCountrySpecific false .
+
+:ProsecutorAdvocate a :LegislativeRole ;
+    rdfs:label "Prosecutor Advocate" ;
+    rdfs:comment "Prosecutor who advocates for stronger laws" ;
+    :isCountrySpecific false .
+
+:VictimAdvocate a :LegislativeRole ;
+    rdfs:label "Victim Advocate" ;
+    rdfs:comment "Person who advocates on behalf of crime victims" ;
+    :isCountrySpecific false .
+
+:LawEnforcementOfficer a :LegislativeRole ;
+    rdfs:label "Law Enforcement Officer" ;
+    rdfs:comment "Officer involved in child safety investigations" ;
+    :isCountrySpecific false .
+
+:PolicyAnalyst a :LegislativeRole ;
+    rdfs:label "Policy Analyst" ;
+    rdfs:comment "Person who analyzes and develops policy recommendations" ;
+    :isCountrySpecific false .
+
+#################################################################
+# Actor Properties
+#################################################################
+
+:hasRole a owl:ObjectProperty ;
+    rdfs:label "Has Role" ;
+    rdfs:domain cac:Actor ;
+    rdfs:range :LegislativeRole ;
+    rdfs:comment "Links an actor to their legislative role" .
+
+:representsJurisdiction a owl:ObjectProperty ;
+    rdfs:label "Represents Jurisdiction" ;
+    rdfs:domain cac:Actor ;
+    rdfs:range :Jurisdiction ;
+    rdfs:comment "Links an actor to the jurisdiction they represent" .
+
+:affiliatedWith a owl:ObjectProperty ;
+    rdfs:label "Affiliated With" ;
+    rdfs:domain cac:Actor ;
+    rdfs:range cac:Organization ;
+    rdfs:comment "Links an actor to an organization they are affiliated with" .
+
+:servesOn a owl:ObjectProperty ;
+    rdfs:label "Serves On" ;
+    rdfs:domain cac:Actor ;
+    rdfs:range :USCongressionalCommittee ;
+    rdfs:comment "Links a legislator to committees they serve on" ;
+    :jurisdictionScope "US" .
+
+#################################################################
+# Legislative Process (International base, USA-specific subtypes)
+#################################################################
+
+:LegislativeProcess a owl:Class ;
+    rdfs:subClassOf cac-core:LegalEvent ;
+    rdfs:label "Legislative Process" ;
+    rdfs:comment "A step in the legislative lifecycle - applicable across jurisdictions" ;
+    :isCountrySpecific false .
+
+:BillDrafting a :LegislativeProcess ;
+    rdfs:label "Bill Drafting" ;
+    rdfs:comment "Process of drafting legislation" ;
+    :isCountrySpecific false .
+
+:CommitteeReview a :LegislativeProcess ;
+    rdfs:label "Committee Review" ;
+    rdfs:comment "Review of legislation by a committee" ;
+    :isCountrySpecific false .
+
+:FloorVote a :LegislativeProcess ;
+    rdfs:label "Floor Vote" ;
+    rdfs:comment "Vote on legislation by the full legislative body" ;
+    :isCountrySpecific false .
+
+:PublicHearing a :LegislativeProcess ;
+    rdfs:label "Public Hearing" ;
+    rdfs:comment "Public hearing on proposed legislation" ;
+    :isCountrySpecific false .
+
+:AmendmentProcess a :LegislativeProcess ;
+    rdfs:label "Amendment Process" ;
+    rdfs:comment "Process of amending legislation" ;
+    :isCountrySpecific false .
+
+# USA-specific legislative processes
+:USConferenceCommittee a :LegislativeProcess ;
+    rdfs:label "Conference Committee" ;
+    rdfs:comment "U.S. bicameral reconciliation process between House and Senate versions" ;
+    :jurisdictionScope "US" ;
+    :isCountrySpecific true .
+
+:USExecutiveAction a :LegislativeProcess ;
+    rdfs:label "U.S. Executive Action" ;
+    rdfs:comment "Presidential signing or veto of legislation" ;
+    :jurisdictionScope "US" ;
+    :isCountrySpecific true .
+
+:USRulemakingProcess a :LegislativeProcess ;
+    rdfs:label "U.S. Federal Rulemaking" ;
+    rdfs:comment "Administrative Procedure Act rulemaking process" ;
+    :jurisdictionScope "US" ;
+    :isCountrySpecific true .
+
+:USReconciliation a :LegislativeProcess ;
+    rdfs:label "U.S. Budget Reconciliation" ;
+    rdfs:comment "Special budget reconciliation process in U.S. Congress" ;
+    :jurisdictionScope "US" ;
+    :isCountrySpecific true .
+
+#################################################################
+# Advocacy Process (International)
+#################################################################
+
+:AdvocacyProcess a owl:Class ;
+    rdfs:subClassOf cac-core:SupportEvent ;
+    rdfs:label "Advocacy Process" ;
+    rdfs:comment "Process used in legislative advocacy" ;
+    :isCountrySpecific false .
+
+:StakeholderEngagement a :AdvocacyProcess ;
+    rdfs:label "Stakeholder Engagement" ;
+    rdfs:comment "Engaging stakeholders in advocacy efforts" ;
+    :isCountrySpecific false .
+
+:TestimonySubmission a :AdvocacyProcess ;
+    rdfs:label "Testimony Submission" ;
+    rdfs:comment "Submitting testimony to legislative bodies" ;
+    :isCountrySpecific false .
+
+:CoalitionBuilding a :AdvocacyProcess ;
+    rdfs:label "Coalition Building" ;
+    rdfs:comment "Building coalitions to support advocacy goals" ;
+    :isCountrySpecific false .
+
+:GrassrootsAdvocacy a :AdvocacyProcess ;
+    rdfs:label "Grassroots Advocacy" ;
+    rdfs:comment "Mobilizing public support for advocacy goals" ;
+    :isCountrySpecific false .
+
+:LegislativeEducation a :AdvocacyProcess ;
+    rdfs:label "Legislative Education" ;
+    rdfs:comment "Educating legislators on issues" ;
+    :isCountrySpecific false .
+
+:ImpactAssessment a :AdvocacyProcess ;
+    rdfs:label "Impact Assessment" ;
+    rdfs:comment "Assessing the impact of proposed legislation" ;
+    :isCountrySpecific false .
+
+:MediaOutreach a :AdvocacyProcess ;
+    rdfs:label "Media Outreach" ;
+    rdfs:comment "Engaging media to support advocacy goals" ;
+    :isCountrySpecific false .
+
+#################################################################
+# Compliance Process (International)
+#################################################################
+
+:ComplianceProcess a owl:Class ;
+    rdfs:subClassOf cac-core:Event ;
+    rdfs:label "Compliance Process" ;
+    rdfs:comment "Process for ensuring legal compliance" ;
+    :isCountrySpecific false .
+
+:MandatoryReporting a :ComplianceProcess ;
+    rdfs:label "Mandatory Reporting" ;
+    rdfs:comment "Required reporting to authorities" ;
+    :isCountrySpecific false .
+
+:AnnualReview a :ComplianceProcess ;
+    rdfs:label "Annual Review" ;
+    rdfs:comment "Annual compliance review process" ;
+    :isCountrySpecific false .
+
+:GrantCompliance a :ComplianceProcess ;
+    rdfs:label "Grant Compliance" ;
+    rdfs:comment "Compliance with grant requirements" ;
+    :isCountrySpecific false .
+
+:StatutoryReporting a :ComplianceProcess ;
+    rdfs:label "Statutory Reporting" ;
+    rdfs:comment "Reporting required by statute" ;
+    :isCountrySpecific false .
+
+:AuditProcess a :ComplianceProcess ;
+    rdfs:label "Audit Process" ;
+    rdfs:comment "Audit for compliance verification" ;
+    :isCountrySpecific false .
+
+:CertificationProcess a :ComplianceProcess ;
+    rdfs:label "Certification Process" ;
+    rdfs:comment "Process for obtaining compliance certification" ;
+    :isCountrySpecific false .
+
+#################################################################
+# Legal Harmonization (Aligned with Project VIC CAC Ontology)
+#################################################################
+
+:LegalHarmonization a owl:Class ;
+    rdfs:subClassOf cac-core:Situation ;
+    rdfs:label "Legal Harmonization" ;
+    rdfs:comment "Alignment of laws across jurisdictions to ensure consistent protections" ;
+    owl:equivalentClass cac:PolicyHarmonization ;
+    :isCountrySpecific false .
+
+:ModelLaw a owl:Class ;
+    rdfs:label "Model Law" ;
+    rdfs:comment "Template legislation designed for adoption across jurisdictions" ;
+    rdfs:subClassOf cac:CSAMModelLaw, gufo:Norm ;
+    :isCountrySpecific false .
+
+:JurisdictionalGap a owl:Class ;
+    rdfs:label "Jurisdictional Gap" ;
+    rdfs:comment "Gap in legal protections within a jurisdiction" ;
+    rdfs:subClassOf cac:LegalFrameworkGap, cac-core:Situation ;
+    :isCountrySpecific false .
+
+:HarmonizationProgress a owl:Class ;
+    rdfs:subClassOf cac-core:Situation ;
+    rdfs:label "Harmonization Progress" ;
+    rdfs:comment "Progress toward legal harmonization" ;
+    owl:equivalentClass cac:HarmonizationProgress ;
+    :isCountrySpecific false .
+
+:HarmonizationInitiative a owl:Class ;
+    rdfs:subClassOf cac-core:Situation ;
+    rdfs:label "Harmonization Initiative" ;
+    rdfs:comment "Organized effort to harmonize laws across jurisdictions" ;
+    :isCountrySpecific false .
+
+:Jurisdiction a owl:Class ;
+    rdfs:subClassOf cac-core:PlaceLikeEntity, uco-location:Location ;
+    rdfs:label "Jurisdiction" ;
+    rdfs:comment "Legal jurisdiction with authority to enact laws" ;
+    :isCountrySpecific false .
+
+:Statute a owl:Class ;
+    rdfs:subClassOf gufo:Norm ;
+    rdfs:label "Statute" ;
+    rdfs:comment "Enacted law within a jurisdiction" ;
+    :isCountrySpecific false .
+
+#################################################################
+# Child Safety Law Types (International)
+#################################################################
+
+:ChildSafetyLawType a owl:Class ;
+    rdfs:subClassOf cac-core:EnduringEntity ;
+    rdfs:label "Child Safety Law Type" ;
+    rdfs:comment "Category of laws protecting children - applicable across jurisdictions" ;
+    :isCountrySpecific false .
+
+:CSAMLaw a :ChildSafetyLawType ;
+    rdfs:label "CSAM Criminalization Law" ;
+    rdfs:comment "Laws criminalizing child sexual abuse material" ;
+    rdfs:subClassOf cac:CSAMCriminalization ;
+    :isCountrySpecific false .
+
+:OnlineGroomingLaw a :ChildSafetyLawType ;
+    rdfs:label "Online Grooming Law" ;
+    rdfs:comment "Laws addressing online grooming of children" ;
+    owl:equivalentClass cac:OnlineGroomingLaw ;
+    :isCountrySpecific false .
+
+:ChildTraffickingLaw a :ChildSafetyLawType ;
+    rdfs:label "Child Trafficking Law" ;
+    rdfs:comment "Laws addressing child trafficking" ;
+    owl:equivalentClass cac:ChildTraffickingLaw ;
+    :isCountrySpecific false .
+
+:MandatoryReportingLaw a :ChildSafetyLawType ;
+    rdfs:label "Mandatory Reporting Law" ;
+    rdfs:comment "Laws requiring reporting of child abuse" ;
+    owl:equivalentClass cac:MandatoryReportingLaw ;
+    :isCountrySpecific false .
+
+:VictimProtectionLaw a :ChildSafetyLawType ;
+    rdfs:label "Victim Protection Law" ;
+    rdfs:comment "Laws protecting child victims" ;
+    owl:equivalentClass cac:VictimProtectionLaw ;
+    :isCountrySpecific false .
+
+:SextortionLaw a :ChildSafetyLawType ;
+    rdfs:label "Sextortion Law" ;
+    rdfs:comment "Laws addressing sextortion of children" ;
+    :isCountrySpecific false .
+
+:AgeVerificationLaw a :ChildSafetyLawType ;
+    rdfs:label "Age Verification Law" ;
+    rdfs:comment "Laws requiring age verification for online services" ;
+    :isCountrySpecific false .
+
+:PlatformAccountabilityLaw a :ChildSafetyLawType ;
+    rdfs:label "Platform Accountability Law" ;
+    rdfs:comment "Laws holding online platforms accountable for child safety" ;
+    :isCountrySpecific false .
+
+:OnlineSafetyLaw a :ChildSafetyLawType ;
+    rdfs:label "Online Safety Law" ;
+    rdfs:comment "General laws addressing online child safety" ;
+    :isCountrySpecific false .
+
+:ChildExploitationLaw a :ChildSafetyLawType ;
+    rdfs:label "Child Exploitation Law" ;
+    rdfs:comment "Laws addressing child exploitation" ;
+    :isCountrySpecific false .
+
+:DataProtectionForMinorsLaw a :ChildSafetyLawType ;
+    rdfs:label "Data Protection for Minors Law" ;
+    rdfs:comment "Laws protecting children's personal data" ;
+    :isCountrySpecific false .
+
+#################################################################
+# U.S. State-Federal Alignment Properties (USA-Specific)
+#################################################################
+
+:usStateFederalHarmonization a owl:DatatypeProperty ;
+    rdfs:label "U.S. State-Federal Harmonization Level" ;
+    rdfs:domain :Jurisdiction ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Values: full, partial, none. Specific to U.S. state/federal alignment." ;
+    :jurisdictionScope "US" ;
+    :isCountrySpecific true .
+
+:implementsUSModelLaw a owl:ObjectProperty ;
+    rdfs:label "Implements U.S. Model Law" ;
+    rdfs:domain :Statute ;
+    rdfs:range :ModelLaw ;
+    rdfs:comment "U.S. state law implementing a model law (e.g., NCSL model)" ;
+    :jurisdictionScope "US" ;
+    :isCountrySpecific true .
+
+:alignedWithFederalLaw a owl:ObjectProperty ;
+    rdfs:label "Aligned With Federal Law" ;
+    rdfs:domain :Statute ;
+    rdfs:range :Statute ;
+    rdfs:comment "U.S. state law aligned with federal legislation" ;
+    :jurisdictionScope "US" ;
+    :isCountrySpecific true .
+
+#################################################################
+# International Harmonization Properties
+#################################################################
+
+:hasHarmonizationLevel a owl:DatatypeProperty ;
+    rdfs:label "Harmonization Level" ;
+    rdfs:domain :Jurisdiction ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Values: full, partial, none" ;
+    :isCountrySpecific false .
+
+:implementsModelLaw a owl:ObjectProperty ;
+    rdfs:label "Implements Model Law" ;
+    rdfs:domain :Statute ;
+    rdfs:range :ModelLaw ;
+    rdfs:comment "Links a statute to a model law it implements" ;
+    :isCountrySpecific false .
+
+:hasLegalGap a owl:ObjectProperty ;
+    rdfs:label "Has Legal Gap" ;
+    rdfs:domain :Jurisdiction ;
+    rdfs:range :JurisdictionalGap ;
+    rdfs:comment "Links a jurisdiction to legal gaps it has" ;
+    :isCountrySpecific false .
+
+:gapSeverity a owl:DatatypeProperty ;
+    rdfs:label "Gap Severity" ;
+    rdfs:domain :JurisdictionalGap ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "1-5 scale of severity" ;
+    :isCountrySpecific false .
+
+:gapType a owl:DatatypeProperty ;
+    rdfs:label "Gap Type" ;
+    rdfs:domain :JurisdictionalGap ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Type of legal gap (e.g., missing_law, weak_enforcement, outdated)" ;
+    :isCountrySpecific false .
+
+:harmonizedWith a owl:ObjectProperty ;
+    rdfs:label "Harmonized With" ;
+    rdfs:domain :Statute ;
+    rdfs:range :Statute ;
+    rdfs:comment "Links laws that are harmonized across jurisdictions" ;
+    :isCountrySpecific false .
+
+:addressesGap a owl:ObjectProperty ;
+    rdfs:label "Addresses Gap" ;
+    rdfs:domain :Statute ;
+    rdfs:range :JurisdictionalGap ;
+    rdfs:comment "Links a statute to the legal gap it addresses" ;
+    :isCountrySpecific false .
+
+#################################################################
+# Compliance Metrics (Aligned with Project VIC)
+#################################################################
+
+:ComplianceMetric a owl:Class ;
+    rdfs:subClassOf gufo:Quality ;
+    rdfs:label "Compliance Metric" ;
+    rdfs:comment "Metric for measuring legal compliance" ;
+    owl:equivalentClass cac:ComplianceMetrics ;
+    :isCountrySpecific false .
+
+:MinimumStandard a owl:Class ;
+    rdfs:subClassOf gufo:Norm ;
+    rdfs:label "Minimum Standard" ;
+    rdfs:comment "Minimum legal standard for child protection" ;
+    owl:equivalentClass cac:MinimumStandard ;
+    :isCountrySpecific false .
+
+:hasComplianceScore a owl:DatatypeProperty ;
+    rdfs:label "Compliance Score" ;
+    rdfs:domain :Jurisdiction ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Numerical compliance score" ;
+    :isCountrySpecific false .
+
+:assessedAgainst a owl:ObjectProperty ;
+    rdfs:label "Assessed Against" ;
+    rdfs:domain :Jurisdiction ;
+    rdfs:range :MinimumStandard ;
+    rdfs:comment "Links jurisdiction to the standard it was assessed against" ;
+    :isCountrySpecific false .
+
+:meetsStandard a owl:DatatypeProperty ;
+    rdfs:label "Meets Standard" ;
+    rdfs:domain :Jurisdiction ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Whether jurisdiction meets the minimum standard" ;
+    :isCountrySpecific false .
+
+:complianceDate a owl:DatatypeProperty ;
+    rdfs:label "Compliance Date" ;
+    rdfs:domain :Jurisdiction ;
+    rdfs:range xsd:date ;
+    rdfs:comment "Date of compliance assessment" ;
+    :isCountrySpecific false .
+
+#################################################################
+# Jurisdiction Properties
+#################################################################
+
+:jurisdictionType a owl:DatatypeProperty ;
+    rdfs:label "Jurisdiction Type" ;
+    rdfs:domain :Jurisdiction ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Values: federal, state, territory, local, national, regional" ;
+    :isCountrySpecific false .
+
+:hasStatute a owl:ObjectProperty ;
+    rdfs:label "Has Statute" ;
+    rdfs:domain :Jurisdiction ;
+    rdfs:range :Statute ;
+    rdfs:comment "Links a jurisdiction to its enacted statutes" ;
+    :isCountrySpecific false .
+
+:hasLawType a owl:ObjectProperty ;
+    rdfs:label "Has Law Type" ;
+    rdfs:domain :Jurisdiction ;
+    rdfs:range :ChildSafetyLawType ;
+    rdfs:comment "Links a jurisdiction to child safety law types it has enacted" ;
+    :isCountrySpecific false .
+
+:parentJurisdiction a owl:ObjectProperty ;
+    rdfs:label "Parent Jurisdiction" ;
+    rdfs:domain :Jurisdiction ;
+    rdfs:range :Jurisdiction ;
+    rdfs:comment "Links a jurisdiction to its parent (e.g., state to federal)" ;
+    :isCountrySpecific false .
+
+#################################################################
+# Correspondence and Advocacy Links
+#################################################################
+
+:advocatesFor a owl:ObjectProperty ;
+    rdfs:label "Advocates For" ;
+    rdfs:domain cac:Actor ;
+    rdfs:range :LegislativeInstrument ;
+    rdfs:comment "Links an actor to legislation they advocate for" ;
+    :isCountrySpecific false .
+
+:providesTestimony a owl:ObjectProperty ;
+    rdfs:label "Provides Testimony" ;
+    rdfs:domain cac:Actor ;
+    rdfs:range :LegislativeInstrument ;
+    rdfs:comment "Links an actor to legislation they testified about" ;
+    :isCountrySpecific false .
+
+:correspondsAbout a owl:ObjectProperty ;
+    rdfs:label "Corresponds About" ;
+    rdfs:domain :Correspondence ;
+    rdfs:range :LegislativeInstrument ;
+    rdfs:comment "Links correspondence to legislation it concerns" ;
+    :isCountrySpecific false .
+
+:Correspondence a owl:Class ;
+    rdfs:subClassOf cac-core:Artifact ;
+    rdfs:label "Correspondence" ;
+    rdfs:comment "Communication between actors regarding legislation" ;
+    :isCountrySpecific false .
+
+:LegislativeInstrument a owl:Class ;
+    rdfs:subClassOf cac-core:Artifact ;
+    rdfs:label "Legislative Instrument" ;
+    rdfs:comment "A bill, resolution, or other legislative document" ;
+    :isCountrySpecific false .
+
+#################################################################
+# Process Properties
+#################################################################
+
+:involvesProcess a owl:ObjectProperty ;
+    rdfs:label "Involves Process" ;
+    rdfs:domain :LegislativeInstrument ;
+    rdfs:range :LegislativeProcess ;
+    rdfs:comment "Links legislation to the process it is going through" ;
+    :isCountrySpecific false .
+
+:processStatus a owl:DatatypeProperty ;
+    rdfs:label "Process Status" ;
+    rdfs:domain :LegislativeProcess ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Values: pending, in_progress, completed, failed" ;
+    :isCountrySpecific false .
+
+:processDate a owl:DatatypeProperty ;
+    rdfs:label "Process Date" ;
+    rdfs:domain :LegislativeProcess ;
+    rdfs:range xsd:date ;
+    rdfs:comment "Date the process step occurred" ;
+    :isCountrySpecific false .

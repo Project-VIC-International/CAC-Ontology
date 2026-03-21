@@ -3,28 +3,26 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
-@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
 @prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
-@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix cacontology-coord: <https://cacontology.projectvic.org/investigation-coordination#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/investigation-coordination/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/investigation-coordination/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Investigation Coordination Ontology"@en ;
-    rdfs:comment "Comprehensive ontology for modeling investigation coordination processes, information sharing, resource sharing, communication protocols, and inter-agency collaboration within ICAC investigations. Enhanced with gUFO (gentle Unified Foundational Ontology) integration for improved semantic precision and validation capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/investigation-coordination/2.12.0> ;
+    rdfs:comment "Comprehensive ontology for modeling investigation coordination processes, information sharing, resource sharing, communication protocols, and inter-agency collaboration within CAC investigations. Enhanced with gUFO (gentle Unified Foundational Ontology) integration for improved semantic precision and validation capabilities."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/investigation-coordination/3.0.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-01-27"^^xsd:date ;
     dcterms:modified "2026-02-16"^^xsd:date ;
-    owl:versionInfo "2.12.0" ;
+    owl:versionInfo "3.0.0" ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
-                <https://ontology.caseontology.org/case> ,
+                <https://ontology.caseontology.org/case/> ,
+                <https://cacontology.projectvic.org/core/3.0.0> ,
                 <http://purl.org/nemo/gufo#> .
 
 # =============================================================================
@@ -34,7 +32,7 @@
 cacontology-coord:InvestigationCoordination rdf:type owl:Class ;
     rdfs:label "Investigation Coordination"@en ;
     rdfs:comment "Comprehensive framework for coordinating investigations across multiple agencies, jurisdictions, and organizational boundaries."@en ;
-    rdfs:subClassOf uco-action:Action, gufo:Event ;
+    rdfs:subClassOf cac-core:CoordinationEvent ;
     rdf:type gufo:EventType .
 
 cacontology-coord:JointInvestigation rdf:type owl:Class ;
@@ -70,7 +68,7 @@ cacontology-coord:MultiAgencyCoordination rdf:type owl:Class ;
 cacontology-coord:MissingChildRescueOperation rdf:type owl:Class ;
     rdfs:label "Missing Child Rescue Operation"@en ;
     rdfs:comment "Time-boxed, multi-party operation focused on locating missing children/teens at risk of endangerment, exploitation, or harm, and connecting them with appropriate services and supports. Modeled as an investigative action and gUFO Event."@en ;
-    rdfs:subClassOf case-investigation:InvestigativeAction, uco-action:Action, gufo:Event ;
+    rdfs:subClassOf case-investigation:InvestigativeAction, cac-core:InvestigativeAction ;
     dcterms:source "National Child Protection Task Force (NCPTF) press release, 2026-02-13 (Westchester Missing Child Rescue Operation)."@en ;
     rdfs:seeAlso <https://ncptf.org/westchester-missing-child-rescue-operation-results-in-successful-location-of-44-children-and-teens/> .
 
@@ -81,7 +79,7 @@ cacontology-coord:MissingChildRescueOperation rdf:type owl:Class ;
 cacontology-coord:InformationSharing rdf:type owl:Class ;
     rdfs:label "Information Sharing"@en ;
     rdfs:comment "Systematic sharing of information between agencies including intelligence, evidence, case data, and technical information."@en ;
-    rdfs:subClassOf uco-action:Action, gufo:Event ;
+    rdfs:subClassOf cac-core:CoordinationEvent ;
     rdf:type gufo:EventType .
 
 cacontology-coord:IntelligenceSharing rdf:type owl:Class ;
@@ -127,7 +125,7 @@ cacontology-coord:TechnicalDataSharing rdf:type owl:Class ;
 cacontology-coord:ResourceSharing rdf:type owl:Class ;
     rdfs:label "Resource Sharing"@en ;
     rdfs:comment "Systematic sharing of resources between agencies including personnel, equipment, facilities, and expertise."@en ;
-    rdfs:subClassOf uco-action:Action, gufo:Event ;
+    rdfs:subClassOf cac-core:CoordinationEvent ;
     rdf:type gufo:EventType .
 
 cacontology-coord:PersonnelSharing rdf:type owl:Class ;
@@ -173,7 +171,7 @@ cacontology-coord:FundingSharing rdf:type owl:Class ;
 cacontology-coord:CommunicationProtocol rdf:type owl:Class ;
     rdfs:label "Communication Protocol"@en ;
     rdfs:comment "Formal protocols governing communication between agencies including channels, frequencies, and procedures."@en ;
-    rdfs:subClassOf uco-core:UcoObject, gufo:Situation ;
+    rdfs:subClassOf uco-core:UcoObject, cac-core:Situation ;
     rdf:type gufo:SituationType .
 
 cacontology-coord:FormalCommunicationChannel rdf:type owl:Class ;
@@ -219,7 +217,7 @@ cacontology-coord:LiaisonCommunicationChannel rdf:type owl:Class ;
 cacontology-coord:CoordinationAgreement rdf:type owl:Class ;
     rdfs:label "Coordination Agreement"@en ;
     rdfs:comment "Formal agreements governing coordination between agencies including MOUs, MOAs, and operational agreements."@en ;
-    rdfs:subClassOf uco-core:UcoObject, gufo:Situation ;
+    rdfs:subClassOf uco-core:UcoObject, cac-core:Situation ;
     rdf:type gufo:SituationType .
 
 cacontology-coord:MemorandumOfUnderstanding rdf:type owl:Class ;
@@ -265,7 +263,7 @@ cacontology-coord:JointOperationsPlan rdf:type owl:Class ;
 cacontology-coord:LiaisonOfficer rdf:type owl:Class ;
     rdfs:label "Liaison Officer"@en ;
     rdfs:comment "Designated officer responsible for maintaining communication and coordination between agencies."@en ;
-    rdfs:subClassOf uco-role:Role ;
+    rdfs:subClassOf uco-role:Role , cac-core:Role ;
     rdf:type gufo:Role .
 
 cacontology-coord:PrimaryLiaison rdf:type owl:Class ;
@@ -311,7 +309,7 @@ cacontology-coord:OperationalLiaison rdf:type owl:Class ;
 cacontology-coord:CoordinationMetrics rdf:type owl:Class ;
     rdfs:label "Coordination Metrics"@en ;
     rdfs:comment "Performance metrics for measuring effectiveness and efficiency of inter-agency coordination."@en ;
-    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdfs:subClassOf uco-core:UcoObject, cac-core:AssessmentResult ;
     rdf:type gufo:Kind .
 
 cacontology-coord:ResponseTimeMetrics rdf:type owl:Class ;

@@ -1,6 +1,6 @@
 # CAC Ontology Docker Development Environment
 
-This Docker Compose environment provides a comprehensive development and validation setup for the CAC Ontology Family with 23 specialized modules.
+This Docker Compose environment provides a comprehensive development and validation setup for the CAC Ontology Family with 35+ specialized modules (including spine and bridge files).
 
 ## Services Overview
 
@@ -8,7 +8,7 @@ This Docker Compose environment provides a comprehensive development and validat
 - **Port**: 3030
 - **Purpose**: SPARQL endpoint and triple store
 - **Features**:
-  - Loads all 23 core ontology modules automatically
+  - Loads all 35+ core ontology modules (including spine and bridge) automatically
   - 4GB heap size for handling large datasets
   - Web interface at http://localhost:3030
   - Dataset name: `/CAC`
@@ -65,12 +65,12 @@ docker-compose logs pyshacl
 The pySHACL service validates examples in organized categories:
 
 ### Core Ontology Validation
-- `hotlines-core.ttl` against `hotlines-core-shapes.ttl`
+- `cacontology-hotlines.ttl` against `cacontology-hotlines-shapes.ttl`
 - `cacontology-core.ttl` against `cacontology-core-shapes.ttl`
 - `cacontology-forensics.ttl` against `cacontology-forensics-shapes.ttl`
-- `cacontology-educational-exploitation.ttl` against `cacontology-educational-shapes.ttl`
+- `cacontology-educational-exploitation.ttl` against `cacontology-educational-exploitation-shapes.ttl`
 - `cacontology-sex-trafficking.ttl` against `cacontology-sex-trafficking-shapes.ttl`
-- `cacontology-temporal-gufo.ttl` against `cacontology-temporal-gufo-shapes.ttl`
+- `cacontology-temporal.ttl` against `cacontology-temporal-shapes.ttl`
 - `cacontology-athletic-exploitation.ttl` against `cacontology-athletic-exploitation-shapes.ttl`
 - `cacontology-production.ttl` against `cacontology-production-shapes.ttl`
 - `cacontology-custodial.ttl` against `cacontology-custodial-shapes.ttl`
@@ -102,7 +102,7 @@ docker exec -it cacontology_robot bash
 robot validate *.ttl
 
 # Merge ontologies
-robot merge --input ontology/cacontology-core.ttl --input ontology/cacontology-hotlines-core.ttl --output merged.ttl
+robot merge --input ontology/cacontology-core.ttl --input ontology/cacontology-hotlines.ttl --output merged.ttl
 
 # Run reasoning
 robot reason --input ontology/cacontology-core.ttl --reasoner hermit
@@ -138,11 +138,11 @@ open http://localhost:7200
 
 ## Loaded Ontology Modules
 
-The Fuseki service automatically loads all 23 core modules:
+The Fuseki service automatically loads all 35+ core modules (including spine and bridge):
 
 ### Core Framework (3 modules)
 - `cacontology-core.ttl`
-- `hotlines-core.ttl`
+- `cacontology-hotlines.ttl`
 - `cacontology-us-ncmec.ttl`
 
 ### International & Global (4 modules)
@@ -174,14 +174,14 @@ The Fuseki service automatically loads all 23 core modules:
 ### Victim Services & Legal (5 modules)
 - `cacontology-victim-impact.ttl`
 - `cacontology-taskforce.ttl`
-- `cacontology-sentencing.ttl`
+- `cacontology-legal-outcomes.ttl`
 - `cacontology-specialized-units.ttl`
 - `cacontology-sex-offender-registry.ttl`
 
 ### Additional Modules
 - `cacontology-asset-forfeiture.ttl`
 - `cacontology-educational-exploitation.ttl`
-- `cacontology-ai-generated-content.ttl`
+- `cacontology-ai-csam.ttl`
 - `cacontology-platform-infrastructure.ttl`
 
 ## Development Workflow

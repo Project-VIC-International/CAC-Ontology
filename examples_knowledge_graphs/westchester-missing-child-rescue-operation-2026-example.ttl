@@ -14,6 +14,7 @@
 @prefix cacontology-coord: <https://cacontology.projectvic.org/investigation-coordination#> .
 
 @prefix cacontology-usa-leg: <https://cacontology.projectvic.org/usa-legislative#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 
 @prefix gufo: <http://purl.org/nemo/gufo#> .
 
@@ -22,7 +23,7 @@
 # =============================================================================
 # CASE EXAMPLE: Westchester Missing Child Rescue Operation (NCPTF/DCJS/OCFS)
 # Source: https://ncptf.org/westchester-missing-child-rescue-operation-results-in-successful-location-of-44-children-and-teens/
-# Target: CAC Ontology v2.8.x+ (investigation coordination module enhancements)
+# Target: CAC Ontology v3.0.0 (investigation coordination module enhancements)
 # =============================================================================
 
 # =============================================================================
@@ -103,7 +104,7 @@ ex:secure_wifi_network a uco-core:UcoObject ;
   rdfs:label "Secure Wi-Fi network (command center enablement)"@en ;
   uco-core:description "Mission-critical secure Wi-Fi network enabling command center communications (article cites Verizon Frontline support)."@en .
 
-ex:westchester_operation a cacontology-coord:MissingChildRescueOperation, case-investigation:InvestigativeAction, gufo:Event ;
+ex:westchester_operation a cacontology-coord:MissingChildRescueOperation, case-investigation:InvestigativeAction ;
   rdfs:label "Westchester Missing Child Rescue Operation (3-day operation)"@en ;
   uco-core:description "Three-day operation to explore new leads, review case notes, and leverage technology to locate missing children/teens at risk of endangerment, exploitation, or harm; article reports 43 located via the operation (and 46 located as of Feb 14, 2026 noon) with additional cases in progress."@en ;
   cacontology-coord:childrenLocatedCount "43"^^xsd:nonNegativeInteger ;

@@ -3,33 +3,31 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
-@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
 @prefix investigation: <https://ontology.caseontology.org/case/investigation/> .
-@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix cacontology-physical: <https://cacontology.projectvic.org/physical#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/physical/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/physical/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Physical Evidence & Procurement Ontology with gUFO Integration"@en ;
     rdfs:comment "An ontology for representing physical evidence, criminal procurement patterns, and abuse facilitation items in Internet Crimes Against Children investigations, extending UCO and CASE with comprehensive gUFO (gentle Unified Foundational Ontology) integration for enhanced semantic precision and quality assessment, and CASE Investigation ontology for evidence provenance tracking."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/physical/2.12.0> ;
-    owl:versionInfo "2.12.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/physical/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
     dcterms:modified "2026-01-01"^^xsd:date ;
-    owl:imports <https://ontology.unifiedcyberontology.org/uco/core> ,
-                <https://ontology.unifiedcyberontology.org/uco/identity> ,
-                <https://ontology.unifiedcyberontology.org/uco/observable> ,
-                <https://ontology.unifiedcyberontology.org/uco/action> ,
-                <https://ontology.unifiedcyberontology.org/uco/location> ,
+    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
+                <https://ontology.unifiedcyberontology.org/uco/identity/> ,
+                <https://ontology.unifiedcyberontology.org/uco/observable/> ,
+                <https://ontology.unifiedcyberontology.org/uco/action/> ,
+                <https://ontology.unifiedcyberontology.org/uco/location/> ,
                 <https://ontology.caseontology.org/case/investigation/> ,
-                <https://cacontology.projectvic.org/2.12.0> ,
+                <https://cacontology.projectvic.org/3.0.0> ,
+                <https://cacontology.projectvic.org/core/3.0.0> ,
                 <http://purl.org/nemo/gufo#> .
 
 # =============================================================================
@@ -38,9 +36,9 @@
 
 cacontology-physical:PhysicalEvidence rdf:type owl:Class ;
     rdfs:label "Physical Evidence"@en ;
-    rdfs:comment "Tangible items collected as evidence in ICAC investigations (gUFO Object)."@en ;
+    rdfs:comment "Tangible items collected as evidence in CAC investigations (gUFO Object)."@en ;
     rdfs:subClassOf uco-observable:ObservableObject ,
-                    gufo:Object .
+                    cac-core:Artifact .
 
 cacontology-physical:ComputerEquipment rdf:type owl:Class ;
     rdfs:label "Computer Equipment"@en ;
@@ -75,8 +73,7 @@ cacontology-physical:PersonalItem rdf:type owl:Class ;
 cacontology-physical:CriminalProcurement rdf:type owl:Class ;
     rdfs:label "Criminal Procurement"@en ;
     rdfs:comment "Action of acquiring items specifically for criminal purposes (gUFO Event)."@en ;
-    rdfs:subClassOf uco-action:Action ,
-                    gufo:Event .
+    rdfs:subClassOf cac-core:ExploitationEvent .
 
 cacontology-physical:OnlinePurchase rdf:type owl:Class ;
     rdfs:label "Online Purchase"@en ;
@@ -91,8 +88,7 @@ cacontology-physical:PhysicalPurchase rdf:type owl:Class ;
 cacontology-physical:ItemModification rdf:type owl:Class ;
     rdfs:label "Item Modification"@en ;
     rdfs:comment "Alteration or customization of items to facilitate criminal activity (gUFO Event)."@en ;
-    rdfs:subClassOf uco-action:Action ,
-                    gufo:Event .
+    rdfs:subClassOf cac-core:ExploitationEvent .
 
 # =============================================================================
 # SPECIFIC EVIDENCE ITEM CLASSES
@@ -125,7 +121,7 @@ cacontology-physical:DisguiseItem rdf:type owl:Class ;
     rdfs:subClassOf cacontology-physical:PersonalItem .
 
 # =============================================================================
-# ABUSE FACILITATION EVIDENCE ITEMS (Miami ICAC Case)
+# ABUSE FACILITATION EVIDENCE ITEMS (Miami CAC Case)
 # Physical items found that corroborate criminal intent
 # =============================================================================
 
@@ -151,7 +147,7 @@ cacontology-physical:IntoxicatingSubstance rdf:type owl:Class ;
 cacontology-physical:ConsentToSearchAuthorization rdf:type owl:Class ;
     rdfs:label "Consent to Search Authorization"@en ;
     rdfs:comment "Authorization obtained through suspect's consent to search property or devices. Extends investigation:Authorization for CASE ontology integration."@en ;
-    rdfs:subClassOf investigation:Authorization, gufo:Object .
+    rdfs:subClassOf investigation:Authorization, cac-core:Artifact .
 
 cacontology-physical:VehicleConsentSearch rdf:type owl:Class ;
     rdfs:label "Vehicle Consent Search"@en ;
@@ -171,12 +167,12 @@ cacontology-physical:DeviceConsentSearch rdf:type owl:Class ;
 cacontology-physical:BodycamFootage rdf:type owl:Class ;
     rdfs:label "Bodycam Footage"@en ;
     rdfs:comment "Body camera footage from law enforcement officers. Used for suspect identification and evidence. IS a digital observable as it is a digital recording."@en ;
-    rdfs:subClassOf uco-observable:ObservableObject, gufo:Object .
+    rdfs:subClassOf uco-observable:ObservableObject, cac-core:Artifact .
 
 cacontology-physical:SurveillanceRecording rdf:type owl:Class ;
     rdfs:label "Surveillance Recording"@en ;
     rdfs:comment "Recording from surveillance or security cameras. Digital observable."@en ;
-    rdfs:subClassOf uco-observable:ObservableObject, gufo:Object .
+    rdfs:subClassOf uco-observable:ObservableObject, cac-core:Artifact .
 
 cacontology-physical:DashcamFootage rdf:type owl:Class ;
     rdfs:label "Dashcam Footage"@en ;
@@ -190,7 +186,7 @@ cacontology-physical:DashcamFootage rdf:type owl:Class ;
 cacontology-physical:PhysicalEvidenceProvenanceRecord rdf:type owl:Class ;
     rdfs:label "Physical Evidence Provenance Record"@en ;
     rdfs:comment "Provenance record tracking chain of custody and handling of physical evidence. Extends investigation:ProvenanceRecord for CASE ontology integration."@en ;
-    rdfs:subClassOf investigation:ProvenanceRecord, gufo:Object .
+    rdfs:subClassOf investigation:ProvenanceRecord, cac-core:Artifact .
 
 # =============================================================================
 # SEARCH AND SEIZURE CLASSES (extending UCO Action and gUFO Event)
@@ -199,20 +195,17 @@ cacontology-physical:PhysicalEvidenceProvenanceRecord rdf:type owl:Class ;
 cacontology-physical:PhysicalSearch rdf:type owl:Class ;
     rdfs:label "Physical Search"@en ;
     rdfs:comment "Law enforcement search of physical premises for evidence. Extends investigation:InvestigativeAction for CASE ontology integration (gUFO Event)."@en ;
-    rdfs:subClassOf investigation:InvestigativeAction ,
-                    gufo:Event .
+    rdfs:subClassOf cac-core:InvestigativeAction .
 
 cacontology-physical:EvidenceSeizure rdf:type owl:Class ;
     rdfs:label "Evidence Seizure"@en ;
     rdfs:comment "Legal seizure of physical items as evidence. Extends investigation:InvestigativeAction (gUFO Event)."@en ;
-    rdfs:subClassOf investigation:InvestigativeAction ,
-                    gufo:Event .
+    rdfs:subClassOf cac-core:InvestigativeAction .
 
 cacontology-physical:EvidenceCollectionAction rdf:type owl:Class ;
     rdfs:label "Evidence Collection Action"@en ;
     rdfs:comment "Action of collecting and documenting physical evidence during search. Extends investigation:InvestigativeAction (gUFO Event)."@en ;
-    rdfs:subClassOf investigation:InvestigativeAction ,
-                    gufo:Event .
+    rdfs:subClassOf cac-core:InvestigativeAction .
 
 cacontology-physical:VehicleSearch rdf:type owl:Class ;
     rdfs:label "Vehicle Search"@en ;
@@ -243,25 +236,25 @@ cacontology-physical:WorkplaceSearch rdf:type owl:Class ;
 # EVIDENCE LIFECYCLE PHASES (gUFO Phase - Anti-Rigid)
 # =============================================================================
 
-cacontology-physical:EvidenceCollectionPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-physical:EvidenceCollectionPhase rdf:type owl:Class ;
     rdfs:label "Evidence Collection Phase"@en ;
     rdfs:comment "Phase during which physical evidence is being collected (gUFO Phase - anti-rigid)."@en ;
-    rdfs:subClassOf cacontology-physical:PhysicalEvidence .
+    rdfs:subClassOf cac-core:Phase .
 
-cacontology-physical:EvidenceAnalysisPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-physical:EvidenceAnalysisPhase rdf:type owl:Class ;
     rdfs:label "Evidence Analysis Phase"@en ;
     rdfs:comment "Phase during which physical evidence is undergoing forensic analysis (gUFO Phase - anti-rigid)."@en ;
-    rdfs:subClassOf cacontology-physical:PhysicalEvidence .
+    rdfs:subClassOf cac-core:Phase .
 
-cacontology-physical:EvidenceStoragePhase rdf:type owl:Class, gufo:Phase ;
+cacontology-physical:EvidenceStoragePhase rdf:type owl:Class ;
     rdfs:label "Evidence Storage Phase"@en ;
     rdfs:comment "Phase during which physical evidence is in secure storage (gUFO Phase - anti-rigid)."@en ;
-    rdfs:subClassOf cacontology-physical:PhysicalEvidence .
+    rdfs:subClassOf cac-core:Phase .
 
-cacontology-physical:EvidenceDispositionPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-physical:EvidenceDispositionPhase rdf:type owl:Class ;
     rdfs:label "Evidence Disposition Phase"@en ;
     rdfs:comment "Phase during which evidence disposition is determined and executed (gUFO Phase - anti-rigid)."@en ;
-    rdfs:subClassOf cacontology-physical:PhysicalEvidence .
+    rdfs:subClassOf cac-core:Phase .
 
 # =============================================================================
 # FORENSIC ANALYSIS ROLES (gUFO Role - Anti-Rigid)
@@ -269,18 +262,18 @@ cacontology-physical:EvidenceDispositionPhase rdf:type owl:Class, gufo:Phase ;
 
 cacontology-physical:ForensicAnalystRole rdf:type owl:Class, gufo:Role ;
     rdfs:label "Forensic Analyst Role"@en ;
-    rdfs:comment "Role of person conducting forensic analysis of physical evidence (gUFO Role - anti-rigid)."@en ;
-    rdfs:subClassOf uco-identity:Person .
+    rdfs:comment "Role of person conducting forensic analysis of physical evidence (gUFO Role - anti-rigid). Roles are non-rigid capacities; persons play roles via holdsRole."@en ;
+    rdfs:subClassOf cac-core:Role .
 
 cacontology-physical:EvidenceCustodianRole rdf:type owl:Class, gufo:Role ;
     rdfs:label "Evidence Custodian Role"@en ;
-    rdfs:comment "Role of person responsible for evidence custody and chain of custody (gUFO Role - anti-rigid)."@en ;
-    rdfs:subClassOf uco-identity:Person .
+    rdfs:comment "Role of person responsible for evidence custody and chain of custody (gUFO Role - anti-rigid). Roles are non-rigid capacities; persons play roles via holdsRole."@en ;
+    rdfs:subClassOf cac-core:Role .
 
 cacontology-physical:SearchOfficerRole rdf:type owl:Class, gufo:Role ;
     rdfs:label "Search Officer Role"@en ;
-    rdfs:comment "Role of law enforcement officer conducting physical searches (gUFO Role - anti-rigid)."@en ;
-    rdfs:subClassOf uco-identity:Person .
+    rdfs:comment "Role of law enforcement officer conducting physical searches (gUFO Role - anti-rigid). Roles are non-rigid capacities; persons play roles via holdsRole."@en ;
+    rdfs:subClassOf cac-core:Role .
 
 # =============================================================================
 # EVIDENCE SITUATIONS (gUFO Situation)
@@ -289,17 +282,17 @@ cacontology-physical:SearchOfficerRole rdf:type owl:Class, gufo:Role ;
 cacontology-physical:EvidenceContaminationSituation rdf:type owl:Class ;
     rdfs:label "Evidence Contamination Situation"@en ;
     rdfs:comment "Situation where physical evidence has been contaminated or compromised (gUFO Situation)."@en ;
-    rdfs:subClassOf gufo:Situation .
+    rdfs:subClassOf cac-core:Situation .
 
 cacontology-physical:ChainOfCustodyBreachSituation rdf:type owl:Class ;
     rdfs:label "Chain of Custody Breach Situation"@en ;
     rdfs:comment "Situation where the chain of custody for evidence has been breached (gUFO Situation)."@en ;
-    rdfs:subClassOf gufo:Situation .
+    rdfs:subClassOf cac-core:Situation .
 
 cacontology-physical:EvidenceRecoverySituation rdf:type owl:Class ;
     rdfs:label "Evidence Recovery Situation"@en ;
     rdfs:comment "Situation involving the recovery of previously lost or missing evidence (gUFO Situation)."@en ;
-    rdfs:subClassOf gufo:Situation .
+    rdfs:subClassOf cac-core:Situation .
 
 # =============================================================================
 # gUFO TEMPORAL PROPERTIES
@@ -354,14 +347,14 @@ cacontology-physical:hasPhaseBeginPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has phase begin point"@en ;
     rdfs:comment "Temporal begin point for evidence phases (gUFO temporal property)."@en ;
     rdfs:subPropertyOf gufo:hasBeginPointInXSDDateTimeStamp ;
-    rdfs:domain gufo:Phase ;
+    rdfs:domain cac-core:Phase ;
     rdfs:range xsd:dateTimeStamp .
 
 cacontology-physical:hasPhaseEndPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has phase end point"@en ;
     rdfs:comment "Temporal end point for evidence phases (gUFO temporal property)."@en ;
     rdfs:subPropertyOf gufo:hasEndPointInXSDDateTimeStamp ;
-    rdfs:domain gufo:Phase ;
+    rdfs:domain cac-core:Phase ;
     rdfs:range xsd:dateTimeStamp .
 
 # Role Temporal Properties
@@ -369,14 +362,14 @@ cacontology-physical:hasRoleBeginPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has role begin point"@en ;
     rdfs:comment "Temporal begin point for forensic roles (gUFO temporal property)."@en ;
     rdfs:subPropertyOf gufo:hasBeginPointInXSDDateTimeStamp ;
-    rdfs:domain gufo:Role ;
+    rdfs:domain cac-core:Role ;
     rdfs:range xsd:dateTimeStamp .
 
 cacontology-physical:hasRoleEndPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has role end point"@en ;
     rdfs:comment "Temporal end point for forensic roles (gUFO temporal property)."@en ;
     rdfs:subPropertyOf gufo:hasEndPointInXSDDateTimeStamp ;
-    rdfs:domain gufo:Role ;
+    rdfs:domain cac-core:Role ;
     rdfs:range xsd:dateTimeStamp .
 
 # =============================================================================
@@ -665,10 +658,10 @@ cacontology-physical:seizedDuring rdf:type owl:ObjectProperty ;
 
 cacontology-physical:containsItem rdf:type owl:ObjectProperty ;
     rdfs:label "contains item"@en ;
-    rdfs:comment "Indicates that one evidence item was found inside another (gUFO part-whole relationship)."@en ;
+    rdfs:comment "Indicates that one evidence item was found inside another (inverse of gUFO part-whole relationship)."@en ;
     rdfs:domain cacontology-physical:PhysicalEvidence ;
     rdfs:range cacontology-physical:PhysicalEvidence ;
-    rdfs:subPropertyOf gufo:isObjectProperPartOf .
+    owl:inverseOf gufo:isObjectProperPartOf .
 
 cacontology-physical:associatedWithSubject rdf:type owl:ObjectProperty ;
     rdfs:label "associated with subject"@en ;
@@ -766,7 +759,7 @@ cacontology-physical:usedForIdentification rdf:type owl:DatatypeProperty ;
 
 cacontology-physical:matchesSelfie rdf:type owl:DatatypeProperty ;
     rdfs:label "matches selfie"@en ;
-    rdfs:comment "Whether the bodycam footage was matched to selfies sent by suspect (as in Miami ICAC case)."@en ;
+    rdfs:comment "Whether the bodycam footage was matched to selfies sent by suspect (as in Miami CAC case)."@en ;
     rdfs:domain cacontology-physical:BodycamFootage ;
     rdfs:range xsd:boolean .
 
@@ -833,13 +826,13 @@ cacontology-physical:collectedDuring rdf:type owl:ObjectProperty ;
     rdfs:range cacontology-physical:EvidenceCollectionAction .
 
 # =============================================================================
-# SUSPECT VEHICLE EVIDENCE CLASSES (Miami ICAC Case)
-# Vehicles used by suspects in ICAC offenses
+# SUSPECT VEHICLE EVIDENCE CLASSES (Miami CAC Case)
+# Vehicles used by suspects in CAC offenses
 # =============================================================================
 
 cacontology-physical:SuspectVehicle rdf:type owl:Class ;
     rdfs:label "Suspect Vehicle"@en ;
-    rdfs:comment "Vehicle registered to or used by suspect in ICAC offense. Used for evidence tracking when suspect travels to meet alleged minor. Physical evidence item."@en ;
+    rdfs:comment "Vehicle registered to or used by suspect in CAC offense. Used for evidence tracking when suspect travels to meet alleged minor. Physical evidence item."@en ;
     rdfs:subClassOf cacontology-physical:PhysicalEvidence .
 
 # =============================================================================

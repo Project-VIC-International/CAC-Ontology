@@ -3,24 +3,22 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix uco-tool: <https://ontology.unifiedcyberontology.org/uco/tool/> .
 @prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
-@prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
-@prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-forensics: <https://cacontology.projectvic.org/forensics#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
-@prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/forensics/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/forensics/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Digital Forensics Ontology"@en ;
     rdfs:comment "An ontology for representing digital forensics concepts specific to Internet Crimes Against Children investigations, extending UCO and CASE with gUFO foundational ontology enhancements. This ontology provides forensic acquisition, chain of custody, evidence handling, and tool provenance capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/forensics/2.12.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/forensics/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
@@ -29,8 +27,9 @@
                 <https://ontology.unifiedcyberontology.org/uco/action/> ,
                 <https://ontology.unifiedcyberontology.org/uco/tool/> ,
                 <https://ontology.caseontology.org/case/> ,
-                <https://cacontology.projectvic.org/2.12.0> ,
-                <http://purl.org/nemo/gufo> .
+                <https://cacontology.projectvic.org/3.0.0> ,
+                <https://cacontology.projectvic.org/core/3.0.0> ,
+                <http://purl.org/nemo/gufo#> .
 
 # =============================================================================
 # FORENSIC TOOL CLASSES (extending UCO Tool with gUFO Object)
@@ -39,27 +38,27 @@
 cacontology-forensics:ForensicImagingTool rdf:type owl:Class ;
     rdfs:label "Forensic Imaging Tool"@en ;
     rdfs:comment "A tool specialized for creating forensic images of digital media using write-blocking and verification methods (e.g., FTK Imager, dd, Guymager, PALADIN)."@en ;
-    rdfs:subClassOf uco-tool:AnalyticTool, gufo:Object .
+    rdfs:subClassOf uco-tool:AnalyticTool, cac-core:DigitalSystemEntity .
 
 cacontology-forensics:MobileForensicTool rdf:type owl:Class ;
     rdfs:label "Mobile Forensic Tool"@en ;
     rdfs:comment "A tool specialized for mobile device forensics including logical and physical extraction (e.g., Cellebrite UFED, MSAB XRY, Oxygen Detective Suite)."@en ;
-    rdfs:subClassOf uco-tool:AnalyticTool, gufo:Object .
+    rdfs:subClassOf uco-tool:AnalyticTool, cac-core:DigitalSystemEntity .
 
 cacontology-forensics:NetworkForensicTool rdf:type owl:Class ;
     rdfs:label "Network Forensic Tool"@en ;
     rdfs:comment "A tool specialized for network traffic analysis and packet capture (e.g., Wireshark, NetworkMiner, Xplico)."@en ;
-    rdfs:subClassOf uco-tool:AnalyticTool, gufo:Object .
+    rdfs:subClassOf uco-tool:AnalyticTool, cac-core:DigitalSystemEntity .
 
 cacontology-forensics:MemoryForensicTool rdf:type owl:Class ;
     rdfs:label "Memory Forensic Tool"@en ;
     rdfs:comment "A tool specialized for analyzing volatile memory dumps (e.g., Volatility, Rekall, MAGNET RAM Capture)."@en ;
-    rdfs:subClassOf uco-tool:AnalyticTool, gufo:Object .
+    rdfs:subClassOf uco-tool:AnalyticTool, cac-core:DigitalSystemEntity .
 
 cacontology-forensics:HashingTool rdf:type owl:Class ;
     rdfs:label "Hashing Tool"@en ;
     rdfs:comment "A tool specialized for generating cryptographic hashes for evidence verification (e.g., hashdeep, md5deep, NIST NSRL)."@en ;
-    rdfs:subClassOf uco-tool:AnalyticTool, gufo:Object .
+    rdfs:subClassOf uco-tool:AnalyticTool, cac-core:DigitalSystemEntity .
 
 # =============================================================================
 # FORENSIC ACTION CLASSES (extending UCO Action with gUFO Event)
@@ -68,33 +67,33 @@ cacontology-forensics:HashingTool rdf:type owl:Class ;
 cacontology-forensics:ForensicAcquisitionAction rdf:type owl:Class ;
     rdfs:label "Forensic Acquisition Action"@en ;
     rdfs:comment "The action of creating a forensically sound copy of digital evidence using write-blocking and verification procedures."@en ;
-    rdfs:subClassOf uco-action:Action, gufo:Event .
+    rdfs:subClassOf cac-core:InvestigativeAction .
 
 cacontology-forensics:ChainOfCustodyAction rdf:type owl:Class ;
     rdfs:label "Chain of Custody Action"@en ;
     rdfs:comment "An action that documents evidence handling, transfer, and custody maintaining legal admissibility."@en ;
-    rdfs:subClassOf uco-action:Action, gufo:Event .
+    rdfs:subClassOf cac-core:InvestigativeAction .
 
 cacontology-forensics:EvidenceVerificationAction rdf:type owl:Class ;
     rdfs:label "Evidence Verification Action"@en ;
     rdfs:comment "The action of verifying evidence integrity using cryptographic hashes and comparison methods."@en ;
-    rdfs:subClassOf uco-action:Action, gufo:Event .
+    rdfs:subClassOf cac-core:InvestigativeAction .
 
 cacontology-forensics:TimelineAnalysisAction rdf:type owl:Class ;
     rdfs:label "Timeline Analysis Action"@en ;
     rdfs:comment "The action of creating chronological sequences of digital artifacts and events for investigation analysis."@en ;
-    rdfs:subClassOf uco-action:Action, gufo:Event .
+    rdfs:subClassOf cac-core:InvestigativeAction .
 
 cacontology-forensics:MetadataExtractionAction rdf:type owl:Class ;
     rdfs:label "Metadata Extraction Action"@en ;
     rdfs:comment "The action of extracting metadata from digital artifacts including EXIF, file system timestamps, and application metadata."@en ;
-    rdfs:subClassOf uco-action:Action, gufo:Event .
+    rdfs:subClassOf cac-core:InvestigativeAction .
 
 # Victim Identification Actions
 cacontology-forensics:VictimIdentificationProcess rdf:type owl:Class ;
     rdfs:label "Victim Identification Process"@en ;
     rdfs:comment "Systematic process for identifying child victims from seized images and videos during long-term investigations."@en ;
-    rdfs:subClassOf uco-action:Action, gufo:Event .
+    rdfs:subClassOf cac-core:InvestigativeAction .
 
 cacontology-forensics:ImageAnalysisForVictimID rdf:type owl:Class ;
     rdfs:label "Image Analysis for Victim Identification"@en ;
@@ -109,7 +108,7 @@ cacontology-forensics:CrossReferenceAnalysis rdf:type owl:Class ;
 cacontology-forensics:VictimRemovalAction rdf:type owl:Class ;
     rdfs:label "Victim Removal Action"@en ;
     rdfs:comment "Action taken to remove identified victims from further harm and exploitation."@en ;
-    rdfs:subClassOf uco-action:Action, gufo:Event .
+    rdfs:subClassOf cac-core:InvestigativeAction .
 
 cacontology-forensics:ExtendedInvestigationTimeline rdf:type owl:Class ;
     rdfs:label "Extended Investigation Timeline"@en ;
@@ -120,25 +119,25 @@ cacontology-forensics:ExtendedInvestigationTimeline rdf:type owl:Class ;
 # FORENSIC PHASES (gUFO Phase anti-rigid modeling)
 # =============================================================================
 
-cacontology-forensics:AcquisitionPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-forensics:AcquisitionPhase rdf:type owl:Class ;
     rdfs:label "Acquisition Phase"@en ;
     rdfs:comment "Phase involving forensic acquisition of digital evidence."@en ;
-    rdfs:subClassOf cacontology-forensics:ForensicAcquisitionAction .
+    rdfs:subClassOf cac-core:Phase .
 
-cacontology-forensics:AnalysisPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-forensics:AnalysisPhase rdf:type owl:Class ;
     rdfs:label "Analysis Phase"@en ;
     rdfs:comment "Phase involving detailed forensic analysis of acquired evidence."@en ;
-    rdfs:subClassOf cacontology-forensics:TimelineAnalysisAction .
+    rdfs:subClassOf cac-core:Phase .
 
-cacontology-forensics:ReportingPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-forensics:ReportingPhase rdf:type owl:Class ;
     rdfs:label "Reporting Phase"@en ;
     rdfs:comment "Phase involving preparation of forensic reports and findings."@en ;
-    rdfs:subClassOf uco-action:Action .
+    rdfs:subClassOf cac-core:Phase .
 
-cacontology-forensics:TestimonyPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-forensics:TestimonyPhase rdf:type owl:Class ;
     rdfs:label "Testimony Phase"@en ;
     rdfs:comment "Phase involving expert testimony and courtroom presentation."@en ;
-    rdfs:subClassOf uco-action:Action .
+    rdfs:subClassOf cac-core:Phase .
 
 # =============================================================================
 # FORENSIC ARTIFACT CLASSES (extending UCO Observable with gUFO Object)
@@ -147,27 +146,27 @@ cacontology-forensics:TestimonyPhase rdf:type owl:Class, gufo:Phase ;
 cacontology-forensics:ForensicImage rdf:type owl:Class ;
     rdfs:label "Forensic Image"@en ;
     rdfs:comment "A bit-for-bit copy of digital media created using forensically sound methods, maintaining evidence integrity."@en ;
-    rdfs:subClassOf uco-observable:Image, gufo:Object .
+    rdfs:subClassOf uco-observable:Image, cac-core:Artifact .
 
 cacontology-forensics:RecoveredFile rdf:type owl:Class ;
     rdfs:label "Recovered File"@en ;
     rdfs:comment "A file recovered from deleted or unallocated space on digital media through forensic analysis techniques."@en ;
-    rdfs:subClassOf uco-observable:File, gufo:Object .
+    rdfs:subClassOf uco-observable:File, cac-core:Artifact .
 
 cacontology-forensics:MemoryDump rdf:type owl:Class ;
     rdfs:label "Memory Dump"@en ;
     rdfs:comment "A snapshot of volatile system memory captured for forensic analysis."@en ;
-    rdfs:subClassOf uco-observable:ObservableObject, gufo:Object .
+    rdfs:subClassOf uco-observable:ObservableObject, cac-core:Artifact .
 
 cacontology-forensics:NetworkCapture rdf:type owl:Class ;
     rdfs:label "Network Capture"@en ;
     rdfs:comment "A capture of network traffic packets for forensic analysis."@en ;
-    rdfs:subClassOf uco-observable:ObservableObject, gufo:Object .
+    rdfs:subClassOf uco-observable:ObservableObject, cac-core:Artifact .
 
 cacontology-forensics:CustodyDocument rdf:type owl:Class ;
     rdfs:label "Custody Document"@en ;
     rdfs:comment "Documentation recording the handling and transfer of evidence maintaining chain of custody."@en ;
-    rdfs:subClassOf uco-observable:ObservableObject, gufo:Object .
+    rdfs:subClassOf uco-observable:ObservableObject, cac-core:Artifact .
 
 # =============================================================================
 # FORENSIC PROCESS ROLES (extending UCO Role with gUFO Role)
@@ -176,17 +175,17 @@ cacontology-forensics:CustodyDocument rdf:type owl:Class ;
 cacontology-forensics:ForensicExaminerRole rdf:type owl:Class, gufo:Role ;
     rdfs:label "Forensic Examiner Role"@en ;
     rdfs:comment "Role of a person conducting digital forensic examination and analysis."@en ;
-    rdfs:subClassOf uco-core:Role .
+    rdfs:subClassOf cac-core:Role .
 
 cacontology-forensics:EvidenceCustodianRole rdf:type owl:Class, gufo:Role ;
     rdfs:label "Evidence Custodian Role"@en ;
     rdfs:comment "Role of a person responsible for evidence custody and security."@en ;
-    rdfs:subClassOf uco-core:Role .
+    rdfs:subClassOf cac-core:Role .
 
 cacontology-forensics:VictimIdentificationSpecialist rdf:type owl:Class, gufo:Role ;
     rdfs:label "Victim Identification Specialist"@en ;
     rdfs:comment "Role of specialist focused on identifying child victims from digital evidence."@en ;
-    rdfs:subClassOf uco-core:Role .
+    rdfs:subClassOf cac-core:Role .
 
 # =============================================================================
 # gUFO TEMPORAL PROPERTIES
@@ -196,34 +195,34 @@ cacontology-forensics:hasForensicPhaseBeginPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has forensic phase begin point"@en ;
     rdfs:comment "Temporal begin point for forensic phase."@en ;
     rdfs:subPropertyOf gufo:hasBeginPointInXSDDateTimeStamp ;
-    rdfs:domain gufo:Phase ;
+    rdfs:domain cac-core:Phase ;
     rdfs:range xsd:dateTimeStamp .
 
 cacontology-forensics:hasForensicPhaseEndPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has forensic phase end point"@en ;
     rdfs:comment "Temporal end point for forensic phase."@en ;
     rdfs:subPropertyOf gufo:hasEndPointInXSDDateTimeStamp ;
-    rdfs:domain gufo:Phase ;
+    rdfs:domain cac-core:Phase ;
     rdfs:range xsd:dateTimeStamp .
 
 cacontology-forensics:hasRoleBeginPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has role begin point"@en ;
     rdfs:comment "Temporal begin point for forensic role."@en ;
     rdfs:subPropertyOf gufo:hasBeginPointInXSDDateTimeStamp ;
-    rdfs:domain gufo:Role ;
+    rdfs:domain cac-core:Role ;
     rdfs:range xsd:dateTimeStamp .
 
 cacontology-forensics:hasRoleEndPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has role end point"@en ;
     rdfs:comment "Temporal end point for forensic role."@en ;
     rdfs:subPropertyOf gufo:hasEndPointInXSDDateTimeStamp ;
-    rdfs:domain gufo:Role ;
+    rdfs:domain cac-core:Role ;
     rdfs:range xsd:dateTimeStamp .
 
 cacontology-forensics:forensicPhaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "forensic phase duration"@en ;
     rdfs:comment "Duration of forensic phase."@en ;
-    rdfs:domain gufo:Phase ;
+    rdfs:domain cac-core:Phase ;
     rdfs:range xsd:duration .
 
 # =============================================================================

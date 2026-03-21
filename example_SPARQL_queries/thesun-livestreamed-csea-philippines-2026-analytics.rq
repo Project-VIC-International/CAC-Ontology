@@ -10,7 +10,7 @@ PREFIX uco-types: <https://ontology.unifiedcyberontology.org/uco/types/>
 
 PREFIX cacontology-platforms: <https://cacontology.projectvic.org/platforms#>
 PREFIX cacontology-production: <https://cacontology.projectvic.org/production#>
-PREFIX cacontology-infrastructure: <https://cacontology.projectvic.org/platform-infrastructure#>
+PREFIX cacontology-infrastructure: <https://cacontology.projectvic.org/infrastructure#>
 
 # =============================================================================
 # The Sun livestreamed CSEA (harm-minimized) — analytics suite

@@ -1,0 +1,355 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-multi: <https://cacontology.projectvic.org/multi-jurisdiction#> .
+@prefix cacontology-undercover: <https://cacontology.projectvic.org/undercover#> .
+@prefix cacontology-taskforce: <https://cacontology.projectvic.org/taskforce#> .
+@prefix cacontology-legal-outcomes: <https://cacontology.projectvic.org/legal-outcomes#> .
+@prefix ex: <urn:uuid:> .
+
+# =============================================================================
+# OPERATION HIVE STRIKE - UTAH ICAC TASK FORCE (April 14-17, 2025)
+# =============================================================================
+
+# Operation Definition
+ex:734a414d-0e12-558c-9748-c001e4071a38 rdf:type cacontology-multi:TaskForceHostedOperation ;
+    rdfs:label "Operation Hive Strike"@en ;
+    rdfs:comment "Utah ICAC Task Force statewide undercover investigation targeting online predators and CSAM distributors across 5 counties."@en ;
+    cacontology-multi:operationName "Operation Hive Strike" ;
+    cacontology-multi:operationBranding "branded" ;
+    cacontology-multi:operationDurationDays 4.0 ;
+    cacontology-multi:statewideCoverage true ;
+    cacontology-multi:totalArrests 15 ;
+    cacontology-multi:searchWarrantsExecuted 10 ;
+    cacontology-multi:countiesInvolved 5 ;
+    cacontology-multi:targetTypeCount 2 ;
+    cacontology-multi:targetStrategy "simultaneous" ;
+    cacontology-multi:chargeTypesDiversity 8 ;
+    cacontology-multi:hostedBy ex:c1fcea2c-f280-55d0-a0d3-7c2e535afaf5 ;
+    cacontology-multi:coversState ex:ae2663d6-fb1f-5691-b0be-42f0d1340e2f ;
+    cacontology-multi:spansCounties ex:1fcc803e-f320-504c-a344-8e3d3e2124e1, ex:e5f75a0a-605a-545b-a979-22d913327f78, ex:33ab5053-8d5d-53ce-a904-60e15b39bcca, ex:44cc390a-48e2-5935-9830-34d5a02e9d10, ex:3afe58b2-0fd5-5472-b8ba-97f7619429a2 ;
+    cacontology-multi:utilizesCoordination ex:f4914806-af7a-519b-946c-49d4b949c0ec .
+
+# Dual Target Operation Classification
+ex:734a414d-0e12-558c-9748-c001e4071a38 rdf:type cacontology-multi:DualTargetOperation ;
+    cacontology-multi:targetsOffenderType ex:1be5f100-d7a5-5063-ab5c-f417c4df186d, ex:d424d14e-9dbe-5194-90dc-b28e814eff44 .
+
+# =============================================================================
+# HOSTING TASK FORCE AND COORDINATION
+# =============================================================================
+
+# Utah ICAC Task Force
+ex:c1fcea2c-f280-55d0-a0d3-7c2e535afaf5 rdf:type cacontology-taskforce:StateICACtaskForce ;
+    rdfs:label "Utah Internet Crimes Against Children Task Force"@en ;
+    rdfs:comment "State-level ICAC task force serving Utah, hosting Operation Hive Strike."@en ;
+    cacontology-taskforce:coverageArea "Utah" ;
+    cacontology-taskforce:taskForceType "state_level" ;
+    cacontology-taskforce:operationalStatus "active" ;
+    cacontology-taskforce:hostsOperation ex:734a414d-0e12-558c-9748-c001e4071a38 .
+
+# Large-Scale Agency Coordination
+ex:f4914806-af7a-519b-946c-49d4b949c0ec rdf:type cacontology-multi:LargeScaleAgencyCoordination ;
+    rdfs:label "Operation Hive Strike Agency Coordination"@en ;
+    rdfs:comment "Coordination of 31 federal, state, and local agencies with 80+ agents for Operation Hive Strike."@en ;
+    cacontology-multi:agencyParticipantCount 31 ;
+    cacontology-multi:agencyLevelsMixed true ;
+    cacontology-multi:coordinatesAgencies ex:596ebef3-7703-5e3a-bd7f-65c43f13d7ae, ex:19a7f91d-16ee-52b8-86ee-e52a40c923fc, ex:45b5ea36-7ffc-57fa-ad80-86f77eec0969, ex:2fef32f0-82a6-50c4-b541-1a1a45dd7ec7, ex:ea252d6a-045e-57e0-9def-6bf762bcfb8f, ex:cdda67c6-8f9a-56de-b307-f3d4f7a6e650 ;
+    cacontology-multi:deploysAgents ex:17f60cca-c76f-52ad-975d-d463c81c4507 .
+
+# Agent Deployment Coordination
+ex:17f60cca-c76f-52ad-975d-d463c81c4507 rdf:type cacontology-multi:AgentDeploymentCoordination ;
+    rdfs:label "Operation Hive Strike Agent Deployment"@en ;
+    rdfs:comment "Deployment of 80+ task force agents across 31 agencies for 4-day operation."@en ;
+    cacontology-multi:agentParticipantCount 80 ;
+    cacontology-multi:deploysAgents ex:fe63e58c-21d6-5905-81e9-c71bddc6d375, ex:b449c751-3b1a-5578-8d10-8486f26f3c57, ex:b3c38889-a45e-5b6c-a764-b67b12a33722, ex:a71c730f-cc5f-5770-929a-5c847dd3fd27 .
+
+# Multi-Level Agency Participation
+ex:f4914806-af7a-519b-946c-49d4b949c0ec rdf:type cacontology-multi:MultiLevelAgencyParticipation ;
+    cacontology-multi:agencyLevelsMixed true .
+
+# =============================================================================
+# GEOGRAPHIC LOCATIONS
+# =============================================================================
+
+# Utah State
+ex:ae2663d6-fb1f-5691-b0be-42f0d1340e2f rdf:type uco-location:Location ;
+    rdfs:label "Utah"@en ;
+    rdfs:comment "State of Utah where Operation Hive Strike was conducted."@en .
+
+# Counties Involved
+ex:1fcc803e-f320-504c-a344-8e3d3e2124e1 rdf:type uco-location:Location ;
+    rdfs:label "Davis County"@en ;
+    rdfs:comment "Davis County, Utah - arrests made during Operation Hive Strike."@en .
+
+ex:e5f75a0a-605a-545b-a979-22d913327f78 rdf:type uco-location:Location ;
+    rdfs:label "Salt Lake County"@en ;
+    rdfs:comment "Salt Lake County, Utah - arrests made during Operation Hive Strike."@en .
+
+ex:33ab5053-8d5d-53ce-a904-60e15b39bcca rdf:type uco-location:Location ;
+    rdfs:label "Summit County"@en ;
+    rdfs:comment "Summit County, Utah - arrests made during Operation Hive Strike."@en .
+
+ex:44cc390a-48e2-5935-9830-34d5a02e9d10 rdf:type uco-location:Location ;
+    rdfs:label "Utah County"@en ;
+    rdfs:comment "Utah County, Utah - arrests made during Operation Hive Strike."@en .
+
+ex:3afe58b2-0fd5-5472-b8ba-97f7619429a2 rdf:type uco-location:Location ;
+    rdfs:label "Weber County"@en ;
+    rdfs:comment "Weber County, Utah - arrests made during Operation Hive Strike."@en .
+
+# =============================================================================
+# MULTI-COUNTY OPERATION
+# =============================================================================
+
+ex:3fb2ce8f-3426-52b9-86ae-e5cf263959bb rdf:type cacontology-multi:MultiCountyOperation ;
+    rdfs:label "Operation Hive Strike Multi-County Coordination"@en ;
+    rdfs:comment "Multi-county operation across 5 Utah counties with coordinated arrests and search warrants."@en ;
+    cacontology-multi:countiesInvolved 5 ;
+    cacontology-multi:spansCounties ex:1fcc803e-f320-504c-a344-8e3d3e2124e1, ex:e5f75a0a-605a-545b-a979-22d913327f78, ex:33ab5053-8d5d-53ce-a904-60e15b39bcca, ex:44cc390a-48e2-5935-9830-34d5a02e9d10, ex:3afe58b2-0fd5-5472-b8ba-97f7619429a2 .
+
+# =============================================================================
+# UNDERCOVER OPERATIONS COMPONENT
+# =============================================================================
+
+# Social Media Undercover Operation
+ex:0f5b4855-cdae-5336-828b-52118b525304 rdf:type cacontology-undercover:SocialMediaUndercoverOperation ;
+    rdfs:label "Operation Hive Strike Social Media Component"@en ;
+    rdfs:comment "Social media undercover component using various platforms to identify predators."@en ;
+    cacontology-undercover:socialMediaPlatformsUsed 5 ;
+    cacontology-undercover:conductedOnPlatform ex:72494994-7460-5849-a8e1-fdb85840a1a9, ex:58a4eb1e-13ba-58c9-bbaa-09bc3af3585b, ex:bfcc7e4c-7749-52fb-9b90-fda637cdc23d ;
+    cacontology-undercover:involvesChatInvestigation ex:3c7c28aa-5696-5e97-866d-131e59c68d4e .
+
+# Multi-Platform Undercover Operation
+ex:0f5b4855-cdae-5336-828b-52118b525304 rdf:type cacontology-undercover:MultiPlatformUndercoverOperation ;
+    cacontology-undercover:socialMediaPlatformsUsed 5 .
+
+# Undercover Chat Investigation
+ex:3c7c28aa-5696-5e97-866d-131e59c68d4e rdf:type cacontology-undercover:UndercoverChatInvestigation ;
+    rdfs:label "Operation Hive Strike Chat Investigation"@en ;
+    rdfs:comment "Chat investigations on various social media platforms with agents posing as minors."@en ;
+    cacontology-undercover:chatPlatformType "social_media" ;
+    cacontology-undercover:communicationMethod "text_chat" ;
+    cacontology-undercover:chatDurationHours 96.0 ;
+    cacontology-undercover:conversationCount 45 ;
+    cacontology-undercover:leadsToSolicitation ex:b4be9c36-6448-598b-bd4b-e53a825b29a8 .
+
+# Minor Persona Operation
+ex:fe9aa489-3403-5f3d-8f24-9545afb9080f rdf:type cacontology-undercover:MinorPersonaOperation ;
+    rdfs:label "Operation Hive Strike Minor Persona Component"@en ;
+    rdfs:comment "Agents posing as minors to identify individuals seeking inappropriate contact with children."@en ;
+    cacontology-undercover:utilizesPersona ex:91fbfcb3-67fa-58bf-bde5-d40322a65c68, ex:6595eea1-f82a-559e-bdc0-22ecfb87ec35, ex:a0b6a6d7-5bb8-50c6-a5f8-8cc8e41db6f3 .
+
+# In-Person Meeting Solicitation Detection
+ex:b4be9c36-6448-598b-bd4b-e53a825b29a8 rdf:type cacontology-undercover:InPersonMeetingSolicitation ;
+    rdfs:label "Operation Hive Strike Meeting Solicitation Detection"@en ;
+    rdfs:comment "Detection of individuals seeking to meet children in-person for sexual activity."@en ;
+    cacontology-undercover:meetingSolicitationAttempts 23 ;
+    cacontology-undercover:targetsIndividual ex:790900b5-8bf3-58d0-8123-2e711e64b9c5, ex:3d3a9170-9fea-51db-b55a-e136e69172f0, ex:99b1a728-723b-591c-a478-89f89e49bd1b .
+
+# Predator Targeting Operation
+ex:d1132055-142d-5cef-be19-119039c02831 rdf:type cacontology-undercover:PredatorTargetingOperation ;
+    rdfs:label "Operation Hive Strike Predator Targeting"@en ;
+    rdfs:comment "Targeting online predators seeking contact with children for illegal purposes."@en ;
+    cacontology-undercover:targetBehaviorType "in_person_meeting_solicitation" ;
+    cacontology-undercover:predatorContactAttempts 37 ;
+    cacontology-undercover:identificationSuccessRate 0.68 ;
+    cacontology-undercover:identifiesPredator ex:790900b5-8bf3-58d0-8123-2e711e64b9c5, ex:3d3a9170-9fea-51db-b55a-e136e69172f0, ex:99b1a728-723b-591c-a478-89f89e49bd1b, ex:3e0a644f-a483-5258-a7e9-3444401da1fb, ex:510b873e-0398-5324-a83e-cbbe96e98d6d .
+
+# =============================================================================
+# UNDERCOVER AGENTS AND PERSONAS
+# =============================================================================
+
+# Minor Persona Agents
+ex:91fbfcb3-67fa-58bf-bde5-d40322a65c68 rdf:type cacontology-undercover:MinorPersonaAgent ;
+    rdfs:label "Minor Persona Agent 1"@en ;
+    rdfs:comment "Undercover agent operating as 14-year-old female persona on social media."@en ;
+    cacontology-undercover:personaAge 14 ;
+    cacontology-undercover:personaGender "female" ;
+    cacontology-undercover:personaLocation "Salt Lake City, Utah" ;
+    cacontology-undercover:personaProfile "14-year-old high school student interested in music and social media" .
+
+ex:6595eea1-f82a-559e-bdc0-22ecfb87ec35 rdf:type cacontology-undercover:MinorPersonaAgent ;
+    rdfs:label "Minor Persona Agent 2"@en ;
+    rdfs:comment "Undercover agent operating as 15-year-old male persona on social media."@en ;
+    cacontology-undercover:personaAge 15 ;
+    cacontology-undercover:personaGender "male" ;
+    cacontology-undercover:personaLocation "Provo, Utah" ;
+    cacontology-undercover:personaProfile "15-year-old interested in gaming and social media" .
+
+ex:a0b6a6d7-5bb8-50c6-a5f8-8cc8e41db6f3 rdf:type cacontology-undercover:MinorPersonaAgent ;
+    rdfs:label "Minor Persona Agent 3"@en ;
+    rdfs:comment "Undercover agent operating as 13-year-old female persona on social media."@en ;
+    cacontology-undercover:personaAge 13 ;
+    cacontology-undercover:personaGender "female" ;
+    cacontology-undercover:personaLocation "Ogden, Utah" ;
+    cacontology-undercover:personaProfile "13-year-old middle school student interested in social media and friends" .
+
+# Social Media Agents
+ex:b6bc9878-5c69-55b7-9053-f349acc28d8f rdf:type cacontology-undercover:SocialMediaAgent ;
+    rdfs:label "Social Media Agent 1"@en ;
+    rdfs:comment "Agent specialized in social media platform undercover operations."@en ;
+    cacontology-undercover:agentOperatesAs ex:91fbfcb3-67fa-58bf-bde5-d40322a65c68 .
+
+ex:9e9bda64-d2c8-5f62-b7a5-617cb181f82e rdf:type cacontology-undercover:ChatInvestigationAgent ;
+    rdfs:label "Chat Investigation Agent 1"@en ;
+    rdfs:comment "Agent specialized in chat-based undercover investigations."@en ;
+    cacontology-undercover:agentOperatesAs ex:6595eea1-f82a-559e-bdc0-22ecfb87ec35 .
+
+# =============================================================================
+# OFFENDER ROLES AND TARGETS
+# =============================================================================
+
+# Offender Role Types
+ex:1be5f100-d7a5-5063-ab5c-f417c4df186d rdf:type uco-role:Role ;
+    rdfs:label "Online Predator Role"@en ;
+    rdfs:comment "Role representing individuals seeking inappropriate contact with minors online."@en .
+
+ex:d424d14e-9dbe-5194-90dc-b28e814eff44 rdf:type uco-role:Role ;
+    rdfs:label "CSAM Distributor Role"@en ;
+    rdfs:comment "Role representing individuals downloading, viewing, and distributing child sexual abuse material."@en .
+
+# =============================================================================
+# PARTICIPATING AGENCIES (Sample)
+# =============================================================================
+
+# Utah Attorney General's Office
+ex:596ebef3-7703-5e3a-bd7f-65c43f13d7ae rdf:type uco-identity:Organization ;
+    rdfs:label "Utah Attorney General's Office"@en ;
+    rdfs:comment "Utah state prosecutor's office participating in Operation Hive Strike."@en .
+
+# Utah Department of Public Safety
+ex:19a7f91d-16ee-52b8-86ee-e52a40c923fc rdf:type uco-identity:Organization ;
+    rdfs:label "Utah Department of Public Safety"@en ;
+    rdfs:comment "Utah state law enforcement agency participating in Operation Hive Strike."@en .
+
+# Federal Agencies
+ex:45b5ea36-7ffc-57fa-ad80-86f77eec0969 rdf:type uco-identity:Organization ;
+    rdfs:label "FBI Salt Lake City Field Office"@en ;
+    rdfs:comment "Federal Bureau of Investigation Salt Lake City field office."@en .
+
+ex:2fef32f0-82a6-50c4-b541-1a1a45dd7ec7 rdf:type uco-identity:Organization ;
+    rdfs:label "HSI Salt Lake"@en ;
+    rdfs:comment "Homeland Security Investigations Salt Lake office."@en .
+
+# Local Agencies
+ex:ea252d6a-045e-57e0-9def-6bf762bcfb8f rdf:type uco-identity:Organization ;
+    rdfs:label "Salt Lake City Police Department"@en ;
+    rdfs:comment "Local police department participating in Operation Hive Strike."@en .
+
+ex:cdda67c6-8f9a-56de-b307-f3d4f7a6e650 rdf:type uco-identity:Organization ;
+    rdfs:label "Davis County Sheriff's Office"@en ;
+    rdfs:comment "County sheriff's office participating in Operation Hive Strike."@en .
+
+# =============================================================================
+# SAMPLE SUSPECTS AND CHARGES
+# =============================================================================
+
+# Sample Suspects
+ex:790900b5-8bf3-58d0-8123-2e711e64b9c5 rdf:type uco-identity:Person ;
+    rdfs:label "Suspect 001"@en ;
+    rdfs:comment "Individual arrested during Operation Hive Strike for sexual exploitation of a minor."@en .
+
+ex:3d3a9170-9fea-51db-b55a-e136e69172f0 rdf:type uco-identity:Person ;
+    rdfs:label "Suspect 002"@en ;
+    rdfs:comment "Individual arrested during Operation Hive Strike for enticing a minor."@en .
+
+ex:99b1a728-723b-591c-a478-89f89e49bd1b rdf:type uco-identity:Person ;
+    rdfs:label "Suspect 003"@en ;
+    rdfs:comment "Individual arrested during Operation Hive Strike for aggravated sexual exploitation of a minor."@en .
+
+ex:3e0a644f-a483-5258-a7e9-3444401da1fb rdf:type uco-identity:Person ;
+    rdfs:label "Suspect 004"@en ;
+    rdfs:comment "Individual targeted for CSAM distribution violations."@en .
+
+ex:510b873e-0398-5324-a83e-cbbe96e98d6d rdf:type uco-identity:Person ;
+    rdfs:label "Suspect 005"@en ;
+    rdfs:comment "Individual arrested for possession of controlled substance during search warrant."@en .
+
+# =============================================================================
+# UTAH-SPECIFIC CHARGES
+# =============================================================================
+
+# Sexual Exploitation Charges
+ex:3712820d-ca51-5ed9-afe2-484ba43e92ea rdf:type cacontology-legal-outcomes:Utah_SexualExploitationOfMinor ;
+    rdfs:label "Sexual Exploitation of a Minor Charge"@en ;
+    rdfs:comment "Utah charge for sexual exploitation of a minor against Suspect 001."@en ;
+    cacontology-legal-outcomes:chargedIndividual ex:790900b5-8bf3-58d0-8123-2e711e64b9c5 .
+
+ex:d27ea945-a1e1-5aa7-86a4-ed0f3b1f8dbc rdf:type cacontology-legal-outcomes:Utah_EnticingAMinor ;
+    rdfs:label "Enticing a Minor Charge"@en ;
+    rdfs:comment "Utah charge for enticing a minor against Suspect 002."@en ;
+    cacontology-legal-outcomes:chargedIndividual ex:3d3a9170-9fea-51db-b55a-e136e69172f0 .
+
+ex:411d04d6-95ca-5151-894e-f732b3c53461 rdf:type cacontology-legal-outcomes:Utah_AggravatedSexualExploitationOfMinor ;
+    rdfs:label "Aggravated Sexual Exploitation of Minor Charge"@en ;
+    rdfs:comment "Utah aggravated charge for sexual exploitation of a minor against Suspect 003."@en ;
+    cacontology-legal-outcomes:chargedIndividual ex:99b1a728-723b-591c-a478-89f89e49bd1b .
+
+# Additional Charges
+ex:33b585be-f9e1-5c2f-bd49-e951f68a4304 rdf:type cacontology-legal-outcomes:Utah_DealingInHarmfulMaterialsToMinor ;
+    rdfs:label "Dealing in Harmful Materials to Minor"@en ;
+    rdfs:comment "Utah charge for dealing in harmful materials to a minor."@en .
+
+ex:f504c0a3-2c11-5612-9305-f6db0dc7c1cd rdf:type cacontology-legal-outcomes:Utah_AggravatedSexualAbuseOfChild ;
+    rdfs:label "Aggravated Sexual Abuse of Child"@en ;
+    rdfs:comment "Utah charge for aggravated sexual abuse of a child."@en .
+
+ex:35196ce0-45d4-5f26-9599-4c31a4e9c891 rdf:type cacontology-legal-outcomes:Utah_SodomyOnChild ;
+    rdfs:label "Sodomy on Child"@en ;
+    rdfs:comment "Utah charge for sodomy on a child."@en .
+
+# Ancillary Charges
+ex:e3f15b3e-8649-55b1-ab93-c43ee1cd5af5 rdf:type cacontology-legal-outcomes:Utah_PossessionOfControlledSubstance ;
+    rdfs:label "Possession of Controlled Substance"@en ;
+    rdfs:comment "Utah charge for possession of a controlled substance found during search warrant."@en ;
+    cacontology-legal-outcomes:chargedIndividual ex:510b873e-0398-5324-a83e-cbbe96e98d6d .
+
+ex:0f9701c8-9274-5e55-91e7-8c7745c8f23b rdf:type cacontology-legal-outcomes:Utah_PossessionOfStolenFirearm ;
+    rdfs:label "Possession of Stolen Firearm"@en ;
+    rdfs:comment "Utah charge for possession of a stolen firearm discovered during investigation."@en .
+
+# =============================================================================
+# SEARCH WARRANTS AND RESIDENTIAL OPERATIONS
+# =============================================================================
+
+# Search Warrant Coordination
+ex:9fd97ceb-0be7-54af-a700-65ba0b5c6b4d rdf:type uco-action:Action ;
+    rdfs:label "Operation Hive Strike Search Warrants"@en ;
+    rdfs:comment "10 residential search warrants served for individuals downloading, viewing, and distributing CSAM."@en .
+
+# Sample Search Warrant
+ex:392840ec-1f2c-5cc3-97cb-b96f36f9732c rdf:type uco-action:Action ;
+    rdfs:label "Search Warrant 001"@en ;
+    rdfs:comment "Residential search warrant for CSAM distribution investigation."@en ;
+    cacontology-multi:resultsInEvidence ex:25befb88-4049-5714-836b-b633046f2b78 .
+
+# Digital Evidence from Search Warrants
+ex:25befb88-4049-5714-836b-b633046f2b78 rdf:type uco-core:UcoObject ;
+    rdfs:label "Digital Evidence Package 001"@en ;
+    rdfs:comment "Digital evidence seized during residential search warrant for CSAM distribution."@en .
+
+# =============================================================================
+# OPERATION METRICS AND RESULTS
+# =============================================================================
+
+# Operation Success Metrics
+ex:418a9bb9-a833-59bb-affd-5b48d13eb107 rdf:type uco-core:UcoObject ;
+    rdfs:label "Operation Hive Strike Success Metrics"@en ;
+    rdfs:comment "Comprehensive metrics for Operation Hive Strike effectiveness and results."@en .
+
+# Operation Duration and Timeline
+ex:7a351b0d-4846-5bdf-beb7-2cdadfa86f4e rdf:type uco-action:Action ;
+    rdfs:label "Operation Hive Strike Timeline"@en ;
+    rdfs:comment "4-day operation from April 14-17, 2025 with coordinated arrests and search warrants."@en .
+
+# Parent Safety Information
+ex:eb7bc976-09ac-5d9a-9b8c-7473d740f93e rdf:type uco-action:Action ;
+    rdfs:label "Parent Safety Education Component"@en ;
+    rdfs:comment "Public education component emphasizing parent role in teaching children about online safety."@en . 

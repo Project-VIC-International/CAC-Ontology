@@ -11,7 +11,7 @@
     "uco-role": "https://ontology.unifiedcyberontology.org/uco/role/",
     "investigation": "https://ontology.caseontology.org/case/investigation/",
     "cacontology": "https://cacontology.projectvic.org#",
-    "cacontology-sentencing": "https://cacontology.projectvic.org/sentencing#",
+    "cacontology-legal-outcomes": "https://cacontology.projectvic.org/legal-outcomes#",
     "cacontology-multi": "https://cacontology.projectvic.org/multi-jurisdiction#",
     "cacontology-registry": "https://cacontology.projectvic.org/sex-offender-registry#",
     "label": {
@@ -69,7 +69,7 @@
     },
     "deviceType": "uco-observable:deviceType",
     "sentenceDurationMonths": {
-      "@id": "cacontology-sentencing:sentenceDurationMonths",
+      "@id": "cacontology-legal-outcomes:sentenceDurationMonths",
       "@type": "xsd:integer"
     }
   },
@@ -113,7 +113,7 @@
     },
     {
       "@id": "urn:uuid:53sen123-4567-5890-abcd-ef0123456789",
-      "@type": "https://cacontology.projectvic.org/sentencing#SentencingHearing",
+      "@type": "https://cacontology.projectvic.org/legal-outcomes#SentencingHearing",
       "http://www.w3.org/2000/01/rdf-schema#label": {
         "@language": "en",
         "@value": "Sentencing Hearing - United States v. Isbell"
@@ -314,7 +314,7 @@
     },
     {
       "@id": "urn:uuid:32res012-3456-5789-0abc-def012345678",
-      "@type": "https://cacontology.projectvic.org/sentencing#MonetaryPenalty",
+      "@type": "https://cacontology.projectvic.org/legal-outcomes#MonetaryPenalty",
       "http://www.w3.org/2000/01/rdf-schema#label": {
         "@language": "en",
         "@value": "Restitution Order"
@@ -326,12 +326,12 @@
     },
     {
       "@id": "urn:uuid:30prs456-7890-5abc-def0-123456789abc",
-      "@type": "https://cacontology.projectvic.org/sentencing#PrisonSentence",
+      "@type": "https://cacontology.projectvic.org/legal-outcomes#PrisonSentence",
       "http://www.w3.org/2000/01/rdf-schema#label": {
         "@language": "en",
         "@value": "20-Year Federal Prison Sentence"
       },
-      "https://cacontology.projectvic.org/sentencing#sentenceDurationMonths": {
+      "https://cacontology.projectvic.org/legal-outcomes#sentenceDurationMonths": {
         "@type": "http://www.w3.org/2001/XMLSchema#integer",
         "@value": 240
       },
@@ -557,12 +557,12 @@
     },
     {
       "@id": "urn:uuid:31sup789-0123-5def-0123-456789abcdef",
-      "@type": "https://cacontology.projectvic.org/sentencing#SupervisedRelease",
+      "@type": "https://cacontology.projectvic.org/legal-outcomes#SupervisedRelease",
       "http://www.w3.org/2000/01/rdf-schema#label": {
         "@language": "en",
         "@value": "15-Year Supervised Release"
       },
-      "https://cacontology.projectvic.org/sentencing#sentenceDurationMonths": {
+      "https://cacontology.projectvic.org/legal-outcomes#sentenceDurationMonths": {
         "@type": "http://www.w3.org/2001/XMLSchema#integer",
         "@value": 180
       },
@@ -686,7 +686,7 @@
     },
     {
       "@id": "urn:uuid:20chg123-4567-5890-abcd-ef0123456789",
-      "@type": "https://cacontology.projectvic.org/sentencing#FederalCharge",
+      "@type": "https://cacontology.projectvic.org/legal-outcomes#FederalCharge",
       "http://www.w3.org/2000/01/rdf-schema#label": {
         "@language": "en",
         "@value": "Production of Child Pornography (18 U.S.C. § 2251)"

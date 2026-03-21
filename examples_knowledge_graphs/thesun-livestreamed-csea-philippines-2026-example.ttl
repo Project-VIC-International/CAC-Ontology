@@ -10,7 +10,7 @@
 
 @prefix cacontology-platforms: <https://cacontology.projectvic.org/platforms#> .
 @prefix cacontology-production: <https://cacontology.projectvic.org/production#> .
-@prefix cacontology-infrastructure: <https://cacontology.projectvic.org/platform-infrastructure#> .
+@prefix cacontology-infrastructure: <https://cacontology.projectvic.org/infrastructure#> .
 
 # =============================================================================
 # Example KG: The Sun livestreamed CSEA facilitation pattern (harm-minimized)

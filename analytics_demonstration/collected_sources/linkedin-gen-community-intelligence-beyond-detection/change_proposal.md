@@ -30,7 +30,7 @@ This document follows Phase 0–2 requirements in `agent.md` (scope gate + reuse
 
 #### Candidate modules/files to change
 
-- `ontology/cacontology-ai-generated-content.ttl` (+ `ontology/cacontology-ai-generated-content-shapes.ttl`)
+- `ontology/cacontology-ai-csam.ttl` (+ `ontology/cacontology-ai-csam-shapes.ttl`)
 - `ontology/cacontology-detection.ttl` (+ `ontology/cacontology-detection-shapes.ttl`)
 - `ontology/cacontology-platforms.ttl` (+ `ontology/cacontology-platforms-shapes.ttl`)
 - `ontology/cacontology-legal-harmonization.ttl` (+ `ontology/cacontology-legal-harmonization-shapes.ttl`)
@@ -46,7 +46,7 @@ Repo-local searches over `ontology/*.ttl` show **reuse candidates** already pres
 - **NCMEC clearinghouse and tip processing**: `cacontology-us-ncmec:*` (e.g., `TipPrioritization`, `TipProcessing`, `PlatformCooperation`)
 - **Legal compliance processes and legal instruments**: `cacontology-legal:*` in `cacontology-legal-harmonization.ttl` (e.g., `ComplianceProcess`, `AuditProcess`, `CertificationProcess`, `Statute`, `LegislativeInstrument`, `PlatformAccountabilityLaw`)
 - **Evidence quality / admissibility / chain-of-custody**: `cacontology-forensics:*`, `cacontology-physical-evidence:*`
-- **AI-generated / deepfake CSAM**: `cacontology-ai:*` in `cacontology-ai-generated-content.ttl`
+- **AI-generated / deepfake CSAM**: `cacontology-ai:*` in `cacontology-ai-csam.ttl`
 
 Repo-local searches indicate **gaps (not found as modeled terms)** for:
 
@@ -99,7 +99,7 @@ Repo-local searches indicate **gaps (not found as modeled terms)** for:
 
 ### 2.1 New / updated terms (fully-qualified)
 
-#### File: `ontology/cacontology-ai-generated-content.ttl`
+#### File: `ontology/cacontology-ai-csam.ttl`
 
 **Add classes:**
 
@@ -233,7 +233,7 @@ Pre-screen result (repo-local label/keyphrase searches conducted during analysis
 
 **Principle:** keep constraints minimal; enforce connectivity + controlled enums where they provide analytic value.
 
-- `ontology/cacontology-ai-generated-content-shapes.ttl`
+- `ontology/cacontology-ai-csam-shapes.ttl`
   - NodeShapes for `Nudification`, `NudificationTool`, `NudifiedCSAM`
   - Require: `usesNudificationTool` (min 0/1) and `producesNudifiedContent` (min 1 for `Nudification`)
   - Require: `nudifiedFrom` (min 0/1) for `NudifiedCSAM` (optional when source not known)
@@ -317,9 +317,9 @@ Citation for all new terms (uniform):
 
 ## Checklist of file edits (proposal; “why here?”)
 
-- `ontology/cacontology-ai-generated-content.ttl`
+- `ontology/cacontology-ai-csam.ttl`
   - Add nudification process/tool/output terms (fits existing AI content generation/detection patterns).
-- `ontology/cacontology-ai-generated-content-shapes.ttl`
+- `ontology/cacontology-ai-csam-shapes.ttl`
   - Add shapes validating nudification connectivity and minimal required properties.
 - `ontology/cacontology-detection.ttl`
   - Add risk stratification action + result artifacts for “beyond detection” prioritization.

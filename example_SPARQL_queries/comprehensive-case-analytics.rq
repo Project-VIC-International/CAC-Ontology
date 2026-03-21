@@ -1,7 +1,7 @@
-# SPARQL Query: Comprehensive ICAC Case Analytics
+# SPARQL Query: Comprehensive CAC Case Analytics
 # This query demonstrates cross-ontology integration and analytics capabilities
-# across all 22 ICAC ontologies for complex investigation analysis
-# Updated for ICAC Ontology Family v0.9.0
+# across the CAC Ontology family for complex investigation analysis
+# Updated for CAC Ontology v3.0.0
 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -9,13 +9,13 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core/>
 PREFIX uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/>
 PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/>
-PREFIX cacontology-core: <https://cacontology.projectvic.org#>
+PREFIX cacontology: <https://cacontology.projectvic.org#>
 PREFIX cacontology-undercover: <https://cacontology.projectvic.org/undercover#>
 PREFIX cacontology-grooming: <https://cacontology.projectvic.org/grooming#>
-PREFIX cacontology-physical: <https://cacontology.projectvic.org/physical-evidence#>
+PREFIX cacontology-physical: <https://cacontology.projectvic.org/physical#>
 PREFIX cacontology-tactical: <https://cacontology.projectvic.org/tactical#>
 PREFIX cacontology-multi: <https://cacontology.projectvic.org/multi-jurisdiction#>
-PREFIX cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#>
+PREFIX cacontology-legal-outcomes: <https://cacontology.projectvic.org/legal-outcomes#>
 PREFIX cacontology-taskforce: <https://cacontology.projectvic.org/taskforce#>
 PREFIX cacontology-platforms: <https://cacontology.projectvic.org/platforms#>
 PREFIX cacontology-specialized: <https://cacontology.projectvic.org/specialized-units#>
@@ -92,9 +92,9 @@ SELECT DISTINCT
 
 WHERE {
     # Core Investigation
-    ?investigation rdf:type cacontology-core:ICACInvestigation ;
+    ?investigation rdf:type cacontology:CACInvestigation ;
         rdfs:label ?investigationLabel ;
-        cacontology-core:hasSubject ?subject ;
+        cacontology:hasSubject ?subject ;
         uco-core:startTime ?startTime ;
         uco-core:endTime ?endTime .
     
@@ -106,7 +106,7 @@ WHERE {
     # Count victims
     {
         SELECT ?investigation (COUNT(DISTINCT ?victim) AS ?victimCount) WHERE {
-            ?investigation cacontology-core:hasVictim ?victim .
+            ?investigation cacontology:hasVictim ?victim .
         }
         GROUP BY ?investigation
     }
@@ -246,20 +246,20 @@ WHERE {
                (SAMPLE(?projectSafeChildhood) AS ?projectSafeChildhood)
                (GROUP_CONCAT(DISTINCT ?chargeClass; separator=", ") AS ?stateChargeClassification)
         WHERE {
-            ?subject cacontology-sentencing:chargedWith ?charge .
+            ?subject cacontology-legal-outcomes:chargedWith ?charge .
             OPTIONAL {
-                ?charge cacontology-sentencing:chargeClassification ?chargeClass .
+                ?charge cacontology-legal-outcomes:chargeClassification ?chargeClass .
             }
             OPTIONAL {
-                ?subject cacontology-sentencing:sentencedTo ?sentence .
-                ?sentence cacontology-sentencing:sentenceLength ?sentenceLength .
+                ?subject cacontology-legal-outcomes:sentencedTo ?sentence .
+                ?sentence cacontology-legal-outcomes:sentenceLength ?sentenceLength .
             }
             OPTIONAL {
-                ?subject cacontology-sentencing:sentencedTo ?penalty .
-                ?penalty cacontology-sentencing:restitutionAmount ?restitutionAmount .
+                ?subject cacontology-legal-outcomes:sentencedTo ?penalty .
+                ?penalty cacontology-legal-outcomes:restitutionAmount ?restitutionAmount .
             }
             OPTIONAL {
-                ?legalProceeding cacontology-sentencing:projectSafeChildhood ?projectSafeChildhood .
+                ?legalProceeding cacontology-legal-outcomes:projectSafeChildhood ?projectSafeChildhood .
             }
         }
         GROUP BY ?investigation
@@ -323,8 +323,8 @@ WHERE {
     
     # Plea Bargain Acceptance
     OPTIONAL {
-        ?pleaBargaining rdf:type cacontology-sentencing:PleaBargaining ;
-            cacontology-sentencing:pleaBargainAccepted ?pleaBargainAccepted .
+        ?pleaBargaining rdf:type cacontology-legal-outcomes:PleaBargaining ;
+            cacontology-legal-outcomes:pleaBargainAccepted ?pleaBargainAccepted .
     }
     
     # Evidence Quality
@@ -373,19 +373,19 @@ WHERE {
     
     # Sentencing Outcomes
     OPTIONAL {
-        ?sentence rdf:type cacontology-sentencing:PrisonSentence ;
-            cacontology-sentencing:sentenceLength ?sentenceLength .
+        ?sentence rdf:type cacontology-legal-outcomes:PrisonSentence ;
+            cacontology-legal-outcomes:sentenceLength ?sentenceLength .
     }
     OPTIONAL {
-        ?penalty rdf:type cacontology-sentencing:MonetaryPenalty ;
-            cacontology-sentencing:restitutionAmount ?restitutionAmount .
+        ?penalty rdf:type cacontology-legal-outcomes:MonetaryPenalty ;
+            cacontology-legal-outcomes:restitutionAmount ?restitutionAmount .
     }
     OPTIONAL {
-        ?proceeding rdf:type cacontology-sentencing:LegalProceeding ;
-            cacontology-sentencing:projectSafeChildhood ?projectSafeChildhood .
+        ?proceeding rdf:type cacontology-legal-outcomes:LegalProceeding ;
+            cacontology-legal-outcomes:projectSafeChildhood ?projectSafeChildhood .
     }
     OPTIONAL {
-        ?charge cacontology-sentencing:maximumSentenceYears ?maximumSentenceYears .
+        ?charge cacontology-legal-outcomes:maximumSentenceYears ?maximumSentenceYears .
     }
 }
 
@@ -422,12 +422,12 @@ WHERE {
         cacontology-tactical:suicidalRisk ?suicidalRisk .
     
     # Case Outcomes
-    ?sentencingHearing rdf:type cacontology-sentencing:SentencingHearing ;
-        cacontology-sentencing:victimCount ?victimCount ;
-        cacontology-sentencing:enhancementApplied ?enhancementApplied .
+    ?sentencingHearing rdf:type cacontology-legal-outcomes:SentencingHearing ;
+        cacontology-legal-outcomes:victimCount ?victimCount ;
+        cacontology-legal-outcomes:enhancementApplied ?enhancementApplied .
     
-    ?sentence rdf:type cacontology-sentencing:PrisonSentence ;
-        cacontology-sentencing:sentenceLength ?sentenceLength .
+    ?sentence rdf:type cacontology-legal-outcomes:PrisonSentence ;
+        cacontology-legal-outcomes:sentenceLength ?sentenceLength .
     
     # Production Offense Factor
     OPTIONAL {
@@ -492,8 +492,8 @@ WHERE {
     
     # Link to sentencing outcomes
     OPTIONAL {
-        ?sentence rdf:type cacontology-sentencing:PrisonSentence ;
-            cacontology-sentencing:sentenceLength ?sentenceLength .
+        ?sentence rdf:type cacontology-legal-outcomes:PrisonSentence ;
+            cacontology-legal-outcomes:sentenceLength ?sentenceLength .
     }
     
     # Link to task force performance

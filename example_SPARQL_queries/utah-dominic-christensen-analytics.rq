@@ -13,7 +13,7 @@ PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/>
 PREFIX gufo: <http://purl.org/nemo/gufo#>
 PREFIX cacontology: <https://cacontology.projectvic.org#>
 PREFIX cacontology-registry: <https://cacontology.projectvic.org/sex-offender-registry#>
-PREFIX cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#>
+PREFIX cacontology-legal-outcomes: <https://cacontology.projectvic.org/legal-outcomes#>
 PREFIX cacontology-us-ncmec: <https://cacontology.projectvic.org/us/ncmec/2.1.0#>
 PREFIX cacontology-grooming: <https://cacontology.projectvic.org/grooming#>
 PREFIX ex: <https://example.org/kb/utah-dominic-christensen/>
@@ -59,7 +59,7 @@ WHERE {
 
     # Charges linked to this subject
     OPTIONAL {
-        ?subject cacontology-sentencing:chargedWith ?charge .
+        ?subject cacontology-legal-outcomes:chargedWith ?charge .
         ?charge rdfs:label ?chargeLabel .
     }
 
@@ -67,8 +67,8 @@ WHERE {
     OPTIONAL {
         ?proceeding rdf:type ?pType ;
                     rdfs:label ?proceedingLabel .
-        FILTER (?pType IN (cacontology-sentencing:SentencingHearing,
-                           cacontology-sentencing:ArraignmentProceeding))
+        FILTER (?pType IN (cacontology-legal-outcomes:SentencingHearing,
+                           cacontology-legal-outcomes:ArraignmentProceeding))
     }
 
     # Derive calendar year from event or fallback to 2025 if missing time
@@ -290,8 +290,8 @@ WHERE {
     FILTER (
         EXISTS { ?event cacontology:involvesOffender ?offender } ||
         EXISTS {
-            ?offender cacontology-sentencing:chargedWith ?charge .
-            ?event cacontology-sentencing:hasCharge ?charge .
+            ?offender cacontology-legal-outcomes:chargedWith ?charge .
+            ?event cacontology-legal-outcomes:hasCharge ?charge .
         }
     )
 }

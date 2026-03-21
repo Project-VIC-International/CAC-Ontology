@@ -5,25 +5,21 @@
 @prefix gufo: <http://purl.org/nemo/gufo#> .
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
-@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
-@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
-@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
-@prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-international: <https://cacontology.projectvic.org/international#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/international/shapes/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/international/shapes/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC International Cooperation SHACL Shapes with gUFO Validation"@en ;
-    rdfs:comment "SHACL validation shapes for gUFO-enhanced ICAC international cooperation ontology, including anti-rigidity constraints, temporal validation, and foundational type compliance."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/international/shapes/2.12.0> ;
-    owl:versionInfo "2.12.0" ;
+    rdfs:comment "SHACL validation shapes for gUFO-enhanced CAC international cooperation ontology, including anti-rigidity constraints, temporal validation, and foundational type compliance."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/international/shapes/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/international/2.12.0> ,
-                <http://purl.org/nemo/gufo> ,
+    owl:imports <https://cacontology.projectvic.org/international/3.0.0> ,
+                <http://purl.org/nemo/gufo#> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 
 # =============================================================================
@@ -36,60 +32,27 @@ cacontology-international:InternationalPartnershipKindValidationShape rdf:type s
     sh:property [
         sh:path rdf:type ;
         sh:hasValue gufo:Kind ;
-        sh:minCount 1 ;
-    ] ;
-    sh:property [
-        sh:path rdfs:subClassOf ;
-        sh:class gufo:Object ;
-        sh:minCount 1 ;
-    ] ;
-    sh:message "Every international partnership Kind must extend gufo:Object and be properly classified"@en .
+        sh:minCount 1     ] ;
+    sh:message "Every international partnership Kind must be properly classified"@en .
 
 # EventType validation for cross-border operations
 cacontology-international:CrossBorderEventTypeValidationShape rdf:type sh:NodeShape ;
     sh:targetClass gufo:EventType ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:EventType ;
-        sh:minCount 1 ;
-    ] ;
-    sh:property [
-        sh:path rdfs:subClassOf ;
-        sh:class gufo:Event ;
-        sh:minCount 1 ;
-    ] ;
-    sh:message "Every cross-border operation EventType must extend gufo:Event"@en .
+    sh:message "Every cross-border operation EventType must be declared as rdf:type gufo:EventType"@en .
 
 # Role validation for international coordinators (anti-rigid relational)
 cacontology-international:InternationalRoleValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:Role ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Role ;
-        sh:minCount 1 ;
-    ] ;
+    sh:targetClass cac-core:Role ;
     sh:not [
         sh:property [
             sh:path rdfs:subClassOf ;
-            sh:class gufo:Kind ;
-        ] ;
-    ] ;
+            sh:class gufo:Kind         ]     ] ;
     sh:message "International coordination roles are anti-rigid and cannot be subclasses of rigid Kinds"@en .
 
 # SituationType validation for legal and coordination situations
 cacontology-international:InternationalSituationTypeValidationShape rdf:type sh:NodeShape ;
     sh:targetClass gufo:SituationType ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:SituationType ;
-        sh:minCount 1 ;
-    ] ;
-    sh:property [
-        sh:path rdfs:subClassOf ;
-        sh:class gufo:Situation ;
-        sh:minCount 1 ;
-    ] ;
-    sh:message "Every international SituationType must extend gufo:Situation"@en .
+    sh:message "Every international SituationType must be declared as rdf:type gufo:SituationType"@en .
 
 # =============================================================================
 # gUFO TEMPORAL CONSTRAINTS FOR INTERNATIONAL OPERATIONS
@@ -102,22 +65,18 @@ cacontology-international:CrossBorderOperationTemporalShape rdf:type sh:NodeShap
         sh:path gufo:hasBeginPointInXSDDateTimeStamp ;
         sh:datatype xsd:dateTime ;
         sh:maxCount 1 ;
-        sh:message "Cross-border operation may have at most one start time (gUFO temporal boundary)"@en ;
-    ] ;
+        sh:message "Cross-border operation may have at most one start time (gUFO temporal boundary)"@en     ] ;
     sh:property [
         sh:path gufo:hasEndPointInXSDDateTimeStamp ;
         sh:datatype xsd:dateTime ;
         sh:maxCount 1 ;
-        sh:message "Cross-border operation may have at most one end time (gUFO temporal boundary)"@en ;
-    ] ;
+        sh:message "Cross-border operation may have at most one end time (gUFO temporal boundary)"@en     ] ;
     sh:sparql [
         sh:message "Operation end time must be after start time when both specified (gUFO temporal ordering)"@en ;
         sh:prefixes [
             sh:declare [
                 sh:prefix "gufo" ;
-                sh:namespace "http://purl.org/nemo/gufo#"^^xsd:anyURI ;
-            ] ;
-        ] ;
+                sh:namespace "http://purl.org/nemo/gufo#"^^xsd:anyURI             ]         ] ;
         sh:select """
             SELECT $this
             WHERE {
@@ -125,8 +84,7 @@ cacontology-international:CrossBorderOperationTemporalShape rdf:type sh:NodeShap
                 $this gufo:hasEndPointInXSDDateTimeStamp ?endTime .
                 FILTER (?endTime <= ?startTime)
             }
-        """ ;
-    ] .
+        """     ] .
 
 # International Alert Temporal Validation
 cacontology-international:InternationalAlertTemporalShape rdf:type sh:NodeShape ;
@@ -136,8 +94,7 @@ cacontology-international:InternationalAlertTemporalShape rdf:type sh:NodeShape 
         sh:datatype xsd:dateTime ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "International alert must have exactly one start time (gUFO temporal boundary)"@en ;
-    ] .
+        sh:message "International alert must have exactly one start time (gUFO temporal boundary)"@en     ] .
 
 # International Partnership Temporal Validation
 cacontology-international:InternationalPartnershipTemporalShape rdf:type sh:NodeShape ;
@@ -146,14 +103,12 @@ cacontology-international:InternationalPartnershipTemporalShape rdf:type sh:Node
         sh:path gufo:hasBeginPointInXSDDateTimeStamp ;
         sh:datatype xsd:dateTime ;
         sh:maxCount 1 ;
-        sh:message "Partnership may have establishment date (gUFO temporal boundary)"@en ;
-    ] ;
+        sh:message "Partnership may have establishment date (gUFO temporal boundary)"@en     ] ;
     sh:property [
         sh:path gufo:hasEndPointInXSDDateTimeStamp ;
         sh:datatype xsd:dateTime ;
         sh:maxCount 1 ;
-        sh:message "Partnership may have termination date (gUFO temporal boundary)"@en ;
-    ] .
+        sh:message "Partnership may have termination date (gUFO temporal boundary)"@en     ] .
 
 # =============================================================================
 # INTERNATIONAL PARTNERSHIP SHAPES
@@ -194,21 +149,18 @@ cacontology-international:InternationalPartnershipShape rdf:type sh:NodeShape ;
         sh:datatype xsd:string ;
         sh:in ( "low" "moderate" "high" "excellent" "outstanding" ) ;
         sh:maxCount 1 ;
-        sh:message "Partnership effectiveness level must be from allowed list (gUFO quality aspect)"@en ;
-    ] ;
+        sh:message "Partnership effectiveness level must be from allowed list (gUFO quality aspect)"@en     ] ;
     sh:property [
         sh:path cacontology-international:hasTrustLevel ;
         sh:datatype xsd:string ;
         sh:in ( "developing" "established" "strong" "exceptional" "complete" ) ;
         sh:maxCount 1 ;
-        sh:message "Partnership trust level must be from allowed list (gUFO quality aspect)"@en ;
-    ] ;
+        sh:message "Partnership trust level must be from allowed list (gUFO quality aspect)"@en     ] ;
     sh:property [
         sh:path gufo:hasBeginPointInXSDDateTimeStamp ;
         sh:datatype xsd:dateTime ;
         sh:maxCount 1 ;
-        sh:message "Partnership may have establishment date (gUFO temporal boundary)"@en ;
-    ] .
+        sh:message "Partnership may have establishment date (gUFO temporal boundary)"@en     ] .
 
 cacontology-international:CountryPartnershipShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-international:CountryPartnership ;
@@ -292,14 +244,12 @@ cacontology-international:CrossBorderOperationShape rdf:type sh:NodeShape ;
         sh:datatype xsd:dateTime ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Cross-border operation must have start time (gUFO temporal boundary)"@en ;
-    ] ;
+        sh:message "Cross-border operation must have start time (gUFO temporal boundary)"@en     ] ;
     sh:property [
         sh:path gufo:hasEndPointInXSDDateTimeStamp ;
         sh:datatype xsd:dateTime ;
         sh:maxCount 1 ;
-        sh:message "Cross-border operation may have end time (gUFO temporal boundary)"@en ;
-    ] ;
+        sh:message "Cross-border operation may have end time (gUFO temporal boundary)"@en     ] ;
     sh:property [
         sh:path cacontology-international:crossBorderCapability ;
         sh:datatype xsd:string ;
@@ -321,16 +271,14 @@ cacontology-international:CrossBorderOperationShape rdf:type sh:NodeShape ;
         sh:datatype xsd:string ;
         sh:in ( "routine" "urgent" "critical" "emergency" "immediate" ) ;
         sh:maxCount 1 ;
-        sh:message "Operational urgency level must be from allowed list (gUFO quality aspect)"@en ;
-    ] ;
+        sh:message "Operational urgency level must be from allowed list (gUFO quality aspect)"@en     ] ;
     sh:property [
         sh:path cacontology-international:hasSuccessLikelihood ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
         sh:maxCount 1 ;
-        sh:message "Success likelihood must be between 0.0 and 1.0 (gUFO quality aspect)"@en ;
-    ] .
+        sh:message "Success likelihood must be between 0.0 and 1.0 (gUFO quality aspect)"@en     ] .
 
 cacontology-international:CrossBorderInvestigationShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-international:CrossBorderInvestigation ;
@@ -420,28 +368,24 @@ cacontology-international:LiveStreamingInvestigationShape rdf:type sh:NodeShape 
     sh:property [
         sh:path cacontology-international:crossBorderCapability ;
         sh:hasValue "expert" ;
-        sh:message "Live streaming investigations require expert cross-border capability (gUFO quality constraint)"@en ;
-    ] ;
+        sh:message "Live streaming investigations require expert cross-border capability (gUFO quality constraint)"@en     ] ;
     sh:property [
         sh:path cacontology-international:coordinationComplexity ;
         sh:hasValue "complex" ;
-        sh:message "Live streaming investigations require complex coordination (gUFO quality constraint)"@en ;
-    ] ;
+        sh:message "Live streaming investigations require complex coordination (gUFO quality constraint)"@en     ] ;
     sh:property [
         sh:path cacontology-international:hasOperationalUrgency ;
         sh:datatype xsd:string ;
         sh:in ( "urgent" "critical" "emergency" "immediate" ) ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Live streaming investigations must have urgent operational priority (gUFO quality aspect)"@en ;
-    ] ;
+        sh:message "Live streaming investigations must have urgent operational priority (gUFO quality aspect)"@en     ] ;
     sh:property [
         sh:path gufo:hasBeginPointInXSDDateTimeStamp ;
         sh:datatype xsd:dateTime ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Investigation must have start time (gUFO temporal boundary)"@en ;
-    ] .
+        sh:message "Investigation must have start time (gUFO temporal boundary)"@en     ] .
 
 cacontology-international:DistanceChildAbuseShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-international:DistanceChildAbuse ;
@@ -553,28 +497,24 @@ cacontology-international:InformationSharingAgreementShape rdf:type sh:NodeShape
         sh:datatype xsd:string ;
         sh:in ( "temporary" "provisional" "stable" "long_term" "permanent" ) ;
         sh:maxCount 1 ;
-        sh:message "Agreement stability level must be from allowed list (gUFO quality aspect)"@en ;
-    ] ;
+        sh:message "Agreement stability level must be from allowed list (gUFO quality aspect)"@en     ] ;
     sh:property [
         sh:path cacontology-international:hasCompliance ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
         sh:maxCount 1 ;
-        sh:message "Compliance rate must be between 0.0 and 1.0 (gUFO quality aspect)"@en ;
-    ] ;
+        sh:message "Compliance rate must be between 0.0 and 1.0 (gUFO quality aspect)"@en     ] ;
     sh:property [
         sh:path gufo:hasBeginPointInXSDDateTimeStamp ;
         sh:datatype xsd:dateTime ;
         sh:maxCount 1 ;
-        sh:message "Agreement may have effective date (gUFO temporal boundary)"@en ;
-    ] ;
+        sh:message "Agreement may have effective date (gUFO temporal boundary)"@en     ] ;
     sh:property [
         sh:path gufo:hasEndPointInXSDDateTimeStamp ;
         sh:datatype xsd:dateTime ;
         sh:maxCount 1 ;
-        sh:message "Agreement may have expiration date (gUFO temporal boundary)"@en ;
-    ] .
+        sh:message "Agreement may have expiration date (gUFO temporal boundary)"@en     ] .
 
 cacontology-international:DataExchangeProtocolShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-international:DataExchangeProtocol ;
@@ -942,8 +882,7 @@ cacontology-international:CrossBorderOperationParticipationShape rdf:type sh:Nod
             cacontology-international:operatesInCountry 
         ) ] ;
         sh:minCount 2 ;
-        sh:message "Every cross-border operation must have at least two participating entities (gUFO participation)"@en ;
-    ] .
+        sh:message "Every cross-border operation must have at least two participating entities (gUFO participation)"@en     ] .
 
 # International Partnership Participation Validation
 cacontology-international:InternationalPartnershipParticipationShape rdf:type sh:NodeShape ;
@@ -954,8 +893,7 @@ cacontology-international:InternationalPartnershipParticipationShape rdf:type sh
             cacontology-international:coordinatesWith 
         ) ] ;
         sh:minCount 2 ;
-        sh:message "Partnership must have at least two participating organizations (gUFO participation)"@en ;
-    ] .
+        sh:message "Partnership must have at least two participating organizations (gUFO participation)"@en     ] .
 
 # Information Sharing Agreement Participation Validation
 cacontology-international:InformationSharingParticipationShape rdf:type sh:NodeShape ;
@@ -964,8 +902,7 @@ cacontology-international:InformationSharingParticipationShape rdf:type sh:NodeS
         sh:path cacontology-international:sharesDataWith ;
         sh:class uco-identity:Organization ;
         sh:minCount 2 ;
-        sh:message "Information sharing must involve at least two organizations (gUFO participation)"@en ;
-    ] .
+        sh:message "Information sharing must involve at least two organizations (gUFO participation)"@en     ] .
 
 # =============================================================================
 # gUFO PART-WHOLE RELATIONSHIP VALIDATION FOR INTERNATIONAL COOPERATION
@@ -977,8 +914,7 @@ cacontology-international:InternationalTaskForceCompositionShape rdf:type sh:Nod
     sh:property [
         sh:path [ sh:inversePath gufo:isProperPartOf ] ;
         sh:minCount 1 ;
-        sh:message "Task force must have component organizations or units (gUFO part-whole)"@en ;
-    ] .
+        sh:message "Task force must have component organizations or units (gUFO part-whole)"@en     ] .
 
 # Global Network Composition Validation
 cacontology-international:GlobalNetworkCompositionShape rdf:type sh:NodeShape ;
@@ -986,8 +922,7 @@ cacontology-international:GlobalNetworkCompositionShape rdf:type sh:NodeShape ;
     sh:property [
         sh:path [ sh:inversePath gufo:isProperPartOf ] ;
         sh:minCount 3 ;
-        sh:message "Global network must be composed of at least 3 national components (gUFO part-whole)"@en ;
-    ] .
+        sh:message "Global network must be composed of at least 3 national components (gUFO part-whole)"@en     ] .
 
 # Cross-Border Investigation Composition Validation
 cacontology-international:CrossBorderInvestigationCompositionShape rdf:type sh:NodeShape ;
@@ -995,8 +930,7 @@ cacontology-international:CrossBorderInvestigationCompositionShape rdf:type sh:N
     sh:property [
         sh:path [ sh:inversePath gufo:isProperPartOf ] ;
         sh:minCount 2 ;
-        sh:message "Cross-border investigation must include at least two national investigation components (gUFO part-whole)"@en ;
-    ] .
+        sh:message "Cross-border investigation must include at least two national investigation components (gUFO part-whole)"@en     ] .
 
 # =============================================================================
 # DATA QUALITY SHAPES
@@ -1028,23 +962,20 @@ cacontology-international:DataQualityShape rdf:type sh:NodeShape ;
         sh:path gufo:hasBeginPointInXSDDateTimeStamp ;
         sh:datatype xsd:dateTime ;
         sh:maxCount 1 ;
-        sh:message "Entity may have temporal beginning (gUFO temporal boundary)"@en ;
-    ] ;
+        sh:message "Entity may have temporal beginning (gUFO temporal boundary)"@en     ] ;
     sh:property [
         sh:path cacontology-international:hasDataQuality ;
         sh:datatype xsd:string ;
         sh:in ( "poor" "fair" "good" "excellent" "validated" ) ;
         sh:maxCount 1 ;
-        sh:message "Data quality level must be from allowed list (gUFO quality aspect)"@en ;
-    ] ;
+        sh:message "Data quality level must be from allowed list (gUFO quality aspect)"@en     ] ;
     sh:property [
         sh:path cacontology-international:hasReliabilityScore ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
         sh:maxCount 1 ;
-        sh:message "Reliability score must be between 0.0 and 1.0 (gUFO quality aspect)"@en ;
-    ] .
+        sh:message "Reliability score must be between 0.0 and 1.0 (gUFO quality aspect)"@en     ] .
 
 cacontology-international:CoordinationComplexityValidationShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-international:CrossBorderOperation ;
@@ -1130,9 +1061,7 @@ cacontology-international:MultiJurisdictionCoordinationBusinessRule rdf:type sh:
         sh:prefixes [
             sh:declare [
                 sh:prefix "cacontology-international" ;
-                sh:namespace "https://cacontology.projectvic.org/international#"^^xsd:anyURI ;
-            ] ;
-        ] ;
+                sh:namespace "https://cacontology.projectvic.org/international#"^^xsd:anyURI             ]         ] ;
         sh:select """
             SELECT $this
             WHERE {
@@ -1141,8 +1070,7 @@ cacontology-international:MultiJurisdictionCoordinationBusinessRule rdf:type sh:
                 FILTER (?complexity IN ("high", "complex") && 
                         ?capability NOT IN ("advanced", "expert"))
             }
-        """ ;
-    ] .
+        """     ] .
 
 # Partnership Trust and Effectiveness Business Rule
 cacontology-international:PartnershipEffectivenessBusinessRule rdf:type sh:NodeShape ;
@@ -1152,9 +1080,7 @@ cacontology-international:PartnershipEffectivenessBusinessRule rdf:type sh:NodeS
         sh:prefixes [
             sh:declare [
                 sh:prefix "cacontology-international" ;
-                sh:namespace "https://cacontology.projectvic.org/international#"^^xsd:anyURI ;
-            ] ;
-        ] ;
+                sh:namespace "https://cacontology.projectvic.org/international#"^^xsd:anyURI             ]         ] ;
         sh:select """
             SELECT $this
             WHERE {
@@ -1163,8 +1089,7 @@ cacontology-international:PartnershipEffectivenessBusinessRule rdf:type sh:NodeS
                 FILTER (?effectiveness IN ("high", "excellent", "outstanding") && 
                         ?trust IN ("developing"))
             }
-        """ ;
-    ] .
+        """     ] .
 
 # Urgent Operation Response Business Rule
 cacontology-international:UrgentOperationResponseBusinessRule rdf:type sh:NodeShape ;
@@ -1174,9 +1099,7 @@ cacontology-international:UrgentOperationResponseBusinessRule rdf:type sh:NodeSh
         sh:prefixes [
             sh:declare [
                 sh:prefix "cacontology-international" ;
-                sh:namespace "https://cacontology.projectvic.org/international#"^^xsd:anyURI ;
-            ] ;
-        ] ;
+                sh:namespace "https://cacontology.projectvic.org/international#"^^xsd:anyURI             ]         ] ;
         sh:select """
             SELECT $this
             WHERE {
@@ -1184,8 +1107,7 @@ cacontology-international:UrgentOperationResponseBusinessRule rdf:type sh:NodeSh
                       cacontology-international:responseTimeInternational ?responseTime .
                 FILTER (?urgency IN ("emergency", "immediate") && ?responseTime > 24.0)
             }
-        """ ;
-    ] .
+        """     ] .
 
 # Information Sharing Level Business Rule
 cacontology-international:InformationSharingLevelBusinessRule rdf:type sh:NodeShape ;
@@ -1195,9 +1117,7 @@ cacontology-international:InformationSharingLevelBusinessRule rdf:type sh:NodeSh
         sh:prefixes [
             sh:declare [
                 sh:prefix "cacontology-international" ;
-                sh:namespace "https://cacontology.projectvic.org/international#"^^xsd:anyURI ;
-            ] ;
-        ] ;
+                sh:namespace "https://cacontology.projectvic.org/international#"^^xsd:anyURI             ]         ] ;
         sh:select """
             SELECT $this
             WHERE {
@@ -1212,8 +1132,7 @@ cacontology-international:InformationSharingLevelBusinessRule rdf:type sh:NodeSh
                     HAVING (?partnerCount > 5)
                 }
             }
-        """ ;
-    ] .
+        """     ] .
 
 # Live Streaming Investigation Capability Business Rule
 cacontology-international:LiveStreamingInvestigationCapabilityBusinessRule rdf:type sh:NodeShape ;
@@ -1223,9 +1142,7 @@ cacontology-international:LiveStreamingInvestigationCapabilityBusinessRule rdf:t
         sh:prefixes [
             sh:declare [
                 sh:prefix "cacontology-international" ;
-                sh:namespace "https://cacontology.projectvic.org/international#"^^xsd:anyURI ;
-            ] ;
-        ] ;
+                sh:namespace "https://cacontology.projectvic.org/international#"^^xsd:anyURI             ]         ] ;
         sh:select """
             SELECT $this
             WHERE {
@@ -1233,5 +1150,4 @@ cacontology-international:LiveStreamingInvestigationCapabilityBusinessRule rdf:t
                       cacontology-international:coordinationComplexity ?complexity .
                 FILTER (?capability != "expert" || ?complexity != "complex")
             }
-        """ ;
-    ] . 
+        """     ] . 

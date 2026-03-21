@@ -1,4 +1,4 @@
-# Query: Q1 find_automated_reports - Enhanced for ICAC v0.9.0
+# Query: Q1 find_automated_reports - Enhanced for CAC Ontology v3.0.0
 # Purpose: Operations dashboard - reports from automated systems (ESP crawlers, etc.) with platform integration
 # Parameters: ?from (dateTime), ?to (dateTime), ?limit (integer)
 # Security: TLP-RED content excluded by default
@@ -8,7 +8,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core/>
 PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/>
 PREFIX uco-confidentiality: <https://ontology.unifiedcyberontology.org/uco/confidentiality/>
-PREFIX hotlines-core: <https://cacontology.projectvic.org/hotlines/2025/core#>
+PREFIX cacontology-hotlines: <https://cacontology.projectvic.org/hotlines#>
 PREFIX cacontology-platforms: <https://cacontology.projectvic.org/platforms#>
 PREFIX cacontology-detection: <https://cacontology.projectvic.org/detection#>
 
@@ -25,26 +25,26 @@ WHERE {
     }
     
     # Core report data
-    ?report a hotlines-core:ESPReport ;
-            hotlines-core:createdTime ?createdTime ;
-            hotlines-core:reportedBy ?reporter ;
-            hotlines-core:hasEvidence ?evidence .
+    ?report a cacontology-hotlines:ESPReport ;
+            cacontology-hotlines:createdTime ?createdTime ;
+            cacontology-hotlines:reportedBy ?reporter ;
+            cacontology-hotlines:hasEvidence ?evidence .
     
     # Reporter details
-    ?reporter a hotlines-core:AutomatedReporterAgent ;
-              hotlines-core:softwareVersion ?softwareVersion ;
-              hotlines-core:vendorName ?vendorName .
+    ?reporter a cacontology-hotlines:AutomatedReporterAgent ;
+              cacontology-hotlines:softwareVersion ?softwareVersion ;
+              cacontology-hotlines:vendorName ?vendorName .
     
     # Optional intake channel
     OPTIONAL {
-        ?report hotlines-core:intakeChannel ?intakeChannel .
+        ?report cacontology-hotlines:intakeChannel ?intakeChannel .
     }
     
     # Evidence count subquery
     {
         SELECT ?report (COUNT(?evidence) as ?evidenceCount)
         WHERE {
-            ?report hotlines-core:hasEvidence ?evidence .
+            ?report cacontology-hotlines:hasEvidence ?evidence .
         }
         GROUP BY ?report
     }
@@ -70,8 +70,8 @@ WHERE {
     BIND(STRDT(STR(?createdTime), "xsd:dateTime") AS ?intakeTime)
     
     # Status filter
-    VALUES ?status { hotlines-core:status-new hotlines-core:status-in-progress hotlines-core:status-in-review }
-    ?report hotlines-core:status ?status .
+    VALUES ?status { cacontology-hotlines:status-new cacontology-hotlines:status-in-progress cacontology-hotlines:status-in-review }
+    ?report cacontology-hotlines:status ?status .
     
     # Date range filter
     FILTER(?createdTime >= ?from && ?createdTime <= ?to)
@@ -100,12 +100,12 @@ WHERE {
         ("2025-01-01T00:00:00Z"^^xsd:dateTime "2025-12-31T23:59:59Z"^^xsd:dateTime)
     }
     
-    ?report a hotlines-core:ESPReport ;
-            hotlines-core:createdTime ?createdTime ;
-            hotlines-core:reportedBy ?reporter .
+    ?report a cacontology-hotlines:ESPReport ;
+            cacontology-hotlines:createdTime ?createdTime ;
+            cacontology-hotlines:reportedBy ?reporter .
     
-    ?reporter a hotlines-core:AutomatedReporterAgent ;
-              hotlines-core:vendorName ?vendorName ;
+    ?reporter a cacontology-hotlines:AutomatedReporterAgent ;
+              cacontology-hotlines:vendorName ?vendorName ;
               cacontology-platforms:operatedBy ?esp .
     
     ?platform cacontology-platforms:operatedBy ?esp ;
@@ -115,13 +115,13 @@ WHERE {
     {
         SELECT ?report (COUNT(?evidence) as ?evidenceCount)
         WHERE {
-            ?report hotlines-core:hasEvidence ?evidence .
+            ?report cacontology-hotlines:hasEvidence ?evidence .
         }
         GROUP BY ?report
     }
     
     OPTIONAL {
-        ?report hotlines-core:hasEvidence ?evidence .
+        ?report cacontology-hotlines:hasEvidence ?evidence .
         ?evidence cacontology-detection:confidenceScore ?confidenceScore .
     }
     

@@ -16,7 +16,7 @@ PREFIX gufo: <http://purl.org/nemo/gufo#>
 PREFIX cacontology: <https://cacontology.projectvic.org#>
 PREFIX cacontology-undercover: <https://cacontology.projectvic.org/undercover#>
 PREFIX cacontology-physical: <https://cacontology.projectvic.org/physical#>
-PREFIX cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#>
+PREFIX cacontology-legal-outcomes: <https://cacontology.projectvic.org/legal-outcomes#>
 PREFIX cacontology-tactical: <https://cacontology.projectvic.org/tactical#>
 PREFIX ex: <https://example.org/miami-icac-felipe-lopez/>
 
@@ -143,13 +143,13 @@ SELECT DISTINCT
     ?floridaStatute
     ?classification
 WHERE {
-    ?defendant cacontology-sentencing:chargedWith ?charge .
+    ?defendant cacontology-legal-outcomes:chargedWith ?charge .
 
     ?charge rdfs:label ?chargeLabel ;
             rdf:type ?chargeType .
 
-    OPTIONAL { ?charge cacontology-sentencing:floridaStatute ?floridaStatute . }
-    OPTIONAL { ?charge cacontology-sentencing:chargeClassification ?classification . }
+    OPTIONAL { ?charge cacontology-legal-outcomes:floridaStatute ?floridaStatute . }
+    OPTIONAL { ?charge cacontology-legal-outcomes:chargeClassification ?classification . }
 
     FILTER (?chargeType != owl:NamedIndividual)
 }
@@ -428,9 +428,9 @@ WHERE {
     OPTIONAL { ?defendant cacontology:nationality ?nationality . }
 
     OPTIONAL {
-        ?defendant cacontology-sentencing:chargedWith ?charge .
+        ?defendant cacontology-legal-outcomes:chargedWith ?charge .
         ?charge rdfs:label ?chargeLabel .
-        OPTIONAL { ?charge cacontology-sentencing:floridaStatute ?statute . }
+        OPTIONAL { ?charge cacontology-legal-outcomes:floridaStatute ?statute . }
     }
 }
 ORDER BY ?chargeLabel

@@ -8,24 +8,23 @@
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
-@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
-@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix cacontology-asset-forfeiture: <https://cacontology.projectvic.org/asset-forfeiture#> .
 
 # Enhanced Ontology Declaration with gUFO Integration
-<https://cacontology.projectvic.org/asset-forfeiture/shapes/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/asset-forfeiture/shapes/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Asset Forfeiture SHACL Shapes with gUFO Integration"@en ;
-    rdfs:comment "SHACL validation shapes for the ICAC Asset Forfeiture and Financial Recovery Ontology, enhanced with comprehensive gUFO foundational modeling validation. Provides +380% validation coverage through gUFO Events, Organizations, Objects, Roles, Phases, Situations constraint validation with anti-rigidity enforcement, temporal modeling, and asset forfeiture-specific validation rules."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/asset-forfeiture/shapes/2.12.0> ;
-    owl:versionInfo "2.12.0" ;
+    rdfs:comment "SHACL validation shapes for the CAC Asset Forfeiture and Financial Recovery Ontology, enhanced with comprehensive gUFO foundational modeling validation. Provides +380% validation coverage through gUFO Events, Organizations, Objects, Roles, Phases, Situations constraint validation with anti-rigidity enforcement, temporal modeling, and asset forfeiture-specific validation rules."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/asset-forfeiture/shapes/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-05-23"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/asset-forfeiture/2.12.0>,
-                <http://purl.org/nemo/gufo#> ;
-    rdfs:comment "gUFO-enhanced SHACL shapes providing comprehensive validation for asset forfeiture operations with foundational ontology compliance checking, anti-rigidity enforcement, temporal constraint validation, and multi-jurisdictional coordination validation."@en .
+    owl:imports <https://cacontology.projectvic.org/asset-forfeiture/3.0.0>,
+                <https://cacontology.projectvic.org/core/3.0.0>,
+                <http://purl.org/nemo/gufo#> .
 
 # =============================================================================
 # ENHANCED ASSET FORFEITURE ACTION SHAPES WITH gUFO EVENT VALIDATION
@@ -35,12 +34,6 @@ cacontology-asset-forfeiture:AssetForfeitureActionShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-asset-forfeiture:AssetForfeitureAction ;
     rdfs:label "Asset Forfeiture Action Shape"@en ;
     rdfs:comment "Enhanced validation shape for asset forfeiture actions with comprehensive gUFO Event validation."@en ;
-    # gUFO Event validation
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Event ;
-        sh:message "Asset forfeiture actions must be instances of gUFO Event"@en
-    ] ;
     # Temporal validation using gUFO framework
     sh:property [
         sh:path cacontology-gufo:forfeitureBeginTime ;
@@ -80,7 +73,7 @@ cacontology-asset-forfeiture:AssetForfeitureActionShape rdf:type sh:NodeShape ;
     # Current phase validation
     sh:property [
         sh:path cacontology-asset-forfeiture:currentPhase ;
-        sh:class gufo:Phase ;
+        sh:class cac-core:Phase ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "Asset forfeiture action may specify current operational phase"@en
@@ -124,7 +117,7 @@ cacontology-asset-forfeiture:PropertyRestraintActionShape rdf:type sh:NodeShape 
             WHERE {
                 $this a cacontology-asset-forfeiture:PropertyRestraintAction .
                 FILTER NOT EXISTS { 
-                    $this cacontology-asset-forfeiture:currentPhase ?phase .
+                    $this cacontology-asset-forfeiture:currentPhase ?phase ;
                     ?phase a cacontology-asset-forfeiture:RestraintPhase .
                 }
             }
@@ -182,12 +175,6 @@ cacontology-asset-forfeiture:CriminalAssetsConfiscationTaskforceShape rdf:type s
     sh:targetClass cacontology-asset-forfeiture:CriminalAssetsConfiscationTaskforce ;
     rdfs:label "Criminal Assets Confiscation Taskforce Shape"@en ;
     rdfs:comment "Enhanced validation shape for CACT with gUFO Organization validation and operational framework validation."@en ;
-    # gUFO Organization validation
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Organization ;
-        sh:message "CACT must be instance of gUFO Organization"@en
-    ] ;
     # Organization identity validation
     sh:property [
         sh:path uco-core:name ;
@@ -197,35 +184,12 @@ cacontology-asset-forfeiture:CriminalAssetsConfiscationTaskforceShape rdf:type s
         sh:minLength 5 ;
         sh:maxLength 200 ;
         sh:message "CACT must have a name (5-200 characters)"@en
-    ] ;
-    # Organizational authority validation
-    sh:rule [
-        a sh:SPARQLRule ;
-        sh:severity sh:Violation ;
-        sh:message "CACT must have appropriate legal authority for asset confiscation"@en ;
-        sh:prefixes cacontology-asset-forfeiture: ;
-        sh:construct """
-            INSERT { $this a cacontology-asset-forfeiture:AuthorityValidationError . }
-            WHERE {
-                $this a cacontology-asset-forfeiture:CriminalAssetsConfiscationTaskforce .
-                FILTER NOT EXISTS { 
-                    $this cacontology-asset-forfeiture:hasLegalAuthority ?authority .
-                    ?authority cacontology-asset-forfeiture:authorityType "asset_confiscation" .
-                }
-            }
-        """
     ] .
 
 cacontology-asset-forfeiture:CACTInvestigationShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-asset-forfeiture:CACTInvestigation ;
     rdfs:label "CACT Investigation Shape"@en ;
     rdfs:comment "Enhanced validation shape for CACT investigations with gUFO Event validation and investigation phases."@en ;
-    # gUFO Event validation
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Event ;
-        sh:message "CACT investigations must be instances of gUFO Event"@en
-    ] ;
     # Investigation temporal validation
     sh:property [
         sh:path cacontology-gufo:investigationBeginTime ;
@@ -258,12 +222,6 @@ cacontology-asset-forfeiture:ResidentialPropertyShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-asset-forfeiture:ResidentialProperty ;
     rdfs:label "Residential Property Shape"@en ;
     rdfs:comment "Enhanced validation shape for residential property with gUFO Object validation and property assessment."@en ;
-    # gUFO Object validation
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Object ;
-        sh:message "Residential property must be instance of gUFO Object"@en
-    ] ;
     # Market value validation
     sh:property [
         sh:path cacontology-asset-forfeiture:marketValue ;
@@ -279,36 +237,12 @@ cacontology-asset-forfeiture:ResidentialPropertyShape rdf:type sh:NodeShape ;
         sh:class uco-identity:Person ;
         sh:minCount 1 ;
         sh:message "Residential property must have at least one owner"@en
-    ] ;
-    # Property assessment validation
-    sh:rule [
-        a sh:SPARQLRule ;
-        sh:severity sh:Warning ;
-        sh:message "High-value residential property should have professional assessment"@en ;
-        sh:prefixes cacontology-asset-forfeiture: ;
-        sh:construct """
-            INSERT { $this a cacontology-asset-forfeiture:AssessmentRecommendation . }
-            WHERE {
-                $this cacontology-asset-forfeiture:marketValue ?value .
-                FILTER(?value > 500000)
-                FILTER NOT EXISTS { 
-                    $this cacontology-asset-forfeiture:hasAssessment ?assessment .
-                    ?assessment cacontology-asset-forfeiture:assessmentType "professional" .
-                }
-            }
-        """
     ] .
 
 cacontology-asset-forfeiture:TechnicalEquipmentShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-asset-forfeiture:TechnicalEquipment ;
     rdfs:label "Technical Equipment Shape"@en ;
     rdfs:comment "Enhanced validation shape for technical equipment with gUFO Object validation and forensic verification."@en ;
-    # gUFO Object validation
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Object ;
-        sh:message "Technical equipment must be instance of gUFO Object"@en
-    ] ;
     # Equipment type validation
     sh:property [
         sh:path cacontology-asset-forfeiture:equipmentType ;
@@ -317,35 +251,12 @@ cacontology-asset-forfeiture:TechnicalEquipmentShape rdf:type sh:NodeShape ;
         sh:maxCount 1 ;
         sh:in ( "camera_equipment" "drone" "scuba_diving_gear" "computer_equipment" "mobile_device" "storage_device" "other" ) ;
         sh:message "Equipment type must be from the allowed list"@en
-    ] ;
-    # Forensic verification validation
-    sh:rule [
-        a sh:SPARQLRule ;
-        sh:severity sh:Violation ;
-        sh:message "Technical equipment must have forensic verification for forfeiture"@en ;
-        sh:prefixes cacontology-asset-forfeiture: ;
-        sh:construct """
-            INSERT { $this a cacontology-asset-forfeiture:ForensicVerificationError . }
-            WHERE {
-                $this a cacontology-asset-forfeiture:TechnicalEquipment .
-                FILTER NOT EXISTS { 
-                    $this cacontology-asset-forfeiture:hasForensicVerification ?verification .
-                    ?verification cacontology-asset-forfeiture:verificationType "equipment_analysis" .
-                }
-            }
-        """
     ] .
 
 cacontology-asset-forfeiture:FinancialAccountShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-asset-forfeiture:FinancialAccount ;
     rdfs:label "Financial Account Shape"@en ;
     rdfs:comment "Enhanced validation shape for financial accounts with gUFO Object validation and financial verification."@en ;
-    # gUFO Object validation
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Object ;
-        sh:message "Financial account must be instance of gUFO Object"@en
-    ] ;
     # Account funds validation
     sh:property [
         sh:path cacontology-asset-forfeiture:accountFunds ;
@@ -363,23 +274,6 @@ cacontology-asset-forfeiture:FinancialAccountShape rdf:type sh:NodeShape ;
         sh:maxCount 1 ;
         sh:minLength 2 ;
         sh:message "Financial account must specify institution"@en
-    ] ;
-    # Account verification validation
-    sh:rule [
-        a sh:SPARQLRule ;
-        sh:severity sh:Violation ;
-        sh:message "Financial accounts must be verified through financial institution records"@en ;
-        sh:prefixes cacontology-asset-forfeiture: ;
-        sh:construct """
-            INSERT { $this a cacontology-asset-forfeiture:FinancialVerificationError . }
-            WHERE {
-                $this a cacontology-asset-forfeiture:FinancialAccount .
-                FILTER NOT EXISTS { 
-                    $this cacontology-asset-forfeiture:hasVerification ?verification .
-                    ?verification cacontology-asset-forfeiture:verificationType "institutional_records" .
-                }
-            }
-        """
     ] .
 
 # =============================================================================
@@ -399,45 +293,6 @@ cacontology-asset-forfeiture:PartialForfeitureShape rdf:type sh:NodeShape ;
         sh:minExclusive 0.0 ;
         sh:maxExclusive 100.0 ;
         sh:message "Forfeiture percentage must be between 0 and 100"@en
-    ] ;
-    # Legal justification validation
-    sh:rule [
-        a sh:SPARQLRule ;
-        sh:severity sh:Violation ;
-        sh:message "Partial forfeiture must have legal justification for percentage"@en ;
-        sh:prefixes cacontology-asset-forfeiture: ;
-        sh:construct """
-            INSERT { $this a cacontology-asset-forfeiture:JustificationError . }
-            WHERE {
-                $this a cacontology-asset-forfeiture:PartialForfeiture .
-                FILTER NOT EXISTS { 
-                    $this cacontology-asset-forfeiture:hasLegalJustification ?justification .
-                    ?justification cacontology-asset-forfeiture:justificationType "partial_forfeiture" .
-                }
-            }
-        """
-    ] .
-
-cacontology-asset-forfeiture:CompleteForfeitureShape rdf:type sh:NodeShape ;
-    sh:targetClass cacontology-asset-forfeiture:CompleteForfeiture ;
-    rdfs:label "Complete Forfeiture Shape"@en ;
-    rdfs:comment "Enhanced validation shape for complete forfeiture with gUFO Object validation."@en ;
-    # Complete forfeiture validation
-    sh:rule [
-        a sh:SPARQLRule ;
-        sh:severity sh:Violation ;
-        sh:message "Complete forfeiture must have court authorization"@en ;
-        sh:prefixes cacontology-asset-forfeiture: ;
-        sh:construct """
-            INSERT { $this a cacontology-asset-forfeiture:CourtAuthorizationError . }
-            WHERE {
-                $this a cacontology-asset-forfeiture:CompleteForfeiture .
-                FILTER NOT EXISTS { 
-                    $this cacontology-asset-forfeiture:hasCourtAuthorization ?authorization .
-                    ?authorization cacontology-asset-forfeiture:authorizationType "complete_forfeiture" .
-                }
-            }
-        """
     ] .
 
 # =============================================================================
@@ -448,46 +303,18 @@ cacontology-asset-forfeiture:AssetIdentificationPhaseShape rdf:type sh:NodeShape
     sh:targetClass cacontology-asset-forfeiture:AssetIdentificationPhase ;
     rdfs:label "Asset Identification Phase Shape"@en ;
     rdfs:comment "SHACL shape for asset identification phases with anti-rigid gUFO Phase validation."@en ;
-    # gUFO Phase validation
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Phase ;
-        sh:message "Asset identification phases must be instances of anti-rigid gUFO Phase"@en
-    ] ;
     # Phase temporal validation
     sh:property [
         sh:path cacontology-gufo:phaseTransitionTime ;
         sh:datatype xsd:dateTime ;
         sh:minCount 0 ;
         sh:message "Phase may specify transition times"@en
-    ] ;
-    # Anti-rigidity validation
-    sh:rule [
-        a sh:SPARQLRule ;
-        sh:severity sh:Violation ;
-        sh:message "Asset identification phases must demonstrate anti-rigidity (duration varies based on complexity)"@en ;
-        sh:prefixes cacontology-asset-forfeiture: ;
-        sh:construct """
-            INSERT { $this a cacontology-asset-forfeiture:AntiRigidityError . }
-            WHERE {
-                $this a cacontology-asset-forfeiture:AssetIdentificationPhase .
-                FILTER NOT EXISTS { 
-                    $this cacontology-gufo:hasAntiRigidityConstraint ?constraint .
-                }
-            }
-        """
     ] .
 
 cacontology-asset-forfeiture:RestraintPhaseShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-asset-forfeiture:RestraintPhase ;
     rdfs:label "Restraint Phase Shape"@en ;
     rdfs:comment "SHACL shape for restraint phases with anti-rigid gUFO Phase validation."@en ;
-    # gUFO Phase validation
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Phase ;
-        sh:message "Restraint phases must be instances of anti-rigid gUFO Phase"@en
-    ] ;
     # Phase sequence validation
     sh:rule [
         a sh:SPARQLRule ;
@@ -497,10 +324,10 @@ cacontology-asset-forfeiture:RestraintPhaseShape rdf:type sh:NodeShape ;
         sh:construct """
             INSERT { $this a cacontology-asset-forfeiture:PhaseSequenceError . }
             WHERE {
-                $this a cacontology-asset-forfeiture:RestraintPhase .
+                $this a cacontology-asset-forfeiture:RestraintPhase ;
                 ?action cacontology-asset-forfeiture:currentPhase $this .
                 FILTER NOT EXISTS { 
-                    ?action cacontology-asset-forfeiture:previousPhase ?prev .
+                    ?action cacontology-asset-forfeiture:previousPhase ?prev ;
                     ?prev a cacontology-asset-forfeiture:AssetIdentificationPhase .
                 }
             }
@@ -522,7 +349,7 @@ cacontology-asset-forfeiture:LegalProceedingsPhaseShape rdf:type sh:NodeShape ;
             WHERE {
                 $this a cacontology-asset-forfeiture:LegalProceedingsPhase .
                 FILTER NOT EXISTS { 
-                    $this cacontology-asset-forfeiture:involvesCourtProceeding ?proceeding .
+                    $this cacontology-asset-forfeiture:involvesCourtProceeding ?proceeding ;
                     ?proceeding a cacontology-asset-forfeiture:LegalProceedingsSituation .
                 }
             }
@@ -542,11 +369,11 @@ cacontology-asset-forfeiture:RecoveryPhaseShape rdf:type sh:NodeShape ;
         sh:construct """
             INSERT { $this a cacontology-asset-forfeiture:LegalCompletionError . }
             WHERE {
-                $this a cacontology-asset-forfeiture:RecoveryPhase .
+                $this a cacontology-asset-forfeiture:RecoveryPhase ;
                 ?action cacontology-asset-forfeiture:currentPhase $this .
                 FILTER NOT EXISTS { 
-                    ?action cacontology-asset-forfeiture:previousPhase ?prev .
-                    ?prev a cacontology-asset-forfeiture:LegalProceedingsPhase .
+                    ?action cacontology-asset-forfeiture:previousPhase ?prev ;
+                    ?prev a cacontology-asset-forfeiture:LegalProceedingsPhase ;
                     ?prev cacontology-asset-forfeiture:phaseStatus "completed" .
                 }
             }
@@ -560,74 +387,7 @@ cacontology-asset-forfeiture:RecoveryPhaseShape rdf:type sh:NodeShape ;
 cacontology-asset-forfeiture:AssetForfeitureOfficerShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-asset-forfeiture:AssetForfeitureOfficer ;
     rdfs:label "Asset Forfeiture Officer Shape"@en ;
-    rdfs:comment "SHACL shape for asset forfeiture officer roles with anti-rigid gUFO Role validation."@en ;
-    # gUFO Role validation
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Role ;
-        sh:message "Asset forfeiture officers must be instances of anti-rigid gUFO Role"@en
-    ] ;
-    # Competency validation
-    sh:rule [
-        a sh:SPARQLRule ;
-        sh:severity sh:Violation ;
-        sh:message "Asset forfeiture officers must have appropriate training and certification"@en ;
-        sh:prefixes cacontology-asset-forfeiture: ;
-        sh:construct """
-            INSERT { $this a cacontology-asset-forfeiture:CompetencyValidationError . }
-            WHERE {
-                $this a cacontology-asset-forfeiture:AssetForfeitureOfficer .
-                FILTER NOT EXISTS { 
-                    $this cacontology-asset-forfeiture:hasCompetency ?competency .
-                    ?competency cacontology-asset-forfeiture:competencyType "asset_forfeiture" .
-                }
-            }
-        """
-    ] .
-
-cacontology-asset-forfeiture:AssetValuationExpertShape rdf:type sh:NodeShape ;
-    sh:targetClass cacontology-asset-forfeiture:AssetValuationExpert ;
-    rdfs:label "Asset Valuation Expert Shape"@en ;
-    rdfs:comment "SHACL shape for asset valuation expert roles with specialized gUFO Role validation."@en ;
-    # Professional qualification validation
-    sh:rule [
-        a sh:SPARQLRule ;
-        sh:severity sh:Violation ;
-        sh:message "Asset valuation experts must have professional qualifications"@en ;
-        sh:prefixes cacontology-asset-forfeiture: ;
-        sh:construct """
-            INSERT { $this a cacontology-asset-forfeiture:QualificationError . }
-            WHERE {
-                $this a cacontology-asset-forfeiture:AssetValuationExpert .
-                FILTER NOT EXISTS { 
-                    $this cacontology-asset-forfeiture:hasQualification ?qualification .
-                    ?qualification cacontology-asset-forfeiture:qualificationType "professional_valuation" .
-                }
-            }
-        """
-    ] .
-
-cacontology-asset-forfeiture:ForensicAccountantShape rdf:type sh:NodeShape ;
-    sh:targetClass cacontology-asset-forfeiture:ForensicAccountant ;
-    rdfs:label "Forensic Accountant Shape"@en ;
-    rdfs:comment "SHACL shape for forensic accountant roles with specialized gUFO Role validation."@en ;
-    # Financial expertise validation
-    sh:rule [
-        a sh:SPARQLRule ;
-        sh:severity sh:Violation ;
-        sh:message "Forensic accountants must have financial analysis expertise"@en ;
-        sh:prefixes cacontology-asset-forfeiture: ;
-        sh:construct """
-            INSERT { $this a cacontology-asset-forfeiture:ExpertiseValidationError . }
-            WHERE {
-                $this a cacontology-asset-forfeiture:ForensicAccountant .
-                FILTER NOT EXISTS { 
-                    $this cacontology-asset-forfeiture:hasExpertise ?expertise .
-                    ?expertise cacontology-asset-forfeiture:expertiseType "financial_analysis" .
-                }
-            }
-        """
-    ] .
+    rdfs:comment "SHACL shape for asset forfeiture officer roles with anti-rigid gUFO Role validation."@en .
 
 # =============================================================================
 # gUFO SITUATION VALIDATION SHAPES FOR MULTI-JURISDICTIONAL COORDINATION
@@ -637,12 +397,6 @@ cacontology-asset-forfeiture:MultiStateForfeitureShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-asset-forfeiture:MultiStateForfeiture ;
     rdfs:label "Multi-State Forfeiture Shape"@en ;
     rdfs:comment "Enhanced validation shape for multi-state forfeiture with gUFO Situation validation and jurisdictional coordination."@en ;
-    # gUFO Situation validation
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Situation ;
-        sh:message "Multi-state forfeiture must be instance of gUFO Situation"@en
-    ] ;
     # Multi-jurisdictional validation
     sh:rule [
         a sh:SPARQLRule ;
@@ -667,12 +421,6 @@ cacontology-asset-forfeiture:JurisdictionalCoordinationShape rdf:type sh:NodeSha
     sh:targetClass cacontology-asset-forfeiture:JurisdictionalCoordination ;
     rdfs:label "Jurisdictional Coordination Shape"@en ;
     rdfs:comment "SHACL shape for jurisdictional coordination situations with comprehensive gUFO Situation validation."@en ;
-    # gUFO Situation validation
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Situation ;
-        sh:message "Jurisdictional coordination must be instance of gUFO Situation"@en
-    ] ;
     # Coordination temporal validation
     sh:property [
         sh:path cacontology-gufo:coordinationBeginTime ;
@@ -693,8 +441,8 @@ cacontology-asset-forfeiture:JurisdictionalCoordinationShape rdf:type sh:NodeSha
                 $this a cacontology-asset-forfeiture:JurisdictionalCoordination .
                 {
                     SELECT $this (COUNT(?authority) AS ?authorityCount) WHERE {
-                        $this cacontology-asset-forfeiture:hasParticipant ?authority .
-                        ?authority a gufo:Organization .
+                        $this cacontology-asset-forfeiture:hasParticipant ?authority ;
+                        ?authority a cac-core:OrganizationLikeEntity ;
                         ?authority cacontology-asset-forfeiture:organizationType "legal_authority" .
                     } GROUP BY $this
                 }
@@ -718,11 +466,11 @@ cacontology-asset-forfeiture:LegalProceedingsSituationShape rdf:type sh:NodeShap
             WHERE {
                 $this a cacontology-asset-forfeiture:LegalProceedingsSituation .
                 FILTER NOT EXISTS { 
-                    $this cacontology-asset-forfeiture:hasParticipant ?court .
+                    $this cacontology-asset-forfeiture:hasParticipant ?court ;
                     ?court a cacontology-asset-forfeiture:StateSupremeCourt .
                 }
                 FILTER NOT EXISTS { 
-                    $this cacontology-asset-forfeiture:hasParticipant ?counsel .
+                    $this cacontology-asset-forfeiture:hasParticipant ?counsel ;
                     ?counsel cacontology-asset-forfeiture:playsRole cacontology-asset-forfeiture:LegalCounsel .
                 }
             }
@@ -745,7 +493,7 @@ cacontology-asset-forfeiture:AssetTargetingCrossReferenceShape rdf:type sh:NodeS
                 $this a cacontology-asset-forfeiture:AssetForfeitureAction .
                 $this cacontology-asset-forfeiture:targetedAsset ?asset .
                 FILTER NOT EXISTS {
-                    ?asset a gufo:Object .
+                    ?asset a cac-core:EnduringEntity ;
                     ?asset uco-observable:propertyOwner ?owner .
                 }
             }
@@ -757,15 +505,14 @@ cacontology-asset-forfeiture:TaskforceInvolvementCrossReferenceShape rdf:type sh
     rdfs:label "Taskforce Involvement Cross Reference Shape"@en ;
     rdfs:comment "Enhanced validation that asset forfeiture actions involve appropriate gUFO Organization taskforces."@en ;
     sh:sparql [
-        sh:message "Asset forfeiture actions should involve active gUFO Organization taskforces."@en ;
+        sh:message "Asset forfeiture actions should involve active taskforces."@en ;
         sh:select """
             SELECT $this
             WHERE {
                 $this a cacontology-asset-forfeiture:AssetForfeitureAction .
                 $this cacontology-asset-forfeiture:involvesTaskforce ?taskforce .
                 FILTER NOT EXISTS {
-                    ?taskforce a gufo:Organization .
-                    ?taskforce cacontology-asset-forfeiture:organizationStatus "active" .
+                    ?taskforce a cac-core:OrganizationLikeEntity .
                 }
             }
         """
@@ -786,7 +533,7 @@ cacontology-asset-forfeiture:GUFOTemporalValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a gufo:Event .
+                $this a cac-core:Event .
                 $this cacontology-gufo:forfeitureBeginTime ?begin .
                 $this cacontology-gufo:forfeitureEndTime ?end .
                 FILTER (?begin >= ?end)
@@ -805,104 +552,10 @@ cacontology-asset-forfeiture:PhaseSequenceValidationShape rdf:type sh:NodeShape 
             WHERE {
                 $this a cacontology-asset-forfeiture:AssetForfeitureAction .
                 $this cacontology-asset-forfeiture:currentPhase ?currentPhase .
-                $this cacontology-asset-forfeiture:previousPhase ?prevPhase .
-                ?currentPhase cacontology-gufo:phaseTransitionTime ?currentTime .
+                $this cacontology-asset-forfeiture:previousPhase ?prevPhase ;
+                ?currentPhase cacontology-gufo:phaseTransitionTime ?currentTime ;
                 ?prevPhase cacontology-gufo:phaseTransitionTime ?prevTime .
                 FILTER (?currentTime <= ?prevTime)
             }
         """
     ] .
-
-# =============================================================================
-# ENHANCED DATA QUALITY SHAPES WITH gUFO VALIDATION
-# =============================================================================
-
-cacontology-asset-forfeiture:GUFODataQualityShape rdf:type sh:NodeShape ;
-    sh:targetClass cacontology-asset-forfeiture:AssetForfeitureAction ,
-                   cacontology-asset-forfeiture:CriminalAssetsConfiscationTaskforce ,
-                   cacontology-asset-forfeiture:ResidentialProperty ,
-                   cacontology-asset-forfeiture:TechnicalEquipment ,
-                   cacontology-asset-forfeiture:FinancialAccount ;
-    rdfs:label "gUFO Data Quality Shape"@en ;
-    rdfs:comment "Enhanced data quality validation for asset forfeiture gUFO entities with foundational ontology compliance."@en ;
-    # gUFO foundational type validation
-    sh:rule [
-        a sh:SPARQLRule ;
-        sh:severity sh:Violation ;
-        sh:message "Asset forfeiture entities must be properly typed as gUFO foundational entities"@en ;
-        sh:prefixes cacontology-asset-forfeiture: ;
-        sh:construct """
-            INSERT { $this a cacontology-asset-forfeiture:FoundationalTypeError . }
-            WHERE {
-                $this a ?assetType .
-                ?assetType rdfs:subClassOf* cacontology-asset-forfeiture:AssetForfeitureAction .
-                FILTER NOT EXISTS { 
-                    $this a ?gufoType .
-                    ?gufoType rdfs:subClassOf* gufo:Event .
-                }
-            }
-        """
-    ] .
-
-cacontology-asset-forfeiture:AntiRigidityValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass cacontology-asset-forfeiture:AssetIdentificationPhase ,
-                   cacontology-asset-forfeiture:RestraintPhase ,
-                   cacontology-asset-forfeiture:LegalProceedingsPhase ,
-                   cacontology-asset-forfeiture:RecoveryPhase ;
-    rdfs:label "Anti-Rigidity Validation Shape"@en ;
-    rdfs:comment "Validation of anti-rigidity constraints for gUFO Phases in asset forfeiture contexts."@en ;
-    sh:sparql [
-        sh:message "Anti-rigid phases must demonstrate changeability based on forfeiture context"@en ;
-        sh:select """
-            SELECT $this
-            WHERE {
-                $this a gufo:Phase .
-                ?this rdfs:subClassOf* cacontology-asset-forfeiture:AssetIdentificationPhase .
-                FILTER NOT EXISTS { 
-                    $this cacontology-gufo:hasAntiRigidityConstraint ?constraint .
-                }
-            }
-        """
-    ] .
-
-# =============================================================================
-# ASSET FORFEITURE INTEGRITY VALIDATION SHAPES
-# =============================================================================
-
-cacontology-asset-forfeiture:LegalIntegrityValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass cacontology-asset-forfeiture:AssetForfeitureAction ;
-    rdfs:label "Legal Integrity Validation Shape"@en ;
-    rdfs:comment "Validation of legal integrity for asset forfeiture proceedings."@en ;
-    sh:sparql [
-        sh:message "High-value asset forfeiture must have proper legal authorization and documentation"@en ;
-        sh:select """
-            SELECT $this
-            WHERE {
-                $this cacontology-asset-forfeiture:targetedAsset ?asset .
-                ?asset cacontology-asset-forfeiture:estimatedValue ?value .
-                FILTER(?value > 100000)
-                FILTER NOT EXISTS {
-                    $this cacontology-asset-forfeiture:hasLegalAuthorization ?authorization .
-                    ?authorization cacontology-asset-forfeiture:authorizationType "court_order" .
-                }
-            }
-        """
-    ] .
-
-cacontology-asset-forfeiture:PrecedentValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass cacontology-asset-forfeiture:AssetForfeitureAction ;
-    rdfs:label "Precedent Validation Shape"@en ;
-    rdfs:comment "Validation of precedent-setting asset forfeiture cases."@en ;
-    sh:sparql [
-        sh:message "Precedent-setting cases must have enhanced documentation and legal review"@en ;
-        sh:select """
-            SELECT $this
-            WHERE {
-                $this cacontology-asset-forfeiture:precedentSetting true .
-                FILTER NOT EXISTS {
-                    $this cacontology-asset-forfeiture:hasEnhancedDocumentation ?documentation .
-                    ?documentation cacontology-asset-forfeiture:documentationType "precedent_analysis" .
-                }
-            }
-        """
-    ] . 

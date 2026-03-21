@@ -1,0 +1,76 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
+
+# =============================================================================
+# Minimal provenance skeleton (UUID-only) for later KG expansion
+# =============================================================================
+
+<urn:uuid:8924328b-4315-4510-8c86-b4a2969371be> a uco-identity:Identity ;
+    rdfs:label "CAC Ontology agent (collector)"@en .
+
+<urn:uuid:0470e6ed-988a-4a59-9385-e5a6be42f69a> a uco-observable:ObservableObject ;
+    rdfs:label "The Sun article: livestreamed CSEA 'made to order' (2026-02-15)"@en ;
+    uco-core:hasFacet <urn:uuid:305136d8-cc2a-57c1-a177-929ad44d778f> ,
+                    <urn:uuid:4dce9b59-e4f0-5f23-84bb-375c829ec854> ,
+                    <urn:uuid:0b1b4e02-ea6f-5454-8f3b-21e17cf5fccf> ,
+                    <urn:uuid:ed6faee1-b4ec-5a70-878a-baf2d3b05459> .
+
+<urn:uuid:305136d8-cc2a-57c1-a177-929ad44d778f> a uco-observable:URLFacet ;
+    uco-observable:url "https://www.thesun.co.uk/news/38229815/girls-knifepoint-orphans-child-abuse-brit-paedos/"^^xsd:anyURI .
+
+<urn:uuid:4dce9b59-e4f0-5f23-84bb-375c829ec854> a uco-observable:FileFacet ;
+    uco-observable:filePath "analytics_demonstration/collected_sources/thesun-livestreamed-csea-philippines-2026/source.txt"@en .
+
+<urn:uuid:ed6faee1-b4ec-5a70-878a-baf2d3b05459> a uco-observable:ContentDataFacet ;
+    uco-observable:mimeType "text/plain"@en ;
+    uco-observable:sizeInBytes 2300 .
+
+<urn:uuid:0b1b4e02-ea6f-5454-8f3b-21e17cf5fccf> a uco-observable:HashFacet ;
+    uco-observable:hash <urn:uuid:d3299873-67b5-5680-a62d-b6a8afd8dbe9> .
+
+<urn:uuid:d3299873-67b5-5680-a62d-b6a8afd8dbe9> a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256"@en ;
+    uco-types:hashValue "16ba10c3e56c2a1167b66fda28dfb0b409d7c8afdcb507cf70603160cdc8259f"@en .
+
+<urn:uuid:3af724b0-1551-5651-b794-d565e5aa0e1c> a uco-action:Action ;
+    rdfs:label "Collection: The Sun article (session snapshot excerpt)"@en ;
+    uco-action:startTime "2026-02-17T14:12:12Z"^^xsd:dateTime ;
+    uco-action:performer <urn:uuid:8924328b-4315-4510-8c86-b4a2969371be> ;
+    uco-action:object <urn:uuid:0470e6ed-988a-4a59-9385-e5a6be42f69a> ;
+    uco-core:description "manual capture (blocked by device verification; harm-minimized excerpt stored)"@en .
+
+<urn:uuid:e40b2895-ae34-5137-91a9-fd4a68545ece> a uco-observable:ObservableObject ;
+    rdfs:label "Normalized text artifact (keypoint statements; harm-minimized)"@en ;
+    uco-core:hasFacet <urn:uuid:ace674cd-bf81-5eeb-b072-65b186350d9d> ,
+                    <urn:uuid:db1d30d1-4bb4-5d38-82c3-e060b5ae0c96> ,
+                    <urn:uuid:ee417954-fc32-5650-88fa-f4ccce0f15bc> .
+
+<urn:uuid:ace674cd-bf81-5eeb-b072-65b186350d9d> a uco-observable:FileFacet ;
+    uco-observable:filePath "analytics_demonstration/collected_sources/thesun-livestreamed-csea-philippines-2026/normalized.txt"@en .
+
+<urn:uuid:ee417954-fc32-5650-88fa-f4ccce0f15bc> a uco-observable:ContentDataFacet ;
+    uco-observable:mimeType "text/plain"@en ;
+    uco-observable:sizeInBytes 1724 .
+
+<urn:uuid:db1d30d1-4bb4-5d38-82c3-e060b5ae0c96> a uco-observable:HashFacet ;
+    uco-observable:hash <urn:uuid:a10469c7-0dc1-5a36-a7a7-d973a16902e4> .
+
+<urn:uuid:a10469c7-0dc1-5a36-a7a7-d973a16902e4> a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256"@en ;
+    uco-types:hashValue "64c47e0c3472cab4de099cb5e04a1fd9c734c66f303473dba204c13dd67f4beb"@en .
+
+<urn:uuid:f3e25db3-8919-50c8-82b4-0b3f0e6acb8b> a uco-action:Action ;
+    rdfs:label "Normalization: session snapshot excerpt to keypoint statements"@en ;
+    uco-action:startTime "2026-02-17T14:12:12Z"^^xsd:dateTime ;
+    uco-action:performer <urn:uuid:8924328b-4315-4510-8c86-b4a2969371be> ;
+    uco-action:object <urn:uuid:0470e6ed-988a-4a59-9385-e5a6be42f69a> ;
+    uco-action:result <urn:uuid:e40b2895-ae34-5137-91a9-fd4a68545ece> ;
+    uco-core:description "session_web_snapshot_extract + harm-minimized redaction + keypoint normalization (see normalized.txt)"@en .
+

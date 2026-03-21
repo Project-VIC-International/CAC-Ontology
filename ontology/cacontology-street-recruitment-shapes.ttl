@@ -2,28 +2,22 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
-@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
-@prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-street: <https://cacontology.projectvic.org/street#> .
-@prefix cacontology-grooming: <https://cacontology.projectvic.org/grooming#> .
-@prefix cacontology-trafficking: <https://cacontology.projectvic.org/trafficking#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/street/shapes/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/street/shapes/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Street-Based Recruitment SHACL Shapes"@en ;
-    rdfs:comment "SHACL validation shapes for the ICAC Street-Based Recruitment & Opportunistic Exploitation Ontology, providing validation for street-based trafficking recruitment, opportunistic exploitation, public space predatory behavior, and related patterns."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/street/shapes/2.12.0> ;
-    owl:versionInfo "2.12.0" ;
+    rdfs:comment "SHACL validation shapes for the CAC Street-Based Recruitment & Opportunistic Exploitation Ontology, providing validation for street-based trafficking recruitment, opportunistic exploitation, public space predatory behavior, and related patterns."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/street/shapes/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/street/2.12.0> ,
-                <http://purl.org/nemo/gufo> ,
+    owl:imports <https://cacontology.projectvic.org/street/3.0.0> ,
+                <http://purl.org/nemo/gufo#> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 
 # =============================================================================

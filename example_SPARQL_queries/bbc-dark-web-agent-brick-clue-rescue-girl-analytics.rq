@@ -1,0 +1,173 @@
+# =============================================================================
+# Analytics Queries: BBC “dark web agent brick clue rescue” (text capture)
+# Dataset: examples_knowledge_graphs/bbc-dark-web-agent-brick-clue-rescue-girl-example.ttl
+# =============================================================================
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core/>
+PREFIX uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/>
+PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/>
+PREFIX uco-types: <https://ontology.unifiedcyberontology.org/uco/types/>
+PREFIX investigation: <https://ontology.caseontology.org/case/investigation/>
+
+PREFIX cacontology-analyst: <https://cacontology.projectvic.org/analyst-wellbeing#>
+
+PREFIX ex: <urn:uuid:>
+
+# -----------------------------------------------------------------------------
+# Q1: List collected document(s) with URL, mime, size, and SHA-256.
+# -----------------------------------------------------------------------------
+SELECT ?doc ?url ?mime ?size ?hashValue WHERE {
+  ?doc a uco-observable:ObservableObject ;
+       uco-core:hasFacet ?urlFacet ;
+       uco-core:hasFacet ?contentFacet ;
+       uco-core:hasFacet ?hashFacet .
+
+  ?urlFacet a uco-observable:URLFacet ;
+           uco-observable:url ?url .
+
+  ?contentFacet a uco-observable:ContentDataFacet ;
+               uco-observable:mimeType ?mime ;
+               uco-observable:sizeInBytes ?size .
+
+  ?hashFacet a uco-observable:HashFacet ;
+            uco-observable:hash ?hash .
+  ?hash a uco-types:Hash ;
+        uco-types:hashValue ?hashValue .
+}
+ORDER BY ?doc
+;
+
+# -----------------------------------------------------------------------------
+# Q2: Show collection action(s) and their performer(s) and targets.
+# -----------------------------------------------------------------------------
+SELECT ?action ?time ?performer ?object ?desc WHERE {
+  ?action a investigation:InvestigativeAction ;
+          uco-action:startTime ?time ;
+          uco-action:performer ?performer ;
+          uco-action:object ?object ;
+          uco-core:description ?desc .
+  FILTER(CONTAINS(LCASE(STR(?desc)), "collected"))
+}
+ORDER BY ?time
+;
+
+# -----------------------------------------------------------------------------
+# Q3: List investigative actions described in the article (excluding collection).
+# -----------------------------------------------------------------------------
+SELECT ?action ?label ?desc WHERE {
+  ?action a investigation:InvestigativeAction ;
+          rdfs:label ?label ;
+          uco-core:description ?desc .
+  FILTER(!CONTAINS(LCASE(STR(?label)), "collection action"))
+}
+ORDER BY ?action
+;
+
+# -----------------------------------------------------------------------------
+# Q4: Timeline of all investigative actions by startTime.
+# -----------------------------------------------------------------------------
+SELECT ?action ?label ?time WHERE {
+  ?action a investigation:InvestigativeAction ;
+          rdfs:label ?label ;
+          uco-action:startTime ?time .
+}
+ORDER BY ?time ?action
+;
+
+# -----------------------------------------------------------------------------
+# Q5: List provenance records and which actions they reference.
+# -----------------------------------------------------------------------------
+SELECT ?prov ?label ?action ?desc WHERE {
+  ?prov a investigation:ProvenanceRecord ;
+        rdfs:label ?label .
+  OPTIONAL { ?prov investigation:provenanceRecordAction ?action }
+  OPTIONAL { ?prov uco-core:description ?desc }
+}
+ORDER BY ?prov
+;
+
+# -----------------------------------------------------------------------------
+# Q6: Find key “clue objects” used in the example (brick type and constraints).
+# -----------------------------------------------------------------------------
+SELECT ?obj ?label WHERE {
+  ?obj a uco-core:UcoObject ;
+       rdfs:label ?label .
+  FILTER(CONTAINS(LCASE(STR(?label)), "brick") || CONTAINS(LCASE(STR(?label)), "constraint"))
+}
+ORDER BY ?obj
+;
+
+# -----------------------------------------------------------------------------
+# Q7: Investigator(s) and their linked occupational harms.
+# -----------------------------------------------------------------------------
+SELECT ?person ?personLabel ?harm ?harmLabel ?severity WHERE {
+  ?person a uco-identity:Person ;
+          rdfs:label ?personLabel ;
+          cacontology-analyst:experiencesOccupationalHarm ?harm .
+  ?harm rdfs:label ?harmLabel .
+  OPTIONAL { ?harm cacontology-analyst:harmSeverity ?severity }
+}
+ORDER BY ?person ?harm
+;
+
+# -----------------------------------------------------------------------------
+# Q8: Occupational harm instances present.
+# -----------------------------------------------------------------------------
+SELECT ?harm ?type ?label WHERE {
+  ?harm a ?type ;
+        rdfs:label ?label .
+  FILTER(STRSTARTS(STR(?type), STR(cacontology-analyst:)))
+}
+ORDER BY ?type ?harm
+;
+
+# -----------------------------------------------------------------------------
+# Q9: Which actions are explicitly grounded in normalized.txt (evidence pointer).
+# -----------------------------------------------------------------------------
+SELECT ?action ?label ?desc WHERE {
+  ?action rdfs:label ?label ;
+          uco-core:description ?desc .
+  FILTER(CONTAINS(LCASE(STR(?desc)), "grounded in normalized.txt"))
+}
+ORDER BY ?action
+;
+
+# -----------------------------------------------------------------------------
+# Q10: Verify there are no isolated nodes (degree >= 1 excluding rdf:type).
+# Expected: 0 results
+# -----------------------------------------------------------------------------
+SELECT ?node WHERE {
+  ?node rdf:type ?t .
+  FILTER NOT EXISTS { ?node ?p ?o . FILTER(?p != rdf:type) }
+  FILTER NOT EXISTS { ?s ?p2 ?node . FILTER(?p2 != rdf:type) }
+}
+;
+
+# -----------------------------------------------------------------------------
+# Q11: Show all actions performed by the investigator (Greg Squire) in this KG.
+# -----------------------------------------------------------------------------
+SELECT ?action ?label WHERE {
+  ?action a investigation:InvestigativeAction ;
+          uco-action:performer ex:cb45dddd-6ef3-5f4b-b00b-77f345131213 ;
+          rdfs:label ?label .
+}
+ORDER BY ?action
+;
+
+# -----------------------------------------------------------------------------
+# Q12: Identify the arrest action(s) (simple label match).
+# -----------------------------------------------------------------------------
+SELECT ?action ?label ?desc WHERE {
+  ?action a investigation:InvestigativeAction ;
+          rdfs:label ?label ;
+          uco-core:description ?desc .
+  FILTER(CONTAINS(LCASE(STR(?label)), "arrest"))
+}
+ORDER BY ?action
+;
+

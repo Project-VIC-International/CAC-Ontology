@@ -1,24 +1,81 @@
 # CAC Ontology Family Architecture
 
+## Semantic Spine Architecture (v3.0.0)
+
+The CAC Ontology v3.0.0 introduces a **semantic spine** — a stable, top-level class hierarchy rooted at `cac-core:Entity` and organized by ontological kind. The spine lives in `cacontology-core-spine.ttl` (with SHACL shapes in `cacontology-core-spine-shapes.ttl`) and serves three purposes:
+
+1. **Anchoring domain modules** — every domain class in every CAC module subclasses exactly one spine branch, giving the whole family a single, coherent taxonomy.
+2. **Mediating external alignment** — bridge files map spine branches to gUFO, UCO, and CASE so that downstream consumers get foundational-ontology semantics without domain modules importing those external vocabularies directly.
+3. **Providing a stable extension point** — new modules only need to pick the right spine branch; the bridges propagate alignment automatically.
+
+```mermaid
+graph TD
+    Entity["cac-core:Entity"]
+
+    Entity --> EnduringEntity["cac-core:EnduringEntity"]
+    Entity --> Occurrent["cac-core:Occurrent"]
+    Entity --> Situation["cac-core:Situation"]
+    Entity --> Role["cac-core:Role"]
+    Entity --> Phase["cac-core:Phase"]
+
+    EnduringEntity --> PersonLikeEntity["cac-core:PersonLikeEntity"]
+    EnduringEntity --> OrganizationLikeEntity["cac-core:OrganizationLikeEntity"]
+    EnduringEntity --> DigitalSystemEntity["cac-core:DigitalSystemEntity"]
+    EnduringEntity --> Artifact["cac-core:Artifact"]
+    EnduringEntity --> PlaceLikeEntity["cac-core:PlaceLikeEntity"]
+    EnduringEntity --> AssessmentResult["cac-core:AssessmentResult"]
+
+    Occurrent --> Event["cac-core:Event"]
+    Event --> ExploitationEvent["cac-core:ExploitationEvent"]
+    Event --> DetectionEvent["cac-core:DetectionEvent"]
+    Event --> CoordinationEvent["cac-core:CoordinationEvent"]
+    Event --> SupportEvent["cac-core:SupportEvent"]
+    Event --> LegalEvent["cac-core:LegalEvent"]
+    Event --> InvestigativeAction["cac-core:InvestigativeAction"]
+```
+
+### Spine-to-External Alignment (Bridges)
+
+| Spine Branch | gUFO Alignment | UCO / CASE Alignment |
+|---|---|---|
+| `cac-core:EnduringEntity` | `gufo:Object` | `uco-core:UcoObject` |
+| `cac-core:Event` | `gufo:Event` | `uco-action:Action` |
+| `cac-core:Role` | `gufo:Role` | — |
+| `cac-core:Phase` | `gufo:Phase` | — |
+| `cac-core:Situation` | `gufo:Situation` | — |
+| `cac-core:Artifact` | `gufo:Object` | `uco-observable:ObservableObject` |
+| `cac-core:PersonLikeEntity` | `gufo:Object` | `uco-identity:Person` |
+
+These mappings are maintained in three dedicated bridge files: `cacontology-bridge-gufo.ttl`, `cacontology-bridge-uco.ttl`, and `cacontology-bridge-case.ttl`.
+
+---
+
 ## gUFO Foundational Ontology Integration
 
 The CAC ontology family now includes comprehensive integration with gUFO (Unified Foundational Ontology), providing enhanced semantic precision, temporal modeling, and validation capabilities. This integration consists of three completed phases:
 
 ### Phase 1: Core Investigation Modeling (✅ COMPLETE)
-**Files**: `cacontology-core-gufo.ttl`, `examples/gufo-phase1-example.ttl`
+**Files**: `cacontology-bridge-gufo.ttl`, `cacontology-core-spine.ttl`
 
 ```mermaid
 graph TD
     subgraph "gUFO Foundation"
-        GUFO_KIND[gufo:Kind]
-        GUFO_PHASE[gufo:Phase] 
+        GUFO_PHASE[gufo:Phase]
         GUFO_ROLE[gufo:Role]
         GUFO_EVENT[gufo:Event]
         GUFO_SITUATION[gufo:Situation]
+        GUFO_OBJECT[gufo:Object]
     end
 
-    subgraph "CAC Core with gUFO"
-        INVESTIGATION[Investigation]
+    subgraph "CAC Semantic Spine"
+        CAC_PHASE[cac-core:Phase]
+        CAC_ROLE[cac-core:Role]
+        CAC_EVENT[cac-core:Event]
+        CAC_SITUATION[cac-core:Situation]
+        CAC_ENDURING[cac-core:EnduringEntity]
+    end
+
+    subgraph "CAC Domain Classes"
         INIT_PHASE[InitialPhase]
         ANALYSIS_PHASE[AnalysisPhase]
         LEGAL_PHASE[LegalProcessPhase]
@@ -28,18 +85,23 @@ graph TD
         LIFECYCLE_SIT[LifecycleSituation]
     end
 
-    GUFO_KIND --> INVESTIGATION
-    GUFO_PHASE --> INIT_PHASE
-    GUFO_PHASE --> ANALYSIS_PHASE
-    GUFO_PHASE --> LEGAL_PHASE
-    GUFO_ROLE --> INVESTIGATOR_ROLE
-    GUFO_ROLE --> VICTIM_ROLE
-    GUFO_EVENT --> CRIMINAL_EVENT
-    GUFO_SITUATION --> LIFECYCLE_SIT
+    GUFO_PHASE --> CAC_PHASE
+    GUFO_ROLE --> CAC_ROLE
+    GUFO_EVENT --> CAC_EVENT
+    GUFO_SITUATION --> CAC_SITUATION
+    GUFO_OBJECT --> CAC_ENDURING
+
+    CAC_PHASE --> INIT_PHASE
+    CAC_PHASE --> ANALYSIS_PHASE
+    CAC_PHASE --> LEGAL_PHASE
+    CAC_ROLE --> INVESTIGATOR_ROLE
+    CAC_ROLE --> VICTIM_ROLE
+    CAC_EVENT --> CRIMINAL_EVENT
+    CAC_SITUATION --> LIFECYCLE_SIT
 ```
 
 ### Phase 2: Temporal Framework (✅ COMPLETE)  
-**Files**: `cacontology-temporal-gufo.ttl`, `examples/gufo-phase2-temporal-example.ttl`
+**Files**: `cacontology-temporal.ttl`
 
 ```mermaid
 graph TD
@@ -67,7 +129,7 @@ graph TD
 ```
 
 ### Phase 3: Full Integration Strategy (✅ COMPLETE)
-**Files**: `cacontology-gufo-integration-strategy.ttl`, `examples/gufo-integration-summary.md`
+**Files**: `cacontology-integration-patterns.ttl`
 
 16 specialized integration patterns across all 30+ CAC ontology modules with 345-day deployment timeline.
 
@@ -80,18 +142,25 @@ graph TD
         CASE[CASE Investigation]
     end
 
-    subgraph "gUFO Foundation (**NEW**)"
+    subgraph "Semantic Spine & Bridges"
+        SPINE[cacontology-core-spine.ttl]
+        SPINE_SHAPES[cacontology-core-spine-shapes.ttl]
+        BRIDGE_GUFO[cacontology-bridge-gufo.ttl]
+        BRIDGE_UCO[cacontology-bridge-uco.ttl]
+        BRIDGE_CASE[cacontology-bridge-case.ttl]
+    end
+
+    subgraph "gUFO Foundation"
         GUFO[gUFO Core Concepts]
-        CAC_GUFO[cacontology-core-gufo.ttl]
-        TEMPORAL_GUFO[cacontology-temporal-gufo.ttl]
-        STRATEGY_GUFO[cacontology-gufo-integration-strategy.ttl]
+        TEMPORAL_GUFO[cacontology-temporal.ttl]
+        STRATEGY_GUFO[cacontology-integration-patterns.ttl]
     end
 
     subgraph "CAC Core"
         CAC[cacontology-core.ttl]
         CAC_SHAPES[cacontology-core-shapes.ttl]
-        HOTLINES[cacontology-hotlines-core.ttl]
-        HOTLINES_SHAPES[cacontology-hotlines-core-shapes.ttl]
+        HOTLINES[cacontology-hotlines.ttl]
+        HOTLINES_SHAPES[cacontology-hotlines-shapes.ttl]
         NCMEC[cacontology-us-ncmec.ttl]
     end
 
@@ -129,35 +198,35 @@ graph TD
     subgraph "Victim Services & Legal"
         VICTIM_IMPACT[cacontology-victim-impact.ttl]
         TASKFORCE[cacontology-taskforce.ttl]
-        SENTENCING[cacontology-sentencing.ttl]
+        SENTENCING[cacontology-legal-outcomes.ttl]
         SPECIALIZED_UNITS[cacontology-specialized-units.ttl]
         SEX_OFFENDER[cacontology-sex-offender-registry.ttl]
     end
 
     subgraph Examples
-        GUFO_EX1[gufo-phase1-example.ttl]
-        GUFO_EX2[gufo-phase2-temporal-example.ttl]
         HOTLINE_EX[hotline-lifecycle.ttl]
         INVEST_EX[investigation-lifecycle.ttl]
         ENHANCED_EX[enhanced-investigation-lifecycle.ttl]
         DOUGLAS_EX[douglas-comprehensive-case.ttl]
         RHODE_ISLAND_EX[rhode-island-production-case.ttl]
-        IDAHO_EX[idaho-operation-unhinged-example.ttl]
         ARKANSAS_EX[arkansas-operation-cyber-highway-safety-check-example.ttl]
         REGISTRY_EX[sex-offender-registry-integration-example.ttl]
         ILLINOIS_EX[illinois-attorney-general-case-example.ttl]
-        INTERNATIONAL_EX[international-coordination-example.ttl]
         MORTON_EX[brooklyn-morton-october-2024-example.ttl]
         SEXTORTION_EX[wa-sextortion-case-example.ttl]
     end
 
-    GUFO --> CAC_GUFO
-    GUFO --> TEMPORAL_GUFO  
-    GUFO --> STRATEGY_GUFO
-    UCO --> CAC
-    CASE --> CAC
-    CAC --> CAC_GUFO
+    SPINE --> CAC
     CAC --> HOTLINES
+    GUFO --> BRIDGE_GUFO
+    GUFO --> TEMPORAL_GUFO
+    GUFO --> STRATEGY_GUFO
+    UCO --> BRIDGE_UCO
+    CASE --> BRIDGE_CASE
+    BRIDGE_GUFO --> SPINE
+    BRIDGE_UCO --> SPINE
+    BRIDGE_CASE --> SPINE
+    SPINE -.-> SPINE_SHAPES
     CAC --> NCMEC
     
     CAC --> INTERNATIONAL
@@ -192,7 +261,7 @@ graph TD
     CAC -.-> CAC_SHAPES
     FORENSICS -.-> FORENSICS_SHAPES
     
-    CAC_GUFO --> GUFO_EX1
+    BRIDGE_GUFO --> GUFO_EX1
     TEMPORAL_GUFO --> GUFO_EX2
     HOTLINES --> HOTLINE_EX
     CAC --> INVEST_EX
@@ -207,21 +276,23 @@ graph TD
     ATHLETIC --> MORTON_EX
     SEXTORTION --> SEXTORTION_EX
 
-    linkStyle 23,24,25 stroke-dasharray: 5 5
-
     style GUFO fill:#e1f5fe
-    style CAC_GUFO fill:#e1f5fe  
+    style BRIDGE_GUFO fill:#e1f5fe
+    style BRIDGE_UCO fill:#e1f5fe
+    style BRIDGE_CASE fill:#e1f5fe
     style TEMPORAL_GUFO fill:#e1f5fe
     style STRATEGY_GUFO fill:#e1f5fe
+    style SPINE fill:#c8e6c9
+    style SPINE_SHAPES fill:#c8e6c9
     style GUFO_EX1 fill:#f3e5f5
     style GUFO_EX2 fill:#f3e5f5
 ```
 
-> **Note**: gUFO components (blue) provide foundational ontology enhancements. Shapes files (dotted lines) are used for validation but not imported by production graphs. All 30+ ontology modules extend the core CAC framework with optional gUFO integration.
+> **Note**: The semantic spine (green) provides the stable class hierarchy that all domain modules extend. Bridge files (blue) map spine branches to gUFO, UCO, and CASE. Shapes files (dotted lines) are used for validation but not imported by production graphs.
 
 ### Release Versioning Policy
 
-- The CAC Ontology family uses a **global release version** recorded in `CHANGELOG.md` (for example, `v2.2.0`) to describe the state of the full ontology suite.
+- The CAC Ontology family uses a **global release version** recorded in `CHANGELOG.md` (for example, `v3.0.0`) to describe the state of the full ontology suite.
 - Individual ontology modules (and their SHACL shapes) retain **module-specific `owl:versionIRI` values**, which are only incremented when that particular module’s semantics change.
 - This approach avoids churn in ontology IRIs while still providing a clear project-wide release history for implementers and downstream tools.
 
@@ -329,72 +400,139 @@ graph LR
 
 > **Note**: Blue components represent new gUFO-enhanced processing stages that provide semantic validation, temporal modeling, and enhanced analytics capabilities.
 
-## Enhanced Class Hierarchy
+## Class Hierarchy (Spine-Organized)
+
+The spine branches serve as the primary organizing structure for all CAC domain classes. Every domain class ultimately traces back to `cac-core:Entity` through one of the five top-level branches.
 
 ```mermaid
 classDiagram
-    class UCOObservable {
-        +String id
-        +DateTime createdTime
+    class Entity {
+        <<cac-core>>
     }
-    
-    class UCOAction {
-        +DateTime startTime
-        +DateTime endTime
-        +Tool[] usesTool
+
+    class EnduringEntity {
+        <<cac-core>>
     }
-    
-    class UCOTool {
-        +String name
-        +String version
+    class Occurrent {
+        <<cac-core>>
     }
-    
+    class Role {
+        <<cac-core>>
+    }
+    class Phase {
+        <<cac-core>>
+    }
+    class Situation {
+        <<cac-core>>
+    }
+
+    Entity <|-- EnduringEntity
+    Entity <|-- Occurrent
+    Entity <|-- Role
+    Entity <|-- Phase
+    Entity <|-- Situation
+
+    class PersonLikeEntity {
+        <<EnduringEntity>>
+    }
+    class OrganizationLikeEntity {
+        <<EnduringEntity>>
+    }
+    class DigitalSystemEntity {
+        <<EnduringEntity>>
+    }
+    class Artifact {
+        <<EnduringEntity>>
+    }
+
+    EnduringEntity <|-- PersonLikeEntity
+    EnduringEntity <|-- OrganizationLikeEntity
+    EnduringEntity <|-- DigitalSystemEntity
+    EnduringEntity <|-- Artifact
+
+    class Event {
+        <<Occurrent>>
+    }
+    Occurrent <|-- Event
+
+    class ExploitationEvent {
+        <<Event>>
+    }
+    class DetectionEvent {
+        <<Event>>
+    }
+    class InvestigativeAction {
+        <<Event>>
+    }
+    class LegalEvent {
+        <<Event>>
+    }
+
+    Event <|-- ExploitationEvent
+    Event <|-- DetectionEvent
+    Event <|-- InvestigativeAction
+    Event <|-- LegalEvent
+
+    class InvestigatorRole {
+        <<Role>>
+    }
+    class VictimRole {
+        <<Role>>
+    }
+    class ReporterRole {
+        <<Role>>
+    }
+
+    Role <|-- InvestigatorRole
+    Role <|-- VictimRole
+    Role <|-- ReporterRole
+
+    class InitialPhase {
+        <<Phase>>
+    }
+    class AnalysisPhase {
+        <<Phase>>
+    }
+    class LegalProcessPhase {
+        <<Phase>>
+    }
+
+    Phase <|-- InitialPhase
+    Phase <|-- AnalysisPhase
+    Phase <|-- LegalProcessPhase
+
     class HotlineReport {
+        <<Artifact>>
         +ReporterRole reportedBy
-        +HotlineOrganization receivedBy
         +EvidenceItem[] hasEvidence
-        +HotlineAction[] triggersAction
     }
-    
-    class CACInvestigation {
-        +HotlineReport[] hasReport
-        +InvestigationAction[] hasAction
-        +String status
-    }
-    
-    class ForensicAcquisitionAction {
-        +String acquisitionMethod
-        +Boolean writeBlockingUsed
-        +ObservableObject evidenceSeized
-        +ForensicImage forensicCopy
-    }
-    
-    class AutomatedDetectionAction {
-        +ObservableObject detectedContent
-        +Decimal detectionThreshold
-        +DetectionResult result
-    }
-    
-    class SocialMediaPlatform {
-        +String platformType
-        +String primaryUserBase
-        +ContentModerationCapability capability
-    }
-    
     class PhotoDNAHash {
+        <<Artifact>>
         +String photoDNAValue
         +String hashAlgorithm
     }
-    
-    UCOObservable <|-- HotlineReport
-    UCOObservable <|-- CACInvestigation
-    UCOObservable <|-- SocialMediaPlatform
-    UCOObservable <|-- PhotoDNAHash
-    UCOAction <|-- ForensicAcquisitionAction
-    UCOAction <|-- AutomatedDetectionAction
-    UCOTool <|-- ForensicImagingTool
-    UCOTool <|-- MachineLearningDetectionTool
-    HotlineReport --> CACInvestigation
+    class SocialMediaPlatform {
+        <<DigitalSystemEntity>>
+        +String platformType
+    }
+
+    Artifact <|-- HotlineReport
+    Artifact <|-- PhotoDNAHash
+    DigitalSystemEntity <|-- SocialMediaPlatform
+
+    class ForensicAcquisitionAction {
+        <<InvestigativeAction>>
+        +String acquisitionMethod
+        +Boolean writeBlockingUsed
+    }
+    class AutomatedDetectionAction {
+        <<DetectionEvent>>
+        +Decimal detectionThreshold
+        +DetectionResult result
+    }
+
+    InvestigativeAction <|-- ForensicAcquisitionAction
+    DetectionEvent <|-- AutomatedDetectionAction
 ```
 
 ## Enhanced Property Relationships
@@ -449,9 +587,16 @@ graph TD
 
 The CAC Ontology Family consists of 30+ modules organized by domain:
 
+### Semantic Spine & Bridges (5 modules)
+- **`cacontology-core-spine.ttl`:** Stable top-level class hierarchy (Entity → EnduringEntity, Occurrent, Role, Phase, Situation)
+- **`cacontology-core-spine-shapes.ttl`:** SHACL validation for spine classes
+- **`cacontology-bridge-gufo.ttl`:** Spine-to-gUFO alignment (EnduringEntity → gufo:Object, Event → gufo:Event, etc.)
+- **`cacontology-bridge-uco.ttl`:** Spine-to-UCO alignment (EnduringEntity → uco-core:UcoObject, etc.)
+- **`cacontology-bridge-case.ttl`:** Spine-to-CASE alignment
+
 ### Core Framework (3 modules)
-- **`cacontology-core.ttl`:** Base investigation framework and lifecycles
-- **`cacontology-hotlines-core.ttl`:** Hotline operations and report management
+- **`cacontology-core.ttl`:** Base investigation framework and lifecycles (imports `cacontology-core-spine.ttl`)
+- **`cacontology-hotlines.ttl`:** Hotline operations and report management
 - **`cacontology-us-ncmec.ttl`:** Enhanced NCMEC integration and tip analysis
 
 ### International Coordination & Global Frameworks (4 modules)
@@ -483,13 +628,13 @@ The CAC Ontology Family consists of 30+ modules organized by domain:
 ### Victim Services & Task Force Management (5+ modules)
 - **`cacontology-victim-impact.ttl`:** Victim impact assessment & recovery
 - **`cacontology-taskforce.ttl`:** CAC task force organization
-- **`cacontology-sentencing.ttl`:** Legal outcomes & sentencing
+- **`cacontology-legal-outcomes.ttl`:** Legal outcomes & sentencing
 - **`cacontology-specialized-units.ttl`:** Specialized units & advanced capabilities
 - **`cacontology-sex-offender-registry.ttl`:** Sex offender registry management
 
 ### Validation Components (20+ modules)
 - **`cacontology-core-shapes.ttl`:** Core validation shapes
-- **`cacontology-hotlines-core-shapes.ttl`:** Hotline validation shapes
+- **`cacontology-hotlines-shapes.ttl`:** Hotline validation shapes
 - **`cacontology-forensics-shapes.ttl`:** Forensic validation shapes
 - Plus 17+ additional SHACL validation modules
 
@@ -511,9 +656,8 @@ The enhanced ontology family maximally reuses UCO and CASE concepts:
 
 ## Context Files and API Integration
 
-### JSON-LD Contexts
-- **`contexts/hotlines-core.jsonld`:** Complete context for hotline operations
-- **`contexts/cacontology-core.jsonld`:** Core investigation context (to be created)
+### JSON-LD Contexts (Planned)
+JSON-LD context files for developer integration are planned for a future release.
 
 ### Example Data Sets (selected files)
 - **`hotline-lifecycle.ttl`:** Basic hotline workflow
@@ -521,12 +665,10 @@ The enhanced ontology family maximally reuses UCO and CASE concepts:
 - **`enhanced-investigation-lifecycle.ttl`:** Advanced investigation with forensics
 - **`douglas-comprehensive-case.ttl`:** Multi-ontology integration example
 - **`rhode-island-production-case.ttl`:** Production case example
-- **`idaho-operation-unhinged-example.ttl`:** K9 detection and officer wellness
 - **`arkansas-operation-cyber-highway-safety-check-example.ttl`:** Large-scale seasonal operations
 - **`sex-offender-registry-integration-example.ttl`:** Registry system integration
 - **`illinois-attorney-general-case-example.ttl`:** State-level prosecution and multi-agency coordination
-- **`international-coordination-example.ttl`:** Cross-border operations
-- **`utah-dominic-christensen-example.ttl`:** Utah recidivism, registry compliance, and NCMEC-driven investigation (introduced in v2.2.0)
+- **`utah-dominic-christensen-example.ttl`:** Utah recidivism, registry compliance, and NCMEC-driven investigation (introduced in v3.0.0)
 
 ### Analytics Queries (selected files)
 - **`comprehensive-case-analytics.rq`:** Cross-ontology analytics

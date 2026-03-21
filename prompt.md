@@ -54,7 +54,7 @@ You are enhancing the CAC Ontology (Crimes Against Children Ontology): a semanti
 @prefix cacontology-undercover: <https://cacontology.projectvic.org/undercover#> .
 @prefix cacontology-physical: <https://cacontology.projectvic.org/physical#> .
 @prefix cacontology-tactical: <https://cacontology.projectvic.org/tactical#> .
-@prefix cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#> .
+@prefix cacontology-legal-outcomes: <https://cacontology.projectvic.org/legal-outcomes#> .
 # ... additional modules - see ontology/ directory for complete list
 ```
 

@@ -3,9 +3,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
-@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
@@ -13,24 +10,25 @@
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-production: <https://cacontology.projectvic.org/production#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
-@prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/production/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/production/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Child Sexual Abuse Material Production Ontology"@en ;
-    rdfs:comment "An ontology for representing the production of child sexual abuse material, including recording activities, equipment used, production sessions, and content creation patterns in ICAC investigations, extending UCO and CASE with gUFO foundational ontology enhancements."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/production/2.12.0> ;
+    rdfs:comment "An ontology for representing the production of child sexual abuse material, including recording activities, equipment used, production sessions, and content creation patterns in CAC investigations, extending UCO and CASE with gUFO foundational ontology enhancements."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/production/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://ontology.unifiedcyberontology.org/uco/core> ,
-                <https://ontology.unifiedcyberontology.org/uco/identity> ,
-                <https://ontology.unifiedcyberontology.org/uco/observable> ,
-                <https://ontology.unifiedcyberontology.org/uco/action> ,
-                <https://ontology.unifiedcyberontology.org/uco/location> ,
-                <https://ontology.unifiedcyberontology.org/uco/role> ,
-                <https://cacontology.projectvic.org/2.12.0> ,
-                <http://purl.org/nemo/gufo> .
+    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
+                <https://ontology.unifiedcyberontology.org/uco/identity/> ,
+                <https://ontology.unifiedcyberontology.org/uco/observable/> ,
+                <https://ontology.unifiedcyberontology.org/uco/action/> ,
+                <https://ontology.unifiedcyberontology.org/uco/location/> ,
+                <https://ontology.unifiedcyberontology.org/uco/role/> ,
+                <https://cacontology.projectvic.org/3.0.0> ,
+                <http://purl.org/nemo/gufo#> .
 
 # =============================================================================
 # PRODUCTION OFFENSE CLASSES (extending UCO Action with gUFO Event)
@@ -39,18 +37,17 @@
 cacontology-production:ProductionOffense rdf:type owl:Class ;
     rdfs:label "Production Offense"@en ;
     rdfs:comment "Criminal offense involving the production, creation, or manufacturing of child sexual abuse material."@en ;
-    rdfs:subClassOf uco-action:Crime, gufo:Event ;
-    owl:equivalentClass cacontology-gufo:CriminalEvent .
+    rdfs:subClassOf cac-core:ExploitationEvent, uco-action:Crime .
 
 cacontology-production:LiveProductionEvent rdf:type owl:Class ;
     rdfs:label "Live Production Event"@en ;
     rdfs:comment "Real-time production of child sexual abuse material involving live victims."@en ;
-    rdfs:subClassOf cacontology-production:ProductionOffense, gufo:Event .
+    rdfs:subClassOf cacontology-production:ProductionOffense, cac-core:ExploitationEvent .
 
 cacontology-production:RecordingAction rdf:type owl:Class ;
     rdfs:label "Recording Action"@en ;
     rdfs:comment "Action of recording child sexual abuse for the purpose of creating illegal material."@en ;
-    rdfs:subClassOf uco-action:Action, gufo:Event .
+    rdfs:subClassOf cac-core:ExploitationEvent .
 
 cacontology-production:PrivateSpaceSurveillance rdf:type owl:Class ;
     rdfs:label "Private Space Surveillance"@en ;
@@ -70,12 +67,12 @@ cacontology-production:BedroomSurveillance rdf:type owl:Class ;
 cacontology-production:PhysicalDeviceModification rdf:type owl:Class ;
     rdfs:label "Physical Device Modification"@en ;
     rdfs:comment "Physical alterations made to recording devices to enable concealment."@en ;
-    rdfs:subClassOf uco-action:Action, gufo:Event .
+    rdfs:subClassOf cac-core:ExploitationEvent .
 
 cacontology-production:ContentCreation rdf:type owl:Class ;
     rdfs:label "Content Creation"@en ;
     rdfs:comment "Process of creating, editing, or enhancing child sexual abuse material."@en ;
-    rdfs:subClassOf uco-action:Action, gufo:Event .
+    rdfs:subClassOf cac-core:ExploitationEvent .
 
 cacontology-production:DigitalManipulation rdf:type owl:Class ;
     rdfs:label "Digital Manipulation"@en ;
@@ -89,17 +86,17 @@ cacontology-production:DigitalManipulation rdf:type owl:Class ;
 cacontology-production:ActiveProductionPhase rdf:type owl:Class, gufo:Phase ;
     rdfs:label "Active Production Phase"@en ;
     rdfs:comment "Phase during which production activities are actively occurring."@en ;
-    rdfs:subClassOf cacontology-production:ProductionOffense .
+    rdfs:subClassOf cacontology-production:ProductionOffense , cac-core:Phase .
 
 cacontology-production:ProductionPreparationPhase rdf:type owl:Class, gufo:Phase ;
     rdfs:label "Production Preparation Phase"@en ;
     rdfs:comment "Phase involving preparation and setup for production activities."@en ;
-    rdfs:subClassOf cacontology-production:ProductionOffense .
+    rdfs:subClassOf cacontology-production:ProductionOffense , cac-core:Phase .
 
 cacontology-production:ProductionDistributionPhase rdf:type owl:Class, gufo:Phase ;
     rdfs:label "Production Distribution Phase"@en ;
     rdfs:comment "Phase during which produced content is distributed or shared."@en ;
-    rdfs:subClassOf cacontology-production:ProductionOffense .
+    rdfs:subClassOf cacontology-production:ProductionOffense , cac-core:Phase .
 
 # =============================================================================
 # PRODUCTION SESSION CLASSES (extending UCO Observable with gUFO Situation)
@@ -108,12 +105,12 @@ cacontology-production:ProductionDistributionPhase rdf:type owl:Class, gufo:Phas
 cacontology-production:ProductionSession rdf:type owl:Class ;
     rdfs:label "Production Session"@en ;
     rdfs:comment "Individual instance or session of producing child sexual abuse material."@en ;
-    rdfs:subClassOf uco-observable:ObservableObject, gufo:Situation .
+    rdfs:subClassOf uco-observable:ObservableObject, cac-core:Situation .
 
 cacontology-production:ExtendedProductionPeriod rdf:type owl:Class ;
     rdfs:label "Extended Production Period"@en ;
     rdfs:comment "Ongoing pattern of production over an extended time period."@en ;
-    rdfs:subClassOf uco-observable:ObservableObject, gufo:Situation .
+    rdfs:subClassOf uco-observable:ObservableObject, cac-core:Situation .
 
 cacontology-production:ProductionSeries rdf:type owl:Class ;
     rdfs:label "Production Series"@en ;
@@ -127,7 +124,7 @@ cacontology-production:ProductionSeries rdf:type owl:Class ;
 cacontology-production:ProductionEquipment rdf:type owl:Class ;
     rdfs:label "Production Equipment"@en ;
     rdfs:comment "Devices and equipment used to produce child sexual abuse material."@en ;
-    rdfs:subClassOf uco-observable:ObservableObject, gufo:Object .
+    rdfs:subClassOf uco-observable:ObservableObject, cac-core:DigitalSystemEntity .
 
 cacontology-production:RecordingDevice rdf:type owl:Class ;
     rdfs:label "Recording Device"@en ;
@@ -152,12 +149,12 @@ cacontology-production:HiddenRecordingDevice rdf:type owl:Class ;
 cacontology-production:DeviceConcealment rdf:type owl:Class ;
     rdfs:label "Device Concealment"@en ;
     rdfs:comment "Specific methods and techniques used to hide recording devices for covert surveillance operations."@en ;
-    rdfs:subClassOf cacontology-production:ProductionEquipment .
+    rdfs:subClassOf cac-core:ExploitationEvent .
 
 cacontology-production:ConcealmentContainer rdf:type owl:Class ;
     rdfs:label "Concealment Container"@en ;
     rdfs:comment "Object used to hide recording equipment such as backpacks, furniture, or everyday items with modifications."@en ;
-    rdfs:subClassOf uco-observable:ObservableObject, gufo:Object .
+    rdfs:subClassOf uco-observable:ObservableObject, cac-core:Artifact .
 
 cacontology-production:EditingEquipment rdf:type owl:Class ;
     rdfs:label "Editing Equipment"@en ;
@@ -171,7 +168,7 @@ cacontology-production:EditingEquipment rdf:type owl:Class ;
 cacontology-production:ProducedContent rdf:type owl:Class ;
     rdfs:label "Produced Content"@en ;
     rdfs:comment "Child sexual abuse material created through production activities."@en ;
-    rdfs:subClassOf uco-observable:DigitalArtifact, gufo:Object .
+    rdfs:subClassOf uco-observable:DigitalArtifact, cac-core:Artifact .
 
 cacontology-production:ProducedImage rdf:type owl:Class ;
     rdfs:label "Produced Image"@en ;
@@ -200,7 +197,7 @@ cacontology-production:EditedContent rdf:type owl:Class ;
 cacontology-production:ProductionLocation rdf:type owl:Class ;
     rdfs:label "Production Location"@en ;
     rdfs:comment "Physical location where child sexual abuse material production occurred."@en ;
-    rdfs:subClassOf uco-location:Location, gufo:Object .
+    rdfs:subClassOf uco-location:Location, cac-core:PlaceLikeEntity .
 
 cacontology-production:ResidentialProductionSite rdf:type owl:Class ;
     rdfs:label "Residential Production Site"@en ;
@@ -219,19 +216,17 @@ cacontology-production:ControlledEnvironment rdf:type owl:Class ;
 cacontology-production:ProductionVictim rdf:type owl:Class, gufo:Role ;
     rdfs:label "Production Victim"@en ;
     rdfs:comment "Child victim directly involved in production of sexual abuse material."@en ;
-    rdfs:subClassOf uco-role:VictimRole ;
-    owl:equivalentClass cacontology-gufo:VictimRole .
+    rdfs:subClassOf uco-role:VictimRole , cac-core:Role .
 
 cacontology-production:Producer rdf:type owl:Class, gufo:Role ;
     rdfs:label "Producer"@en ;
     rdfs:comment "Individual who creates, directs, or facilitates the production of child sexual abuse material."@en ;
-    rdfs:subClassOf uco-role:OffenderRole ;
-    owl:equivalentClass cacontology-gufo:OffenderRole .
+    rdfs:subClassOf uco-role:OffenderRole , cac-core:Role .
 
 cacontology-production:ProductionFacilitator rdf:type owl:Class, gufo:Role ;
     rdfs:label "Production Facilitator"@en ;
     rdfs:comment "Individual who assists in or enables production activities without directly producing content."@en ;
-    rdfs:subClassOf uco-role:OffenderRole .
+    rdfs:subClassOf uco-role:OffenderRole , cac-core:Role .
 
 # =============================================================================
 # gUFO TEMPORAL PROPERTIES
@@ -241,28 +236,28 @@ cacontology-production:hasProductionPhaseBeginPoint rdf:type owl:DatatypePropert
     rdfs:label "has production phase begin point"@en ;
     rdfs:comment "Temporal begin point for production phase."@en ;
     rdfs:subPropertyOf gufo:hasBeginPointInXSDDateTimeStamp ;
-    rdfs:domain gufo:Phase ;
+    rdfs:domain cac-core:Phase ;
     rdfs:range xsd:dateTimeStamp .
 
 cacontology-production:hasProductionPhaseEndPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has production phase end point"@en ;
     rdfs:comment "Temporal end point for production phase."@en ;
     rdfs:subPropertyOf gufo:hasEndPointInXSDDateTimeStamp ;
-    rdfs:domain gufo:Phase ;
+    rdfs:domain cac-core:Phase ;
     rdfs:range xsd:dateTimeStamp .
 
 cacontology-production:hasRoleBeginPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has role begin point"@en ;
     rdfs:comment "Temporal begin point for production role."@en ;
     rdfs:subPropertyOf gufo:hasBeginPointInXSDDateTimeStamp ;
-    rdfs:domain gufo:Role ;
+    rdfs:domain cac-core:Role ;
     rdfs:range xsd:dateTimeStamp .
 
 cacontology-production:hasRoleEndPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has role end point"@en ;
     rdfs:comment "Temporal end point for production role."@en ;
     rdfs:subPropertyOf gufo:hasEndPointInXSDDateTimeStamp ;
-    rdfs:domain gufo:Role ;
+    rdfs:domain cac-core:Role ;
     rdfs:range xsd:dateTimeStamp .
 
 # =============================================================================
@@ -534,7 +529,7 @@ cacontology-production:partOfSeries rdf:type owl:ObjectProperty ;
     rdfs:range cacontology-production:ProductionSeries .
 
 # Participant Relationships
-cacontology-production:involvestVictim rdf:type owl:ObjectProperty ;
+cacontology-production:involvesVictim rdf:type owl:ObjectProperty ;
     rdfs:label "involves victim"@en ;
     rdfs:comment "Links production activity to victim involved."@en ;
     rdfs:domain cacontology-production:ProductionOffense ;
@@ -557,7 +552,7 @@ cacontology-production:triggeredInvestigation rdf:type owl:ObjectProperty ;
     rdfs:label "triggered investigation"@en ;
     rdfs:comment "Links production offense to investigation it triggered."@en ;
     rdfs:domain cacontology-production:ProductionOffense ;
-    rdfs:range cacontology:Investigation .
+    rdfs:range cacontology:CACInvestigation .
 
 cacontology-production:evidenceOf rdf:type owl:ObjectProperty ;
     rdfs:label "evidence of"@en ;

@@ -6,7 +6,6 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
-@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
 @prefix cacontology-trafficking: <https://cacontology.projectvic.org/trafficking#> .
 @prefix cacontology-trafficking-shapes: <https://cacontology.projectvic.org/trafficking/shapes#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
@@ -15,15 +14,16 @@
 # ONTOLOGY DECLARATION - SEX TRAFFICKING SHACL SHAPES (MINIMAL CORE)
 # =============================================================================
 
-<https://cacontology.projectvic.org/trafficking/shapes/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/trafficking/shapes/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Sex Trafficking SHACL Shapes - Minimal Core"@en ;
     rdfs:comment "Minimal SHACL validation shapes for the CAC Sex Trafficking Ontology, focusing on core gUFO-aligned structures (organizations, roles, events) and key temporal and quantitative properties."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/trafficking/shapes/2.12.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/trafficking/shapes/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-11-18"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/trafficking/2.12.0> ,
-                <http://purl.org/nemo/gufo> .
+    owl:imports <https://cacontology.projectvic.org/trafficking/3.0.0> ,
+                <http://purl.org/nemo/gufo#> .
 
 # =============================================================================
 # TRAFFICKING ENTERPRISE TEMPORAL AND ORGANIZATION SHAPES
@@ -33,11 +33,6 @@ cacontology-trafficking-shapes:TraffickingEnterpriseShape rdf:type sh:NodeShape 
     rdfs:label "Trafficking Enterprise Shape"@en ;
     rdfs:comment "Validates core temporal and jurisdictional properties for trafficking enterprises modeled as gUFO organizations."@en ;
     sh:targetClass cacontology-trafficking:TraffickingEnterprise ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Organization ;
-        sh:message "Trafficking enterprise should be typed as gufo:Organization."@en
-    ] ;
     sh:property [
         sh:path cacontology-trafficking:hasEnterpriseBeginPoint ;
         sh:datatype xsd:dateTimeStamp ;
@@ -71,11 +66,6 @@ cacontology-trafficking-shapes:TraffickerRoleShape rdf:type sh:NodeShape ;
     rdfs:comment "Validates that trafficker roles are modeled as gUFO roles with optional hierarchy and control properties."@en ;
     sh:targetClass cacontology-trafficking:TraffickerRole ;
     sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Role ;
-        sh:message "Trafficker roles should be typed as gufo:Role (anti-rigid sortal)."@en
-    ] ;
-    sh:property [
         sh:path cacontology-trafficking:hasHierarchyLevel ;
         sh:datatype xsd:integer ;
         sh:maxCount 1 ;
@@ -91,11 +81,6 @@ cacontology-trafficking-shapes:TraffickingVictimRoleShape rdf:type sh:NodeShape 
     rdfs:label "Trafficking Victim Role Shape"@en ;
     rdfs:comment "Validates temporal role properties for trafficking victim roles."@en ;
     sh:targetClass cacontology-trafficking:TraffickingVictimRole ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Role ;
-        sh:message "Trafficking victim roles should be typed as gufo:Role (anti-rigid sortal)."@en
-    ] ;
     sh:property [
         sh:path cacontology-trafficking:hasRoleBeginPoint ;
         sh:datatype xsd:dateTimeStamp ;
@@ -117,11 +102,6 @@ cacontology-trafficking-shapes:TraffickingOperationShape rdf:type sh:NodeShape ;
     rdfs:label "Trafficking Operation Shape"@en ;
     rdfs:comment "Minimal temporal validation for trafficking operations modeled as gUFO events."@en ;
     sh:targetClass cacontology-trafficking:TraffickingOperation ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Event ;
-        sh:message "Trafficking operations should be typed as gufo:Event."@en
-    ] ;
     sh:property [
         sh:path gufo:hasBeginPointInXSDDateTimeStamp ;
         sh:datatype xsd:dateTimeStamp ;

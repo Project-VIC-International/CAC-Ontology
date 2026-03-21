@@ -8,19 +8,19 @@
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix uco-tool: <https://ontology.unifiedcyberontology.org/uco/tool/> .
 @prefix cacontology-forensics: <https://cacontology.projectvic.org/forensics#> .
-@prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/forensics/shapes/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/forensics/shapes/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Forensics SHACL Shapes with gUFO Validation"@en ;
-    rdfs:comment "SHACL validation shapes for gUFO-enhanced ICAC forensics ontology, including anti-rigidity constraints, temporal validation, and foundational type compliance."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/forensics/shapes/2.12.0> ;
-    owl:versionInfo "2.12.0" ;
+    rdfs:comment "SHACL validation shapes for gUFO-enhanced CAC forensics ontology, including anti-rigidity constraints, temporal validation, and foundational type compliance."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/forensics/shapes/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/forensics/2.12.0> ,
-                <http://purl.org/nemo/gufo> ,
+    owl:imports <https://cacontology.projectvic.org/forensics/3.0.0> ,
+                <http://purl.org/nemo/gufo#> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 
 # =============================================================================
@@ -30,32 +30,15 @@
 # Event Types validation for forensic actions
 cacontology-forensics:ForensicEventTypeValidationShape rdf:type sh:NodeShape ;
     sh:targetClass gufo:EventType ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:EventType ;
-        sh:minCount 1 ;
-    ] ;
-    sh:property [
-        sh:path rdfs:subClassOf ;
-        sh:class gufo:Event ;
-        sh:minCount 1 ;
-    ] ;
-    sh:message "Every forensic EventType must extend gufo:Event"@en .
+    sh:message "Every forensic EventType must be declared as rdf:type gufo:EventType"@en .
 
 # Forensic Roles validation (anti-rigid relationally dependent)
 cacontology-forensics:ForensicRoleValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:Role ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Role ;
-        sh:minCount 1 ;
-    ] ;
+    sh:targetClass cac-core:Role ;
     sh:not [
         sh:property [
             sh:path rdfs:subClassOf ;
-            sh:class gufo:Kind ;
-        ] ;
-    ] ;
+            sh:class gufo:Kind         ]     ] ;
     sh:message "Forensic roles are anti-rigid and cannot be subclasses of rigid Kinds"@en .
 
 # Kinds validation for forensic objects
@@ -64,8 +47,7 @@ cacontology-forensics:ForensicKindValidationShape rdf:type sh:NodeShape ;
     sh:property [
         sh:path rdf:type ;
         sh:hasValue gufo:Kind ;
-        sh:minCount 1 ;
-    ] ;
+        sh:minCount 1     ] ;
     sh:message "Every forensic Kind must be declared as rdf:type gufo:Kind"@en .
 
 # Functional Complex validation for forensic tools
@@ -74,8 +56,7 @@ cacontology-forensics:ForensicFunctionalComplexValidationShape rdf:type sh:NodeS
     sh:property [
         sh:path rdf:type ;
         sh:hasValue gufo:FunctionalComplex ;
-        sh:minCount 1 ;
-    ] ;
+        sh:minCount 1     ] ;
     sh:message "Forensic tools must be properly classified as gUFO FunctionalComplex"@en .
 
 # =============================================================================
@@ -84,27 +65,23 @@ cacontology-forensics:ForensicFunctionalComplexValidationShape rdf:type sh:NodeS
 
 # Forensic Action Temporal Validation
 cacontology-forensics:ForensicActionTemporalShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:Event ;
+    sh:targetClass cac-core:Event ;
     sh:property [
         sh:path gufo:hasBeginPointInXSDDateTimeStamp ;
         sh:datatype xsd:dateTimeStamp ;
         sh:maxCount 1 ;
-        sh:message "Forensic action must have at most one begin timestamp (gUFO temporal constraint)"@en ;
-    ] ;
+        sh:message "Forensic action must have at most one begin timestamp (gUFO temporal constraint)"@en     ] ;
     sh:property [
         sh:path gufo:hasEndPointInXSDDateTimeStamp ;
         sh:datatype xsd:dateTimeStamp ;
         sh:maxCount 1 ;
-        sh:message "Forensic action must have at most one end timestamp (gUFO temporal constraint)"@en ;
-    ] ;
+        sh:message "Forensic action must have at most one end timestamp (gUFO temporal constraint)"@en     ] ;
     sh:sparql [
         sh:message "Forensic action end time must be after begin time (gUFO temporal ordering)"@en ;
         sh:prefixes [
             sh:declare [
                 sh:prefix "gufo" ;
-                sh:namespace "http://purl.org/nemo/gufo#"^^xsd:anyURI ;
-            ] ;
-        ] ;
+                sh:namespace "http://purl.org/nemo/gufo#"^^xsd:anyURI             ]         ] ;
         sh:select """
             SELECT $this
             WHERE {
@@ -112,8 +89,7 @@ cacontology-forensics:ForensicActionTemporalShape rdf:type sh:NodeShape ;
                 $this gufo:hasEndPointInXSDDateTimeStamp ?endTime .
                 FILTER (?endTime <= ?beginTime)
             }
-        """ ;
-    ] .
+        """     ] .
 
 # Chain of Custody Temporal Ordering
 cacontology-forensics:ChainOfCustodyTemporalOrderingShape rdf:type sh:NodeShape ;
@@ -123,13 +99,10 @@ cacontology-forensics:ChainOfCustodyTemporalOrderingShape rdf:type sh:NodeShape 
         sh:prefixes [
             sh:declare [
                 sh:prefix "cacontology-forensics" ;
-                sh:namespace "https://cacontology.projectvic.org/forensics#"^^xsd:anyURI ;
-            ] ;
+                sh:namespace "https://cacontology.projectvic.org/forensics#"^^xsd:anyURI             ] ;
             sh:declare [
                 sh:prefix "uco-core" ;
-                sh:namespace "https://ontology.unifiedcyberontology.org/uco/core/"^^xsd:anyURI ;
-            ] ;
-        ] ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/uco/core/"^^xsd:anyURI             ]         ] ;
         sh:select """
             SELECT $this
             WHERE {
@@ -139,8 +112,7 @@ cacontology-forensics:ChainOfCustodyTemporalOrderingShape rdf:type sh:NodeShape 
                 $this cacontology-forensics:custodyTransferredFrom ?transferee .
                 FILTER (?thisTime < ?previousTime)
             }
-        """ ;
-    ] .
+        """     ] .
 
 # =============================================================================
 # ENHANCED FORENSIC ACTION SHAPES WITH gUFO INTEGRATION
@@ -155,14 +127,12 @@ cacontology-forensics:ForensicAcquisitionActionShape rdf:type sh:NodeShape ;
         sh:datatype xsd:dateTimeStamp ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Forensic acquisition must have exactly one begin timestamp (gUFO temporal)"@en ;
-    ] ;
+        sh:message "Forensic acquisition must have exactly one begin timestamp (gUFO temporal)"@en     ] ;
     sh:property [
         sh:path gufo:hasEndPointInXSDDateTimeStamp ;
         sh:datatype xsd:dateTimeStamp ;
         sh:maxCount 1 ;
-        sh:message "Forensic acquisition must have at most one end timestamp (gUFO temporal)"@en ;
-    ] ;
+        sh:message "Forensic acquisition must have at most one end timestamp (gUFO temporal)"@en     ] ;
     sh:property [
         sh:path uco-action:usesTool ;
         sh:class uco-tool:Tool ;
@@ -201,16 +171,14 @@ cacontology-forensics:ForensicAcquisitionActionShape rdf:type sh:NodeShape ;
         sh:datatype xsd:string ;
         sh:in ("excellent" "good" "acceptable" "poor") ;
         sh:maxCount 1 ;
-        sh:message "Acquisition quality must be excellent, good, acceptable, or poor (gUFO quality aspect)"@en ;
-    ] ;
+        sh:message "Acquisition quality must be excellent, good, acceptable, or poor (gUFO quality aspect)"@en     ] ;
     sh:property [
         sh:path cacontology-forensics:acquisitionCompleteness ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
         sh:maxCount 1 ;
-        sh:message "Acquisition completeness must be between 0.0 and 1.0 (gUFO quality aspect)"@en ;
-    ] .
+        sh:message "Acquisition completeness must be between 0.0 and 1.0 (gUFO quality aspect)"@en     ] .
 
 # Chain of Custody Action Shape Enhanced
 cacontology-forensics:ChainOfCustodyActionShape rdf:type sh:NodeShape ;
@@ -221,14 +189,12 @@ cacontology-forensics:ChainOfCustodyActionShape rdf:type sh:NodeShape ;
         sh:datatype xsd:dateTimeStamp ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Chain of custody transfer must have exactly one begin timestamp (gUFO temporal)"@en ;
-    ] ;
+        sh:message "Chain of custody transfer must have exactly one begin timestamp (gUFO temporal)"@en     ] ;
     sh:property [
         sh:path gufo:hasEndPointInXSDDateTimeStamp ;
         sh:datatype xsd:dateTimeStamp ;
         sh:maxCount 1 ;
-        sh:message "Chain of custody transfer must have at most one end timestamp (gUFO temporal)"@en ;
-    ] ;
+        sh:message "Chain of custody transfer must have at most one end timestamp (gUFO temporal)"@en     ] ;
     sh:property [
         sh:path uco-core:startTime ;
         sh:datatype xsd:dateTime ;
@@ -263,8 +229,7 @@ cacontology-forensics:ChainOfCustodyActionShape rdf:type sh:NodeShape ;
         sh:datatype xsd:string ;
         sh:in ("maintained" "compromised" "unknown") ;
         sh:maxCount 1 ;
-        sh:message "Custody integrity must be maintained, compromised, or unknown (gUFO quality aspect)"@en ;
-    ] .
+        sh:message "Custody integrity must be maintained, compromised, or unknown (gUFO quality aspect)"@en     ] .
 
 # Evidence Verification Action Shape Enhanced
 cacontology-forensics:EvidenceVerificationActionShape rdf:type sh:NodeShape ;
@@ -275,8 +240,7 @@ cacontology-forensics:EvidenceVerificationActionShape rdf:type sh:NodeShape ;
         sh:datatype xsd:dateTimeStamp ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Evidence verification must have exactly one begin timestamp (gUFO temporal)"@en ;
-    ] ;
+        sh:message "Evidence verification must have exactly one begin timestamp (gUFO temporal)"@en     ] ;
     sh:property [
         sh:path uco-core:object ;
         sh:class uco-core:UcoObject ;
@@ -294,15 +258,13 @@ cacontology-forensics:EvidenceVerificationActionShape rdf:type sh:NodeShape ;
         sh:datatype xsd:string ;
         sh:in ("MD5" "SHA1" "SHA256" "SHA512" "CRC32") ;
         sh:minCount 1 ;
-        sh:message "Verification method must be specified from allowed hash algorithms"@en ;
-    ] ;
+        sh:message "Verification method must be specified from allowed hash algorithms"@en     ] ;
     sh:property [
         sh:path cacontology-forensics:verificationResult ;
         sh:datatype xsd:string ;
         sh:in ("verified" "failed" "incomplete") ;
         sh:maxCount 1 ;
-        sh:message "Verification result must be verified, failed, or incomplete (gUFO quality aspect)"@en ;
-    ] .
+        sh:message "Verification result must be verified, failed, or incomplete (gUFO quality aspect)"@en     ] .
 
 # Timeline Analysis Action Shape Enhanced
 cacontology-forensics:TimelineAnalysisActionShape rdf:type sh:NodeShape ;
@@ -313,8 +275,7 @@ cacontology-forensics:TimelineAnalysisActionShape rdf:type sh:NodeShape ;
         sh:datatype xsd:dateTimeStamp ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Timeline analysis must have exactly one begin timestamp (gUFO temporal)"@en ;
-    ] ;
+        sh:message "Timeline analysis must have exactly one begin timestamp (gUFO temporal)"@en     ] ;
     sh:property [
         sh:path cacontology-forensics:timelineEvent ;
         sh:class uco-core:UcoObject ;
@@ -332,16 +293,14 @@ cacontology-forensics:TimelineAnalysisActionShape rdf:type sh:NodeShape ;
         sh:datatype xsd:string ;
         sh:in ("file-system" "application" "network" "memory" "comprehensive") ;
         sh:maxCount 1 ;
-        sh:message "Timeline scope must be file-system, application, network, memory, or comprehensive"@en ;
-    ] ;
+        sh:message "Timeline scope must be file-system, application, network, memory, or comprehensive"@en     ] ;
     sh:property [
         sh:path cacontology-forensics:temporalAccuracy ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
         sh:maxCount 1 ;
-        sh:message "Temporal accuracy must be between 0.0 and 1.0 (gUFO quality aspect)"@en ;
-    ] .
+        sh:message "Temporal accuracy must be between 0.0 and 1.0 (gUFO quality aspect)"@en     ] .
 
 # Metadata Extraction Action Shape Enhanced
 cacontology-forensics:MetadataExtractionActionShape rdf:type sh:NodeShape ;
@@ -352,8 +311,7 @@ cacontology-forensics:MetadataExtractionActionShape rdf:type sh:NodeShape ;
         sh:datatype xsd:dateTimeStamp ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Metadata extraction must have exactly one begin timestamp (gUFO temporal)"@en ;
-    ] ;
+        sh:message "Metadata extraction must have exactly one begin timestamp (gUFO temporal)"@en     ] ;
     sh:property [
         sh:path uco-core:object ;
         sh:class uco-core:UcoObject ;
@@ -372,14 +330,12 @@ cacontology-forensics:MetadataExtractionActionShape rdf:type sh:NodeShape ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
         sh:maxCount 1 ;
-        sh:message "Extraction completeness must be between 0.0 and 1.0 (gUFO quality aspect)"@en ;
-    ] ;
+        sh:message "Extraction completeness must be between 0.0 and 1.0 (gUFO quality aspect)"@en     ] ;
     sh:property [
         sh:path cacontology-forensics:metadataTypes ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
-        sh:message "Metadata types extracted should be specified (gUFO quality aspect)"@en ;
-    ] .
+        sh:message "Metadata types extracted should be specified (gUFO quality aspect)"@en     ] .
 
 # =============================================================================
 # ENHANCED FORENSIC ARTIFACT SHAPES WITH gUFO INTEGRATION
@@ -394,8 +350,7 @@ cacontology-forensics:ForensicImageShape rdf:type sh:NodeShape ;
         sh:datatype xsd:dateTimeStamp ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Forensic image must have creation timestamp (gUFO temporal)"@en ;
-    ] ;
+        sh:message "Forensic image must have creation timestamp (gUFO temporal)"@en     ] ;
     sh:property [
         sh:path cacontology-forensics:verificationHash ;
         sh:class uco-core:UcoObject ;
@@ -413,21 +368,18 @@ cacontology-forensics:ForensicImageShape rdf:type sh:NodeShape ;
         sh:datatype xsd:string ;
         sh:in ("E01" "DD" "AFF" "VMDK" "VHD") ;
         sh:maxCount 1 ;
-        sh:message "Image format must be E01, DD, AFF, VMDK, or VHD"@en ;
-    ] ;
+        sh:message "Image format must be E01, DD, AFF, VMDK, or VHD"@en     ] ;
     sh:property [
         sh:path cacontology-forensics:compressionUsed ;
         sh:datatype xsd:boolean ;
         sh:maxCount 1 ;
-        sh:message "Must specify if compression was used (gUFO quality aspect)"@en ;
-    ] ;
+        sh:message "Must specify if compression was used (gUFO quality aspect)"@en     ] ;
     sh:property [
         sh:path cacontology-forensics:imageIntegrity ;
         sh:datatype xsd:string ;
         sh:in ("verified" "corrupted" "unknown") ;
         sh:maxCount 1 ;
-        sh:message "Image integrity must be verified, corrupted, or unknown (gUFO quality aspect)"@en ;
-    ] .
+        sh:message "Image integrity must be verified, corrupted, or unknown (gUFO quality aspect)"@en     ] .
 
 # Recovered File Shape Enhanced
 cacontology-forensics:RecoveredFileShape rdf:type sh:NodeShape ;
@@ -437,8 +389,7 @@ cacontology-forensics:RecoveredFileShape rdf:type sh:NodeShape ;
         sh:path gufo:hasBeginPointInXSDDateTimeStamp ;
         sh:datatype xsd:dateTimeStamp ;
         sh:maxCount 1 ;
-        sh:message "Recovered file may have recovery timestamp (gUFO temporal)"@en ;
-    ] ;
+        sh:message "Recovered file may have recovery timestamp (gUFO temporal)"@en     ] ;
     sh:property [
         sh:path cacontology-forensics:recoveryMethod ;
         sh:datatype xsd:string ;
@@ -453,15 +404,13 @@ cacontology-forensics:RecoveredFileShape rdf:type sh:NodeShape ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
         sh:maxCount 1 ;
-        sh:message "Recovery confidence must be between 0.0 and 1.0 (gUFO quality aspect)"@en ;
-    ] ;
+        sh:message "Recovery confidence must be between 0.0 and 1.0 (gUFO quality aspect)"@en     ] ;
     sh:property [
         sh:path cacontology-forensics:dataIntegrity ;
         sh:datatype xsd:string ;
         sh:in ("complete" "partial" "corrupted") ;
         sh:maxCount 1 ;
-        sh:message "Data integrity must be complete, partial, or corrupted (gUFO quality aspect)"@en ;
-    ] .
+        sh:message "Data integrity must be complete, partial, or corrupted (gUFO quality aspect)"@en     ] .
 
 # Custody Document Shape Enhanced
 cacontology-forensics:CustodyDocumentShape rdf:type sh:NodeShape ;
@@ -479,22 +428,19 @@ cacontology-forensics:CustodyDocumentShape rdf:type sh:NodeShape ;
         sh:datatype xsd:dateTimeStamp ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Custody document must have creation timestamp (gUFO temporal)"@en ;
-    ] ;
+        sh:message "Custody document must have creation timestamp (gUFO temporal)"@en     ] ;
     sh:property [
         sh:path cacontology-forensics:documentType ;
         sh:datatype xsd:string ;
         sh:in ("evidence-receipt" "custody-transfer" "examination-log" "disposal-certificate") ;
         sh:maxCount 1 ;
-        sh:message "Document type must be evidence-receipt, custody-transfer, examination-log, or disposal-certificate"@en ;
-    ] ;
+        sh:message "Document type must be evidence-receipt, custody-transfer, examination-log, or disposal-certificate"@en     ] ;
     sh:property [
         sh:path cacontology-forensics:documentStatus ;
         sh:datatype xsd:string ;
         sh:in ("draft" "final" "archived" "destroyed") ;
         sh:maxCount 1 ;
-        sh:message "Document status must be draft, final, archived, or destroyed (gUFO mode aspect)"@en ;
-    ] .
+        sh:message "Document status must be draft, final, archived, or destroyed (gUFO mode aspect)"@en     ] .
 
 # =============================================================================
 # ENHANCED FORENSIC TOOL SHAPES WITH gUFO INTEGRATION
@@ -519,23 +465,20 @@ cacontology-forensics:ForensicToolShape rdf:type sh:NodeShape ;
         sh:path cacontology-forensics:toolVersion ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
-        sh:message "Tool version should be specified (gUFO quality aspect)"@en ;
-    ] ;
+        sh:message "Tool version should be specified (gUFO quality aspect)"@en     ] ;
     sh:property [
         sh:path cacontology-forensics:validationStatus ;
         sh:datatype xsd:string ;
         sh:in ("validated" "approved" "testing" "deprecated") ;
         sh:maxCount 1 ;
-        sh:message "Validation status must be validated, approved, testing, or deprecated (gUFO mode aspect)"@en ;
-    ] ;
+        sh:message "Validation status must be validated, approved, testing, or deprecated (gUFO mode aspect)"@en     ] ;
     sh:property [
         sh:path cacontology-forensics:toolReliability ;
         sh:datatype xsd:double ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
         sh:maxCount 1 ;
-        sh:message "Tool reliability must be between 0.0 and 1.0 (gUFO quality aspect)"@en ;
-    ] .
+        sh:message "Tool reliability must be between 0.0 and 1.0 (gUFO quality aspect)"@en     ] .
 
 # =============================================================================
 # ENHANCED ROLE SHAPES WITH gUFO INTEGRATION
@@ -550,14 +493,12 @@ cacontology-forensics:ForensicExaminerRoleShape rdf:type sh:NodeShape ;
         sh:datatype xsd:dateTimeStamp ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Forensic examiner role must have begin timestamp (gUFO temporal)"@en ;
-    ] ;
+        sh:message "Forensic examiner role must have begin timestamp (gUFO temporal)"@en     ] ;
     sh:property [
         sh:path gufo:hasEndPointInXSDDateTimeStamp ;
         sh:datatype xsd:dateTimeStamp ;
         sh:maxCount 1 ;
-        sh:message "Forensic examiner role may have end timestamp (gUFO temporal)"@en ;
-    ] ;
+        sh:message "Forensic examiner role may have end timestamp (gUFO temporal)"@en     ] ;
     sh:property [
         sh:path uco-core:kindOfRelationship ;
         sh:hasValue "examiner" ;
@@ -568,14 +509,12 @@ cacontology-forensics:ForensicExaminerRoleShape rdf:type sh:NodeShape ;
         sh:datatype xsd:string ;
         sh:in ("trainee" "certified" "senior" "expert") ;
         sh:maxCount 1 ;
-        sh:message "Certification level must be trainee, certified, senior, or expert (gUFO quality aspect)"@en ;
-    ] ;
+        sh:message "Certification level must be trainee, certified, senior, or expert (gUFO quality aspect)"@en     ] ;
     sh:property [
         sh:path cacontology-forensics:specializationArea ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
-        sh:message "Specialization area should be specified (gUFO quality aspect)"@en ;
-    ] .
+        sh:message "Specialization area should be specified (gUFO quality aspect)"@en     ] .
 
 # Evidence Custodian Role Shape Enhanced
 cacontology-forensics:EvidenceCustodianRoleShape rdf:type sh:NodeShape ;
@@ -586,14 +525,12 @@ cacontology-forensics:EvidenceCustodianRoleShape rdf:type sh:NodeShape ;
         sh:datatype xsd:dateTimeStamp ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Evidence custodian role must have begin timestamp (gUFO temporal)"@en ;
-    ] ;
+        sh:message "Evidence custodian role must have begin timestamp (gUFO temporal)"@en     ] ;
     sh:property [
         sh:path gufo:hasEndPointInXSDDateTimeStamp ;
         sh:datatype xsd:dateTimeStamp ;
         sh:maxCount 1 ;
-        sh:message "Evidence custodian role may have end timestamp (gUFO temporal)"@en ;
-    ] ;
+        sh:message "Evidence custodian role may have end timestamp (gUFO temporal)"@en     ] ;
     sh:property [
         sh:path uco-core:kindOfRelationship ;
         sh:hasValue "custodian" ;
@@ -603,15 +540,13 @@ cacontology-forensics:EvidenceCustodianRoleShape rdf:type sh:NodeShape ;
         sh:path cacontology-forensics:custodyAuthority ;
         sh:datatype xsd:string ;
         sh:maxCount 1 ;
-        sh:message "Custody authority should be specified (gUFO quality aspect)"@en ;
-    ] ;
+        sh:message "Custody authority should be specified (gUFO quality aspect)"@en     ] ;
     sh:property [
         sh:path cacontology-forensics:accessLevel ;
         sh:datatype xsd:string ;
         sh:in ("full" "limited" "read-only" "none") ;
         sh:maxCount 1 ;
-        sh:message "Access level must be full, limited, read-only, or none (gUFO mode aspect)"@en ;
-    ] .
+        sh:message "Access level must be full, limited, read-only, or none (gUFO mode aspect)"@en     ] .
 
 # =============================================================================
 # gUFO PARTICIPATION CONSTRAINTS
@@ -619,7 +554,7 @@ cacontology-forensics:EvidenceCustodianRoleShape rdf:type sh:NodeShape ;
 
 # Forensic Event Participation Validation
 cacontology-forensics:ForensicEventParticipationShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:Event ;
+    sh:targetClass cac-core:Event ;
     sh:property [
         sh:path [ sh:alternativePath ( 
             cacontology-forensics:examinedBy 
@@ -628,8 +563,7 @@ cacontology-forensics:ForensicEventParticipationShape rdf:type sh:NodeShape ;
             cacontology-forensics:authorizedBy 
         ) ] ;
         sh:minCount 1 ;
-        sh:message "Every forensic event must have at least one participant (gUFO participation)"@en ;
-    ] .
+        sh:message "Every forensic event must have at least one participant (gUFO participation)"@en     ] .
 
 # =============================================================================
 # gUFO PART-WHOLE RELATIONSHIP VALIDATION
@@ -640,10 +574,9 @@ cacontology-forensics:ForensicInvestigationCompositionShape rdf:type sh:NodeShap
     sh:targetClass cacontology-forensics:ForensicInvestigation ;
     sh:property [
         sh:path cacontology-forensics:hasForensicAction ;
-        sh:class gufo:Event ;
+        sh:class cac-core:Event ;
         sh:minCount 1 ;
-        sh:message "Forensic investigation must have at least one forensic action (gUFO part-whole)"@en ;
-    ] .
+        sh:message "Forensic investigation must have at least one forensic action (gUFO part-whole)"@en     ] .
 
 # =============================================================================
 # BUSINESS RULES AND ADVANCED CONSTRAINTS
@@ -657,13 +590,10 @@ cacontology-forensics:ChainOfCustodyIntegrityBusinessRule rdf:type sh:NodeShape 
         sh:prefixes [
             sh:declare [
                 sh:prefix "cacontology-forensics" ;
-                sh:namespace "https://cacontology.projectvic.org/forensics#"^^xsd:anyURI ;
-            ] ;
+                sh:namespace "https://cacontology.projectvic.org/forensics#"^^xsd:anyURI             ] ;
             sh:declare [
                 sh:prefix "uco-core" ;
-                sh:namespace "https://ontology.unifiedcyberontology.org/uco/core/"^^xsd:anyURI ;
-            ] ;
-        ] ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/uco/core/"^^xsd:anyURI             ]         ] ;
         sh:select """
             SELECT $this
             WHERE {
@@ -673,8 +603,7 @@ cacontology-forensics:ChainOfCustodyIntegrityBusinessRule rdf:type sh:NodeShape 
                 $this cacontology-forensics:custodyTransferredFrom ?transferee .
                 FILTER (?thisStart > (?previousEnd + "PT1H"^^xsd:duration))
             }
-        """ ;
-    ] .
+        """     ] .
 
 # Forensic Tool Validation Business Rule
 cacontology-forensics:ForensicToolValidationBusinessRule rdf:type sh:NodeShape ;
@@ -684,13 +613,10 @@ cacontology-forensics:ForensicToolValidationBusinessRule rdf:type sh:NodeShape ;
         sh:prefixes [
             sh:declare [
                 sh:prefix "cacontology-forensics" ;
-                sh:namespace "https://cacontology.projectvic.org/forensics#"^^xsd:anyURI ;
-            ] ;
+                sh:namespace "https://cacontology.projectvic.org/forensics#"^^xsd:anyURI             ] ;
             sh:declare [
                 sh:prefix "uco-action" ;
-                sh:namespace "https://ontology.unifiedcyberontology.org/uco/action/"^^xsd:anyURI ;
-            ] ;
-        ] ;
+                sh:namespace "https://ontology.unifiedcyberontology.org/uco/action/"^^xsd:anyURI             ]         ] ;
         sh:select """
             SELECT $this
             WHERE {
@@ -699,8 +625,7 @@ cacontology-forensics:ForensicToolValidationBusinessRule rdf:type sh:NodeShape ;
                 ?tool cacontology-forensics:validationStatus ?status .
                 FILTER (?status != "validated")
             }
-        """ ;
-    ] .
+        """     ] .
 
 # Evidence Verification Completeness Business Rule
 cacontology-forensics:EvidenceVerificationCompletenessBusinessRule rdf:type sh:NodeShape ;
@@ -710,9 +635,7 @@ cacontology-forensics:EvidenceVerificationCompletenessBusinessRule rdf:type sh:N
         sh:prefixes [
             sh:declare [
                 sh:prefix "cacontology-forensics" ;
-                sh:namespace "https://cacontology.projectvic.org/forensics#"^^xsd:anyURI ;
-            ] ;
-        ] ;
+                sh:namespace "https://cacontology.projectvic.org/forensics#"^^xsd:anyURI             ]         ] ;
         sh:select """
             SELECT $this
             WHERE {
@@ -723,8 +646,7 @@ cacontology-forensics:EvidenceVerificationCompletenessBusinessRule rdf:type sh:N
                     $this uco-core:object ?evidence .
                 }
             }
-        """ ;
-    ] .
+        """     ] .
 
 # Examiner Certification Business Rule
 cacontology-forensics:ExaminerCertificationBusinessRule rdf:type sh:NodeShape ;
@@ -734,9 +656,7 @@ cacontology-forensics:ExaminerCertificationBusinessRule rdf:type sh:NodeShape ;
         sh:prefixes [
             sh:declare [
                 sh:prefix "cacontology-forensics" ;
-                sh:namespace "https://cacontology.projectvic.org/forensics#"^^xsd:anyURI ;
-            ] ;
-        ] ;
+                sh:namespace "https://cacontology.projectvic.org/forensics#"^^xsd:anyURI             ]         ] ;
         sh:select """
             SELECT $this
             WHERE {
@@ -745,8 +665,7 @@ cacontology-forensics:ExaminerCertificationBusinessRule rdf:type sh:NodeShape ;
                 ?examiner cacontology-forensics:certificationLevel ?level .
                 FILTER (?level = "trainee")
             }
-        """ ;
-    ] .
+        """     ] .
 
 # Temporal Consistency Business Rule
 cacontology-forensics:TemporalConsistencyBusinessRule rdf:type sh:NodeShape ;
@@ -756,9 +675,7 @@ cacontology-forensics:TemporalConsistencyBusinessRule rdf:type sh:NodeShape ;
         sh:prefixes [
             sh:declare [
                 sh:prefix "cacontology-forensics" ;
-                sh:namespace "https://cacontology.projectvic.org/forensics#"^^xsd:anyURI ;
-            ] ;
-        ] ;
+                sh:namespace "https://cacontology.projectvic.org/forensics#"^^xsd:anyURI             ]         ] ;
         sh:select """
             SELECT $this
             WHERE {
@@ -766,5 +683,4 @@ cacontology-forensics:TemporalConsistencyBusinessRule rdf:type sh:NodeShape ;
                 $this cacontology-forensics:temporalAccuracy ?accuracy .
                 FILTER (?accuracy < 0.9)
             }
-        """ ;
-    ] . 
+        """     ] . 

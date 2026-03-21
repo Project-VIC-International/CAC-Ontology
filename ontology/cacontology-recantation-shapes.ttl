@@ -7,18 +7,17 @@
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
-@prefix gufo: <http://purl.org/nemo/gufo#> .
 @prefix cacontology-recantation: <https://cacontology.projectvic.org/recantation#> .
 
-<https://cacontology.projectvic.org/recantation/shapes/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/recantation/shapes/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Victim Recantation SHACL Shapes"@en ;
     rdfs:comment "SHACL validation shapes for the CAC Victim Recantation Ontology."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/recantation/shapes/2.12.0> ;
-    owl:versionInfo "2.12.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/recantation/shapes/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2026-03-13"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/recantation/2.12.0> ,
-                <http://purl.org/nemo/gufo> ,
+    owl:imports <https://cacontology.projectvic.org/recantation/3.0.0> ,
+                <http://purl.org/nemo/gufo#> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 
 # =============================================================================
@@ -128,11 +127,6 @@ cacontology-recantation:RecantationPressureShape rdf:type sh:NodeShape ;
     rdfs:label "Recantation Pressure Shape"@en ;
     rdfs:comment "Validation shape for recantation pressure instances."@en ;
     sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Event ;
-        sh:message "Recantation pressure must be modeled as a gUFO Event."@en
-    ] ;
-    sh:property [
         sh:path cacontology-recantation:pressureMethod ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
@@ -145,11 +139,6 @@ cacontology-recantation:RecantationNotificationShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-recantation:RecantationNotification ;
     rdfs:label "Recantation Notification Shape"@en ;
     rdfs:comment "Validation shape for recantation notification instances."@en ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Event ;
-        sh:message "Recantation notification must be modeled as a gUFO Event."@en
-    ] ;
     sh:property [
         sh:path cacontology-recantation:notificationChannel ;
         sh:datatype xsd:string ;
@@ -167,11 +156,6 @@ cacontology-recantation:RecantationAssessmentShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-recantation:RecantationAssessment ;
     rdfs:label "Recantation Assessment Shape"@en ;
     rdfs:comment "Validation shape for recantation assessment instances."@en ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Event ;
-        sh:message "Recantation assessment must be modeled as a gUFO Event."@en
-    ] ;
     sh:property [
         sh:path rdf:type ;
         sh:hasValue case-investigation:InvestigativeAction ;

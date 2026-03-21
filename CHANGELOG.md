@@ -7,6 +7,370 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+## v3.0.0 - 16 March 2026
+
+### Added - Semantic Spine Architecture
+
+Introduces the CAC Ontology Semantic Spine — a stable, top-level class hierarchy organized by ontological kind rather than stakeholder workflow. This is a major structural release that improves semantic interoperability, adoption clarity, and AI-assisted implementation.
+
+#### New Files
+
+- Added: `ontology/cacontology-core-spine.ttl` — The semantic spine defining 17 core classes organized by ontological category (EnduringEntity, Event, Situation, Role, Phase, AssessmentResult, and sub-branches)
+- Added: `ontology/cacontology-core-spine-shapes.ttl` — Starter SHACL shapes for each spine branch
+- Added: `ontology/cacontology-bridge-gufo.ttl` — gUFO bridge module for legacy alignment axioms
+- Added: `ontology/cacontology-bridge-case.ttl` — CASE bridge module for investigation alignment
+- Added: `ontology/cacontology-bridge-uco.ttl` — UCO bridge module for cyber/digital alignment
+
+#### Semantic Spine Core Classes
+
+- `cac-core:Entity` — top-level abstract root
+- `cac-core:EnduringEntity` — persistent things (subClassOf gufo:Object, uco-core:UcoObject)
+  - `cac-core:PersonLikeEntity`, `cac-core:OrganizationLikeEntity`, `cac-core:DigitalSystemEntity`, `cac-core:Artifact`, `cac-core:PlaceLikeEntity`, `cac-core:AssessmentResult`
+- `cac-core:Occurrent` — things that happen
+  - `cac-core:Event` (subClassOf gufo:Event) with sub-branches: ExploitationEvent, DetectionEvent, CoordinationEvent, SupportEvent, LegalEvent
+  - `cac-core:InvestigativeAction` (subClassOf case-investigation:InvestigativeAction, uco-action:Action)
+- `cac-core:Situation` (subClassOf gufo:Situation)
+- `cac-core:Role` (subClassOf gufo:Role, uco-role:Role)
+- `cac-core:Phase` (subClassOf gufo:Phase)
+
+#### Core Properties
+
+- `cac-core:hasPhase`, `cac-core:isPhaseOf`, `cac-core:assesses`, `cac-core:generatedBy`, `cac-core:usesMethod`, `cac-core:hasConfidence`, `cac-core:issuedAtTime`
+
+### Changed - Final Publication Readiness Pass
+
+Comprehensive final audit and remediation across all ontology modules, shapes, examples, and documentation.
+
+#### rdfs:subClassOf gufo: → cac-core: (7 modules, 72 replacements)
+
+- Replaced `rdfs:subClassOf gufo:Phase/Role/Event/Situation/Object/Organization` with spine equivalents in ai-csam, athletic-exploitation, case-management, educational-exploitation, extremist-enterprises, platform-infrastructure, usa-federal-law
+
+#### SHACL shapes gufo: → cac-core: (22 shapes files)
+
+- Replaced 59 `sh:targetClass gufo:Phase/Role/Event/Situation` with `cac-core:` equivalents
+- Replaced 18 `sh:class gufo:Phase/Role/Event/Situation/Object` with `cac-core:` equivalents on domain property paths
+- Removed 80 `sh:hasValue gufo:Event/Object/Situation/Role/Phase/Organization` blocks on `sh:path rdf:type`
+- Added `@prefix cac-core:` to 14 shapes files that were missing it
+- Preserved gUFO meta-types (`gufo:Kind`, `gufo:EventType`, `gufo:SituationType`, `gufo:SubKind`, `gufo:FunctionalComplex`) — these are valid gUFO type system annotations
+
+#### ICAC → CAC naming (61 files, 203 replacements)
+
+- Updated all `rdfs:comment` and `dcterms:title` strings referencing "ICAC" to "CAC" across ontology modules and shapes files
+- Updated `ICACInvestigation` → `CACInvestigation` in 2 example knowledge graphs
+
+#### owl:versionInfo added (34 modules)
+
+- Added `owl:versionInfo "3.0.0"` to all ontology modules that had `owl:versionIRI` but were missing `owl:versionInfo`
+
+#### Temporal module gufo: cleanup
+
+- Replaced `gufo:Event` and `gufo:Phase` in `owl:unionOf` expressions, `owl:onClass` restrictions, and property domains/ranges with `cac-core:` equivalents in `cacontology-temporal.ttl`
+
+#### Sex trafficking gufo:Organization cleanup
+
+- Replaced 5 `rdfs:domain gufo:Organization` with `cac-core:OrganizationLikeEntity` in `cacontology-sex-trafficking.ttl`
+
+#### Integration-patterns module fixes
+
+- Fixed broken import: `gufo/3.0.0` (non-existent) → `bridge/gufo/3.0.0`
+- Updated `dcterms:modified` to 2026-03-16
+- Removed unused `cacontology-gufo:` prefix
+
+### Changed - Breaking Hierarchy Corrections
+
+#### Phase classes no longer subclass CACInvestigation
+
+- **BREAKING**: `InitialPhase`, `AnalysisPhase`, `LegalProcessPhase`, `EvidencePhase`, `VictimPhase`, `ConclusionPhase` now subclass `cac-core:Phase` instead of `cacontology:CACInvestigation`. Phases are temporal stages OF an investigation, not investigations themselves. Use `cacontology:hasPhase` to link investigations to phases.
+
+#### AI content hierarchy inversion
+
+- **BREAKING**: `AIAlteredCSAM` is no longer a subclass of `DeepfakeCSAM`. The hierarchy is inverted so that `DeepfakeCSAM` is now a subclass of `AIAlteredCSAM`, which correctly reflects that deepfakes are one type of AI-altered content, not the other way around.
+- New hierarchy: `CSAMMediaArtifact` ← `AIGeneratedCSAM`, `AIAlteredCSAM` ← `DeepfakeCSAM`, `NudifiedCSAM`, `SyntheticCompositeCSAM`
+
+#### AICSAMInvestigation re-homed
+
+- **BREAKING**: `AICSAMInvestigation` changed from `uco-action:Action, gufo:Event` to `cac-core:EnduringEntity, case-investigation:Investigation` — it is an enduring investigation container, not a single action.
+- Sub-activities (`GenerationSourceTracking`, `ModelIdentification`, `TrainingDataAnalysis`) re-homed as `cac-core:InvestigativeAction` subclasses.
+
+### Changed - Broad Re-anchoring to Semantic Spine
+
+#### Phase classes re-anchored (~103 classes across 23 modules)
+
+All Phase classes across all domain modules now include `cac-core:Phase` in their superclass chain.
+
+#### Role classes re-anchored (~68 classes across 19 modules)
+
+All top-level Role classes across all domain modules now include `cac-core:Role` in their superclass chain.
+
+#### Situation classes re-anchored (~72 classes across 25 modules)
+
+All top-level Situation classes across all domain modules now include `cac-core:Situation` in their superclass chain.
+
+#### Action/Event classes re-anchored across all modules
+
+All top-level action and event classes across all domain modules now anchor through the semantic spine event branches instead of directly referencing `uco-action:Action + gufo:Event`. Re-anchoring covers approximately 100+ classes across 40+ modules. Examples:
+
+- `ReceiveCybertipAction`, `ReviewCybertipAction`, `LegalProcessAction`, `EvidenceReviewAction`, `CSAMCurationAction`, `UnknownVictimSubmission` → `cac-core:InvestigativeAction`
+- `VictimRescueAction`, `TherapeuticIntervention`, `VictimSupport`, `InternationalTraining` → `cac-core:SupportEvent`
+- `ChildSexualAbuseEvent`, `GroomingBehavior`, `TraffickingOperation`, `ProductionOffense` → `cac-core:ExploitationEvent`
+- `AutomatedDetectionAction`, `ContentHashingAction`, `ManualClassificationAction` → `cac-core:DetectionEvent`
+- `CrowdsourcingInvestigation`, `InformationSharing`, `MultiJurisdictionalInvestigation` → `cac-core:CoordinationEvent`
+- `LegalProceeding`, all 19 federal crime event classes in `usa-federal-law` → `cac-core:LegalEvent` or `cac-core:ExploitationEvent`
+
+#### Entity classes re-anchored across all modules
+
+All top-level entity classes that previously used `gufo:Object` directly now anchor through the appropriate spine entity branch. Re-anchoring covers approximately 150+ classes. Examples:
+
+- Organizations → `cac-core:OrganizationLikeEntity`
+- Tools, platforms, systems → `cac-core:DigitalSystemEntity`
+- Documents, reports, evidence, files → `cac-core:Artifact`
+- Locations, venues → `cac-core:PlaceLikeEntity`
+- General persistent entities → `cac-core:EnduringEntity`
+
+#### Result classes re-anchored
+
+- `DetectionResult`, `ClassificationResult`, `RiskStratificationResult` → `cac-core:AssessmentResult`
+
+#### CACInvestigation re-anchored
+
+- `CACInvestigation` now subclasses `cac-core:EnduringEntity , case-investigation:Investigation` (redundant `gufo:Object` removed)
+
+#### Temporal module re-anchored
+
+- `AgeAtTimeSituation` → `cac-core:Situation`
+- `PhaseTransitionEvent`, `SuspensionEvent`, `ResumptionEvent`, `EventSequence`, `ParallelEventCluster`, `RoleTransition` → `cac-core:Event`
+
+#### Hotlines module re-anchored
+
+- `HotlineOrganization` → `cac-core:OrganizationLikeEntity`
+- `HotlineReport` → `cac-core:Situation`
+- `AutomatedReporterAgent` → `cac-core:DigitalSystemEntity`
+- `ReporterRole` → `cac-core:Role`
+- `EvidenceItem` → `cac-core:Artifact`
+- `HotlineAction` → `cac-core:CoordinationEvent`
+
+### Changed - owl:equivalentClass Axiom Migration
+
+- **20 `owl:equivalentClass` axioms** referencing `cacontology-gufo:CriminalEvent`, `cacontology-gufo:VictimRole`, and `cacontology-gufo:OffenderRole` removed from 10 domain modules and documented in `cacontology-bridge-gufo.ttl` with disposition metadata
+- Core equivalences (`ReceiveCybertipAction ≡ CriminalEvent`, `VictimRole ≡ cacontology-gufo:VictimRole`, `OffenderRole ≡ cacontology-gufo:OffenderRole`) replaced with `skos:exactMatch` in bridge layer
+
+### Deprecated
+
+- `VictimPhase` — use the more specific `VictimIdentificationPhase`, `VictimRescuePhase`, `VictimSupportPhase`, or `VictimRecoveryPhase` classes instead
+
+### Changed - Documentation and Supporting Files for v3.0.0
+
+#### Extension ontology updated
+- `raven-us-extensions.ttl` — Added `cac-core:` prefix and spine import; replaced 22 direct `gufo:` superclasses with spine equivalents (`cac-core:OrganizationLikeEntity`, `cac-core:Phase`, `cac-core:Role`, `cac-core:EnduringEntity`, `cac-core:Situation`, `cac-core:Artifact`, `cac-core:LegalEvent`, `cac-core:SupportEvent`, `cac-core:Event`, `cac-core:AssessmentResult`, `cac-core:PlaceLikeEntity`); updated version to 3.0.0
+
+#### Example knowledge graphs updated
+- Removed explicit `gufo:Event` type assertions from instances in 4 example files (westchester, coursing-justice, ga-hart-county, us-v-mccormack)
+- Replaced `gufo:Object` with `cac-core:Artifact` for plan/document instances in coursing-justice example
+- Added `cac-core:` prefix to all modified example files
+
+#### SPARQL queries updated
+- Fixed 5 queries with outdated `0.3#` PREFIX namespace
+- Fixed 3 queries replacing `ICACInvestigation` with `CACInvestigation`
+- Rewrote `gufo-enhanced-analytics.rq` Query 9 to validate against spine classes (`cac-core:Phase`, `cac-core:Role`, `cac-core:Event`, `cac-core:Situation`)
+
+#### Testing infrastructure updated
+- Updated `test-deployment.py` SPARQL queries to use `cac-core:Phase` and `cac-core:Role`
+- Updated `docker-compose.yaml` to load spine and bridge files; added spine SHACL validation
+- Updated module counts in `DOCKER_README.md`
+
+#### Documentation updated
+- `docs/architecture.md` — New semantic spine architecture section with Mermaid diagram; updated import chain, class hierarchy, and all version references to v3.0.0
+- `docs/design.md` — Added "Spine Anchor" column to core classes and gUFO patterns tables; new Section 7 on semantic spine
+- `docs/user_doc.md` — Version updated to 3.0.0; replaced `icac-gufo:` with `cac-core:` in examples; added semantic spine section
+- `docs/glossary.md` — Added 10 spine concept definitions; annotated all gUFO-enhanced entries with spine anchors
+- `docs/PRD.md` — Added v3.0.0 and semantic spine references
+- `README.md` — Updated to mention v3.0.0, semantic spine, 35+ modules, `cac-core:` namespace, and updated repository structure
+
+#### Post-implementation audit fixes
+- `cacontology-multi-jurisdiction.ttl` — **BREAKING**: Removed `MultiJurisdictionalInvestigation` from 4 Phase class superclasses; phases now anchor to `cac-core:Phase` only
+- `cacontology-multi-jurisdiction-shapes.ttl` — Updated SPARQL phase validation to use `cac-core:Phase` instead of investigation subclass check
+- `cacontology-case-management.ttl` — Replaced `gufo:Role` and `uco-role:Role` with `cac-core:Role` for 4 Role classes
+- `cacontology-international.ttl` — Replaced `uco-role:Role` with `cac-core:Role` for 3 Role classes
+- `cacontology-sex-offender-registry.ttl` — Replaced `uco-role:Role` with `cac-core:Role` for RegistryOfficer
+- `cacontology-athletic-exploitation.ttl` — Replaced `gufo:Situation` with `cac-core:Situation` for 7 Situation classes; replaced `gufo:Event` with `cac-core:Event` for 29 Event classes
+- `cacontology-tactical.ttl` — Added `cac-core:Situation` to `BarricadeSituation`
+- `cacontology-core-spine-shapes.ttl` — Added `owl:imports` for the semantic spine
+- Added `@prefix cac-core:` to `cacontology-synthesis.ttl` and `cacontology-us-ncmec.ttl`
+
+### Changed - Hierarchy Corrections (Reality-Alignment Pass)
+
+Systematic review and correction of subclassing hierarchies to better reflect reality across the entire ontology family. Every class should have one clear ontological home.
+
+#### Phase classes no longer subclass their bearer (~50 classes across 12 modules)
+
+**BREAKING**: Phase classes should be temporal stages OF an entity, linked via `cac-core:hasPhase`/`isPhaseOf`, not subtypes of that entity. Removed the bearer parent from all phase classes; each now subclasses only `cac-core:Phase`.
+
+- `cacontology-forensics.ttl` — AcquisitionPhase, AnalysisPhase, ReportingPhase, TestimonyPhase (removed Action parents)
+- `cacontology-detection.ttl` — InitialDetectionPhase, HashComparisonPhase, ManualReviewPhase, ValidationPhase, ReportingPhase (removed Action parents)
+- `cacontology-undercover.ttl` — PreparationPhase, InfiltrationPhase, EvidenceGatheringPhase, ExtractionPhase (removed UndercoverOperation)
+- `cacontology-specialized-units.ttl` — 6 unit/operation phases (removed SpecializedInvestigativeUnit, NamedOperation)
+- `cacontology-physical-evidence.ttl` — 4 evidence phases (removed PhysicalEvidence)
+- `cacontology-taskforce.ttl` — 5 operation phases (removed TaskForceOperation)
+- `cacontology-training.ttl` — 5 program/training phases (removed CapacityBuildingProgram, InternationalTraining)
+- `cacontology-partnerships.ttl` — 4 partnership phases (removed PublicPrivatePartnership)
+- `cacontology-platforms.ttl` — 5 platform phases (removed ElectronicServiceProvider)
+- `cacontology-sex-trafficking.ttl` — 4 enterprise phases (removed TraffickingEnterprise)
+- `cacontology-legal-outcomes.ttl` — PreTrialPhase, TrialPhase, SentencingPhase, PostConvictionPhase (removed LegalProceeding)
+- `cacontology-victim-impact.ttl` — 4 impact phases (removed VictimImpactAssessment)
+- `cacontology-grooming.ttl` — 6 grooming phases (removed GroomingBehavior)
+- `cacontology-sextortion.ttl` — 5 sextortion phases anchored to `cac-core:Phase` (removed SextortionProgression)
+
+#### Inverted hierarchies corrected
+
+- `cacontology-usa-federal-law.ttl` — **BREAKING**: 18 crime event classes (ChildPornographyProduction, SexTraffickingOfMinors, etc.) no longer subclass law classes. Crimes violate laws; they are not subtypes of laws. Added `rdfs:seeAlso` to preserve crime-to-law links.
+- `cacontology-us-ncmec.ttl` — **BREAKING**: NCMECIncidentType and NCMECReportAnnotation no longer subclass NCMECCybertipReport. Incident types and annotations are metadata about reports, not report subtypes.
+- `cacontology-extremist-enterprises.ttl` — ExtremeDegradationCoercion moved from under SelfHarmCoercion to a sibling (animal/sibling abuse is not self-harm)
+- `cacontology-asset-forfeiture.ttl` — ProceedsOfCrime and InstrumentOfOffense no longer subclass LegalBasisForForfeiture; re-homed as `cac-core:Artifact` (assets are not legal bases)
+
+#### gUFO disjointness violations fixed
+
+In gUFO, Event and Situation are disjoint, as are Object and Situation. Classes cannot be both.
+
+- `cacontology-case-management.ttl` — Removed `gufo:Situation` from 4 case management classes (already EnduringEntity/Object)
+- `cacontology-asset-forfeiture.ttl` — Removed `cac-core:Situation` from MultiStateForfeiture (already an Event)
+- `cacontology-tactical.ttl` — Removed TacticalOperation from BarricadeSituation; now Situation only
+- `cacontology-athletic-exploitation.ttl` — TeamBasedExploitation and TeamDynamicsExploitation now Situation only (removed Event parents)
+- `cacontology-physical-evidence.ttl` — ForensicAnalystRole, EvidenceCustodianRole, SearchOfficerRole no longer subclass Person; now `cac-core:Role` only
+
+#### Wrong ontological categories corrected
+
+- `cacontology-victim-impact.ttl` — VictimImpactAssessment changed from Situation to `cac-core:AssessmentResult`
+- `cacontology-legal-outcomes.ttl` — CriminalSentence changed from Artifact to `cac-core:AssessmentResult` (judicial decision outcome)
+- `cacontology-production.ttl` — DeviceConcealment changed from ProductionEquipment to `cac-core:ExploitationEvent` (technique, not equipment)
+- `cacontology-multi-jurisdiction.ttl` — InterstateTransportationOffense changed from MultiJurisdictionalInvestigation to `cac-core:ExploitationEvent` (crime, not investigation)
+- `cacontology-sex-offender-registry.ttl` — RegisteredSexOffender changed from Person to `cac-core:Role` (legal status, not person type)
+- `cacontology-institutional-exploitation.ttl` — OrphanedChild, ImpoverishedChild, VulnerableChildInCare, AbandonedChild changed from Person+Phase to `cac-core:Situation` (vulnerability states)
+- `cacontology-victim-impact.ttl` — RecoveryMilestone no longer subclasses RecoveryProcess; now `cac-core:SupportEvent` only
+
+#### Missing parent class definitions added
+
+- `cacontology-grooming.ttl` — Added OnlineGrooming, VictimTargeting, GroomingPhase class definitions
+- `cacontology-undercover.ttl` — Added UndercoverEvidence class definition
+- `cacontology-international.ttl` — Added InternationalCoordination class definition
+
+### Migration Notes
+
+- Existing instances typed as `cacontology:VictimPhase` remain valid but should migrate to specific phase subclasses
+- Existing SPARQL patterns assuming `AIAlteredCSAM → DeepfakeCSAM` must be updated
+- Applications relying on `owl:equivalentClass` axioms for `cacontology-gufo:*` classes should import `cacontology-bridge-gufo.ttl` for backward-compatible reasoning
+- The `cacontology-gufo:` namespace is retained as a legacy alignment layer; new development should use the spine classes
+- Multi-jurisdiction phases no longer subclass `MultiJurisdictionalInvestigation`; use `cacontology:hasPhase` to link
+- Phase classes across all modules now subclass only `cac-core:Phase`; use `cac-core:hasPhase`/`isPhaseOf` to link phases to their bearers
+- Crime classes in `usa-federal-law` now use `rdfs:seeAlso` instead of `rdfs:subClassOf` to reference applicable laws
+- `RegisteredSexOffender` is now a Role; use `holdsRole` or similar to link persons to this status
+- Vulnerability states (OrphanedChild, etc.) are now Situations; use contextual properties to relate them to affected persons
+
+### Changed - Publication Readiness Audit
+
+Comprehensive pre-publication audit identified and resolved remaining inconsistencies across the entire repository.
+
+#### Property domain/range spine alignment (26 modules, 191 replacements)
+
+- Replaced all `rdfs:domain gufo:Phase`, `rdfs:range gufo:Phase`, `rdfs:domain gufo:Role`, `rdfs:range gufo:Role`, `rdfs:domain gufo:Event`, `rdfs:range gufo:Event`, `rdfs:domain gufo:Situation`, `rdfs:range gufo:Situation` with `cac-core:` spine equivalents across 26 domain ontology modules
+
+#### rdfs:subClassOf spine alignment
+
+- `cacontology-case-management.ttl`: Replaced 17 occurrences of `rdfs:subClassOf ... gufo:Event` with `cac-core:Event` (CaseAssignment, InvestigatorAssignment, workflow classes, review classes)
+
+#### SHACL shapes cleanup (9 shapes files, 20 property blocks removed)
+
+- Removed `sh:class gufo:Event/Object/Situation` checks on `sh:path rdfs:subClassOf` from forensics, grooming, legal-harmonization, international, law-enforcement-corruption, multi-jurisdiction, partnerships, physical-evidence, platform-infrastructure shapes
+- Removed `sh:hasValue gufo:Event/Object/Situation/Organization` checks on `sh:path rdfs:subClassOf` from multi-jurisdiction, partnerships, physical-evidence shapes
+- Changed `sh:class uco-role:Role` to `sh:class cac-core:Role` in `cacontology-law-enforcement-corruption-shapes.ttl`
+
+#### cacontology-core-shapes.ttl modernization
+
+- Fixed broken import: `cacontology.projectvic.org/gufo/3.0.0` (non-existent) changed to `cacontology.projectvic.org/core/3.0.0` (spine)
+- Resolved ontology IRI conflict with `cacontology-core-spine-shapes.ttl`
+- Migrated all `cacontology-gufo:` class and property references to `cacontology:` namespace (Investigation, phases, roles, events, properties)
+- Updated `dcterms:modified` to `2026-03-16`
+
+#### Missing spine imports added (10 modules)
+
+- Added `owl:imports <https://cacontology.projectvic.org/core/3.0.0>` to: analyst-wellbeing, custodial, detection, forensics, grooming, hotlines, integration-patterns, investigation-coordination, sex-trafficking, training
+
+#### SPARQL query fixes (10 queries)
+
+- Replaced `cacontology.projectvic.org/hotlines/2025/core#` with `cacontology.projectvic.org/hotlines#` in 10 SPARQL queries
+- Renamed `hotlines-core:` prefix to `cacontology-hotlines:` where applicable
+
+#### Legacy namespace cleanup
+
+- Replaced `ontology.caseontology.org/icac/` with `cacontology.projectvic.org/` in `cacontology-educational-exploitation-shapes.ttl` and 3 example knowledge graphs
+- Fixed `ICACInvestigation` → `CACInvestigation` in `illinois-attorney-general-case-example.ttl`
+
+#### Example knowledge graph fixes
+
+- Removed direct `gufo:Event`, `gufo:Object`, `gufo:Situation` instance types from `utah-operation-hive-strike-example.ttl` (9 instances) and `utah-dominic-christensen-example.ttl` (12 instances)
+- Updated NCMEC prefix versions to 3.0.0 in `utah-dominic-christensen-example.ttl` and `rhode-island-production-case.ttl`
+- Updated version comment in `us-v-mccormack-ninth-circuit-2017-example.ttl`
+
+#### Integration-patterns module updates
+
+- Renamed `SentencingModule` to `LegalOutcomesModule` and `AIGeneratedContentModule` to `AICsamModule` in `cacontology-integration-patterns.ttl`
+
+#### Documentation updates
+
+- `user_doc.md`: Replaced all `ontology.unifiedcyberontology.org/icac` and `ontology.unifiedcyberontology.org/hotlines` namespace references with `cacontology.projectvic.org` equivalents; updated all `icac:` prefixes to `cacontology:`; fixed `ICACInvestigation` references
+- `README.md`: Fixed Quick Start example prefix (`cacontology-core:` → `cacontology:` for CACInvestigation, hasReport, status)
+
+#### Minor fixes
+
+- Removed unused `@prefix cacontology-gufo:` from `cacontology-core.ttl`
+- Updated `cacontology-hotlines.ttl` label from "CAC Ontology Hotlines Core" to "CAC Ontology Hotlines"
+
+### Changed - Module Renaming (Clarity Pass)
+
+Renamed 6 ontology modules so filenames immediately communicate their purpose to practitioners. Both filenames and ontology IRIs updated (breaking change for imports).
+
+#### Tier 1 -- Significant name-content mismatches
+
+- **BREAKING**: `cacontology-ai-generated-content.ttl` renamed to `cacontology-ai-csam.ttl` — module covers the full AI-CSAM lifecycle (generation, alteration, deepfakes, nudification, detection, forensic analysis, investigation, source tracking), not just "AI generated" content. IRI: `ai-generated/` -> `ai-csam/`. Prefix `cacontology-ai:` unchanged.
+- **BREAKING**: `cacontology-sentencing.ttl` renamed to `cacontology-legal-outcomes.ttl` — module covers arraignment, trial proceedings, sentencing hearings, appellate review, evidentiary rulings, and punishment guidelines, not just sentencing. IRI: `sentencing/` -> `legal-outcomes/`. Prefix: `cacontology-sentencing:` -> `cacontology-legal-outcomes:`.
+- `cacontology-temporal-gufo.ttl` renamed to `cacontology-temporal.ttl` — "gufo" in the filename exposed an implementation detail; practitioners care about temporal modeling (age-at-time, investigation lifecycle, phase transitions). IRI already `temporal/` (no change needed).
+
+#### Tier 2 -- Clarity improvements
+
+- `cacontology-soe.ttl` renamed to `cacontology-sadistic-online-exploitation.ttl` — spells out the SOE acronym for practitioners outside DHS/K2P circles. IRI `soe/` unchanged; prefix `cacontology-soe:` unchanged.
+- `cacontology-hotlines-core.ttl` renamed to `cacontology-hotlines.ttl` — removes confusing "core" suffix that conflicted with `cacontology-core.ttl`. IRI: `hotlines/core/` -> `hotlines/`.
+- `cacontology-gufo-integration-strategy.ttl` renamed to `cacontology-integration-patterns.ttl` — removes "gUFO" implementation detail from module name. IRI: `gufo-strategy/` -> `integration-patterns/`. Prefix: `cacontology-strategy:` -> `cacontology-integration:`.
+
+#### Cascade updates
+
+All references updated across: shapes files, SPARQL queries, knowledge graph examples, docker-compose.yaml, test-deployment.py, DOCKER_README.md, documentation (architecture.md, design.md, user_doc.md, PRD.md, glossary.md), README.md, CONTRIBUTING.md, CAC-Ontology-List, analytics demonstration files.
+
+### Changed - Asset Forfeiture Module Spine Alignment
+
+Comprehensive v3.0.0 spine alignment and shape-ontology mismatch fixes for the asset forfeiture module.
+
+#### Ontology fixes (`cacontology-asset-forfeiture.ttl`)
+
+- 5 Role classes (`AssetForfeitureOfficer`, `AssetValuationExpert`, `LegalCounsel`, `ForensicAccountant`, `PropertyManager`) changed from `uco-role:Role, gufo:Role` to `cac-core:Role`
+- 2 Organization classes (`CriminalAssetsConfiscationTaskforce`, `StateSupremeCourt`) changed from `gufo:Organization` to `cac-core:OrganizationLikeEntity`
+- 4 Action subclasses (`PropertyRestraintAction`, `PropertyForfeitureAction`, `FinancialPenaltyAction`, `EquipmentSeizureAction`) removed redundant `gufo:Event` superclass (inherited through `cac-core:LegalEvent`)
+- 5 property ranges/domains updated from direct `gufo:` types to spine equivalents (`currentPhase` range -> `cac-core:Phase`, `hasPhaseTransition` range -> `cac-core:Event`, `assignedRole`/`playsRole` range -> `cac-core:Role`, `phaseTransitionTime` domain -> `cac-core:Phase`)
+- `LegalBasisForForfeiture` changed from `cac-core:Artifact` to `cac-core:EnduringEntity` (legal concepts are not physical artifacts)
+- `courtJurisdiction` validation constraint generalized from "Australian state or territory code" to "valid jurisdiction code"
+- Added 9 missing properties referenced by SHACL shapes: `forfeitureOutcome`, `financialInstitution`, `previousPhase`, `phaseStatus`, `involvesJurisdiction`, `hasParticipant`, `organizationType`, `organizationStatus`, `involvesCourtProceeding`
+
+#### Shapes fixes (`cacontology-asset-forfeiture-shapes.ttl`)
+
+- Added `@prefix cac-core:` and `owl:imports` for the semantic spine
+- Removed 11 direct gUFO type checks (`sh:hasValue gufo:Event/Object/Phase/Role/Situation/Organization`) — class hierarchy handles typing
+- Fixed `MultiStateForfeitureShape` type mismatch (shape said `gufo:Situation`, ontology says Event) — removed incorrect constraint
+- Removed 11 speculative SPARQL constraints referencing undefined verification/competency/qualification property chains (`hasLegalAuthority`, `hasForensicVerification`, `hasVerification`, `hasLegalJustification`, `hasCourtAuthorization`, `hasCompetency`, `hasQualification`, `hasExpertise`, `hasAssessment`, `hasLegalAuthorization`, `hasEnhancedDocumentation`)
+- Removed 5 empty/speculative shapes (`CompleteForfeitureShape`, `AssetValuationExpertShape`, `ForensicAccountantShape`, `LegalIntegrityValidationShape`, `PrecedentValidationShape`)
+- Removed 2 meta-validation shapes (`GUFODataQualityShape`, `AntiRigidityValidationShape`) — spine handles foundational typing
+- Updated SPARQL references from `gufo:Object` to `cac-core:EnduringEntity`, `gufo:Organization` to `cac-core:OrganizationLikeEntity`, `gufo:Event` to `cac-core:Event`
+- File reduced from ~908 lines to ~565 lines
+
+---
+
 ## v2.12.0 - 13 March 2026
 
 ### Added - Victim Recantation Ontology + Example Suite (Coursing Justice Recantation 101)
@@ -197,7 +561,7 @@ Adds explicit modeling for missing-child rescue operations that “locate” mis
 
 Adds appellate-opinion modeling concepts to the sentencing module to support representing issues raised on appeal, cited evidence rules, standards of review, dispositions, and life-imprisonment sentences, based on the Ninth Circuit memorandum disposition in *United States v. McCormack* (CourtListener).
 
-#### Enhanced Sentencing Module (`ontology/cacontology-sentencing.ttl`)
+#### Enhanced Sentencing Module (`ontology/cacontology-legal-outcomes.ttl`)
 
 - Added appellate vocabulary:
   - `AppellateIssue`
@@ -221,7 +585,7 @@ Adds appellate-opinion modeling concepts to the sentencing module to support rep
 
 #### SHACL Shapes Updated
 
-- Updated: `ontology/cacontology-sentencing-shapes.ttl` (AppellateIssue / Disposition / StandardOfReview / EvidenceRule validation)
+- Updated: `ontology/cacontology-legal-outcomes-shapes.ttl` (AppellateIssue / Disposition / StandardOfReview / EvidenceRule validation)
 
 #### New Example KG + SPARQL Analytics
 
@@ -241,7 +605,7 @@ Adds appellate-opinion modeling concepts to the sentencing module to support rep
 
 Adds Georgia-specific state charge subclasses and plea/sentencing condition modeling to support a Georgia Attorney General press release describing trafficking of a minor facilitated by social media communications (Snapchat) and post-conviction outcomes including prison, strict probation, sex-offender registration, and professional license surrender.
 
-#### Enhanced Sentencing Module (`ontology/cacontology-sentencing.ttl`)
+#### Enhanced Sentencing Module (`ontology/cacontology-legal-outcomes.ttl`)
 
 - Added Georgia state charge framework:
   - `GeorgiaStateCharge`
@@ -253,7 +617,7 @@ Adds Georgia-specific state charge subclasses and plea/sentencing condition mode
 
 #### SHACL Shapes Updated
 
-- Updated: `ontology/cacontology-sentencing-shapes.ttl` (Georgia charge shapes + license surrender condition validation)
+- Updated: `ontology/cacontology-legal-outcomes-shapes.ttl` (Georgia charge shapes + license surrender condition validation)
 
 #### New Example KG + SPARQL Analytics
 
@@ -273,7 +637,7 @@ Adds Georgia-specific state charge subclasses and plea/sentencing condition mode
 
 Major enhancement based on analysis of Global Emancipation Network (GEN) article “Community & Intelligence Beyond Detection” emphasizing coordination beyond detection, risk-stratified intelligence, compliance documentation trails, and analyst exposure minimization.
 
-#### Enhanced AI-Generated Content Module (`ontology/cacontology-ai-generated-content.ttl`)
+#### Enhanced AI-Generated Content Module (`ontology/cacontology-ai-csam.ttl`)
 
 - Added nudification modeling:
   - `Nudification` (AI content generation/manipulation process)
@@ -312,7 +676,7 @@ Major enhancement based on analysis of Global Emancipation Network (GEN) article
 
 #### SHACL Shapes Updated
 
-- Updated: `cacontology-ai-generated-content-shapes.ttl`, `cacontology-detection-shapes.ttl`, `cacontology-platforms-shapes.ttl`, `cacontology-legal-harmonization-shapes.ttl`
+- Updated: `cacontology-ai-csam-shapes.ttl`, `cacontology-detection-shapes.ttl`, `cacontology-platforms-shapes.ttl`, `cacontology-legal-harmonization-shapes.ttl`
 
 ---
 
@@ -322,11 +686,11 @@ Major enhancement based on analysis of Global Emancipation Network (GEN) article
 
 Introduces a new Sadistic Online Exploitation (SOE) module and expands sextortion modeling for sadistic threat patterns. Adds an end-to-end example suite and verification artifacts for the K2P SOE information source.
 
-#### New SOE Module (`ontology/cacontology-soe.ttl`)
+#### New SOE Module (`ontology/cacontology-sadistic-online-exploitation.ttl`)
 
 - Added `cacontology-soe` module and SHACL shapes:
-  - `ontology/cacontology-soe.ttl`
-  - `ontology/cacontology-soe-shapes.ttl`
+  - `ontology/cacontology-sadistic-online-exploitation.ttl`
+  - `ontology/cacontology-sadistic-online-exploitation-shapes.ttl`
 
 #### Enhanced Sextortion Module (`ontology/cacontology-sextortion.ttl`)
 
@@ -583,7 +947,7 @@ Major enhancement to the CAC Ontology based on analysis of Miami Police ICAC und
 - `immigrationStatus`, `immigrationHoldReason`
 - `reportIdentifier`, `reportDate`, `reportAuthor`
 
-#### Enhanced Sentencing Module (`ontology/cacontology-sentencing.ttl`)
+#### Enhanced Sentencing Module (`ontology/cacontology-legal-outcomes.ttl`)
 
 **Florida State Charges (5 new classes):**
 - `FloridaStateCharge` - Base class for Florida state criminal charges
@@ -652,7 +1016,7 @@ Major enhancement to the CAC Ontology based on analysis of Miami Police ICAC und
 - Consolidated arrestType allowed values across shapes
 - Validation for tactical operation properties
 
-**Updated Sentencing Shapes (`ontology/cacontology-sentencing-shapes.ttl`)**
+**Updated Sentencing Shapes (`ontology/cacontology-legal-outcomes-shapes.ttl`)**
 - Added shapes for all Florida state charge classes
 - Validation for Florida statute references
 - Constraints on charge classification values
@@ -704,7 +1068,7 @@ Major enhancement to the CAC Ontology based on analysis of Miami Police ICAC und
 - **Utah Dominic Christensen Example Graph (`examples_knowledge_graphs/utah-dominic-christensen-example.ttl`)**
   - Models prior **2021 Sanpete County** cases (forcible sexual abuse, sexual exploitation of a minor, sexual abuse of a child) alongside the **2025 Garfield County** NCMEC-driven investigation.
   - Captures **sex offender registry status and compliance** using `cacontology-sex-offender-registry` (registration record, registered address, compliance history, and a combined 2025 registration compliance violation).
-  - Reuses `cacontology-core`, `cacontology-grooming`, `cacontology-sentencing`, and `cacontology-sex-offender-registry` to tie together investigations, abuse/CSAM events, charges, sentences, registry records, and compliance violations in a single example.
+  - Reuses `cacontology-core`, `cacontology-grooming`, `cacontology-legal-outcomes`, and `cacontology-sex-offender-registry` to tie together investigations, abuse/CSAM events, charges, sentences, registry records, and compliance violations in a single example.
   - Applies **gUFO** patterns (Events, Objects, Situations) for investigations, lifecycle actions, and sentencing/arraignment style events so that temporal reasoning and analytics are grounded in the ontology’s foundational layer.
 
 - **Utah Dominic Christensen Analytics (`example_SPARQL_queries/utah-dominic-christensen-analytics.rq`)**
@@ -728,7 +1092,7 @@ Major enhancement to the CAC Ontology based on analysis of Miami Police ICAC und
   - Added supporting properties such as `participantCount`, `gameContext`, and `ruleStructureDescription` so that investigators can describe and analyze **group game mechanics** and the number of juveniles involved.
   - Strengthened guidance in `ChildVictim` and `OnlinePredator` comments recommending the use of `cacontology-temporal:AgeAtTimeSituation` for precise **age-at-time reasoning** (e.g., “victims 13-or-under groomed online in 2025”, offender/victim age-gap analytics).
 
-- **Sentencing Ontology (`ontology/cacontology-sentencing.ttl`)**
+- **Sentencing Ontology (`ontology/cacontology-legal-outcomes.ttl`)**
   - Enhanced modeling of **state-level charges** and sentencing structures to better support multi-count cases like Christensen’s 2021 and 2025 matters (separate `StateCharge` instances, concurrent jail and probation sentences, and explicit per-charge linkage).
   - Clarified how **arraignment/initial-appearance style events** and **bail/held-without-bail status** can be represented so that pretrial detention facts (e.g., “held without bail in Garfield County Jail”) can be surfaced in analytics.
   - Ensured that sentencing constructs used in the Utah examples (including Utah-specific charges for Operation Hive Strike) remain compatible with existing federal and state sentencing patterns already present in this module.
@@ -744,7 +1108,7 @@ Major enhancement to the CAC Ontology based on analysis of Miami Police ICAC und
   - Added and refined SHACL node shapes to cover new **physical-space grooming** patterns, including `SexualConsequenceGameGrooming`, validating fields such as `participantCount`, `gameContext`, and `ruleStructureDescription`.
   - Extended grooming shapes to reinforce age-at-time guidance by checking that where age-dependent analytics are expected, models can be linked to `cacontology-temporal:AgeAtTimeSituation` instances.
 
-- **Sentencing Shapes (`ontology/cacontology-sentencing-shapes.ttl`)**
+- **Sentencing Shapes (`ontology/cacontology-legal-outcomes-shapes.ttl`)**
   - Strengthened validation for **state charges, sentences, and proceedings** used in the Utah examples, including patterns for multi-count state charges, concurrent jail and probation sentences, and arraignment/initial-appearance style events.
   - Introduced constraints that make it easier to ensure **bail status / pretrial detention** information is represented in a consistent, machine-checkable way when present.
 
@@ -771,8 +1135,8 @@ Major enhancement to the CAC Ontology based on analysis of Miami Police ICAC und
   - Minimal core SHACL node shapes for key classes in `cacontology-sex-trafficking.ttl`, including `TraffickingEnterprise`, `TraffickerRole`, `TraffickingVictimRole`, `TraffickingOperation`, `VictimTransportation`, `EarningsCollection`, and `MultiJurisdictionalSituation`.
   - Validates gUFO-aligned typing of organizations, roles, and events along with core temporal and quantitative properties such as enterprise begin/end points, role begin/end points, transportation origin/destination, earnings amounts, and multi-jurisdictional victim/trafficker counts.
 
-- **New Temporal gUFO Shapes (`cacontology-temporal-gufo-shapes.ttl`)**
-  - Minimal core SHACL node shapes for temporal constructs introduced in `cacontology-temporal-gufo.ttl`, including gUFO phases and specialized temporal events.
+- **New Temporal gUFO Shapes (`cacontology-temporal-shapes.ttl`)**
+  - Minimal core SHACL node shapes for temporal constructs introduced in `cacontology-temporal.ttl`, including gUFO phases and specialized temporal events.
   - Validates phase duration/deadline and urgency properties on `gufo:Phase` instances, phase performance metrics (`phaseEfficiency`, `phaseCompletionRate`), and enforces that `PhaseTransitionEvent`, `SuspensionEvent`, and `ResumptionEvent` are correctly linked to their source/target phases, investigations, and suspension situations.
 
 ### Changed - Versioning and Validation Policy
@@ -780,7 +1144,7 @@ Major enhancement to the CAC Ontology based on analysis of Miami Police ICAC und
 - Adopted a **global release versioning** strategy for the CAC Ontology family: this release is tagged as `v2.1.0` in `CHANGELOG.md`.
 - Updated the Docker `pySHACL` validation pipeline to:
   - Validate `cacontology-sex-trafficking.ttl` against the new `cacontology-sex-trafficking-shapes.ttl` instead of the more general and former `cacontology-trafficking-shapes.ttl` which is now removed.
-  - Add validation of `cacontology-temporal-gufo.ttl` against `cacontology-temporal-gufo-shapes.ttl` so that temporal gUFO extensions receive direct SHACL coverage.
+  - Add validation of `cacontology-temporal.ttl` against `cacontology-temporal-shapes.ttl` so that temporal gUFO extensions receive direct SHACL coverage.
 - Improved SHACL validation coverage from **37.5% (12 of 32 modules)** to **43.75% (14 of 32 modules)**, continuing progress toward the PRD requirement of ≥ 95% coverage.
 
 ## v2.0.0 - 18 November 2025
@@ -799,7 +1163,7 @@ Introduced a canonical, gUFO-compliant pattern for representing a person’s age
   - Specialized `gufo:QualityValueAttributionSituation` that attributes a concrete numeric age value to a person over a time-bounded interval.
   - Supports modeling statements such as “the victim was 13 years old during a specific grooming event in 2025.”
 
-- **New Age Datatype and Object Properties (in `cacontology-temporal-gufo.ttl`)**
+- **New Age Datatype and Object Properties (in `cacontology-temporal.ttl`)**
   - `cacontology-temporal:ageSubject`
     - Domain: `cacontology-temporal:AgeAtTimeSituation`
     - Range: `uco-identity:Person`
@@ -911,7 +1275,7 @@ Comprehensive namespace and prefix realignment across the entire CAC ontology fa
 **Module Prefix Pattern:**
 - All module prefixes follow the `cacontology-{module-name}:` convention
 - Maintains consistency across all ontology files, SHACL shapes, and example data
-- Example: `cacontology-educational:`, `cacontology-grooming:`, `cacontology-sentencing:`
+- Example: `cacontology-educational:`, `cacontology-grooming:`, `cacontology-legal-outcomes:`
 
 #### Files Affected:
 
@@ -1530,7 +1894,7 @@ Based on analysis of Maryland State Police press release "Maryland State Police 
 - `GovernorsOfficeCrimePreventionFunding` - State-level funding provided by Governor's Office for Crime Prevention and Policy for CAC task force operations
 - `StateLocalFundingCombination` - Combined funding from state Governor's Office and federal DOJ grants for task force operations
 
-#### Enhanced Sentencing Module - `cacontology-sentencing.ttl` (3 new classes):
+#### Enhanced Sentencing Module - `cacontology-legal-outcomes.ttl` (3 new classes):
 
 **Maryland Case Specific Charges:**
 - `CSAM_CausingProduction` - Charge for causing or facilitating the production of child sexual abuse material, distinct from direct production
@@ -1804,7 +2168,7 @@ Based on analysis of Justice Department press release "Fort Pierce Jury Convicts
 **Enhanced Module Connections:**
 - `cacontology-multi-jurisdiction.ttl` - Cross-state recidivism patterns integrate with multi-jurisdictional operations
 - `cacontology-forensics.ttl` - Victim device forensics and multi-modal evidence analysis enhancement
-- `cacontology-sentencing.ttl` - Federal sentencing enhancements for registered sex offender status
+- `cacontology-legal-outcomes.ttl` - Federal sentencing enhancements for registered sex offender status
 - `cacontology-core.ttl` - Project Safe Childhood case integration and investigation lifecycle
 
 **UCO/CASE Compatibility:**
@@ -2361,7 +2725,7 @@ Based on analysis of Brooklyn District Attorney press release (December 18, 2024
 **Seamless Integration Points:**
 - **cacontology-sex-trafficking.ttl**: Street recruitment feeds into existing trafficking operations
 - **cacontology-grooming.ttl**: Rapid escalation extends existing grooming patterns
-- **cacontology-sentencing.ttl**: New sentencing patterns integrate with existing frameworks
+- **cacontology-legal-outcomes.ttl**: New sentencing patterns integrate with existing frameworks
 - **cacontology-victim-impact.ttl**: Victim agency enhances existing impact modeling
 
 **Cross-Module Relationships:**
@@ -2458,7 +2822,7 @@ Based on analysis of Brooklyn District Attorney press release (March 19, 2025) r
 - `PrivilegedVictimTargeting` - Targeting privileged students
 - `ReputationBasedSilencing` - Silencing based on institutional reputation
 
-#### Enhanced Sentencing Module - `cacontology-sentencing.ttl`:
+#### Enhanced Sentencing Module - `cacontology-legal-outcomes.ttl`:
 
 **Educator-Specific Sentencing Classes:**
 - `EducatorSentencing` - Sentencing for educational personnel
@@ -2617,7 +2981,7 @@ Comprehensive enhancement based on analysis of Europol's "Stop Child Abuse" init
 
 #### New Ontology Modules
 
-**cacontology-ai-generated-content.ttl**: Complete AI-CSAM Framework
+**cacontology-ai-csam.ttl**: Complete AI-CSAM Framework
 - **AI Content Types**: AIGeneratedCSAM, DeepfakeCSAM, SyntheticMediaCSAM, HybridCSAM, AIAlteredCSAM with comprehensive generation classification
 - **Generation Processes**: AIContentGeneration, ModelTraining, ImageGeneration, VideoGeneration, FaceSwapping, AgeProgression
 - **Detection Systems**: AIContentDetection, SyntheticMediaAnalysis, DeepfakeDetection, ArtifactAnalysis, BiometricInconsistencyAnalysis
@@ -2769,7 +3133,7 @@ Comprehensive sextortion ontology module and real-world case example based on We
 - **UCO/CASE Alignment**: All classes properly extend UCO core concepts (Action, Observable, Identity, Role)
 - **Task Force Integration**: Seamless connection with cacontology-taskforce.ttl for WA JACET operations
 - **International Coordination**: Integration with cacontology-international.ttl for NCMEC-ACCCE reporting workflows
-- **Sentencing Integration**: Connection with cacontology-sentencing.ttl for Australian Criminal Code charges
+- **Sentencing Integration**: Connection with cacontology-legal-outcomes.ttl for Australian Criminal Code charges
 - **Forensics Integration**: Enhanced forensic examination capabilities for sextortion evidence
 
 #### New Example: wa-sextortion-case-example.ttl
@@ -2846,7 +3210,7 @@ Based on Australian Federal Police SA JACET press release (May 15, 2025) regardi
 - **InstructedAbuseOperation**: Suspects ordering live child abuse viewed online from another country
 - **OverseasVictimCoordination**: Coordination for identifying and assisting victims in foreign countries
 
-#### Enhanced cacontology-sentencing.ttl - Mandatory Minimum Sentencing
+#### Enhanced cacontology-legal-outcomes.ttl - Mandatory Minimum Sentencing
 - **MandatoryMinimumSentencing**: First conviction in SA under mandatory minimum provisions (23 years)
 - **CommonwealthChildAbuseOffense**: Offenses under Commonwealth law with mandatory minimums
 - **LiveStreamingOffense**: Live streaming offenses (15 years with 9-year non-parole)
@@ -2941,7 +3305,7 @@ Based on Wisconsin Department of Justice CAC website analysis (https://www.wisdo
 ### Added - Illinois Attorney General Case Analysis and State-Level Prosecution Framework
 Based on Illinois Attorney General press release (October 5, 2023) regarding Robert L. Jones Macoupin County case - Comprehensive state-level prosecution modeling with Illinois-specific charge classifications, multi-agency coordination, CAC task force historical metrics, and social media evidence integration.
 
-#### Enhanced cacontology-sentencing.ttl - Illinois State Charge Classifications
+#### Enhanced cacontology-legal-outcomes.ttl - Illinois State Charge Classifications
 - **Illinois Felony Classes**: Complete Illinois felony classification system (Class X, 1, 2, 3, 4) with specific penalty ranges
 - **Illinois-Specific CSAM Charges**: Illinois_DisseminationCSAM_Under13 (Class X, up to 30 years), Illinois_PossessionCSAM_Under13 (Class 1, up to 15 years), Illinois_FailureToRegister (Class 3, up to 7 years)
 - **Multi-Agency Prosecution Framework**: CoProsecution, StateAttorneyGeneralProsecution, CountyStateProsecution with lead/supporting prosecutor relationships
@@ -3567,7 +3931,7 @@ The enhancements maintain full compatibility with existing CAC ontology modules 
   - Properties: `socialMediaPlatformsUsed`, `chatPlatformType`, `communicationMethod`, `personaAge`, `personaGender`, `personaLocation`, `personaProfile`, `targetBehaviorType`, `meetingSolicitationAttempts`, `predatorContactAttempts`, `identificationSuccessRate`, `chatDurationHours`, `conversationCount`
   - Relationships: `conductedOnPlatform`, `utilizesPersona`, `targetsIndividual`, `involvesChatInvestigation`, `identifiesPredator`, `leadsToSolicitation`, `agentOperatesAs`, `generatesEvidence`
 
-- **Utah-Specific Legal Charges** in cacontology-sentencing.ttl
+- **Utah-Specific Legal Charges** in cacontology-legal-outcomes.ttl
   - `Utah_SexualExploitationOfMinor` - Sexual exploitation under Utah Criminal Code
   - `Utah_DealingInHarmfulMaterialsToMinor` - Dealing harmful materials to minor
   - `Utah_EnticingAMinor` - Enticing a minor under Utah law
@@ -3593,7 +3957,7 @@ The enhancements maintain full compatibility with existing CAC ontology modules 
 ### Enhanced
 - **cacontology-multi-jurisdiction.ttl**: 591 triples (enhanced from original)
 - **cacontology-undercover.ttl**: 484 triples (enhanced with uco-location prefix)
-- **cacontology-sentencing.ttl**: 820 triples (enhanced with Utah charges)
+- **cacontology-legal-outcomes.ttl**: 820 triples (enhanced with Utah charges)
 
 ### Technical
 - All files successfully validated with RDFLib

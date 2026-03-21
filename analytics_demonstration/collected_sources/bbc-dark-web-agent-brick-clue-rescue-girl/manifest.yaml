@@ -1,0 +1,51 @@
+# CAC Ontology ingestion manifest (single-document)
+# Source: BBC News article (text capture)
+
+batch:
+  uco-core:id: "urn:uuid:f2dd3c46-cc8b-4e9d-9ad5-2203f82a70f7"
+  uco-core:name: "BBC News article collection: dark web investigator brick clue rescue"
+  uco-core:objectCreatedTime: "2026-02-11T00:00:00Z"
+
+  agentOrchestration:
+    enabled: false
+    fetchMethod: "manual"
+    preprocessingPipeline:
+      - "manual_text_capture"
+      - "whitespace_normalize"
+      - "paragraph_per_line"
+    deconflictionEnabled: false
+
+documents:
+  - uco-core:id: "urn:uuid:c96f7e7d-8fbb-5c31-9734-8b1d0530a15f"
+    uco-core:name: "BBC News - How dark web agent spotted bedroom wall clue to rescue girl"
+
+    # Source location
+    observable:url: "https://www.bbc.com/news/articles/cx2gn239exlo"
+    observable:filePath: "analytics_demonstration/collected_sources/bbc-dark-web-agent-brick-clue-rescue-girl/source.txt"
+
+    collectionAction:
+      uco-action:startTime: "2026-02-11T00:00:00Z"
+      uco-action:performer: "urn:uuid:f830548c-dc51-534c-9eee-64aceae0bb23"
+      uco-core:description: "manual text capture (page content extracted to source.txt) by CAC Ontology agent"
+
+    # Raw content metadata (captured text)
+    observable:mimeType: "text/plain"
+    observable:sizeInBytes: 2871
+    observable:hash:
+      types:hashMethod: "SHA-256"
+      types:hashValue: "7c9065e03cee14512baa332592c67d0684b57075355ea08e86900bc5cbb52575"
+
+    # Normalized output
+    normalizationAction:
+      uco-core:description: "whitespace normalization + paragraph-per-line normalization for stable evidence pointers"
+      uco-action:startTime: "2026-02-11T00:00:00Z"
+      uco-action:result: "urn:uuid:b440e30c-eb4d-58b7-8a59-239c81076148"
+
+    normalizedOutput:
+      observable:filePath: "analytics_demonstration/collected_sources/bbc-dark-web-agent-brick-clue-rescue-girl/normalized.txt"
+      observable:mimeType: "text/plain"
+      observable:sizeInBytes: 2482
+      observable:hash:
+        types:hashMethod: "SHA-256"
+        types:hashValue: "2a7b38c02bac66a57802a720cb5f34f7a946d4e6b17c5d3916b3644332992cd2"
+

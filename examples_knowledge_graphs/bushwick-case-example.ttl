@@ -1,0 +1,354 @@
+# Bushwick Case Example
+# This example demonstrates the ICAC ontology modules applied to the Bushwick sex trafficking case
+# Based on Brooklyn DA press release: "Bushwick Man Indicted for Sex Trafficking Teenage Girls"
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
+@prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
+@prefix cacontology-core: <https://ontology.icac.org/icac/core/> .
+@prefix cacontology-sex-trafficking: <https://ontology.icac.org/icac/sex-trafficking/> .
+@prefix cacontology-undercover: <https://ontology.icac.org/icac/undercover/> .
+@prefix cacontology-recruitment: <https://ontology.icac.org/icac/recruitment-networks/> .
+@prefix ex: <https://example.org/bushwick-case/> .
+
+# =============================================================================
+# CASE INVESTIGATION
+# =============================================================================
+
+ex:bushwick-investigation a cacontology-core:Investigation ;
+    uco-core:name "Bushwick Sex Trafficking Investigation" ;
+    uco-core:description "Investigation into sex trafficking of teenage girls in Bushwick, Brooklyn" ;
+    cacontology-core:caseNumber "BKDA-2024-ST-001" ;
+    cacontology-core:investigationStatus "Indictment Filed" ;
+    cacontology-core:startDate "2024-01-15"^^xsd:date ;
+    cacontology-core:leadAgency "Brooklyn District Attorney's Office" ;
+    cacontology-core:jurisdiction "Kings County, New York" ;
+    uco-core:object ex:defendant-john-doe, ex:victim-jane-smith, ex:victim-mary-jones .
+
+# =============================================================================
+# DEFENDANT
+# =============================================================================
+
+ex:defendant-john-doe a uco-identity:Person ;
+    uco-core:name "John Doe" ;
+    uco-identity:birthDate "1985-03-15"^^xsd:date ;
+    uco-location:address ex:bushwick-address ;
+    cacontology-sex-trafficking:traffickerRole ex:primary-trafficker-role .
+
+ex:primary-trafficker-role a cacontology-sex-trafficking:TraffickerRole ;
+    cacontology-sex-trafficking:traffickerType "Primary Trafficker" ;
+    cacontology-sex-trafficking:operationScope "Local" ;
+    cacontology-sex-trafficking:victimCount 2 ;
+    cacontology-sex-trafficking:operationDuration "P6M"^^xsd:duration .
+
+ex:bushwick-address a uco-location:SimpleAddress ;
+    uco-location:street "123 Bushwick Avenue" ;
+    uco-location:locality "Brooklyn" ;
+    uco-location:region "NY" ;
+    uco-location:postalCode "11221" ;
+    uco-location:country "US" .
+
+# =============================================================================
+# VICTIMS
+# =============================================================================
+
+ex:victim-jane-smith a uco-identity:Person ;
+    uco-core:name "Jane Smith" ;
+    uco-identity:birthDate "2009-06-20"^^xsd:date ;
+    cacontology-sex-trafficking:victimRole ex:primary-victim-role ;
+    cacontology-recruitment:recruitmentRole ex:jane-recruitment-role ;
+    cacontology-recruitment:schoolAffiliation ex:local-high-school .
+
+ex:primary-victim-role a cacontology-sex-trafficking:VictimRole ;
+    cacontology-sex-trafficking:victimType "Minor Victim" ;
+    cacontology-sex-trafficking:ageAtExploitation 15 ;
+    cacontology-sex-trafficking:exploitationDuration "P4M"^^xsd:duration ;
+    cacontology-sex-trafficking:reportingMethod "School Social Worker" .
+
+ex:jane-recruitment-role a cacontology-recruitment:VictimRecruitmentRole ;
+    cacontology-recruitment:recruitmentMethod "Classmate Introduction" ;
+    cacontology-recruitment:recruiterRelationship "Peer Victim" ;
+    cacontology-recruitment:recruitmentLocation ex:local-high-school ;
+    cacontology-recruitment:vulnerabilityFactors "Social Isolation", "Economic Hardship" .
+
+ex:victim-mary-jones a uco-identity:Person ;
+    uco-core:name "Mary Jones" ;
+    uco-identity:birthDate "2009-08-10"^^xsd:date ;
+    cacontology-sex-trafficking:victimRole ex:secondary-victim-role ;
+    cacontology-recruitment:recruitmentRole ex:mary-recruitment-role ;
+    cacontology-recruitment:schoolAffiliation ex:local-high-school .
+
+ex:secondary-victim-role a cacontology-sex-trafficking:VictimRole ;
+    cacontology-sex-trafficking:victimType "Minor Victim" ;
+    cacontology-sex-trafficking:ageAtExploitation 15 ;
+    cacontology-sex-trafficking:exploitationDuration "P2M"^^xsd:duration ;
+    cacontology-sex-trafficking:reportingMethod "Peer Disclosure" .
+
+ex:mary-recruitment-role a cacontology-recruitment:VictimRecruitmentRole ;
+    cacontology-recruitment:recruitmentMethod "Peer Recruitment" ;
+    cacontology-recruitment:recruiterRelationship "Classmate" ;
+    cacontology-recruitment:recruitmentLocation ex:local-high-school ;
+    cacontology-recruitment:vulnerabilityFactors "Peer Pressure", "Family Issues" .
+
+# =============================================================================
+# EDUCATIONAL INSTITUTION
+# =============================================================================
+
+ex:local-high-school a cacontology-recruitment:EducationalInstitution ;
+    uco-core:name "Bushwick Community High School" ;
+    cacontology-recruitment:schoolType "Public High School" ;
+    cacontology-recruitment:studentPopulation 1200 ;
+    cacontology-recruitment:gradeRange "9-12" ;
+    cacontology-recruitment:socioeconomicLevel "Low Income" ;
+    uco-location:address ex:school-address ;
+    cacontology-recruitment:hasStaff ex:social-worker-smith .
+
+ex:school-address a uco-location:SimpleAddress ;
+    uco-location:street "456 Education Boulevard" ;
+    uco-location:locality "Brooklyn" ;
+    uco-location:region "NY" ;
+    uco-location:postalCode "11221" ;
+    uco-location:country "US" .
+
+ex:social-worker-smith a cacontology-recruitment:SchoolSocialWorker ;
+    uco-core:name "Sarah Smith" ;
+    cacontology-recruitment:staffRole "Licensed Social Worker" ;
+    cacontology-recruitment:yearsExperience 8 ;
+    cacontology-recruitment:mandatoryReporter true ;
+    cacontology-recruitment:specialization "Trauma-Informed Care" .
+
+# =============================================================================
+# RECRUITMENT NETWORK
+# =============================================================================
+
+ex:bushwick-recruitment-network a cacontology-recruitment:ClassmateRecruitmentNetwork ;
+    uco-core:name "Bushwick High School Recruitment Network" ;
+    cacontology-recruitment:networkSize 3 ;
+    cacontology-recruitment:victimRecruitersCount 1 ;
+    cacontology-recruitment:schoolsInvolved 1 ;
+    cacontology-recruitment:operationDuration "P6M"^^xsd:duration ;
+    cacontology-recruitment:networkMembers ex:victim-jane-smith, ex:victim-mary-jones, ex:defendant-john-doe ;
+    cacontology-recruitment:primarySchool ex:local-high-school .
+
+ex:classmate-introduction a cacontology-recruitment:ClassmateIntroduction ;
+    uco-core:name "Jane introduces Mary to trafficker" ;
+    cacontology-recruitment:introducer ex:victim-jane-smith ;
+    cacontology-recruitment:introducee ex:victim-mary-jones ;
+    cacontology-recruitment:targetPerson ex:defendant-john-doe ;
+    cacontology-recruitment:introductionDate "2024-02-15"^^xsd:date ;
+    cacontology-recruitment:introductionLocation ex:local-high-school ;
+    cacontology-recruitment:introductionMethod "In-Person Meeting" ;
+    cacontology-recruitment:successfulRecruitment true .
+
+ex:peer-recruitment-pattern a cacontology-recruitment:VictimMediatedRecruitment ;
+    uco-core:name "Victim-to-victim recruitment pattern" ;
+    cacontology-recruitment:victimRecruiter ex:victim-jane-smith ;
+    cacontology-recruitment:recruitedVictim ex:victim-mary-jones ;
+    cacontology-recruitment:recruitmentDate "2024-02-15"^^xsd:date ;
+    cacontology-recruitment:recruitmentSuccess true ;
+    cacontology-recruitment:recruitmentIncentive "Friendship and Protection" ;
+    cacontology-recruitment:coercionLevel "Moderate" .
+
+# =============================================================================
+# SCHOOL-BASED REPORTING
+# =============================================================================
+
+ex:school-disclosure a cacontology-recruitment:SchoolBasedReporting ;
+    uco-core:name "Victim disclosure to school social worker" ;
+    cacontology-recruitment:reportingVictim ex:victim-jane-smith ;
+    cacontology-recruitment:reportingStaff ex:social-worker-smith ;
+    cacontology-recruitment:reportingDate "2024-03-20"^^xsd:date ;
+    cacontology-recruitment:reportingMethod "Private Counseling Session" ;
+    cacontology-recruitment:reportingDelay "P1D"^^xsd:duration ;
+    cacontology-recruitment:mandatoryReportingTrigger true ;
+    cacontology-recruitment:reportingOutcome "Police Notification" .
+
+ex:social-worker-report a cacontology-recruitment:SocialWorkerReport ;
+    uco-core:name "Mandatory report to authorities" ;
+    cacontology-recruitment:reportingStaff ex:social-worker-smith ;
+    cacontology-recruitment:reportDate "2024-03-21"^^xsd:date ;
+    cacontology-recruitment:reportingAgency "NYPD Special Victims Unit" ;
+    cacontology-recruitment:reportType "Suspected Child Abuse" ;
+    cacontology-recruitment:urgencyLevel "High" ;
+    cacontology-recruitment:followUpRequired true .
+
+# =============================================================================
+# UNDERCOVER OPERATIONS
+# =============================================================================
+
+ex:website-monitoring-operation a cacontology-undercover:WebsiteAdvertisementResponse ;
+    uco-core:name "Backpage advertisement monitoring" ;
+    cacontology-undercover:operationType "Website Advertisement Response" ;
+    cacontology-undercover:websitePlatform "Backpage.com" ;
+    cacontology-undercover:advertisementURL "https://backpage.com/ad/12345" ;
+    cacontology-undercover:advertisementLiveTime "P2D"^^xsd:duration ;
+    cacontology-undercover:victimPhotoCount 3 ;
+    cacontology-undercover:responseTime "PT2H"^^xsd:duration ;
+    cacontology-undercover:operationDate "2024-03-25"^^xsd:date ;
+    cacontology-undercover:leadAgency "NYPD" .
+
+ex:apartment-sting-operation a cacontology-undercover:ApartmentStingOperation ;
+    uco-core:name "Bushwick apartment sting operation" ;
+    cacontology-undercover:operationType "Physical Location Sting" ;
+    cacontology-undercover:stingLocation ex:sting-apartment ;
+    cacontology-undercover:apartmentType "Residential" ;
+    cacontology-undercover:floorLevel 3 ;
+    cacontology-undercover:hasSecureExit true ;
+    cacontology-undercover:surveillanceTeamCount 6 ;
+    cacontology-undercover:operationDate "2024-03-28"^^xsd:date ;
+    cacontology-undercover:operationDuration "PT4H"^^xsd:duration ;
+    cacontology-undercover:arrestsMade 1 .
+
+ex:sting-apartment a uco-location:SimpleAddress ;
+    uco-location:street "789 Sting Street" ;
+    uco-location:locality "Brooklyn" ;
+    uco-location:region "NY" ;
+    uco-location:postalCode "11221" ;
+    uco-location:country "US" .
+
+ex:phone-instruction-monitoring a cacontology-undercover:PhoneInstructionMonitoring ;
+    uco-core:name "Phone communication interception" ;
+    cacontology-undercover:phoneNumberMonitored "+1-718-555-0123" ;
+    cacontology-undercover:instructionType "Client Communication Training" ;
+    cacontology-undercover:clientContactMethod "Text Messaging" ;
+    cacontology-undercover:monitoringDuration "P7D"^^xsd:duration ;
+    cacontology-undercover:instructionsIntercepted 15 ;
+    cacontology-undercover:evidenceCollected true .
+
+# =============================================================================
+# PRIVACY VIOLATION INVESTIGATION
+# =============================================================================
+
+ex:bathroom-violation-investigation a cacontology-undercover:PrivacyViolationInvestigation ;
+    uco-core:name "Forced undressing investigation" ;
+    cacontology-undercover:violationType "Forced Undressing" ;
+    cacontology-undercover:violationLocation "Bathroom" ;
+    cacontology-undercover:victim ex:victim-jane-smith ;
+    cacontology-undercover:perpetrator ex:defendant-john-doe ;
+    cacontology-undercover:violationDate "2024-02-20"^^xsd:date ;
+    cacontology-undercover:evidenceType "Victim Testimony" ;
+    cacontology-undercover:witnessPresent false .
+
+# =============================================================================
+# EVIDENCE COLLECTION
+# =============================================================================
+
+ex:victim-photo-evidence a cacontology-sex-trafficking:PhotographyEvidence ;
+    uco-core:name "Victim photographs from website" ;
+    cacontology-sex-trafficking:evidenceType "Digital Photography" ;
+    cacontology-sex-trafficking:victim ex:victim-jane-smith ;
+    cacontology-sex-trafficking:photographCount 3 ;
+    cacontology-sex-trafficking:platform "Backpage.com" ;
+    cacontology-sex-trafficking:collectionDate "2024-03-25"^^xsd:date ;
+    cacontology-sex-trafficking:evidenceStatus "Authenticated" .
+
+ex:instruction-evidence a cacontology-undercover:InstructionEvidence ;
+    uco-core:name "Phone instruction evidence" ;
+    cacontology-undercover:evidenceType "Communication Instructions" ;
+    cacontology-undercover:instructionContent "How to communicate with clients via text" ;
+    cacontology-undercover:instructionDate "2024-02-18"^^xsd:date ;
+    cacontology-undercover:evidenceSource "Phone Monitoring" ;
+    cacontology-undercover:evidenceStatus "Verified" .
+
+ex:violation-evidence a cacontology-undercover:ViolationEvidence ;
+    uco-core:name "Privacy violation evidence" ;
+    cacontology-undercover:evidenceType "Victim Testimony" ;
+    cacontology-undercover:violationType "Forced Undressing" ;
+    cacontology-undercover:violationLocation "Bathroom" ;
+    cacontology-undercover:evidenceDate "2024-03-21"^^xsd:date ;
+    cacontology-undercover:evidenceReliability "High" .
+
+# =============================================================================
+# VULNERABILITY ASSESSMENT
+# =============================================================================
+
+ex:jane-vulnerability-assessment a cacontology-recruitment:VulnerabilityAssessment ;
+    uco-core:name "Jane Smith vulnerability assessment" ;
+    cacontology-recruitment:assessedVictim ex:victim-jane-smith ;
+    cacontology-recruitment:vulnerabilityScore 8.5 ;
+    cacontology-recruitment:assessmentDate "2024-03-22"^^xsd:date ;
+    cacontology-recruitment:primaryFactors ex:social-isolation-factor, ex:economic-hardship-factor .
+
+ex:social-isolation-factor a cacontology-recruitment:SocialIsolationVulnerability ;
+    uco-core:name "Social isolation vulnerability" ;
+    cacontology-recruitment:isolationLevel "High" ;
+    cacontology-recruitment:friendshipCount 1 ;
+    cacontology-recruitment:familySupport "Limited" ;
+    cacontology-recruitment:communityConnection "Weak" .
+
+ex:economic-hardship-factor a cacontology-recruitment:EconomicVulnerabilityFactor ;
+    uco-core:name "Economic hardship vulnerability" ;
+    cacontology-recruitment:householdIncome "Below Poverty Line" ;
+    cacontology-recruitment:employmentStatus "Unemployed Family" ;
+    cacontology-recruitment:housingStability "Unstable" ;
+    cacontology-recruitment:financialStress "High" .
+
+ex:mary-vulnerability-assessment a cacontology-recruitment:VulnerabilityAssessment ;
+    uco-core:name "Mary Jones vulnerability assessment" ;
+    cacontology-recruitment:assessedVictim ex:victim-mary-jones ;
+    cacontology-recruitment:vulnerabilityScore 7.2 ;
+    cacontology-recruitment:assessmentDate "2024-03-22"^^xsd:date ;
+    cacontology-recruitment:primaryFactors ex:peer-pressure-factor, ex:family-issues-factor .
+
+ex:peer-pressure-factor a cacontology-recruitment:PeerPressureVulnerability ;
+    uco-core:name "Peer pressure vulnerability" ;
+    cacontology-recruitment:susceptibilityLevel "High" ;
+    cacontology-recruitment:peerInfluenceStrength "Strong" ;
+    cacontology-recruitment:resistanceCapacity "Low" ;
+    cacontology-recruitment:socialAcceptanceNeed "High" .
+
+ex:family-issues-factor a cacontology-recruitment:FamilyVulnerabilityFactor ;
+    uco-core:name "Family issues vulnerability" ;
+    cacontology-recruitment:familyStability "Unstable" ;
+    cacontology-recruitment:parentalSupervision "Limited" ;
+    cacontology-recruitment:domesticConflict "Present" ;
+    cacontology-recruitment:familyCommunication "Poor" .
+
+# =============================================================================
+# SCHOOL ENVIRONMENT FACTORS
+# =============================================================================
+
+ex:school-vulnerability-factor a cacontology-recruitment:SchoolVulnerabilityFactor ;
+    uco-core:name "School environment vulnerability" ;
+    cacontology-recruitment:school ex:local-high-school ;
+    cacontology-recruitment:attendanceRate 0.75 ;
+    cacontology-recruitment:academicPerformanceLevel "Below Average" ;
+    cacontology-recruitment:disciplinaryIssues true ;
+    cacontology-recruitment:socialWorkerAccess true ;
+    cacontology-recruitment:peerGroupInfluence "Negative" .
+
+# =============================================================================
+# CASE OUTCOMES
+# =============================================================================
+
+ex:case-outcome a cacontology-core:CaseOutcome ;
+    uco-core:name "Bushwick case indictment" ;
+    cacontology-core:investigation ex:bushwick-investigation ;
+    cacontology-core:outcomeType "Indictment" ;
+    cacontology-core:outcomeDate "2024-04-01"^^xsd:date ;
+    cacontology-core:charges "Sex Trafficking of Minors", "Promoting Prostitution" ;
+    cacontology-core:defendant ex:defendant-john-doe ;
+    cacontology-core:prosecutingAgency "Brooklyn District Attorney's Office" .
+
+# =============================================================================
+# INVESTIGATION METRICS
+# =============================================================================
+
+ex:investigation-metrics a cacontology-core:InvestigationMetrics ;
+    uco-core:name "Bushwick case investigation metrics" ;
+    cacontology-core:investigation ex:bushwick-investigation ;
+    cacontology-core:investigationDuration "P75D"^^xsd:duration ;
+    cacontology-core:evidenceItemsCollected 25 ;
+    cacontology-core:witnessesInterviewed 8 ;
+    cacontology-core:undercoverOperations 3 ;
+    cacontology-core:victimsRescued 2 ;
+    cacontology-core:arrestsMade 1 ;
+    cacontology-core:agenciesInvolved 3 .

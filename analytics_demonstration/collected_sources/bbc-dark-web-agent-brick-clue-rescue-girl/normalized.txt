@@ -1,0 +1,22 @@
+Title: How dark web agent spotted bedroom wall clue to rescue girl from years of harm
+Publisher: BBC News / BBC Eye Investigations
+Byline (as stated): Sam Piranty
+Source URL: https://www.bbc.com/news/articles/cx2gn239exlo
+Captured: 2026-02-11
+Content warning: includes details about child sexual abuse (no CSAM content stored)
+
+An online investigator (Greg Squire) worked to rescue an abused girl his team named “Lucy” after images were shared on the dark web.
+The abuser attempted to avoid identification by cropping/altering images to remove identifying features; investigators had difficulty identifying who or where the child was.
+Investigators inferred a broad region (North America) from light sockets and electrical outlets visible in images.
+Investigators analyzed visual details in the child’s bedroom (bedspread, outfits, toys) seeking identifying clues.
+Investigators discovered a sofa shown in images was sold regionally, narrowing a customer base but still leaving a large candidate set.
+Investigators used an exposed brick wall visible in images as a clue, and searched for brick-industry expertise (including contacting the Brick Industry Association).
+A brick expert (John Harp) identified the brick type (“Flaming Alamo”) and explained that bricks are heavy and usually do not travel far, enabling geographic narrowing near the brick factory.
+Investigators combined the regional sofa customer list with the brick factory proximity constraint, then searched social media and found a photo of Lucy with an adult who appeared close to her.
+Investigators used that lead to identify an address and associated addresses; they avoided door-to-door checks to reduce risk of tipping off the suspect.
+Investigators sent candidate house photos to the brick expert to assess whether homes were likely built during the relevant period, narrowing to one address.
+Investigators confirmed household occupants via records and school information and determined Lucy lived with her mother’s boyfriend, a convicted sex offender.
+Local agents arrested the offender; he was later sentenced to more than 70 years in jail; Lucy was rescued.
+The reporting includes investigator occupational stress impacts: increased alcohol use, marriage breakdown, and suicidal thoughts; a colleague encouraged help-seeking.
+Later, the investigator met Lucy as an adult; Lucy described increased stability and support and said she had been praying for the abuse to end.
+

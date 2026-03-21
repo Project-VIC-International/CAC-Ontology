@@ -1,0 +1,202 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
+@prefix investigation: <https://ontology.caseontology.org/case/investigation/> .
+
+@prefix cacontology-analyst: <https://cacontology.projectvic.org/analyst-wellbeing#> .
+
+@prefix ex: <urn:uuid:> .
+
+# =============================================================================
+# Extended example modeling for:
+# BBC News “dark web agent brick clue rescue” article (text capture)
+#
+# Base provenance + minimal nodes are in:
+#   examples_knowledge_graphs/bbc-dark-web-agent-brick-clue-rescue-girl-skeleton.ttl
+#
+# NOTE: This file duplicates skeleton triples for a single-file load scenario.
+# =============================================================================
+
+# -- Skeleton (duplicated) -----------------------------------------------------
+
+ex:c96f7e7d-8fbb-5c31-9734-8b1d0530a15f a uco-observable:ObservableObject ;
+    rdfs:label "BBC News article: dark web agent brick clue rescue (captured text)"@en ;
+    uco-core:hasFacet ex:1503fb6e-00e1-5246-ac6d-5fb97cc75243 ;
+    uco-core:hasFacet ex:1dbc4d3d-f3a6-55d4-bbaf-8bec355e78e2 ;
+    uco-core:hasFacet ex:f83a1a2e-c807-5e87-ad67-051d35380214 ;
+    uco-core:hasFacet ex:842d3d4f-2904-5b3b-85e0-70d59212850f .
+
+ex:1503fb6e-00e1-5246-ac6d-5fb97cc75243 a uco-observable:ContentDataFacet ;
+    uco-observable:mimeType "text/plain" ;
+    uco-observable:sizeInBytes 2871 .
+
+ex:1dbc4d3d-f3a6-55d4-bbaf-8bec355e78e2 a uco-observable:URLFacet ;
+    uco-observable:url <https://www.bbc.com/news/articles/cx2gn239exlo> .
+
+ex:f83a1a2e-c807-5e87-ad67-051d35380214 a uco-observable:FileFacet ;
+    uco-observable:filePath "analytics_demonstration/collected_sources/bbc-dark-web-agent-brick-clue-rescue-girl/source.txt" .
+
+ex:842d3d4f-2904-5b3b-85e0-70d59212850f a uco-observable:HashFacet ;
+    uco-observable:hash ex:8fef68d2-e82c-56d5-9cf8-dc0f7798e161 .
+
+ex:8fef68d2-e82c-56d5-9cf8-dc0f7798e161 a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "7c9065e03cee14512baa332592c67d0684b57075355ea08e86900bc5cbb52575" .
+
+ex:f830548c-dc51-534c-9eee-64aceae0bb23 a uco-core:UcoObject ;
+    rdfs:label "CAC Ontology Collection Agent (Cursor)"@en ;
+    uco-core:description "Automated assistant performing collection and preprocessing for CAC Ontology ingestion."@en .
+
+ex:bb067e04-9eb9-52ef-9cf6-bb76c0a9e444 a investigation:InvestigativeAction ;
+    rdfs:label "Collection action: BBC News article (text capture)"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:f830548c-dc51-534c-9eee-64aceae0bb23 ;
+    uco-action:object ex:c96f7e7d-8fbb-5c31-9734-8b1d0530a15f ;
+    uco-core:description "Collected via manual text capture to source.txt."@en .
+
+ex:ac195157-beaf-57ef-8976-fdaf2611df69 a uco-action:Action ;
+    rdfs:label "Normalization action: source.txt to normalized.txt"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:f830548c-dc51-534c-9eee-64aceae0bb23 ;
+    uco-action:object ex:c96f7e7d-8fbb-5c31-9734-8b1d0530a15f ;
+    uco-action:result ex:b440e30c-eb4d-58b7-8a59-239c81076148 ;
+    uco-core:description "Whitespace normalization + paragraph-per-line normalization for stable evidence pointers."@en .
+
+ex:b440e30c-eb4d-58b7-8a59-239c81076148 a uco-observable:ObservableObject ;
+    rdfs:label "Normalized text: BBC News article (normalized.txt)"@en ;
+    uco-core:hasFacet ex:f5125089-214e-51bd-a185-218b485dbecb ;
+    uco-core:hasFacet ex:514f5bba-c18f-5a51-9e38-764d5d8d553b ;
+    uco-core:hasFacet ex:7d3c022f-b656-5127-9470-4a99071a9c0d .
+
+ex:f5125089-214e-51bd-a185-218b485dbecb a uco-observable:ContentDataFacet ;
+    uco-observable:mimeType "text/plain" ;
+    uco-observable:sizeInBytes 2482 .
+
+ex:514f5bba-c18f-5a51-9e38-764d5d8d553b a uco-observable:FileFacet ;
+    uco-observable:filePath "analytics_demonstration/collected_sources/bbc-dark-web-agent-brick-clue-rescue-girl/normalized.txt" .
+
+ex:7d3c022f-b656-5127-9470-4a99071a9c0d a uco-observable:HashFacet ;
+    uco-observable:hash ex:715e88bb-e6e0-5836-910f-8131b3109903 .
+
+ex:715e88bb-e6e0-5836-910f-8131b3109903 a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "2a7b38c02bac66a57802a720cb5f34f7a946d4e6b17c5d3916b3644332992cd2" .
+
+ex:bec4afff-b676-5d15-a0d8-04f62a9dc1ba a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance record: collection of BBC News article (text capture)"@en ;
+    investigation:exhibitNumber "DOC-BBC-CSEA-INV-0001" ;
+    uco-core:object ex:c96f7e7d-8fbb-5c31-9734-8b1d0530a15f ;
+    investigation:provenanceRecordAction ex:bb067e04-9eb9-52ef-9cf6-bb76c0a9e444 .
+
+ex:cb45dddd-6ef3-5f4b-b00b-77f345131213 a uco-identity:Person ;
+    rdfs:label "Greg Squire"@en ;
+    cacontology-analyst:experiencesOccupationalHarm ex:86623040-6c47-566c-ba1e-51a31c0ddf32 .
+
+ex:f5d297d4-818b-5d8c-8993-b7ff10dfd41a a uco-identity:Organization ;
+    rdfs:label "US Department of Homeland Security Investigations"@en .
+
+ex:86623040-6c47-566c-ba1e-51a31c0ddf32 a cacontology-analyst:SecondaryTraumaticStress ,
+        cacontology-analyst:OccupationalHarm ;
+    rdfs:label "Secondary traumatic stress (reported occupational harm)"@en ;
+    cacontology-analyst:harmSeverity "unknown" ;
+    uco-core:description "Grounded in normalized.txt line 20. Confidence: high."@en .
+
+# -- Extended investigative tradecraft modeling --------------------------------
+
+ex:f4b399a7-20d8-538f-a15f-f075af916f06 a uco-core:UcoObject ;
+    rdfs:label "Brick type: Flaming Alamo (as reported)"@en .
+
+ex:193aad00-b687-5690-9670-b558425c3baf a uco-core:UcoObject ;
+    rdfs:label "Constraint: bricks are heavy and do not travel far (as reported)"@en .
+
+ex:5b9bc141-aab0-5ccb-ac59-a0e496313723 a uco-core:UcoObject ;
+    rdfs:label "Constraint: avoid tipping off suspect (avoid door-to-door)"@en .
+
+ex:ce0d7e2e-a4e3-5f9c-a03a-34a4ce3e3d04 a investigation:InvestigativeAction ;
+    rdfs:label "Investigative action: infer region from outlets/sockets in imagery"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:cb45dddd-6ef3-5f4b-b00b-77f345131213 ;
+    uco-action:object ex:b440e30c-eb4d-58b7-8a59-239c81076148 ;
+    uco-core:description "Grounded in normalized.txt line 10. Confidence: high."@en .
+
+ex:b2fe92b3-9bda-5a6c-b681-781eede58ef1 a investigation:InvestigativeAction ;
+    rdfs:label "Investigative action: identify regional sofa constraint from imagery"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:cb45dddd-6ef3-5f4b-b00b-77f345131213 ;
+    uco-action:object ex:b440e30c-eb4d-58b7-8a59-239c81076148 ;
+    uco-core:description "Grounded in normalized.txt line 12. Confidence: high."@en .
+
+ex:67c2806c-abf9-52a6-b271-af1a738c108b a investigation:InvestigativeAction ;
+    rdfs:label "Investigative action: use brick wall clue to obtain brick identification"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:cb45dddd-6ef3-5f4b-b00b-77f345131213 ;
+    uco-action:object ex:b440e30c-eb4d-58b7-8a59-239c81076148 ,
+                    ex:f4b399a7-20d8-538f-a15f-f075af916f06 ;
+    uco-core:description "Grounded in normalized.txt lines 13-14. Confidence: high."@en .
+
+ex:d29b937b-9879-5f28-aca7-57ad81f26f9d a investigation:InvestigativeAction ;
+    rdfs:label "Investigative action: geographic narrowing using brick distribution constraint"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:cb45dddd-6ef3-5f4b-b00b-77f345131213 ;
+    uco-action:object ex:f4b399a7-20d8-538f-a15f-f075af916f06 ,
+                    ex:193aad00-b687-5690-9670-b558425c3baf ;
+    uco-core:description "Grounded in normalized.txt line 14. Confidence: high."@en .
+
+ex:fc89cf91-75fb-5b80-a50c-85498c380464 a investigation:InvestigativeAction ;
+    rdfs:label "Investigative action: social media search to identify lead"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:cb45dddd-6ef3-5f4b-b00b-77f345131213 ;
+    uco-action:object ex:b440e30c-eb4d-58b7-8a59-239c81076148 ;
+    uco-core:description "Grounded in normalized.txt line 15. Confidence: high."@en .
+
+ex:bab20d52-8806-56ac-8c7f-4fcedebf4443 a investigation:InvestigativeAction ;
+    rdfs:label "Investigative action: assess candidate houses using brick-era constraint"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:cb45dddd-6ef3-5f4b-b00b-77f345131213 ;
+    uco-action:object ex:b440e30c-eb4d-58b7-8a59-239c81076148 ;
+    uco-core:description "Grounded in normalized.txt line 17. Confidence: high."@en .
+
+ex:2768a3ec-1588-5eb1-9beb-705bc46e300b a investigation:InvestigativeAction ;
+    rdfs:label "Investigative action: arrest of offender (as reported)"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:f5d297d4-818b-5d8c-8993-b7ff10dfd41a ;
+    uco-action:object ex:b440e30c-eb4d-58b7-8a59-239c81076148 ;
+    uco-core:description "Grounded in normalized.txt line 19. Confidence: high."@en .
+
+# -- Provenance records for key investigative actions --------------------------
+
+ex:55d1e013-852d-5dbf-95dd-4a94b4f08066 a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance: infer region from outlets"@en ;
+    uco-core:object ex:b440e30c-eb4d-58b7-8a59-239c81076148 ;
+    investigation:provenanceRecordAction ex:ce0d7e2e-a4e3-5f9c-a03a-34a4ce3e3d04 ;
+    uco-core:description "Evidence pointer: normalized.txt line 10."@en .
+
+ex:b5fabe4f-1169-5d57-9e7a-93e12fd3a93c a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance: regional sofa constraint"@en ;
+    uco-core:object ex:b440e30c-eb4d-58b7-8a59-239c81076148 ;
+    investigation:provenanceRecordAction ex:b2fe92b3-9bda-5a6c-b681-781eede58ef1 ;
+    uco-core:description "Evidence pointer: normalized.txt line 12."@en .
+
+ex:ef5f8063-80c5-5af2-9c42-b64181e8c4c2 a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance: brick identification + bricks heavy constraint"@en ;
+    uco-core:object ex:b440e30c-eb4d-58b7-8a59-239c81076148 ;
+    investigation:provenanceRecordAction ex:67c2806c-abf9-52a6-b271-af1a738c108b ;
+    uco-core:description "Evidence pointer: normalized.txt lines 13-14."@en .
+
+ex:8e423118-577b-50a2-86e2-10a6bd54f583 a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance: social media lead"@en ;
+    uco-core:object ex:b440e30c-eb4d-58b7-8a59-239c81076148 ;
+    investigation:provenanceRecordAction ex:fc89cf91-75fb-5b80-a50c-85498c380464 ;
+    uco-core:description "Evidence pointer: normalized.txt line 15."@en .
+
+ex:248bae28-72d0-514a-9fe1-c0fdd184d075 a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance: occupational harm impacts (reported)"@en ;
+    uco-core:object ex:b440e30c-eb4d-58b7-8a59-239c81076148 ;
+    uco-core:description "Evidence pointer: normalized.txt line 20."@en .
+

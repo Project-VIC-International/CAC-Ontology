@@ -1,7 +1,7 @@
 # CAC Ontology Family - User Documentation
 One or more of these ontologies can be used to develop unique software applications for users that are then foundationally interoperable with other applications built on this family of ontologies.
 
-This family of ontologies seeks to implement semantically clear information models that reflect the information, information relationships, workflows, and events that a Crimes Against Children Investigator uses or may use in the future. Each ontology represents a unique application domain within investigators'and prosecutors' discourse. This family of ontologies seeks to be universal and it is heavily informed by public documentation in the form of press releses from law enforcement agencies and prosecutor's offices. Finally, this family of ontologies seeks to use modern language as much as possible to reflect the unifying efforts of the CAC community, but there may be language in these ontologies that are more reflective of a certain country when that language is still professionally used.
+This family of ontologies seeks to implement semantically clear information models that reflect the information, information relationships, workflows, and events that a Crimes Against Children Investigator uses or may use in the future. Each ontology represents a unique application domain within investigators'and prosecutors' discourse. This family of ontologies seeks to be universal and it is heavily informed by public documentation in the form of press releases from law enforcement agencies and prosecutor's offices, and high-quality publications from nonprofits that are active in safeguarding children. Finally, this family of ontologies seeks to use modern language as much as possible to reflect the unifying efforts of the CAC community, but there may be language in these ontologies that are more reflective of a certain country when that language is still professionally used.
 
 ## Quick Start
 
@@ -36,27 +36,33 @@ pip install -r requirements.txt
 docker compose -f testing/docker-compose.yaml up -d
 ```
 
-4. **NEW**: Load gUFO-enhanced ontologies:
+4. Load gUFO-enhanced ontologies:
 ```bash
-# Load core gUFO integration
+# Load core ontology with gUFO integration
 curl -X POST http://localhost:3030/cac/data \
-  --data-binary @cacontology-core-gufo.ttl \
+  --data-binary @ontology/cacontology-core.ttl \
   --header "Content-Type: text/turtle"
 
 # Load temporal framework
 curl -X POST http://localhost:3030/cac/data \
-  --data-binary @cacontology-temporal-gufo.ttl \
+  --data-binary @ontology/cacontology-temporal.ttl \
   --header "Content-Type: text/turtle"
 
-# Load integration strategy
+# Load integration patterns
 curl -X POST http://localhost:3030/cac/data \
-  --data-binary @cacontology-gufo-integration-strategy.ttl \
+  --data-binary @ontology/cacontology-integration-patterns.ttl \
   --header "Content-Type: text/turtle"
 ```
 
+## Semantic Spine (v3.0.0)
+
+Version 3.0.0 introduces the **semantic spine** (`cac-core:` namespace, `https://cacontology.projectvic.org/core#`), a stable top-level class hierarchy organized by ontological kind. The spine provides enduring anchor classes—`cac-core:Entity`, `cac-core:EnduringEntity`, `cac-core:Event`, `cac-core:Situation`, `cac-core:Role`, `cac-core:Phase`, `cac-core:Artifact`, and `cac-core:AssessmentResult`—that every CAC domain module inherits from.
+
+When creating new instances, use the CAC domain class (e.g., `cacontology:CACInvestigation`, `cacontology:InvestigatorRole`) rather than referencing gUFO types like `gufo:Event` or `gufo:Situation` directly. The domain classes already carry the correct spine (and foundational) superclass chain, so explicit `rdf:type gufo:Event` assertions are no longer needed.
+
 ## Core Concepts
 
-> **Note on examples and namespaces:** Many of the examples in this document use legacy `icac-*` prefixes and `https://ontology.unifiedcyberontology.org/...` IRIs from the original ICAC ontology work. In CAC Ontology v2.x, the corresponding production modules use `cacontology-*` prefixes and `https://cacontology.projectvic.org/{module-name}#` IRIs; the ICAC-style examples are retained here to illustrate modeling patterns that are now realized in the CAC Ontology family.
+> **Note on namespaces:** Examples in this document use `cacontology-*` prefixes and `https://cacontology.projectvic.org/{module-name}#` IRIs, matching the CAC Ontology v3.x namespace convention. The `cac-core:` prefix (`https://cacontology.projectvic.org/core#`) refers to the semantic spine. Core investigation classes use the `cacontology:` prefix (`https://cacontology.projectvic.org#`).
 
 ### 1. Hotline Reports
 We use hotline reports as a foundation of the ontology. They represent the initial reports of potential child exploitation material.
@@ -66,9 +72,9 @@ We use hotline reports as a foundation of the ontology. They represent the initi
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix uco-core: <https://ontology.unifiedcyberontology.org/core#> .
-@prefix uco-observable: <https://ontology.unifiedcyberontology.org/observable#> .
-@prefix hotline: <https://ontology.unifiedcyberontology.org/hotlines/2025/core#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix hotline: <https://cacontology.projectvic.org/hotlines#> .
 
 hotline:report-001 a hotline:PublicReport ;
     hotline:reportedBy hotline:reporter-001 ;
@@ -104,99 +110,102 @@ The CAC ontology family now includes comprehensive gUFO integration for enhanced
 #### 4.1 Investigation Phases with gUFO
 
 ```turtle
-@prefix icac-gufo: <https://ontology.unifiedcyberontology.org/icac/gufo#> .
-@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
+@prefix cacontology-temporal: <https://cacontology.projectvic.org/temporal#> .
 
-# Investigation with gUFO phases
-example:Investigation001 rdf:type icac-gufo:Investigation ;
-    icac-gufo:inPhase example:ResolutionPhase001 ;
-    icac-gufo:hasPhase example:InitialPhase001, example:AnalysisPhase001 .
+# Investigation with spine-backed phases
+example:Investigation001 rdf:type cacontology:CACInvestigation ;
+    cacontology:currentPhase example:ResolutionPhase001 ;
+    cacontology:hasPhase example:InitialPhase001, example:AnalysisPhase001 .
 
-# Initial phase with temporal constraints
-example:InitialPhase001 rdf:type icac-gufo:InitialPhase ;
-    icac-gufo:hasPhaseBeginPoint "2025-01-01T08:00:00Z"^^xsd:dateTimeStamp ;
-    icac-gufo:hasPhaseEndPoint "2025-01-03T17:00:00Z"^^xsd:dateTimeStamp ;
-    icac-temporal:phaseDuration "P2DT9H"^^xsd:duration ;
-    icac-temporal:phaseEfficiency "1.2"^^xsd:decimal .
+# Initial phase (subclass of cac-core:Phase) with temporal constraints
+example:InitialPhase001 rdf:type cacontology:InitialPhase ;
+    cacontology:hasPhaseBeginPoint "2025-01-01T08:00:00Z"^^xsd:dateTimeStamp ;
+    cacontology:hasPhaseEndPoint "2025-01-03T17:00:00Z"^^xsd:dateTimeStamp ;
+    cacontology:phaseDuration "P2DT9H"^^xsd:duration ;
+    cacontology-temporal:phaseEfficiency "1.2"^^xsd:decimal .
 
 # Analysis phase with dependencies
-example:AnalysisPhase001 rdf:type icac-gufo:AnalysisPhase ;
-    icac-temporal:hasPrerequisitePhase example:InitialPhase001 ;
-    icac-gufo:hasPhaseBeginPoint "2025-01-03T17:00:00Z"^^xsd:dateTimeStamp .
+example:AnalysisPhase001 rdf:type cacontology:AnalysisPhase ;
+    cacontology-temporal:hasPrerequisitePhase example:InitialPhase001 ;
+    cacontology:hasPhaseBeginPoint "2025-01-03T17:00:00Z"^^xsd:dateTimeStamp .
 ```
 
 #### 4.2 Enhanced Role Modeling with Anti-Rigidity
 
 ```turtle
 # Person with multiple roles (prevented conflicts)
-example:Witness_Parent icac-gufo:playsRole example:WitnessRole001 ;
-    icac-gufo:playsRole example:InformantRole001 .
+example:Witness_Parent cacontology:playsRole example:WitnessRole001 ;
+    cacontology:playsRole example:InformantRole001 .
 
-# Investigation role with temporal boundaries
-example:InvestigatorRole001 rdf:type icac-gufo:InvestigatorRole ;
-    icac-gufo:hasRoleBeginPoint "2025-01-01T08:00:00Z"^^xsd:dateTimeStamp ;
-    icac-gufo:participatesInInvestigation example:Investigation001 .
+# Investigation role (subclass of cac-core:Role) with temporal boundaries
+example:InvestigatorRole001 rdf:type cacontology:InvestigatorRole ;
+    cacontology:hasRoleBeginPoint "2025-01-01T08:00:00Z"^^xsd:dateTimeStamp ;
+    cacontology:participatesInInvestigation example:Investigation001 .
 
 # Role conflict prevention (automatic validation)
-# This would be INVALID and caught by gUFO validation:
-# example:Person001 icac-gufo:playsRole example:VictimRole001 ;
-#                   icac-gufo:playsRole example:OffenderRole001 .  # CONFLICT!
+# This would be INVALID and caught by SHACL validation:
+# example:Person001 cacontology:playsRole example:VictimRole001 ;
+#                   cacontology:playsRole example:OffenderRole001 .  # CONFLICT!
 ```
 
 #### 4.3 Event vs Situation Distinction
 
 ```turtle
-# Concrete investigation actions as Events
-example:SearchWarrantExecution001 rdf:type icac-gufo:InvestigationEvent ;
-    rdf:type gufo:Event ;
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+
+# Concrete investigation actions as Events (inherits cac-core:Event via spine)
+example:SearchWarrantExecution001 rdf:type cac-core:InvestigativeAction ;
     gufo:hasBeginPointInXSDDateTimeStamp "2025-01-05T06:00:00Z"^^xsd:dateTimeStamp ;
     gufo:hasEndPointInXSDDateTimeStamp "2025-01-05T08:30:00Z"^^xsd:dateTimeStamp .
 
-# Ongoing investigation state as Situation
-example:ActiveInvestigationSituation001 rdf:type icac-gufo:ActiveInvestigationSituation ;
-    rdf:type gufo:Situation ;
+# Ongoing investigation state as Situation (inherits cac-core:Situation via spine)
+example:ActiveInvestigationSituation001 rdf:type cacontology:InvestigationLifecycleSituation ;
     gufo:hasBeginPointInXSDDateTimeStamp "2025-01-01T08:00:00Z"^^xsd:dateTimeStamp .
 ```
 
 #### 4.4 Temporal Investigation Lifecycle
 
 ```turtle
-@prefix icac-temporal: <https://ontology.unifiedcyberontology.org/icac/temporal#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-temporal: <https://cacontology.projectvic.org/temporal#> .
 
 # Investigation with suspension/resumption
-example:Investigation002 rdf:type icac-gufo:Investigation ;
-    icac-temporal:hasTimeToResolution "P45D"^^xsd:duration ;
-    icac-temporal:hasActiveDuration "P38D"^^xsd:duration ;
-    icac-temporal:hasSuspendedDuration "P7D"^^xsd:duration ;
-    icac-temporal:urgencyLevel "4"^^xsd:nonNegativeInteger .
+example:Investigation002 rdf:type cacontology:CACInvestigation ;
+    cacontology-temporal:hasTimeToResolution "P45D"^^xsd:duration ;
+    cacontology-temporal:hasActiveDuration "P38D"^^xsd:duration ;
+    cacontology-temporal:hasSuspendedDuration "P7D"^^xsd:duration ;
+    cacontology-temporal:urgencyLevel "4"^^xsd:nonNegativeInteger .
 
 # Suspension event
-example:Suspension001 rdf:type icac-temporal:SuspensionEvent ;
-    icac-temporal:suspends example:Investigation002 ;
-    icac-temporal:suspensionReason "pending_court_order" ;
+example:Suspension001 rdf:type cacontology-temporal:SuspensionEvent ;
+    cacontology-temporal:suspends example:Investigation002 ;
+    cacontology-temporal:suspensionReason "pending_court_order" ;
     gufo:hasBeginPointInXSDDateTimeStamp "2025-01-15T16:00:00Z"^^xsd:dateTimeStamp .
 
 # Resumption event  
-example:Resumption001 rdf:type icac-temporal:ResumptionEvent ;
-    icac-temporal:resumes example:Investigation002 ;
-    icac-temporal:resumptionTrigger "court_order_received" ;
+example:Resumption001 rdf:type cacontology-temporal:ResumptionEvent ;
+    cacontology-temporal:resumes example:Investigation002 ;
+    cacontology-temporal:resumptionTrigger "court_order_received" ;
     gufo:hasBeginPointInXSDDateTimeStamp "2025-01-22T09:00:00Z"^^xsd:dateTimeStamp .
 ```
 
 #### 4.5 Multi-Jurisdiction Coordination
 
 ```turtle
-# Complex multi-jurisdiction scenario
-example:MultiJurisdictionCoordination001 rdf:type icac-temporal:MultiJurisdictionCoordinationSituation ;
-    rdf:type gufo:Situation ;
-    icac-temporal:coordinatesInvestigations example:Investigation001, example:Investigation003 ;
-    icac-temporal:involvesJurisdictions "US-CA", "US-TX", "CA-ON" ;
+# Complex multi-jurisdiction scenario (inherits cac-core:Situation via spine)
+example:MultiJurisdictionCoordination001 rdf:type cacontology-temporal:MultiJurisdictionCoordinationSituation ;
+    cacontology-temporal:coordinatesInvestigations example:Investigation001, example:Investigation003 ;
+    cacontology-temporal:involvesJurisdictions "US-CA", "US-TX", "CA-ON" ;
     gufo:hasBeginPointInXSDDateTimeStamp "2025-01-10T14:00:00Z"^^xsd:dateTimeStamp .
 
 # Synchronization event
-example:JurisdictionSync001 rdf:type icac-temporal:JurisdictionSynchronizationEvent ;
-    icac-temporal:synchronizes example:MultiJurisdictionCoordination001 ;
-    icac-temporal:syncType "evidence_sharing" ;
+example:JurisdictionSync001 rdf:type cacontology-temporal:JurisdictionSynchronizationEvent ;
+    cacontology-temporal:synchronizes example:MultiJurisdictionCoordination001 ;
+    cacontology-temporal:syncType "evidence_sharing" ;
     gufo:hasBeginPointInXSDDateTimeStamp "2025-01-12T10:00:00Z"^^xsd:dateTimeStamp .
 ```
 
@@ -204,38 +213,38 @@ example:JurisdictionSync001 rdf:type icac-temporal:JurisdictionSynchronizationEv
 The ontology includes comprehensive modeling of athletic coaching exploitation patterns.
 
 ```turtle
-@prefix icac-athletic: <https://ontology.unifiedcyberontology.org/icac/athletic#> .
-@prefix uco-identity: <https://ontology.unifiedcyberontology.org/identity#> .
+@prefix cacontology-athletic: <https://cacontology.projectvic.org/athletic#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 
 # Athletic coaching exploitation case
-<https://example.org/exploitation/coach-case> a icac-athletic:DualCoachingRoleExploitation ;
-    icac-athletic:sportType "baseball" ;
-    icac-athletic:teamType "travel" ;
-    icac-athletic:practiceFrequency "3"^^xsd:decimal ;
-    icac-athletic:teamSize "7"^^xsd:nonNegativeInteger ;
-    icac-athletic:multipleRoles "2"^^xsd:nonNegativeInteger ;
+<https://example.org/exploitation/coach-case> a cacontology-athletic:DualCoachingRoleExploitation ;
+    cacontology-athletic:sportType "baseball" ;
+    cacontology-athletic:teamType "travel" ;
+    cacontology-athletic:practiceFrequency "3"^^xsd:decimal ;
+    cacontology-athletic:teamSize "7"^^xsd:nonNegativeInteger ;
+    cacontology-athletic:multipleRoles "2"^^xsd:nonNegativeInteger ;
     uco-core:startTime "2023-01-01T00:00:00Z"^^xsd:dateTime ;
     uco-core:endTime "2024-08-01T00:00:00Z"^^xsd:dateTime .
 
 # Coach with dual roles
 <https://example.org/person/coach> a uco-identity:Person ;
     uco-core:name "Athletic Coach" ;
-    icac-athletic:holdsCoachingRole <https://example.org/role/travel-coach> ;
-    icac-athletic:holdsCoachingRole <https://example.org/role/school-coach> .
+    cacontology-athletic:holdsCoachingRole <https://example.org/role/travel-coach> ;
+    cacontology-athletic:holdsCoachingRole <https://example.org/role/school-coach> .
 
 # Travel team coaching role
-<https://example.org/role/travel-coach> a icac-athletic:TravelTeamCoachRole ;
-    icac-athletic:coachingExperience "5"^^xsd:decimal ;
-    icac-athletic:ageGroupCoached "12-14" ;
-    icac-athletic:teamSize "15"^^xsd:nonNegativeInteger .
+<https://example.org/role/travel-coach> a cacontology-athletic:TravelTeamCoachRole ;
+    cacontology-athletic:coachingExperience "5"^^xsd:decimal ;
+    cacontology-athletic:ageGroupCoached "12-14" ;
+    cacontology-athletic:teamSize "15"^^xsd:nonNegativeInteger .
 
 # Physical training coercion
-<https://example.org/coercion/conditioning> a icac-athletic:ConditioningCoercion ;
-    icac-athletic:conditioningType "running_drills" ;
-    icac-athletic:exhaustionLevel "severe" .
+<https://example.org/coercion/conditioning> a cacontology-athletic:ConditioningCoercion ;
+    cacontology-athletic:conditioningType "running_drills" ;
+    cacontology-athletic:exhaustionLevel "severe" .
 
 # Link exploitation to coercion methods
-<https://example.org/exploitation/coach-case> icac-athletic:usesPhysicalTraining <https://example.org/coercion/conditioning> .
+<https://example.org/exploitation/coach-case> cacontology-athletic:usesPhysicalTraining <https://example.org/coercion/conditioning> .
 ```
 
 ## API Reference
@@ -245,7 +254,7 @@ Context files live in `/contexts/`, versioned alongside ontology:
 
 ```json
 {
-  "@context": "https://ontology.unifiedcyberontology.org/hotlines/2025/core/contexts/hotlines-core.jsonld",
+  "@context": "contexts/cacontology-hotlines.jsonld",
   "@type": "HotlineReport",
   "reportedBy": {
     "@type": "ReporterRole",
@@ -254,13 +263,15 @@ Context files live in `/contexts/`, versioned alongside ontology:
 }
 ```
 
+> **Legacy note:** Earlier versions used `https://ontology.unifiedcyberontology.org/hotlines/2025/core/contexts/hotlines-core.jsonld` as the context URL. That URL is retained for backward compatibility but new implementations should use the local context file above.
+
 #### 1.1 **NEW: gUFO-Enhanced JSON-LD Context**
 
 ```json
 {
   "@context": [
-    "contexts/icac-core.jsonld",
-    "contexts/icac-gufo.jsonld"
+    "contexts/cacontology-core.jsonld",
+    "contexts/cac-core-spine.jsonld"
   ],
   "@type": "Investigation",
   "inPhase": {
@@ -279,8 +290,8 @@ For athletic exploitation cases:
 ```json
 {
   "@context": [
-    "contexts/icac-core.jsonld",
-    "contexts/icac-athletic-exploitation.jsonld"
+    "contexts/cacontology-core.jsonld",
+    "contexts/cacontology-athletic-exploitation.jsonld"
   ],
   "@type": "AthleticCoachingExploitation",
   "sportType": "baseball",
@@ -298,7 +309,7 @@ For athletic exploitation cases:
 For local development:
 ```json
 {
-  "@context": "contexts/hotlines-core.jsonld",
+  "@context": "contexts/cacontology-hotlines.jsonld",
   "@type": "HotlineReport",
   "reportedBy": {
     "@type": "ReporterRole",
@@ -325,23 +336,23 @@ WHERE {
 }
 
 # Find Athletic Coaching Exploitation Cases
-PREFIX icac-athletic: <https://ontology.unifiedcyberontology.org/icac/athletic#>
+PREFIX cacontology-athletic: <https://cacontology.projectvic.org/athletic#>
 SELECT ?exploitation ?sportType ?teamSize
 WHERE {
-    ?exploitation a icac-athletic:AthleticCoachingExploitation ;
-                  icac-athletic:sportType ?sportType ;
-                  icac-athletic:teamSize ?teamSize .
+    ?exploitation a cacontology-athletic:AthleticCoachingExploitation ;
+                  cacontology-athletic:sportType ?sportType ;
+                  cacontology-athletic:teamSize ?teamSize .
 }
 
 # Find Coaches with Multiple Roles
-PREFIX icac-athletic: <https://ontology.unifiedcyberontology.org/icac/athletic#>
+PREFIX cacontology-athletic: <https://cacontology.projectvic.org/athletic#>
 SELECT ?coach ?roleCount
 WHERE {
-    ?coach icac-athletic:holdsCoachingRole ?role .
+    ?coach cacontology-athletic:holdsCoachingRole ?role .
     {
         SELECT ?coach (COUNT(?role) AS ?roleCount)
         WHERE {
-            ?coach icac-athletic:holdsCoachingRole ?role .
+            ?coach cacontology-athletic:holdsCoachingRole ?role .
         }
         GROUP BY ?coach
         HAVING (?roleCount > 1)
@@ -353,8 +364,8 @@ WHERE {
 
 ```sparql
 # Investigation Phase Performance Analytics
-PREFIX icac-gufo: <https://ontology.unifiedcyberontology.org/icac/gufo#>
-PREFIX icac-temporal: <https://ontology.unifiedcyberontology.org/icac/temporal#>
+PREFIX cacontology: <https://cacontology.projectvic.org#>
+PREFIX cacontology-temporal: <https://cacontology.projectvic.org/temporal#>
 PREFIX gufo: <http://purl.org/nemo/gufo#>
 
 SELECT ?phase_type ?avg_duration ?efficiency_score ?case_count WHERE {
@@ -364,8 +375,8 @@ SELECT ?phase_type ?avg_duration ?efficiency_score ?case_count WHERE {
            (AVG(?efficiency) as ?efficiency_score)
            (COUNT(?phase) as ?case_count) WHERE {
       ?phase rdf:type ?phase_type ;
-             icac-gufo:phaseDuration ?duration ;
-             icac-temporal:phaseEfficiency ?efficiency .
+             cacontology:phaseDuration ?duration ;
+             cacontology-temporal:phaseEfficiency ?efficiency .
       
       # Convert duration to hours for analysis
       BIND(
@@ -376,9 +387,9 @@ SELECT ?phase_type ?avg_duration ?efficiency_score ?case_count WHERE {
       )
       
       FILTER(?phase_type IN (
-        icac-gufo:InitialPhase, icac-gufo:AnalysisPhase, 
-        icac-gufo:LegalProcessPhase, icac-gufo:EvidencePhase,
-        icac-gufo:ResolutionPhase
+        cacontology:InitialPhase, cacontology:AnalysisPhase, 
+        cacontology:LegalProcessPhase, cacontology:EvidencePhase,
+        cacontology:ConclusionPhase
       ))
     }
     GROUP BY ?phase_type
@@ -387,18 +398,20 @@ SELECT ?phase_type ?avg_duration ?efficiency_score ?case_count WHERE {
 ORDER BY ?avg_duration
 
 # Role Conflict Detection
+PREFIX cacontology: <https://cacontology.projectvic.org#>
+
 SELECT ?person ?conflicting_roles ?investigation ?conflict_severity WHERE {
-  ?person icac-gufo:playsRole ?role1 ;
-          icac-gufo:playsRole ?role2 .
+  ?person cacontology:playsRole ?role1 ;
+          cacontology:playsRole ?role2 .
   
-  ?role1 icac-gufo:participatesInInvestigation ?investigation .
-  ?role2 icac-gufo:participatesInInvestigation ?investigation .
+  ?role1 cacontology:participatesInInvestigation ?investigation .
+  ?role2 cacontology:participatesInInvestigation ?investigation .
   
   # Detect conflicting role combinations
   FILTER(
-    (?role1 = icac-gufo:VictimRole && ?role2 = icac-gufo:OffenderRole) ||
-    (?role1 = icac-gufo:OffenderRole && ?role2 = icac-gufo:VictimRole) ||
-    (?role1 = icac-gufo:InvestigatorRole && ?role2 = icac-gufo:OffenderRole)
+    (?role1 = cacontology:VictimRole && ?role2 = cacontology:OffenderRole) ||
+    (?role1 = cacontology:OffenderRole && ?role2 = cacontology:VictimRole) ||
+    (?role1 = cacontology:InvestigatorRole && ?role2 = cacontology:OffenderRole)
   )
   
   BIND(CONCAT(STR(?role1), " + ", STR(?role2)) as ?conflicting_roles)
@@ -406,17 +419,20 @@ SELECT ?person ?conflicting_roles ?investigation ?conflict_severity WHERE {
 }
 
 # Temporal Investigation Pattern Analysis
+PREFIX cacontology: <https://cacontology.projectvic.org#>
+PREFIX cacontology-temporal: <https://cacontology.projectvic.org/temporal#>
+
 SELECT ?pattern_type ?frequency ?avg_success_rate WHERE {
   {
     SELECT ?pattern_type 
            (COUNT(?inv) as ?frequency)
            (AVG(?completion_rate) as ?avg_success_rate) WHERE {
       
-      ?inv rdf:type icac-gufo:Investigation ;
-           icac-temporal:hasTimeToResolution ?resolution_time ;
-           icac-gufo:hasPhase ?phase .
+      ?inv rdf:type cacontology:CACInvestigation ;
+           cacontology-temporal:hasTimeToResolution ?resolution_time ;
+           cacontology:hasPhase ?phase .
       
-      ?phase icac-temporal:phaseCompletionRate ?completion_rate .
+      ?phase cacontology-temporal:phaseCompletionRate ?completion_rate .
       
       # Convert duration to days
       BIND(xsd:decimal(REPLACE(REPLACE(STR(?resolution_time), "P", ""), "D.*", "")) as ?total_duration)
@@ -435,6 +451,10 @@ SELECT ?pattern_type ?frequency ?avg_success_rate WHERE {
 ORDER BY ?avg_success_rate
 
 # Advanced Multi-Jurisdiction Analytics
+PREFIX cacontology: <https://cacontology.projectvic.org#>
+PREFIX cacontology-temporal: <https://cacontology.projectvic.org/temporal#>
+PREFIX gufo: <http://purl.org/nemo/gufo#>
+
 SELECT ?coordination_type ?jurisdiction_count ?avg_duration ?success_rate WHERE {
   {
     SELECT ?coordination_type 
@@ -442,14 +462,14 @@ SELECT ?coordination_type ?jurisdiction_count ?avg_duration ?success_rate WHERE 
            (AVG(?duration_days) as ?avg_duration)
            (AVG(?completion_rate) as ?success_rate) WHERE {
       
-      ?situation rdf:type icac-temporal:MultiJurisdictionCoordinationSituation ;
+      ?situation rdf:type cacontology-temporal:MultiJurisdictionCoordinationSituation ;
                  gufo:hasBeginPointInXSDDateTimeStamp ?begin ;
                  gufo:hasEndPointInXSDDateTimeStamp ?end .
       
-      ?investigation icac-temporal:hasTimeToResolution ?total_time ;
-                     icac-gufo:hasPhase ?phase .
+      ?investigation cacontology-temporal:hasTimeToResolution ?total_time ;
+                     cacontology:hasPhase ?phase .
       
-      ?phase icac-temporal:phaseCompletionRate ?completion_rate .
+      ?phase cacontology-temporal:phaseCompletionRate ?completion_rate .
       
       # Calculate coordination duration
       BIND((xsd:dateTime(?end) - xsd:dateTime(?begin)) / xsd:dayTimeDuration("P1D") as ?duration_days)
@@ -520,19 +540,19 @@ hotline:evidence-003 a hotline:URLReference ;
 
 #### 3.1 Complete Athletic Coaching Case
 ```turtle
-@prefix icac-athletic: <https://ontology.unifiedcyberontology.org/icac/athletic#> .
-@prefix uco-identity: <https://ontology.unifiedcyberontology.org/identity#> .
-@prefix uco-location: <https://ontology.unifiedcyberontology.org/location#> .
+@prefix cacontology-athletic: <https://cacontology.projectvic.org/athletic#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
 
 # Main exploitation case
-<https://example.org/case/athletic-001> a icac-athletic:DualCoachingRoleExploitation ;
+<https://example.org/case/athletic-001> a cacontology-athletic:DualCoachingRoleExploitation ;
     rdfs:label "Travel Team and School Coach Exploitation"@en ;
-    icac-athletic:sportType "baseball" ;
-    icac-athletic:teamType "travel" ;
-    icac-athletic:practiceFrequency "3"^^xsd:decimal ;
-    icac-athletic:seasonDuration "18"^^xsd:decimal ;
-    icac-athletic:teamSize "7"^^xsd:nonNegativeInteger ;
-    icac-athletic:multipleRoles "2"^^xsd:nonNegativeInteger ;
+    cacontology-athletic:sportType "baseball" ;
+    cacontology-athletic:teamType "travel" ;
+    cacontology-athletic:practiceFrequency "3"^^xsd:decimal ;
+    cacontology-athletic:seasonDuration "18"^^xsd:decimal ;
+    cacontology-athletic:teamSize "7"^^xsd:nonNegativeInteger ;
+    cacontology-athletic:multipleRoles "2"^^xsd:nonNegativeInteger ;
     uco-core:startTime "2023-01-01T00:00:00Z"^^xsd:dateTime ;
     uco-core:endTime "2024-08-01T00:00:00Z"^^xsd:dateTime .
 
@@ -540,33 +560,33 @@ hotline:evidence-003 a hotline:URLReference ;
 <https://example.org/person/coach-001> a uco-identity:Person ;
     uco-core:name "Athletic Coach" ;
     uco-observable:age "31"^^xsd:nonNegativeInteger ;
-    icac-athletic:holdsCoachingRole <https://example.org/role/travel-coach> ;
-    icac-athletic:holdsCoachingRole <https://example.org/role/school-coach> .
+    cacontology-athletic:holdsCoachingRole <https://example.org/role/travel-coach> ;
+    cacontology-athletic:holdsCoachingRole <https://example.org/role/school-coach> .
 
 # Travel team coaching role
-<https://example.org/role/travel-coach> a icac-athletic:TravelTeamCoachRole ;
+<https://example.org/role/travel-coach> a cacontology-athletic:TravelTeamCoachRole ;
     uco-core:name "Travel Team Coach" ;
-    icac-athletic:coachingExperience "5"^^xsd:decimal ;
-    icac-athletic:ageGroupCoached "12-14" ;
-    icac-athletic:teamSize "15"^^xsd:nonNegativeInteger .
+    cacontology-athletic:coachingExperience "5"^^xsd:decimal ;
+    cacontology-athletic:ageGroupCoached "12-14" ;
+    cacontology-athletic:teamSize "15"^^xsd:nonNegativeInteger .
 
 # School coaching role
-<https://example.org/role/school-coach> a icac-athletic:SchoolAthleticCoachRole ;
+<https://example.org/role/school-coach> a cacontology-athletic:SchoolAthleticCoachRole ;
     uco-core:name "School Head Coach" ;
-    icac-athletic:coachingExperience "5"^^xsd:decimal ;
-    icac-athletic:institutionalAffiliation "School Athletic Program" ;
-    icac-athletic:ageGroupCoached "12-18" .
+    cacontology-athletic:coachingExperience "5"^^xsd:decimal ;
+    cacontology-athletic:institutionalAffiliation "School Athletic Program" ;
+    cacontology-athletic:ageGroupCoached "12-18" .
 
 # Physical training coercion
-<https://example.org/coercion/conditioning-001> a icac-athletic:ConditioningCoercion ;
+<https://example.org/coercion/conditioning-001> a cacontology-athletic:ConditioningCoercion ;
     rdfs:label "Conditioning Exercise Exposure Coercion"@en ;
-    icac-athletic:conditioningType "running_drills" ;
-    icac-athletic:exhaustionLevel "severe" .
+    cacontology-athletic:conditioningType "running_drills" ;
+    cacontology-athletic:exhaustionLevel "severe" .
 
 # Team membership threats
-<https://example.org/coercion/membership-001> a icac-athletic:TeamMembershipCoercion ;
+<https://example.org/coercion/membership-001> a cacontology-athletic:TeamMembershipCoercion ;
     rdfs:label "Team Membership Threat Coercion"@en ;
-    icac-athletic:threatSpecificity "specific" .
+    cacontology-athletic:threatSpecificity "specific" .
 
 # Athletic facilities
 <https://example.org/location/gym-001> a uco-location:Location ;
@@ -580,29 +600,29 @@ hotline:evidence-003 a hotline:URLReference ;
     uco-location:region "New York" .
 
 # Facility exploitation
-<https://example.org/facility/gym-exploitation> a icac-athletic:GymExploitation ;
+<https://example.org/facility/gym-exploitation> a cacontology-athletic:GymExploitation ;
     rdfs:label "Gymnasium Exploitation"@en ;
-    icac-athletic:facilityType "gym" .
+    cacontology-athletic:facilityType "gym" .
 
-<https://example.org/facility/field-exploitation> a icac-athletic:AthleticFieldExploitation ;
+<https://example.org/facility/field-exploitation> a cacontology-athletic:AthleticFieldExploitation ;
     rdfs:label "Baseball Field Exploitation"@en ;
-    icac-athletic:facilityType "field" .
+    cacontology-athletic:facilityType "field" .
 
 # Discovery through parent network
-<https://example.org/discovery/parent-rumors> a icac-athletic:RumorCirculationDiscovery ;
+<https://example.org/discovery/parent-rumors> a cacontology-athletic:RumorCirculationDiscovery ;
     rdfs:label "Parent Network Rumor Circulation"@en ;
     uco-core:startTime "2024-07-01T00:00:00Z"^^xsd:dateTime ;
-    icac-athletic:parentNetworkSize "10"^^xsd:nonNegativeInteger ;
-    icac-athletic:rumorCirculationDuration "30"^^xsd:decimal .
+    cacontology-athletic:parentNetworkSize "10"^^xsd:nonNegativeInteger ;
+    cacontology-athletic:rumorCirculationDuration "30"^^xsd:decimal .
 
 # Link relationships
-<https://example.org/case/athletic-001> icac-athletic:exploitsAthleticAuthority <https://example.org/role/travel-coach> ;
-    icac-athletic:exploitsAthleticAuthority <https://example.org/role/school-coach> ;
-    icac-athletic:usesPhysicalTraining <https://example.org/coercion/conditioning-001> ;
-    icac-athletic:employsConditioningCoercion <https://example.org/coercion/membership-001> ;
-    icac-athletic:occursInFacility <https://example.org/location/gym-001> ;
-    icac-athletic:occursInFacility <https://example.org/location/field-001> ;
-    icac-athletic:discoveredByParents <https://example.org/discovery/parent-rumors> .
+<https://example.org/case/athletic-001> cacontology-athletic:exploitsAthleticAuthority <https://example.org/role/travel-coach> ;
+    cacontology-athletic:exploitsAthleticAuthority <https://example.org/role/school-coach> ;
+    cacontology-athletic:usesPhysicalTraining <https://example.org/coercion/conditioning-001> ;
+    cacontology-athletic:employsConditioningCoercion <https://example.org/coercion/membership-001> ;
+    cacontology-athletic:occursInFacility <https://example.org/location/gym-001> ;
+    cacontology-athletic:occursInFacility <https://example.org/location/field-001> ;
+    cacontology-athletic:discoveredByParents <https://example.org/discovery/parent-rumors> .
 ```
 
 ### 4. Cross-Border Scenarios
@@ -626,129 +646,129 @@ hotline:action-004 a hotline:ForwardToLEAction ;
 
 #### 5.1 Complete Investigation
 ```turtle
-@prefix icac: <https://ontology.unifiedcyberontology.org/icac#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
 
-icac:investigation-001 a icac:ICACInvestigation ;
-    icac:hasStep icac:receive-tip-001, icac:review-tip-001, icac:legal-process-001 ;
-    icac:hasReport hotline:report-004 .
+cacontology:investigation-001 a cacontology:CACInvestigation ;
+    cacontology:hasStep cacontology:receive-tip-001, cacontology:review-tip-001, cacontology:legal-process-001 ;
+    cacontology:hasReport hotline:report-004 .
 
-icac:receive-tip-001 a icac:ReceiveCybertipAction ;
-    icac:nextStep icac:review-tip-001 ;
+cacontology:receive-tip-001 a cacontology:ReceiveCybertipAction ;
+    cacontology:nextStep cacontology:review-tip-001 ;
     uco-action:startTime "2024-03-20T13:00:00Z"^^xsd:dateTime .
 
-icac:review-tip-001 a icac:ReviewCybertipAction ;
-    icac:previousStep icac:receive-tip-001 ;
-    icac:nextStep icac:legal-process-001 ;
-    uco-action:performer icac:analyst-001 .
+cacontology:review-tip-001 a cacontology:ReviewCybertipAction ;
+    cacontology:previousStep cacontology:receive-tip-001 ;
+    cacontology:nextStep cacontology:legal-process-001 ;
+    uco-action:performer cacontology:analyst-001 .
 
-icac:legal-process-001 a icac:LegalProcessAction ;
-    icac:previousStep icac:review-tip-001 ;
-    icac:targetsService icac:social-platform-001 ;
-    icac:legalInstrument icac:search-warrant-001 .
+cacontology:legal-process-001 a cacontology:LegalProcessAction ;
+    cacontology:previousStep cacontology:review-tip-001 ;
+    cacontology:targetsService cacontology:social-platform-001 ;
+    cacontology:legalInstrument cacontology:search-warrant-001 .
 ```
 
 ### 6. Production Case Investigation
 
 #### 6.1 CSAM Production Offense
 ```turtle
-@prefix icac-production: <https://ontology.unifiedcyberontology.org/icac/production#> .
+@prefix cacontology-production: <https://cacontology.projectvic.org/production#> .
 
-icac-production:offense-001 a icac-production:ProductionOffense ;
-    icac-production:productionMethod "direct_recording" ;
-    icac-production:sessionCount 15 ;
-    icac-production:victimCount 2 ;
-    icac-production:producedAt icac-production:location-001 ;
-    icac-production:usesEquipment icac-production:device-001 .
+cacontology-production:offense-001 a cacontology-production:ProductionOffense ;
+    cacontology-production:productionMethod "direct_recording" ;
+    cacontology-production:sessionCount 15 ;
+    cacontology-production:victimCount 2 ;
+    cacontology-production:producedAt cacontology-production:location-001 ;
+    cacontology-production:usesEquipment cacontology-production:device-001 .
 
-icac-production:producer-001 a icac-production:Producer ;
-    icac-production:holdsPositionOf icac-production:babysitter-role ;
-    icac-production:violatesPosition icac-production:trust-violation-001 .
+cacontology-production:producer-001 a cacontology-production:Producer ;
+    cacontology-production:holdsPositionOf cacontology-production:babysitter-role ;
+    cacontology-production:violatesPosition cacontology-production:trust-violation-001 .
 ```
 
 ### 7. Victim Impact Assessment
 
 #### 7.1 Comprehensive Impact Assessment
 ```turtle
-@prefix icac-impact: <https://ontology.unifiedcyberontology.org/icac/victim-impact#> .
+@prefix cacontology-impact: <https://cacontology.projectvic.org/victim-impact#> .
 
-icac-impact:assessment-001 a icac-impact:ComprehensiveImpactAssessment ;
-    icac-impact:severityLevel "severe" ;
-    icac-impact:assessesVictim icac-impact:victim-001 ;
-    icac-impact:identifiesHarm icac-impact:complex-trauma-001 .
+cacontology-impact:assessment-001 a cacontology-impact:ComprehensiveImpactAssessment ;
+    cacontology-impact:severityLevel "severe" ;
+    cacontology-impact:assessesVictim cacontology-impact:victim-001 ;
+    cacontology-impact:identifiesHarm cacontology-impact:complex-trauma-001 .
 
-icac-impact:complex-trauma-001 a icac-impact:ComplexTrauma ;
-    icac-impact:traumaType "complex" ;
-    icac-impact:severity "severe" ;
-    icac-impact:manifestsAs icac-impact:behavioral-indicator-001, icac-impact:emotional-indicator-001 .
+cacontology-impact:complex-trauma-001 a cacontology-impact:ComplexTrauma ;
+    cacontology-impact:traumaType "complex" ;
+    cacontology-impact:severity "severe" ;
+    cacontology-impact:manifestsAs cacontology-impact:behavioral-indicator-001, cacontology-impact:emotional-indicator-001 .
 
-icac-impact:therapeutic-intervention-001 a icac-impact:TraumaTherapy ;
-    icac-impact:treatmentModality "CBT" ;
-    icac-impact:addressesHarm icac-impact:complex-trauma-001 ;
-    icac-impact:treatmentOutcome "partially_successful" .
+cacontology-impact:therapeutic-intervention-001 a cacontology-impact:TraumaTherapy ;
+    cacontology-impact:treatmentModality "CBT" ;
+    cacontology-impact:addressesHarm cacontology-impact:complex-trauma-001 ;
+    cacontology-impact:treatmentOutcome "partially_successful" .
 ```
 
 ### 8. Task Force Operations
 
 #### 8.1 Multi-Agency Operation
 ```turtle
-@prefix icac-taskforce: <https://ontology.unifiedcyberontology.org/icac/taskforce#> .
+@prefix cacontology-taskforce: <https://cacontology.projectvic.org/taskforce#> .
 
-icac-taskforce:operation-001 a icac-taskforce:TaskForceOperation ;
-    icac-taskforce:operationName "Operation Cyber Highway Safety Check" ;
-    icac-taskforce:leadAgency icac-taskforce:arkansas-dps ;
-    icac-taskforce:participatingAgency icac-taskforce:local-sheriff-001, icac-taskforce:fbi-field-office-001 ;
-    icac-taskforce:arrestCount 42 ;
-    icac-taskforce:searchWarrantCount 178 ;
-    icac-taskforce:childrenRescued 5 .
+cacontology-taskforce:operation-001 a cacontology-taskforce:TaskForceOperation ;
+    cacontology-taskforce:operationName "Operation Cyber Highway Safety Check" ;
+    cacontology-taskforce:leadAgency cacontology-taskforce:arkansas-dps ;
+    cacontology-taskforce:participatingAgency cacontology-taskforce:local-sheriff-001, cacontology-taskforce:fbi-field-office-001 ;
+    cacontology-taskforce:arrestCount 42 ;
+    cacontology-taskforce:searchWarrantCount 178 ;
+    cacontology-taskforce:childrenRescued 5 .
 ```
 
 ### 9. Sex Offender Registry Integration
 
 #### 9.1 Registry Compliance Monitoring
 ```turtle
-@prefix icac-registry: <https://ontology.unifiedcyberontology.org/icac/sex-offender-registry#> .
+@prefix cacontology-registry: <https://cacontology.projectvic.org/sex-offender-registry#> .
 
-icac-registry:compliance-operation-001 a icac-registry:ComplianceMonitoringOperation ;
-    icac-registry:visitCount 1600 ;
-    icac-registry:complianceRate 0.95 ;
-    icac-registry:violationCount 80 ;
-    icac-registry:newArrestCount 12 .
+cacontology-registry:compliance-operation-001 a cacontology-registry:ComplianceMonitoringOperation ;
+    cacontology-registry:visitCount 1600 ;
+    cacontology-registry:complianceRate 0.95 ;
+    cacontology-registry:violationCount 80 ;
+    cacontology-registry:newArrestCount 12 .
 
-icac-registry:offender-001 a icac-registry:RegisteredOffender ;
-    icac-registry:registrationTier "Tier II" ;
-    icac-registry:hasRegistrationRecord icac-registry:record-001 ;
-    icac-registry:subjectToRestriction icac-registry:internet-restriction-001 .
+cacontology-registry:offender-001 a cacontology-registry:RegisteredOffender ;
+    cacontology-registry:registrationTier "Tier II" ;
+    cacontology-registry:hasRegistrationRecord cacontology-registry:record-001 ;
+    cacontology-registry:subjectToRestriction cacontology-registry:internet-restriction-001 .
 ```
 
 ### 10. International Coordination
 
 #### 10.1 Cross-Border Investigation
 ```turtle
-@prefix icac-international: <https://ontology.unifiedcyberontology.org/icac/international#> .
+@prefix cacontology-international: <https://cacontology.projectvic.org/international#> .
 
-icac-international:cross-border-001 a icac-international:CrossBorderInvestigation ;
-    icac-international:originCountry "US" ;
-    icac-international:targetCountry "UK" ;
-    icac-international:coordinationMechanism icac-international:mutual-legal-assistance ;
-    icac-international:informationShared icac-international:evidence-package-001 .
+cacontology-international:cross-border-001 a cacontology-international:CrossBorderInvestigation ;
+    cacontology-international:originCountry "US" ;
+    cacontology-international:targetCountry "UK" ;
+    cacontology-international:coordinationMechanism cacontology-international:mutual-legal-assistance ;
+    cacontology-international:informationShared cacontology-international:evidence-package-001 .
 ```
 
 ### 11. Forensic Analysis
 
 #### 11.1 Digital Forensics Workflow
 ```turtle
-@prefix icac-forensics: <https://ontology.unifiedcyberontology.org/icac/forensics#> .
+@prefix cacontology-forensics: <https://cacontology.projectvic.org/forensics#> .
 
-icac-forensics:acquisition-001 a icac-forensics:ForensicAcquisitionAction ;
-    icac-forensics:acquisitionMethod "physical_imaging" ;
-    icac-forensics:writeBlockingUsed true ;
-    icac-forensics:evidenceSeized icac-forensics:mobile-device-001 ;
-    icac-forensics:producesImage icac-forensics:forensic-image-001 .
+cacontology-forensics:acquisition-001 a cacontology-forensics:ForensicAcquisitionAction ;
+    cacontology-forensics:acquisitionMethod "physical_imaging" ;
+    cacontology-forensics:writeBlockingUsed true ;
+    cacontology-forensics:evidenceSeized cacontology-forensics:mobile-device-001 ;
+    cacontology-forensics:producesImage cacontology-forensics:forensic-image-001 .
 
-icac-forensics:analysis-001 a icac-forensics:ForensicAnalysisAction ;
-    icac-forensics:analyzesImage icac-forensics:forensic-image-001 ;
-    icac-forensics:usesTool icac-forensics:cellebrite-tool ;
-    icac-forensics:recoversFiles icac-forensics:recovered-images-001 .
+cacontology-forensics:analysis-001 a cacontology-forensics:ForensicAnalysisAction ;
+    cacontology-forensics:analyzesImage cacontology-forensics:forensic-image-001 ;
+    cacontology-forensics:usesTool cacontology-forensics:cellebrite-tool ;
+    cacontology-forensics:recoversFiles cacontology-forensics:recovered-images-001 .
 ```
 
 ## Advanced Query Examples
@@ -756,32 +776,32 @@ icac-forensics:analysis-001 a icac-forensics:ForensicAnalysisAction ;
 ### 1. Cross-Ontology Analytics
 ```sparql
 # Find investigations with production offenses and victim impact assessments
-PREFIX icac: <https://ontology.unifiedcyberontology.org/icac#>
-PREFIX icac-production: <https://ontology.unifiedcyberontology.org/icac/production#>
-PREFIX icac-impact: <https://ontology.unifiedcyberontology.org/icac/victim-impact#>
+PREFIX cacontology: <https://cacontology.projectvic.org#>
+PREFIX cacontology-production: <https://cacontology.projectvic.org/production#>
+PREFIX cacontology-impact: <https://cacontology.projectvic.org/victim-impact#>
 
 SELECT ?investigation ?offense ?assessment ?severity
 WHERE {
-    ?investigation a icac:ICACInvestigation ;
-                  icac:hasStep ?step .
-    ?step a icac-production:ProductionOffense .
-    ?offense a icac-production:ProductionOffense .
-    ?assessment a icac-impact:VictimImpactAssessment ;
-               icac-impact:severityLevel ?severity .
+    ?investigation a cacontology:CACInvestigation ;
+                  cacontology:hasStep ?step .
+    ?step a cacontology-production:ProductionOffense .
+    ?offense a cacontology-production:ProductionOffense .
+    ?assessment a cacontology-impact:VictimImpactAssessment ;
+               cacontology-impact:severityLevel ?severity .
 }
 ```
 
 ### 2. Task Force Performance Metrics
 ```sparql
 # Calculate task force operation effectiveness
-PREFIX icac-taskforce: <https://ontology.unifiedcyberontology.org/icac/taskforce#>
+PREFIX cacontology-taskforce: <https://cacontology.projectvic.org/taskforce#>
 
 SELECT ?operation ?arrestRate ?rescueRate
 WHERE {
-    ?operation a icac-taskforce:TaskForceOperation ;
-              icac-taskforce:arrestCount ?arrests ;
-              icac-taskforce:searchWarrantCount ?warrants ;
-              icac-taskforce:childrenRescued ?rescued .
+    ?operation a cacontology-taskforce:TaskForceOperation ;
+              cacontology-taskforce:arrestCount ?arrests ;
+              cacontology-taskforce:searchWarrantCount ?warrants ;
+              cacontology-taskforce:childrenRescued ?rescued .
     BIND(?arrests / ?warrants AS ?arrestRate)
     BIND(?rescued / ?arrests AS ?rescueRate)
 }
@@ -791,13 +811,13 @@ ORDER BY DESC(?arrestRate)
 ### 3. Registry Compliance Analysis
 ```sparql
 # Find compliance violations by registry tier
-PREFIX icac-registry: <https://ontology.unifiedcyberontology.org/icac/sex-offender-registry#>
+PREFIX cacontology-registry: <https://cacontology.projectvic.org/sex-offender-registry#>
 
 SELECT ?tier (COUNT(?violation) AS ?violationCount)
 WHERE {
-    ?offender a icac-registry:RegisteredOffender ;
-             icac-registry:registrationTier ?tier ;
-             icac-registry:hasViolation ?violation .
+    ?offender a cacontology-registry:RegisteredOffender ;
+             cacontology-registry:registrationTier ?tier ;
+             cacontology-registry:hasViolation ?violation .
 }
 GROUP BY ?tier
 ORDER BY DESC(?violationCount)
@@ -810,27 +830,27 @@ ORDER BY DESC(?violationCount)
 
 ```bash
 # Core validation
-pyshacl -s ontology/icac/hotlines-core-shapes.ttl -d your-hotline-data.ttl
-pyshacl -s ontology/icac/icac-core-shapes.ttl -d your-investigation-data.ttl
-pyshacl -s ontology/icac/icac-forensics-shapes.ttl -d your-forensic-data.ttl
+pyshacl -s ontology/cacontology-hotlines-shapes.ttl -d your-hotline-data.ttl
+pyshacl -s ontology/cacontology-core-shapes.ttl -d your-investigation-data.ttl
+pyshacl -s ontology/cacontology-forensics-shapes.ttl -d your-forensic-data.ttl
 
-# Advanced validation (NEW)
-pyshacl -s ontology/icac/icac-us-ncmec-shapes.ttl -d your-ncmec-data.ttl
-pyshacl -s ontology/icac/icac-international-shapes.ttl -d your-international-data.ttl
-pyshacl -s ontology/icac/icac-legal-harmonization-shapes.ttl -d your-legal-data.ttl
-pyshacl -s ontology/icac/icac-training-shapes.ttl -d your-training-data.ttl
-pyshacl -s ontology/icac/icac-prevention-shapes.ttl -d your-prevention-data.ttl
-pyshacl -s ontology/icac/icac-ai-generated-content-shapes.ttl -d your-ai-content-data.ttl
-pyshacl -s ontology/icac/icac-platform-infrastructure-shapes.ttl -d your-platform-data.ttl
-pyshacl -s ontology/icac/icac-specialized-units-shapes.ttl -d your-specialized-units-data.ttl
-pyshacl -s ontology/icac/icac-platforms-shapes.ttl -d your-platforms-data.ttl
-pyshacl -s ontology/icac/icac-detection-shapes.ttl -d your-detection-data.ttl
-pyshacl -s ontology/icac/icac-sex-offender-registry-shapes.ttl -d your-registry-data.ttl
+# Advanced validation
+pyshacl -s ontology/cacontology-us-ncmec-shapes.ttl -d your-ncmec-data.ttl
+pyshacl -s ontology/cacontology-international-shapes.ttl -d your-international-data.ttl
+pyshacl -s ontology/cacontology-legal-harmonization-shapes.ttl -d your-legal-data.ttl
+pyshacl -s ontology/cacontology-training-shapes.ttl -d your-training-data.ttl
+pyshacl -s ontology/cacontology-prevention-shapes.ttl -d your-prevention-data.ttl
+pyshacl -s ontology/cacontology-ai-csam-shapes.ttl -d your-ai-content-data.ttl
+pyshacl -s ontology/cacontology-platform-infrastructure-shapes.ttl -d your-platform-data.ttl
+pyshacl -s ontology/cacontology-specialized-units-shapes.ttl -d your-specialized-units-data.ttl
+pyshacl -s ontology/cacontology-platforms-shapes.ttl -d your-platforms-data.ttl
+pyshacl -s ontology/cacontology-detection-shapes.ttl -d your-detection-data.ttl
+pyshacl -s ontology/cacontology-sex-offender-registry-shapes.ttl -d your-registry-data.ttl
 
 # Educational and trafficking validation
-pyshacl -s ontology/icac/icac-educational-shapes.ttl -d your-educational-data.ttl
-pyshacl -s ontology/icac/icac-trafficking-shapes.ttl -d your-trafficking-data.ttl
-pyshacl -s ontology/icac/icac-athletic-exploitation-shapes.ttl -d your-athletic-data.ttl
+pyshacl -s ontology/cacontology-educational-exploitation-shapes.ttl -d your-educational-data.ttl
+pyshacl -s ontology/cacontology-sex-trafficking-shapes.ttl -d your-trafficking-data.ttl
+pyshacl -s ontology/cacontology-athletic-exploitation-shapes.ttl -d your-athletic-data.ttl
 ```
 
 **Coverage Statistics**: 71.88% (23 of 32 modules) - All critical modules covered with 10,000+ validation rules
@@ -847,7 +867,7 @@ pyshacl -s ontology/icac/icac-athletic-exploitation-shapes.ttl -d your-athletic-
 ### 3. Performance Testing
 ```bash
 # Run performance test for Q1 query (must complete in ≤ 500ms on 5M triples)
-time sparql --query queries/find_open_reports.rq --data your-5m-triple-dataset.ttl
+time sparql --query example_SPARQL_queries/find_open_reports.rq --data your-5m-triple-dataset.ttl
 ```
 
 ## Development Workflow
@@ -858,23 +878,23 @@ time sparql --query queries/find_open_reports.rq --data your-5m-triple-dataset.t
 docker compose -f testing/docker-compose.yaml up -d
 
 # Validate all ontologies
-docker exec icac-robot robot validate *.ttl
+docker exec cac-robot robot validate *.ttl
 
 # Run SHACL validation
-docker exec icac-pyshacl pyshacl -s *-shapes.ttl -d examples/*.ttl
+docker exec cac-pyshacl pyshacl -s *-shapes.ttl -d examples_knowledge_graphs/*.ttl
 ```
 
 ### 2. Contributing New Examples
 1. Create your example in `examples/` directory
 2. Ensure it validates against relevant SHACL shapes
-3. Add corresponding SPARQL queries in `queries/` directory
+3. Add corresponding SPARQL queries in `example_SPARQL_queries/` directory
 4. Update documentation with usage examples
 5. Submit pull request with automated CI validation
 
 ### 3. Adding New Ontology Modules
-1. Follow naming convention: `icac-[domain].ttl`
-2. Create corresponding SHACL shapes: `icac-[domain]-shapes.ttl`
-3. Add JSON-LD context if needed: `contexts/icac-[domain].jsonld`
+1. Follow naming convention: `cacontology-[domain].ttl`
+2. Create corresponding SHACL shapes: `cacontology-[domain]-shapes.ttl`
+3. Add JSON-LD context if needed: `contexts/cacontology-[domain].jsonld`
 4. Create comprehensive examples demonstrating usage
 5. Update architecture diagrams and documentation
 
@@ -905,11 +925,11 @@ docker exec icac-pyshacl pyshacl -s *-shapes.ttl -d examples/*.ttl
 ### 1. UCO/CASE Integration
 ```turtle
 # Seamless integration with UCO core concepts
-@prefix uco-core: <https://ontology.unifiedcyberontology.org/core#> .
-@prefix case-investigation: <https://ontology.caseontology.org/case/investigation#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
 
 # CAC investigation extends CASE investigation
-icac:investigation-001 a icac:ICACInvestigation, case-investigation:Investigation ;
+example:investigation-001 a cacontology:CACInvestigation, case-investigation:Investigation ;
     uco-core:hasFacet [
         a uco-core:TimestampFacet ;
         uco-core:timestamp "2024-03-20T10:00:00Z"^^xsd:dateTime
@@ -919,14 +939,14 @@ icac:investigation-001 a icac:ICACInvestigation, case-investigation:Investigatio
 ### 2. Multi-System Data Exchange
 ```turtle
 # Support for multiple data formats and systems
-icac:investigation-001 icac:exportFormat "CASE-JSON", "UCO-Turtle", "STIX-JSON" ;
-                      icac:compatibleWith "Autopsy", "Griffeye", "PhotoDNA-Service" .
+example:investigation-001 cacontology:exportFormat "CASE-JSON", "UCO-Turtle", "STIX-JSON" ;
+                          cacontology:compatibleWith "Autopsy", "Griffeye", "PhotoDNA-Service" .
 ```
 
 ## License and Support
 
 ### 1. Versioning
-- Current Version: 2.2.0 (23 November 2025)
+- Current Version: 3.0.0 (16 March 2026)
 - See CHANGELOG.md for complete version history
 - Follows semantic versioning (MAJOR.MINOR.PATCH)
 - Coordinated releases across all 30+ ontology modules
@@ -947,5 +967,5 @@ This project is licensed under the [Apache License 2.0](https://www.apache.org/l
 - [Product Requirements](PRD.md) - Functional and technical requirements
 - [Glossary](glossary.md) - Acronyms and key terminology
 - [Contributing Guidelines](../CONTRIBUTING.md) - How to contribute to the project
-- [Example Files](../examples/) - Real-world usage demonstrations
-- [Analytics Queries](../queries/) - Operational intelligence examples
+- [Example Files](../examples_knowledge_graphs/) - Real-world usage demonstrations
+- [Analytics Queries](../example_SPARQL_queries/) - Operational intelligence examples

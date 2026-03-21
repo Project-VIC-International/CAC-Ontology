@@ -8,20 +8,19 @@
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
 
-@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix cacontology-prevention: <https://cacontology.projectvic.org/prevention#> .
-@prefix gufo: <http://purl.org/nemo/gufo#> .
-@prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
-<https://cacontology.projectvic.org/prevention/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/prevention/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Prevention and Education Ontology"@en ;
     rdfs:comment "An ontology for modeling prevention programs, education initiatives, safety protocols, and community outreach efforts for child protection with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, and validation capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/prevention/2.12.0> ;
-    owl:versionInfo "2.12.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/prevention/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <http://purl.org/nemo/gufo> .
+    owl:imports <http://purl.org/nemo/gufo#> ,
+                <https://cacontology.projectvic.org/core/3.0.0> .
 
 # =============================================================================
 # PREVENTION PROGRAM FRAMEWORK (gUFO Event and Organization modeling)
@@ -29,30 +28,30 @@
 
 # Prevention Programs as gUFO Events
 cacontology-prevention:PreventionProgram rdf:type owl:Class ;
-    rdfs:subClassOf uco-action:Action, gufo:Event ;
+    rdfs:subClassOf cac-core:SupportEvent ;
     rdfs:label "Prevention Program"@en ;
     rdfs:comment "Structured program designed to prevent child abuse and exploitation. Modeled as gUFO Event."@en .
 
 # Education Portals as gUFO Objects
 cacontology-prevention:EducationPortal rdf:type owl:Class ;
-    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdfs:subClassOf uco-core:UcoObject, cac-core:DigitalSystemEntity ;
     rdfs:label "Education Portal"@en ;
     rdfs:comment "Online portal providing educational resources for child protection. Modeled as gUFO Object."@en .
 
 # School Protocols as gUFO Objects
 cacontology-prevention:SchoolAllegationProtocol rdf:type owl:Class ;
-    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdfs:subClassOf uco-core:UcoObject, cac-core:Artifact ;
     rdfs:label "School Allegation Protocol"@en ;
     rdfs:comment "Protocol for managing allegations of abuse in school settings. Modeled as gUFO Object."@en .
 
 # Community Outreach as gUFO Events
 cacontology-prevention:CommunityOutreach rdf:type owl:Class ;
-    rdfs:subClassOf uco-action:Action, gufo:Event ;
+    rdfs:subClassOf cac-core:SupportEvent ;
     rdfs:label "Community Outreach"@en ;
     rdfs:comment "Outreach programs to engage communities in child protection. Modeled as gUFO Event."@en .
 
 cacontology-prevention:PublicAwareness rdf:type owl:Class ;
-    rdfs:subClassOf uco-action:Action, gufo:Event ;
+    rdfs:subClassOf cac-core:SupportEvent ;
     rdfs:label "Public Awareness"@en ;
     rdfs:comment "Campaigns to raise public awareness about child protection. Modeled as gUFO Event."@en .
 
@@ -100,27 +99,27 @@ cacontology-prevention:PreventionCurriculum rdf:type owl:Class ;
 # =============================================================================
 
 cacontology-prevention:EducatorTraining rdf:type owl:Class ;
-    rdfs:subClassOf uco-action:Action ;
+    rdfs:subClassOf cac-core:SupportEvent ;
     rdfs:label "Educator Training"@en ;
     rdfs:comment "Training programs specifically designed for educators."@en .
 
 cacontology-prevention:ParentEducation rdf:type owl:Class ;
-    rdfs:subClassOf uco-action:Action ;
+    rdfs:subClassOf cac-core:SupportEvent ;
     rdfs:label "Parent Education"@en ;
     rdfs:comment "Education programs for parents and caregivers."@en .
 
 cacontology-prevention:ChildSafetyEducation rdf:type owl:Class ;
-    rdfs:subClassOf uco-action:Action ;
+    rdfs:subClassOf cac-core:SupportEvent ;
     rdfs:label "Child Safety Education"@en ;
     rdfs:comment "Education programs teaching children about safety."@en .
 
 cacontology-prevention:HealthcareProviderTraining rdf:type owl:Class ;
-    rdfs:subClassOf uco-action:Action ;
+    rdfs:subClassOf cac-core:SupportEvent ;
     rdfs:label "Healthcare Provider Training"@en ;
     rdfs:comment "Training for healthcare providers on child protection."@en .
 
 cacontology-prevention:CommunityEducation rdf:type owl:Class ;
-    rdfs:subClassOf uco-action:Action ;
+    rdfs:subClassOf cac-core:SupportEvent ;
     rdfs:label "Community Education"@en ;
     rdfs:comment "Education programs for community members."@en .
 
@@ -426,7 +425,7 @@ cacontology-prevention:DiscreetAccessSystem rdf:type owl:Class ;
     rdfs:comment "System allowing discreet access to safety information to reduce bullying and shaming."@en .
 
 cacontology-prevention:SchoolDistribution rdf:type owl:Class ;
-    rdfs:subClassOf uco-action:Action ;
+    rdfs:subClassOf cac-core:SupportEvent ;
     rdfs:label "School Distribution"@en ;
     rdfs:comment "Distribution of educational materials to schools."@en .
 
@@ -549,7 +548,7 @@ cacontology-prevention:enablesDiscreetAccess rdf:type owl:ObjectProperty ;
     rdfs:label "enables discreet access"@en ;
     rdfs:comment "QR code enables discreet access to safety information."@en .
 
-cacontology-prevention:distributedsTo rdf:type owl:ObjectProperty ;
+cacontology-prevention:distributedTo rdf:type owl:ObjectProperty ;
     rdfs:domain cacontology-prevention:InformationPoster ;
     rdfs:range uco-identity:Organization ;
     rdfs:label "distributed to"@en ;
@@ -568,7 +567,7 @@ cacontology-prevention:reducesShaming rdf:type owl:ObjectProperty ;
     rdfs:comment "System reduces shaming associated with seeking help."@en .
 
 # =============================================================================
-# WISCONSIN ICAC WEBSITE INSPIRED ENHANCEMENTS
+# WISCONSIN CAC WEBSITE INSPIRED ENHANCEMENTS
 # =============================================================================
 
 # =============================================================================
@@ -636,17 +635,17 @@ cacontology-prevention:EducationPlatformIntegration rdf:type owl:Class ;
 cacontology-prevention:ICACAffiliateNetwork rdf:type owl:Class ;
     rdfs:subClassOf uco-identity:Organization ;
     rdfs:label "CAC Affiliate Network"@en ;
-    rdfs:comment "Network of formally affiliated ICAC organizations for coordinated child protection efforts."@en .
+    rdfs:comment "Network of formally affiliated CAC organizations for coordinated child protection efforts."@en .
 
 cacontology-prevention:AffiliateResourceSharing rdf:type owl:Class ;
-    rdfs:subClassOf uco-action:Action ;
+    rdfs:subClassOf cac-core:SupportEvent ;
     rdfs:label "Affiliate Resource Sharing"@en ;
-    rdfs:comment "Coordinated sharing of educational resources and prevention materials among ICAC affiliates."@en .
+    rdfs:comment "Coordinated sharing of educational resources and prevention materials among CAC affiliates."@en .
 
 cacontology-prevention:AffiliateCoordination rdf:type owl:Class ;
-    rdfs:subClassOf uco-action:Action ;
+    rdfs:subClassOf cac-core:SupportEvent ;
     rdfs:label "Affiliate Coordination"@en ;
-    rdfs:comment "Coordination activities between ICAC affiliate organizations for unified prevention efforts."@en .
+    rdfs:comment "Coordination activities between CAC affiliate organizations for unified prevention efforts."@en .
 
 # =============================================================================
 # ENHANCED COMMUNITY ENGAGEMENT METRICS
@@ -762,7 +761,7 @@ cacontology-prevention:affiliateOrganizationCount rdf:type owl:DatatypeProperty 
     rdfs:domain cacontology-prevention:ICACAffiliateNetwork ;
     rdfs:range xsd:nonNegativeInteger ;
     rdfs:label "affiliate organization count"@en ;
-    rdfs:comment "Number of organizations in the ICAC affiliate network."@en .
+    rdfs:comment "Number of organizations in the CAC affiliate network."@en .
 
 cacontology-prevention:resourceSharingFrequency rdf:type owl:DatatypeProperty ;
     rdfs:domain cacontology-prevention:AffiliateResourceSharing ;
@@ -823,7 +822,7 @@ cacontology-prevention:affiliatedWith rdf:type owl:ObjectProperty ;
     rdfs:domain uco-identity:Organization ;
     rdfs:range cacontology-prevention:ICACAffiliateNetwork ;
     rdfs:label "affiliated with"@en ;
-    rdfs:comment "Organization is formally affiliated with ICAC network."@en .
+    rdfs:comment "Organization is formally affiliated with CAC network."@en .
 
 cacontology-prevention:sharesResourcesWith rdf:type owl:ObjectProperty ;
     rdfs:domain cacontology-prevention:AffiliateResourceSharing ;
@@ -895,17 +894,17 @@ cacontology-prevention:VictimDisclosureTriggering rdf:type owl:Class ;
     rdfs:comment "Safety education event that triggers victim disclosure of ongoing abuse."@en .
 
 cacontology-prevention:PostPresentationDisclosure rdf:type owl:Class ;
-    rdfs:subClassOf uco-action:Action ;
+    rdfs:subClassOf cac-core:SupportEvent ;
     rdfs:label "Post Presentation Disclosure"@en ;
     rdfs:comment "Victim disclosure that occurs following a safety presentation or educational event."@en .
 
 cacontology-prevention:OutreachTriggeredInvestigation rdf:type owl:Class ;
-    rdfs:subClassOf uco-action:Action ;
+    rdfs:subClassOf cac-core:InvestigativeAction ;
     rdfs:label "Outreach Triggered Investigation"@en ;
     rdfs:comment "Investigation initiated as direct result of community outreach presentation."@en .
 
 cacontology-prevention:RapidResponseDisclosureWorkflow rdf:type owl:Class ;
-    rdfs:subClassOf uco-action:Action ;
+    rdfs:subClassOf cac-core:SupportEvent ;
     rdfs:label "Rapid Response Disclosure Workflow"@en ;
     rdfs:comment "Workflow enabling rapid response from victim disclosure to arrest (e.g., 8-hour timeline)."@en .
 
