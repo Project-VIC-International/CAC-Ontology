@@ -7,23 +7,22 @@
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
-@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-international: <https://cacontology.projectvic.org/international#> .
-@prefix gufo: <http://purl.org/nemo/gufo#> .
-@prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
-<https://cacontology.projectvic.org/international/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/international/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC International Cooperation Ontology"@en ;
     rdfs:comment "An ontology for modeling international cooperation, cross-border investigations, diplomatic protocols, and multilateral frameworks in Internet Crimes Against Children cases with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, and validation capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/international/2.12.0> ;
-    owl:versionInfo "2.12.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/international/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <http://purl.org/nemo/gufo> .
+    owl:imports <http://purl.org/nemo/gufo#> ,
+                <https://cacontology.projectvic.org/core/3.0.0> .
 
 # =============================================================================
 # INTERNATIONAL PARTNERSHIP FRAMEWORK
@@ -55,11 +54,20 @@ cacontology-international:InternationalTaskForce rdf:type owl:Class ;
     rdfs:comment "Multi-national task force for coordinating child protection investigations."@en .
 
 # =============================================================================
+# INTERNATIONAL COORDINATION
+# =============================================================================
+
+cacontology-international:InternationalCoordination rdf:type owl:Class ;
+    rdfs:label "International Coordination"@en ;
+    rdfs:comment "Coordination activities between international law enforcement and child protection organizations."@en ;
+    rdfs:subClassOf cac-core:CoordinationEvent .
+
+# =============================================================================
 # CROSS-BORDER OPERATIONS
 # =============================================================================
 
 cacontology-international:CrossBorderOperation rdf:type owl:Class ;
-    rdfs:subClassOf uco-action:Action ;
+    rdfs:subClassOf cac-core:CoordinationEvent ;
     rdfs:label "Cross-Border Operation"@en ;
     rdfs:comment "Investigation or operation spanning multiple countries."@en .
 
@@ -69,7 +77,7 @@ cacontology-international:CrossBorderInvestigation rdf:type owl:Class ;
     rdfs:comment "Investigation requiring coordination across national boundaries."@en .
 
 cacontology-international:InternationalAlert rdf:type owl:Class ;
-    rdfs:subClassOf uco-action:Action ;
+    rdfs:subClassOf cac-core:CoordinationEvent ;
     rdfs:label "International Alert"@en ;
     rdfs:comment "Alert system for sharing critical information across borders."@en .
 
@@ -78,7 +86,8 @@ cacontology-international:GlobalCaseTracking rdf:type owl:Class ;
     rdfs:label "Global Case Tracking"@en ;
     rdfs:comment "System for tracking cases across multiple jurisdictions."@en .
 
-cacontology-international:InternationalReferral rdf:type owl:Class ;    rdfs:subClassOf uco-action:Action ;    rdfs:label "International Referral"@en ;    rdfs:comment "Referral of cases or information to international partners."@en .# SA JACET-inspired Live Streaming Operations  cacontology-international:LiveStreamingInvestigation rdf:type owl:Class ;    rdfs:subClassOf cacontology-international:CrossBorderInvestigation ;    rdfs:label "Live Streaming Investigation"@en ;    rdfs:comment "Investigation involving live streaming of child abuse across international borders (e.g., Philippines operations)."@en .cacontology-international:DistanceChildAbuse rdf:type owl:Class ;    rdfs:subClassOf cacontology-international:CrossBorderOperation ;    rdfs:label "Distance Child Abuse"@en ;    rdfs:comment "Child abuse ordered and instructed remotely across international borders via online platforms."@en .cacontology-international:InstructedAbuseOperation rdf:type owl:Class ;    rdfs:subClassOf cacontology-international:DistanceChildAbuse ;    rdfs:label "Instructed Abuse Operation"@en ;    rdfs:comment "Investigation of suspects ordering and instructing live child abuse viewed online from another country."@en .cacontology-international:OverseasVictimCoordination rdf:type owl:Class ;    rdfs:subClassOf cacontology-international:InternationalReferral ;    rdfs:label "Overseas Victim Coordination"@en ;    rdfs:comment "Coordination for identifying and assisting child victims located in foreign countries."@en .# NCMEC Integration (based on WA case)cacontology-international:NCMECReporting rdf:type owl:Class ;    rdfs:subClassOf cacontology-international:InternationalReferral ;    rdfs:label "NCMEC Reporting"@en ;    rdfs:comment "Reporting mechanism from US National Center for Missing and Exploited Children to international partners."@en .cacontology-international:USAustraliaCoordination rdf:type owl:Class ;    rdfs:subClassOf cacontology-international:InternationalPartnership ;    rdfs:label "US-Australia Coordination"@en ;    rdfs:comment "Coordination mechanism between United States and Australia for child exploitation investigations."@en .cacontology-international:ACCCEIntegration rdf:type owl:Class ;    rdfs:subClassOf cacontology-international:InternationalReferral ;    rdfs:label "ACCCE Integration"@en ;    rdfs:comment "Integration between international reports and AFP-led Australian Centre to Counter Child Exploitation."@en .
+cacontology-international:InternationalReferral rdf:type owl:Class ;
+    rdfs:subClassOf cac-core:CoordinationEvent ;    rdfs:label "International Referral"@en ;    rdfs:comment "Referral of cases or information to international partners."@en .# SA JACET-inspired Live Streaming Operations  cacontology-international:LiveStreamingInvestigation rdf:type owl:Class ;    rdfs:subClassOf cacontology-international:CrossBorderInvestigation ;    rdfs:label "Live Streaming Investigation"@en ;    rdfs:comment "Investigation involving live streaming of child abuse across international borders (e.g., Philippines operations)."@en .cacontology-international:DistanceChildAbuse rdf:type owl:Class ;    rdfs:subClassOf cacontology-international:CrossBorderOperation ;    rdfs:label "Distance Child Abuse"@en ;    rdfs:comment "Child abuse ordered and instructed remotely across international borders via online platforms."@en .cacontology-international:InstructedAbuseOperation rdf:type owl:Class ;    rdfs:subClassOf cacontology-international:DistanceChildAbuse ;    rdfs:label "Instructed Abuse Operation"@en ;    rdfs:comment "Investigation of suspects ordering and instructing live child abuse viewed online from another country."@en .cacontology-international:OverseasVictimCoordination rdf:type owl:Class ;    rdfs:subClassOf cacontology-international:InternationalReferral ;    rdfs:label "Overseas Victim Coordination"@en ;    rdfs:comment "Coordination for identifying and assisting child victims located in foreign countries."@en .# NCMEC Integration (based on WA case)cacontology-international:NCMECReporting rdf:type owl:Class ;    rdfs:subClassOf cacontology-international:InternationalReferral ;    rdfs:label "NCMEC Reporting"@en ;    rdfs:comment "Reporting mechanism from US National Center for Missing and Exploited Children to international partners."@en .cacontology-international:USAustraliaCoordination rdf:type owl:Class ;    rdfs:subClassOf cacontology-international:InternationalPartnership ;    rdfs:label "US-Australia Coordination"@en ;    rdfs:comment "Coordination mechanism between United States and Australia for child exploitation investigations."@en .cacontology-international:ACCCEIntegration rdf:type owl:Class ;    rdfs:subClassOf cacontology-international:InternationalReferral ;    rdfs:label "ACCCE Integration"@en ;    rdfs:comment "Integration between international reports and AFP-led Australian Centre to Counter Child Exploitation."@en .
 
 cacontology-international:CrossJurisdictionalInvestigation rdf:type owl:Class ;
     rdfs:subClassOf cacontology-international:CrossBorderInvestigation ;
@@ -201,17 +210,17 @@ cacontology-international:CrossBorderEffectiveness rdf:type owl:Class ;
 # =============================================================================
 
 cacontology-international:InternationalCoordinator rdf:type owl:Class ;
-    rdfs:subClassOf uco-role:Role ;
+    rdfs:subClassOf cac-core:Role ;
     rdfs:label "International Coordinator"@en ;
     rdfs:comment "Role responsible for international coordination activities."@en .
 
 cacontology-international:LiaisonOfficer rdf:type owl:Class ;
-    rdfs:subClassOf uco-role:Role ;
+    rdfs:subClassOf cac-core:Role ;
     rdfs:label "Liaison Officer"@en ;
     rdfs:comment "Officer serving as liaison between international partners."@en .
 
 cacontology-international:InternationalAnalyst rdf:type owl:Class ;
-    rdfs:subClassOf uco-role:Role ;
+    rdfs:subClassOf cac-core:Role ;
     rdfs:label "International Analyst"@en ;
     rdfs:comment "Analyst specializing in cross-border case analysis."@en .
 
@@ -377,7 +386,7 @@ cacontology-international:participatesIn rdf:type owl:ObjectProperty ;
     rdfs:comment "Indicates participation in international partnerships."@en .
 
 cacontology-international:triggersAlert rdf:type owl:ObjectProperty ;
-    rdfs:domain cacontology:Investigation ;
+    rdfs:domain cacontology:CACInvestigation ;
     rdfs:range cacontology-international:InternationalAlert ;
     rdfs:label "triggers alert"@en ;
     rdfs:comment "Investigation that triggers an international alert."@en .
@@ -467,7 +476,7 @@ cacontology-international:InternationalEvidence rdf:type owl:Class ;
 cacontology-international:CrossBorderForensics rdf:type owl:Class ;
     rdfs:label "Cross-Border Forensics"@en ;
     rdfs:comment "Forensic analysis requiring coordination across multiple countries for large-scale evidence processing."@en ;
-    rdfs:subClassOf uco-action:Action .
+    rdfs:subClassOf cac-core:CoordinationEvent .
 
 # =============================================================================
 # LARGE-SCALE OPERATION COORDINATION
@@ -476,12 +485,12 @@ cacontology-international:CrossBorderForensics rdf:type owl:Class ;
 cacontology-international:MassUserAnalysis rdf:type owl:Class ;
     rdfs:label "Mass User Analysis"@en ;
     rdfs:comment "Analysis of massive user databases requiring international coordination for processing users across multiple countries."@en ;
-    rdfs:subClassOf uco-action:Action .
+    rdfs:subClassOf cac-core:CoordinationEvent .
 
 cacontology-international:InternationalProsecution rdf:type owl:Class ;
     rdfs:label "International Prosecution"@en ;
     rdfs:comment "Prosecution strategy coordinated across multiple countries for users identified in large-scale operations."@en ;
-    rdfs:subClassOf uco-action:Action .
+    rdfs:subClassOf cac-core:LegalEvent .
 
 cacontology-international:GlobalInvestigativeTeam rdf:type owl:Class ;
     rdfs:label "Global Investigative Team"@en ;
@@ -723,7 +732,7 @@ cacontology-international:FederatedDatabaseQuery rdf:type owl:Class ;
 cacontology-international:CrossReferenceAnalysis rdf:type owl:Class ;
     rdfs:label "Cross-Reference Analysis"@en ;
     rdfs:comment "Analysis correlating data across multiple international databases to identify connections and patterns."@en ;
-    rdfs:subClassOf uco-action:Action .
+    rdfs:subClassOf cac-core:CoordinationEvent .
 
 cacontology-international:IntelligenceDataLake rdf:type owl:Class ;
     rdfs:label "Intelligence Data Lake"@en ;
@@ -738,7 +747,7 @@ cacontology-international:AutomatedCrossMatching rdf:type owl:Class ;
 cacontology-international:DistributedIntelligenceProcessing rdf:type owl:Class ;
     rdfs:label "Distributed Intelligence Processing"@en ;
     rdfs:comment "Distributed processing of intelligence across multiple international systems for scalable analysis."@en ;
-    rdfs:subClassOf uco-action:Action .
+    rdfs:subClassOf cac-core:CoordinationEvent .
 
 # =============================================================================
 # REAL-TIME INTELLIGENCE PROPERTIES

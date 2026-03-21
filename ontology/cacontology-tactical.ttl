@@ -3,35 +3,33 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
-@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
 @prefix investigation: <https://ontology.caseontology.org/case/investigation/> .
-@prefix gufo: <http://purl.org/nemo/gufo#> .
-@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix cacontology-tactical: <https://cacontology.projectvic.org/tactical#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/tactical/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/tactical/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Tactical Law Enforcement Operations Ontology"@en ;
     rdfs:comment "An ontology for representing tactical law enforcement operations including SWAT operations, high-risk arrests, and specialized tactical procedures in Internet Crimes Against Children investigations, extending UCO and CASE with CASE Investigation ontology integration."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/tactical/2.12.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/tactical/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
     dcterms:modified "2026-01-01"^^xsd:date ;
-    owl:imports <https://ontology.unifiedcyberontology.org/uco/core> ,
-                <https://ontology.unifiedcyberontology.org/uco/identity> ,
-                <https://ontology.unifiedcyberontology.org/uco/observable> ,
-                <https://ontology.unifiedcyberontology.org/uco/action> ,
-                <https://ontology.unifiedcyberontology.org/uco/location> ,
-                <https://ontology.unifiedcyberontology.org/uco/role> ,
+    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
+                <https://ontology.unifiedcyberontology.org/uco/identity/> ,
+                <https://ontology.unifiedcyberontology.org/uco/observable/> ,
+                <https://ontology.unifiedcyberontology.org/uco/action/> ,
+                <https://ontology.unifiedcyberontology.org/uco/location/> ,
+                <https://ontology.unifiedcyberontology.org/uco/role/> ,
                 <https://ontology.caseontology.org/case/investigation/> ,
                 <http://purl.org/nemo/gufo#> ,
-                <https://cacontology.projectvic.org/2.12.0> .
+                <https://cacontology.projectvic.org/3.0.0> ,
+                <https://cacontology.projectvic.org/core/3.0.0> .
 
 # =============================================================================
 # TACTICAL OPERATION CLASSES (extending UCO Action)
@@ -40,7 +38,7 @@
 cacontology-tactical:TacticalOperation rdf:type owl:Class ;
     rdfs:label "Tactical Operation"@en ;
     rdfs:comment "Specialized law enforcement operation requiring tactical teams and advanced planning."@en ;
-    rdfs:subClassOf uco-action:Action .
+    rdfs:subClassOf cac-core:InvestigativeAction .
 
 cacontology-tactical:SWATOperation rdf:type owl:Class ;
     rdfs:label "SWAT Operation"@en ;
@@ -54,8 +52,8 @@ cacontology-tactical:HighRiskArrest rdf:type owl:Class ;
 
 cacontology-tactical:BarricadeSituation rdf:type owl:Class ;
     rdfs:label "Barricade Situation"@en ;
-    rdfs:comment "Situation where suspect has barricaded themselves and refuses to surrender."@en ;
-    rdfs:subClassOf cacontology-tactical:TacticalOperation .
+    rdfs:comment "Situation where suspect has barricaded themselves and refuses to surrender. A state/context, not an operation; TacticalOperation may occurInSituation a BarricadeSituation."@en ;
+    rdfs:subClassOf cac-core:Situation .
 
 cacontology-tactical:DynamicEntry rdf:type owl:Class ;
     rdfs:label "Dynamic Entry"@en ;
@@ -69,43 +67,43 @@ cacontology-tactical:SurrenderNegotiation rdf:type owl:Class ;
 
 # =============================================================================
 # ARREST AND BOOKING CLASSES (extending CASE Investigation)
-# Based on Miami ICAC undercover operation press release
+# Based on Miami CAC undercover operation press release
 # =============================================================================
 
 cacontology-tactical:ArrestOperation rdf:type owl:Class ;
     rdfs:label "Arrest Operation"@en ;
     rdfs:comment "Law enforcement operation to apprehend and take suspect into custody. Extends investigation:InvestigativeAction for proper CASE ontology integration."@en ;
-    rdfs:subClassOf investigation:InvestigativeAction, gufo:Event .
+    rdfs:subClassOf cac-core:InvestigativeAction .
 
 cacontology-tactical:TrafficStop rdf:type owl:Class ;
     rdfs:label "Traffic Stop"@en ;
     rdfs:comment "Investigative traffic stop used as part of undercover operation or to apprehend suspect. Extends investigation:InvestigativeAction."@en ;
-    rdfs:subClassOf investigation:InvestigativeAction, gufo:Event .
+    rdfs:subClassOf cac-core:InvestigativeAction .
 
 cacontology-tactical:BookingAction rdf:type owl:Class ;
     rdfs:label "Booking Action"@en ;
     rdfs:comment "Process of booking a suspect into a correctional facility including fingerprinting, photography, and data entry. Extends investigation:InvestigativeAction for CASE ontology integration."@en ;
-    rdfs:subClassOf investigation:InvestigativeAction, gufo:Event .
+    rdfs:subClassOf cac-core:InvestigativeAction .
 
 cacontology-tactical:InterviewWithoutCounsel rdf:type owl:Class ;
     rdfs:label "Interview Without Counsel"@en ;
     rdfs:comment "Suspect interview conducted after suspect waives right to legal counsel. Extends investigation:InvestigativeAction."@en ;
-    rdfs:subClassOf investigation:InvestigativeAction, gufo:Event .
+    rdfs:subClassOf cac-core:InvestigativeAction .
 
 cacontology-tactical:ArrestReport rdf:type owl:Class ;
     rdfs:label "Arrest Report"@en ;
     rdfs:comment "Formal arrest report documenting the arrest including charges, evidence, and suspect information. Extends investigation:ProvenanceRecord for evidence tracking."@en ;
-    rdfs:subClassOf investigation:ProvenanceRecord, gufo:Object .
+    rdfs:subClassOf investigation:ProvenanceRecord, cac-core:Artifact .
 
 cacontology-tactical:CorrectionalFacility rdf:type owl:Class ;
     rdfs:label "Correctional Facility"@en ;
     rdfs:comment "Physical correctional facility where suspects are booked and held. Examples include county jails and correctional centers. Extends uco-core:UcoObject as physical location (NOT digital observable)."@en ;
-    rdfs:subClassOf uco-core:UcoObject, gufo:Object .
+    rdfs:subClassOf uco-core:UcoObject, cac-core:PlaceLikeEntity .
 
 cacontology-tactical:ImmigrationHold rdf:type owl:Class ;
     rdfs:label "Immigration Hold"@en ;
     rdfs:comment "Immigration detainer placed on suspect due to immigration status. Links booking to immigration enforcement coordination."@en ;
-    rdfs:subClassOf uco-core:UcoObject, gufo:Object .
+    rdfs:subClassOf uco-core:UcoObject, cac-core:Artifact .
 
 # =============================================================================
 # ARREST AND BOOKING PROPERTIES

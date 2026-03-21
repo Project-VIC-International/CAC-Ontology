@@ -14,7 +14,7 @@ PREFIX uco-location: <https://ontology.unifiedcyberontology.org/uco/location/>
 PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/>
 PREFIX uco-types: <https://ontology.unifiedcyberontology.org/uco/types/>
 
-PREFIX cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#>
+PREFIX cacontology-legal-outcomes: <https://cacontology.projectvic.org/legal-outcomes#>
 
 PREFIX ex: <https://example.org/cac/us-v-mccormack-ninth-circuit-2017/>
 
@@ -91,8 +91,8 @@ ORDER BY ?label
 
 SELECT DISTINCT ?chargeLabel ?sentenceLabel ?sentenceType
 WHERE {
-  ex:appeal cacontology-sentencing:hasCharge ?charge ;
-            cacontology-sentencing:resultsSentence ?sentence .
+  ex:appeal cacontology-legal-outcomes:hasCharge ?charge ;
+            cacontology-legal-outcomes:resultsSentence ?sentence .
 
   ?charge rdfs:label ?chargeLabel .
   ?sentence rdfs:label ?sentenceLabel ;
@@ -107,7 +107,7 @@ ORDER BY ?chargeLabel
 
 SELECT DISTINCT ?issue ?issueLabel ?issueType
 WHERE {
-  ex:appeal cacontology-sentencing:raisesIssue ?issue .
+  ex:appeal cacontology-legal-outcomes:raisesIssue ?issue .
   ?issue rdfs:label ?issueLabel ;
          a ?issueType .
 
@@ -122,12 +122,12 @@ ORDER BY ?issueLabel
 
 SELECT DISTINCT ?issueLabel ?dispLabel ?dispType
 WHERE {
-  ex:appeal cacontology-sentencing:raisesIssue ?issue .
+  ex:appeal cacontology-legal-outcomes:raisesIssue ?issue .
   ?issue rdfs:label ?issueLabel ;
-         cacontology-sentencing:issueDisposition ?disp .
+         cacontology-legal-outcomes:issueDisposition ?disp .
 
   ?disp rdfs:label ?dispLabel ;
-        cacontology-sentencing:dispositionType ?dispType .
+        cacontology-legal-outcomes:dispositionType ?dispType .
 }
 ORDER BY ?issueLabel
 ;
@@ -138,12 +138,12 @@ ORDER BY ?issueLabel
 
 SELECT DISTINCT ?issueLabel ?sorLabel ?sorType
 WHERE {
-  ex:appeal cacontology-sentencing:raisesIssue ?issue .
+  ex:appeal cacontology-legal-outcomes:raisesIssue ?issue .
   ?issue rdfs:label ?issueLabel ;
-         cacontology-sentencing:appliesStandardOfReview ?sor .
+         cacontology-legal-outcomes:appliesStandardOfReview ?sor .
 
   ?sor rdfs:label ?sorLabel ;
-       cacontology-sentencing:standardOfReviewType ?sorType .
+       cacontology-legal-outcomes:standardOfReviewType ?sorType .
 }
 ORDER BY ?issueLabel
 ;
@@ -154,12 +154,12 @@ ORDER BY ?issueLabel
 
 SELECT DISTINCT ?issueLabel ?ruleLabel ?ruleCitation
 WHERE {
-  ex:appeal cacontology-sentencing:raisesIssue ?issue .
+  ex:appeal cacontology-legal-outcomes:raisesIssue ?issue .
   ?issue rdfs:label ?issueLabel ;
-         cacontology-sentencing:citesEvidenceRule ?rule .
+         cacontology-legal-outcomes:citesEvidenceRule ?rule .
 
   ?rule rdfs:label ?ruleLabel ;
-        cacontology-sentencing:ruleCitation ?ruleCitation .
+        cacontology-legal-outcomes:ruleCitation ?ruleCitation .
 }
 ORDER BY ?issueLabel ?ruleCitation
 ;
@@ -183,10 +183,10 @@ ORDER BY ?label
 
 SELECT DISTINCT ?issueLabel
 WHERE {
-  ex:appeal cacontology-sentencing:raisesIssue ?issue .
+  ex:appeal cacontology-legal-outcomes:raisesIssue ?issue .
   ?issue rdfs:label ?issueLabel ;
-         cacontology-sentencing:issueDisposition ?disp .
-  ?disp cacontology-sentencing:dispositionType "affirmed" .
+         cacontology-legal-outcomes:issueDisposition ?disp .
+  ?disp cacontology-legal-outcomes:dispositionType "affirmed" .
 }
 ORDER BY ?issueLabel
 ;
@@ -197,17 +197,17 @@ ORDER BY ?issueLabel
 
 SELECT DISTINCT ?issueLabel ?sorType ?dispType (GROUP_CONCAT(DISTINCT ?ruleCitation; separator=", ") AS ?rules)
 WHERE {
-  ex:appeal cacontology-sentencing:raisesIssue ?issue .
+  ex:appeal cacontology-legal-outcomes:raisesIssue ?issue .
   ?issue rdfs:label ?issueLabel ;
-         cacontology-sentencing:issueDisposition ?disp ;
-         cacontology-sentencing:appliesStandardOfReview ?sor .
+         cacontology-legal-outcomes:issueDisposition ?disp ;
+         cacontology-legal-outcomes:appliesStandardOfReview ?sor .
 
-  ?disp cacontology-sentencing:dispositionType ?dispType .
-  ?sor cacontology-sentencing:standardOfReviewType ?sorType .
+  ?disp cacontology-legal-outcomes:dispositionType ?dispType .
+  ?sor cacontology-legal-outcomes:standardOfReviewType ?sorType .
 
   OPTIONAL {
-    ?issue cacontology-sentencing:citesEvidenceRule ?rule .
-    ?rule cacontology-sentencing:ruleCitation ?ruleCitation .
+    ?issue cacontology-legal-outcomes:citesEvidenceRule ?rule .
+    ?rule cacontology-legal-outcomes:ruleCitation ?ruleCitation .
   }
 }
 GROUP BY ?issueLabel ?sorType ?dispType
@@ -220,9 +220,9 @@ ORDER BY ?issueLabel
 
 SELECT ?dispType (COUNT(DISTINCT ?issue) AS ?issueCount)
 WHERE {
-  ex:appeal cacontology-sentencing:raisesIssue ?issue .
-  ?issue cacontology-sentencing:issueDisposition ?disp .
-  ?disp cacontology-sentencing:dispositionType ?dispType .
+  ex:appeal cacontology-legal-outcomes:raisesIssue ?issue .
+  ?issue cacontology-legal-outcomes:issueDisposition ?disp .
+  ?disp cacontology-legal-outcomes:dispositionType ?dispType .
 }
 GROUP BY ?dispType
 ORDER BY DESC(?issueCount)

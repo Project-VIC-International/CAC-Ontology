@@ -1,4 +1,4 @@
-# Query: Q8 find_rescue_statistics - Enhanced for ICAC v0.9.0
+# Query: Q8 find_rescue_statistics - Enhanced for CAC Ontology v3.0.0
 # Purpose: Management dashboard - victim rescue metrics and trends with specialized units support
 # Parameters: ?from (dateTime), ?to (dateTime), ?limit (integer), ?organizationURI (optional)
 # Security: TLP-RED content excluded by default
@@ -8,7 +8,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core/>
 PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/>
 PREFIX uco-confidentiality: <https://ontology.unifiedcyberontology.org/uco/confidentiality/>
-PREFIX hotlines-core: <https://cacontology.projectvic.org/hotlines/2025/core#>
+PREFIX cacontology-hotlines: <https://cacontology.projectvic.org/hotlines#>
 PREFIX cacontology-core: <https://cacontology.projectvic.org#>
 PREFIX cacontology-multi: <https://cacontology.projectvic.org/multi-jurisdiction#>
 PREFIX cacontology-specialized: <https://cacontology.projectvic.org/specialized-units#>
@@ -34,9 +34,9 @@ WHERE {
         ("2025-01-01T00:00:00Z"^^xsd:dateTime "2025-12-31T23:59:59Z"^^xsd:dateTime 100 UNDEF)
     }
     
-    ?report hotlines-core:receivedBy ?organization ;
-            hotlines-core:createdTime ?reportTime ;
-            hotlines-core:triggersAction ?rescueAction .
+    ?report cacontology-hotlines:receivedBy ?organization ;
+            cacontology-hotlines:createdTime ?reportTime ;
+            cacontology-hotlines:triggersAction ?rescueAction .
     
     ?rescueAction a cacontology-core:VictimRescueAction ;
                   uco-core:startTime ?rescueTime ;
@@ -125,8 +125,8 @@ WHERE {
     
     # Cycle time from initial report
     OPTIONAL {
-        ?report hotlines-core:triggersAction ?rescueAction ;
-                hotlines-core:createdTime ?reportTime .
+        ?report cacontology-hotlines:triggersAction ?rescueAction ;
+                cacontology-hotlines:createdTime ?reportTime .
         BIND((?rescueTime - ?reportTime) / (24 * 60 * 60) AS ?cycleTime)
     }
     

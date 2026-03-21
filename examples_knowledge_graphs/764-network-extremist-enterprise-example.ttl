@@ -1,0 +1,388 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-enterprises: <https://cacontology.projectvic.org/extremist-enterprises#> .
+@prefix cacontology-international: <https://cacontology.projectvic.org/international#> .
+@prefix ex: <https://example.org/kb/> .
+
+# =============================================================================
+# 764 NETWORK CASE EXAMPLE - EXTREMIST CHILD EXPLOITATION ENTERPRISE
+# Based on: United States v. Prasan Nepal and Leonidas Varagiannis (2025)
+# Charge: 18 U.S.C. § 2252A(g) - Child Exploitation Enterprise
+# =============================================================================
+
+# =============================================================================
+# NIHILISTIC VIOLENT EXTREMISM NETWORK
+# =============================================================================
+
+ex:network_764 rdf:type cacontology-enterprises:NihilisticViolentExtremismNetwork ;
+    rdfs:label "764 Network"@en ;
+    rdfs:comment "Nihilistic violent extremism network engaging in child exploitation with accelerationist goals to destroy civilized society through corruption and exploitation of vulnerable populations."@en ;
+    cacontology-enterprises:networkSize 50 ; # Estimated network size
+    cacontology-enterprises:operationalScope "international" ;
+    cacontology-enterprises:ideologicalFramework "nihilistic" ;
+    cacontology-enterprises:networkNotoriety "international" ;
+    cacontology-enterprises:operatesEnterprise ex:child_exploitation_enterprise_764 ;
+    cacontology-enterprises:hasNetworkCell ex:764_inferno_cell .
+
+ex:764_inferno_cell rdf:type cacontology-enterprises:ExtremistNetworkCell ;
+    rdfs:label "764 Inferno Cell"@en ;
+    rdfs:comment "Elite inner core operational cell with access to restricted private group 764 Inferno on encrypted messaging platform."@en .
+
+ex:child_exploitation_enterprise_764 rdf:type cacontology-enterprises:ChildExploitationEnterprise ;
+    rdfs:label "764 Child Exploitation Enterprise"@en ;
+    rdfs:comment "Criminal enterprise engaging in coordinated child exploitation activities as defined in 18 U.S.C. § 2252A(g) with multiple participants and systematic operations."@en ;
+    cacontology-enterprises:leadershipCount 3 ; # Nepal, Varagiannis, and Co-Conspirator 1 (Fail)
+    cacontology-enterprises:membershipRequirements "Content quality and notoriety based recruitment with demonstrated capability to produce high-value exploitative material" ;
+    cacontology-enterprises:hasHierarchy ex:enterprise_hierarchy_764 ;
+    cacontology-enterprises:hasInnerCore ex:inner_core_764_inferno ;
+    cacontology-enterprises:coordinatesAcrossPlatforms ex:cross_platform_coordination ;
+    cacontology-enterprises:utilizesEncryptedChannels ex:encrypted_channel_network .
+
+# =============================================================================
+# ENTERPRISE HIERARCHY AND STRUCTURE
+# =============================================================================
+
+ex:enterprise_hierarchy_764 rdf:type cacontology-enterprises:LeadershipStructure ;
+    rdfs:label "764 Enterprise Leadership Structure"@en ;
+    rdfs:comment "Leadership structure with multiple leaders coordinating different aspects of enterprise operations."@en ;
+    cacontology-enterprises:hierarchyComplexity "complex" .
+
+ex:inner_core_764_inferno rdf:type cacontology-enterprises:InnerCore ;
+    rdfs:label "764 Inferno Inner Core"@en ;
+    rdfs:comment "Elite inner core with access to restricted 764 Inferno channel for advanced coordination and content sharing."@en ;
+    cacontology-enterprises:innerCoreSize 12 . # Estimated inner core size
+
+ex:membership_tier_leader rdf:type cacontology-enterprises:MembershipTier ;
+    rdfs:label "Leader Tier"@en ;
+    cacontology-enterprises:membershipLevel "leader" ;
+    cacontology-enterprises:accessLevel "full" .
+
+ex:membership_tier_inner_core rdf:type cacontology-enterprises:MembershipTier ;
+    rdfs:label "Inner Core Tier"@en ;
+    cacontology-enterprises:membershipLevel "inner_core" ;
+    cacontology-enterprises:accessLevel "privileged" .
+
+# =============================================================================
+# DEFENDANTS AND ENTERPRISE ROLES
+# =============================================================================
+
+ex:prasan_nepal rdf:type uco-identity:Person ;
+    uco-identity:fullName "Prasan Nepal"@en ;
+    rdfs:label "Prasan Nepal (aka Trippy)"@en ;
+    uco-identity:birthDate "2005-02-24"^^xsd:date ; # Age 20 in 2025
+    uco-location:hasLocation ex:high_point_nc_location ;
+    cacontology-enterprises:holdsLeadershipRole ex:nepal_leader_role ;
+    cacontology-enterprises:participatesInInnerCore ex:inner_core_764_inferno ;
+    cacontology-enterprises:maintainsAltAccounts ex:nepal_alt_account_system .
+
+ex:leonidas_varagiannis rdf:type uco-identity:Person ;
+    uco-identity:fullName "Leonidas Varagiannis"@en ;
+    rdfs:label "Leonidas Varagiannis (aka War)"@en ;
+    uco-location:hasLocation ex:thessaloniki_greece_location ;
+    cacontology-enterprises:holdsLeadershipRole ex:varagiannis_leader_role ;
+    cacontology-enterprises:participatesInInnerCore ex:inner_core_764_inferno ;
+    cacontology-enterprises:maintainsAltAccounts ex:varagiannis_alt_account_system .
+
+ex:co_conspirator_1_fail rdf:type uco-identity:Person ;
+    uco-identity:fullName "Co-Conspirator 1"@en ;
+    rdfs:label "Co-Conspirator 1 (aka Fail)"@en ;
+    cacontology-enterprises:holdsLeadershipRole ex:fail_leader_role ;
+    cacontology-enterprises:participatesInInnerCore ex:inner_core_764_inferno .
+
+# Enterprise Roles
+ex:nepal_leader_role rdf:type cacontology-enterprises:EnterpriseLeaderRole ;
+    rdfs:label "Nepal Enterprise Leader Role"@en ;
+    rdfs:comment "Leadership role as one of the leaders of 764 network, directing and coordinating child exploitation activities."@en ;
+    cacontology-enterprises:coordinatesActivities ex:cross_platform_coordination ;
+    cacontology-enterprises:recruitsMembers ex:content_based_recruitment .
+
+ex:varagiannis_leader_role rdf:type cacontology-enterprises:EnterpriseLeaderRole ;
+    rdfs:label "Varagiannis Enterprise Leader Role"@en ;
+    rdfs:comment "Leadership role with admin privileges in 764 Inferno channel, coordinating international operations."@en ;
+    cacontology-enterprises:coordinatesActivities ex:international_coordination ;
+    cacontology-enterprises:managesPrivateGroups ex:inferno_private_group .
+
+ex:fail_leader_role rdf:type cacontology-enterprises:EnterpriseLeaderRole ;
+    rdfs:label "Fail Enterprise Leader Role"@en ;
+    rdfs:comment "Co-leader role in 764 network inner core coordination."@en .
+
+# =============================================================================
+# CONTENT COMPILATION AND LOREBOOK SYSTEM
+# =============================================================================
+
+ex:content_compilation_system_764 rdf:type cacontology-enterprises:ContentCompilationSystem ;
+    rdfs:label "764 Content Compilation System"@en ;
+    rdfs:comment "System for compiling, editing, and organizing exploitative content into Lorebooks for enterprise distribution."@en ;
+    cacontology-enterprises:compilesContent ex:mv8_victim_content .
+
+ex:mv8_lorebook rdf:type cacontology-enterprises:VictimContentCompilation ;
+    rdfs:label "MV-8 Lorebook"@en ;
+    rdfs:comment "Edited compilation of victim content from minor victim MV-8 including images and videos of coerced self-harm and exploitation."@en ;
+    cacontology-enterprises:contentVolumeItems 5 ; # 3 images + 1 video + personal information
+    cacontology-enterprises:compilationComplexity "moderate" ;
+    cacontology-enterprises:contentNotoriety "high" ;
+    cacontology-enterprises:containsVictimContent ex:mv8_victim_content ;
+    cacontology-enterprises:containsVictimContent ex:mv8_self_harm_images ;
+    cacontology-enterprises:containsVictimContent ex:mv8_exploitation_video .
+
+ex:content_editing_process rdf:type cacontology-enterprises:ContentEditingProcess ;
+    rdfs:label "764 Content Editing Process"@en ;
+    rdfs:comment "Process of editing and organizing victim content into compilations for enterprise distribution within 764 channels."@en ;
+    cacontology-enterprises:editingQuality "good" .
+
+# =============================================================================
+# CONTENT AS CURRENCY SYSTEM
+# =============================================================================
+
+ex:content_currency_system_764 rdf:type cacontology-enterprises:ContentCurrencySystem ;
+    rdfs:label "764 Content Currency System"@en ;
+    rdfs:comment "System using exploitative content as valuable currency within enterprise for advancement and access to restricted channels."@en ;
+    cacontology-enterprises:usesAsCurrency ex:mv8_lorebook .
+
+ex:content_value_assessment rdf:type cacontology-enterprises:ContentValueAssessment ;
+    rdfs:label "MV-8 Lorebook Value Assessment"@en ;
+    rdfs:comment "Assessment of MV-8 lorebook value based on quality, notoriety, and enterprise utility for inner core access."@en ;
+    cacontology-enterprises:contentValue 8.5 . # High value content on 0-10 scale
+
+ex:membership_advancement_system rdf:type cacontology-enterprises:MembershipAdvancementSystem ;
+    rdfs:label "764 Membership Advancement System"@en ;
+    rdfs:comment "System governing member advancement within enterprise based on content contributions and criminal activities."@en ;
+    cacontology-enterprises:advancementCriteria "High-quality exploitative content production, notoriety within network, demonstrated capability for extreme coercion methods" .
+
+ex:content_based_recruitment rdf:type cacontology-enterprises:ContentBasedRecruitment ;
+    rdfs:label "764 Content Based Recruitment"@en ;
+    rdfs:comment "Recruitment of new members based on quality and notoriety of content they produce and share."@en .
+
+# =============================================================================
+# ADVANCED EXPLOITATION METHODS
+# =============================================================================
+
+ex:self_harm_coercion_campaign rdf:type cacontology-enterprises:SelfHarmCoercion ;
+    rdfs:label "764 Self-Harm Coercion Campaign"@en ;
+    rdfs:comment "Systematic coercion of victims to engage in self-harm activities including cutting, burning, and extreme degradation."@en ;
+    cacontology-enterprises:coercionSeverity "extreme" ;
+    cacontology-enterprises:selfHarmType "cutting" ;
+    cacontology-enterprises:coercionEffectiveness 0.8 . # High effectiveness
+
+ex:name_cutting_coercion rdf:type cacontology-enterprises:NameCuttingCoercion ;
+    rdfs:label "Name Cutting Coercion"@en ;
+    rdfs:comment "Coercion of victims to cut enterprise member names into their bodies as ownership marking."@en ;
+    cacontology-enterprises:coercionSeverity "extreme" ;
+    cacontology-enterprises:degradationLevel "extreme" ;
+    cacontology-enterprises:coercesIntoSelfHarm ex:minor_victim_mv8 .
+
+ex:extreme_degradation_campaign rdf:type cacontology-enterprises:ExtremeDegradationCoercion ;
+    rdfs:label "Extreme Degradation Campaign"@en ;
+    rdfs:comment "Coercion involving animal abuse, sibling abuse, and threats toward suicide as ultimate control methods."@en ;
+    cacontology-enterprises:degradationLevel "inhuman" ;
+    cacontology-enterprises:coercionSeverity "life_threatening" .
+
+# =============================================================================
+# VICTIM TARGETING AND VULNERABILITY EXPLOITATION
+# =============================================================================
+
+ex:vulnerable_population_targeting rdf:type cacontology-enterprises:MentalHealthVulnerabilityTargeting ;
+    rdfs:label "Mental Health Vulnerability Targeting"@en ;
+    rdfs:comment "Systematic targeting of minor girls with mental health challenges for exploitation and coercion."@en ;
+    cacontology-enterprises:vulnerabilityType "mental_health" ;
+    cacontology-enterprises:targetingPrecision "precise" ;
+    cacontology-enterprises:targetsVulnerability ex:mental_health_vulnerability .
+
+ex:social_engineering_campaign rdf:type cacontology-enterprises:SocialEngineeringCampaign ;
+    rdfs:label "764 Social Engineering Campaign"@en ;
+    rdfs:comment "Sophisticated social engineering campaign to gain trust of vulnerable victims before exploitation."@en ;
+    cacontology-enterprises:socialEngineeringComplexity "sophisticated" ;
+    cacontology-enterprises:buildsVictimTrust ex:trust_building_process .
+
+ex:trust_building_process rdf:type cacontology-enterprises:TrustBuildingProcess ;
+    rdfs:label "Victim Trust Building Process"@en ;
+    rdfs:comment "Process of building trust with vulnerable victims before exploitation begins."@en ;
+    cacontology-enterprises:trustBuildingDuration 14.0 . # Approximately 2 weeks
+
+ex:victim_profile_development rdf:type cacontology-enterprises:VictimProfileDevelopment ;
+    rdfs:label "Victim Profile Development"@en ;
+    rdfs:comment "Development of detailed victim profiles including mental health vulnerabilities and exploitation opportunities."@en .
+
+# =============================================================================
+# CROSS-PLATFORM COORDINATION
+# =============================================================================
+
+ex:cross_platform_coordination rdf:type cacontology-enterprises:CrossPlatformCoordination ;
+    rdfs:label "764 Cross-Platform Coordination"@en ;
+    rdfs:comment "Coordination of enterprise activities across multiple encrypted messaging platforms and channels."@en ;
+    cacontology-enterprises:platformCount 4 . # Platform A, Platform B, Platform C, Platform D
+
+ex:encrypted_channel_network rdf:type cacontology-enterprises:EncryptedChannelNetwork ;
+    rdfs:label "764 Encrypted Channel Network"@en ;
+    rdfs:comment "Network of encrypted messaging channels including 764 Inferno for enterprise coordination and content sharing."@en ;
+    cacontology-enterprises:encryptionLevel "strong" ;
+    cacontology-enterprises:channelCount 8 . # Multiple channels across platforms
+
+ex:inferno_private_group rdf:type cacontology-enterprises:PrivateGroupManagement ;
+    rdfs:label "764 Inferno Private Group Management"@en ;
+    rdfs:comment "Management of exclusive 764 Inferno private group with restricted access for inner core members."@en .
+
+ex:nepal_alt_account_system rdf:type cacontology-enterprises:AlternateAccountSystem ;
+    rdfs:label "Nepal Alt Account System"@en ;
+    rdfs:comment "System of alternate accounts used by Nepal across platforms to evade restrictions and maintain operations."@en ;
+    cacontology-enterprises:altAccountCount 4 . # Multiple usernames and accounts
+
+ex:varagiannis_alt_account_system rdf:type cacontology-enterprises:AlternateAccountSystem ;
+    rdfs:label "Varagiannis Alt Account System"@en ;
+    rdfs:comment "System of alternate accounts used by Varagiannis including War764, War, and variations."@en ;
+    cacontology-enterprises:altAccountCount 3 .
+
+ex:platform_migration_strategy rdf:type cacontology-enterprises:PlatformMigrationStrategy ;
+    rdfs:label "764 Platform Migration Strategy"@en ;
+    rdfs:comment "Strategy for migrating operations between platforms when accounts are terminated due to community standards violations."@en .
+
+# =============================================================================
+# INVESTIGATION AND EVIDENCE
+# =============================================================================
+
+ex:covert_employee_operation rdf:type cacontology-enterprises:CovertEmployeeOperation ;
+    rdfs:label "FBI Covert Employee Operation"@en ;
+    rdfs:comment "Operation using online covert employees (OCE-1) to infiltrate and monitor 764 network activities."@en ;
+    cacontology-enterprises:evidenceQuality "excellent" ;
+    cacontology-enterprises:infiltratesNetwork ex:network_764 .
+
+ex:encrypted_channel_infiltration rdf:type cacontology-enterprises:EncryptedChannelInfiltration ;
+    rdfs:label "764 Inferno Channel Infiltration"@en ;
+    rdfs:comment "Infiltration of encrypted 764 Inferno channel and related channels for evidence collection."@en ;
+    cacontology-enterprises:infiltrationDuration 365.0 . # Approximately 1 year operation
+
+ex:identity_correlation_analysis rdf:type cacontology-enterprises:IdentityCorrelationAnalysis ;
+    rdfs:label "Cross-Platform Identity Correlation"@en ;
+    rdfs:comment "Analysis correlating Nepal and Varagiannis identities across multiple platforms using usernames, IP addresses, and content."@en ;
+    cacontology-enterprises:identityCorrelationAccuracy 0.95 ; # 95% accuracy
+    cacontology-enterprises:evidenceQuality "excellent" ;
+    cacontology-enterprises:identifiesNetworkMember ex:prasan_nepal ;
+    cacontology-enterprises:identifiesNetworkMember ex:leonidas_varagiannis .
+
+ex:network_mapping_investigation rdf:type cacontology-enterprises:NetworkMappingInvestigation ;
+    rdfs:label "764 Network Structure Mapping"@en ;
+    rdfs:comment "Investigation mapping the structure and relationships within 764 extremist child exploitation network."@en ;
+    cacontology-enterprises:networkMappingCompleteness 0.8 ; # 80% completeness
+    cacontology-enterprises:mapsNetworkStructure ex:enterprise_hierarchy_764 .
+
+ex:cross_platform_evidence_correlation rdf:type cacontology-enterprises:CrossPlatformEvidenceCorrelation ;
+    rdfs:label "Multi-Platform Evidence Correlation"@en ;
+    rdfs:comment "Correlation of evidence across Platform A, B, C, and D to establish network connections and activities."@en ;
+    cacontology-enterprises:correlatesEvidence ex:platform_a_evidence ;
+    cacontology-enterprises:correlatesEvidence ex:platform_b_evidence ;
+    cacontology-enterprises:correlatesEvidence ex:graffiti_evidence .
+
+# =============================================================================
+# INTERNATIONAL COORDINATION
+# =============================================================================
+
+ex:mlat_process_us_greece rdf:type cacontology-international:MutualLegalAssistanceTreatyOperation ;
+    rdfs:label "US-Greece MLAT Process"@en ;
+    rdfs:comment "Mutual Legal Assistance Treaty process between United States and Greece for device seizure and evidence sharing."@en ;
+    cacontology-international:treatyMechanism "MLAT" ;
+    cacontology-international:resultsInSeizure ex:greece_device_seizure .
+
+ex:greece_device_seizure rdf:type cacontology-international:CrossBorderDeviceSeizure ;
+    rdfs:label "Greece Device Seizure"@en ;
+    rdfs:comment "Seizure of electronic devices from Varagiannis in Thessaloniki, Greece by Greek law enforcement on April 5, 2024."@en .
+
+ex:international_evidence_sharing rdf:type cacontology-international:InternationalEvidenceSharing ;
+    rdfs:label "US-Greece Evidence Sharing"@en ;
+    rdfs:comment "Sharing of evidence between Greece and United States through MLAT including Android device data and digital evidence."@en ;
+    cacontology-international:cooperationResponseTime 30.0 ; # 30 days response time
+    cacontology-international:evidenceSharingVolume 50.0 ; # 50 GB of evidence
+    cacontology-international:sharesEvidenceInternationally ex:android_device_evidence .
+
+ex:international_network_disruption rdf:type cacontology-international:InternationalNetworkDisruption ;
+    rdfs:label "764 Network Disruption Operation"@en ;
+    rdfs:comment "Coordinated international effort to disrupt 764 extremist child exploitation network operations."@en ;
+    cacontology-international:disruptionEffectiveness "high" ;
+    cacontology-international:disruptsInternationalNetwork ex:network_764 .
+
+ex:cross_jurisdictional_investigation rdf:type cacontology-international:CrossJurisdictionalInvestigation ;
+    rdfs:label "US-Greece Joint Investigation"@en ;
+    rdfs:comment "Investigation spanning United States and Greece targeting international 764 network operations."@en ;
+    cacontology-international:coordinatesInternationalEffort ex:mlat_process_us_greece .
+
+# =============================================================================
+# VICTIMS AND EVIDENCE
+# =============================================================================
+
+ex:minor_victim_mv8 rdf:type uco-identity:Person ;
+    rdfs:label "Minor Victim MV-8"@en ;
+    rdfs:comment "Minor female victim coerced into self-harm and exploitation by 764 network members."@en .
+
+ex:mv8_victim_content rdf:type uco-observable:ObservableObject ;
+    rdfs:label "MV-8 Victim Content"@en ;
+    rdfs:comment "Exploitative content obtained from MV-8 through coercion and exploitation."@en .
+
+ex:mv8_self_harm_images rdf:type uco-observable:Image ;
+    rdfs:label "MV-8 Self-Harm Images"@en ;
+    rdfs:comment "Three images showing cuts across breasts with 'Praise' and co-conspirator name written in blood and marker."@en .
+
+ex:mv8_exploitation_video rdf:type uco-observable:File ;
+    rdfs:label "MV-8 Exploitation Video"@en ;
+    rdfs:comment "44-second video of minor engaging in coerced sexual activity."@en .
+
+ex:mental_health_vulnerability rdf:type uco-core:UcoObject ;
+    rdfs:label "Mental Health Vulnerability"@en ;
+    rdfs:comment "Mental health challenges and psychological vulnerabilities targeted by 764 network."@en .
+
+# =============================================================================
+# DIGITAL EVIDENCE
+# =============================================================================
+
+ex:platform_a_evidence rdf:type uco-observable:ObservableObject ;
+    rdfs:label "Platform A Evidence"@en ;
+    rdfs:comment "Evidence collected from encrypted messaging Platform A including 764 Inferno channel communications."@en .
+
+ex:platform_b_evidence rdf:type uco-observable:ObservableObject ;
+    rdfs:label "Platform B Evidence"@en ;
+    rdfs:comment "Evidence from Platform B including War764 account activities and victim coercion attempts."@en .
+
+ex:graffiti_evidence rdf:type uco-observable:Image ;
+    rdfs:label "Graffiti Documentation Evidence"@en ;
+    rdfs:comment "Images of graffiti on vehicles containing 764 network member names including Trippy, War, Fail, and 764x Mourge."@en .
+
+ex:android_device_evidence rdf:type uco-observable:ObservableObject ;
+    rdfs:label "Varagiannis Android Device Evidence"@en ;
+    rdfs:comment "Evidence from Android device seized from Varagiannis including passport images, graffiti photos, and network communications."@en .
+
+ex:ip_address_correlation_evidence rdf:type uco-observable:ObservableObject ;
+    rdfs:label "IP Address Correlation Evidence"@en ;
+    rdfs:comment "IP address evidence linking Nepal to High Point, North Carolina and multiple platform accounts."@en .
+
+# =============================================================================
+# LOCATIONS
+# =============================================================================
+
+ex:high_point_nc_location rdf:type uco-location:Location ;
+    rdfs:label "High Point, North Carolina"@en ;
+    rdfs:comment "Location associated with Prasan Nepal based on IP address and subscriber information."@en .
+
+ex:thessaloniki_greece_location rdf:type uco-location:Location ;
+    rdfs:label "Thessaloniki, Greece"@en ;
+    rdfs:comment "Location of Leonidas Varagiannis where device seizure occurred by Greek law enforcement."@en .
+
+# =============================================================================
+# CRIMINAL CHARGES
+# =============================================================================
+
+ex:child_exploitation_enterprise_charge rdf:type cacontology:ChildExploitationEnterpriseCharge ;
+    rdfs:label "18 U.S.C. § 2252A(g) Child Exploitation Enterprise"@en ;
+    rdfs:comment "Federal charge for operating criminal enterprise engaging in child exploitation with multiple participants and systematic operations."@en .
+
+ex:nepal_enterprise_charge rdf:type cacontology:ChildExploitationEnterpriseCharge ;
+    rdfs:label "Nepal Enterprise Charge"@en ;
+    rdfs:comment "Child exploitation enterprise charge against Prasan Nepal for leadership role in 764 network."@en .
+
+ex:varagiannis_enterprise_charge rdf:type cacontology:ChildExploitationEnterpriseCharge ;
+    rdfs:label "Varagiannis Enterprise Charge"@en ;
+    rdfs:comment "Child exploitation enterprise charge against Leonidas Varagiannis for leadership role in 764 network."@en . 

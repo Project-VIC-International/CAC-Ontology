@@ -5,30 +5,29 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 
-@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 
-@prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-detection: <https://cacontology.projectvic.org/detection#> .
 @prefix cacontology-analyst: <https://cacontology.projectvic.org/analyst-wellbeing#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/analyst-wellbeing/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/analyst-wellbeing/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Analyst Wellbeing & Exposure Mitigation Ontology"@en ;
     rdfs:comment "An ontology for representing analyst/investigator exposure mitigation measures and occupational harms arising from reviewing traumatic CSEA material, supporting ethically designed detection-to-action pipelines while preserving evidentiary integrity."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/analyst-wellbeing/2.12.0> ;
-    owl:versionInfo "2.12.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/analyst-wellbeing/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2026-02-11"^^xsd:date ;
     dcterms:modified "2026-02-11"^^xsd:date ;
-    owl:imports <https://ontology.unifiedcyberontology.org/uco/core> ,
-                <https://ontology.unifiedcyberontology.org/uco/identity> ,
-                <https://ontology.unifiedcyberontology.org/uco/action> ,
-                <https://cacontology.projectvic.org/detection/2.12.0> ,
-                <https://cacontology.projectvic.org/2.12.0> ,
-                <http://purl.org/nemo/gufo> .
+    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
+                <https://ontology.unifiedcyberontology.org/uco/identity/> ,
+                <https://ontology.unifiedcyberontology.org/uco/action/> ,
+                <https://cacontology.projectvic.org/detection/3.0.0> ,
+                <https://cacontology.projectvic.org/3.0.0> ,
+                <https://cacontology.projectvic.org/core/3.0.0> ,
+                <http://purl.org/nemo/gufo#> .
 
 # =============================================================================
 # CLASSES
@@ -39,14 +38,14 @@ cacontology-analyst:ExposureMitigationMeasure rdf:type owl:Class ;
     rdfs:comment "A measure, control, or workflow technique used to reduce human exposure to traumatic content while enabling effective review and classification (e.g., blur/previews, hash-only review, progressive reveal)."@en ;
     dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
     rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
-    rdfs:subClassOf uco-core:UcoObject, gufo:Object .
+    rdfs:subClassOf uco-core:UcoObject, cac-core:EnduringEntity .
 
 cacontology-analyst:OccupationalHarm rdf:type owl:Class ;
     rdfs:label "Occupational Harm"@en ;
     rdfs:comment "Occupational harm experienced by investigators or content analysts arising from exposure to traumatic materials or sustained operational stressors."@en ;
     dcterms:source "Community & Intelligence Beyond Detection (Global Emancipation Network), 2026-02-10."@en ;
     rdfs:seeAlso <https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/> ;
-    rdfs:subClassOf gufo:Situation .
+    rdfs:subClassOf cac-core:Situation .
 
 cacontology-analyst:VicariousTrauma rdf:type owl:Class ;
     rdfs:label "Vicarious Trauma"@en ;

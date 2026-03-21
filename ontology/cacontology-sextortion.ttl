@@ -3,34 +3,32 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
-@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
-@prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-sextortion: <https://cacontology.projectvic.org/sextortion#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/sextortion/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/sextortion/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Sextortion Ontology"@en ;
     rdfs:comment "An ontology for representing sextortion incidents, progression patterns, and investigation approaches in Internet Crimes Against Children cases. Sextortion is online blackmail where offenders trick or coerce someone into sending sexual images, then threaten to share unless demands are met."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/sextortion/2.12.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/sextortion/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-05-23"^^xsd:date ;
     dcterms:modified "2026-02-11"^^xsd:date ;
-    owl:imports <https://ontology.unifiedcyberontology.org/uco/core> ,
-                <https://ontology.unifiedcyberontology.org/uco/identity> ,
-                <https://ontology.unifiedcyberontology.org/uco/observable> ,
-                <https://ontology.unifiedcyberontology.org/uco/action> ,
-                <https://ontology.unifiedcyberontology.org/uco/role> ,
-                <https://ontology.unifiedcyberontology.org/uco/types> ,
-                <https://cacontology.projectvic.org/2.12.0> .
+    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
+                <https://ontology.unifiedcyberontology.org/uco/identity/> ,
+                <https://ontology.unifiedcyberontology.org/uco/observable/> ,
+                <https://ontology.unifiedcyberontology.org/uco/action/> ,
+                <https://ontology.unifiedcyberontology.org/uco/role/> ,
+                <https://ontology.unifiedcyberontology.org/uco/types/> ,
+                <https://cacontology.projectvic.org/3.0.0> ,
+                <https://cacontology.projectvic.org/core/3.0.0> .
 
 # =============================================================================
-# SEXTORTION INCIDENT CLASSES (extending ICAC Core)
+# SEXTORTION INCIDENT CLASSES (extending CAC Core)
 # =============================================================================
 
 cacontology-sextortion:SextortionIncident rdf:type owl:Class ;
@@ -67,32 +65,32 @@ cacontology-sextortion:SocialMediaSextortion rdf:type owl:Class ;
 cacontology-sextortion:SextortionProgression rdf:type owl:Class ;
     rdfs:label "Sextortion Progression"@en ;
     rdfs:comment "Sequential phases of sextortion from initial contact through exploitation."@en ;
-    rdfs:subClassOf uco-action:Action .
+    rdfs:subClassOf cac-core:ExploitationEvent .
 
 cacontology-sextortion:InitialDeceptionPhase rdf:type owl:Class ;
     rdfs:label "Initial Deception Phase"@en ;
     rdfs:comment "First phase involving age deception and false identity establishment."@en ;
-    rdfs:subClassOf cacontology-sextortion:SextortionProgression .
+    rdfs:subClassOf cac-core:Phase .
 
 cacontology-sextortion:TrustBuildingPhase rdf:type owl:Class ;
     rdfs:label "Trust Building Phase"@en ;
     rdfs:comment "Phase focused on building trust and rapport with victim."@en ;
-    rdfs:subClassOf cacontology-sextortion:SextortionProgression .
+    rdfs:subClassOf cac-core:Phase .
 
 cacontology-sextortion:SexualSolicitationPhase rdf:type owl:Class ;
     rdfs:label "Sexual Solicitation Phase"@en ;
     rdfs:comment "Phase involving sexually explicit conversations and image solicitation."@en ;
-    rdfs:subClassOf cacontology-sextortion:SextortionProgression .
+    rdfs:subClassOf cac-core:Phase .
 
 cacontology-sextortion:ImageAcquisitionPhase rdf:type owl:Class ;
     rdfs:label "Image Acquisition Phase"@en ;
     rdfs:comment "Phase where intimate images are obtained from victims."@en ;
-    rdfs:subClassOf cacontology-sextortion:SextortionProgression .
+    rdfs:subClassOf cac-core:Phase .
 
 cacontology-sextortion:ExtortionPhase rdf:type owl:Class ;
     rdfs:label "Extortion Phase"@en ;
     rdfs:comment "Final phase involving threats and blackmail using obtained images."@en ;
-    rdfs:subClassOf cacontology-sextortion:SextortionProgression .
+    rdfs:subClassOf cac-core:Phase .
 
 # =============================================================================
 # DECEPTION TACTICS (extending UCO Action)
@@ -101,7 +99,7 @@ cacontology-sextortion:ExtortionPhase rdf:type owl:Class ;
 cacontology-sextortion:AgeDeceptionTactic rdf:type owl:Class ;
     rdfs:label "Age Deception Tactic"@en ;
     rdfs:comment "Tactic of lying about age when interacting with children (e.g., adult posing as juvenile)."@en ;
-    rdfs:subClassOf uco-action:Action .
+    rdfs:subClassOf cac-core:ExploitationEvent .
 
 cacontology-sextortion:IdentityImpersonation rdf:type owl:Class ;
     rdfs:label "Identity Impersonation"@en ;
@@ -125,7 +123,7 @@ cacontology-sextortion:FalseProfileCreation rdf:type owl:Class ;
 cacontology-sextortion:ManipulationTactic rdf:type owl:Class ;
     rdfs:label "Manipulation Tactic"@en ;
     rdfs:comment "Psychological manipulation technique used to control and exploit victims."@en ;
-    rdfs:subClassOf uco-action:Action .
+    rdfs:subClassOf cac-core:ExploitationEvent .
 
 cacontology-sextortion:ProgressiveEscalation rdf:type owl:Class ;
     rdfs:label "Progressive Escalation"@en ;
@@ -149,7 +147,7 @@ cacontology-sextortion:EmotionalManipulation rdf:type owl:Class ;
 cacontology-sextortion:ThreatMechanism rdf:type owl:Class ;
     rdfs:label "Threat Mechanism"@en ;
     rdfs:comment "Specific method of threatening or coercing victims using obtained material."@en ;
-    rdfs:subClassOf uco-action:Action .
+    rdfs:subClassOf cac-core:ExploitationEvent .
 
 cacontology-sextortion:DoxxingThreat rdf:type owl:Class ;
     rdfs:label "Doxxing Threat"@en ;
@@ -324,7 +322,7 @@ cacontology-sextortion:DisappearingMessageFeature rdf:type owl:Class ;
 cacontology-sextortion:SextortionInvestigation rdf:type owl:Class ;
     rdfs:label "Sextortion Investigation"@en ;
     rdfs:comment "Investigation specifically focused on sextortion incidents."@en ;
-    rdfs:subClassOf uco-action:Action .
+    rdfs:subClassOf cac-core:InvestigativeAction .
 
 cacontology-sextortion:DeviceForensicAnalysis rdf:type owl:Class ;
     rdfs:label "Device Forensic Analysis"@en ;
@@ -571,7 +569,7 @@ cacontology-sextortion:identifiesVictim rdf:type owl:ObjectProperty ;
     rdfs:range uco-identity:Person .
 
 # Charge Relationships (connect to sentencing module)
-cacontology-sextortion:resultsinCharge rdf:type owl:ObjectProperty ;
+cacontology-sextortion:resultsInCharge rdf:type owl:ObjectProperty ;
     rdfs:label "results in charge"@en ;
     rdfs:comment "Links sextortion incident to resulting criminal charges."@en ;
     rdfs:domain cacontology-sextortion:SextortionIncident ;

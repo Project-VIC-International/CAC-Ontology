@@ -23,7 +23,7 @@
 
 | Shapes File | Conforms |
 |-------------|----------|
-| `cacontology-sentencing-shapes.ttl` | **True** |
+| `cacontology-legal-outcomes-shapes.ttl` | **True** |
 
 ## Metrics Summary
 - UUID Coverage: 100% (all instance IRIs use urn:uuid:)

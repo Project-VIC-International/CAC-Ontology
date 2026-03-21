@@ -1,4 +1,4 @@
-# Find Platform Cooperation Analytics - Enhanced for ICAC v0.9.0
+# Find Platform Cooperation Analytics - Enhanced for CAC Ontology v3.0.0
 # 
 # This query demonstrates the integration of forensics, detection, platforms, and social media evidence ontologies
 # by finding investigations that involve specific platform cooperation patterns,
@@ -18,8 +18,8 @@ PREFIX cacontology-forensics: <https://cacontology.projectvic.org/forensics#>
 PREFIX cacontology-detection: <https://cacontology.projectvic.org/detection#>
 PREFIX cacontology-platforms: <https://cacontology.projectvic.org/platforms#>
 PREFIX cacontology-taskforce: <https://cacontology.projectvic.org/taskforce#>
-PREFIX cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#>
-PREFIX hotlines-core: <https://cacontology.projectvic.org/hotlines/2025/core#>
+PREFIX cacontology-legal-outcomes: <https://cacontology.projectvic.org/legal-outcomes#>
+PREFIX cacontology-hotlines: <https://cacontology.projectvic.org/hotlines#>
 
 SELECT DISTINCT
     ?investigation
@@ -53,7 +53,7 @@ SELECT DISTINCT
     
 WHERE {
     # Main investigation
-    ?investigation rdf:type cacontology-core:ICACInvestigation ;
+    ?investigation rdf:type cacontology-core:CACInvestigation ;
                   rdfs:label ?investigationLabel ;
                   cacontology-core:hasStep ?receiveStep .
     
@@ -62,7 +62,7 @@ WHERE {
                 uco-core:object ?report .
     
     # Platform and ESP information
-    ?report hotlines-core:reportedBy ?esp .
+    ?report cacontology-hotlines:reportedBy ?esp .
     ?platform cacontology-platforms:operatedBy ?esp ;
              rdf:type ?platformClass ;
              rdfs:label ?platformLabel ;
@@ -196,7 +196,7 @@ SELECT
     (AVG(?dataRetentionPeriod) AS ?avgDataRetentionDays)
 
 WHERE {
-    ?investigation rdf:type cacontology-core:ICACInvestigation .
+    ?investigation rdf:type cacontology-core:CACInvestigation .
     
     ?platform cacontology-platforms:platformType ?platformType .
     

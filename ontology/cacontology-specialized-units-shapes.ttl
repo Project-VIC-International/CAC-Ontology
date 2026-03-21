@@ -5,22 +5,20 @@
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
-@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
-@prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-specialized: <https://cacontology.projectvic.org/specialized-units#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/specialized-units/shapes/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/specialized-units/shapes/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Specialized Units SHACL Shapes"@en ;
-    rdfs:comment "SHACL validation shapes for the ICAC Specialized Units Ontology, providing validation for K9 detection programs, officer wellness support, and specialized investigative capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/specialized-units/shapes/2.12.0> ;
-    owl:versionInfo "2.12.0" ;
+    rdfs:comment "SHACL validation shapes for the CAC Specialized Units Ontology, providing validation for K9 detection programs, officer wellness support, and specialized investigative capabilities."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/specialized-units/shapes/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/specialized-units/2.12.0> ,
-                <http://purl.org/nemo/gufo> ,
+    owl:imports <https://cacontology.projectvic.org/specialized-units/3.0.0> ,
+                <http://purl.org/nemo/gufo#> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 
 # =============================================================================
@@ -443,7 +441,7 @@ cacontology-specialized:RapidResponseTeamShape rdf:type sh:NodeShape ;
 cacontology-specialized:ICACAffiliateOrganizationShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-specialized:ICACAffiliateOrganization ;
     rdfs:label "CAC Affiliate Organization Shape"@en ;
-    rdfs:comment "Validation shape for ICAC affiliate organization instances."@en ;
+    rdfs:comment "Validation shape for CAC affiliate organization instances."@en ;
     sh:property [
         sh:path uco-core:name ;
         sh:datatype xsd:string ;

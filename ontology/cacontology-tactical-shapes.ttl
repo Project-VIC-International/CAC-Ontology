@@ -3,26 +3,20 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
-@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
-@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
-@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
-@prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
-@prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-tactical: <https://cacontology.projectvic.org/tactical#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/tactical/shapes/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/tactical/shapes/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Tactical Operations SHACL Shapes"@en ;
-    rdfs:comment "SHACL validation shapes for the ICAC Tactical Operations Ontology, providing validation for SWAT operations, high-risk arrests, and specialized tactical procedures."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/tactical/shapes/2.12.0> ;
-    owl:versionInfo "2.12.0" ;
+    rdfs:comment "SHACL validation shapes for the CAC Tactical Operations Ontology, providing validation for SWAT operations, high-risk arrests, and specialized tactical procedures."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/tactical/shapes/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2026-01-01"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/tactical/2.12.0> ,
-                <http://purl.org/nemo/gufo> ,
+    owl:imports <https://cacontology.projectvic.org/tactical/3.0.0> ,
+                <http://purl.org/nemo/gufo#> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 
 # =============================================================================
@@ -796,13 +790,13 @@ cacontology-tactical:DataQualityShape rdf:type sh:NodeShape ;
     ] .
 
 # =============================================================================
-# ARREST OPERATION SHAPES (Miami ICAC Case Enhancement)
+# ARREST OPERATION SHAPES (Miami CAC Case Enhancement)
 # =============================================================================
 
 cacontology-tactical:ArrestOperationShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-tactical:ArrestOperation ;
     rdfs:label "Arrest Operation Shape"@en ;
-    rdfs:comment "Validation shape for arrest operations in ICAC investigations."@en ;
+    rdfs:comment "Validation shape for arrest operations in CAC investigations."@en ;
     sh:property [
         sh:path rdfs:label ;
         sh:datatype rdf:langString ;
@@ -828,7 +822,7 @@ cacontology-tactical:ArrestOperationShape rdf:type sh:NodeShape ;
     ] .
 
 # =============================================================================
-# BOOKING ACTION SHAPES (Miami ICAC Case Enhancement)
+# BOOKING ACTION SHAPES (Miami CAC Case Enhancement)
 # =============================================================================
 
 cacontology-tactical:BookingActionShape rdf:type sh:NodeShape ;
@@ -865,7 +859,7 @@ cacontology-tactical:BookingActionShape rdf:type sh:NodeShape ;
     ] .
 
 # =============================================================================
-# CORRECTIONAL FACILITY SHAPES (Miami ICAC Case Enhancement)
+# CORRECTIONAL FACILITY SHAPES (Miami CAC Case Enhancement)
 # =============================================================================
 
 cacontology-tactical:CorrectionalFacilityShape rdf:type sh:NodeShape ;
@@ -890,7 +884,7 @@ cacontology-tactical:CorrectionalFacilityShape rdf:type sh:NodeShape ;
     ] .
 
 # =============================================================================
-# IMMIGRATION HOLD SHAPES (Miami ICAC Case Enhancement)
+# IMMIGRATION HOLD SHAPES (Miami CAC Case Enhancement)
 # =============================================================================
 
 cacontology-tactical:ImmigrationHoldShape rdf:type sh:NodeShape ;
@@ -920,7 +914,7 @@ cacontology-tactical:ImmigrationHoldShape rdf:type sh:NodeShape ;
     ] .
 
 # =============================================================================
-# INTERVIEW WITHOUT COUNSEL SHAPES (Miami ICAC Case Enhancement)
+# INTERVIEW WITHOUT COUNSEL SHAPES (Miami CAC Case Enhancement)
 # =============================================================================
 
 cacontology-tactical:InterviewWithoutCounselShape rdf:type sh:NodeShape ;
@@ -936,7 +930,7 @@ cacontology-tactical:InterviewWithoutCounselShape rdf:type sh:NodeShape ;
     ] .
 
 # =============================================================================
-# ARREST REPORT SHAPES (Miami ICAC Case Enhancement)
+# ARREST REPORT SHAPES (Miami CAC Case Enhancement)
 # =============================================================================
 
 cacontology-tactical:ArrestReportShape rdf:type sh:NodeShape ;

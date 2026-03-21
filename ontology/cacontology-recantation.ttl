@@ -3,29 +3,26 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
-@prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
-@prefix gufo: <http://purl.org/nemo/gufo#> .
-@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix cacontology-recantation: <https://cacontology.projectvic.org/recantation#> .
 
-<https://cacontology.projectvic.org/recantation/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/recantation/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Victim Recantation Ontology"@en ;
     rdfs:comment "An ontology for modeling child-victim statement change dynamics, recantation risk factors, coercive pressure contexts, and post-recantation investigative assessment in CAC investigations and prosecutions."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/recantation/2.12.0> ;
-    owl:versionInfo "2.12.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/recantation/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2026-03-13"^^xsd:date ;
     dcterms:modified "2026-03-13"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity/> ,
                 <https://ontology.unifiedcyberontology.org/uco/action/> ,
-                <https://ontology.caseontology.org/case> ,
-                <https://cacontology.projectvic.org/2.12.0> ,
-                <http://purl.org/nemo/gufo> .
+                <https://ontology.caseontology.org/case/> ,
+                <https://cacontology.projectvic.org/3.0.0> ,
+                <http://purl.org/nemo/gufo#> .
 
 # =============================================================================
 # STATEMENT LIFECYCLE CLASSES
@@ -34,7 +31,7 @@
 cacontology-recantation:VictimStatement rdf:type owl:Class ;
     rdfs:label "Victim Statement"@en ;
     rdfs:comment "A statement or account by a child victim concerning abuse, disclosure, denial, or recantation. Modeled as a gUFO Object to support linkage to persons, contexts, and investigative assessments."@en ;
-    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdfs:subClassOf uco-core:UcoObject, cac-core:Artifact ;
     dcterms:source "Robert Peters, 'Winning Without Words: Prosecuting Cases with Recanting or Nonverbal Victims' (Coursing Justice presentation, 2026), and companion transcript 'Recantation 101' (2026)."@en ;
     rdfs:seeAlso <https://www.coursingjustice.com/> .
 
@@ -87,14 +84,14 @@ cacontology-recantation:ReaffirmedDisclosureStatement rdf:type owl:Class ;
 cacontology-recantation:StatementChangeContext rdf:type owl:Class ;
     rdfs:label "Statement Change Context"@en ;
     rdfs:comment "A situation capturing the social, familial, investigative, and coercive conditions surrounding a victim's change in statement."@en ;
-    rdfs:subClassOf gufo:Situation ;
+    rdfs:subClassOf cac-core:Situation ;
     dcterms:source "Robert Peters, 'Winning Without Words: Prosecuting Cases with Recanting or Nonverbal Victims' (Coursing Justice presentation, 2026), and companion transcript 'Recantation 101' (2026)."@en ;
     rdfs:seeAlso <https://www.coursingjustice.com/> .
 
 cacontology-recantation:RecantationRiskFactor rdf:type owl:Class ;
     rdfs:label "Recantation Risk Factor"@en ;
     rdfs:comment "A factor correlated with increased likelihood of post-disclosure denial or recantation."@en ;
-    rdfs:subClassOf uco-core:UcoObject, gufo:Object ;
+    rdfs:subClassOf uco-core:UcoObject, cac-core:AssessmentResult ;
     dcterms:source "Robert Peters, 'Winning Without Words: Prosecuting Cases with Recanting or Nonverbal Victims' (Coursing Justice presentation, 2026), and companion transcript 'Recantation 101' (2026)."@en ;
     rdfs:seeAlso <https://www.coursingjustice.com/> .
 
@@ -136,14 +133,14 @@ cacontology-recantation:CommunityPressureRisk rdf:type owl:Class ;
 cacontology-recantation:RecantationPressure rdf:type owl:Class ;
     rdfs:label "Recantation Pressure"@en ;
     rdfs:comment "A coercive or inducement-bearing action intended to influence a victim to deny, minimize, or retract a disclosure."@en ;
-    rdfs:subClassOf uco-action:Action, gufo:Event ;
+    rdfs:subClassOf cac-core:Event ;
     dcterms:source "Robert Peters, 'Winning Without Words: Prosecuting Cases with Recanting or Nonverbal Victims' (Coursing Justice presentation, 2026), and companion transcript 'Recantation 101' (2026)."@en ;
     rdfs:seeAlso <https://www.coursingjustice.com/> .
 
 cacontology-recantation:RecantationNotification rdf:type owl:Class ;
     rdfs:label "Recantation Notification"@en ;
     rdfs:comment "An action in which a family member, caregiver, professional, or other person reports that a child has recanted or denied an earlier disclosure."@en ;
-    rdfs:subClassOf uco-action:Action, gufo:Event ;
+    rdfs:subClassOf cac-core:Event ;
     dcterms:source "Robert Peters, 'Winning Without Words: Prosecuting Cases with Recanting or Nonverbal Victims' (Coursing Justice presentation, 2026), and companion transcript 'Recantation 101' (2026)."@en ;
     rdfs:seeAlso <https://www.coursingjustice.com/> .
 
@@ -154,7 +151,7 @@ cacontology-recantation:RecantationNotification rdf:type owl:Class ;
 cacontology-recantation:RecantationAssessment rdf:type owl:Class ;
     rdfs:label "Recantation Assessment"@en ;
     rdfs:comment "An investigative or prosecutorial assessment of a recantation, its credibility, surrounding pressures, and implications for case strategy."@en ;
-    rdfs:subClassOf case-investigation:InvestigativeAction, uco-action:Action, gufo:Event ;
+    rdfs:subClassOf cac-core:InvestigativeAction ;
     dcterms:source "Robert Peters, 'Winning Without Words: Prosecuting Cases with Recanting or Nonverbal Victims' (Coursing Justice presentation, 2026), and companion transcript 'Recantation 101' (2026)."@en ;
     rdfs:seeAlso <https://www.coursingjustice.com/> .
 

@@ -13,7 +13,7 @@ PREFIX uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/>
 PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/>
 PREFIX uco-types: <https://ontology.unifiedcyberontology.org/uco/types/>
 PREFIX investigation: <https://ontology.caseontology.org/case/investigation/>
-PREFIX cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#>
+PREFIX cacontology-legal-outcomes: <https://cacontology.projectvic.org/legal-outcomes#>
 PREFIX cacontology-multi: <https://cacontology.projectvic.org/multi-jurisdiction#>
 PREFIX cacontology-registry: <https://cacontology.projectvic.org/sex-offender-registry#>
 PREFIX ex: <urn:uuid:>
@@ -60,7 +60,7 @@ WHERE {
              uco-core:description ?defDesc .
   FILTER(CONTAINS(?defDesc, "Defendant"))
   
-  ?hearing a cacontology-sentencing:SentencingHearing ;
+  ?hearing a cacontology-legal-outcomes:SentencingHearing ;
            uco-action:object ?defendant ;
            uco-action:result ?sentence .
   
@@ -81,7 +81,7 @@ WHERE {
   ?action a ?actionType ;
           rdfs:label ?label .
   FILTER(?actionType IN (investigation:InvestigativeAction, investigation:ForensicAction, 
-                         cacontology-sentencing:SentencingHearing, uco-action:Action))
+                         cacontology-legal-outcomes:SentencingHearing, uco-action:Action))
   
   OPTIONAL { ?action uco-action:startTime ?timestamp }
   OPTIONAL { 
@@ -143,8 +143,8 @@ SELECT ?sentence ?label ?durationMonths (xsd:decimal(?durationMonths / 12) AS ?d
 WHERE {
   ?sentence a ?type ;
             rdfs:label ?label ;
-            cacontology-sentencing:sentenceDurationMonths ?durationMonths .
-  FILTER(?type IN (cacontology-sentencing:PrisonSentence, cacontology-sentencing:SupervisedRelease))
+            cacontology-legal-outcomes:sentenceDurationMonths ?durationMonths .
+  FILTER(?type IN (cacontology-legal-outcomes:PrisonSentence, cacontology-legal-outcomes:SupervisedRelease))
 }
 ORDER BY DESC(?durationMonths)
 ;
@@ -224,7 +224,7 @@ WHERE {
 
 SELECT ?charge ?chargeLabel ?chargeDesc ?defendant ?defendantLabel
 WHERE {
-  ?charge a cacontology-sentencing:FederalCharge ;
+  ?charge a cacontology-legal-outcomes:FederalCharge ;
           rdfs:label ?chargeLabel .
   OPTIONAL { ?charge uco-core:description ?chargeDesc }
   

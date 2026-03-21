@@ -1,5 +1,4 @@
-# Generated documentation
-docs/
+# Generated HTML documentation
 *.html
 
 # Python
@@ -52,18 +51,15 @@ temp/
 *.tmp
 *.log
 
-# Ontology files (fetched from main repo)
-# ontology/  # Now tracked in this repo
+# Ontology files — allow tracked directories, exclude root-level .ttl by default
 *.ttl
-!examples/*.ttl
 !ontology/*.ttl
+!examples_knowledge_graphs/*.ttl
+!raven-us-extensions.ttl
+!analytics_demonstration/**/*.ttl
 
-# Allow specific new example graphs (otherwise .ttl are ignored)
-!examples_knowledge_graphs/ipie-sr2026-1-tf-csea-systematic-review-example.ttl
-!examples_knowledge_graphs/ipie-sr2026-1-tf-csea-systematic-review-skeleton.ttl
-!examples_knowledge_graphs/coursing-justice-recantation-101-example.ttl
-!analytics_demonstration/collected_sources/ipie-sr2026-1-tf-csea-systematic-review/skeleton.ttl
+# Explicitly exclude Ed_graph.ttl
+Ed_graph.ttl
 
 # Ontospy cache
 .ontospy_cache/
-

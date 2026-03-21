@@ -5,24 +5,25 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
-@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
-@prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-temporal: <https://cacontology.projectvic.org/temporal#> .
 @prefix cacontology-temporal-shapes: <https://cacontology.projectvic.org/temporal/shapes#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 
 # =============================================================================
 # ONTOLOGY DECLARATION - TEMPORAL gUFO SHACL SHAPES (MINIMAL CORE)
 # =============================================================================
 
-<https://cacontology.projectvic.org/temporal/shapes/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/temporal/shapes/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Temporal gUFO SHACL Shapes - Minimal Core"@en ;
     rdfs:comment "Minimal SHACL validation shapes for CAC temporal gUFO extensions, focusing on phase duration/deadline properties and role/phase transition relationships."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/temporal/shapes/2.12.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/temporal/shapes/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-11-18"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/temporal/2.12.0> ,
-                <http://purl.org/nemo/gufo> .
+    owl:imports <https://cacontology.projectvic.org/temporal/3.0.0> ,
+                <http://purl.org/nemo/gufo#> .
 
 # =============================================================================
 # PHASE TEMPORAL PROPERTIES SHAPE
@@ -31,7 +32,7 @@
 cacontology-temporal-shapes:PhaseTemporalPropertiesShape rdf:type sh:NodeShape ;
     rdfs:label "Phase Temporal Properties Shape"@en ;
     rdfs:comment "Validates duration, deadline, and urgency properties on gUFO phases as introduced by the CAC temporal module."@en ;
-    sh:targetClass gufo:Phase ;
+    sh:targetClass cac-core:Phase ;
     sh:property [
         sh:path cacontology-temporal:hasMinimumDuration ;
         sh:datatype xsd:duration ;
@@ -72,7 +73,7 @@ cacontology-temporal-shapes:PhaseTemporalPropertiesShape rdf:type sh:NodeShape ;
 cacontology-temporal-shapes:PhasePerformanceMetricsShape rdf:type sh:NodeShape ;
     rdfs:label "Phase Performance Metrics Shape"@en ;
     rdfs:comment "Validates phase performance metrics such as efficiency and completion rate."@en ;
-    sh:targetClass gufo:Phase ;
+    sh:targetClass cac-core:Phase ;
     sh:property [
         sh:path cacontology-temporal:phaseEfficiency ;
         sh:datatype xsd:decimal ;
@@ -101,14 +102,14 @@ cacontology-temporal-shapes:PhaseTransitionEventShape rdf:type sh:NodeShape ;
         sh:path cacontology-temporal:transitionsFrom ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:class gufo:Phase ;
+        sh:class cac-core:Phase ;
         sh:message "PhaseTransitionEvent must have exactly one transitionsFrom value of type gufo:Phase."@en
     ] ;
     sh:property [
         sh:path cacontology-temporal:transitionsTo ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:class gufo:Phase ;
+        sh:class cac-core:Phase ;
         sh:message "PhaseTransitionEvent must have exactly one transitionsTo value of type gufo:Phase."@en
     ] .
 
@@ -124,8 +125,8 @@ cacontology-temporal-shapes:SuspensionEventShape rdf:type sh:NodeShape ;
         sh:path cacontology-temporal:suspends ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:class cacontology-gufo:Investigation ;
-        sh:message "SuspensionEvent must suspend exactly one cacontology-gufo:Investigation."@en
+        sh:class cacontology:CACInvestigation ;
+        sh:message "SuspensionEvent must suspend exactly one cacontology:CACInvestigation."@en
     ] ;
     sh:property [
         sh:path cacontology-temporal:createsSuspension ;
@@ -143,8 +144,8 @@ cacontology-temporal-shapes:ResumptionEventShape rdf:type sh:NodeShape ;
         sh:path cacontology-temporal:resumes ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:class cacontology-gufo:Investigation ;
-        sh:message "ResumptionEvent must resume exactly one cacontology-gufo:Investigation."@en
+        sh:class cacontology:CACInvestigation ;
+        sh:message "ResumptionEvent must resume exactly one cacontology:CACInvestigation."@en
     ] ;
     sh:property [
         sh:path cacontology-temporal:terminatesSuspension ;

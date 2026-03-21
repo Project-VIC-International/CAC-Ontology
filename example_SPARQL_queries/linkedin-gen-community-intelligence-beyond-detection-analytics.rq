@@ -16,7 +16,7 @@ PREFIX uco-types: <https://ontology.unifiedcyberontology.org/uco/types/>
 
 PREFIX investigation: <https://ontology.caseontology.org/case/investigation/>
 
-PREFIX cacontology-ai: <https://cacontology.projectvic.org/ai-generated#>
+PREFIX cacontology-ai: <https://cacontology.projectvic.org/ai-csam#>
 PREFIX cacontology-analyst: <https://cacontology.projectvic.org/analyst-wellbeing#>
 PREFIX cacontology-detection: <https://cacontology.projectvic.org/detection#>
 PREFIX cacontology-legal: <https://cacontology.projectvic.org/legal-harmonization#>

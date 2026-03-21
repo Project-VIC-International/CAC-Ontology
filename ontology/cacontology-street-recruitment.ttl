@@ -3,29 +3,27 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
-@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
-@prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
-@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix cacontology-street: <https://cacontology.projectvic.org/street#> .
 @prefix cacontology-grooming: <https://cacontology.projectvic.org/grooming#> .
 @prefix cacontology-trafficking: <https://cacontology.projectvic.org/trafficking#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/street/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/street/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Street-Based Recruitment & Opportunistic Exploitation Ontology"@en ;
     rdfs:comment "Specialized ontology for modeling street-based trafficking recruitment, opportunistic exploitation, and public space predatory behavior, based on cases like Brooklyn DA v. Deandre Lee (2024)."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/street/2.12.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/street/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-05-28"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
-                <https://ontology.caseontology.org/case> .
+                <https://ontology.caseontology.org/case/> ,
+                <https://cacontology.projectvic.org/core/3.0.0> .
 
 # =============================================================================
 # STREET-BASED RECRUITMENT CORE CLASSES
@@ -63,7 +61,7 @@ cacontology-street:DemographicTargeting rdf:type owl:Class ;
 cacontology-street:InitialStreetContact rdf:type owl:Class ;
     rdfs:label "Initial Street Contact"@en ;
     rdfs:comment "First contact between trafficker and victim occurring in public space."@en ;
-    rdfs:subClassOf uco-action:Action .
+    rdfs:subClassOf cac-core:ExploitationEvent .
 
 cacontology-street:PretextBasedApproach rdf:type owl:Class ;
     rdfs:label "Pretext Based Approach"@en ;
@@ -107,7 +105,7 @@ cacontology-street:DirectSolicitationApproach rdf:type owl:Class ;
 cacontology-street:StreetVulnerabilityAssessment rdf:type owl:Class ;
     rdfs:label "Street Vulnerability Assessment"@en ;
     rdfs:comment "Rapid assessment of individual vulnerability factors in public space encounters."@en ;
-    rdfs:subClassOf uco-action:Action .
+    rdfs:subClassOf cac-core:ExploitationEvent .
 
 cacontology-street:VulnerabilityIndicator rdf:type owl:Class ;
     rdfs:label "Vulnerability Indicator"@en ;
@@ -161,7 +159,7 @@ cacontology-street:ImmediateIsolation rdf:type owl:Class ;
 cacontology-street:LocationTransition rdf:type owl:Class ;
     rdfs:label "Location Transition"@en ;
     rdfs:comment "Movement of victim from initial contact location to exploitation location."@en ;
-    rdfs:subClassOf uco-action:Action .
+    rdfs:subClassOf cac-core:ExploitationEvent .
 
 cacontology-street:VehicleBasedIsolation rdf:type owl:Class ;
     rdfs:label "Vehicle Based Isolation"@en ;
@@ -253,7 +251,7 @@ cacontology-street:ImpairmentExploitation rdf:type owl:Class ;
 cacontology-street:PostContactReinforcement rdf:type owl:Class ;
     rdfs:label "Post Contact Reinforcement"@en ;
     rdfs:comment "Follow-up contact after initial encounter to reinforce trafficking proposition."@en ;
-    rdfs:subClassOf uco-action:Action .
+    rdfs:subClassOf cac-core:ExploitationEvent .
 
 cacontology-street:NextDayFollowUp rdf:type owl:Class ;
     rdfs:label "Next Day Follow Up"@en ;
@@ -292,7 +290,7 @@ cacontology-street:DigitalToPhysicalBridge rdf:type owl:Class ;
 cacontology-street:VictimStreetResponse rdf:type owl:Class ;
     rdfs:label "Victim Street Response"@en ;
     rdfs:comment "Victim's response to street-based recruitment attempts and trafficking propositions."@en ;
-    rdfs:subClassOf uco-action:Action .
+    rdfs:subClassOf cac-core:Event .
 
 cacontology-street:TraffickingPropositionRejection rdf:type owl:Class ;
     rdfs:label "Trafficking Proposition Rejection"@en ;

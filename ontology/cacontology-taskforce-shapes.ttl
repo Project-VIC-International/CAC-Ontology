@@ -3,26 +3,20 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
-@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
-@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
-@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
-@prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
-@prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-taskforce: <https://cacontology.projectvic.org/taskforce#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/taskforce/shapes/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/taskforce/shapes/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Task Force SHACL Shapes"@en ;
-    rdfs:comment "SHACL validation shapes for the ICAC Task Force Ontology, providing validation for task force structures, specialized units, coordination mechanisms, resource sharing, and joint operations."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/taskforce/shapes/2.12.0> ;
-    owl:versionInfo "2.12.0" ;
+    rdfs:comment "SHACL validation shapes for the CAC Task Force Ontology, providing validation for task force structures, specialized units, coordination mechanisms, resource sharing, and joint operations."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/taskforce/shapes/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/taskforce/2.12.0> ,
-                <http://purl.org/nemo/gufo> ,
+    owl:imports <https://cacontology.projectvic.org/taskforce/3.0.0> ,
+                <http://purl.org/nemo/gufo#> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 
 # =============================================================================
@@ -85,14 +79,14 @@ cacontology-taskforce:TaskForceShape rdf:type sh:NodeShape ;
 cacontology-taskforce:IcacTaskForceShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-taskforce:IcacTaskForce ;
     rdfs:label "CAC Task Force Shape"@en ;
-    rdfs:comment "Validation shape for ICAC task force instances."@en ;
+    rdfs:comment "Validation shape for CAC task force instances."@en ;
     sh:property [
         sh:path cacontology-taskforce:icacRegion ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:in ( "northeast" "southeast" "midwest" "southwest" "west" "northwest" "central" "national" ) ;
-        sh:message "ICAC task force must specify ICAC region from the allowed list."@en
+        sh:message "CAC task force must specify CAC region from the allowed list."@en
     ] ;
     sh:property [
         sh:path cacontology-taskforce:grantNumber ;
@@ -101,7 +95,7 @@ cacontology-taskforce:IcacTaskForceShape rdf:type sh:NodeShape ;
         sh:maxCount 1 ;
         sh:minLength 5 ;
         sh:maxLength 50 ;
-        sh:message "ICAC task force must specify grant number (5-50 characters)."@en
+        sh:message "CAC task force must specify grant number (5-50 characters)."@en
     ] ;
     sh:property [
         sh:path cacontology-taskforce:complianceStatus ;
@@ -109,7 +103,7 @@ cacontology-taskforce:IcacTaskForceShape rdf:type sh:NodeShape ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:in ( "compliant" "non_compliant" "conditional" "under_review" "probationary" "suspended" ) ;
-        sh:message "ICAC task force must specify compliance status from the allowed list."@en
+        sh:message "CAC task force must specify compliance status from the allowed list."@en
     ] .
 
 # =============================================================================

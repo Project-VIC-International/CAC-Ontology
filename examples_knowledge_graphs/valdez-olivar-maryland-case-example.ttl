@@ -1,0 +1,152 @@
+@prefix ex: <urn:uuid:> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-taskforce: <https://cacontology.projectvic.org/taskforce#> .
+@prefix cacontology-specialized: <https://cacontology.projectvic.org/specialized-units#> .
+@prefix cacontology-legal-outcomes: <https://cacontology.projectvic.org/legal-outcomes#> .
+@prefix cacontology-forensics: <https://cacontology.projectvic.org/forensics#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+# =============================================================================
+# MARYLAND CASE EXAMPLE: Edwin Antonio Valdez Olivar
+# Based on Maryland State Police Computer Crimes Unit Press Release 
+# Date: May 30, 2025
+# =============================================================================
+# Document Namespace UUID (UUIDv5): ec23a651-c58d-52ba-ae67-7023ad937939
+# Generated from: uuid5(NAMESPACE_URL, 'http://ontology.icac.org/examples/valdez-olivar-maryland-case')
+# All instance UUIDs are deterministic UUIDv5 derived from this namespace.
+# =============================================================================
+
+# =============================================================================
+# SUSPECT IDENTITY
+# =============================================================================
+
+ex:9472dd08-8b8b-5042-a073-b8534066e70e rdf:type uco-identity:Person ;
+    rdfs:label "Edwin Antonio Valdez Olivar"@en ;
+    uco-core:description "45-year-old Prince George's County resident charged with child pornography offenses"@en .
+
+# =============================================================================
+# MARYLAND ICAC TASK FORCE STRUCTURE
+# =============================================================================
+
+ex:8d650638-12aa-5062-99c7-5a44c05a115e rdf:type cacontology-taskforce:MarylandICACtaskForce ;
+    rdfs:label "Maryland Internet Crimes Against Children Task Force"@en ;
+    uco-core:description "Maryland ICAC Task Force coordinated by Maryland State Police Computer Crimes Unit"@en ;
+    cacontology-taskforce:dojGrantFunded true ;
+    cacontology-taskforce:nationalTaskForceNetwork true ;
+    cacontology-taskforce:hasMetrics ex:694e8104-0d9a-5036-b84f-94d3493c6d87 .
+
+ex:b96e9740-bd43-58be-9b26-0c106a659308 rdf:type cacontology-specialized:MarylandStatePoliceComputerCrimesUnit ;
+    rdfs:label "Maryland State Police Computer Crimes Unit"@en ;
+    uco-core:description "Maryland State Police unit coordinating the Maryland Internet Crimes Against Children Task Force"@en .
+
+ex:9dfed677-b33b-5da3-89b6-a23d5243c8b4 rdf:type cacontology-specialized:CollegeParkBarrack ;
+    rdfs:label "Maryland State Police College Park Barrack"@en ;
+    uco-core:description "College Park barrack supporting computer crimes investigations"@en .
+
+ex:b06e9c0a-8d9c-5924-96aa-de1591598f1b rdf:type cacontology-specialized:PrinceGeorgesCountyPolice ;
+    rdfs:label "Prince George's County Police Department"@en ;
+    uco-core:description "County police department supporting Maryland State Police computer crimes investigations"@en .
+
+# =============================================================================
+# FUNDING STRUCTURE
+# =============================================================================
+
+ex:cecb467d-c490-5c7d-9ff9-b2a114c5319c rdf:type cacontology-taskforce:GovernorsOfficeCrimePreventionFunding ;
+    rdfs:label "Governor's Office for Crime Prevention and Policy Funding"@en ;
+    uco-core:description "State-level funding provided by Governor's Office for Crime Prevention and Policy for Maryland ICAC task force operations"@en .
+
+ex:d98a1446-43e5-5457-8158-1d28c4115067 rdf:type cacontology-taskforce:StateLocalFundingCombination ;
+    rdfs:label "Combined State-Federal ICAC Funding"@en ;
+    uco-core:description "Combined funding from Maryland Governor's Office and federal DOJ grants for task force operations"@en .
+
+# =============================================================================
+# CRIMINAL CHARGES 
+# =============================================================================
+
+ex:3f692c6b-5ee0-5736-ad27-b3837c64b9cf rdf:type cacontology-legal-outcomes:CSAM_CausingProduction ;
+    rdfs:label "Causing Production of Child Sexual Abuse Material"@en ;
+    uco-core:description "Felony charge for causing production of CSAM"@en ;
+    cacontology-legal-outcomes:chargeLevel "felony"@en ;
+    cacontology-legal-outcomes:chargeCount 10 .
+
+ex:1ea3e651-87cb-5c97-837f-9be770083bba rdf:type cacontology-legal-outcomes:CSAM_AccessingAndViewing ;
+    rdfs:label "Accessing and Viewing Child Sexual Abuse Material"@en ;
+    uco-core:description "Felony charge for intentionally accessing and viewing CSAM"@en ;
+    cacontology-legal-outcomes:chargeLevel "felony"@en ;
+    cacontology-legal-outcomes:chargeCount 5 .
+
+ex:5c1ca3a8-e26f-5bf8-9778-0b804788ac51 rdf:type cacontology-legal-outcomes:CSAM_ReceivingOnCellularDevice ;
+    rdfs:label "Receiving CSAM on Cellular Device"@en ;
+    uco-core:description "Felony charge for receiving CSAM on cellular phone"@en ;
+    cacontology-legal-outcomes:chargeLevel "felony"@en ;
+    cacontology-legal-outcomes:chargeCount 5 .
+
+# =============================================================================
+# DIGITAL EVIDENCE
+# =============================================================================
+
+ex:90c9af3e-65fc-569c-a383-97fba54f77ca rdf:type uco-observable:MobileDevice ;
+    rdfs:label "Suspect Cellular Phone"@en ;
+    uco-core:description "Cellular phone containing digital evidence of child sexual abuse material"@en .
+
+ex:bdf2423a-780d-593e-9aef-6cb1df0c9f42 rdf:type cacontology-forensics:MobileDeviceForensics ;
+    rdfs:label "Cellular Phone Forensic Analysis"@en ;
+    uco-core:description "Forensic analysis of cellular phone revealing child sexual abuse images"@en .
+
+# =============================================================================
+# INVESTIGATION COORDINATION
+# =============================================================================
+
+ex:36454e32-2200-5b45-96b6-87e36d293506 rdf:type uco-action:Action ;
+    rdfs:label "Maryland Computer Crimes Investigation"@en ;
+    uco-core:description "Investigation conducted by Maryland State Police Computer Crimes Unit with Prince George's County Police support"@en .
+
+ex:c1864c4b-9649-54f2-99bb-7337c98d41dd rdf:type uco-action:Action ;
+    rdfs:label "Valdez Olivar Arrest Operation"@en ;
+    uco-core:description "Coordinated arrest operation involving Maryland State Police and county police"@en .
+
+# =============================================================================
+# PERFORMANCE METRICS
+# =============================================================================
+
+ex:694e8104-0d9a-5036-b84f-94d3493c6d87 rdf:type cacontology-taskforce:TaskForceMetrics ;
+    rdfs:label "Maryland ICAC Task Force Performance Metrics"@en ;
+    uco-core:description "Performance tracking for Maryland ICAC Task Force operations"@en .
+
+# =============================================================================
+# RELATIONSHIPS
+# =============================================================================
+
+# Task Force Coordination
+ex:8d650638-12aa-5062-99c7-5a44c05a115e cacontology-taskforce:partnersWith ex:b96e9740-bd43-58be-9b26-0c106a659308 .
+ex:8d650638-12aa-5062-99c7-5a44c05a115e cacontology-taskforce:partnersWith ex:9dfed677-b33b-5da3-89b6-a23d5243c8b4 .
+ex:8d650638-12aa-5062-99c7-5a44c05a115e cacontology-taskforce:partnersWith ex:b06e9c0a-8d9c-5924-96aa-de1591598f1b .
+
+# Funding Relationships
+ex:8d650638-12aa-5062-99c7-5a44c05a115e uco-core:object ex:cecb467d-c490-5c7d-9ff9-b2a114c5319c .
+ex:8d650638-12aa-5062-99c7-5a44c05a115e uco-core:object ex:d98a1446-43e5-5457-8158-1d28c4115067 .
+
+# Investigation Relationships  
+ex:b96e9740-bd43-58be-9b26-0c106a659308 uco-action:performer ex:36454e32-2200-5b45-96b6-87e36d293506 .
+ex:b06e9c0a-8d9c-5924-96aa-de1591598f1b uco-action:performer ex:36454e32-2200-5b45-96b6-87e36d293506 .
+ex:36454e32-2200-5b45-96b6-87e36d293506 uco-action:object ex:9472dd08-8b8b-5042-a073-b8534066e70e .
+
+# Arrest Relationships
+ex:c1864c4b-9649-54f2-99bb-7337c98d41dd uco-action:object ex:9472dd08-8b8b-5042-a073-b8534066e70e .
+ex:b96e9740-bd43-58be-9b26-0c106a659308 uco-action:performer ex:c1864c4b-9649-54f2-99bb-7337c98d41dd .
+
+# Evidence Relationships
+ex:bdf2423a-780d-593e-9aef-6cb1df0c9f42 uco-action:object ex:90c9af3e-65fc-569c-a383-97fba54f77ca .
+ex:36454e32-2200-5b45-96b6-87e36d293506 uco-action:object ex:90c9af3e-65fc-569c-a383-97fba54f77ca .
+
+# Criminal Charge Relationships
+ex:9472dd08-8b8b-5042-a073-b8534066e70e uco-core:object ex:3f692c6b-5ee0-5736-ad27-b3837c64b9cf .
+ex:9472dd08-8b8b-5042-a073-b8534066e70e uco-core:object ex:1ea3e651-87cb-5c97-837f-9be770083bba .
+ex:9472dd08-8b8b-5042-a073-b8534066e70e uco-core:object ex:5c1ca3a8-e26f-5bf8-9778-0b804788ac51 .

@@ -9,8 +9,8 @@ The CAC ontology family consists of **30+ specialized modules** organized into s
 ### Core Framework (3 modules)
 - `cacontology-core.ttl`: Core investigation classes and properties
 - `cacontology-core-shapes.ttl`: SHACL validation for core
-- `cacontology-hotlines-core.ttl`: Hotline reporting classes and properties
-- `cacontology-hotlines-core-shapes.ttl`: SHACL validation for hotlines
+- `cacontology-hotlines.ttl`: Hotline reporting classes and properties
+- `cacontology-hotlines-shapes.ttl`: SHACL validation for hotlines
 - `cacontology-us-ncmec.ttl`: NCMEC-specific extensions
 
 ### Domain Modules (25+ modules)
@@ -18,13 +18,13 @@ The CAC ontology family consists of **30+ specialized modules** organized into s
 - **Criminal Activities**: `cacontology-production.ttl`, `cacontology-custodial.ttl`, `cacontology-grooming.ttl`, `cacontology-sextortion.ttl`, `cacontology-athletic-exploitation.ttl`
 - **Investigation**: `cacontology-undercover.ttl`, `cacontology-physical-evidence.ttl`, `cacontology-tactical.ttl`, `cacontology-multi-jurisdiction.ttl`, `cacontology-stranger-abduction.ttl`
 - **Technical**: `cacontology-forensics.ttl`, `cacontology-detection.ttl`, `cacontology-platforms.ttl`, `cacontology-street-recruitment.ttl`
-- **Victim Services**: `cacontology-victim-impact.ttl`, `cacontology-taskforce.ttl`, `cacontology-sentencing.ttl`, `cacontology-specialized-units.ttl`, `cacontology-sex-offender-registry.ttl`
+- **Victim Services**: `cacontology-victim-impact.ttl`, `cacontology-taskforce.ttl`, `cacontology-legal-outcomes.ttl`, `cacontology-specialized-units.ttl`, `cacontology-sex-offender-registry.ttl`
 
 ### Supporting Files
 - `ontology/`: All ontology module files (30+ `.ttl` files)
 - `ontology/*-shapes.ttl`: SHACL validation modules (20+ files)
 - `contexts/`: JSON-LD context files
-- `examples/`: Example data files (30+ real-world examples)
+- `examples_knowledge_graphs/`: Example data files (30+ real-world examples)
 - `example_SPARQL_queries/`: SPARQL query examples
 - `testing/`: Docker-based validation infrastructure
 - `docs/`: Comprehensive documentation
@@ -46,7 +46,7 @@ Follow the UCO Style Guide and CAC Ontology conventions:
 - Follow prefix pattern: `cacontology-{module-name}:`
 - File naming: `cacontology-{module-name}.ttl` and `cacontology-{module-name}-shapes.ttl`
 - Document all changes with `rdfs:comment` and `rdfs:label`
-- Include comprehensive examples in `examples/` directory
+- Include comprehensive examples in `examples_knowledge_graphs/` directory
 - Follow gUFO integration patterns where applicable
 - Maintain UCO/CASE compatibility
 
@@ -66,10 +66,10 @@ robot validate --input ontology/your-file.ttl
 pyshacl -s ontology/your-file-shapes.ttl -d ontology/your-file.ttl
 
 # Validate examples against shapes
-pyshacl -s ontology/your-file-shapes.ttl -d examples/your-example.ttl
+pyshacl -s ontology/your-file-shapes.ttl -d examples_knowledge_graphs/your-example.ttl
 
 # Run full validation suite
-docker compose exec validation python validate_shapes.py
+docker compose run pyshacl
 ```
 
 ### Validation Requirements
@@ -98,7 +98,7 @@ feat: add AutomatedReporterAgent class
 
 - Add new class for software-based reporting
 - Update SHACL validation rules in cacontology-core-shapes.ttl
-- Add example usage in examples/automated-reporting-example.ttl
+- Add example usage in examples_knowledge_graphs/automated-reporting-example.ttl
 - Update CHANGELOG.md with new feature
 ```
 
@@ -135,7 +135,7 @@ When contributing, update relevant documentation:
 
 ### Context Files
 JSON-LD context files are stored in the `contexts/` directory:
-- `hotlines-core.jsonld`: Context for hotline reporting
+- `cacontology-hotlines.jsonld`: Context for hotline reporting
 - `cacontology-core.jsonld`: Context for CAC investigations (planned)
 
 All contexts should use the standardized namespace: `https://cacontology.projectvic.org`
@@ -162,9 +162,9 @@ Example:
 ```json
 {
   "@context": {
-    "@vocab": "https://cacontology.projectvic.org/hotlines/core#",
+    "@vocab": "https://cacontology.projectvic.org/hotlines#",
     "cacontology": "https://cacontology.projectvic.org#",
-    "cacontology-hotlines": "https://cacontology.projectvic.org/hotlines/core#",
+    "cacontology-hotlines": "https://cacontology.projectvic.org/hotlines#",
     "HotlineReport": {
       "@type": "@id"
     },

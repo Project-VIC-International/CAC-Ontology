@@ -8,7 +8,7 @@
 2. **Document type**: Federal sentencing press release (DOJ USAO-NDFL)
 3. **Scope**: IN-SCOPE (federal prosecution, sentencing, CSAM production, child exploitation)
 4. **Primary modules to use**:
-   - `cacontology-sentencing` - sentencing terms (prison, supervised release, etc.)
+   - `cacontology-legal-outcomes` - sentencing terms (prison, supervised release, etc.)
    - `cacontology-multi` - multi-jurisdictional investigation (TPD + HSI)
    - `cacontology-registry` - sex offender registration
    - `cacontology-core` - roles (offender, victim)
@@ -24,12 +24,12 @@
 | `uco-identity:Person` | UCO | Defendant, victim, prosecutors, agents |
 | `cacontology:OffenderRole` | Core | Defendant's role |
 | `cacontology:VictimRole` | Core | Minor victim's role |
-| `cacontology-sentencing:PrisonSentence` | Sentencing | 20-year prison term |
-| `cacontology-sentencing:SupervisedRelease` | Sentencing | 15-year supervised release |
-| `cacontology-sentencing:MonetaryPenalty` | Sentencing | Restitution order |
-| `cacontology-sentencing:ProsecutorRole` | Sentencing | AUSA Stephen Kunz |
-| `cacontology-sentencing:DefendantRole` | Sentencing | Ryan Isbell |
-| `cacontology-sentencing:SentencingHearing` | Sentencing | Sentencing event |
+| `cacontology-legal-outcomes:PrisonSentence` | Sentencing | 20-year prison term |
+| `cacontology-legal-outcomes:SupervisedRelease` | Sentencing | 15-year supervised release |
+| `cacontology-legal-outcomes:MonetaryPenalty` | Sentencing | Restitution order |
+| `cacontology-legal-outcomes:ProsecutorRole` | Sentencing | AUSA Stephen Kunz |
+| `cacontology-legal-outcomes:DefendantRole` | Sentencing | Ryan Isbell |
+| `cacontology-legal-outcomes:SentencingHearing` | Sentencing | Sentencing event |
 | `cacontology-multi:LocalAgency` | Multi-Jurisdiction | Tallahassee PD |
 | `cacontology-multi:FederalAgency` | Multi-Jurisdiction | HSI |
 | `cacontology-registry:RegistrationRequirement` | Registry | Sex offender registration |
@@ -45,20 +45,20 @@
 | Concept | Category | Source Quote (lines) | Evidence Pointer | Confidence | Modeling Approach |
 |---------|----------|---------------------|------------------|------------|-------------------|
 | Ryan Isbell | Person/Offender | "Ryan Isbell, 36, of Tallahassee, Florida" (line 7) | normalized.txt:7 | HIGH | REUSE: uco-identity:Person + cacontology:OffenderRole |
-| 20-year prison sentence | Sentence | "sentenced to 20 years in federal prison" (line 7) | normalized.txt:7 | HIGH | REUSE: cacontology-sentencing:PrisonSentence |
-| 15-year supervised release | Sentence | "15-year term of supervised release" (line 15) | normalized.txt:15 | HIGH | REUSE: cacontology-sentencing:SupervisedRelease |
-| CSAM production charge | Charge | "pleading guilty to producing child pornography" (line 7) | normalized.txt:7 | HIGH | REUSE: cacontology-sentencing:FederalCharge (18 USC 2251) |
+| 20-year prison sentence | Sentence | "sentenced to 20 years in federal prison" (line 7) | normalized.txt:7 | HIGH | REUSE: cacontology-legal-outcomes:PrisonSentence |
+| 15-year supervised release | Sentence | "15-year term of supervised release" (line 15) | normalized.txt:15 | HIGH | REUSE: cacontology-legal-outcomes:SupervisedRelease |
+| CSAM production charge | Charge | "pleading guilty to producing child pornography" (line 7) | normalized.txt:7 | HIGH | REUSE: cacontology-legal-outcomes:FederalCharge (18 USC 2251) |
 | Tallahassee Police Department | Organization | "Tallahassee Police Department received reports" (line 11) | normalized.txt:11 | HIGH | REUSE: cacontology-multi:LocalAgency |
 | HSI Tallahassee | Organization | "Homeland Security Investigations" (line 13, 17) | normalized.txt:13,17 | HIGH | REUSE: cacontology-multi:FederalAgency |
 | USAO Northern District of Florida | Organization | "U.S. Attorney's Office" (line 4) | normalized.txt:4 | HIGH | REUSE: uco-identity:Organization |
-| U.S. Attorney Jason R. Heekin | Person | "announced by U.S. Attorney Jason R. Heekin" (line 7) | normalized.txt:7 | HIGH | REUSE: uco-identity:Person + cacontology-sentencing:ProsecutorRole |
-| AUSA Stephen Kunz | Person | "prosecuted by Assistant United States Attorney Stephen Kunz" (line 17) | normalized.txt:17 | HIGH | REUSE: uco-identity:Person + cacontology-sentencing:ProsecutorRole |
+| U.S. Attorney Jason R. Heekin | Person | "announced by U.S. Attorney Jason R. Heekin" (line 7) | normalized.txt:7 | HIGH | REUSE: uco-identity:Person + cacontology-legal-outcomes:ProsecutorRole |
+| AUSA Stephen Kunz | Person | "prosecuted by Assistant United States Attorney Stephen Kunz" (line 17) | normalized.txt:17 | HIGH | REUSE: uco-identity:Person + cacontology-legal-outcomes:ProsecutorRole |
 | ASAC David Pezzutti | Person | "Assistant Special Agent in Charge David Pezzutti" (line 13) | normalized.txt:13 | HIGH | REUSE: uco-identity:Person |
 | Minor victim | Person/Victim | "depicting a minor victim" (line 11) | normalized.txt:11 | HIGH | REUSE: uco-identity:Person + cacontology:VictimRole (anonymized) |
 | Electronic devices seized | Evidence | "seized multiple electronic devices" (line 11) | normalized.txt:11 | HIGH | REUSE: uco-observable:Device |
 | Social media account | Evidence | "defendant's social media account" (line 11) | normalized.txt:11 | HIGH | REUSE: uco-observable:Account |
 | November 2020 arrest warrant | Authorization | "execution of a November 2020 arrest warrant" (line 11) | normalized.txt:11 | HIGH | REUSE: investigation:Authorization |
-| Restitution order | Sentence | "ordered to pay restitution to the victim" (line 15) | normalized.txt:15 | HIGH | REUSE: cacontology-sentencing:MonetaryPenalty |
+| Restitution order | Sentence | "ordered to pay restitution to the victim" (line 15) | normalized.txt:15 | HIGH | REUSE: cacontology-legal-outcomes:MonetaryPenalty |
 | Sex offender registration | Requirement | "required to register as a sex offender" (line 15) | normalized.txt:15 | HIGH | REUSE: cacontology-registry:RegistrationRequirement |
 | Project Safe Childhood | Initiative | "part of Project Safe Childhood" (line 19) | normalized.txt:19 | HIGH | REUSE: uco-identity:Organization |
 | Forensic examination | Action | "forensic examination of the devices" (line 11) | normalized.txt:11 | HIGH | REUSE: investigation:ForensicAction |
@@ -67,10 +67,10 @@
 
 | Document Concept | Ontology Term | Facets Required | Rationale |
 |------------------|---------------|-----------------|-----------|
-| Ryan Isbell (defendant) | `uco-identity:Person` + `cacontology-sentencing:DefendantRole` | BirthInformationFacet (age 36) | Existing person + role pattern |
-| 20-year prison sentence | `cacontology-sentencing:PrisonSentence` | None (use properties) | Exact match in sentencing module |
-| 15-year supervised release | `cacontology-sentencing:SupervisedRelease` | None | Exact match in sentencing module |
-| CSAM production | `cacontology-sentencing:FederalCSAMProduction` | None | Federal charge class exists |
+| Ryan Isbell (defendant) | `uco-identity:Person` + `cacontology-legal-outcomes:DefendantRole` | BirthInformationFacet (age 36) | Existing person + role pattern |
+| 20-year prison sentence | `cacontology-legal-outcomes:PrisonSentence` | None (use properties) | Exact match in sentencing module |
+| 15-year supervised release | `cacontology-legal-outcomes:SupervisedRelease` | None | Exact match in sentencing module |
+| CSAM production | `cacontology-legal-outcomes:FederalCSAMProduction` | None | Federal charge class exists |
 | TPD | `cacontology-multi:LocalAgency` | None | Local law enforcement |
 | HSI | `cacontology-multi:FederalAgency` | None | Federal law enforcement |
 | Electronic devices | `uco-observable:Device` | DeviceFacet | UCO pattern for devices |

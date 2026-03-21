@@ -3,29 +3,28 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
-@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
 @prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-abduction: <https://cacontology.projectvic.org/abduction#> .
-@prefix cacontology-grooming: <https://cacontology.projectvic.org/grooming#> .
 @prefix cacontology-physical: <https://cacontology.projectvic.org/physical#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/abduction/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/abduction/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Stranger Abduction & Weapon-Based Coercion Ontology"@en ;
     rdfs:comment "Specialized ontology for modeling stranger abduction patterns, weapon-based coercion, disguise use, and opportunistic predation in child sexual exploitation cases, based on cases like Brooklyn DA v. Christopher Fiesco (2024)."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/abduction/2.12.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/abduction/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-01-28"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
-                <https://ontology.caseontology.org/case> .
+                <https://ontology.caseontology.org/case/> ,
+                <https://cacontology.projectvic.org/core/3.0.0> .
 
 # =============================================================================
 # STRANGER ABDUCTION CORE CLASSES
@@ -68,7 +67,7 @@ cacontology-abduction:PublicSpaceAbduction rdf:type owl:Class ;
 cacontology-abduction:WeaponBasedCoercion rdf:type owl:Class ;
     rdfs:label "Weapon Based Coercion"@en ;
     rdfs:comment "Use of weapons to threaten, intimidate, and control victims during abduction and exploitation."@en ;
-    rdfs:subClassOf uco-action:Action .
+    rdfs:subClassOf cac-core:ExploitationEvent .
 
 cacontology-abduction:KnifeThreats rdf:type owl:Class ;
     rdfs:label "Knife Threats"@en ;
@@ -107,7 +106,7 @@ cacontology-abduction:PhysicalForceWithWeapon rdf:type owl:Class ;
 cacontology-abduction:DisguiseBasedConcealment rdf:type owl:Class ;
     rdfs:label "Disguise Based Concealment"@en ;
     rdfs:comment "Use of disguises or concealment methods to hide identity during approach and abduction."@en ;
-    rdfs:subClassOf uco-action:Action .
+    rdfs:subClassOf cac-core:ExploitationEvent .
 
 cacontology-abduction:FacialConcealment rdf:type owl:Class ;
     rdfs:label "Facial Concealment"@en ;
@@ -146,7 +145,7 @@ cacontology-abduction:VehicleConcealment rdf:type owl:Class ;
 cacontology-abduction:ForcedLocationEntry rdf:type owl:Class ;
     rdfs:label "Forced Location Entry"@en ;
     rdfs:comment "Forcing victim to enter buildings, apartments, or other locations for exploitation."@en ;
-    rdfs:subClassOf uco-action:Action .
+    rdfs:subClassOf cac-core:ExploitationEvent .
 
 cacontology-abduction:FireEscapeEntry rdf:type owl:Class ;
     rdfs:label "Fire Escape Entry"@en ;
@@ -166,7 +165,7 @@ cacontology-abduction:UnconventionalEntry rdf:type owl:Class ;
 cacontology-abduction:LocationIsolation rdf:type owl:Class ;
     rdfs:label "Location Isolation"@en ;
     rdfs:comment "Use of isolated or secluded locations to prevent victim escape or discovery."@en ;
-    rdfs:subClassOf uco-action:Action .
+    rdfs:subClassOf cac-core:ExploitationEvent .
 
 cacontology-abduction:ApartmentIsolation rdf:type owl:Class ;
     rdfs:label "Apartment Isolation"@en ;
@@ -210,7 +209,7 @@ cacontology-abduction:OpportunityBasedTargeting rdf:type owl:Class ;
 cacontology-abduction:VulnerabilityExploitation rdf:type owl:Class ;
     rdfs:label "Vulnerability Exploitation"@en ;
     rdfs:comment "Exploitation of specific victim vulnerabilities during stranger abduction."@en ;
-    rdfs:subClassOf uco-action:Action .
+    rdfs:subClassOf cac-core:ExploitationEvent .
 
 cacontology-abduction:AgeBasedVulnerability rdf:type owl:Class ;
     rdfs:label "Age Based Vulnerability"@en ;
@@ -234,7 +233,7 @@ cacontology-abduction:IsolationVulnerability rdf:type owl:Class ;
 cacontology-abduction:VictimControlMechanism rdf:type owl:Class ;
     rdfs:label "Victim Control Mechanism"@en ;
     rdfs:comment "Methods used to maintain control over victim during abduction and exploitation."@en ;
-    rdfs:subClassOf uco-action:Action .
+    rdfs:subClassOf cac-core:ExploitationEvent .
 
 cacontology-abduction:ThreatBasedControl rdf:type owl:Class ;
     rdfs:label "Threat Based Control"@en ;
@@ -307,7 +306,7 @@ cacontology-abduction:HumiliationBasedExploitation rdf:type owl:Class ;
 cacontology-abduction:VictimAbductionResponse rdf:type owl:Class ;
     rdfs:label "Victim Abduction Response"@en ;
     rdfs:comment "Victim's response to stranger abduction and exploitation attempts."@en ;
-    rdfs:subClassOf uco-action:Action .
+    rdfs:subClassOf cac-core:Event .
 
 cacontology-abduction:InitialResistance rdf:type owl:Class ;
     rdfs:label "Initial Resistance"@en ;

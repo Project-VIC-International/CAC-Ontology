@@ -28,6 +28,19 @@
 
 ## Key Terms
 
+### Semantic Spine (v3.0.0)
+The stable top-level class hierarchy introduced in v3.0.0 (`cac-core:` namespace, `https://cacontology.projectvic.org/core#`). The spine organizes CAC domain classes by ontological kind and provides enduring anchor types that every module inherits from.
+
+- **cac-core:Entity**: The most general class in the CAC semantic spine. All other spine classes are subclasses of `cac-core:Entity`.
+- **cac-core:EnduringEntity**: A thing that persists through time (persons, organizations, devices, artifacts). Corresponds to gUFO endurant concepts.
+- **cac-core:Occurrent**: Organizing superclass for things that happen. Parent of `cac-core:Event` and related temporal classes.
+- **cac-core:Event**: Something that happens or unfolds in time (e.g., a search-warrant execution, a synchronization event). Domain event classes inherit from this spine type rather than asserting `gufo:Event` directly.
+- **cac-core:Situation**: A context or state that holds at a time (e.g., an active investigation situation, a multi-jurisdiction coordination). Domain situation classes inherit from this spine type rather than asserting `gufo:Situation` directly.
+- **cac-core:Role**: A non-rigid role borne by an enduring entity. Investigation roles (`InvestigatorRole`, `VictimRole`, etc.) subclass this type.
+- **cac-core:Phase**: A temporal stage of some entity, process, or situation. Investigation phases (`InitialPhase`, `AnalysisPhase`, etc.) subclass this type.
+- **cac-core:AssessmentResult**: An output of an evaluative or classification process (e.g., triage outcomes, severity scores, detection results).
+- **cac-core:Artifact**: An inspectable, storable, or evidentiary enduring entity (e.g., forensic images, hash values, digital evidence).
+
 ### Core Classes
 - **HotlineReport**: A report of potential child exploitation material
 - **EvidenceItem**: Digital evidence associated with a report
@@ -37,19 +50,19 @@
 - **HashFeedbackAction**: Action recording feedback on hash matches
 - **URLReference**: Reference to a URL containing potential CSAM
 
-### gUFO-Enhanced Core Classes
-- **Investigation** (`cacontology-gufo:Investigation`): gUFO-enhanced investigation with phase modeling and temporal constraints
-- **InitialPhase** (`cacontology-gufo:InitialPhase`): Initial investigation phase modeled as anti-rigid `gufo:Phase`
-- **AnalysisPhase** (`cacontology-gufo:AnalysisPhase`): Evidence analysis phase with temporal dependencies
-- **LegalProcessPhase** (`cacontology-gufo:LegalProcessPhase`): Legal proceedings phase with court coordination
-- **EvidencePhase** (`cacontology-gufo:EvidencePhase`): Evidence collection and processing phase
-- **ResolutionPhase** (`cacontology-gufo:ResolutionPhase`): Investigation resolution and case closure phase
-- **InvestigatorRole** (`cacontology-gufo:InvestigatorRole`): Investigation role with anti-rigid properties and temporal boundaries
-- **VictimRole** (`cacontology-gufo:VictimRole`): Victim role with conflict prevention mechanisms
-- **OffenderRole** (`cacontology-gufo:OffenderRole`): Offender role with exclusive constraints
-- **WitnessRole** (`cacontology-gufo:WitnessRole`): Witness role allowing multiple assignments
-- **InformantRole** (`cacontology-gufo:InformantRole`): Informant role with confidentiality constraints
-- **RescuerRole** (`cacontology-gufo:RescuerRole`): Rescue operation role with temporal dynamics
+### Core Investigation Classes (v3.0.0 Semantic Spine)
+- **Investigation** (`cacontology:CACInvestigation`): Core investigation class; subclass of `cac-core:EnduringEntity` in the semantic spine.
+- **InitialPhase** (`cacontology:InitialPhase`): Initial investigation phase; subclass of `cac-core:Phase`
+- **AnalysisPhase** (`cacontology:AnalysisPhase`): Evidence analysis phase with temporal dependencies; subclass of `cac-core:Phase`
+- **LegalProcessPhase** (`cacontology:LegalProcessPhase`): Legal proceedings phase with court coordination; subclass of `cac-core:Phase`
+- **EvidencePhase** (`cacontology:EvidencePhase`): Evidence collection and processing phase; subclass of `cac-core:Phase`
+- **ResolutionPhase** (`cacontology:ResolutionPhase`): Investigation resolution and case closure phase; subclass of `cac-core:Phase`
+- **InvestigatorRole** (`cacontology:InvestigatorRole`): Investigation role with anti-rigid properties and temporal boundaries; subclass of `cac-core:Role`
+- **VictimRole** (`cacontology:VictimRole`): Victim role with conflict prevention mechanisms; subclass of `cac-core:Role`
+- **OffenderRole** (`cacontology:OffenderRole`): Offender role with exclusive constraints; subclass of `cac-core:Role`
+- **WitnessRole** (`cacontology:WitnessRole`): Witness role allowing multiple assignments; subclass of `cac-core:Role`
+- **InformantRole** (`cacontology:InformantRole`): Informant role with confidentiality constraints; subclass of `cac-core:Role`
+- **RescuerRole** (`cacontology:RescuerRole`): Rescue operation role with temporal dynamics; subclass of `cac-core:Role`
 
 ### Criminal Activity Classes
 - **ProductionOffense**: Child sexual abuse material production activity

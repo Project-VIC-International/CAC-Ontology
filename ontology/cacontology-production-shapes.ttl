@@ -3,28 +3,24 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
-@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
-@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
-@prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
-@prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-production: <https://cacontology.projectvic.org/production#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
-@prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/production/shapes/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/production/shapes/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Production SHACL Shapes with gUFO Validation"@en ;
-    rdfs:comment "SHACL validation shapes for gUFO-enhanced ICAC production ontology, including anti-rigidity constraints, temporal validation, and foundational type compliance."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/production/shapes/2.12.0> ;
-    owl:versionInfo "2.12.0" ;
+    rdfs:comment "SHACL validation shapes for gUFO-enhanced CAC production ontology, including anti-rigidity constraints, temporal validation, and foundational type compliance."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/production/shapes/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/production/2.12.0> ,
-                <http://purl.org/nemo/gufo> ,
+    owl:imports <https://cacontology.projectvic.org/production/3.0.0> ,
+                <http://purl.org/nemo/gufo#> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 
 # =============================================================================
@@ -32,7 +28,7 @@
 # =============================================================================
 
 cacontology-production:ProductionPhaseShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:Phase ;
+    sh:targetClass cac-core:Phase ;
     rdfs:label "Production Phase Shape"@en ;
     rdfs:comment "gUFO-enhanced validation shape for production phases with anti-rigidity constraints."@en ;
     sh:property [
@@ -106,7 +102,7 @@ cacontology-production:ActiveProductionPhaseShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 cacontology-production:ProductionRoleShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:Role ;
+    sh:targetClass cac-core:Role ;
     rdfs:label "Production Role Shape"@en ;
     rdfs:comment "gUFO-enhanced validation shape for production roles with anti-rigidity and temporal constraints."@en ;
     sh:property [
@@ -186,7 +182,7 @@ cacontology-production:ProducerRoleConflictShape rdf:type sh:NodeShape ;
                 ?entity gufo:playsRole ?this .
                 ?entity gufo:playsRole ?victimRole .
                 ?this a cacontology-production:Producer .
-                ?victimRole a cacontology-gufo:VictimRole .
+                ?victimRole a cacontology:VictimRole .
                 ?this cacontology-production:hasRoleBeginPoint ?producerBegin .
                 ?victimRole cacontology-production:hasRoleBeginPoint ?victimBegin .
                 FILTER(?producerBegin <= ?victimBegin)
@@ -208,7 +204,7 @@ cacontology-production:ProducerRoleConflictShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 cacontology-production:ProductionEventShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:Event ;
+    sh:targetClass cac-core:Event ;
     rdfs:label "Production Event Shape"@en ;
     rdfs:comment "gUFO validation for production events ensuring proper temporal modeling."@en ;
     sh:property [
@@ -243,7 +239,7 @@ cacontology-production:ProductionEventShape rdf:type sh:NodeShape ;
     ] .
 
 cacontology-production:ProductionSituationShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:Situation ;
+    sh:targetClass cac-core:Situation ;
     rdfs:label "Production Situation Shape"@en ;
     rdfs:comment "gUFO validation for production situations ensuring proper modeling of ongoing states."@en ;
     sh:sparql [

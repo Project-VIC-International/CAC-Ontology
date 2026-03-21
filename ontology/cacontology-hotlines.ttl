@@ -7,23 +7,22 @@
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
-@prefix gufo: <http://purl.org/nemo/gufo#> .
-@prefix cacontology-hotlines-gufo: <https://cacontology.projectvic.org/hotlines/gufo#> .
-@prefix cacontology-hotlines: <https://cacontology.projectvic.org/hotlines/core#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
+@prefix cacontology-hotlines: <https://cacontology.projectvic.org/hotlines#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/hotlines/core/2.12.0> rdf:type owl:Ontology ;
-    rdfs:label "CAC Ontology Hotlines Core"@en ;
+<https://cacontology.projectvic.org/hotlines/3.0.0> rdf:type owl:Ontology ;
+    rdfs:label "CAC Ontology Hotlines"@en ;
     rdfs:comment "A core ontology for representing hotline reports and their lifecycle, extending UCO with comprehensive gUFO foundational modeling. This ontology supports the representation of child sexual abuse material reports from various sources and their processing through hotline workflows with enhanced semantic precision through gUFO Events, Organizations, Roles, Phases, Situations, and Objects modeling. Features anti-rigidity enforcement, comprehensive temporal modeling, and multi-party situation coordination."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/hotlines/core/2.12.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/hotlines/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-03-20"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/>,
-                <http://purl.org/nemo/gufo#> ;
-    rdfs:comment "Enhanced with gUFO foundational ontology for +85% semantic precision, +210% temporal modeling improvements, +420% validation coverage, and comprehensive anti-rigidity enforcement for hotline operational phases and roles."@en .
+                <https://cacontology.projectvic.org/core/3.0.0> ,
+                <http://purl.org/nemo/gufo#> .
 
 # SKOS Concept Schemes
 cacontology-hotlines:ClassificationScheme rdf:type skos:ConceptScheme ;
@@ -100,15 +99,13 @@ cacontology-hotlines:HotlineOrganization rdf:type owl:Class ;
     rdfs:label "Hotline Organization"@en ;
     rdfs:comment "An organization that operates a hotline for receiving and processing reports of child sexual abuse material. Enhanced with gUFO Organization modeling for comprehensive institutional representation."@en ;
     rdfs:subClassOf uco-identity:Organization,
-                    gufo:Organization ;
-    rdfs:comment "gUFO Organization: Institutional entities with collective agency and structured operational frameworks for hotline operations."@en .
+                    cac-core:OrganizationLikeEntity .
 
 cacontology-hotlines:HotlineReport rdf:type owl:Class ;
     rdfs:label "Hotline Report"@en ;
     rdfs:comment "A report submitted to a hotline about potential child sexual abuse material. Enhanced as gUFO Situation representing complex multi-party coordination contexts involving reporters, hotline organizations, evidence, and processing workflows."@en ;
     rdfs:subClassOf uco-observable:Observation,
-                    gufo:Situation ;
-    rdfs:comment "gUFO Situation: Complex multi-party contexts involving coordination between reporters, hotline staff, evidence analysis, and law enforcement coordination."@en .
+                    cac-core:Situation .
 
 cacontology-hotlines:PublicReport rdf:type owl:Class ;
     rdfs:label "Public Report"@en ;
@@ -124,29 +121,25 @@ cacontology-hotlines:AutomatedReporterAgent rdf:type owl:Class ;
     rdfs:label "Automated Reporter Agent"@en ;
     rdfs:comment "A software agent that automatically reports content to hotlines. Enhanced as gUFO Object for comprehensive software entity modeling."@en ;
     rdfs:subClassOf uco-identity:Software,
-                    gufo:Object ;
-    rdfs:comment "gUFO Object: Software entities with automated reporting capabilities and structured operational parameters."@en .
+                    cac-core:DigitalSystemEntity .
 
 cacontology-hotlines:ReporterRole rdf:type owl:Class ;
     rdfs:label "Reporter Role"@en ;
     rdfs:comment "The role of a person or organization submitting a report to a hotline. Enhanced as anti-rigid gUFO Role supporting dynamic role assignment and temporal constraints."@en ;
     rdfs:subClassOf uco-role:SubjectRole,
-                    gufo:Role ;
-    rdfs:comment "gUFO Role (Anti-Rigid): Dynamic roles that individuals or organizations can assume when submitting reports to hotlines, with temporal and contextual constraints."@en .
+                    cac-core:Role .
 
 cacontology-hotlines:IntakeChannel rdf:type owl:Class ;
     rdfs:label "Intake Channel"@en ;
     rdfs:comment "A channel through which reports are received (web form, API, phone, etc.). Enhanced as gUFO Object for comprehensive communication infrastructure modeling."@en ;
     rdfs:subClassOf uco-core:Observable,
-                    gufo:Object ;
-    rdfs:comment "gUFO Object: Communication infrastructure entities enabling report submission through various technological and procedural pathways."@en .
+                    cac-core:EnduringEntity .
 
 cacontology-hotlines:EvidenceItem rdf:type owl:Class ;
     rdfs:label "Evidence Item"@en ;
     rdfs:comment "A piece of evidence associated with a hotline report. Enhanced as gUFO Object for comprehensive digital artifact modeling."@en ;
     rdfs:subClassOf uco-observable:DigitalArtifact,
-                    gufo:Object ;
-    rdfs:comment "gUFO Object: Digital artifacts representing evidence materials with structured metadata and forensic characteristics."@en .
+                    cac-core:Artifact .
 
 cacontology-hotlines:ImageEvidence rdf:type owl:Class ;
     rdfs:label "Image Evidence"@en ;
@@ -167,9 +160,7 @@ cacontology-hotlines:URLReference rdf:type owl:Class ;
 cacontology-hotlines:HotlineAction rdf:type owl:Class ;
     rdfs:label "Hotline Action"@en ;
     rdfs:comment "An action taken as part of processing a hotline report. Enhanced as gUFO Event for comprehensive temporal process modeling."@en ;
-    rdfs:subClassOf uco-action:Action,
-                    gufo:Event ;
-    rdfs:comment "gUFO Event: Temporal processes with defined start/end points, participants, and outcomes in hotline operations."@en .
+    rdfs:subClassOf cac-core:CoordinationEvent .
 
 cacontology-hotlines:ReportReviewAction rdf:type owl:Class ;
     rdfs:label "Report Review Action"@en ;
@@ -199,48 +190,45 @@ cacontology-hotlines:TakedownRequestAction rdf:type owl:Class ;
 # Hotline Operational Phases (Anti-Rigid gUFO Phases)
 cacontology-hotlines:IntakePhase rdf:type owl:Class ;
     rdfs:label "Intake Phase"@en ;
-    rdfs:comment "The phase during which reports are initially received and logged. Anti-rigid gUFO Phase supporting dynamic temporal transitions."@en ;
-    rdfs:subClassOf gufo:Phase ;
-    rdfs:comment "gUFO Phase (Anti-Rigid): Temporal stages that hotline reports pass through, with flexible duration and transition conditions."@en .
+    rdfs:comment "The phase during which reports are initially received and logged."@en ;
+    rdfs:subClassOf cac-core:Phase .
 
 cacontology-hotlines:ReviewPhase rdf:type owl:Class ;
     rdfs:label "Review Phase"@en ;
     rdfs:comment "The phase during which reports undergo detailed analysis and classification."@en ;
-    rdfs:subClassOf gufo:Phase .
+    rdfs:subClassOf cac-core:Phase .
 
 cacontology-hotlines:ActionPhase rdf:type owl:Class ;
     rdfs:label "Action Phase"@en ;
     rdfs:comment "The phase during which responsive actions are taken (forwarding, takedown requests, etc.)."@en ;
-    rdfs:subClassOf gufo:Phase .
+    rdfs:subClassOf cac-core:Phase .
 
 cacontology-hotlines:ClosurePhase rdf:type owl:Class ;
     rdfs:label "Closure Phase"@en ;
     rdfs:comment "The phase during which reports are finalized and closed."@en ;
-    rdfs:subClassOf gufo:Phase .
+    rdfs:subClassOf cac-core:Phase .
 
 # Hotline Specialist Roles (Anti-Rigid gUFO Roles)
 cacontology-hotlines:HotlineAnalystRole rdf:type owl:Class ;
     rdfs:label "Hotline Analyst Role"@en ;
-    rdfs:comment "The role of a specialist who analyzes hotline reports. Anti-rigid gUFO Role supporting dynamic assignment."@en ;
-    rdfs:subClassOf gufo:Role ;
-    rdfs:comment "gUFO Role (Anti-Rigid): Specialized roles for report analysis with flexible assignment and expertise requirements."@en .
+    rdfs:comment "The role of a specialist who analyzes hotline reports."@en ;
+    rdfs:subClassOf cac-core:Role .
 
 cacontology-hotlines:ForensicsSpecialistRole rdf:type owl:Class ;
     rdfs:label "Forensics Specialist Role"@en ;
     rdfs:comment "The role of a specialist who performs forensic analysis of evidence."@en ;
-    rdfs:subClassOf gufo:Role .
+    rdfs:subClassOf cac-core:Role .
 
 cacontology-hotlines:LiaisonRole rdf:type owl:Class ;
     rdfs:label "Liaison Role"@en ;
     rdfs:comment "The role of a specialist who coordinates with law enforcement agencies."@en ;
-    rdfs:subClassOf gufo:Role .
+    rdfs:subClassOf cac-core:Role .
 
 # Multi-Agency Coordination Situations
 cacontology-hotlines:MultiAgencyCoordination rdf:type owl:Class ;
     rdfs:label "Multi-Agency Coordination"@en ;
-    rdfs:comment "A complex situation involving coordination between hotlines, law enforcement, and service providers. gUFO Situation for comprehensive multi-party modeling."@en ;
-    rdfs:subClassOf gufo:Situation ;
-    rdfs:comment "gUFO Situation: Complex coordination contexts involving multiple agencies, jurisdictions, and operational frameworks."@en .
+    rdfs:comment "A complex situation involving coordination between hotlines, law enforcement, and service providers."@en ;
+    rdfs:subClassOf cac-core:Situation .
 
 cacontology-hotlines:InternationalCoordination rdf:type owl:Class ;
     rdfs:label "International Coordination"@en ;
@@ -320,25 +308,25 @@ cacontology-hotlines:currentPhase rdf:type owl:ObjectProperty ;
     rdfs:label "current phase"@en ;
     rdfs:comment "Links a hotline report to its current operational phase. gUFO Phase modeling for temporal state management."@en ;
     rdfs:domain cacontology-hotlines:HotlineReport ;
-    rdfs:range gufo:Phase .
+    rdfs:range cac-core:Phase .
 
 cacontology-hotlines:hasPhaseTransition rdf:type owl:ObjectProperty ;
     rdfs:label "has phase transition"@en ;
     rdfs:comment "Links a hotline report to phase transition events."@en ;
     rdfs:domain cacontology-hotlines:HotlineReport ;
-    rdfs:range gufo:Event .
+    rdfs:range cac-core:Event .
 
 # gUFO Role Assignment Properties
 cacontology-hotlines:assignedRole rdf:type owl:ObjectProperty ;
     rdfs:label "assigned role"@en ;
     rdfs:comment "Links a person to their assigned hotline role. gUFO Role modeling for dynamic assignment."@en ;
     rdfs:domain uco-identity:Person ;
-    rdfs:range gufo:Role .
+    rdfs:range cac-core:Role .
 
 cacontology-hotlines:playsRole rdf:type owl:ObjectProperty ;
     rdfs:label "plays role"@en ;
     rdfs:comment "Links an entity to a role it plays in hotline operations."@en ;
-    rdfs:range gufo:Role .
+    rdfs:range cac-core:Role .
 
 # gUFO Coordination Properties
 cacontology-hotlines:involvesCoordination rdf:type owl:ObjectProperty ;
@@ -370,25 +358,25 @@ cacontology-hotlines:feedbackType rdf:type owl:DatatypeProperty ;
 cacontology-hotlines:phaseBeginTime rdf:type owl:DatatypeProperty ;
     rdfs:label "phase begin time"@en ;
     rdfs:comment "The timestamp when a particular phase begins. gUFO temporal modeling for phase transitions."@en ;
-    rdfs:domain gufo:Phase ;
+    rdfs:domain cac-core:Phase ;
     rdfs:range xsd:dateTime .
 
 cacontology-hotlines:phaseEndTime rdf:type owl:DatatypeProperty ;
     rdfs:label "phase end time"@en ;
     rdfs:comment "The timestamp when a particular phase ends."@en ;
-    rdfs:domain gufo:Phase ;
+    rdfs:domain cac-core:Phase ;
     rdfs:range xsd:dateTime .
 
 cacontology-hotlines:phaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "phase duration"@en ;
     rdfs:comment "The duration of a particular phase in ISO 8601 format."@en ;
-    rdfs:domain gufo:Phase ;
+    rdfs:domain cac-core:Phase ;
     rdfs:range xsd:duration .
 
 cacontology-hotlines:roleAssignmentTime rdf:type owl:DatatypeProperty ;
     rdfs:label "role assignment time"@en ;
     rdfs:comment "The timestamp when a role is assigned."@en ;
-    rdfs:domain gufo:Role ;
+    rdfs:domain cac-core:Role ;
     rdfs:range xsd:dateTime .
 
 cacontology-hotlines:coordinationBeginTime rdf:type owl:DatatypeProperty ;
@@ -411,6 +399,6 @@ cacontology-hotlines:previousStep rdf:type owl:TransitiveProperty ;
 
 cacontology-hotlines:linkedInvestigation rdf:type owl:ObjectProperty ;
     rdfs:label "linked investigation"@en ;
-    rdfs:comment "Links a hotline report to an ICAC investigation."@en ;
+    rdfs:comment "Links a hotline report to an CAC investigation."@en ;
     rdfs:domain cacontology-hotlines:HotlineReport ;
     rdfs:range <https://cacontology.projectvic.org#CACInvestigation> . 

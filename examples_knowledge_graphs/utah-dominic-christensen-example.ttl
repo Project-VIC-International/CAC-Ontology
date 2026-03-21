@@ -1,0 +1,352 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-registry: <https://cacontology.projectvic.org/sex-offender-registry#> .
+@prefix cacontology-legal-outcomes: <https://cacontology.projectvic.org/legal-outcomes#> .
+@prefix cacontology-us-ncmec: <https://cacontology.projectvic.org/us/ncmec/3.0.0#> .
+@prefix cacontology-grooming: <https://cacontology.projectvic.org/grooming#> .
+@prefix cacontology-case: <https://cacontology.projectvic.org/case-management#> .
+@prefix ex: <urn:uuid:> .
+
+# =============================================================================
+# UTAH ICAC – DOMINIC LYNN CHRISTENSEN PRESS RELEASE EXAMPLE
+# =============================================================================
+#
+# ARTICLE MAPPING SUMMARY
+# - Offender:
+#   - "Dominic Lynn Christensen, 24" -> ex:11f53d30-a75c-500d-b7d4-f73aab63d796 (uco-identity:Person,
+#     cacontology-registry:RegisteredSexOffender, cacontology-registry:RecidivistSexOffender).
+# - Prior 2021 cases (Sanpete County):
+#   - May 2021 forcible sexual abuse while 18-year-old victim sleeps -> ex:be8f34fd-923e-55b8-a72a-fae96c23a323
+#     (cacontology:ChildSexualAbuseEvent) located in ex:ccec1c1c-defa-5945-aff1-c8c5c864ffcd and linked to
+#     ex:e4e70488-8886-5573-95bd-0885a5689ede (18-year-old) and ex:11f53d30-a75c-500d-b7d4-f73aab63d796.
+#   - July 2021 online/offline relationship with 15-year-old and photos with 11-year-old ->
+#     ex:da1c6db2-8d82-5de5-a8db-f22b0743f98d (cacontology:ChildSexualAbuseEvent) and ex:ca6b84f0-65ff-5784-9a03-b8cc66840047
+#     (cacontology:CSAMIncident) with multiple juvenile victims.
+#   - "playing a game with sexual consequences with several juveniles" -> modeled as
+#     ex:17a9eaac-1a26-5aa8-960a-42ffa1184606 (cacontology-grooming:PhysicalSpaceGrooming) to reuse
+#     existing grooming patterns for offline, multi-victim sexualized games.
+#   - Charges "forcible sexual abuse", "sexual exploitation of a minor", "sexual abuse of a child"
+#     -> ex:830477dc-1655-56a1-802e-cb40903d732c, ex:9e450cae-582b-5993-982f-fb8babf24d14,
+#        ex:1dfe3c61-2953-5be1-b5c6-f2ffa5caf291 (cacontology-legal-outcomes:StateCharge) with
+#        sentencing resources ex:0550f100-c17d-56b4-8097-d2ae9820bd24 and ex:561c8464-0aa3-5997-bbaa-9451c977d192
+#        capturing 364 days jail and 48 months probation served concurrently.
+# - Registry status & compliance:
+#   - Article text that he is a "sex offender" and later "facing charges for failure to register or
+#     providing false info as a sex offender" -> ex:0ffa5181-0574-5a79-94ef-d5d9ec1b0b32
+#     (cacontology-registry:RegistrationRecord) and ex:fcde8bdb-2675-5262-9e52-7daf75ace220
+#     (cacontology-registry:ComplianceViolation) linked to ex:11f53d30-a75c-500d-b7d4-f73aab63d796.
+# - Current 2025 NCMEC-driven case (Garfield County):
+#   - August 21 cybertip where "NCMEC received a tip that a specific user had uploaded child sexual
+#     abuse material" -> ex:144f3e6a-91ca-5b19-891e-72faf487d978 (cacontology-us-ncmec:NCMECCybertipReport) with
+#     ex:1851988e-d905-52a1-9a2a-2bc65fb1248b (cacontology-us-ncmec:OnlineEnticementIncident) and
+#     ex:7d5275ac-a296-5542-b2c2-80f76c3fab7d (cacontology:CSAMIncident).
+#   - "email address, username, and IP address" -> ex:c7af5f45-2475-5a1c-bb2a-f48142f190ce
+#     (uco-observable:DigitalAccount), ex:4aefcd45-89e1-5148-b984-9e11b7f7c02e (uco-observable:ObservableObject
+#     with descriptive value), linked via NCMEC AccountLinking pattern.
+#   - "search warrant to the email provider" -> ex:LegalProcess_SearchWarrantEmail
+#     (uco-action:Action) with rdfs:comment; investigation modeled as ex:a8fb0031-7ccf-5982-8078-060e6441ca72
+#     (cacontology:CACInvestigation).
+#   - "contents between Christensen’s account and another user... juvenile female" and "CSAM showing
+#     adults sexually assaulting children" -> ex:e9930072-5403-5363-840e-2f8473ffe6a0 (cacontology-grooming:ChildVictim)
+#     and ex:db66d7d7-8d35-54c4-8b07-6f00728c5450 (uco-observable:DigitalArtifact) linked to the CSAM incident.
+#   - New charges "seven counts of sexual exploitation of a minor" in Garfield County and "failure to
+#     register or providing false info as a sex offender" -> ex:Charge_2025_SexualExploitationMinor
+#     and ex:2c89067e-1006-5a1c-b17a-0c3cdda4b5f1 (cacontology-legal-outcomes:StateCharge).
+#   - "held without bail in Garfield County Jail" and initial appearance set for November 20, 2025 ->
+#     captured via rdfs:comment on ex:PretrialDetention_2025 (uco-action:Action) because current
+#     sentencing ontology does not yet have explicit bail status modeling.
+#
+# This example intentionally reuses existing CAC Ontology modules (core, grooming, sentencing,
+# sex-offender-registry, US NCMEC) and highlights ontology gaps such as:
+# - Lack of explicit failure-to-register / false-information charge classes in registry/sentencing.
+# - No dedicated bail / held-without-bail representation.
+# - No specialized "sexual consequence game" grooming subtype (approximated with PhysicalSpaceGrooming).
+
+# =============================================================================
+# CORE ENTITIES: OFFENDER, VICTIMS, LOCATIONS, AGENCIES
+# =============================================================================
+
+ex:11f53d30-a75c-500d-b7d4-f73aab63d796 rdf:type uco-identity:Person ,
+                              cacontology-registry:RegisteredSexOffender ,
+                              cacontology-registry:RecidivistSexOffender ;
+    rdfs:label "Dominic Lynn Christensen"@en ;
+    rdfs:comment "Offender with prior 2021 convictions in Sanpete County and new 2025 sexual exploitation charges in Garfield County, Utah."@en .
+
+ex:e4e70488-8886-5573-95bd-0885a5689ede rdf:type uco-identity:Person ;
+    rdfs:label "Victim in May 2021 Assault (18-year-old female)"@en .
+
+ex:2fc5a1e5-1229-5c74-9edd-3e2f94d3a4d9 rdf:type uco-identity:Person ,
+                             cacontology-grooming:ChildVictim ;
+    rdfs:label "15-year-old victim in 2021 relationship"@en .
+
+ex:953f8fdb-8b05-5129-98c6-8681b3af2c0d rdf:type uco-identity:Person ,
+                             cacontology-grooming:ChildVictim ;
+    rdfs:label "11-year-old victim depicted in 2021 photos"@en .
+
+ex:e9930072-5403-5363-840e-2f8473ffe6a0 rdf:type uco-identity:Person ,
+                              cacontology-grooming:ChildVictim ;
+    rdfs:label "Online juvenile victim in 2025 NCMEC case"@en .
+
+ex:ccec1c1c-defa-5945-aff1-c8c5c864ffcd rdf:type uco-location:Location ;
+    rdfs:label "Sanpete County, Utah"@en .
+
+ex:a0e713ea-c66c-5c59-8e29-0364f7feab87 rdf:type uco-location:Location ;
+    rdfs:label "Garfield County, Utah"@en .
+
+ex:2aa55c22-288b-52d4-9893-17d734cb0c4d rdf:type uco-identity:Organization ;
+    rdfs:label "Gunnison Valley Police Department (GVPD)"@en ;
+    rdfs:comment "Agency that received the May 2021 report from the 18-year-old victim."@en .
+
+ex:dccc9e5d-e90d-5840-b145-551c3a3d0c25 rdf:type uco-identity:Organization ;
+    rdfs:label "Garfield County Jail"@en .
+
+# =============================================================================
+# 2021 INVESTIGATION AND INCIDENTS (SANPETE COUNTY)
+# =============================================================================
+
+ex:fae1b6ad-b2ca-5d7d-b7de-8410ecc02b69 rdf:type cacontology:CACInvestigation ;
+    rdfs:label "Christensen 2021 Sanpete County Investigation"@en ;
+    cacontology:investigationStatus "closed" ;
+    uco-core:startTime "2021-05-01T00:00:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2021-09-27T00:00:00Z"^^xsd:dateTime ;
+    rdfs:comment "Investigation including May 2021 forcible sexual abuse and July 2021 sexual exploitation offenses in Sanpete County."@en .
+
+ex:victim-role-may2021 rdf:type cacontology:VictimRole ;
+    cacontology:hasRoleBeginPoint "2021-05-15T00:00:00Z"^^xsd:dateTimeStamp ;
+    cacontology:participatesInEvent ex:be8f34fd-923e-55b8-a72a-fae96c23a323 .
+
+ex:offender-role-may2021 rdf:type cacontology:OffenderRole ;
+    cacontology:hasRoleBeginPoint "2021-05-15T00:00:00Z"^^xsd:dateTimeStamp ;
+    cacontology:participatesInEvent ex:be8f34fd-923e-55b8-a72a-fae96c23a323 .
+
+ex:be8f34fd-923e-55b8-a72a-fae96c23a323 rdf:type cacontology:ChildSexualAbuseEvent ;
+    rdfs:label "May 2021 Forcible Sexual Abuse While Victim Sleeping"@en ;
+    rdfs:comment "Assault where Christensen used his fingers to sexually assault an 18-year-old female victim while she was sleeping in bed with him and his fiancée."@en ;
+    uco-location:location ex:ccec1c1c-defa-5945-aff1-c8c5c864ffcd ;
+    uco-core:startTime "2021-05-15T00:00:00Z"^^xsd:dateTime ;
+    cacontology:involvesOffender ex:11f53d30-a75c-500d-b7d4-f73aab63d796 ;
+    cacontology:involvesVictim ex:e4e70488-8886-5573-95bd-0885a5689ede .
+
+ex:17a9eaac-1a26-5aa8-960a-42ffa1184606 rdf:type cacontology-grooming:SexualConsequenceGameGrooming ;
+    rdfs:label "Sexual Consequence Game with Multiple Juveniles"@en ;
+    rdfs:comment "Pattern where Christensen was 'playing a game with sexual consequences with several juveniles'; modeled using existing PhysicalSpaceGrooming behavior to capture offline, multi-victim sexualized games."@en ;
+    cacontology-grooming:groomingStage "sexualization" ;
+    cacontology-grooming:behaviorDuration 30 ;
+    cacontology-grooming:participantCount 3 ;
+    cacontology-grooming:gameContext "peer_group_sleepover" ;
+    cacontology-grooming:ruleStructureDescription "Group game with escalating sexual 'consequences' imposed on juveniles who lose rounds or challenges." ;
+    cacontology-grooming:evidenceValue "high" ;
+    cacontology-grooming:prosecutionRelevance "supports pattern of sexual exploitation involving multiple juveniles" .
+
+ex:victim-role-jun2021 rdf:type cacontology:VictimRole ;
+    cacontology:hasRoleBeginPoint "2021-06-15T00:00:00Z"^^xsd:dateTimeStamp ;
+    cacontology:participatesInEvent ex:da1c6db2-8d82-5de5-a8db-f22b0743f98d .
+
+ex:offender-role-jun2021 rdf:type cacontology:OffenderRole ;
+    cacontology:hasRoleBeginPoint "2021-06-15T00:00:00Z"^^xsd:dateTimeStamp ;
+    cacontology:participatesInEvent ex:da1c6db2-8d82-5de5-a8db-f22b0743f98d .
+
+ex:da1c6db2-8d82-5de5-a8db-f22b0743f98d rdf:type cacontology:ChildSexualAbuseEvent ;
+    rdfs:label "June–July 2021 Relationship and Abuse of 15-year-old Victim"@en ;
+    rdfs:comment "Christensen entered into a relationship with a 15-year-old female, exchanged messages, made plans to meet, and engaged in sexual activity after release on bail."@en ;
+    uco-location:location ex:ccec1c1c-defa-5945-aff1-c8c5c864ffcd ;
+    uco-core:startTime "2021-06-15T00:00:00Z"^^xsd:dateTime ;
+    cacontology:involvesOffender ex:11f53d30-a75c-500d-b7d4-f73aab63d796 ;
+    cacontology:involvesVictim ex:2fc5a1e5-1229-5c74-9edd-3e2f94d3a4d9 .
+
+ex:ca6b84f0-65ff-5784-9a03-b8cc66840047 rdf:type cacontology:CSAMIncident ;
+    rdfs:label "July 2021 CSAM Photos with 11-year-old Victim"@en ;
+    rdfs:comment "Photos found on Christensen's phone showing him shirtless with an 11-year-old female and kissing her while she was clearly asleep."@en ;
+    uco-core:hasFacet ex:db66d7d7-8d35-54c4-8b07-6f00728c5450 ;
+    uco-location:location ex:ccec1c1c-defa-5945-aff1-c8c5c864ffcd ;
+    cacontology:involvesOffender ex:11f53d30-a75c-500d-b7d4-f73aab63d796 ;
+    cacontology:involvesVictim ex:953f8fdb-8b05-5129-98c6-8681b3af2c0d .
+
+# =============================================================================
+# 2021 CHARGES AND SENTENCES (SANPETE COUNTY)
+# =============================================================================
+
+ex:830477dc-1655-56a1-802e-cb40903d732c rdf:type cacontology-legal-outcomes:StateCharge ;
+    rdfs:label "2021 Forcible Sexual Abuse Charge (Sanpete County)"@en ;
+    cacontology-legal-outcomes:chargeLevel "state_felony" ;
+    rdfs:comment "Charge for forcible sexual abuse based on the May 2021 incident; Christensen pleaded guilty on Sept. 27, 2021."@en .
+
+ex:9e450cae-582b-5993-982f-fb8babf24d14 rdf:type cacontology-legal-outcomes:StateCharge ;
+    rdfs:label "2021 Sexual Exploitation of a Minor Charges (Sanpete County)"@en ;
+    cacontology-legal-outcomes:chargeLevel "state_felony" ;
+    rdfs:comment "Two counts of sexual exploitation of a minor arising from July 2021 conduct; Christensen ultimately pleaded guilty to two counts."@en .
+
+ex:1dfe3c61-2953-5be1-b5c6-f2ffa5caf291 rdf:type cacontology-legal-outcomes:StateCharge ;
+    rdfs:label "2021 Sexual Abuse of a Child Charge (Sanpete County)"@en ;
+    cacontology-legal-outcomes:chargeLevel "state_felony" ;
+    rdfs:comment "Charge for sexual abuse of a child as described in the July 2021 case; later dismissed as part of plea, leaving two exploitation counts."@en .
+
+ex:0550f100-c17d-56b4-8097-d2ae9820bd24 rdf:type cacontology-legal-outcomes:PrisonSentence ;
+    rdfs:label "2021 Jail Sentence (364 days concurrent)"@en ;
+    cacontology-legal-outcomes:sentenceLength 12 ;
+    cacontology-legal-outcomes:sentenceDuration "P364D"^^xsd:duration ;
+    cacontology-legal-outcomes:sentenceConcurrency "concurrent" ;
+    rdfs:comment "Each 2021 crime received a 364-day jail sentence, ordered to be served concurrently with the other sentences."@en ;
+    cacontology-legal-outcomes:appliesTo ex:830477dc-1655-56a1-802e-cb40903d732c ,
+                                     ex:9e450cae-582b-5993-982f-fb8babf24d14 .
+
+ex:561c8464-0aa3-5997-bbaa-9451c977d192 rdf:type cacontology-legal-outcomes:ProbationSentence ;
+    rdfs:label "2021 Probation Sentence (48 months concurrent)"@en ;
+    cacontology-legal-outcomes:sentenceLength 48 ;
+    cacontology-legal-outcomes:sentenceDuration "P4Y"^^xsd:duration ;
+     cacontology-legal-outcomes:sentenceConcurrency "concurrent" ;
+    rdfs:comment "Probation of 48 months imposed for each 2021 crime, to be served concurrently."@en ;
+    cacontology-legal-outcomes:appliesTo ex:830477dc-1655-56a1-802e-cb40903d732c ,
+                                     ex:9e450cae-582b-5993-982f-fb8babf24d14 .
+
+ex:c676e8b1-c276-5331-af99-df5ea45c6b89 rdf:type cacontology-legal-outcomes:SentencingHearing ;
+    rdfs:label "2021 Sentencing Hearing (Sanpete County)"@en ;
+    cacontology-legal-outcomes:victimCount 5 ;
+    rdfs:comment "Hearing where multiple juvenile victims were identified; five juveniles came forward or alleged sexual activity, some after Christensen's release on bail."@en ;
+    cacontology-legal-outcomes:resultsSentence ex:0550f100-c17d-56b4-8097-d2ae9820bd24 ,
+                                           ex:561c8464-0aa3-5997-bbaa-9451c977d192 .
+
+ex:11f53d30-a75c-500d-b7d4-f73aab63d796 cacontology-legal-outcomes:chargedWith ex:830477dc-1655-56a1-802e-cb40903d732c ,
+                                                         ex:9e450cae-582b-5993-982f-fb8babf24d14 ,
+                                                         ex:1dfe3c61-2953-5be1-b5c6-f2ffa5caf291 ;
+    cacontology-legal-outcomes:sentencedTo ex:0550f100-c17d-56b4-8097-d2ae9820bd24 ,
+                                       ex:561c8464-0aa3-5997-bbaa-9451c977d192 .
+
+# =============================================================================
+# SEX OFFENDER REGISTRY STATUS AND COMPLIANCE
+# =============================================================================
+
+ex:81c30a5a-e119-52b0-8bfa-2655c6af40df rdf:type cacontology-registry:SexOffenderRegistry ;
+    rdfs:label "Utah Sex Offender Registry"@en .
+
+ex:0ffa5181-0574-5a79-94ef-d5d9ec1b0b32 rdf:type cacontology-registry:RegistrationRecord ;
+    rdfs:label "Christensen Registration Record"@en ;
+    cacontology-registry:registrationNumber "UT-SO-CHRISTENSEN" ;
+    cacontology-registry:registrationDate "2021-10-01T00:00:00Z"^^xsd:dateTime ;
+    cacontology-registry:lifetimeRegistration false ;
+    rdfs:comment "Simplified representation of Christensen's sex offender registration record following his 2021 convictions."@en .
+
+ex:bc1231cb-2a9f-5654-ab99-c9823558ff2c rdf:type cacontology-registry:RegisteredAddress ;
+    rdfs:label "Garfield County Registered Residence for Christensen"@en .
+
+ex:11adb342-cdc4-5be3-92cd-9bb6ef96cb4b rdf:type cacontology-registry:ComplianceHistory ;
+    rdfs:label "Christensen Registry Compliance History"@en .
+
+ex:fcde8bdb-2675-5262-9e52-7daf75ace220 rdf:type cacontology-registry:ComplianceViolation ;
+    rdfs:label "2025 Registration Compliance Violations"@en ;
+    rdfs:comment "Combined representation of charges alleging failure to register or providing false information as a sex offender in connection with the Garfield County case."@en .
+
+ex:11f53d30-a75c-500d-b7d4-f73aab63d796 cacontology-registry:registeredIn ex:81c30a5a-e119-52b0-8bfa-2655c6af40df ;
+    cacontology-registry:hasRegistrationRecord ex:0ffa5181-0574-5a79-94ef-d5d9ec1b0b32 ;
+    cacontology-registry:residesAt ex:bc1231cb-2a9f-5654-ab99-c9823558ff2c ;
+    cacontology-registry:hasCompliance ex:11adb342-cdc4-5be3-92cd-9bb6ef96cb4b ;
+    cacontology-registry:subjectToRestriction ex:fcde8bdb-2675-5262-9e52-7daf75ace220 .
+
+# =============================================================================
+# 2025 NCMEC CYBERTIP AND NEW INVESTIGATION (GARFIELD COUNTY)
+# =============================================================================
+
+ex:144f3e6a-91ca-5b19-891e-72faf487d978 rdf:type cacontology-us-ncmec:NCMECCybertipReport ;
+    rdfs:label "NCMEC CyberTip – 21 August 2025 (Christensen email account)"@en ;
+    rdfs:comment "Tip received by NCMEC that a specific user had uploaded child sexual abuse material to their account; included email address, username, and IP address."@en .
+
+ex:1851988e-d905-52a1-9a2a-2bc65fb1248b rdf:type cacontology-us-ncmec:OnlineEnticementIncident ;
+    rdfs:label "Online CSAM Upload Incident Identified in 2025 CyberTip"@en ;
+    rdfs:comment "Simplified mapping of the cybertip to an Online Enticement-style incident where CSAM was uploaded to an account."@en .
+
+ex:144f3e6a-91ca-5b19-891e-72faf487d978 cacontology-us-ncmec:hasNCMECIncidentType ex:1851988e-d905-52a1-9a2a-2bc65fb1248b .
+
+ex:c7af5f45-2475-5a1c-bb2a-f48142f190ce rdf:type uco-observable:DigitalAccount ;
+    rdfs:label "Christensen Email Account Referenced in CyberTip"@en ;
+    rdfs:comment "Email account identified in the NCMEC tip as the source of uploaded CSAM; registered to Dominic Christensen and associated with a Garfield County address."@en .
+
+ex:4aefcd45-89e1-5148-b984-9e11b7f7c02e rdf:type uco-observable:ObservableObject ;
+    rdfs:label "IP Address from NCMEC Tip"@en ;
+    rdfs:comment "IP address provided in the NCMEC tip; resolved to Christensen's registered residence in Garfield County."@en .
+
+ex:db66d7d7-8d35-54c4-8b07-6f00728c5450 rdf:type uco-observable:DigitalArtifact ;
+    rdfs:label "CSAM Content Associated with Christensen's Account (2025)"@en ;
+    rdfs:comment "Email account contents including CSAM that showed adults sexually assaulting children, as described in the press release."@en .
+
+ex:7d5275ac-a296-5542-b2c2-80f76c3fab7d rdf:type cacontology:CSAMIncident ;
+    rdfs:label "2025 Online CSAM Incident tied to Christensen's Email Account"@en ;
+    rdfs:comment "Incident in which Christensen sent, received, and saved CSAM using an email platform; he admitted being sexually aroused by the material and last viewed it in August 2025."@en ;
+    uco-core:hasFacet ex:db66d7d7-8d35-54c4-8b07-6f00728c5450 ;
+    uco-location:location ex:a0e713ea-c66c-5c59-8e29-0364f7feab87 ;
+    cacontology:involvesOffender ex:11f53d30-a75c-500d-b7d4-f73aab63d796 ;
+    cacontology:producesArtifact ex:db66d7d7-8d35-54c4-8b07-6f00728c5450 .
+
+ex:0a328bdf-dac6-56fc-9156-a8549dbfce82 rdf:type uco-observable:Message ;
+    rdfs:label "Sexually Explicit Conversation with Juvenile (2025)"@en ;
+    rdfs:comment "Sexually explicit conversation between Christensen's account and a juvenile female user, as reviewed by the case detective."@en .
+
+# Simplified investigation structure driven by the cybertip
+
+ex:a8fb0031-7ccf-5982-8078-060e6441ca72 rdf:type cacontology:CACInvestigation ;
+    rdfs:label "Christensen 2025 Garfield County Investigation"@en ;
+    cacontology:investigationStatus "active" ;
+    uco-core:startTime "2025-08-21T00:00:00Z"^^xsd:dateTime ;
+    rdfs:comment "Investigation initiated after an August 21, 2025 NCMEC cybertip about CSAM uploaded to an email account linked to Dominic Christensen."@en .
+
+ex:6f843cf9-9760-5050-b67a-8b450e8bcc96 rdf:type cacontology:ReceiveCybertipAction ;
+    rdfs:label "Receive NCMEC CyberTip – 21 August 2025"@en ;
+    uco-core:startTime "2025-08-21T00:00:00Z"^^xsd:dateTime ;
+    uco-core:hasFacet ex:1851988e-d905-52a1-9a2a-2bc65fb1248b ;
+    rdfs:comment "Initial action of receiving the NCMEC cybertip that triggered the Garfield County investigation."@en .
+
+ex:23cc0eac-dfc3-5357-9835-14182c6b57c5 rdf:type cacontology:EvidenceReviewAction ;
+    rdfs:label "Review of Christensen Email Account Contents"@en ;
+    rdfs:comment "Review of sexually explicit content and CSAM stored in Christensen's email account, including conversations with a juvenile female."@en .
+
+ex:67ef3c5f-d788-5fe6-aafe-2fce450a7822 rdf:type uco-action:Action ;
+    rdfs:label "Search Warrant to Email Service Provider"@en ;
+    rdfs:comment "Search warrant issued to the email provider for information on the registered owner of the account implicated in the cybertip."@en .
+
+ex:370bb6ab-2b2f-5bc1-b483-2a2fbd8459f3 rdf:type uco-action:Action ;
+    rdfs:label "Search Warrant Execution at Christensen's Residence"@en ;
+    rdfs:comment "Law enforcement executed a search warrant at Christensen's Garfield County residence and took him into custody."@en .
+
+ex:bb13754d-17d3-501b-8c2a-ec579e463339 rdf:type uco-action:Action ;
+    rdfs:label "Pretrial Detention of Christensen in Garfield County Jail"@en ;
+    rdfs:comment "Represents that Christensen is currently being held without bail in Garfield County Jail pending his initial appearance on November 20, 2025."@en .
+
+ex:c714bf69-9033-5f7f-a156-a51dadd3d0c6 rdf:type cacontology-legal-outcomes:ArraignmentProceeding ;
+    rdfs:label "Initial Appearance – November 20, 2025"@en ;
+    rdfs:comment "Scheduled initial appearance date in Garfield County on the 2025 charges."@en ;
+    cacontology-legal-outcomes:bailStatus "held_without_bail" .
+
+# Link investigation actions to the 2025 investigation
+
+ex:a8fb0031-7ccf-5982-8078-060e6441ca72 cacontology:hasStep ex:6f843cf9-9760-5050-b67a-8b450e8bcc96 ,
+                                              ex:23cc0eac-dfc3-5357-9835-14182c6b57c5 ,
+                                              ex:370bb6ab-2b2f-5bc1-b483-2a2fbd8459f3 .
+
+# =============================================================================
+# 2025 CHARGES (GARFIELD COUNTY)
+# =============================================================================
+
+ex:76114a89-5c20-54a9-8c95-0de251f6882b rdf:type cacontology-legal-outcomes:StateCharge ;
+    rdfs:label "2025 Sexual Exploitation of a Minor Charges (Garfield County)"@en ;
+    cacontology-legal-outcomes:chargeLevel "state_felony" ;
+    cacontology-legal-outcomes:chargeCount 7 ;
+    rdfs:comment "Seven counts of sexual exploitation of a minor filed in Garfield County based on the 2025 CSAM incident."@en ;
+    cacontology-legal-outcomes:appliesTo ex:7d5275ac-a296-5542-b2c2-80f76c3fab7d .
+
+ex:2c89067e-1006-5a1c-b17a-0c3cdda4b5f1 rdf:type cacontology-legal-outcomes:StateCharge ;
+    rdfs:label "2025 Failure-to-Register / False-Information Sex Offender Charges"@en ;
+    cacontology-legal-outcomes:chargeLevel "state_felony" ;
+    rdfs:comment "Combined representation of charges alleging failure to register or providing false information as a sex offender; specific statutory breakdown is abstracted in this example."@en ;
+    cacontology-legal-outcomes:appliesTo ex:fcde8bdb-2675-5262-9e52-7daf75ace220 .
+
+ex:11f53d30-a75c-500d-b7d4-f73aab63d796 cacontology-legal-outcomes:chargedWith ex:76114a89-5c20-54a9-8c95-0de251f6882b ,
+                                                         ex:2c89067e-1006-5a1c-b17a-0c3cdda4b5f1 .
+
+

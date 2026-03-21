@@ -4,29 +4,26 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
-@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
-@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
-@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
-@prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-partnerships: <https://cacontology.projectvic.org/partnerships#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix cacontology-partnerships-shapes: <https://cacontology.projectvic.org/partnerships/shapes#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # =============================================================================
-# ICAC PARTNERSHIPS SHACL SHAPES with gUFO INTEGRATION
+# CAC PARTNERSHIPS SHACL SHAPES with gUFO INTEGRATION
 # Enhanced with comprehensive gUFO (gentle Unified Foundational Ontology) validation
 # =============================================================================
 
-<https://cacontology.projectvic.org/partnerships/shapes/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/partnerships/shapes/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Partnerships SHACL Shapes with gUFO Integration"@en ;
     rdfs:comment "SHACL shapes for validating public-private partnerships with comprehensive gUFO foundational ontology integration for enhanced semantic precision and validation capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/partnerships/shapes/2.12.0> ;
-    owl:versionInfo "2.12.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/partnerships/shapes/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/partnerships/2.12.0> ,
+    owl:imports <https://cacontology.projectvic.org/partnerships/3.0.0> ,
                 <http://purl.org/nemo/gufo#> .
 
 # =============================================================================
@@ -36,30 +33,12 @@
 cacontology-partnerships-shapes:PartnershipOrganizationTypeValidationShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-partnerships:PublicPrivatePartnership ;
     rdfs:label "Partnership Organization Type Validation Shape"@en ;
-    rdfs:comment "Validates gUFO Organization type consistency for partnerships."@en ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Organization ;
-        sh:minCount 1 ;
-        sh:message "Partnership must be typed as gUFO Organization."@en
-    ] ;
-    sh:property [
-        sh:path rdfs:subClassOf ;
-        sh:hasValue gufo:Organization ;
-        sh:minCount 0 ;
-        sh:message "Partnership class should extend gUFO Organization."@en
-    ] .
+    rdfs:comment "Validates gUFO Organization type consistency for partnerships."@en .
 
 cacontology-partnerships-shapes:CooperationEventTypeValidationShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-partnerships:TechnologyCooperation ;
     rdfs:label "Cooperation Event Type Validation Shape"@en ;
     rdfs:comment "Validates gUFO Event type consistency for cooperation events."@en ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Event ;
-        sh:minCount 1 ;
-        sh:message "Technology cooperation must be typed as gUFO Event."@en
-    ] ;
     sh:sparql [
         sh:message "Cooperation events must be properly typed as gUFO Event and extend UCO Action."@en ;
         sh:select """
@@ -67,7 +46,7 @@ cacontology-partnerships-shapes:CooperationEventTypeValidationShape rdf:type sh:
             WHERE {
                 $this rdf:type gufo:Event .
                 FILTER NOT EXISTS {
-                    $this rdf:type ?eventClass .
+                    $this rdf:type ?eventClass ;
                     ?eventClass rdfs:subClassOf* uco-action:Action .
                 }
             }
@@ -75,7 +54,7 @@ cacontology-partnerships-shapes:CooperationEventTypeValidationShape rdf:type sh:
     ] .
 
 cacontology-partnerships-shapes:PartnershipPhaseTypeValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:Phase ;
+    sh:targetClass cac-core:Phase ;
     rdfs:label "Partnership Phase Type Validation Shape"@en ;
     rdfs:comment "Validates gUFO Phase type consistency for partnership phases."@en ;
     sh:sparql [
@@ -85,7 +64,7 @@ cacontology-partnerships-shapes:PartnershipPhaseTypeValidationShape rdf:type sh:
             WHERE {
                 $this rdf:type gufo:Phase .
                 FILTER NOT EXISTS {
-                    $this rdf:type ?phaseClass .
+                    $this rdf:type ?phaseClass ;
                     ?phaseClass rdfs:subClassOf* cacontology-partnerships:PublicPrivatePartnership .
                 }
             }
@@ -93,17 +72,17 @@ cacontology-partnerships-shapes:PartnershipPhaseTypeValidationShape rdf:type sh:
     ] .
 
 cacontology-partnerships-shapes:PartnerRoleTypeValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:Role ;
+    sh:targetClass cac-core:Role ;
     rdfs:label "Partner Role Type Validation Shape"@en ;
     rdfs:comment "Validates gUFO Role type consistency for partner roles."@en ;
     sh:sparql [
-        sh:message "Partner roles must be properly typed as gUFO Role and extend UCO Role."@en ;
+        sh:message "Partner roles must be properly typed as gUFO Role and extend cac-core:Role."@en ;
         sh:select """
             SELECT $this
             WHERE {
                 $this rdf:type gufo:Role .
                 FILTER NOT EXISTS {
-                    $this rdfs:subClassOf* uco-role:Role .
+                    $this rdf:type/rdfs:subClassOf* cac-core:Role .
                 }
             }
         """
@@ -112,24 +91,12 @@ cacontology-partnerships-shapes:PartnerRoleTypeValidationShape rdf:type sh:NodeS
 cacontology-partnerships-shapes:PartnershipObjectTypeValidationShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-partnerships:InformationSharingFramework ;
     rdfs:label "Partnership Object Type Validation Shape"@en ;
-    rdfs:comment "Validates gUFO Object type consistency for partnership objects."@en ;
-    sh:property [
-        sh:path rdfs:subClassOf ;
-        sh:hasValue gufo:Object ;
-        sh:minCount 0 ;
-        sh:message "Information sharing framework should extend gUFO Object."@en
-    ] .
+    rdfs:comment "Validates gUFO Object type consistency for partnership objects."@en .
 
 cacontology-partnerships-shapes:PartnershipSituationTypeValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:Situation ;
+    sh:targetClass cac-core:Situation ;
     rdfs:label "Partnership Situation Type Validation Shape"@en ;
-    rdfs:comment "Validates gUFO Situation type consistency for partnership situations."@en ;
-    sh:property [
-        sh:path rdfs:subClassOf ;
-        sh:hasValue gufo:Situation ;
-        sh:minCount 0 ;
-        sh:message "Partnership situation should extend gUFO Situation."@en
-    ] .
+    rdfs:comment "Validates gUFO Situation type consistency for partnership situations."@en .
 
 # =============================================================================
 # gUFO TEMPORAL CONSTRAINTS SHAPES
@@ -180,7 +147,7 @@ cacontology-partnerships-shapes:CooperationEventTemporalShape rdf:type sh:NodeSh
     ] .
 
 cacontology-partnerships-shapes:PartnershipPhaseTemporalShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:Phase ;
+    sh:targetClass cac-core:Phase ;
     rdfs:label "Partnership Phase Temporal Shape"@en ;
     rdfs:comment "Validates gUFO temporal constraints for partnership phases."@en ;
     sh:property [
@@ -208,7 +175,7 @@ cacontology-partnerships-shapes:PartnershipPhaseTemporalShape rdf:type sh:NodeSh
     ] .
 
 cacontology-partnerships-shapes:PartnerRoleTemporalShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:Role ;
+    sh:targetClass cac-core:Role ;
     rdfs:label "Partner Role Temporal Shape"@en ;
     rdfs:comment "Validates gUFO temporal constraints for partner roles."@en ;
     sh:property [
@@ -876,8 +843,7 @@ cacontology-partnerships-shapes:PartnershipConsistencyShape rdf:type sh:NodeShap
         sh:prefixes [
             sh:declare [
                 sh:prefix "cacontology-partnerships" ;
-                sh:namespace "https://cacontology.projectvic.org/partnerships#"^^xsd:anyURI ;
-            ]
+                sh:namespace "https://cacontology.projectvic.org/partnerships#"^^xsd:anyURI             ]
         ] ;
         sh:select """
             SELECT $this
@@ -904,15 +870,14 @@ cacontology-partnerships-shapes:TechCooperationValidityShape rdf:type sh:NodeSha
         sh:prefixes [
             sh:declare [
                 sh:prefix "cacontology-partnerships" ;
-                sh:namespace "https://cacontology.projectvic.org/partnerships#"^^xsd:anyURI ;
-            ]
+                sh:namespace "https://cacontology.projectvic.org/partnerships#"^^xsd:anyURI             ]
         ] ;
         sh:select """
             SELECT $this
             WHERE {
                 $this a cacontology-partnerships:TechIndustryCooperation .
                 FILTER NOT EXISTS {
-                    $this cacontology-partnerships:includesPartner ?org .
+                    $this cacontology-partnerships:includesPartner ?org ;
                     ?org cacontology-partnerships:hasRole cacontology-partnerships:TechnologyPartner .
                 }
             }
@@ -928,8 +893,7 @@ cacontology-partnerships-shapes:CrowdsourcingEffectivenessShape rdf:type sh:Node
         sh:prefixes [
             sh:declare [
                 sh:prefix "cacontology-partnerships" ;
-                sh:namespace "https://cacontology.projectvic.org/partnerships#"^^xsd:anyURI ;
-            ]
+                sh:namespace "https://cacontology.projectvic.org/partnerships#"^^xsd:anyURI             ]
         ] ;
         sh:select """
             SELECT $this
@@ -981,8 +945,7 @@ cacontology-partnerships-shapes:NationalInitiativeDataQualityShape rdf:type sh:N
         sh:prefixes [
             sh:declare [
                 sh:prefix "cacontology-partnerships" ;
-                sh:namespace "https://cacontology.projectvic.org/partnerships#"^^xsd:anyURI ;
-            ]
+                sh:namespace "https://cacontology.projectvic.org/partnerships#"^^xsd:anyURI             ]
         ] ;
         sh:select """
             SELECT $this
@@ -995,241 +958,6 @@ cacontology-partnerships-shapes:NationalInitiativeDataQualityShape rdf:type sh:N
                 FILTER (?casesPerYear > 5000)
             }
         """
-    ] .
-
-# =============================================================================
-# ENHANCED DOMAIN-SPECIFIC SHAPES WITH gUFO QUALITY ASPECTS
-# =============================================================================
-
-cacontology-partnerships-shapes:PublicPrivatePartnershipShape rdf:type sh:NodeShape ;
-    sh:targetClass cacontology-partnerships:PublicPrivatePartnership ;
-    rdfs:label "Public Private Partnership Shape"@en ;
-    rdfs:comment "Enhanced validation shape for public-private partnership instances with gUFO quality aspects."@en ;
-    sh:property [
-        sh:path cacontology-partnerships:partnerCount ;
-        sh:datatype xsd:nonNegativeInteger ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 2 ;
-        sh:maxInclusive 100 ;
-        sh:message "Partnership must have between 2 and 100 partners."@en
-    ] ;
-    sh:property [
-        sh:path cacontology-partnerships:partnershipScope ;
-        sh:datatype xsd:string ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:in ( "local" "national" "regional" "global" ) ;
-        sh:message "Partnership scope must be from the allowed list."@en
-    ] ;
-    sh:property [
-        sh:path cacontology-partnerships:partnershipDuration ;
-        sh:datatype xsd:decimal ;
-        sh:minCount 0 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 1.0 ;
-        sh:maxInclusive 120.0 ;
-        sh:message "Partnership duration must be between 1 and 120 months."@en
-    ] ;
-    sh:property [
-        sh:path cacontology-partnerships:formalAgreement ;
-        sh:datatype xsd:boolean ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:message "Partnership must specify if formal agreement exists."@en
-    ] ;
-    # gUFO Quality Aspects for Partnerships
-    sh:property [
-        sh:path cacontology-partnerships:hasPartnershipEffectiveness ;
-        sh:datatype xsd:string ;
-        sh:maxCount 1 ;
-        sh:in ( "ineffective" "limited" "moderate" "effective" "highly_effective" ) ;
-        sh:message "Partnership effectiveness must be from allowed values (gUFO quality aspect)."@en
-    ] ;
-    sh:property [
-        sh:path cacontology-partnerships:hasCoordinationLevel ;
-        sh:datatype xsd:string ;
-        sh:maxCount 1 ;
-        sh:in ( "minimal" "basic" "standard" "enhanced" "comprehensive" ) ;
-        sh:message "Coordination level must be from allowed values (gUFO quality aspect)."@en
-    ] ;
-    sh:property [
-        sh:path cacontology-partnerships:hasTrustLevel ;
-        sh:datatype xsd:double ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0.0 ;
-        sh:maxInclusive 1.0 ;
-        sh:message "Trust level must be between 0.0 and 1.0 (gUFO quality aspect)."@en
-    ] ;
-    sh:property [
-        sh:path cacontology-partnerships:hasCollaborationIntensity ;
-        sh:datatype xsd:string ;
-        sh:maxCount 1 ;
-        sh:in ( "low" "moderate" "high" "intensive" "fully_integrated" ) ;
-        sh:message "Collaboration intensity must be from allowed values (gUFO quality aspect)."@en
-    ] ;
-    sh:property [
-        sh:path cacontology-partnerships:hasSuccessRate ;
-        sh:datatype xsd:double ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0.0 ;
-        sh:maxInclusive 1.0 ;
-        sh:message "Success rate must be between 0.0 and 1.0 (gUFO quality aspect)."@en
-    ] .
-
-cacontology-partnerships-shapes:TechnologyCooperationShape rdf:type sh:NodeShape ;
-    sh:targetClass cacontology-partnerships:TechnologyCooperation ;
-    rdfs:label "Technology Cooperation Shape"@en ;
-    rdfs:comment "Enhanced validation shape for technology cooperation instances with gUFO quality aspects."@en ;
-    sh:property [
-        sh:path cacontology-partnerships:technologyMaturity ;
-        sh:datatype xsd:string ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:in ( "experimental" "pilot" "production" "mature" ) ;
-        sh:message "Technology maturity must be from the allowed list."@en
-    ] ;
-    # gUFO Quality Aspects for Technology Cooperation
-    sh:property [
-        sh:path cacontology-partnerships:hasInnovationLevel ;
-        sh:datatype xsd:string ;
-        sh:maxCount 1 ;
-        sh:in ( "incremental" "moderate" "significant" "breakthrough" "revolutionary" ) ;
-        sh:message "Innovation level must be from allowed values (gUFO quality aspect)."@en
-    ] ;
-    sh:property [
-        sh:path cacontology-partnerships:hasImplementationSpeed ;
-        sh:datatype xsd:string ;
-        sh:maxCount 1 ;
-        sh:in ( "slow" "moderate" "fast" "rapid" "immediate" ) ;
-        sh:message "Implementation speed must be from allowed values (gUFO quality aspect)."@en
-    ] ;
-    sh:property [
-        sh:path cacontology-partnerships:hasTechnicalReliability ;
-        sh:datatype xsd:double ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0.0 ;
-        sh:maxInclusive 1.0 ;
-        sh:message "Technical reliability must be between 0.0 and 1.0 (gUFO quality aspect)."@en
-    ] .
-
-cacontology-partnerships-shapes:CrowdsourcingInvestigationShape rdf:type sh:NodeShape ;
-    sh:targetClass cacontology-partnerships:CrowdsourcingInvestigation ;
-    rdfs:label "Crowdsourcing Investigation Shape"@en ;
-    rdfs:comment "Enhanced validation shape for crowdsourcing investigation instances with gUFO quality aspects."@en ;
-    sh:property [
-        sh:path cacontology-partnerships:publicTipsReceived ;
-        sh:datatype xsd:nonNegativeInteger ;
-        sh:minCount 0 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ;
-        sh:maxInclusive 100000 ;
-        sh:message "Public tips received must be between 0 and 100,000."@en
-    ] ;
-    sh:property [
-        sh:path cacontology-partnerships:crowdsourcingPlatform ;
-        sh:datatype xsd:string ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:in ( "website" "social_media" "forums" "mobile_app" "specialized_platform" ) ;
-        sh:message "Crowdsourcing platform must be from the allowed list."@en
-    ] ;
-    # gUFO Quality Aspects for Crowdsourcing
-    sh:property [
-        sh:path cacontology-partnerships:hasParticipationLevel ;
-        sh:datatype xsd:string ;
-        sh:maxCount 1 ;
-        sh:in ( "minimal" "low" "moderate" "high" "massive" ) ;
-        sh:message "Participation level must be from allowed values (gUFO quality aspect)."@en
-    ] ;
-    sh:property [
-        sh:path cacontology-partnerships:hasResponseQuality ;
-        sh:datatype xsd:string ;
-        sh:maxCount 1 ;
-        sh:in ( "poor" "fair" "good" "excellent" "exceptional" ) ;
-        sh:message "Response quality must be from allowed values (gUFO quality aspect)."@en
-    ] ;
-    sh:property [
-        sh:path cacontology-partnerships:hasEngagementEffectiveness ;
-        sh:datatype xsd:double ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0.0 ;
-        sh:maxInclusive 1.0 ;
-        sh:message "Engagement effectiveness must be between 0.0 and 1.0 (gUFO quality aspect)."@en
-    ] .
-
-cacontology-partnerships-shapes:InformationSharingFrameworkShape rdf:type sh:NodeShape ;
-    sh:targetClass cacontology-partnerships:InformationSharingFramework ;
-    rdfs:label "Information Sharing Framework Shape"@en ;
-    rdfs:comment "Enhanced validation shape for information sharing framework instances with gUFO quality aspects."@en ;
-    sh:property [
-        sh:path cacontology-partnerships:sharingFrequency ;
-        sh:datatype xsd:string ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:in ( "real_time" "daily" "weekly" "monthly" "on_demand" ) ;
-        sh:message "Sharing frequency must be from the allowed list."@en
-    ] ;
-    # gUFO Quality Aspects for Information Sharing
-    sh:property [
-        sh:path cacontology-partnerships:hasSharingEfficiency ;
-        sh:datatype xsd:double ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0.0 ;
-        sh:maxInclusive 1.0 ;
-        sh:message "Sharing efficiency must be between 0.0 and 1.0 (gUFO quality aspect)."@en
-    ] ;
-    sh:property [
-        sh:path cacontology-partnerships:hasSecurityLevel ;
-        sh:datatype xsd:string ;
-        sh:maxCount 1 ;
-        sh:in ( "basic" "standard" "enhanced" "high" "maximum" ) ;
-        sh:message "Security level must be from allowed values (gUFO quality aspect)."@en
-    ] ;
-    sh:property [
-        sh:path cacontology-partnerships:hasDataQuality ;
-        sh:datatype xsd:string ;
-        sh:maxCount 1 ;
-        sh:in ( "poor" "fair" "good" "excellent" "verified" ) ;
-        sh:message "Data quality must be from allowed values (gUFO quality aspect)."@en
-    ] .
-
-cacontology-partnerships-shapes:PartnerRoleShape rdf:type sh:NodeShape ;
-    sh:targetClass cacontology-partnerships:PartnerRole ;
-    rdfs:label "Partner Role Shape"@en ;
-    rdfs:comment "Enhanced validation shape for partner role instances with gUFO quality aspects."@en ;
-    sh:property [
-        sh:path rdfs:label ;
-        sh:datatype xsd:string ;
-        sh:minCount 0 ;
-        sh:maxCount 1 ;
-        sh:minLength 3 ;
-        sh:maxLength 100 ;
-        sh:message "Partner role label should be between 3 and 100 characters when provided."@en
-    ] ;
-    # gUFO Quality Aspects for Partner Roles
-    sh:property [
-        sh:path cacontology-partnerships:hasRoleEffectiveness ;
-        sh:datatype xsd:double ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0.0 ;
-        sh:maxInclusive 1.0 ;
-        sh:message "Role effectiveness must be between 0.0 and 1.0 (gUFO quality aspect)."@en
-    ] ;
-    sh:property [
-        sh:path cacontology-partnerships:hasCapabilityLevel ;
-        sh:datatype xsd:string ;
-        sh:maxCount 1 ;
-        sh:in ( "limited" "basic" "standard" "advanced" "expert" ) ;
-        sh:message "Capability level must be from allowed values (gUFO quality aspect)."@en
-    ] ;
-    sh:property [
-        sh:path cacontology-partnerships:hasCommitmentLevel ;
-        sh:datatype xsd:double ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0.0 ;
-        sh:maxInclusive 1.0 ;
-        sh:message "Commitment level must be between 0.0 and 1.0 (gUFO quality aspect)."@en
     ] .
 
 # =============================================================================
@@ -1269,13 +997,13 @@ cacontology-partnerships-shapes:TechCooperationParticipationShape rdf:type sh:No
             WHERE {
                 $this rdf:type cacontology-partnerships:TechIndustryCooperation .
                 FILTER NOT EXISTS {
-                    $this cacontology-partnerships:includesPartner ?techOrg .
-                    ?techOrg cacontology-partnerships:hasRole ?techRole .
+                    $this cacontology-partnerships:includesPartner ?techOrg ;
+                    ?techOrg cacontology-partnerships:hasRole ?techRole ;
                     ?techRole rdf:type cacontology-partnerships:TechnologyPartner .
                 } ||
                 FILTER NOT EXISTS {
-                    $this cacontology-partnerships:includesPartner ?leOrg .
-                    ?leOrg cacontology-partnerships:hasRole ?leRole .
+                    $this cacontology-partnerships:includesPartner ?leOrg ;
+                    ?leOrg cacontology-partnerships:hasRole ?leRole ;
                     ?leRole rdf:type cacontology-partnerships:LawEnforcementPartner .
                 }
             }
@@ -1295,9 +1023,9 @@ cacontology-partnerships-shapes:MultiStakeholderParticipationShape rdf:type sh:N
                 {
                     SELECT $this (COUNT(DISTINCT ?roleType) AS ?roleTypeCount)
                     WHERE {
-                        $this cacontology-partnerships:includesPartner ?partner .
-                        ?partner cacontology-partnerships:hasRole ?role .
-                        ?role rdf:type ?roleType .
+                        $this cacontology-partnerships:includesPartner ?partner ;
+                        ?partner cacontology-partnerships:hasRole ?role ;
+                        ?role rdf:type ?roleType ;
                         ?roleType rdfs:subClassOf* cacontology-partnerships:PartnerRole .
                     }
                     GROUP BY $this
@@ -1321,13 +1049,13 @@ cacontology-partnerships-shapes:PartnershipCompositionShape rdf:type sh:NodeShap
             SELECT $this
             WHERE {
                 $this rdf:type cacontology-partnerships:PublicPrivatePartnership .
-                $this cacontology-partnerships:includesPartner ?publicOrg .
-                ?publicOrg cacontology-partnerships:hasRole ?publicRole .
+                $this cacontology-partnerships:includesPartner ?publicOrg ;
+                ?publicOrg cacontology-partnerships:hasRole ?publicRole ;
                 ?publicRole rdf:type cacontology-partnerships:LawEnforcementPartner .
                 FILTER NOT EXISTS {
-                    $this cacontology-partnerships:includesPartner ?privateOrg .
-                    ?privateOrg cacontology-partnerships:hasRole ?privateRole .
-                    ?privateRole rdf:type ?privateRoleType .
+                    $this cacontology-partnerships:includesPartner ?privateOrg ;
+                    ?privateOrg cacontology-partnerships:hasRole ?privateRole ;
+                    ?privateRole rdf:type ?privateRoleType ;
                     ?privateRoleType rdfs:subClassOf* cacontology-partnerships:PartnerRole .
                     FILTER (?privateRoleType != cacontology-partnerships:LawEnforcementPartner)
                 }
@@ -1364,12 +1092,10 @@ cacontology-partnerships-shapes:InformationSharingCompositionShape rdf:type sh:N
             WHERE {
                 $this rdf:type cacontology-partnerships:InformationSharingFramework .
                 FILTER NOT EXISTS {
-                    ?agreement rdf:type cacontology-partnerships:DataSharingAgreement .
-                    ?agreement rdfs:subClassOf* $this .
-                } &&
+                    ?agreement rdf:type/rdfs:subClassOf* cacontology-partnerships:DataSharingAgreement .
+                }
                 FILTER NOT EXISTS {
-                    ?technical rdf:type cacontology-partnerships:TechnicalIntegration .
-                    ?technical rdfs:subClassOf* $this .
+                    ?technical rdf:type/rdfs:subClassOf* cacontology-partnerships:TechnicalIntegration .
                 }
             }
         """
@@ -1389,11 +1115,11 @@ cacontology-partnerships-shapes:QualifiedPartnershipParticipationShape rdf:type 
             SELECT $this
             WHERE {
                 $this rdf:type gufo:ParticipationSituation .
-                $this gufo:participatesIn ?partnership .
+                $this gufo:participatesIn ?partnership ;
                 ?partnership rdf:type cacontology-partnerships:PublicPrivatePartnership .
                 FILTER NOT EXISTS {
-                    ?org cacontology-partnerships:hasRole ?role .
-                    ?role rdf:type ?roleType .
+                    ?org cacontology-partnerships:hasRole ?role ;
+                    ?role rdf:type ?roleType ;
                     ?roleType rdfs:subClassOf* cacontology-partnerships:PartnerRole .
                 }
             }

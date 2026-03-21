@@ -3,33 +3,30 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
-@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
-@prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-undercover: <https://cacontology.projectvic.org/undercover#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
-@prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/undercover/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/undercover/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Undercover Operations Ontology"@en ;
     rdfs:comment "An ontology for representing undercover law enforcement operations in Internet Crimes Against Children investigations, extending UCO and CASE with gUFO foundational ontology enhancements. This ontology covers undercover identities, infiltration tactics, surveillance operations, and evidence collection through covert means."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/undercover/2.12.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/undercover/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
     dcterms:modified "2026-01-01"^^xsd:date ;
-    owl:imports <https://ontology.unifiedcyberontology.org/uco/core> ,
-                <https://ontology.unifiedcyberontology.org/uco/identity> ,
-                <https://ontology.unifiedcyberontology.org/uco/observable> ,
-                <https://ontology.unifiedcyberontology.org/uco/action> ,
-                <https://ontology.unifiedcyberontology.org/uco/role> ,
-                <https://cacontology.projectvic.org/2.12.0> ,
-                <http://purl.org/nemo/gufo> .
+    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
+                <https://ontology.unifiedcyberontology.org/uco/identity/> ,
+                <https://ontology.unifiedcyberontology.org/uco/observable/> ,
+                <https://ontology.unifiedcyberontology.org/uco/action/> ,
+                <https://ontology.unifiedcyberontology.org/uco/role/> ,
+                <https://cacontology.projectvic.org/3.0.0> ,
+                <http://purl.org/nemo/gufo#> .
 
 # =============================================================================
 # UNDERCOVER OPERATION CLASSES (extending UCO Action with gUFO Event)
@@ -38,7 +35,7 @@
 cacontology-undercover:UndercoverOperation rdf:type owl:Class ;
     rdfs:label "Undercover Operation"@en ;
     rdfs:comment "A law enforcement operation using false identities or covert methods to investigate crimes and gather evidence."@en ;
-    rdfs:subClassOf uco-action:Action, gufo:Event .
+    rdfs:subClassOf cac-core:InvestigativeAction .
 
 cacontology-undercover:ChatRoomInfiltration rdf:type owl:Class ;
     rdfs:label "Chat Room Infiltration"@en ;
@@ -64,25 +61,25 @@ cacontology-undercover:StingOperation rdf:type owl:Class ;
 # UNDERCOVER OPERATION PHASES (gUFO Phase anti-rigid modeling)
 # =============================================================================
 
-cacontology-undercover:PreparationPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-undercover:PreparationPhase rdf:type owl:Class ;
     rdfs:label "Preparation Phase"@en ;
     rdfs:comment "Phase involving setup of undercover identities and operational planning."@en ;
-    rdfs:subClassOf cacontology-undercover:UndercoverOperation .
+    rdfs:subClassOf cac-core:Phase .
 
-cacontology-undercover:InfiltrationPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-undercover:InfiltrationPhase rdf:type owl:Class ;
     rdfs:label "Infiltration Phase"@en ;
     rdfs:comment "Phase involving initial contact and establishment of undercover presence."@en ;
-    rdfs:subClassOf cacontology-undercover:UndercoverOperation .
+    rdfs:subClassOf cac-core:Phase .
 
-cacontology-undercover:EvidenceGatheringPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-undercover:EvidenceGatheringPhase rdf:type owl:Class ;
     rdfs:label "Evidence Gathering Phase"@en ;
     rdfs:comment "Phase focused on collecting criminal evidence through undercover interactions."@en ;
-    rdfs:subClassOf cacontology-undercover:UndercoverOperation .
+    rdfs:subClassOf cac-core:Phase .
 
-cacontology-undercover:ExtractionPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-undercover:ExtractionPhase rdf:type owl:Class ;
     rdfs:label "Extraction Phase"@en ;
     rdfs:comment "Phase involving safe withdrawal from undercover operation."@en ;
-    rdfs:subClassOf cacontology-undercover:UndercoverOperation .
+    rdfs:subClassOf cac-core:Phase .
 
 # =============================================================================
 # UNDERCOVER IDENTITY CLASSES (extending UCO Identity with gUFO Object)
@@ -91,7 +88,7 @@ cacontology-undercover:ExtractionPhase rdf:type owl:Class, gufo:Phase ;
 cacontology-undercover:UndercoverIdentity rdf:type owl:Class ;
     rdfs:label "Undercover Identity"@en ;
     rdfs:comment "A fictitious identity created and maintained by law enforcement for undercover operations."@en ;
-    rdfs:subClassOf uco-identity:Identity, gufo:Object .
+    rdfs:subClassOf uco-identity:Identity, cac-core:PersonLikeEntity .
 
 cacontology-undercover:ParentPersona rdf:type owl:Class ;
     rdfs:label "Parent Persona"@en ;
@@ -106,7 +103,7 @@ cacontology-undercover:ChildPersona rdf:type owl:Class ;
 cacontology-undercover:PlatformAccount rdf:type owl:Class ;
     rdfs:label "Platform Account"@en ;
     rdfs:comment "Account created on digital platforms for undercover operations."@en ;
-    rdfs:subClassOf uco-observable:DigitalAccount, gufo:Object .
+    rdfs:subClassOf uco-observable:DigitalAccount, cac-core:DigitalSystemEntity .
 
 # =============================================================================
 # UNDERCOVER ROLE CLASSES (extending UCO Role with gUFO Role)
@@ -115,17 +112,17 @@ cacontology-undercover:PlatformAccount rdf:type owl:Class ;
 cacontology-undercover:UndercoverAgent rdf:type owl:Class, gufo:Role ;
     rdfs:label "Undercover Agent"@en ;
     rdfs:comment "Law enforcement officer or authorized civilian operating under false identity in an investigation."@en ;
-    rdfs:subClassOf uco-role:Role .
+    rdfs:subClassOf cac-core:Role .
 
 cacontology-undercover:OperationHandler rdf:type owl:Class, gufo:Role ;
     rdfs:label "Operation Handler"@en ;
     rdfs:comment "Supervising officer responsible for managing undercover operations and agent safety."@en ;
-    rdfs:subClassOf uco-role:Role .
+    rdfs:subClassOf cac-core:Role .
 
 cacontology-undercover:TechnicalSupport rdf:type owl:Class, gufo:Role ;
     rdfs:label "Technical Support"@en ;
     rdfs:comment "Personnel providing technical infrastructure and monitoring for undercover operations."@en ;
-    rdfs:subClassOf uco-role:Role .
+    rdfs:subClassOf cac-core:Role .
 
 # =============================================================================
 # COMMUNICATION AND EVIDENCE CLASSES (extending UCO Observable with gUFO Object)
@@ -134,22 +131,27 @@ cacontology-undercover:TechnicalSupport rdf:type owl:Class, gufo:Role ;
 cacontology-undercover:UndercoverCommunication rdf:type owl:Class ;
     rdfs:label "Undercover Communication"@en ;
     rdfs:comment "Communication conducted while using an undercover identity."@en ;
-    rdfs:subClassOf uco-observable:MessageThread, gufo:Object .
+    rdfs:subClassOf uco-observable:MessageThread, cac-core:Artifact .
 
 cacontology-undercover:CriminalSolicitation rdf:type owl:Class ;
     rdfs:label "Criminal Solicitation"@en ;
     rdfs:comment "Request or instruction from suspect to undercover agent to commit illegal acts."@en ;
-    rdfs:subClassOf uco-observable:Message, gufo:Object .
+    rdfs:subClassOf uco-observable:Message, cac-core:Artifact .
 
 cacontology-undercover:IncriminatingStatement rdf:type owl:Class ;
     rdfs:label "Incriminating Statement"@en ;
     rdfs:comment "Statement made by suspect that provides evidence of criminal intent or past crimes."@en ;
-    rdfs:subClassOf uco-observable:Message, gufo:Object .
+    rdfs:subClassOf uco-observable:Message, cac-core:Artifact .
+
+cacontology-undercover:UndercoverEvidence rdf:type owl:Class ;
+    rdfs:label "Undercover Evidence"@en ;
+    rdfs:comment "Evidence obtained through undercover operations."@en ;
+    rdfs:subClassOf cac-core:Artifact .
 
 cacontology-undercover:OperationalEvidence rdf:type owl:Class ;
     rdfs:label "Operational Evidence"@en ;
     rdfs:comment "Evidence collected during undercover operations including recordings, communications, and observations."@en ;
-    rdfs:subClassOf uco-observable:ObservableObject, gufo:Object .
+    rdfs:subClassOf cacontology-undercover:UndercoverEvidence .
 
 # =============================================================================
 # gUFO TEMPORAL PROPERTIES
@@ -159,34 +161,34 @@ cacontology-undercover:hasOperationPhaseBeginPoint rdf:type owl:DatatypeProperty
     rdfs:label "has operation phase begin point"@en ;
     rdfs:comment "Temporal begin point for undercover operation phase."@en ;
     rdfs:subPropertyOf gufo:hasBeginPointInXSDDateTimeStamp ;
-    rdfs:domain gufo:Phase ;
+    rdfs:domain cac-core:Phase ;
     rdfs:range xsd:dateTimeStamp .
 
 cacontology-undercover:hasOperationPhaseEndPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has operation phase end point"@en ;
     rdfs:comment "Temporal end point for undercover operation phase."@en ;
     rdfs:subPropertyOf gufo:hasEndPointInXSDDateTimeStamp ;
-    rdfs:domain gufo:Phase ;
+    rdfs:domain cac-core:Phase ;
     rdfs:range xsd:dateTimeStamp .
 
 cacontology-undercover:hasRoleBeginPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has role begin point"@en ;
     rdfs:comment "Temporal begin point for undercover role."@en ;
     rdfs:subPropertyOf gufo:hasBeginPointInXSDDateTimeStamp ;
-    rdfs:domain gufo:Role ;
+    rdfs:domain cac-core:Role ;
     rdfs:range xsd:dateTimeStamp .
 
 cacontology-undercover:hasRoleEndPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has role end point"@en ;
     rdfs:comment "Temporal end point for undercover role."@en ;
     rdfs:subPropertyOf gufo:hasEndPointInXSDDateTimeStamp ;
-    rdfs:domain gufo:Role ;
+    rdfs:domain cac-core:Role ;
     rdfs:range xsd:dateTimeStamp .
 
 cacontology-undercover:operationPhaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "operation phase duration"@en ;
     rdfs:comment "Duration of undercover operation phase."@en ;
-    rdfs:domain gufo:Phase ;
+    rdfs:domain cac-core:Phase ;
     rdfs:range xsd:duration .
 
 # =============================================================================
@@ -589,7 +591,7 @@ cacontology-undercover:PredatorTargetingOperation rdf:type owl:Class ;
     rdfs:subClassOf cacontology-undercover:UndercoverOperation .
 
 # =============================================================================
-# MULTIPLE PERSONA UNDERCOVER OPERATIONS (Miami ICAC Case)
+# MULTIPLE PERSONA UNDERCOVER OPERATIONS (Miami CAC Case)
 # =============================================================================
 
 cacontology-undercover:MultiplePersonaOperation rdf:type owl:Class ;
@@ -610,7 +612,7 @@ cacontology-undercover:SiblingPersonaOperation rdf:type owl:Class ;
 cacontology-undercover:SuspectCommunicationAction rdf:type owl:Class ;
     rdfs:label "Suspect Communication Action"@en ;
     rdfs:comment "Base class for criminal communication actions initiated by suspect during undercover operation."@en ;
-    rdfs:subClassOf uco-action:Action, gufo:Event .
+    rdfs:subClassOf cac-core:ExploitationEvent .
 
 cacontology-undercover:ExplicitMessageRequestAction rdf:type owl:Class ;
     rdfs:label "Explicit Message Request Action"@en ;
@@ -813,7 +815,7 @@ cacontology-undercover:generatesEvidence rdf:type owl:ObjectProperty ;
     rdfs:range cacontology-undercover:UndercoverEvidence .
 
 # =============================================================================
-# MULTIPLE PERSONA OPERATION PROPERTIES (Miami ICAC Case)
+# MULTIPLE PERSONA OPERATION PROPERTIES (Miami CAC Case)
 # =============================================================================
 
 cacontology-undercover:personaCount rdf:type owl:DatatypeProperty ;
@@ -938,21 +940,21 @@ cacontology-undercover:triggeredBy rdf:type owl:ObjectProperty ;
     rdfs:domain cacontology-undercover:SuspectCommunicationAction ;
     rdfs:range cacontology-undercover:UndercoverCommunication .
 
-cacontology-undercover:leadToArrest rdf:type owl:ObjectProperty ;
+cacontology-undercover:leadsToArrest rdf:type owl:ObjectProperty ;
     rdfs:label "lead to arrest"@en ;
     rdfs:comment "Links meeting arrangement to resulting arrest operation."@en ;
     rdfs:domain cacontology-undercover:MeetingLocationArrangement ;
     rdfs:range uco-action:Action .
 
 # =============================================================================
-# MEETING LOCATION CLASSES (Miami ICAC Case)
+# MEETING LOCATION CLASSES (Miami CAC Case)
 # Physical locations arranged for meeting with alleged minors
 # =============================================================================
 
 cacontology-undercover:MeetingLocation rdf:type owl:Class ;
     rdfs:label "Meeting Location"@en ;
     rdfs:comment "Physical location arranged for meeting with alleged minor. Extends uco-location:Location as this represents a physical place."@en ;
-    rdfs:subClassOf uco-location:Location, gufo:Object .
+    rdfs:subClassOf uco-location:Location, cac-core:PlaceLikeEntity .
 
 cacontology-undercover:Motel rdf:type owl:Class ;
     rdfs:label "Motel"@en ;

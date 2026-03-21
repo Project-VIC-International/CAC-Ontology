@@ -54,7 +54,7 @@ Validation was run locally (Docker not available on this workstation) using `pyt
 
 - **SPARQL sanity suite (subset)**: `sparql_verification_report.md` (**PASS**)
 - **SHACL validation results**:
-  - `ontology/cacontology-soe-shapes.ttl` against `ontology/cacontology-soe.ttl`: **Conforms: True**
-  - `ontology/cacontology-soe-shapes.ttl` against `examples_knowledge_graphs/k2p-soe-information-example.ttl`: **Conforms: True**
+  - `ontology/cacontology-sadistic-online-exploitation-shapes.ttl` against `ontology/cacontology-sadistic-online-exploitation.ttl`: **Conforms: True**
+  - `ontology/cacontology-sadistic-online-exploitation-shapes.ttl` against `examples_knowledge_graphs/k2p-soe-information-example.ttl`: **Conforms: True**
   - `ontology/cacontology-core-shapes.ttl` against `examples_knowledge_graphs/k2p-soe-information-example.ttl`: **Conforms: True**
   - `ontology/cacontology-sextortion-shapes.ttl` against `examples_knowledge_graphs/k2p-soe-information-example.ttl`: **Conforms: True**

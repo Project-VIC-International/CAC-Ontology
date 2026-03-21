@@ -3,32 +3,28 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
-@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
-@prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
-@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix cacontology-trafficking: <https://cacontology.projectvic.org/trafficking#> .
-@prefix cacontology-impact: <https://cacontology.projectvic.org/victim-impact#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
-@prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 @prefix cacontology-temporal: <https://cacontology.projectvic.org/temporal#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/trafficking/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/trafficking/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Sex Trafficking Ontology"@en ;
     rdfs:comment "Specialized ontology for modeling sex trafficking of minors and related criminal enterprises with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, organization structure modeling, and validation capabilities. Based on cases like Brooklyn DA v. Eight Defendants (2025)."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/trafficking/2.12.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/trafficking/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-05-28"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
-                <https://ontology.caseontology.org/case> ,
-                <http://purl.org/nemo/gufo> .
+                <https://ontology.caseontology.org/case/> ,
+                <https://cacontology.projectvic.org/core/3.0.0> ,
+                <http://purl.org/nemo/gufo#> .
 
 # =============================================================================
 # TRAFFICKING ORGANIZATION STRUCTURE (gUFO Organization and Situation modeling)
@@ -38,7 +34,7 @@
 cacontology-trafficking:TraffickingEnterprise rdf:type owl:Class ;
     rdfs:label "Trafficking Enterprise"@en ;
     rdfs:comment "Criminal organization engaged in systematic sex trafficking operations with multiple defendants and coordinated activities. Modeled as gUFO Organization."@en ;
-    rdfs:subClassOf uco-identity:Organization, gufo:Organization .
+    rdfs:subClassOf uco-identity:Organization, cac-core:OrganizationLikeEntity .
 
 cacontology-trafficking:TraffickingRing rdf:type owl:Class ;
     rdfs:label "Trafficking Ring"@en ;
@@ -53,39 +49,39 @@ cacontology-trafficking:TraffickingCell rdf:type owl:Class ;
 cacontology-trafficking:TraffickingHierarchy rdf:type owl:Class ;
     rdfs:label "Trafficking Hierarchy"@en ;
     rdfs:comment "Organizational structure within trafficking enterprise defining roles and authority levels."@en ;
-    rdfs:subClassOf uco-core:UcoObject, gufo:Object .
+    rdfs:subClassOf uco-core:UcoObject, cac-core:EnduringEntity .
 
 # Trafficking Enterprise Phases (gUFO Phase anti-rigid modeling)
-cacontology-trafficking:EstablishmentPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-trafficking:EstablishmentPhase rdf:type owl:Class ;
     rdfs:label "Establishment Phase"@en ;
     rdfs:comment "Initial phase of trafficking enterprise formation and recruitment setup."@en ;
-    rdfs:subClassOf cacontology-trafficking:TraffickingEnterprise .
+    rdfs:subClassOf cac-core:Phase .
 
-cacontology-trafficking:ExpansionPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-trafficking:ExpansionPhase rdf:type owl:Class ;
     rdfs:label "Expansion Phase"@en ;
     rdfs:comment "Phase of trafficking enterprise growth, adding victims and locations."@en ;
-    rdfs:subClassOf cacontology-trafficking:TraffickingEnterprise .
+    rdfs:subClassOf cac-core:Phase .
 
-cacontology-trafficking:OperationalPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-trafficking:OperationalPhase rdf:type owl:Class ;
     rdfs:label "Operational Phase"@en ;
     rdfs:comment "Active operational phase of trafficking enterprise with established victim control."@en ;
-    rdfs:subClassOf cacontology-trafficking:TraffickingEnterprise .
+    rdfs:subClassOf cac-core:Phase .
 
-cacontology-trafficking:DisruptionPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-trafficking:DisruptionPhase rdf:type owl:Class ;
     rdfs:label "Disruption Phase"@en ;
     rdfs:comment "Phase when trafficking enterprise faces law enforcement intervention."@en ;
-    rdfs:subClassOf cacontology-trafficking:TraffickingEnterprise .
+    rdfs:subClassOf cac-core:Phase .
 
 # Trafficking Enterprise Situations (gUFO Situation)
 cacontology-trafficking:TraffickingNetworkSituation rdf:type owl:Class ;
     rdfs:label "Trafficking Network Situation"@en ;
     rdfs:comment "Complex situation encompassing active trafficking network operations across multiple jurisdictions."@en ;
-    rdfs:subClassOf gufo:Situation .
+    rdfs:subClassOf cac-core:Situation .
 
 cacontology-trafficking:VictimControlSituation rdf:type owl:Class ;
     rdfs:label "Victim Control Situation"@en ;
     rdfs:comment "Ongoing situation of psychological and physical control maintained over trafficking victims."@en ;
-    rdfs:subClassOf gufo:Situation .
+    rdfs:subClassOf cac-core:Situation .
 
 # =============================================================================
 # TRAFFICKING ROLES (gUFO Role anti-rigid modeling)
@@ -95,8 +91,7 @@ cacontology-trafficking:VictimControlSituation rdf:type owl:Class ;
 cacontology-trafficking:TraffickerRole rdf:type owl:Class, gufo:Role ;
     rdfs:label "Trafficker Role"@en ;
     rdfs:comment "Role of individual involved in sex trafficking operations. Modeled as anti-rigid gUFO Role."@en ;
-    rdfs:subClassOf uco-role:OffenderRole ;
-    owl:equivalentClass cacontology-gufo:OffenderRole .
+    rdfs:subClassOf uco-role:OffenderRole , cac-core:Role .
 
 cacontology-trafficking:PrimaryTraffickerRole rdf:type owl:Class, gufo:Role ;
     rdfs:label "Primary Trafficker Role"@en ;
@@ -131,8 +126,7 @@ cacontology-trafficking:FinancialFacilitatorRole rdf:type owl:Class, gufo:Role ;
 cacontology-trafficking:TraffickingOperation rdf:type owl:Class ;
     rdfs:label "Trafficking Operation"@en ;
     rdfs:comment "Coordinated trafficking activity involving multiple perpetrators, victims, and locations. Modeled as gUFO Event."@en ;
-    rdfs:subClassOf uco-action:Action, gufo:Event ;
-    owl:equivalentClass cacontology-gufo:CriminalEvent .
+    rdfs:subClassOf cac-core:ExploitationEvent .
 
 cacontology-trafficking:VictimTransportation rdf:type owl:Class ;
     rdfs:label "Victim Transportation"@en ;
@@ -172,8 +166,7 @@ cacontology-trafficking:EarningsCollection rdf:type owl:Class ;
 cacontology-trafficking:TraffickingVictimRole rdf:type owl:Class, gufo:Role ;
     rdfs:label "Trafficking Victim Role"@en ;
     rdfs:comment "Role of person being exploited through sex trafficking. Modeled as anti-rigid gUFO Role."@en ;
-    rdfs:subClassOf uco-role:VictimRole ;
-    owl:equivalentClass cacontology-gufo:VictimRole .
+    rdfs:subClassOf uco-role:VictimRole , cac-core:Role .
 
 cacontology-trafficking:MinorTraffickingVictimRole rdf:type owl:Class, gufo:Role ;
     rdfs:label "Minor Trafficking Victim Role"@en ;
@@ -189,7 +182,7 @@ cacontology-trafficking:AdultTraffickingVictimRole rdf:type owl:Class, gufo:Role
 cacontology-trafficking:VictimVulnerabilityProfile rdf:type owl:Class ;
     rdfs:label "Victim Vulnerability Profile"@en ;
     rdfs:comment "Profile of factors that make individuals vulnerable to trafficking recruitment. Modeled as gUFO Object."@en ;
-    rdfs:subClassOf uco-core:UcoObject, gufo:Object .
+    rdfs:subClassOf uco-core:UcoObject, cac-core:PersonLikeEntity .
 
 cacontology-trafficking:RunawayVictimProfile rdf:type owl:Class ;
     rdfs:label "Runaway Victim Profile"@en ;
@@ -225,7 +218,7 @@ cacontology-trafficking:CrossJurisdictionalControl rdf:type owl:Class ;
 cacontology-trafficking:MultiJurisdictionalSituation rdf:type owl:Class ;
     rdfs:label "Multi-Jurisdictional Situation"@en ;
     rdfs:comment "Complex situation involving trafficking operations across multiple jurisdictions requiring coordinated law enforcement response."@en ;
-    rdfs:subClassOf gufo:Situation .
+    rdfs:subClassOf cac-core:Situation .
 
 # =============================================================================
 # RESCUE OPERATIONS (gUFO Event modeling)
@@ -235,7 +228,7 @@ cacontology-trafficking:MultiJurisdictionalSituation rdf:type owl:Class ;
 cacontology-trafficking:TraffickingVictimRescue rdf:type owl:Class ;
     rdfs:label "Trafficking Victim Rescue"@en ;
     rdfs:comment "Specialized rescue operation for trafficking victims involving multiple agencies and victim services. Modeled as gUFO Event."@en ;
-    rdfs:subClassOf uco-action:Action, gufo:Event .
+    rdfs:subClassOf cac-core:InvestigativeAction .
 
 cacontology-trafficking:VictimEmergencyResponse rdf:type owl:Class ;
     rdfs:label "Victim Emergency Response"@en ;
@@ -250,7 +243,7 @@ cacontology-trafficking:OngoingDangerResponse rdf:type owl:Class ;
 cacontology-trafficking:VictimSafetyAssessment rdf:type owl:Class ;
     rdfs:label "Victim Safety Assessment"@en ;
     rdfs:comment "Assessment of victim safety and ongoing threats from trafficking network. Modeled as gUFO Event."@en ;
-    rdfs:subClassOf uco-action:Action, gufo:Event .
+    rdfs:subClassOf cac-core:InvestigativeAction .
 
 # =============================================================================
 # gUFO TEMPORAL PROPERTIES
@@ -261,14 +254,14 @@ cacontology-trafficking:hasEnterpriseBeginPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has enterprise begin point"@en ;
     rdfs:comment "Temporal begin point for trafficking enterprise operations."@en ;
     rdfs:subPropertyOf gufo:hasBeginPointInXSDDateTimeStamp ;
-    rdfs:domain gufo:Organization ;
+    rdfs:domain cac-core:OrganizationLikeEntity ;
     rdfs:range xsd:dateTimeStamp .
 
 cacontology-trafficking:hasEnterpriseEndPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has enterprise end point"@en ;
     rdfs:comment "Temporal end point for trafficking enterprise operations."@en ;
     rdfs:subPropertyOf gufo:hasEndPointInXSDDateTimeStamp ;
-    rdfs:domain gufo:Organization ;
+    rdfs:domain cac-core:OrganizationLikeEntity ;
     rdfs:range xsd:dateTimeStamp .
 
 # Trafficking Phase Temporal Properties
@@ -276,14 +269,14 @@ cacontology-trafficking:hasPhaseBeginPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has phase begin point"@en ;
     rdfs:comment "Temporal begin point for trafficking enterprise phase."@en ;
     rdfs:subPropertyOf gufo:hasBeginPointInXSDDateTimeStamp ;
-    rdfs:domain gufo:Phase ;
+    rdfs:domain cac-core:Phase ;
     rdfs:range xsd:dateTimeStamp .
 
 cacontology-trafficking:hasPhaseEndPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has phase end point"@en ;
     rdfs:comment "Temporal end point for trafficking enterprise phase."@en ;
     rdfs:subPropertyOf gufo:hasEndPointInXSDDateTimeStamp ;
-    rdfs:domain gufo:Phase ;
+    rdfs:domain cac-core:Phase ;
     rdfs:range xsd:dateTimeStamp .
 
 # Trafficking Role Temporal Properties
@@ -291,33 +284,33 @@ cacontology-trafficking:hasRoleBeginPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has role begin point"@en ;
     rdfs:comment "Temporal begin point for trafficking role."@en ;
     rdfs:subPropertyOf gufo:hasBeginPointInXSDDateTimeStamp ;
-    rdfs:domain gufo:Role ;
+    rdfs:domain cac-core:Role ;
     rdfs:range xsd:dateTimeStamp .
 
 cacontology-trafficking:hasRoleEndPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has role end point"@en ;
     rdfs:comment "Temporal end point for trafficking role."@en ;
     rdfs:subPropertyOf gufo:hasEndPointInXSDDateTimeStamp ;
-    rdfs:domain gufo:Role ;
+    rdfs:domain cac-core:Role ;
     rdfs:range xsd:dateTimeStamp .
 
 # Duration Properties
 cacontology-trafficking:enterpriseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "enterprise duration"@en ;
     rdfs:comment "Duration of trafficking enterprise operations."@en ;
-    rdfs:domain gufo:Organization ;
+    rdfs:domain cac-core:OrganizationLikeEntity ;
     rdfs:range xsd:duration .
 
 cacontology-trafficking:phaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "phase duration"@en ;
     rdfs:comment "Duration of trafficking enterprise phase."@en ;
-    rdfs:domain gufo:Phase ;
+    rdfs:domain cac-core:Phase ;
     rdfs:range xsd:duration .
 
 cacontology-trafficking:roleDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "role duration"@en ;
     rdfs:comment "Duration of individual's trafficking role."@en ;
-    rdfs:domain gufo:Role ;
+    rdfs:domain cac-core:Role ;
     rdfs:range xsd:duration .
 
 # =============================================================================
@@ -328,19 +321,19 @@ cacontology-trafficking:roleDuration rdf:type owl:DatatypeProperty ;
 cacontology-trafficking:hasEnterprisePhase rdf:type owl:ObjectProperty ;
     rdfs:label "has enterprise phase"@en ;
     rdfs:comment "Links trafficking enterprise to its operational phases."@en ;
-    rdfs:domain gufo:Organization ;
-    rdfs:range gufo:Phase .
+    rdfs:domain cac-core:OrganizationLikeEntity ;
+    rdfs:range cac-core:Phase .
 
 cacontology-trafficking:transitionsToPhase rdf:type owl:ObjectProperty ;
     rdfs:label "transitions to phase"@en ;
     rdfs:comment "Links one enterprise phase to the next phase in sequence."@en ;
-    rdfs:domain gufo:Phase ;
-    rdfs:range gufo:Phase .
+    rdfs:domain cac-core:Phase ;
+    rdfs:range cac-core:Phase .
 
 cacontology-trafficking:hasHierarchyLevel rdf:type owl:DatatypeProperty ;
     rdfs:label "has hierarchy level"@en ;
     rdfs:comment "Numerical hierarchy level within trafficking enterprise (1=top level)."@en ;
-    rdfs:domain gufo:Role ;
+    rdfs:domain cac-core:Role ;
     rdfs:range xsd:integer .
 
 cacontology-trafficking:controlsVictim rdf:type owl:ObjectProperty ;
@@ -352,7 +345,7 @@ cacontology-trafficking:controlsVictim rdf:type owl:ObjectProperty ;
 cacontology-trafficking:operatesInJurisdiction rdf:type owl:ObjectProperty ;
     rdfs:label "operates in jurisdiction"@en ;
     rdfs:comment "Links trafficking organization to jurisdictions where it operates."@en ;
-    rdfs:domain gufo:Organization ;
+    rdfs:domain cac-core:OrganizationLikeEntity ;
     rdfs:range uco-location:Location .
 
 # Victim Control Properties
@@ -417,7 +410,7 @@ cacontology-trafficking:requiresCoordination rdf:type owl:ObjectProperty ;
 cacontology-trafficking:situationComplexity rdf:type owl:DatatypeProperty ;
     rdfs:label "situation complexity"@en ;
     rdfs:comment "Complexity level of trafficking situation (1-5 scale)."@en ;
-    rdfs:domain gufo:Situation ;
+    rdfs:domain cac-core:Situation ;
     rdfs:range xsd:integer .
 
 cacontology-trafficking:involvesJurisdictionCount rdf:type owl:DatatypeProperty ;
@@ -429,11 +422,11 @@ cacontology-trafficking:involvesJurisdictionCount rdf:type owl:DatatypeProperty 
 cacontology-trafficking:involvesVictimCount rdf:type owl:DatatypeProperty ;
     rdfs:label "involves victim count"@en ;
     rdfs:comment "Number of victims involved in trafficking situation."@en ;
-    rdfs:domain gufo:Situation ;
+    rdfs:domain cac-core:Situation ;
     rdfs:range xsd:integer .
 
 cacontology-trafficking:involvesTraffickerCount rdf:type owl:DatatypeProperty ;
     rdfs:label "involves trafficker count"@en ;
     rdfs:comment "Number of traffickers involved in trafficking situation."@en ;
-    rdfs:domain gufo:Situation ;
+    rdfs:domain cac-core:Situation ;
     rdfs:range xsd:integer . 

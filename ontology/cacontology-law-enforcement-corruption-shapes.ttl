@@ -4,29 +4,25 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
-@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
-@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
-@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
-@prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix cacontology-corruption: <https://cacontology.projectvic.org/law-enforcement-corruption#> .
 @prefix cacontology-corruption-shapes: <https://cacontology.projectvic.org/law-enforcement-corruption/shapes#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # =============================================================================
-# ICAC LAW ENFORCEMENT CORRUPTION SHACL SHAPES
+# CAC LAW ENFORCEMENT CORRUPTION SHACL SHAPES
 # Enhanced with gUFO (gentle Unified Foundational Ontology) integration
 # =============================================================================
 
-<https://cacontology.projectvic.org/law-enforcement-corruption/shapes/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/law-enforcement-corruption/shapes/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Law Enforcement Corruption SHACL Shapes"@en ;
     rdfs:comment "SHACL shapes for validating law enforcement corruption ontology instances with comprehensive gUFO integration for enhanced semantic validation."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/law-enforcement-corruption/shapes/2.12.0> ;
-    owl:versionInfo "2.12.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/law-enforcement-corruption/shapes/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/law-enforcement-corruption/2.12.0> ,
+    owl:imports <https://cacontology.projectvic.org/law-enforcement-corruption/3.0.0> ,
                 <http://purl.org/nemo/gufo#> ,
                 <http://www.w3.org/ns/shacl#> .
 
@@ -38,23 +34,6 @@ cacontology-corruption-shapes:CorruptionEventTypeValidationShape rdf:type sh:Nod
     rdfs:label "Corruption Event Type Validation Shape"@en ;
     rdfs:comment "Validates that corruption activities are properly classified as gUFO Events and EventTypes."@en ;
     sh:targetClass cacontology-corruption:LawEnforcementCorruption ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:EventType ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:severity sh:Violation ;
-        sh:message "Corruption activities must be classified as gUFO EventType"@en
-    ] ;
-    sh:property [
-        sh:path rdfs:subClassOf ;
-        sh:qualifiedValueShape [
-            sh:class gufo:Event
-        ] ;
-        sh:qualifiedMinCount 1 ;
-        sh:severity sh:Violation ;
-        sh:message "Corruption activities must extend gUFO Event"@en
-    ] ;
     sh:property [
         sh:path gufo:hasBeginPointInXSDDateTimeStamp ;
         sh:datatype xsd:dateTimeStamp ;
@@ -68,44 +47,19 @@ cacontology-corruption-shapes:CorruptOfficerRoleValidationShape rdf:type sh:Node
     rdfs:comment "Validates that corrupt officer classes are properly classified as anti-rigid gUFO Roles."@en ;
     sh:targetClass cacontology-corruption:CorruptLawEnforcementOfficer ;
     sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Role ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:severity sh:Violation ;
-        sh:message "Corrupt officer types must be classified as gUFO Role (anti-rigid)"@en
-    ] ;
-    sh:property [
         sh:path rdfs:subClassOf ;
         sh:qualifiedValueShape [
-            sh:class uco-role:Role
+            sh:class cac-core:Role
         ] ;
         sh:qualifiedMinCount 1 ;
         sh:severity sh:Violation ;
-        sh:message "Corrupt officer roles must extend UCO Role"@en
+        sh:message "Corrupt officer roles must extend cac-core:Role"@en
     ] .
 
 cacontology-corruption-shapes:DetectionActivityTypeValidationShape rdf:type sh:NodeShape ;
     rdfs:label "Detection Activity Type Validation Shape"@en ;
     rdfs:comment "Validates that detection and investigation activities are properly classified as gUFO EventTypes."@en ;
-    sh:targetClass cacontology-corruption:InsiderThreatDetection ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:EventType ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:severity sh:Violation ;
-        sh:message "Detection activities must be classified as gUFO EventType"@en
-    ] ;
-    sh:property [
-        sh:path rdfs:subClassOf ;
-        sh:qualifiedValueShape [
-            sh:class gufo:Event
-        ] ;
-        sh:qualifiedMinCount 1 ;
-        sh:severity sh:Violation ;
-        sh:message "Detection activities must extend gUFO Event"@en
-    ] .
+    sh:targetClass cacontology-corruption:InsiderThreatDetection .
 
 # =============================================================================
 # gUFO TEMPORAL CONSTRAINTS SHAPES
@@ -195,13 +149,6 @@ cacontology-corruption-shapes:LawEnforcementCorruptionShape rdf:type sh:NodeShap
     rdfs:label "Law Enforcement Corruption Shape"@en ;
     rdfs:comment "Enhanced shape for law enforcement corruption with gUFO quality aspects."@en ;
     sh:targetClass cacontology-corruption:LawEnforcementCorruption ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:EventType ;
-        sh:minCount 1 ;
-        sh:severity sh:Violation ;
-        sh:message "Must be classified as gUFO EventType"@en
-    ] ;
     # gUFO Quality Aspects
     sh:property [
         sh:path cacontology-corruption:hasCorruptionSeverity ;
@@ -274,13 +221,6 @@ cacontology-corruption-shapes:UniformBasedExploitationShape rdf:type sh:NodeShap
     rdfs:label "Uniform Based Exploitation Shape"@en ;
     rdfs:comment "Enhanced shape for uniform-based exploitation with authority enhancement quality aspects."@en ;
     sh:targetClass cacontology-corruption:UniformBasedExploitation ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:EventType ;
-        sh:minCount 1 ;
-        sh:severity sh:Violation ;
-        sh:message "Must be classified as gUFO EventType"@en
-    ] ;
     # gUFO Quality Aspects
     sh:property [
         sh:path cacontology-corruption:hasAuthorityEnhancementLevel ;
@@ -311,13 +251,6 @@ cacontology-corruption-shapes:PositionOfAuthorityAbuseShape rdf:type sh:NodeShap
     rdfs:label "Position of Authority Abuse Shape"@en ;
     rdfs:comment "Enhanced shape for position of authority abuse with abuse degree and intimidation assessments."@en ;
     sh:targetClass cacontology-corruption:PositionOfAuthorityAbuse ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:EventType ;
-        sh:minCount 1 ;
-        sh:severity sh:Violation ;
-        sh:message "Must be classified as gUFO EventType"@en
-    ] ;
     # gUFO Quality Aspects
     sh:property [
         sh:path cacontology-corruption:hasAuthorityAbuseDegree ;
@@ -341,13 +274,6 @@ cacontology-corruption-shapes:AuthoritySymbolExploitationShape rdf:type sh:NodeS
     rdfs:label "Authority Symbol Exploitation Shape"@en ;
     rdfs:comment "Enhanced shape for authority symbol exploitation with symbol visibility assessment."@en ;
     sh:targetClass cacontology-corruption:AuthoritySymbolExploitation ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:EventType ;
-        sh:minCount 1 ;
-        sh:severity sh:Violation ;
-        sh:message "Must be classified as gUFO EventType"@en
-    ] ;
     # gUFO Quality Aspects
     sh:property [
         sh:path cacontology-corruption:hasSymbolVisibility ;
@@ -362,13 +288,6 @@ cacontology-corruption-shapes:CorruptLawEnforcementOfficerShape rdf:type sh:Node
     rdfs:label "Corrupt Law Enforcement Officer Shape"@en ;
     rdfs:comment "Enhanced shape for corrupt officers with corruption dependency and trust betrayal assessments."@en ;
     sh:targetClass cacontology-corruption:CorruptLawEnforcementOfficer ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:Role ;
-        sh:minCount 1 ;
-        sh:severity sh:Violation ;
-        sh:message "Must be classified as gUFO Role"@en
-    ] ;
     # gUFO Quality Aspects
     sh:property [
         sh:path cacontology-corruption:hasCorruptionDependency ;
@@ -433,13 +352,6 @@ cacontology-corruption-shapes:InsiderThreatDetectionShape rdf:type sh:NodeShape 
     rdfs:label "Insider Threat Detection Shape"@en ;
     rdfs:comment "Enhanced shape for insider threat detection with complexity and evidence integrity assessments."@en ;
     sh:targetClass cacontology-corruption:InsiderThreatDetection ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:EventType ;
-        sh:minCount 1 ;
-        sh:severity sh:Violation ;
-        sh:message "Must be classified as gUFO EventType"@en
-    ] ;
     # gUFO Quality Aspects
     sh:property [
         sh:path cacontology-corruption:hasInvestigationComplexity ;
@@ -463,13 +375,6 @@ cacontology-corruption-shapes:InsiderThreatShape rdf:type sh:NodeShape ;
     rdfs:label "Insider Threat Shape"@en ;
     rdfs:comment "Enhanced shape for insider threats with detection difficulty assessment."@en ;
     sh:targetClass cacontology-corruption:InsiderThreat ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:EventType ;
-        sh:minCount 1 ;
-        sh:severity sh:Violation ;
-        sh:message "Must be classified as gUFO EventType"@en
-    ] ;
     # gUFO Quality Aspects
     sh:property [
         sh:path cacontology-corruption:hasDetectionDifficulty ;
@@ -574,7 +479,7 @@ cacontology-corruption-shapes:HighSeverityCorruptionRule rdf:type sh:NodeShape ;
                 $this cacontology-corruption:hasCorruptionSeverity ?severity .
                 FILTER (?severity IN ("severe", "extreme"))
                 OPTIONAL {
-                    $this cacontology-corruption:isDetectedBy ?detection .
+                    $this cacontology-corruption:isDetectedBy ?detection ;
                     ?detection cacontology-corruption:hasInvestigationComplexity ?complexity .
                     FILTER (?complexity IN ("complex", "highly_complex", "extremely_complex"))
                 }
@@ -654,7 +559,7 @@ cacontology-corruption-shapes:DetectionDifficultyRule rdf:type sh:NodeShape ;
                 $this cacontology-corruption:hasDetectionDifficulty ?difficulty .
                 FILTER (?difficulty IN ("very_difficult", "nearly_impossible"))
                 OPTIONAL {
-                    $this cacontology-corruption:isDetectedBy ?detection .
+                    $this cacontology-corruption:isDetectedBy ?detection ;
                     ?detection cacontology-corruption:hasInvestigationComplexity ?complexity .
                     FILTER (?complexity IN ("highly_complex", "extremely_complex"))
                 }

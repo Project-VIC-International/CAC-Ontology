@@ -3,31 +3,26 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix gufo: <http://purl.org/nemo/gufo#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
-@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
-@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
-@prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-legal: <https://cacontology.projectvic.org/legal-harmonization#> .
-@prefix cacontology-multi: <https://cacontology.projectvic.org/multi-jurisdiction#> .
 @prefix cacontology-usa-leg: <https://cacontology.projectvic.org/usa-legislative#> .
 @prefix cacontology-usa-leg-shapes: <https://cacontology.projectvic.org/usa-legislative/shapes#> .
 
 # =============================================================================
-# ICAC USA LEGISLATIVE FRAMEWORK SHACL SHAPES
+# CAC USA LEGISLATIVE FRAMEWORK SHACL SHAPES
 # Raven US Extensions - USA-Specific Validation Shapes
 # =============================================================================
 
-<https://cacontology.projectvic.org/usa-legislative/shapes/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/usa-legislative/shapes/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC USA Legislative Framework SHACL Shapes"@en ;
     rdfs:comment "SHACL shapes for validating USA-specific legislative framework instances including federal agencies, congressional committees, state organizations, legislative stages, and funding mechanisms."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/usa-legislative/shapes/2.12.0> ;
-    owl:versionInfo "2.12.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/usa-legislative/shapes/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:created "2026-01-27"^^xsd:date ;
     dcterms:modified "2026-01-27"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/usa-legislative/2.12.0> ,
+    owl:imports <https://cacontology.projectvic.org/usa-legislative/3.0.0> ,
                 <http://purl.org/nemo/gufo#> ,
                 <http://www.w3.org/ns/shacl#> .
 
@@ -359,47 +354,19 @@ cacontology-usa-leg-shapes:OutcomeShape rdf:type sh:NodeShape ;
 
 cacontology-usa-leg-shapes:USConferenceCommitteeShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-usa-leg:USConferenceCommittee ;
-    rdfs:label "U.S. Conference Committee Shape"@en ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:EventType ;
-        sh:minCount 1 ;
-        sh:severity sh:Violation ;
-        sh:message "Conference committee process must be classified as gUFO EventType"@en
-    ] .
+    rdfs:label "U.S. Conference Committee Shape"@en .
 
 cacontology-usa-leg-shapes:USExecutiveActionShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-usa-leg:USExecutiveAction ;
-    rdfs:label "U.S. Executive Action Shape"@en ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:EventType ;
-        sh:minCount 1 ;
-        sh:severity sh:Violation ;
-        sh:message "Executive action must be classified as gUFO EventType"@en
-    ] .
+    rdfs:label "U.S. Executive Action Shape"@en .
 
 cacontology-usa-leg-shapes:USRulemakingProcessShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-usa-leg:USRulemakingProcess ;
-    rdfs:label "U.S. Rulemaking Process Shape"@en ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:EventType ;
-        sh:minCount 1 ;
-        sh:severity sh:Violation ;
-        sh:message "Rulemaking process must be classified as gUFO EventType"@en
-    ] .
+    rdfs:label "U.S. Rulemaking Process Shape"@en .
 
 cacontology-usa-leg-shapes:USReconciliationShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-usa-leg:USReconciliation ;
-    rdfs:label "U.S. Budget Reconciliation Shape"@en ;
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue gufo:EventType ;
-        sh:minCount 1 ;
-        sh:severity sh:Violation ;
-        sh:message "Budget reconciliation must be classified as gUFO EventType"@en
-    ] .
+    rdfs:label "U.S. Budget Reconciliation Shape"@en .
 
 # =============================================================================
 # ORGANIZATION HIERARCHY VALIDATION

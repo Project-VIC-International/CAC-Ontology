@@ -1,0 +1,79 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix cacontology-core: <https://cacontology.projectvic.org#> .
+@prefix cacontology-us: <https://cacontology.projectvic.org/us/ncmec#> .
+
+# Example Investigation
+cacontology-core:investigation-2024-001 rdf:type cacontology-core:CACInvestigation ;
+    rdfs:label "ICAC Investigation 2024-001"@en ;
+    cacontology-core:hasStep cacontology-core:step-001, cacontology-core:step-002, cacontology-core:step-003, cacontology-core:step-004, cacontology-core:step-005 .
+
+# Step 1: Receive Cybertip
+cacontology-core:step-001 rdf:type cacontology-core:ReceiveCybertipAction ;
+    rdfs:label "Receive NCMEC Cybertip"@en ;
+    uco-core:startTime "2024-03-20T09:00:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2024-03-20T09:05:00Z"^^xsd:dateTime ;
+    uco-core:hasFacet cacontology-us:cybertip-2024-001 ;
+    cacontology-core:nextStep cacontology-core:step-002 .
+
+# Step 2: Review Cybertip
+cacontology-core:step-002 rdf:type cacontology-core:ReviewCybertipAction ;
+    rdfs:label "Review Cybertip by Analyst"@en ;
+    uco-core:startTime "2024-03-20T09:30:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2024-03-20T10:30:00Z"^^xsd:dateTime ;
+    uco-action:performer cacontology-core:analyst-001 ;
+    cacontology-core:previousStep cacontology-core:step-001 ;
+    cacontology-core:nextStep cacontology-core:step-003 .
+
+# Step 3: Legal Process
+cacontology-core:step-003 rdf:type cacontology-core:LegalProcessAction ;
+    rdfs:label "Issue Search Warrant"@en ;
+    uco-core:startTime "2024-03-20T11:00:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2024-03-20T12:00:00Z"^^xsd:dateTime ;
+    cacontology-core:targetsService cacontology-core:service-001 ;
+    cacontology-core:legalInstrument cacontology-core:warrant-001 ;
+    cacontology-core:previousStep cacontology-core:step-002 ;
+    cacontology-core:nextStep cacontology-core:step-004 .
+
+# Step 4: Evidence Review
+cacontology-core:step-004 rdf:type cacontology-core:EvidenceReviewAction ;
+    rdfs:label "Review Digital Evidence"@en ;
+    uco-core:startTime "2024-03-20T13:00:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2024-03-20T15:00:00Z"^^xsd:dateTime ;
+    uco-action:usesTool cacontology-core:tool-001 ;
+    cacontology-core:previousStep cacontology-core:step-003 ;
+    cacontology-core:nextStep cacontology-core:step-005 .
+
+# Step 5: CSAM Curation
+cacontology-core:step-005 rdf:type cacontology-core:CSAMCurationAction ;
+    rdfs:label "Classify CSAM"@en ;
+    uco-core:startTime "2024-03-20T15:30:00Z"^^xsd:dateTime ;
+    uco-core:endTime "2024-03-20T16:30:00Z"^^xsd:dateTime ;
+    cacontology-core:usesClassification cacontology-core:classification-001 ;
+    cacontology-core:previousStep cacontology-core:step-004 .
+
+# Supporting Instances
+cacontology-core:analyst-001 rdf:type uco-identity:Person ;
+    rdfs:label "John Smith"@en ;
+    uco-identity:hasRole cacontology-core:analyst-role-001 .
+
+cacontology-core:analyst-role-001 rdf:type cacontology-core:InvestigatorRole ;
+    rdfs:label "CAC Analyst"@en .
+
+cacontology-core:service-001 rdf:type uco-observable:DigitalService ;
+    rdfs:label "Example Social Media Platform"@en .
+
+cacontology-core:warrant-001 rdf:type cacontology-core:SearchWarrant ;
+    rdfs:label "Search Warrant 2024-001"@en .
+
+cacontology-core:tool-001 rdf:type uco-observable:Tool ;
+    rdfs:label "Autopsy Forensic Tool"@en .
+
+cacontology-core:classification-001 rdf:type cacontology-core:ClassificationSystem ;
+    rdfs:label "Project VIC"@en .

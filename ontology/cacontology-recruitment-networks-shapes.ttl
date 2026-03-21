@@ -4,25 +4,21 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
-@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
-@prefix cacontology: <https://cacontology.projectvic.org#> .
-@prefix cacontology-trafficking: <https://cacontology.projectvic.org/trafficking#> .
 @prefix cacontology-recruitment: <https://cacontology.projectvic.org/recruitment-networks#> .
 @prefix cacontology-recruitment-shapes: <https://cacontology.projectvic.org/recruitment-networks/shapes#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/recruitment-networks/shapes/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/recruitment-networks/shapes/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Recruitment Networks SHACL Shapes"@en ;
-    rdfs:comment "SHACL validation shapes for the ICAC Recruitment Networks Ontology, providing validation for peer recruitment networks, classmate-mediated trafficking, and social recruitment patterns."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/recruitment-networks/shapes/2.12.0> ;
-    owl:versionInfo "2.12.0" ;
+    rdfs:comment "SHACL validation shapes for the CAC Recruitment Networks Ontology, providing validation for peer recruitment networks, classmate-mediated trafficking, and social recruitment patterns."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/recruitment-networks/shapes/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/recruitment-networks/2.12.0> ,
-                <http://purl.org/nemo/gufo> ,
+    owl:imports <https://cacontology.projectvic.org/recruitment-networks/3.0.0> ,
+                <http://purl.org/nemo/gufo#> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 
 # =============================================================================

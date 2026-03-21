@@ -449,7 +449,7 @@ Example CAC namespaces (non-exhaustive, always verify against repo):
 @prefix cacontology-undercover: <https://cacontology.projectvic.org/undercover#> .
 @prefix cacontology-physical: <https://cacontology.projectvic.org/physical#> .
 @prefix cacontology-tactical: <https://cacontology.projectvic.org/tactical#> .
-@prefix cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#> .
+@prefix cacontology-legal-outcomes: <https://cacontology.projectvic.org/legal-outcomes#> .
 # ... discover additional modules from ontology/ directory
 ```
 

@@ -16,8 +16,8 @@ PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable
 PREFIX uco-types: <https://ontology.unifiedcyberontology.org/uco/types/>
 
 PREFIX cacontology-platforms: <https://cacontology.projectvic.org/platforms#>
-PREFIX cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#>
-PREFIX cacontology-trafficking: <https://cacontology.projectvic.org/sex-trafficking#>
+PREFIX cacontology-legal-outcomes: <https://cacontology.projectvic.org/legal-outcomes#>
+PREFIX cacontology-trafficking: <https://cacontology.projectvic.org/trafficking#>
 PREFIX cacontology-registry: <https://cacontology.projectvic.org/sex-offender-registry#>
 
 PREFIX ex: <https://example.org/cac/ga-hart-county-trafficking-snapchat/>
@@ -137,8 +137,8 @@ WHERE {
   ?charge a ?chargeType ;
     rdfs:label ?chargeLabel .
   FILTER(?chargeType IN (
-    cacontology-sentencing:TraffickingOfPersonsForSexualServitudeCharge,
-    cacontology-sentencing:SexualExploitationOfMinorCharge
+    cacontology-legal-outcomes:TraffickingOfPersonsForSexualServitudeCharge,
+    cacontology-legal-outcomes:SexualExploitationOfMinorCharge
   ))
 }
 ORDER BY ?chargeLabel
@@ -152,8 +152,8 @@ SELECT ?chargeType (COUNT(?charge) AS ?count)
 WHERE {
   ?charge a ?chargeType .
   FILTER(?chargeType IN (
-    cacontology-sentencing:TraffickingOfPersonsForSexualServitudeCharge,
-    cacontology-sentencing:SexualExploitationOfMinorCharge
+    cacontology-legal-outcomes:TraffickingOfPersonsForSexualServitudeCharge,
+    cacontology-legal-outcomes:SexualExploitationOfMinorCharge
   ))
 }
 GROUP BY ?chargeType
@@ -167,12 +167,12 @@ ORDER BY DESC(?count)
 SELECT DISTINCT ?hearingLabel ?chargeLabel ?sentenceLabel ?duration
 WHERE {
   ex:sentencing_hearing rdfs:label ?hearingLabel ;
-    cacontology-sentencing:hasCharge ?charge ;
-    cacontology-sentencing:resultsSentence ?sentence .
+    cacontology-legal-outcomes:hasCharge ?charge ;
+    cacontology-legal-outcomes:resultsSentence ?sentence .
 
   ?charge rdfs:label ?chargeLabel .
   ?sentence rdfs:label ?sentenceLabel .
-  OPTIONAL { ?sentence cacontology-sentencing:sentenceDuration ?duration }
+  OPTIONAL { ?sentence cacontology-legal-outcomes:sentenceDuration ?duration }
 }
 ORDER BY ?chargeLabel ?sentenceLabel
 ;
@@ -183,12 +183,12 @@ ORDER BY ?chargeLabel ?sentenceLabel
 
 SELECT DISTINCT ?label ?duration ?conditions ?supervision ?reporting
 WHERE {
-  ex:probation_term a cacontology-sentencing:ProbationSentence ;
+  ex:probation_term a cacontology-legal-outcomes:ProbationSentence ;
     rdfs:label ?label ;
-    cacontology-sentencing:probationConditions ?conditions ;
-    cacontology-sentencing:supervisionLevel ?supervision ;
-    cacontology-sentencing:reportingFrequency ?reporting .
-  OPTIONAL { ex:probation_term cacontology-sentencing:sentenceDuration ?duration }
+    cacontology-legal-outcomes:probationConditions ?conditions ;
+    cacontology-legal-outcomes:supervisionLevel ?supervision ;
+    cacontology-legal-outcomes:reportingFrequency ?reporting .
+  OPTIONAL { ex:probation_term cacontology-legal-outcomes:sentenceDuration ?duration }
 }
 ;
 
@@ -198,10 +198,10 @@ WHERE {
 
 SELECT DISTINCT ?conditionLabel ?personLabel ?licenseLabel
 WHERE {
-  ex:license_surrender_condition a cacontology-sentencing:ProfessionalLicenseSurrenderCondition ;
+  ex:license_surrender_condition a cacontology-legal-outcomes:ProfessionalLicenseSurrenderCondition ;
     rdfs:label ?conditionLabel ;
-    cacontology-sentencing:conditionAppliesToPerson ?person ;
-    cacontology-sentencing:requiresLicenseSurrender ?license .
+    cacontology-legal-outcomes:conditionAppliesToPerson ?person ;
+    cacontology-legal-outcomes:requiresLicenseSurrender ?license .
 
   ?person rdfs:label ?personLabel .
   ?license rdfs:label ?licenseLabel .

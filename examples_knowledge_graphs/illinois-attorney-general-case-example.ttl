@@ -1,0 +1,299 @@
+@prefix : <https://cacontology.projectvic.org/examples/illinois-attorney-general-case#> .
+@prefix cacontology-core: <https://cacontology.projectvic.org#> .
+@prefix cacontology-legal-outcomes: <https://cacontology.projectvic.org/legal-outcomes#> .
+@prefix cacontology-taskforce: <https://cacontology.projectvic.org/taskforce#> .
+@prefix cacontology-platforms: <https://cacontology.projectvic.org/platforms#> .
+@prefix cacontology-registry: <https://cacontology.projectvic.org/sex-offender-registry#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# =============================================================================
+# ILLINOIS ATTORNEY GENERAL MACOUPIN COUNTY CASE
+# Based on Illinois Attorney General Press Release, October 5, 2023
+# Defendant: Robert L. Jones, 45, Macoupin County
+# Multi-agency prosecution: Illinois AG + Macoupin County State's Attorney
+# =============================================================================
+
+# Case Investigation
+:MacoupinCountyInvestigation rdf:type cacontology-core:CACInvestigation ;
+    uco-core:name "Illinois AG v. Robert L. Jones - Macoupin County CSAM Case"@en ;
+    uco-core:description "Multi-agency investigation and prosecution of Macoupin County man for child pornography possession and dissemination, plus failure to register as sex offender."@en ;
+    uco-core:startTime "2023-10-01T00:00:00Z"^^xsd:dateTime ;
+    case-investigation:investigationStatus "prosecution_phase" .
+
+# Defendant
+:RobertLJones rdf:type uco-identity:Person ;
+    uco-identity:fullName "Robert L. Jones"@en ;
+    uco-core:name "Robert L. Jones"@en ;
+    uco-identity:birthDate "1978-01-01"^^xsd:date ;  # Age 45 in 2023
+    cacontology-registry:registeredSexOffender true .
+
+:JonesResidence rdf:type uco-location:Location ;
+    uco-location:addressLine1 "700 block South Street"@en ;
+    uco-location:locality "Gillespie"@en ;
+    uco-location:administrativeArea "Macoupin County"@en ;
+    uco-location:country "United States"@en .
+
+# =============================================================================
+# ILLINOIS-SPECIFIC CRIMINAL CHARGES
+# =============================================================================
+
+# Class X Felony - Dissemination CSAM Under 13 (5 counts)
+:DisseminationCharges rdf:type cacontology-legal-outcomes:Illinois_DisseminationCSAM_Under13 ;
+    uco-core:name "Dissemination of Child Pornography Under 13"@en ;
+    cacontology-legal-outcomes:chargeCount 5 ;
+    cacontology-legal-outcomes:maximumSentenceYears 30 ;
+    cacontology-legal-outcomes:victimAgeAtOffense 12 ;  # Under 13
+    cacontology-legal-outcomes:evidenceFoundOnDevice true ;
+    cacontology-legal-outcomes:evidenceFoundOnSocialMedia true .
+
+# Class 1 Felony - Possession CSAM Under 13 (10 counts)
+:PossessionCharges rdf:type cacontology-legal-outcomes:Illinois_PossessionCSAM_Under13 ;
+    uco-core:name "Possession of Child Pornography Under 13"@en ;
+    cacontology-legal-outcomes:chargeCount 10 ;
+    cacontology-legal-outcomes:maximumSentenceYears 15 ;
+    cacontology-legal-outcomes:victimAgeAtOffense 12 ;  # Under 13
+    cacontology-legal-outcomes:evidenceFoundOnDevice true ;
+    cacontology-legal-outcomes:evidenceFoundOnSocialMedia true .
+
+# Class 3 Felony - Failure to Register (3 counts)
+:FailureToRegisterCharges rdf:type cacontology-legal-outcomes:Illinois_FailureToRegister ;
+    uco-core:name "Failure to Register Under Sex Offender Act"@en ;
+    cacontology-legal-outcomes:chargeCount 3 ;
+    cacontology-legal-outcomes:maximumSentenceYears 7 .
+
+# Link defendant to charges
+:RobertLJones cacontology-legal-outcomes:chargedWith :DisseminationCharges ,
+                                         :PossessionCharges ,
+                                         :FailureToRegisterCharges .
+
+# =============================================================================
+# MULTI-AGENCY PROSECUTION FRAMEWORK
+# =============================================================================
+
+# Illinois Attorney General Office
+:IllinoisAttorneyGeneralOffice rdf:type cacontology-legal-outcomes:StateAttorneyGeneralOffice ;
+    uco-core:name "Illinois Attorney General Office"@en ;
+    uco-identity:organization "Office of Illinois Attorney General Kwame Raoul"@en .
+
+# High Tech Crimes Bureau
+:HighTechCrimesBureau rdf:type cacontology-legal-outcomes:HighTechCrimesBureau ;
+    uco-core:name "High Tech Crimes Bureau"@en ;
+    uco-core:description "Specialized prosecution unit for technology-related crimes within Illinois AG office."@en .
+
+# Macoupin County State's Attorney Office
+:MacoupinCountyStatesAttorneyOffice rdf:type cacontology-legal-outcomes:CountyStatesAttorneyOffice ;
+    uco-core:name "Macoupin County State's Attorney Office"@en ;
+    uco-identity:organization "Jordan Garrison, Macoupin County State's Attorney"@en .
+
+# Assistant Attorney General handling case
+:ShantikumarKulkarni rdf:type cacontology-legal-outcomes:AssistantAttorneyGeneral ;
+    uco-identity:fullName "Shantikumar Kulkarni"@en ;
+    uco-core:name "Assistant Attorney General Shantikumar Kulkarni"@en .
+
+# Co-Prosecution between Illinois AG and County
+:CoProsecutionEffort rdf:type cacontology-legal-outcomes:CoProsecution ;
+    uco-core:name "Illinois AG - Macoupin County Co-Prosecution"@en ;
+    cacontology-legal-outcomes:leadProsecutor :IllinoisAttorneyGeneralOffice ;
+    cacontology-legal-outcomes:supportingProsecutor :MacoupinCountyStatesAttorneyOffice ;
+    cacontology-legal-outcomes:coProsecutedBy :IllinoisAttorneyGeneralOffice ,
+                                   :MacoupinCountyStatesAttorneyOffice ;
+    cacontology-legal-outcomes:handledByBureau :HighTechCrimesBureau .
+
+# Link charges to prosecution type
+:DisseminationCharges cacontology-legal-outcomes:prosecutionType :CoProsecutionEffort .
+:PossessionCharges cacontology-legal-outcomes:prosecutionType :CoProsecutionEffort .
+:FailureToRegisterCharges cacontology-legal-outcomes:prosecutionType :CoProsecutionEffort .
+
+# =============================================================================
+# MULTI-AGENCY INVESTIGATION COORDINATION
+# =============================================================================
+
+# Federal Law Enforcement Partners
+:FederalAgencies rdf:type cacontology-taskforce:FederalLawEnforcementPartner ;
+    uco-core:name "Federal Law Enforcement Agencies"@en ;
+    uco-core:description "Federal agencies collaborating with Illinois AG investigation."@en .
+
+# Local Law Enforcement Partners
+:GillespiePolice rdf:type cacontology-taskforce:LocalLawEnforcementPartner ;
+    uco-core:name "Gillespie Police Department"@en ;
+    uco-location:locality "Gillespie"@en .
+
+:MacoupinCountySheriff rdf:type cacontology-taskforce:LocalLawEnforcementPartner ;
+    uco-core:name "Macoupin County Sheriff's Department"@en ;
+    uco-location:administrativeArea "Macoupin County"@en .
+
+# Illinois ICAC Task Force
+:IllinoisICACtaskForce rdf:type cacontology-taskforce:IllinoisICACtaskForce ;
+    uco-core:name "Illinois ICAC Task Force"@en ;
+    cacontology-taskforce:dojGrantFunded true ;
+    cacontology-taskforce:nationalTaskForceNetwork true ;
+    cacontology-taskforce:taskForceNumber 1 ;  # 1 of 61 nationwide
+    cacontology-taskforce:federalPartner :FederalAgencies ;
+    cacontology-taskforce:localPartner :GillespiePolice ,
+                                :MacoupinCountySheriff .
+
+# =============================================================================
+# ILLINOIS ICAC TASK FORCE METRICS (From Press Release)
+# =============================================================================
+
+# CyberTip Processing Metrics
+:IllinoisCyberTipMetrics rdf:type cacontology-taskforce:CyberTipMetrics ;
+    cacontology-taskforce:cyberTipsSince2019 35000 ;  # 35,000+ since 2019
+    cacontology-taskforce:measuresPerformance :IllinoisICACtaskForce .
+
+# Arrest Performance Metrics
+:IllinoisArrestMetrics rdf:type cacontology-taskforce:ArrestMetrics ;
+    cacontology-taskforce:arrestsSince2019 600 ;    # 600+ arrests since 2019
+    cacontology-taskforce:arrestsSince2006 1990 ;   # 1,990+ arrests since 2006
+    cacontology-taskforce:sexualPredatorArrests 1990 ;  # Total sexual predator arrests
+    cacontology-taskforce:measuresPerformance :IllinoisICACtaskForce .
+
+# Network Performance Metrics
+:IllinoisNetworkMetrics rdf:type cacontology-taskforce:NetworkPerformance ;
+    cacontology-taskforce:partnerAgencyCount 175 ;  # Network of 175+ agencies
+    cacontology-taskforce:coordinationLevel "multi-level" ;
+    cacontology-taskforce:agencyType "local, county, state, federal" ;
+    cacontology-taskforce:measuresPerformance :IllinoisICACtaskForce .
+
+# 2022 Annual Performance (26% increase)
+:Illinois2022Performance rdf:type cacontology-taskforce:AnnualPerformance ;
+    cacontology-taskforce:reportingYear "2022"^^xsd:gYear ;
+    cacontology-taskforce:yearOverYearIncrease 26.0 ;  # 26% increase in 2022
+    cacontology-taskforce:measuresPerformance :IllinoisICACtaskForce .
+
+# Training Reach Metrics
+:IllinoisTrainingMetrics rdf:type cacontology-taskforce:TrainingReachMetrics ;
+    cacontology-taskforce:professionalsTrained 10000 ;  # Tens of thousands of professionals
+    cacontology-taskforce:parentsEducated 25000 ;
+    cacontology-taskforce:studentsEducated 50000 ;
+    cacontology-taskforce:teachersEducated 5000 ;
+    cacontology-taskforce:measuresPerformance :IllinoisICACtaskForce .
+
+# Link metrics to task force
+:IllinoisICACtaskForce cacontology-taskforce:hasMetrics :IllinoisCyberTipMetrics ,
+                                                 :IllinoisArrestMetrics ,
+                                                 :IllinoisNetworkMetrics ,
+                                                 :Illinois2022Performance ,
+                                                 :IllinoisTrainingMetrics .
+
+# =============================================================================
+# SOCIAL MEDIA AND DEVICE EVIDENCE
+# =============================================================================
+
+# Electronic Device Evidence
+:JonesElectronicDevice rdf:type cacontology-platforms:ElectronicDeviceEvidence ;
+    uco-core:name "Jones Electronic Device Evidence"@en ;
+    cacontology-platforms:foundOnDevice true ;
+    cacontology-platforms:deviceType "computer/phone" ;
+    cacontology-platforms:evidenceCategory "possession, distribution" ;
+    cacontology-platforms:discoveryTimestamp "2023-10-03T00:00:00Z"^^xsd:dateTime .
+
+# Social Media Account Evidence
+:JonesSocialMediaAccount rdf:type cacontology-platforms:SocialMediaAccount ;
+    uco-core:name "Jones Social Media Account"@en ;
+    cacontology-platforms:accountStatus "preserved" ;
+    cacontology-platforms:evidenceCategory "possession, distribution" .
+
+# Social Media Evidence
+:JonesSocialMediaEvidence rdf:type cacontology-platforms:SocialMediaEvidence ;
+    uco-core:name "Jones Social Media Evidence"@en ;
+    cacontology-platforms:foundOnSocialMedia true ;
+    cacontology-platforms:socialMediaPlatform "multiple platforms" ;
+    cacontology-platforms:contentType "image, video" ;
+    cacontology-platforms:evidenceCategory "possession, distribution" ;
+    cacontology-platforms:searchWarrantRequired true ;
+    cacontology-platforms:legalProcessUsed "search warrant" ;
+    cacontology-platforms:discoveryTimestamp "2023-10-03T00:00:00Z"^^xsd:dateTime ;
+    cacontology-platforms:correlatesWithDevice :JonesElectronicDevice ;
+    cacontology-platforms:correlatesWithAccount :JonesSocialMediaAccount .
+
+# Cross-Platform Evidence Correlation
+:JonesCrossPlatformEvidence rdf:type cacontology-platforms:CrossPlatformEvidence ;
+    uco-core:name "Jones Cross-Platform Evidence"@en ;
+    cacontology-platforms:platformsInvestigated 3 ;  # Multiple social media platforms
+    cacontology-platforms:correlatesWithDevice :JonesElectronicDevice .
+
+# =============================================================================
+# SEARCH WARRANT AND ARREST
+# =============================================================================
+
+# Home Search Operation
+:HomeSearchOperation rdf:type uco-action:Action ;
+    uco-core:name "Jones Residence Search"@en ;
+    uco-core:description "Search of defendant's home on 700 block South Street, Gillespie"@en ;
+    uco-core:startTime "2023-10-03T06:00:00Z"^^xsd:dateTime ;
+    uco-core:location :JonesResidence .
+
+# Simultaneous Search Warrant (Device + Social Media)
+:SimultaneousSearchWarrant rdf:type cacontology-platforms:SimultaneousSearchWarrant ;
+    uco-core:name "Coordinated Device and Social Media Search"@en ;
+    cacontology-platforms:devicesSearched 1 ;
+    cacontology-platforms:platformsInvestigated 3 ;
+    cacontology-platforms:coordinatedBy :IllinoisICACtaskForce .
+
+# Discovery of evidence during search
+:JonesElectronicDevice cacontology-platforms:discoveredDuring :HomeSearchOperation .
+:JonesSocialMediaEvidence cacontology-platforms:discoveredDuring :HomeSearchOperation .
+
+# =============================================================================
+# DETENTION AND COURT PROCEEDINGS
+# =============================================================================
+
+# Macoupin County Jail
+:MacoupinCountyJail rdf:type cacontology-legal-outcomes:CountyJail ;
+    uco-core:name "Macoupin County Jail"@en ;
+    uco-location:locality "Carlinville"@en ;
+    uco-location:administrativeArea "Macoupin County"@en .
+
+# Pre-Trial Detention
+:JonesDetention rdf:type cacontology-legal-outcomes:PreTrialDetention ;
+    uco-core:name "Jones Pre-Trial Detention"@en ;
+    cacontology-legal-outcomes:detainedAt :MacoupinCountyJail ;
+    cacontology-legal-outcomes:detentionStatus "detained" ;
+    uco-core:startTime "2023-10-03T12:00:00Z"^^xsd:dateTime .
+
+# Court Scheduling
+:CourtScheduling rdf:type cacontology-legal-outcomes:CourtScheduling ;
+    uco-core:name "Jones Court Scheduling"@en ;
+    cacontology-legal-outcomes:nextCourtDate "2023-10-30T09:00:00Z"^^xsd:dateTime .
+
+# =============================================================================
+# SEX OFFENDER REGISTRY INTEGRATION
+# =============================================================================
+
+# Jones as Registered Sex Offender
+:JonesRegistrationRecord rdf:type cacontology-registry:SexOffenderRegistrationRecord ;
+    uco-core:name "Jones Registration Record"@en ;
+    cacontology-registry:fullName "Robert L. Jones"@en ;
+    cacontology-registry:registrationStatus "non-compliant" ;  # Due to failure to register charges
+    cacontology-registry:complianceStatus "violation" .
+
+:RobertLJones cacontology-registry:hasRegistrationRecord :JonesRegistrationRecord .
+
+# =============================================================================
+# CASE RELATIONSHIPS AND COORDINATION
+# =============================================================================
+
+# Investigation handled by Illinois ICAC Task Force
+:IllinoisICACtaskForce cacontology-taskforce:handledInvestigation :MacoupinCountyInvestigation .
+
+# Multi-agency coordination
+:MacoupinCountyInvestigation uco-core:object :RobertLJones ,
+                                            :DisseminationCharges ,
+                                            :PossessionCharges ,
+                                            :FailureToRegisterCharges ,
+                                            :JonesElectronicDevice ,
+                                            :JonesSocialMediaEvidence .
+
+# Prosecution relationships
+:CoProsecutionEffort uco-core:object :DisseminationCharges ,
+                                     :PossessionCharges ,
+                                     :FailureToRegisterCharges . 

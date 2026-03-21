@@ -24,7 +24,7 @@ Repo-local searches over `ontology/*.ttl` show:
     - `cacontology-enterprises:PrivateGroupManagement`
     - `cacontology-enterprises:PlatformMigrationStrategy`
     - `cacontology-enterprises:EncryptedChannelNetwork`
-  - Live-streaming-related concepts in other modules (e.g., `cacontology:LiveStreamingCSA`, `cacontology-production:LiveStreamContent`, `cacontology-sentencing:LiveStreamingOffense`)
+  - Live-streaming-related concepts in other modules (e.g., `cacontology:LiveStreamingCSA`, `cacontology-production:LiveStreamContent`, `cacontology-legal-outcomes:LiveStreamingOffense`)
 - **Not found (gap / propose new CAC terms)**:
   - “Sadistic Sextortion” (as a modeled sextortion subtype)
   - “Sadistic Online Exploitation (SOE)” and “SOE network” (as modeled network taxonomy)
@@ -148,7 +148,7 @@ Suggested minimal constraints (to avoid overfitting):
   - Require that at least one `employsThreat` is instance of:
     - `SelfHarmThreat` OR `ViolenceThreat` OR `PropertyDestructionThreat` OR `DoxxingThreat` OR `SwattingThreat`
 
-#### New module (recommended): `ontology/cacontology-soe.ttl` + `ontology/cacontology-soe-shapes.ttl`
+#### New module (recommended): `ontology/cacontology-sadistic-online-exploitation.ttl` + `ontology/cacontology-sadistic-online-exploitation-shapes.ttl`
 
 **Rationale**: avoid scope/label drift by *not* forcing SOE (DHS-defined) into the “extremist-enterprises” module’s ideological framing; keep SOE taxonomy reusable across cases while **reusing** `cacontology-enterprises:*` for structure/coercion/coordination modeling when appropriate.
 
@@ -174,7 +174,7 @@ Suggested minimal constraints (to avoid overfitting):
   - Do **not** create SOE duplicates of existing extremist-enterprises classes such as `CrossPlatformCoordination`, `PlatformMigrationStrategy`, `PrivateGroupManagement`, `SelfHarmCoercion`.
   - In SOE scenarios where those concepts are evidenced, reuse `cacontology-enterprises:*` directly in the KG (and optionally relate them to the SOE network via existing UCO/CASE action-object patterns).
 
-- **SHACL (in `cacontology-soe-shapes.ttl`)**:
+- **SHACL (in `cacontology-sadistic-online-exploitation-shapes.ttl`)**:
   - `SadisticOnlineExploitationNetworkShape`: require `rdfs:label` and allow optional `communitySlangTerm`
   - `LivestreamedCoercionShowShape`: require `coercionShowType` with `sh:in ( "watch_party" "cut_show" "cut_stage" "stage" )`
 
@@ -243,9 +243,9 @@ Add/extend queries:
   - Add `SadisticSextortion` and new threat mechanism subclasses (fits existing sextortion threat taxonomy).
 - `ontology/cacontology-sextortion-shapes.ttl`
   - Add shapes for new threats + sadistic sextortion (validation + consistent data constraints).
-- `ontology/cacontology-soe.ttl` (**new**)
+- `ontology/cacontology-sadistic-online-exploitation.ttl` (**new**)
   - Add SOE definitional taxonomy + SOE-specific livestream coercion show pattern **without duplicating** extremist-enterprises concepts.
-- `ontology/cacontology-soe-shapes.ttl` (**new**)
+- `ontology/cacontology-sadistic-online-exploitation-shapes.ttl` (**new**)
   - Validate SOE network + coercion show instances.
 - `examples_knowledge_graphs/k2p-soe-information-example.ttl`
   - Demonstrate each new term with grounded evidence pointers.

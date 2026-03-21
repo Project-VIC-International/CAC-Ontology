@@ -9,7 +9,8 @@
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 @prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
 
-@prefix cacontology-sentencing: <https://cacontology.projectvic.org/sentencing#> .
+@prefix cacontology-legal-outcomes: <https://cacontology.projectvic.org/legal-outcomes#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 
 @prefix gufo: <http://purl.org/nemo/gufo#> .
 
@@ -18,7 +19,7 @@
 # =============================================================================
 # CASE EXAMPLE: United States v. McCormack (9th Cir. 2017) — appellate concepts
 # Source: https://www.courtlistener.com/opinion/8700418/united-states-v-mccormack/
-# Target: CAC Ontology v2.8.0 (sentencing module appellate terms)
+# Target: CAC Ontology v3.0.0 (sentencing module appellate terms)
 # =============================================================================
 
 # =============================================================================
@@ -109,72 +110,72 @@ ex:telephone_use a uco-observable:ObservableObject ;
 # CHARGES + SENTENCE (minimal charge instances; focus is appellate modeling)
 # =============================================================================
 
-ex:charge_2251 a cacontology-sentencing:FederalCharge ;
+ex:charge_2251 a cacontology-legal-outcomes:FederalCharge ;
   rdfs:label "Sexual exploitation of children charge(s) (18 U.S.C. § 2251)"@en .
 
-ex:charge_1201 a cacontology-sentencing:FederalCharge ;
+ex:charge_1201 a cacontology-legal-outcomes:FederalCharge ;
   rdfs:label "Kidnapping charge(s) (18 U.S.C. § 1201)"@en .
 
-ex:life_sentence a cacontology-sentencing:LifeImprisonmentSentence ;
+ex:life_sentence a cacontology-legal-outcomes:LifeImprisonmentSentence ;
   rdfs:label "Life imprisonment sentence (as challenged on appeal)"@en ;
   uco-core:description "Life imprisonment sentence referenced in the opinion; linked here to the conviction context as an example."@en ;
-  cacontology-sentencing:appliesTo ex:charge_2251 .
+  cacontology-legal-outcomes:appliesTo ex:charge_2251 .
 
 # =============================================================================
 # APPEAL PROCESS + APPELLATE ISSUES / DISPOSITIONS / STANDARDS / RULES
 # =============================================================================
 
-ex:appeal a cacontology-sentencing:AppealProcess, gufo:Event ;
+ex:appeal a cacontology-legal-outcomes:AppealProcess ;
   rdfs:label "Appeal process (9th Cir.)"@en ;
   uco-core:description "Appeal described in CourtListener opinion; issues include evidentiary admission, sufficiency, and sentencing reasonableness."@en ;
-  cacontology-sentencing:hasCharge ex:charge_2251, ex:charge_1201 ;
-  cacontology-sentencing:resultsSentence ex:life_sentence ;
-  cacontology-sentencing:raisesIssue ex:issue_evidence_admission, ex:issue_sufficiency, ex:issue_sentencing_reasonableness .
+  cacontology-legal-outcomes:hasCharge ex:charge_2251, ex:charge_1201 ;
+  cacontology-legal-outcomes:resultsSentence ex:life_sentence ;
+  cacontology-legal-outcomes:raisesIssue ex:issue_evidence_admission, ex:issue_sufficiency, ex:issue_sentencing_reasonableness .
 
-ex:disp_affirmed a cacontology-sentencing:AppellateDisposition ;
+ex:disp_affirmed a cacontology-legal-outcomes:AppellateDisposition ;
   rdfs:label "Affirmed (appellate disposition)"@en ;
-  cacontology-sentencing:dispositionType "affirmed" .
+  cacontology-legal-outcomes:dispositionType "affirmed" .
 
-ex:sor_abuse_of_discretion a cacontology-sentencing:StandardOfReview ;
+ex:sor_abuse_of_discretion a cacontology-legal-outcomes:StandardOfReview ;
   rdfs:label "Abuse of discretion (standard of review)"@en ;
-  cacontology-sentencing:standardOfReviewType "abuse_of_discretion" .
+  cacontology-legal-outcomes:standardOfReviewType "abuse_of_discretion" .
 
-ex:sor_substantial_evidence a cacontology-sentencing:StandardOfReview ;
+ex:sor_substantial_evidence a cacontology-legal-outcomes:StandardOfReview ;
   rdfs:label "Substantial evidence / sufficiency standard (standard of review)"@en ;
-  cacontology-sentencing:standardOfReviewType "substantial_evidence" .
+  cacontology-legal-outcomes:standardOfReviewType "substantial_evidence" .
 
-ex:sor_reasonableness a cacontology-sentencing:StandardOfReview ;
+ex:sor_reasonableness a cacontology-legal-outcomes:StandardOfReview ;
   rdfs:label "Reasonableness (standard of review)"@en ;
-  cacontology-sentencing:standardOfReviewType "reasonableness" .
+  cacontology-legal-outcomes:standardOfReviewType "reasonableness" .
 
-ex:rule_403 a cacontology-sentencing:EvidenceRule ;
+ex:rule_403 a cacontology-legal-outcomes:EvidenceRule ;
   rdfs:label "Federal Rule of Evidence 403"@en ;
-  cacontology-sentencing:ruleCitation "Fed. R. Evid. 403" .
+  cacontology-legal-outcomes:ruleCitation "Fed. R. Evid. 403" .
 
-ex:rule_404b a cacontology-sentencing:EvidenceRule ;
+ex:rule_404b a cacontology-legal-outcomes:EvidenceRule ;
   rdfs:label "Federal Rule of Evidence 404(b)"@en ;
-  cacontology-sentencing:ruleCitation "Fed. R. Evid. 404(b)" .
+  cacontology-legal-outcomes:ruleCitation "Fed. R. Evid. 404(b)" .
 
-ex:rule_414 a cacontology-sentencing:EvidenceRule ;
+ex:rule_414 a cacontology-legal-outcomes:EvidenceRule ;
   rdfs:label "Federal Rule of Evidence 414"@en ;
-  cacontology-sentencing:ruleCitation "Fed. R. Evid. 414" .
+  cacontology-legal-outcomes:ruleCitation "Fed. R. Evid. 414" .
 
-ex:issue_evidence_admission a cacontology-sentencing:EvidentiaryRuling ;
+ex:issue_evidence_admission a cacontology-legal-outcomes:EvidentiaryRuling ;
   rdfs:label "Issue: Admission of photos/videos and written exchanges"@en ;
   uco-core:description "Challenges admission of photos/videos and email/chat logs; opinion discusses probative value vs prejudice and exceptions."@en ;
-  cacontology-sentencing:issueDisposition ex:disp_affirmed ;
-  cacontology-sentencing:appliesStandardOfReview ex:sor_abuse_of_discretion ;
-  cacontology-sentencing:citesEvidenceRule ex:rule_403, ex:rule_404b, ex:rule_414 .
+  cacontology-legal-outcomes:issueDisposition ex:disp_affirmed ;
+  cacontology-legal-outcomes:appliesStandardOfReview ex:sor_abuse_of_discretion ;
+  cacontology-legal-outcomes:citesEvidenceRule ex:rule_403, ex:rule_404b, ex:rule_414 .
 
-ex:issue_sufficiency a cacontology-sentencing:SufficiencyOfEvidenceIssue ;
+ex:issue_sufficiency a cacontology-legal-outcomes:SufficiencyOfEvidenceIssue ;
   rdfs:label "Issue: Sufficiency of evidence (kidnapping + sexual exploitation counts)"@en ;
   uco-core:description "Challenges sufficiency of evidence as to one kidnapping count and one sexual exploitation count; opinion references interstate-commerce elements."@en ;
-  cacontology-sentencing:issueDisposition ex:disp_affirmed ;
-  cacontology-sentencing:appliesStandardOfReview ex:sor_substantial_evidence .
+  cacontology-legal-outcomes:issueDisposition ex:disp_affirmed ;
+  cacontology-legal-outcomes:appliesStandardOfReview ex:sor_substantial_evidence .
 
-ex:issue_sentencing_reasonableness a cacontology-sentencing:SentencingReasonablenessIssue ;
+ex:issue_sentencing_reasonableness a cacontology-legal-outcomes:SentencingReasonablenessIssue ;
   rdfs:label "Issue: Life sentence harsher than necessary (18 U.S.C. § 3553(a))"@en ;
   uco-core:description "Challenges whether life imprisonment is harsher than necessary; opinion indicates district court analyzed circumstances and applied sentencing factors."@en ;
-  cacontology-sentencing:issueDisposition ex:disp_affirmed ;
-  cacontology-sentencing:appliesStandardOfReview ex:sor_reasonableness .
+  cacontology-legal-outcomes:issueDisposition ex:disp_affirmed ;
+  cacontology-legal-outcomes:appliesStandardOfReview ex:sor_reasonableness .
 

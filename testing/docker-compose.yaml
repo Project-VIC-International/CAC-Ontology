@@ -5,10 +5,10 @@ services:
     ports:
       - "3030:3030"
     volumes:
-      - ./:/fuseki/load
+      - ../:/fuseki/load
     environment:
-      # Load all 23 core ontology modules and shapes files
-      - FUSEKI_DATASET_1=--file=/fuseki/load/ontology/cacontology-core.ttl --file=/fuseki/load/ontology/cacontology-hotlines-core.ttl --file=/fuseki/load/ontology/cacontology-us-ncmec.ttl --file=/fuseki/load/ontology/cacontology-international.ttl --file=/fuseki/load/ontology/cacontology-training.ttl --file=/fuseki/load/ontology/cacontology-prevention.ttl --file=/fuseki/load/ontology/cacontology-legal-harmonization.ttl --file=/fuseki/load/ontology/cacontology-production.ttl --file=/fuseki/load/ontology/cacontology-custodial.ttl --file=/fuseki/load/ontology/cacontology-grooming.ttl --file=/fuseki/load/ontology/cacontology-sextortion.ttl --file=/fuseki/load/ontology/cacontology-soe.ttl --file=/fuseki/load/ontology/cacontology-athletic-exploitation.ttl --file=/fuseki/load/ontology/cacontology-undercover.ttl --file=/fuseki/load/ontology/cacontology-physical-evidence.ttl --file=/fuseki/load/ontology/cacontology-tactical.ttl --file=/fuseki/load/ontology/cacontology-multi-jurisdiction.ttl --file=/fuseki/load/ontology/cacontology-stranger-abduction.ttl --file=/fuseki/load/ontology/cacontology-street-recruitment.ttl --file=/fuseki/load/ontology/cacontology-forensics.ttl --file=/fuseki/load/ontology/cacontology-detection.ttl --file=/fuseki/load/ontology/cacontology-platforms.ttl --file=/fuseki/load/ontology/cacontology-victim-impact.ttl --file=/fuseki/load/ontology/cacontology-taskforce.ttl --file=/fuseki/load/ontology/cacontology-sentencing.ttl --file=/fuseki/load/ontology/cacontology-specialized-units.ttl --file=/fuseki/load/ontology/cacontology-sex-offender-registry.ttl --file=/fuseki/load/ontology/cacontology-asset-forfeiture.ttl --file=/fuseki/load/ontology/cacontology-trafficking-shapes.ttl --file=/fuseki/load/ontology/cacontology-educational-exploitation.ttl --file=/fuseki/load/ontology/cacontology-educational-shapes.ttl --file=/fuseki/load/ontology/cacontology-athletic-exploitation-shapes.ttl --file=/fuseki/load/ontology/cacontology-ai-generated-content.ttl --file=/fuseki/load/ontology/cacontology-platform-infrastructure.ttl /cacontology
+      # Load all core ontology modules, spine, bridge, and shapes files
+      - FUSEKI_DATASET_1=--file=/fuseki/load/ontology/cacontology-ai-csam-shapes.ttl --file=/fuseki/load/ontology/cacontology-ai-csam.ttl --file=/fuseki/load/ontology/cacontology-analyst-wellbeing-shapes.ttl --file=/fuseki/load/ontology/cacontology-analyst-wellbeing.ttl --file=/fuseki/load/ontology/cacontology-asset-forfeiture-shapes.ttl --file=/fuseki/load/ontology/cacontology-asset-forfeiture.ttl --file=/fuseki/load/ontology/cacontology-athletic-exploitation-shapes.ttl --file=/fuseki/load/ontology/cacontology-athletic-exploitation.ttl --file=/fuseki/load/ontology/cacontology-bridge-case.ttl --file=/fuseki/load/ontology/cacontology-bridge-gufo.ttl --file=/fuseki/load/ontology/cacontology-bridge-uco.ttl --file=/fuseki/load/ontology/cacontology-case-management-shapes.ttl --file=/fuseki/load/ontology/cacontology-case-management.ttl --file=/fuseki/load/ontology/cacontology-core-shapes.ttl --file=/fuseki/load/ontology/cacontology-core-spine-shapes.ttl --file=/fuseki/load/ontology/cacontology-core-spine.ttl --file=/fuseki/load/ontology/cacontology-core.ttl --file=/fuseki/load/ontology/cacontology-custodial-shapes.ttl --file=/fuseki/load/ontology/cacontology-custodial.ttl --file=/fuseki/load/ontology/cacontology-detection-shapes.ttl --file=/fuseki/load/ontology/cacontology-detection.ttl --file=/fuseki/load/ontology/cacontology-educational-exploitation-shapes.ttl --file=/fuseki/load/ontology/cacontology-educational-exploitation.ttl --file=/fuseki/load/ontology/cacontology-extremist-enterprises-shapes.ttl --file=/fuseki/load/ontology/cacontology-extremist-enterprises.ttl --file=/fuseki/load/ontology/cacontology-forensics-extended-shapes.ttl --file=/fuseki/load/ontology/cacontology-forensics-shapes.ttl --file=/fuseki/load/ontology/cacontology-forensics.ttl --file=/fuseki/load/ontology/cacontology-grooming-shapes.ttl --file=/fuseki/load/ontology/cacontology-grooming.ttl --file=/fuseki/load/ontology/cacontology-hotlines-shapes.ttl --file=/fuseki/load/ontology/cacontology-hotlines.ttl --file=/fuseki/load/ontology/cacontology-institutional-exploitation-shapes.ttl --file=/fuseki/load/ontology/cacontology-institutional-exploitation.ttl --file=/fuseki/load/ontology/cacontology-integration-patterns.ttl --file=/fuseki/load/ontology/cacontology-international-shapes.ttl --file=/fuseki/load/ontology/cacontology-international.ttl --file=/fuseki/load/ontology/cacontology-investigation-coordination-shapes.ttl --file=/fuseki/load/ontology/cacontology-investigation-coordination.ttl --file=/fuseki/load/ontology/cacontology-law-enforcement-corruption-shapes.ttl --file=/fuseki/load/ontology/cacontology-law-enforcement-corruption.ttl --file=/fuseki/load/ontology/cacontology-legal-harmonization-shapes.ttl --file=/fuseki/load/ontology/cacontology-legal-harmonization.ttl --file=/fuseki/load/ontology/cacontology-legal-outcomes-shapes.ttl --file=/fuseki/load/ontology/cacontology-legal-outcomes.ttl --file=/fuseki/load/ontology/cacontology-multi-jurisdiction-shapes.ttl --file=/fuseki/load/ontology/cacontology-multi-jurisdiction.ttl --file=/fuseki/load/ontology/cacontology-partnerships-shapes.ttl --file=/fuseki/load/ontology/cacontology-partnerships.ttl --file=/fuseki/load/ontology/cacontology-physical-evidence-shapes.ttl --file=/fuseki/load/ontology/cacontology-physical-evidence.ttl --file=/fuseki/load/ontology/cacontology-platform-infrastructure-shapes.ttl --file=/fuseki/load/ontology/cacontology-platform-infrastructure.ttl --file=/fuseki/load/ontology/cacontology-platforms-shapes.ttl --file=/fuseki/load/ontology/cacontology-platforms.ttl --file=/fuseki/load/ontology/cacontology-prevention-shapes.ttl --file=/fuseki/load/ontology/cacontology-prevention.ttl --file=/fuseki/load/ontology/cacontology-production-shapes.ttl --file=/fuseki/load/ontology/cacontology-production.ttl --file=/fuseki/load/ontology/cacontology-recantation-shapes.ttl --file=/fuseki/load/ontology/cacontology-recantation.ttl --file=/fuseki/load/ontology/cacontology-recruitment-networks-shapes.ttl --file=/fuseki/load/ontology/cacontology-recruitment-networks.ttl --file=/fuseki/load/ontology/cacontology-sadistic-online-exploitation-shapes.ttl --file=/fuseki/load/ontology/cacontology-sadistic-online-exploitation.ttl --file=/fuseki/load/ontology/cacontology-sex-offender-registry-shapes.ttl --file=/fuseki/load/ontology/cacontology-sex-offender-registry.ttl --file=/fuseki/load/ontology/cacontology-sex-trafficking-shapes.ttl --file=/fuseki/load/ontology/cacontology-sex-trafficking.ttl --file=/fuseki/load/ontology/cacontology-sextortion-shapes.ttl --file=/fuseki/load/ontology/cacontology-sextortion.ttl --file=/fuseki/load/ontology/cacontology-specialized-units-shapes.ttl --file=/fuseki/load/ontology/cacontology-specialized-units.ttl --file=/fuseki/load/ontology/cacontology-stranger-abduction-shapes.ttl --file=/fuseki/load/ontology/cacontology-stranger-abduction.ttl --file=/fuseki/load/ontology/cacontology-street-recruitment-shapes.ttl --file=/fuseki/load/ontology/cacontology-street-recruitment.ttl --file=/fuseki/load/ontology/cacontology-synthesis-shapes.ttl --file=/fuseki/load/ontology/cacontology-synthesis.ttl --file=/fuseki/load/ontology/cacontology-tactical-shapes.ttl --file=/fuseki/load/ontology/cacontology-tactical.ttl --file=/fuseki/load/ontology/cacontology-taskforce-shapes.ttl --file=/fuseki/load/ontology/cacontology-taskforce.ttl --file=/fuseki/load/ontology/cacontology-temporal-shapes.ttl --file=/fuseki/load/ontology/cacontology-temporal.ttl --file=/fuseki/load/ontology/cacontology-training-shapes.ttl --file=/fuseki/load/ontology/cacontology-training.ttl --file=/fuseki/load/ontology/cacontology-undercover-shapes.ttl --file=/fuseki/load/ontology/cacontology-undercover.ttl --file=/fuseki/load/ontology/cacontology-us-ncmec-shapes.ttl --file=/fuseki/load/ontology/cacontology-us-ncmec.ttl --file=/fuseki/load/ontology/cacontology-usa-federal-law-shapes.ttl --file=/fuseki/load/ontology/cacontology-usa-federal-law.ttl --file=/fuseki/load/ontology/cacontology-usa-legislative-shapes.ttl --file=/fuseki/load/ontology/cacontology-usa-legislative.ttl --file=/fuseki/load/ontology/cacontology-victim-impact-shapes.ttl --file=/fuseki/load/ontology/cacontology-victim-impact.ttl /cacontology
       # Update these credentials for using in production
       - ADMIN_PASSWORD=pw123
       - FUSEKI_JVM_ARGS=-Xmx4g
@@ -23,18 +23,20 @@ services:
     command: >
       sh -c "pip install pyshacl rdflib && \
              echo '=== Core Ontology Validation ===' && \
-             echo 'Validating ontology/cacontology-hotlines-core.ttl...' && \
-             pyshacl -s /app/cacontology/ontology/cacontology-hotlines-core-shapes.ttl -d /app/cacontology/ontology/cacontology-hotlines-core.ttl -f human && \
+             echo 'Validating ontology/cacontology-hotlines.ttl...' && \
+             pyshacl -s /app/cacontology/ontology/cacontology-hotlines-shapes.ttl -d /app/cacontology/ontology/cacontology-hotlines.ttl -f human && \
              echo 'Validating ontology/cacontology-core.ttl...' && \
              pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/ontology/cacontology-core.ttl -f human && \
+             echo 'Validating ontology/cacontology-core-spine.ttl...' && \
+             pyshacl -s /app/cacontology/ontology/cacontology-core-spine-shapes.ttl -d /app/cacontology/ontology/cacontology-core-spine.ttl -f human && \
              echo 'Validating cacontology-forensics.ttl...' && \
              pyshacl -s /app/cacontology/ontology/cacontology-forensics-shapes.ttl -d /app/cacontology/ontology/cacontology-forensics.ttl -f human && \
              echo 'Validating cacontology-educational-exploitation.ttl...' && \
              pyshacl -s /app/cacontology/ontology/cacontology-educational-exploitation-shapes.ttl -d /app/cacontology/ontology/cacontology-educational-exploitation.ttl -f human && \
              echo 'Validating cacontology-sex-trafficking.ttl...' && \
              pyshacl -s /app/cacontology/ontology/cacontology-sex-trafficking-shapes.ttl -d /app/cacontology/ontology/cacontology-sex-trafficking.ttl -f human && \
-             echo 'Validating cacontology-temporal-gufo.ttl...' && \
-             pyshacl -s /app/cacontology/ontology/cacontology-temporal-gufo-shapes.ttl -d /app/cacontology/ontology/cacontology-temporal-gufo.ttl -f human && \
+             echo 'Validating cacontology-temporal.ttl...' && \
+             pyshacl -s /app/cacontology/ontology/cacontology-temporal-shapes.ttl -d /app/cacontology/ontology/cacontology-temporal.ttl -f human && \
              echo 'Validating cacontology-athletic-exploitation.ttl...' && \
              pyshacl -s /app/cacontology/ontology/cacontology-athletic-exploitation-shapes.ttl -d /app/cacontology/ontology/cacontology-athletic-exploitation.ttl -f human && \
              echo 'Validating cacontology-production.ttl...' && \
@@ -45,8 +47,8 @@ services:
              pyshacl -s /app/cacontology/ontology/cacontology-grooming-shapes.ttl -d /app/cacontology/ontology/cacontology-grooming.ttl -f human && \
              echo 'Validating cacontology-sextortion.ttl...' && \
              pyshacl -s /app/cacontology/ontology/cacontology-sextortion-shapes.ttl -d /app/cacontology/ontology/cacontology-sextortion.ttl -f human && \
-             echo 'Validating cacontology-soe.ttl...' && \
-             pyshacl -s /app/cacontology/ontology/cacontology-soe-shapes.ttl -d /app/cacontology/ontology/cacontology-soe.ttl -f human && \
+             echo 'Validating cacontology-sadistic-online-exploitation.ttl...' && \
+             pyshacl -s /app/cacontology/ontology/cacontology-sadistic-online-exploitation-shapes.ttl -d /app/cacontology/ontology/cacontology-sadistic-online-exploitation.ttl -f human && \
              echo 'Validating cacontology-victim-impact.ttl...' && \
              pyshacl -s /app/cacontology/ontology/cacontology-victim-impact-shapes.ttl -d /app/cacontology/ontology/cacontology-victim-impact.ttl -f human && \
              echo 'Validating cacontology-undercover.ttl...' && \
@@ -59,8 +61,8 @@ services:
              pyshacl -s /app/cacontology/ontology/cacontology-detection-shapes.ttl -d /app/cacontology/ontology/cacontology-detection.ttl -f human && \
              echo 'Validating cacontology-sex-offender-registry.ttl...' && \
              pyshacl -s /app/cacontology/ontology/cacontology-sex-offender-registry-shapes.ttl -d /app/cacontology/ontology/cacontology-sex-offender-registry.ttl -f human && \
-             echo 'Validating cacontology-ai-generated-content.ttl...' && \
-             pyshacl -s /app/cacontology/ontology/cacontology-ai-generated-content-shapes.ttl -d /app/cacontology/ontology/cacontology-ai-generated-content.ttl -f human && \
+             echo 'Validating cacontology-ai-csam.ttl...' && \
+             pyshacl -s /app/cacontology/ontology/cacontology-ai-csam-shapes.ttl -d /app/cacontology/ontology/cacontology-ai-csam.ttl -f human && \
              echo 'Validating cacontology-platform-infrastructure.ttl...' && \
              pyshacl -s /app/cacontology/ontology/cacontology-platform-infrastructure-shapes.ttl -d /app/cacontology/ontology/cacontology-platform-infrastructure.ttl -f human && \
              echo 'Validating cacontology-international.ttl...' && \
@@ -78,7 +80,7 @@ services:
              echo '' && \
              echo '=== Basic Example Validation ===' && \
              echo 'Validating hotline-lifecycle example...' && \
-             pyshacl -s /app/cacontology/ontology/cacontology-hotlines-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/hotline-lifecycle.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-hotlines-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/hotline-lifecycle.ttl -f human && \
              echo 'Validating investigation-lifecycle example...' && \
              pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/investigation-lifecycle.ttl -f human && \
              echo 'Validating enhanced-investigation-lifecycle example...' && \
@@ -99,38 +101,28 @@ services:
              pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/arkansas-operation-cyber-highway-safety-check-example.ttl -f human && \
              echo 'Validating illinois-attorney-general-case example...' && \
              pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/illinois-attorney-general-case-example.ttl -f human && \
-             echo 'Validating international-coordination example...' && \
-             pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/international-coordination-example.ttl -f human && \
              echo '' && \
              echo '=== Registry and Specialized Operations ===' && \
              echo 'Validating sex-offender-registry-integration example...' && \
              pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/sex-offender-registry-integration-example.ttl -f human && \
-             echo 'Validating idaho-operation-unhinged example...' && \
-             pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/idaho-operation-unhinged-example.ttl -f human && \
              echo '' && \
              echo '=== Interstate and Cross-Border Cases ===' && \
              echo 'Validating buffalo-vermont-case example...' && \
              pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/buffalo-vermont-case-example.ttl -f human && \
              echo 'Validating hartford-vermont-case example...' && \
              pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/hartford-vermont-case-example.ttl -f human && \
-             echo 'Validating vermont-case example...' && \
-             pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/vermont-case-example.ttl -f human && \
              echo '' && \
              echo '=== Sextortion and Modern Threats ===' && \
              echo 'Validating wa-sextortion-case example...' && \
              pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/wa-sextortion-case-example.ttl -f human && \
              echo 'Validating k2p-soe-information example with SOE shapes...' && \
-             pyshacl -s /app/cacontology/ontology/cacontology-soe-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/k2p-soe-information-example.ttl -f human && \
+             pyshacl -s /app/cacontology/ontology/cacontology-sadistic-online-exploitation-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/k2p-soe-information-example.ttl -f human && \
              echo 'Validating k2p-soe-information example with core shapes...' && \
              pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/k2p-soe-information-example.ttl -f human && \
              echo 'Validating k2p-soe-information example with sextortion shapes...' && \
              pyshacl -s /app/cacontology/ontology/cacontology-sextortion-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/k2p-soe-information-example.ttl -f human && \
              echo '' && \
              echo '=== International Operations ===' && \
-             echo 'Validating operation-cumberland-ai-csam example...' && \
-             pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/operation-cumberland-ai-csam-example.ttl -f human && \
-             echo 'Validating europol-kidflix-operation example...' && \
-             pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/europol-kidflix-operation-example.ttl -f human && \
              echo 'Validating sa-jacet-decade-operation example...' && \
              pyshacl -s /app/cacontology/ontology/cacontology-core-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/sa-jacet-decade-operation-example.ttl -f human && \
              echo '' && \
@@ -153,8 +145,8 @@ services:
              pyshacl -s /app/cacontology/ontology/cacontology-physical-evidence-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/miami-icac-felipe-lopez-example.ttl -f human && \
              echo 'Validating miami-icac-felipe-lopez example with tactical shapes...' && \
              pyshacl -s /app/cacontology/ontology/cacontology-tactical-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/miami-icac-felipe-lopez-example.ttl -f human && \
-             echo 'Validating miami-icac-felipe-lopez example with sentencing shapes...' && \
-             pyshacl -s /app/cacontology/ontology/cacontology-sentencing-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/miami-icac-felipe-lopez-example.ttl -f human && \
+             echo 'Validating miami-icac-felipe-lopez example with legal-outcomes shapes...' && \
+             pyshacl -s /app/cacontology/ontology/cacontology-legal-outcomes-shapes.ttl -d /app/cacontology/examples_knowledge_graphs/miami-icac-felipe-lopez-example.ttl -f human && \
              echo '' && \
              echo '=== Validation Complete ===' && \
              echo 'All ontologies and examples validated successfully!' && \
@@ -166,12 +158,12 @@ services:
     container_name: cacontology_robot
     working_dir: /work
     volumes:
-      - ./:/work
+      - ../:/work
     command: >
       sh -c "echo 'ROBOT Framework ready for ontology processing...' && \
              echo 'Available commands:' && \
              echo '  robot validate *.ttl' && \
-             echo '  robot merge --input ontology/cacontology-core.ttl --input ontology/cacontology-hotlines-core.ttl --output merged.ttl' && \
+             echo '  robot merge --input ontology/cacontology-core.ttl --input ontology/cacontology-hotlines.ttl --output merged.ttl' && \
              echo '  robot reason --input ontology/cacontology-core.ttl --reasoner hermit' && \
              echo '  robot query --input ontology/cacontology-core.ttl --query example_SPARQL_queries/find_open_reports.rq' && \
              echo 'Container ready for interactive use.' && sleep infinity"
@@ -183,7 +175,7 @@ services:
     ports:
       - "7200:7200"
     volumes:
-      - ./:/opt/graphdb/import
+      - ../:/opt/graphdb/import
       - graphdb_data:/opt/graphdb/home
     environment:
       - GDB_HEAP_SIZE=4g

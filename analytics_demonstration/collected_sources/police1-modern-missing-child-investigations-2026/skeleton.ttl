@@ -1,0 +1,76 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
+
+# =============================================================================
+# Minimal provenance skeleton (UUID-only) for later KG expansion
+# =============================================================================
+
+<urn:uuid:2862c4f9-c2df-4fc2-b3fa-ae30abbb4d49> a uco-identity:Identity ;
+    rdfs:label "CAC Ontology agent (collector)"@en .
+
+<urn:uuid:75ea4a92-b4e8-4f9c-90f3-5ef01a53b17e> a uco-observable:ObservableObject ;
+    rdfs:label "Police1 article: modern missing-child investigations (2026-01-30)"@en ;
+    uco-core:hasFacet <urn:uuid:6f9fa9fd-7171-5c45-bd82-9d7943377b53> ,
+                    <urn:uuid:f63fbd7e-d62c-5a53-90f4-b8342480b01d> ,
+                    <urn:uuid:761369ba-097d-5c87-abbf-7cf17baeee9d> ,
+                    <urn:uuid:7d58b6c5-aa58-5942-8920-047c14cc43f5> .
+
+<urn:uuid:6f9fa9fd-7171-5c45-bd82-9d7943377b53> a uco-observable:URLFacet ;
+    uco-observable:url "https://www.police1.com/investigations/how-police-are-adapting-to-modern-missing-child-investigations"^^xsd:anyURI .
+
+<urn:uuid:f63fbd7e-d62c-5a53-90f4-b8342480b01d> a uco-observable:FileFacet ;
+    uco-observable:filePath "analytics_demonstration/collected_sources/police1-modern-missing-child-investigations-2026/source.txt"@en .
+
+<urn:uuid:7d58b6c5-aa58-5942-8920-047c14cc43f5> a uco-observable:ContentDataFacet ;
+    uco-observable:mimeType "text/plain"@en ;
+    uco-observable:sizeInBytes 7659 .
+
+<urn:uuid:761369ba-097d-5c87-abbf-7cf17baeee9d> a uco-observable:HashFacet ;
+    uco-observable:hash <urn:uuid:3baa825e-5661-5536-9f9b-657f6dad6ff9> .
+
+<urn:uuid:3baa825e-5661-5536-9f9b-657f6dad6ff9> a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256"@en ;
+    uco-types:hashValue "160d12ebecc26a47323a9a130548dd04409e9f05aa8e9226a51c117927060b48"@en .
+
+<urn:uuid:ee9a47e5-6bef-5134-b530-c51f883ff204> a uco-action:Action ;
+    rdfs:label "Collection: Police1 article text capture"@en ;
+    uco-action:startTime "2026-02-16T05:20:33Z"^^xsd:dateTime ;
+    uco-action:performer <urn:uuid:2862c4f9-c2df-4fc2-b3fa-ae30abbb4d49> ;
+    uco-action:object <urn:uuid:75ea4a92-b4e8-4f9c-90f3-5ef01a53b17e> ;
+    uco-core:description "manual (WebFetch) capture into source.txt"@en .
+
+<urn:uuid:71e01b3a-0e4e-53af-b0e4-f0d09bab1fd2> a uco-observable:ObservableObject ;
+    rdfs:label "Normalized text artifact (keypoint statements)"@en ;
+    uco-core:hasFacet <urn:uuid:3831623d-f213-546f-ab0d-b46502021891> ,
+                    <urn:uuid:e1607851-bc03-5f38-b5c9-7d6b6f0065f5> ,
+                    <urn:uuid:ddab1b7b-2f07-56fe-a461-9a62bc185ee8> .
+
+<urn:uuid:3831623d-f213-546f-ab0d-b46502021891> a uco-observable:FileFacet ;
+    uco-observable:filePath "analytics_demonstration/collected_sources/police1-modern-missing-child-investigations-2026/normalized.txt"@en .
+
+<urn:uuid:ddab1b7b-2f07-56fe-a461-9a62bc185ee8> a uco-observable:ContentDataFacet ;
+    uco-observable:mimeType "text/plain"@en ;
+    uco-observable:sizeInBytes 2823 .
+
+<urn:uuid:e1607851-bc03-5f38-b5c9-7d6b6f0065f5> a uco-observable:HashFacet ;
+    uco-observable:hash <urn:uuid:d83be74d-2797-5b61-979f-93259812ec14> .
+
+<urn:uuid:d83be74d-2797-5b61-979f-93259812ec14> a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256"@en ;
+    uco-types:hashValue "9b5183bee4c0fdc493cc25838827d500b47c14b151de2008369f1c5691c7d84b"@en .
+
+<urn:uuid:f72bacee-7dc5-5e50-9658-9b2e4f3f932a> a uco-action:Action ;
+    rdfs:label "Normalization: source.txt to normalized keypoints"@en ;
+    uco-action:startTime "2026-02-16T05:20:33Z"^^xsd:dateTime ;
+    uco-action:performer <urn:uuid:2862c4f9-c2df-4fc2-b3fa-ae30abbb4d49> ;
+    uco-action:object <urn:uuid:75ea4a92-b4e8-4f9c-90f3-5ef01a53b17e> ;
+    uco-action:result <urn:uuid:71e01b3a-0e4e-53af-b0e4-f0d09bab1fd2> ;
+    uco-core:description "webfetch_text + whitespace normalization + keypoint normalization (see normalized.txt)"@en .
+

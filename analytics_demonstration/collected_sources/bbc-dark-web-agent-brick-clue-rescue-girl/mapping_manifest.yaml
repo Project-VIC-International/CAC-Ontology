@@ -1,0 +1,70 @@
+documentId: "urn:uuid:c96f7e7d-8fbb-5c31-9734-8b1d0530a15f"
+caseId: "bbc-dark-web-agent-brick-clue-rescue-girl"
+concepts:
+  - conceptName: "Source Document (captured text)"
+    instanceUUID: "urn:uuid:c96f7e7d-8fbb-5c31-9734-8b1d0530a15f"
+    class: "uco-observable:ObservableObject"
+    facets:
+      - "uco-observable:ContentDataFacet"
+      - "uco-observable:URLFacet"
+      - "uco-observable:FileFacet"
+      - "uco-observable:HashFacet"
+    relationships:
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:1503fb6e-00e1-5246-ac6d-5fb97cc75243"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:1dbc4d3d-f3a6-55d4-bbaf-8bec355e78e2"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:f83a1a2e-c807-5e87-ad67-051d35380214"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:842d3d4f-2904-5b3b-85e0-70d59212850f"
+    evidencePointer:
+      documentId: "urn:uuid:c96f7e7d-8fbb-5c31-9734-8b1d0530a15f"
+      span: "source.txt (captured artifact)"
+      quote: "How dark web agent spotted bedroom wall clue to rescue girl from years of harm"
+    confidence: "high"
+
+  - conceptName: "Normalized Text Artifact"
+    instanceUUID: "urn:uuid:b440e30c-eb4d-58b7-8a59-239c81076148"
+    class: "uco-observable:ObservableObject"
+    facets:
+      - "uco-observable:ContentDataFacet"
+      - "uco-observable:FileFacet"
+      - "uco-observable:HashFacet"
+    relationships:
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:f5125089-214e-51bd-a185-218b485dbecb"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:514f5bba-c18f-5a51-9e38-764d5d8d553b"
+      - predicate: "uco-core:hasFacet"
+        targetUUID: "urn:uuid:7d3c022f-b656-5127-9470-4a99071a9c0d"
+    evidencePointer:
+      documentId: "urn:uuid:c96f7e7d-8fbb-5c31-9734-8b1d0530a15f"
+      span: "generated artifact"
+      quote: "Normalized from source.txt via whitespace normalization + paragraph-per-line normalization."
+    confidence: "high"
+
+  - conceptName: "Investigator (as reported)"
+    instanceUUID: "urn:uuid:cb45dddd-6ef3-5f4b-b00b-77f345131213"
+    class: "uco-identity:Person"
+    facets: []
+    relationships:
+      - predicate: "cacontology-analyst:experiencesOccupationalHarm"
+        targetUUID: "urn:uuid:86623040-6c47-566c-ba1e-51a31c0ddf32"
+    evidencePointer:
+      documentId: "urn:uuid:c96f7e7d-8fbb-5c31-9734-8b1d0530a15f"
+      span: "normalized.txt line 7"
+      quote: "An online investigator (Greg Squire)..."
+    confidence: "high"
+
+  - conceptName: "Occupational harm: Secondary Traumatic Stress (as reported)"
+    instanceUUID: "urn:uuid:86623040-6c47-566c-ba1e-51a31c0ddf32"
+    class: "cacontology-analyst:SecondaryTraumaticStress"
+    facets: []
+    relationships: []
+    evidencePointer:
+      documentId: "urn:uuid:c96f7e7d-8fbb-5c31-9734-8b1d0530a15f"
+      span: "normalized.txt line 13"
+      quote: "occupational stress impacts... increased alcohol use... suicidal thoughts..."
+    confidence: "high"
+

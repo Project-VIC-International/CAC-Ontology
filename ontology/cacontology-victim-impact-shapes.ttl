@@ -4,24 +4,20 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
-@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
-@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
-@prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
-@prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-impact: <https://cacontology.projectvic.org/victim-impact#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/victim-impact/shapes/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/victim-impact/shapes/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Victim Impact SHACL Shapes"@en ;
-    rdfs:comment "SHACL validation shapes for the ICAC Victim Impact Assessment Ontology, providing validation for victim impact assessments, psychological harm, trauma indicators, and recovery processes."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/victim-impact/shapes/2.12.0> ;
-    owl:versionInfo "2.12.0" ;
+    rdfs:comment "SHACL validation shapes for the CAC Victim Impact Assessment Ontology, providing validation for victim impact assessments, psychological harm, trauma indicators, and recovery processes."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/victim-impact/shapes/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2026-03-13"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/victim-impact/2.12.0> ,
-                <http://purl.org/nemo/gufo> ,
+    owl:imports <https://cacontology.projectvic.org/victim-impact/3.0.0> ,
+                <http://purl.org/nemo/gufo#> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
 
 # =============================================================================

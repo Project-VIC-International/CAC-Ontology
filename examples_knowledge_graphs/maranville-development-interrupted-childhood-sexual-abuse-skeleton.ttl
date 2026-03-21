@@ -1,0 +1,139 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
+@prefix investigation: <https://ontology.caseontology.org/case/investigation/> .
+
+@prefix cacontology-impact: <https://cacontology.projectvic.org/victim-impact#> .
+
+@prefix ex: <urn:uuid:> .
+
+# =============================================================================
+# LinkedIn Pulse article (collection + provenance)
+# Source: https://www.linkedin.com/pulse/when-development-interrupted-childhood-sexual-abuse-maranville-phd-wlrje/
+# Collected: 2026-02-11T00:00:00Z (UTC)
+# =============================================================================
+
+ex:582ed787-34e0-5fbd-b457-ffb11e94c3af a uco-observable:ObservableObject ;
+    rdfs:label "LinkedIn Pulse article: When Development Is Interrupted by Childhood Sexual Abuse (captured text)"@en ;
+    uco-core:hasFacet ex:62225337-94a4-5c83-9780-d87237407db9 ;
+    uco-core:hasFacet ex:12c24db7-e8bb-5f1b-918a-327529a42d54 ;
+    uco-core:hasFacet ex:68505b6f-1a84-51a4-8643-842a43821a7f ;
+    uco-core:hasFacet ex:74b83d43-9a45-5eac-a704-ad3e720394cf .
+
+ex:62225337-94a4-5c83-9780-d87237407db9 a uco-observable:ContentDataFacet ;
+    uco-observable:mimeType "text/plain" ;
+    uco-observable:sizeInBytes 4651 .
+
+ex:12c24db7-e8bb-5f1b-918a-327529a42d54 a uco-observable:URLFacet ;
+    uco-observable:url <https://www.linkedin.com/pulse/when-development-interrupted-childhood-sexual-abuse-maranville-phd-wlrje/> .
+
+ex:68505b6f-1a84-51a4-8643-842a43821a7f a uco-observable:FileFacet ;
+    uco-observable:filePath "analytics_demonstration/collected_sources/maranville-development-interrupted-childhood-sexual-abuse/source.txt" .
+
+ex:74b83d43-9a45-5eac-a704-ad3e720394cf a uco-observable:HashFacet ;
+    uco-observable:hash ex:a1572222-149c-5ae0-8e27-3eaac172dfb3 .
+
+ex:a1572222-149c-5ae0-8e27-3eaac172dfb3 a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "611b43884049f6ef55e8516f28888b25aaa964e5b2a63b57b54ce653aef11d4e" .
+
+ex:9e136eff-5c90-52a9-a1f3-564749b54150 a uco-core:UcoObject ;
+    rdfs:label "CAC Ontology Collection Agent (Cursor)"@en ;
+    uco-core:description "Automated assistant performing collection and preprocessing for CAC Ontology ingestion."@en .
+
+ex:e03234be-c0d8-5e69-ad8a-986315148b03 a investigation:InvestigativeAction ;
+    rdfs:label "Collection action: LinkedIn Pulse article (text capture)"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:9e136eff-5c90-52a9-a1f3-564749b54150 ;
+    uco-action:object ex:582ed787-34e0-5fbd-b457-ffb11e94c3af ;
+    uco-core:description "Collected via manual text capture to source.txt (authentication/HTML capture may be restricted)."@en .
+
+ex:6bc7a444-a352-5a8a-b658-051542d9bb5f a uco-action:Action ;
+    rdfs:label "Normalization action: source.txt to normalized.txt"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:9e136eff-5c90-52a9-a1f3-564749b54150 ;
+    uco-action:object ex:582ed787-34e0-5fbd-b457-ffb11e94c3af ;
+    uco-action:result ex:32a91353-795c-5689-86df-9035ac482f56 ;
+    uco-core:description "Whitespace normalization + paragraph-per-line normalization for stable evidence pointers."@en .
+
+ex:32a91353-795c-5689-86df-9035ac482f56 a uco-observable:ObservableObject ;
+    rdfs:label "Normalized text: LinkedIn Pulse article (normalized.txt)"@en ;
+    uco-core:hasFacet ex:cc310f2c-522b-5858-ac4d-9baab899f0ca ;
+    uco-core:hasFacet ex:3732ee2e-ff77-54ae-bdf6-fa769c201fa7 ;
+    uco-core:hasFacet ex:9e529170-b4e8-5e2a-aeff-204ce93f9ef8 .
+
+ex:cc310f2c-522b-5858-ac4d-9baab899f0ca a uco-observable:ContentDataFacet ;
+    uco-observable:mimeType "text/plain" ;
+    uco-observable:sizeInBytes 4254 .
+
+ex:3732ee2e-ff77-54ae-bdf6-fa769c201fa7 a uco-observable:FileFacet ;
+    uco-observable:filePath "analytics_demonstration/collected_sources/maranville-development-interrupted-childhood-sexual-abuse/normalized.txt" .
+
+ex:9e529170-b4e8-5e2a-aeff-204ce93f9ef8 a uco-observable:HashFacet ;
+    uco-observable:hash ex:cdc4b935-5d3d-59a4-9560-a02a3633814d .
+
+ex:cdc4b935-5d3d-59a4-9560-a02a3633814d a uco-types:Hash ;
+    uco-types:hashMethod "SHA-256" ;
+    uco-types:hashValue "d92d4f4360ff4febf259fdb7eb6eab8fba9a1ecf5e547c7dd501d9949186fea8" .
+
+ex:8bbdc4c4-1f14-5910-9a83-647ac3ff96b9 a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance record: collection of LinkedIn Pulse article (text capture)"@en ;
+    investigation:exhibitNumber "DOC-LI-PULSE-CSA-0001" ;
+    uco-core:object ex:582ed787-34e0-5fbd-b457-ffb11e94c3af ;
+    investigation:provenanceRecordAction ex:e03234be-c0d8-5e69-ad8a-986315148b03 .
+
+# =============================================================================
+# Minimal in-scope assertions grounded in the collected article (connected nodes)
+# =============================================================================
+
+ex:709f78ce-f849-5d35-8929-5a6ef687980c a uco-identity:Person ;
+    rdfs:label "Melissa Maranville, PhD"@en ;
+    uco-core:description "Author attribution as stated by the source."@en .
+
+ex:6820a49d-33a0-5f9a-b5bf-1b7952f970db a uco-identity:Organization ;
+    rdfs:label "LinkedIn"@en ;
+    uco-core:description "Publishing platform of the collected article (inferred from URL)."@en .
+
+ex:1ef7227d-e7fa-5f34-80b3-58662932122b a cacontology-impact:DevelopmentalImpact ;
+    rdfs:label "Developmental impact (as described in the article)"@en ;
+    uco-core:description "Modeled as psychological harm describing altered development when CSA begins early."@en .
+
+ex:375d47a3-8227-5eea-8590-c52d40c12825 a cacontology-impact:ComplexTrauma ;
+    rdfs:label "Complex trauma (as described in the article)"@en ;
+    cacontology-impact:traumaType "developmental" ;
+    uco-core:description "Modeled psychological harm corresponding to the article’s 'developmental trauma or complex trauma' framing."@en .
+
+ex:ea3bb8b2-e0d8-5da7-8bab-f9f0c1587379 a uco-action:Action ;
+    rdfs:label "Article states: early CSA shapes development while forming"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:709f78ce-f849-5d35-8929-5a6ef687980c ;
+    uco-action:object ex:32a91353-795c-5689-86df-9035ac482f56 ,
+                    ex:1ef7227d-e7fa-5f34-80b3-58662932122b ;
+    uco-core:description "Grounded in normalized.txt lines 6-8. Confidence: high."@en .
+
+ex:86fd63b0-79e2-5c73-b89b-03a144895629 a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance: early CSA shapes development while forming"@en ;
+    uco-core:object ex:32a91353-795c-5689-86df-9035ac482f56 ;
+    investigation:provenanceRecordAction ex:ea3bb8b2-e0d8-5da7-8bab-f9f0c1587379 ;
+    uco-core:description "Evidence pointer: normalized.txt lines 6-8. Quote: '...shapes development while it is still forming.'"@en .
+
+ex:5bb982a7-8aa2-5117-9511-2fe21f764a99 a uco-action:Action ;
+    rdfs:label "Article states: 'developmental trauma or complex trauma' framing"@en ;
+    uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
+    uco-action:performer ex:709f78ce-f849-5d35-8929-5a6ef687980c ;
+    uco-action:object ex:32a91353-795c-5689-86df-9035ac482f56 ,
+                    ex:375d47a3-8227-5eea-8590-c52d40c12825 ;
+    uco-core:description "Grounded in normalized.txt line 12. Confidence: high."@en .
+
+ex:f3c46574-d99d-5907-994e-bd2573d2d419 a investigation:ProvenanceRecord ;
+    rdfs:label "Provenance: complex/developmental trauma framing"@en ;
+    uco-core:object ex:32a91353-795c-5689-86df-9035ac482f56 ;
+    investigation:provenanceRecordAction ex:5bb982a7-8aa2-5117-9511-2fe21f764a99 ;
+    uco-core:description "Evidence pointer: normalized.txt line 12. Quote: 'developmental trauma or complex trauma'."@en .
+

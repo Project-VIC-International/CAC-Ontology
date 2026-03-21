@@ -1,0 +1,257 @@
+@prefix example: <http://ontology.icac.org/examples/ceos-federal-law#> .
+@prefix cacontology-core: <http://ontology.icac.org/cacontology-core#> .
+@prefix cacontology-federal: <http://ontology.icac.org/cacontology-federal-law#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# =============================================================================
+# DOJ CHILD EXPLOITATION AND OBSCENITY SECTION (CEOS) MODELING
+# =============================================================================
+
+example:DOJ_CEOS rdf:type cacontology-federal:CEOSdivision ;
+    cacontology-federal:ceosFunction "enforcement of federal laws protecting children from exploitation and prohibiting distribution of obscenity" ;
+    cacontology-federal:enforcementScope "child_exploitation, obscenity_distribution" ;
+    uco-core:name "Child Exploitation and Obscenity Section" ;
+    rdfs:label "DOJ Child Exploitation and Obscenity Section"@en .
+
+# =============================================================================
+# FEDERAL CHILD PORNOGRAPHY LAW CASE MODELING
+# =============================================================================
+
+example:FederalChildPornographyCase rdf:type cacontology-federal:FederalChildPornographyLaw ;
+    cacontology-federal:statuteNumber "18 USC 2251-2260" ;
+    cacontology-federal:maximumPenalty "30 years" ;
+    cacontology-federal:mandatoryMinimum 15 ;
+    rdfs:label "Federal Child Pornography Prosecution"@en .
+
+example:ProductionCharge rdf:type cacontology-federal:ChildPornographyProduction ;
+    cacontology-federal:statuteNumber "18 USC 2251(a)" ;
+    cacontology-federal:productionEnhancement true ;
+    cacontology-federal:mandatoryMinimum 15 ;
+    cacontology-federal:maximumPenalty "30 years" ;
+    rdfs:label "Production of Child Pornography"@en .
+
+example:DistributionCharge rdf:type cacontology-federal:ChildPornographyDistribution ;
+    cacontology-federal:statuteNumber "18 USC 2252(a)(2)" ;
+    cacontology-federal:distributionMethod "internet" ;
+    cacontology-federal:mandatoryMinimum 5 ;
+    cacontology-federal:maximumPenalty "20 years" ;
+    rdfs:label "Distribution of Child Pornography"@en .
+
+example:PossessionCharge rdf:type cacontology-federal:ChildPornographyPossession ;
+    cacontology-federal:statuteNumber "18 USC 2252A(a)(5)(B)" ;
+    cacontology-federal:imageCount 1500 ;
+    cacontology-federal:mandatoryMinimum 0 ;
+    cacontology-federal:maximumPenalty "10 years" ;
+    rdfs:label "Possession of Child Pornography"@en .
+
+# =============================================================================
+# FEDERAL CHILD SEX TRAFFICKING LAW MODELING
+# =============================================================================
+
+example:FederalSexTraffickingCase rdf:type cacontology-federal:FederalChildSexTraffickingLaw ;
+    cacontology-federal:statuteNumber "18 USC 1591" ;
+    cacontology-federal:maximumPenalty "life imprisonment" ;
+    cacontology-federal:mandatoryMinimum 10 ;
+    rdfs:label "Federal Child Sex Trafficking Prosecution"@en .
+
+example:SexTraffickingCharge rdf:type cacontology-federal:SexTraffickingOfMinors ;
+    cacontology-federal:statuteNumber "18 USC 1591(a)" ;
+    cacontology-federal:traffickingVictimCount 3 ;
+    cacontology-federal:mandatoryMinimum 10 ;
+    cacontology-federal:maximumPenalty "life imprisonment" ;
+    rdfs:label "Sex Trafficking of Minors"@en .
+
+example:CommercialExploitationCharge rdf:type cacontology-federal:CommercialSexualExploitation ;
+    cacontology-federal:commercialNature true ;
+    cacontology-federal:forceUsed true ;
+    cacontology-federal:fraudUsed true ;
+    cacontology-federal:coercionUsed true ;
+    rdfs:label "Commercial Sexual Exploitation"@en .
+
+# =============================================================================
+# CHILD SUPPORT ENFORCEMENT INTERSECTION MODELING
+# =============================================================================
+
+example:ChildSupportEvasionCase rdf:type cacontology-federal:ChildSupportEvasion ;
+    cacontology-federal:statuteNumber "18 USC 228" ;
+    cacontology-federal:supportAmountOwed 75000.00 ;
+    cacontology-federal:evasionDurationMonths 36 ;
+    cacontology-federal:maximumPenalty "2 years" ;
+    rdfs:label "Child Support Evasion"@en .
+
+example:FinancialControlConnection rdf:type cacontology-federal:FinancialControlPattern ;
+    cacontology-federal:exploitationLinkType "financial_control" ;
+    rdfs:label "Financial Control Through Support Evasion"@en .
+
+# =============================================================================
+# EXTRATERRITORIAL SEXUAL EXPLOITATION MODELING
+# =============================================================================
+
+example:SexTourismCase rdf:type cacontology-federal:SexTourism ;
+    cacontology-federal:statuteNumber "18 USC 2423(b)" ;
+    cacontology-federal:destinationCountry "Philippines" ;
+    cacontology-federal:travelPurpose "tourism" ;
+    cacontology-federal:mandatoryMinimum 30 ;
+    cacontology-federal:maximumPenalty "30 years" ;
+    rdfs:label "Sex Tourism Prosecution"@en .
+
+example:ExtraterritorialProductionCase rdf:type cacontology-federal:ExtraterritorialProduction ;
+    cacontology-federal:statuteNumber "18 USC 2251(c)" ;
+    cacontology-federal:destinationCountry "Thailand" ;
+    cacontology-federal:mandatoryMinimum 15 ;
+    cacontology-federal:maximumPenalty "30 years" ;
+    rdfs:label "Extraterritorial Child Pornography Production"@en .
+
+example:PhilippinesLocation rdf:type uco-location:Location ;
+    uco-core:name "Philippines" ;
+    rdfs:label "Philippines"@en .
+
+example:ThailandLocation rdf:type uco-location:Location ;
+    uco-core:name "Thailand" ;
+    rdfs:label "Thailand"@en .
+
+# =============================================================================
+# OBSCENITY LAW MODELING
+# =============================================================================
+
+example:ObscenityDistributionCase rdf:type cacontology-federal:ObscenityDistribution ;
+    cacontology-federal:statuteNumber "18 USC 1465" ;
+    cacontology-federal:obscenityStandard "Miller test" ;
+    cacontology-federal:communityStandards "national" ;
+    cacontology-federal:literaryArtisticValue false ;
+    cacontology-federal:maximumPenalty "5 years" ;
+    rdfs:label "Obscenity Distribution Prosecution"@en .
+
+example:OnlineObscenityCase rdf:type cacontology-federal:OnlineObscenityDistribution ;
+    cacontology-federal:distributionMethod "internet" ;
+    cacontology-federal:obscenityStandard "Miller test" ;
+    cacontology-federal:literaryArtisticValue false ;
+    rdfs:label "Online Obscenity Distribution"@en .
+
+# =============================================================================
+# SEX OFFENDER REGISTRATION FEDERAL FRAMEWORK
+# =============================================================================
+
+example:SORNAcomplianceCase rdf:type cacontology-federal:SORNAcompliance ;
+    cacontology-federal:statuteNumber "42 USC 16913" ;
+    cacontology-federal:sornaCompliant false ;
+    cacontology-federal:registrationTier "Tier_III" ;
+    cacontology-federal:notificationRequirement "public" ;
+    cacontology-federal:maximumPenalty "10 years" ;
+    rdfs:label "SORNA Compliance Violation"@en .
+
+example:InterstateRegistrationViolationCase rdf:type cacontology-federal:InterstateRegistrationViolation ;
+    cacontology-federal:statuteNumber "18 USC 2250" ;
+    cacontology-federal:sornaCompliant false ;
+    cacontology-federal:maximumPenalty "10 years" ;
+    rdfs:label "Interstate Registration Violation"@en .
+
+# =============================================================================
+# FEDERAL PROSECUTION MECHANISMS
+# =============================================================================
+
+example:CEOSprosecutionExample rdf:type cacontology-federal:CEOSprosecution ;
+    cacontology-federal:prosecutionType "CEOS" ;
+    rdfs:label "CEOS Federal Prosecution"@en .
+
+example:FederalGrandJuryProceeding rdf:type cacontology-federal:FederalGrandJury ;
+    cacontology-federal:prosecutionType "federal_grand_jury" ;
+    rdfs:label "Federal Grand Jury Proceedings"@en .
+
+example:InterstateJurisdictionBasis rdf:type cacontology-federal:InterstateJurisdiction ;
+    cacontology-federal:jurisdictionBasis "interstate_commerce" ;
+    rdfs:label "Interstate Commerce Jurisdiction"@en .
+
+example:ForeignCommerceJurisdictionBasis rdf:type cacontology-federal:ForeignCommerceJurisdiction ;
+    cacontology-federal:internationalElement "foreign_commerce" ;
+    rdfs:label "Foreign Commerce Jurisdiction"@en .
+
+# =============================================================================
+# DEFENDANT AND VICTIM MODELING
+# =============================================================================
+
+example:FederalDefendant rdf:type uco-identity:Person ;
+    uco-core:name "John Doe" ;
+    rdfs:label "Federal Defendant"@en .
+
+example:MinorVictim1 rdf:type uco-identity:Person ;
+    uco-core:name "Jane Doe (Minor Victim 1)" ;
+    rdfs:label "Minor Victim 1"@en .
+
+example:MinorVictim2 rdf:type uco-identity:Person ;
+    uco-core:name "John Smith (Minor Victim 2)" ;
+    rdfs:label "Minor Victim 2"@en .
+
+example:MinorVictim3 rdf:type uco-identity:Person ;
+    uco-core:name "Jane Smith (Minor Victim 3)" ;
+    rdfs:label "Minor Victim 3"@en .
+
+# =============================================================================
+# CRIMINAL ACTIONS AND VIOLATIONS
+# =============================================================================
+
+example:ProductionAction rdf:type uco-action:Action ;
+    rdfs:label "Child Pornography Production Action"@en .
+
+example:DistributionAction rdf:type uco-action:Action ;
+    rdfs:label "Child Pornography Distribution Action"@en .
+
+example:SexTraffickingAction rdf:type uco-action:Action ;
+    rdfs:label "Sex Trafficking Action"@en .
+
+example:SexTourismAction rdf:type uco-action:Action ;
+    rdfs:label "Sex Tourism Action"@en .
+
+# =============================================================================
+# FEDERAL LAW RELATIONSHIPS
+# =============================================================================
+
+# CEOS enforcement relationships
+example:DOJ_CEOS cacontology-federal:enforces example:FederalChildPornographyCase .
+example:DOJ_CEOS cacontology-federal:enforces example:FederalSexTraffickingCase .
+example:DOJ_CEOS cacontology-federal:enforces example:ObscenityDistributionCase .
+
+# CEOS prosecution relationships
+example:CEOSprosecutionExample cacontology-federal:prosecutesUnder example:ProductionCharge .
+example:CEOSprosecutionExample cacontology-federal:prosecutesUnder example:SexTraffickingCharge .
+example:CEOSprosecutionExample cacontology-federal:prosecutesUnder example:SexTourismCase .
+
+# Criminal action violations
+example:ProductionAction cacontology-federal:violates example:ProductionCharge .
+example:DistributionAction cacontology-federal:violates example:DistributionCharge .
+example:SexTraffickingAction cacontology-federal:violates example:SexTraffickingCharge .
+example:SexTourismAction cacontology-federal:violates example:SexTourismCase .
+
+# Defendant charges
+example:FederalDefendant cacontology-federal:chargedUnder example:ProductionCharge .
+example:FederalDefendant cacontology-federal:chargedUnder example:DistributionCharge .
+example:FederalDefendant cacontology-federal:chargedUnder example:PossessionCharge .
+example:FederalDefendant cacontology-federal:chargedUnder example:SexTraffickingCharge .
+
+# Child support intersection
+example:ChildSupportEvasionCase cacontology-federal:linkedToExploitation example:SexTraffickingCharge .
+example:FinancialControlConnection cacontology-federal:enablesControl example:SexTraffickingCharge .
+
+# Extraterritorial relationships
+example:SexTourismCase cacontology-federal:occurredIn example:PhilippinesLocation .
+example:SexTourismCase cacontology-federal:involvesTravelTo example:PhilippinesLocation .
+example:ExtraterritorialProductionCase cacontology-federal:occurredIn example:ThailandLocation .
+
+# Sex offender registration requirements
+example:ProductionCharge cacontology-federal:requiresRegistration example:SORNAcomplianceCase .
+example:SexTraffickingCharge cacontology-federal:requiresRegistration example:SORNAcomplianceCase .
+
+# Federal jurisdiction establishment
+example:InterstateJurisdictionBasis cacontology-federal:establishesJurisdiction example:CEOSprosecutionExample .
+example:ForeignCommerceJurisdictionBasis cacontology-federal:enablesFederalProsecution example:CEOSprosecutionExample .
+
+# Multi-charge relationships
+example:ProductionCharge cacontology-federal:accompaniedBy example:DistributionCharge .
+example:ProductionCharge cacontology-federal:accompaniedBy example:PossessionCharge .
+example:SexTraffickingCharge cacontology-federal:enhancedBy example:ProductionCharge . 

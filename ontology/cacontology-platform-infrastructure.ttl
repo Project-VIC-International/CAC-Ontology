@@ -3,31 +3,29 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
-@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
-@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
-@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix cacontology-infrastructure: <https://cacontology.projectvic.org/infrastructure#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/infrastructure/2.12.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/infrastructure/3.0.0> rdf:type owl:Ontology ;
     rdfs:label "CAC Platform Infrastructure Ontology with gUFO Integration"@en ;
     rdfs:comment "An ontology for representing technical infrastructure supporting child exploitation platforms, including server architecture, content delivery networks, payment processing, and hosting infrastructure. Enhanced with comprehensive gUFO (gentle Unified Foundational Ontology) integration for enhanced semantic precision, temporal modeling, and quality assessment. Based on analysis of large-scale operations like the Kidflix/Europol takedown involving nearly 2 million users."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/infrastructure/2.12.0> ;
-    owl:versionInfo "2.12.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/infrastructure/3.0.0> ;
+    owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-05-23"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://ontology.unifiedcyberontology.org/uco/core> ,
-                <https://ontology.unifiedcyberontology.org/uco/identity> ,
-                <https://ontology.unifiedcyberontology.org/uco/observable> ,
-                <https://ontology.unifiedcyberontology.org/uco/action> ,
-                <https://ontology.unifiedcyberontology.org/uco/location> ,
-                <https://cacontology.projectvic.org/2.12.0> ,
+    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
+                <https://ontology.unifiedcyberontology.org/uco/identity/> ,
+                <https://ontology.unifiedcyberontology.org/uco/observable/> ,
+                <https://ontology.unifiedcyberontology.org/uco/action/> ,
+                <https://ontology.unifiedcyberontology.org/uco/location/> ,
+                <https://cacontology.projectvic.org/3.0.0> ,
+                <https://cacontology.projectvic.org/core/3.0.0> ,
                 <http://purl.org/nemo/gufo#> .
 
 # =============================================================================
@@ -38,7 +36,7 @@ cacontology-infrastructure:PlatformInfrastructure rdf:type owl:Class ;
     rdfs:label "Platform Infrastructure"@en ;
     rdfs:comment "Technical infrastructure supporting child exploitation platforms, including servers, networks, and supporting systems (gUFO Object)."@en ;
     rdfs:subClassOf uco-observable:ObservableObject ,
-                    gufo:Object .
+                    cac-core:DigitalSystemEntity .
 
 cacontology-infrastructure:ServerInfrastructure rdf:type owl:Class ;
     rdfs:label "Server Infrastructure"@en ;
@@ -97,7 +95,7 @@ cacontology-infrastructure:HostingProvider rdf:type owl:Class ;
     rdfs:label "Hosting Provider"@en ;
     rdfs:comment "Organizations providing server hosting, cloud services, or infrastructure-as-a-service for platforms (gUFO Object)."@en ;
     rdfs:subClassOf uco-identity:Organization ,
-                    gufo:Object .
+                    cac-core:EnduringEntity .
 
 cacontology-infrastructure:DomainInfrastructure rdf:type owl:Class ;
     rdfs:label "Domain Infrastructure"@en ;
@@ -149,8 +147,7 @@ cacontology-infrastructure:GeographicDistribution rdf:type owl:Class ;
 cacontology-infrastructure:InfrastructureTakedown rdf:type owl:Class ;
     rdfs:label "Infrastructure Takedown"@en ;
     rdfs:comment "Coordinated operation to dismantle platform infrastructure including servers, domains, and supporting systems (gUFO Event)."@en ;
-    rdfs:subClassOf uco-action:Action ,
-                    gufo:Event .
+    rdfs:subClassOf cac-core:InvestigativeAction .
 
 cacontology-infrastructure:ServerSeizure rdf:type owl:Class ;
     rdfs:label "Server Seizure"@en ;
@@ -179,8 +176,7 @@ cacontology-infrastructure:DataMirrorCreation rdf:type owl:Class ;
 cacontology-infrastructure:InfrastructureAnalysis rdf:type owl:Class ;
     rdfs:label "Infrastructure Analysis"@en ;
     rdfs:comment "Analysis of seized infrastructure to understand platform operations and identify additional targets (gUFO Event)."@en ;
-    rdfs:subClassOf uco-action:Action ,
-                    gufo:Event .
+    rdfs:subClassOf cac-core:InvestigativeAction .
 
 cacontology-infrastructure:NetworkTopologyAnalysis rdf:type owl:Class ;
     rdfs:label "Network Topology Analysis"@en ;
@@ -204,22 +200,22 @@ cacontology-infrastructure:UserAccessPatternAnalysis rdf:type owl:Class ;
 cacontology-infrastructure:InfrastructureDeploymentPhase rdf:type owl:Class, gufo:Phase ;
     rdfs:label "Infrastructure Deployment Phase"@en ;
     rdfs:comment "Phase during which platform infrastructure is being deployed and configured (gUFO Phase - anti-rigid)."@en ;
-    rdfs:subClassOf cacontology-infrastructure:PlatformInfrastructure .
+    rdfs:subClassOf cac-core:Phase .
 
 cacontology-infrastructure:InfrastructureOperationalPhase rdf:type owl:Class, gufo:Phase ;
     rdfs:label "Infrastructure Operational Phase"@en ;
     rdfs:comment "Phase during which platform infrastructure is actively supporting operations (gUFO Phase - anti-rigid)."@en ;
-    rdfs:subClassOf cacontology-infrastructure:PlatformInfrastructure .
+    rdfs:subClassOf cac-core:Phase .
 
 cacontology-infrastructure:InfrastructureMaintenancePhase rdf:type owl:Class, gufo:Phase ;
     rdfs:label "Infrastructure Maintenance Phase"@en ;
     rdfs:comment "Phase during which infrastructure undergoes maintenance and updates (gUFO Phase - anti-rigid)."@en ;
-    rdfs:subClassOf cacontology-infrastructure:PlatformInfrastructure .
+    rdfs:subClassOf cac-core:Phase .
 
 cacontology-infrastructure:InfrastructureDecommissionPhase rdf:type owl:Class, gufo:Phase ;
     rdfs:label "Infrastructure Decommission Phase"@en ;
     rdfs:comment "Phase during which infrastructure is being decommissioned or shut down (gUFO Phase - anti-rigid)."@en ;
-    rdfs:subClassOf cacontology-infrastructure:PlatformInfrastructure .
+    rdfs:subClassOf cac-core:Phase .
 
 # =============================================================================
 # TECHNICAL ROLES (gUFO Role - Anti-Rigid)
@@ -228,22 +224,22 @@ cacontology-infrastructure:InfrastructureDecommissionPhase rdf:type owl:Class, g
 cacontology-infrastructure:SystemAdministratorRole rdf:type owl:Class, gufo:Role ;
     rdfs:label "System Administrator Role"@en ;
     rdfs:comment "Role of person responsible for infrastructure system administration (gUFO Role - anti-rigid)."@en ;
-    rdfs:subClassOf uco-identity:Person .
+    rdfs:subClassOf cac-core:Role .
 
 cacontology-infrastructure:SecurityOperatorRole rdf:type owl:Class, gufo:Role ;
     rdfs:label "Security Operator Role"@en ;
     rdfs:comment "Role of person managing security infrastructure and operations (gUFO Role - anti-rigid)."@en ;
-    rdfs:subClassOf uco-identity:Person .
+    rdfs:subClassOf cac-core:Role .
 
 cacontology-infrastructure:AnalystRole rdf:type owl:Class, gufo:Role ;
     rdfs:label "Analyst Role"@en ;
     rdfs:comment "Role of person conducting infrastructure analysis (gUFO Role - anti-rigid)."@en ;
-    rdfs:subClassOf uco-identity:Person .
+    rdfs:subClassOf cac-core:Role .
 
 cacontology-infrastructure:TakedownOperatorRole rdf:type owl:Class, gufo:Role ;
     rdfs:label "Takedown Operator Role"@en ;
     rdfs:comment "Role of law enforcement personnel conducting takedown operations (gUFO Role - anti-rigid)."@en ;
-    rdfs:subClassOf uco-identity:Person .
+    rdfs:subClassOf cac-core:Role .
 
 # =============================================================================
 # INFRASTRUCTURE SITUATIONS (gUFO Situation)
@@ -252,17 +248,17 @@ cacontology-infrastructure:TakedownOperatorRole rdf:type owl:Class, gufo:Role ;
 cacontology-infrastructure:InfrastructureCompromiseSituation rdf:type owl:Class ;
     rdfs:label "Infrastructure Compromise Situation"@en ;
     rdfs:comment "Situation where platform infrastructure has been compromised or breached (gUFO Situation)."@en ;
-    rdfs:subClassOf gufo:Situation .
+    rdfs:subClassOf cac-core:Situation .
 
 cacontology-infrastructure:InfrastructureFailureSituation rdf:type owl:Class ;
     rdfs:label "Infrastructure Failure Situation"@en ;
     rdfs:comment "Situation involving infrastructure failure or outage (gUFO Situation)."@en ;
-    rdfs:subClassOf gufo:Situation .
+    rdfs:subClassOf cac-core:Situation .
 
 cacontology-infrastructure:InfrastructureDiscoverySituation rdf:type owl:Class ;
     rdfs:label "Infrastructure Discovery Situation"@en ;
     rdfs:comment "Situation involving the discovery of previously unknown infrastructure components (gUFO Situation)."@en ;
-    rdfs:subClassOf gufo:Situation .
+    rdfs:subClassOf cac-core:Situation .
 
 # =============================================================================
 # gUFO TEMPORAL PROPERTIES
@@ -318,14 +314,14 @@ cacontology-infrastructure:hasPhaseBeginPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has phase begin point"@en ;
     rdfs:comment "Temporal begin point for infrastructure phases (gUFO temporal property)."@en ;
     rdfs:subPropertyOf gufo:hasBeginPointInXSDDateTimeStamp ;
-    rdfs:domain gufo:Phase ;
+    rdfs:domain cac-core:Phase ;
     rdfs:range xsd:dateTimeStamp .
 
 cacontology-infrastructure:hasPhaseEndPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has phase end point"@en ;
     rdfs:comment "Temporal end point for infrastructure phases (gUFO temporal property)."@en ;
     rdfs:subPropertyOf gufo:hasEndPointInXSDDateTimeStamp ;
-    rdfs:domain gufo:Phase ;
+    rdfs:domain cac-core:Phase ;
     rdfs:range xsd:dateTimeStamp .
 
 # Role Temporal Properties
@@ -333,14 +329,14 @@ cacontology-infrastructure:hasRoleBeginPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has role begin point"@en ;
     rdfs:comment "Temporal begin point for technical roles (gUFO temporal property)."@en ;
     rdfs:subPropertyOf gufo:hasBeginPointInXSDDateTimeStamp ;
-    rdfs:domain gufo:Role ;
+    rdfs:domain cac-core:Role ;
     rdfs:range xsd:dateTimeStamp .
 
 cacontology-infrastructure:hasRoleEndPoint rdf:type owl:DatatypeProperty ;
     rdfs:label "has role end point"@en ;
     rdfs:comment "Temporal end point for technical roles (gUFO temporal property)."@en ;
     rdfs:subPropertyOf gufo:hasEndPointInXSDDateTimeStamp ;
-    rdfs:domain gufo:Role ;
+    rdfs:domain cac-core:Role ;
     rdfs:range xsd:dateTimeStamp .
 
 # =============================================================================
@@ -597,10 +593,10 @@ cacontology-infrastructure:hostedBy rdf:type owl:ObjectProperty ;
 
 cacontology-infrastructure:containsComponent rdf:type owl:ObjectProperty ;
     rdfs:label "contains component"@en ;
-    rdfs:comment "Indicates that one infrastructure component contains another as a functional part (gUFO part-whole relationship)."@en ;
+    rdfs:comment "Indicates that one infrastructure component contains another as a functional part (inverse of gUFO component-of relationship)."@en ;
     rdfs:domain cacontology-infrastructure:PlatformInfrastructure ;
     rdfs:range cacontology-infrastructure:PlatformInfrastructure ;
-    rdfs:subPropertyOf gufo:isComponentOf .
+    owl:inverseOf gufo:isComponentOf .
 
 cacontology-infrastructure:usesPaymentSystem rdf:type owl:ObjectProperty ;
     rdfs:label "uses payment system"@en ;
@@ -683,7 +679,7 @@ cacontology-infrastructure:leadsToCriminalCharges rdf:type owl:ObjectProperty ;
     rdfs:domain cacontology-infrastructure:InfrastructureTakedown ;
     rdfs:range uco-observable:ObservableObject .
 
-cacontology-infrastructure:resultsinSeizure rdf:type owl:ObjectProperty ;
+cacontology-infrastructure:resultsInSeizure rdf:type owl:ObjectProperty ;
     rdfs:label "results in seizure"@en ;
     rdfs:comment "Links takedown operation to asset seizure actions."@en ;
     rdfs:domain cacontology-infrastructure:InfrastructureTakedown ;

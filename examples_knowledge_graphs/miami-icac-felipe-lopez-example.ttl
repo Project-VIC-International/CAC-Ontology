@@ -1,0 +1,415 @@
+# Miami ICAC Felipe Lopez Case Example
+# This example demonstrates the CAC Ontology applied to the Miami ICAC undercover operation
+# Based on Miami Police press release: Man arrested for attempting to meet minors for sex
+# Case demonstrates: Multiple-persona undercover operations, physical evidence collection,
+# consent-based searches, Florida criminal charges, immigration holds, and bodycam identification
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
+@prefix investigation: <https://ontology.caseontology.org/case/investigation/> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-undercover: <https://cacontology.projectvic.org/undercover#> .
+@prefix cacontology-physical: <https://cacontology.projectvic.org/physical#> .
+@prefix cacontology-legal-outcomes: <https://cacontology.projectvic.org/legal-outcomes#> .
+@prefix cacontology-tactical: <https://cacontology.projectvic.org/tactical#> .
+@prefix ex: <https://example.org/miami-icac-felipe-lopez/> .
+
+# =============================================================================
+# CASE INVESTIGATION
+# =============================================================================
+
+ex:miami-icac-investigation a investigation:Investigation ;
+    rdfs:label "Miami ICAC Undercover Operation - Felipe Lopez"@en ;
+    rdfs:comment "Internet Crimes Against Children undercover operation by Miami Police targeting online predators, resulting in arrest of Enrique Gilberto Felipe Lopez for attempting to meet fictitious minors for sex."@en ;
+    uco-core:name "Miami ICAC Operation December 2024" ;
+    cacontology:caseNumber "MPD-ICAC-2024-1203" ;
+    cacontology:investigationStatus "Arrest Made" ;
+    cacontology:startDate "2024-12-03"^^xsd:date ;
+    cacontology:leadAgency "Miami Police Department" ;
+    cacontology:jurisdiction "Miami-Dade County, Florida" ;
+    investigation:investigationForm "undercover" ;
+    uco-core:object ex:defendant-felipe-lopez .
+
+# =============================================================================
+# DEFENDANT / SUSPECT
+# =============================================================================
+
+ex:defendant-felipe-lopez a uco-identity:Person ;
+    rdfs:label "Enrique Gilberto Felipe Lopez"@en ;
+    rdfs:comment "33-year-old Guatemalan male arrested for attempting to meet fictitious minors for sex after responding to undercover ICAC operation."@en ;
+    uco-core:name "Enrique Gilberto Felipe Lopez" ;
+    cacontology:age "33"^^xsd:nonNegativeInteger ;
+    cacontology:nationality "Guatemalan" ;
+    cacontology:immigrationStatus "Subject to Immigration Hold" ;
+    cacontology-legal-outcomes:chargedWith ex:charge-traveling-to-meet ,
+                                        ex:charge-direct-promotion ,
+                                        ex:charge-computer-seduce ,
+                                        ex:charge-contributing-delinquency .
+
+# =============================================================================
+# UNDERCOVER OPERATION - SIBLING PERSONA OPERATION
+# =============================================================================
+
+ex:sibling-persona-operation a cacontology-undercover:SiblingPersonaOperation ,
+                              cacontology-undercover:MultiplePersonaOperation ,
+                              cacontology-undercover:UndercoverOperation ;
+    rdfs:label "Miami ICAC Sibling Persona Undercover Operation"@en ;
+    rdfs:comment "Undercover operation where ICAC detectives posed as a 14-year-old girl on messaging app, with suspect also expressing interest in her fictitious 12-year-old sister."@en ;
+    cacontology-undercover:personaCount "2"^^xsd:nonNegativeInteger ;
+    cacontology-undercover:primaryPersonaAge "14"^^xsd:nonNegativeInteger ;
+    cacontology-undercover:secondaryPersonaAge "12"^^xsd:nonNegativeInteger ;
+    cacontology-undercover:siblingRelationship "sisters" ;
+    cacontology-undercover:operationType "online_investigation" ;
+    cacontology-undercover:operationStatus "completed" ;
+    cacontology-undercover:riskLevel "moderate" ;
+    cacontology-undercover:operationOutcome "successful" ;
+    cacontology-undercover:targetsSubject ex:defendant-felipe-lopez ;
+    cacontology-undercover:utilizesPersona ex:persona-14yo-girl, ex:persona-12yo-sister ;
+    cacontology-undercover:usesIdentity ex:persona-14yo-girl ;
+    cacontology-undercover:followsPlan ex:operation-plan ;
+    uco-core:startTime "2024-12-03T00:00:00Z"^^xsd:dateTime .
+
+ex:operation-plan a cacontology-undercover:OperationPlan ;
+    rdfs:label "Miami ICAC December 2024 Operation Plan"@en ;
+    rdfs:comment "Operation plan for sibling persona undercover investigation."@en ;
+    cacontology-undercover:planningPhase "operational" ;
+    cacontology-undercover:approvalLevel "unit_commander" ;
+    cacontology-undercover:riskAssessmentCompleted true ;
+    cacontology-undercover:legalReviewCompleted true .
+
+ex:persona-14yo-girl a cacontology-undercover:ChildPersona ,
+                       cacontology-undercover:UndercoverIdentity ;
+    rdfs:label "14-Year-Old Girl Persona"@en ;
+    rdfs:comment "Primary undercover persona - fictitious 14-year-old girl on messaging app."@en ;
+    cacontology-undercover:portraysAge "14"^^xsd:integer ;
+    cacontology-undercover:backstoryDetails "Teenager on messaging app" ;
+    cacontology-undercover:identityType "digital_only" ;
+    cacontology-undercover:identityComplexity "basic" ;
+    cacontology-undercover:backstoryDepth "basic" ;
+    cacontology-undercover:documentationLevel "none" .
+
+ex:persona-12yo-sister a cacontology-undercover:ChildPersona ;
+    rdfs:label "12-Year-Old Sister Persona"@en ;
+    rdfs:comment "Secondary persona - fictitious 12-year-old sister of primary persona."@en ;
+    cacontology-undercover:portraysAge "12"^^xsd:integer ;
+    cacontology-undercover:backstoryDetails "Younger sister of primary persona" ;
+    cacontology-undercover:identityType "digital_only" ;
+    cacontology-undercover:identityComplexity "basic" ;
+    cacontology-undercover:backstoryDepth "minimal" ;
+    cacontology-undercover:documentationLevel "none" .
+
+ex:messaging-platform-account a cacontology-undercover:PlatformAccount ;
+    rdfs:label "Undercover Messaging App Account"@en ;
+    rdfs:comment "Account on undisclosed messaging app used by undercover detectives."@en ;
+    cacontology-undercover:platformUsername "[Undisclosed]" .
+
+# =============================================================================
+# SUSPECT COMMUNICATION ACTIONS
+# =============================================================================
+
+ex:explicit-message-request a cacontology-undercover:ExplicitMessageRequestAction ;
+    rdfs:label "Request for Explicit Pictures"@en ;
+    rdfs:comment "Suspect requested explicit pictures from undercover persona posing as 14-year-old girl."@en ;
+    cacontology-undercover:requestType "images" ;
+    cacontology-undercover:occurredDuringOperation ex:sibling-persona-operation .
+
+ex:video-call-request a cacontology-undercover:VideoCallRequestAction ;
+    rdfs:label "Video Call Request When Mother Away"@en ;
+    rdfs:comment "Suspect requested video call with undercover persona specifically when her mother was not home."@en ;
+    cacontology-undercover:whenParentAbsent true ;
+    cacontology-undercover:occurredDuringOperation ex:sibling-persona-operation .
+
+ex:disguise-request a cacontology-undercover:DisguiseRequestAction ;
+    rdfs:label "Sunglasses Disguise Request"@en ;
+    rdfs:comment "Suspect told alleged minor to wear sunglasses stating 'If not I can get in trouble' - demonstrating consciousness of guilt."@en ;
+    cacontology-undercover:disguiseItemRequested "sunglasses" ;
+    cacontology-undercover:disguisePurpose "avoid_detection" ;
+    cacontology-undercover:occurredDuringOperation ex:sibling-persona-operation .
+
+ex:criminal-item-agreement a cacontology-undercover:CriminalItemAgreementAction ;
+    rdfs:label "Agreement to Bring Condoms and Vape"@en ;
+    rdfs:comment "Suspect agreed to bring condoms and a vape to the meeting with alleged minors."@en ;
+    cacontology-undercover:itemsAgreedToBring "condoms, vape" ;
+    cacontology-undercover:occurredDuringOperation ex:sibling-persona-operation .
+
+ex:meeting-location-arrangement a cacontology-undercover:MeetingLocationArrangement ;
+    rdfs:label "Princess Motel Meeting Arrangement"@en ;
+    rdfs:comment "Suspect agreed to pick up alleged teen and take her to the Princess Motel to have sex."@en ;
+    cacontology-undercover:meetingLocationType "motel" ;
+    cacontology-undercover:meetingLocationName "Princess Motel" ;
+    cacontology-undercover:arrangedForMeeting ex:princess-motel ;
+    cacontology-undercover:occurredDuringOperation ex:sibling-persona-operation .
+
+ex:transport-arrangement a cacontology-undercover:TransportArrangementAction ;
+    rdfs:label "Transport Arrangement to Motel"@en ;
+    rdfs:comment "Suspect agreed to pick up the alleged teen and transport her to the Princess Motel."@en ;
+    cacontology-undercover:destinationLocation "Princess Motel" ;
+    cacontology-undercover:occurredDuringOperation ex:sibling-persona-operation .
+
+ex:age-acknowledgment-14yo a cacontology-undercover:AgeAcknowledgment ;
+    rdfs:label "Age Acknowledgment - 14 Years Old"@en ;
+    rdfs:comment "Suspect was told several times by undercover detective that persona was 14 years old and continued expressing sexual interest."@en ;
+    cacontology-undercover:ageStatedToSuspect "14"^^xsd:nonNegativeInteger ;
+    cacontology-undercover:acknowledgedCount "3"^^xsd:nonNegativeInteger ;
+    cacontology-undercover:occurredDuringOperation ex:sibling-persona-operation .
+
+ex:age-acknowledgment-12yo a cacontology-undercover:AgeAcknowledgment ;
+    rdfs:label "Age Acknowledgment - 12 Years Old"@en ;
+    rdfs:comment "Suspect was told the sister persona was only 12 years old and continued expressing sexual interest in both."@en ;
+    cacontology-undercover:ageStatedToSuspect "12"^^xsd:nonNegativeInteger ;
+    cacontology-undercover:acknowledgedCount "2"^^xsd:nonNegativeInteger ;
+    cacontology-undercover:occurredDuringOperation ex:sibling-persona-operation .
+
+ex:sexual-intent-statement a cacontology-undercover:SexualIntentStatement ;
+    rdfs:label "Explicit Sexual Intent Statement"@en ;
+    rdfs:comment "Suspect explicitly expressed intent to engage in vaginal, oral, and anal sex with both alleged juvenile personas."@en ;
+    cacontology-undercover:sexualActsIntended "vaginal, oral, anal" ;
+    cacontology-undercover:targetedBothPersonas true ;
+    cacontology-undercover:occurredDuringOperation ex:sibling-persona-operation .
+
+ex:parental-role-statement a cacontology-undercover:SuspectCommunicationAction ;
+    rdfs:label "Inappropriate Parental Role Statement"@en ;
+    rdfs:comment "Suspect stated to 14-year-old persona 'you can be my daughter' - inappropriate grooming behavior."@en ;
+    cacontology-undercover:occurredDuringOperation ex:sibling-persona-operation .
+
+# =============================================================================
+# MEETING LOCATION
+# =============================================================================
+
+ex:princess-motel a cacontology-undercover:Motel ,
+                    cacontology-undercover:MeetingLocation ;
+    rdfs:label "Princess Motel"@en ;
+    rdfs:comment "Motel where suspect intended to take alleged minor for sexual exploitation."@en ;
+    cacontology-undercover:locationName "Princess Motel" ;
+    uco-location:locality "Miami" ;
+    uco-location:region "FL" .
+
+ex:arranged-arrest-location a uco-location:Location ;
+    rdfs:label "Arranged Meeting/Arrest Location"@en ;
+    rdfs:comment "Location where suspect arrived and was arrested by law enforcement."@en ;
+    uco-location:locality "Miami" ;
+    uco-location:region "FL" .
+
+# =============================================================================
+# SUSPECT VEHICLE EVIDENCE
+# =============================================================================
+
+ex:suspect-vehicle-corolla a cacontology-physical:SuspectVehicle ;
+    rdfs:label "2015 White Toyota Corolla"@en ;
+    rdfs:comment "Vehicle registered to suspect in which he arrived at the arranged meeting location. Evidence (vape and condoms) found in glove compartment."@en ;
+    cacontology-physical:vehicleMake "Toyota" ;
+    cacontology-physical:vehicleModel "Corolla" ;
+    cacontology-physical:vehicleYear "2015"^^xsd:nonNegativeInteger ;
+    cacontology-physical:vehicleColor "white" ;
+    cacontology-physical:registeredToSuspect true ;
+    cacontology-physical:usedInOffense true ;
+    cacontology-physical:arrivedAtLocation ex:arranged-arrest-location ;
+    cacontology-physical:associatedWithSubject ex:defendant-felipe-lopez .
+
+# =============================================================================
+# PHYSICAL EVIDENCE ITEMS
+# =============================================================================
+
+ex:strawberry-vape a cacontology-physical:VapeDevice ;
+    rdfs:label "Strawberry Vape Device"@en ;
+    rdfs:comment "Strawberry-flavored vape device found in vehicle's glove compartment, matching item suspect agreed to bring during undercover communication."@en ;
+    cacontology-physical:vapeFlavor "strawberry" ;
+    cacontology-physical:foundInLocation "glove compartment" ;
+    cacontology-physical:agreedToBring true ;
+    cacontology-physical:evidentiarySignificance "high" ;
+    cacontology-physical:evidenceFoundInVehicle ex:suspect-vehicle-corolla .
+
+ex:durex-condoms a cacontology-physical:Condoms ;
+    rdfs:label "Durex Condoms"@en ;
+    rdfs:comment "Durex brand condoms found in vehicle's glove compartment, matching item suspect agreed to bring during undercover communication."@en ;
+    cacontology-physical:condomBrand "Durex" ;
+    cacontology-physical:foundInLocation "glove compartment" ;
+    cacontology-physical:agreedToBring true ;
+    cacontology-physical:evidentiarySignificance "high" ;
+    cacontology-physical:evidenceFoundInVehicle ex:suspect-vehicle-corolla .
+
+ex:suspect-cellphone a uco-observable:MobileDevice ;
+    rdfs:label "Suspect's Cellphone"@en ;
+    rdfs:comment "Cellphone seized from suspect. Consent search revealed texts with undercover investigator confirming criminal communications."@en ;
+    cacontology-physical:evidentiarySignificance "critical" .
+
+ex:cellphone-messages a uco-observable:Message ;
+    rdfs:label "Incriminating Text Messages"@en ;
+    rdfs:comment "Text messages between suspect and undercover investigator containing explicit communications and meeting arrangements."@en .
+
+# =============================================================================
+# BODYCAM IDENTIFICATION EVIDENCE
+# =============================================================================
+
+ex:june-traffic-stop-bodycam a cacontology-physical:BodycamFootage ;
+    rdfs:label "June Traffic Stop Bodycam Footage"@en ;
+    rdfs:comment "Bodycam footage from a traffic stop in June used to identify suspect by matching his face to selfies sent in messages to undercover officers."@en ;
+    cacontology-physical:recordingDate "2024-06-15T14:30:00Z"^^xsd:dateTime ;
+    cacontology-physical:usedForIdentification true ;
+    cacontology-physical:matchesSelfie true .
+
+ex:suspect-selfies a uco-observable:Image ;
+    rdfs:label "Suspect Selfie Images"@en ;
+    rdfs:comment "Selfie photographs sent by suspect in messages to undercover officers, matched to bodycam footage from June traffic stop."@en .
+
+ex:identification-match a investigation:InvestigativeAction ;
+    rdfs:label "Bodycam-to-Selfie Identification Match"@en ;
+    rdfs:comment "Investigative action matching suspect's face from June traffic stop bodycam footage to selfies sent during undercover operation."@en .
+
+# =============================================================================
+# CONSENT AND SEARCH AUTHORIZATION
+# =============================================================================
+
+ex:vehicle-consent-search a cacontology-physical:VehicleConsentSearch ;
+    rdfs:label "Vehicle Consent Search Authorization"@en ;
+    rdfs:comment "Consent-based authorization to search suspect's vehicle, resulting in discovery of vape and condoms in glove compartment."@en ;
+    cacontology-physical:consentGiven true ;
+    cacontology-physical:consentType "verbal" ;
+    cacontology-physical:consentScope "vehicle_only" .
+
+ex:glove-compartment-search a cacontology-physical:GloveCompartmentSearch ;
+    rdfs:label "Glove Compartment Search"@en ;
+    rdfs:comment "Search of vehicle glove compartment revealing strawberry vape and Durex condoms matching items suspect agreed to bring."@en ;
+    cacontology-physical:hasConsentAuthorization ex:vehicle-consent-search .
+
+ex:cellphone-consent-search a cacontology-physical:DeviceConsentSearch ;
+    rdfs:label "Cellphone Consent Search Authorization"@en ;
+    rdfs:comment "Suspect gave consent to search his cellphone, which revealed text messages with undercover investigator."@en ;
+    cacontology-physical:consentGiven true ;
+    cacontology-physical:consentType "verbal" ;
+    cacontology-physical:consentScope "device_only" .
+
+ex:cellphone-search-action a cacontology-physical:CellphoneSearch ;
+    rdfs:label "Cellphone Search Action"@en ;
+    rdfs:comment "Search of suspect's cellphone revealing incriminating text messages with undercover investigator."@en ;
+    cacontology-physical:hasConsentAuthorization ex:cellphone-consent-search .
+
+ex:interview-without-counsel a cacontology-tactical:InterviewWithoutCounsel ;
+    rdfs:label "Interview Without Legal Counsel"@en ;
+    rdfs:comment "Suspect agreed to speak to detectives without legal counsel after waiving his rights."@en .
+
+# =============================================================================
+# ARREST AND BOOKING
+# =============================================================================
+
+ex:arrest-operation a cacontology-tactical:ArrestOperation ;
+    rdfs:label "Felipe Lopez Arrest Operation"@en ;
+    rdfs:comment "Arrest of suspect at arranged meeting location on Saturday after arriving in his registered vehicle."@en ;
+    cacontology-tactical:arrestType "sting_operation" ;
+    cacontology-tactical:targetCount "1"^^xsd:nonNegativeInteger ;
+    cacontology-tactical:resistanceExpected false ;
+    cacontology-tactical:weaponsExpected false ;
+    uco-core:startTime "2024-12-07T00:00:00Z"^^xsd:dateTime ;
+    cacontology-tactical:involvesArrestee ex:defendant-felipe-lopez .
+
+ex:booking-action a cacontology-tactical:BookingAction ;
+    rdfs:label "Turner Guilford Knight Booking"@en ;
+    rdfs:comment "Booking of suspect into Turner Guilford Knight Correctional Center following arrest."@en ;
+    cacontology-tactical:bookingDate "2024-12-07"^^xsd:date ;
+    cacontology-tactical:occursAtFacility ex:tgk-correctional-center .
+
+ex:tgk-correctional-center a cacontology-tactical:CorrectionalFacility ;
+    rdfs:label "Turner Guilford Knight Correctional Center"@en ;
+    rdfs:comment "Miami-Dade County correctional facility where suspect was booked."@en ;
+    cacontology-tactical:correctionalFacilityName "Turner Guilford Knight Correctional Center" ;
+    uco-location:locality "Miami" ;
+    uco-location:region "FL" .
+
+ex:immigration-hold a cacontology-tactical:ImmigrationHold ;
+    rdfs:label "Immigration Hold - Felipe Lopez"@en ;
+    rdfs:comment "Immigration hold placed on Guatemalan suspect following arrest."@en ;
+    cacontology-tactical:immigrationStatus "Guatemalan national" ;
+    cacontology-tactical:immigrationHoldReason "Subject to deportation proceedings" .
+
+# =============================================================================
+# FLORIDA CRIMINAL CHARGES
+# =============================================================================
+
+ex:charge-traveling-to-meet a cacontology-legal-outcomes:TravelingToMeetAfterComputerLure ;
+    rdfs:label "Traveling to Meet After Using Computer to Lure a Child"@en ;
+    rdfs:comment "Florida charge for traveling to arranged location after using computer/messaging app to lure alleged minor."@en ;
+    cacontology-legal-outcomes:floridaStatute "F.S. 847.0135(4)" ;
+    cacontology-legal-outcomes:chargeClassification "Second Degree Felony" ;
+    cacontology-legal-outcomes:travelOccurred true ;
+    cacontology-legal-outcomes:electronicCommunicationUsed true .
+
+ex:charge-direct-promotion a cacontology-legal-outcomes:DirectPromotionOfSexualPerformance ;
+    rdfs:label "Direct Promotion of Sexual Performance by a Child"@en ;
+    rdfs:comment "Florida charge for promoting sexual performance by alleged minor through explicit communications and arrangements."@en ;
+    cacontology-legal-outcomes:floridaStatute "F.S. 827.071" ;
+    cacontology-legal-outcomes:chargeClassification "Second Degree Felony" ;
+    cacontology-legal-outcomes:sexualPerformancePromotion true ;
+    cacontology-legal-outcomes:promotionType "direct_promotion" .
+
+ex:charge-computer-seduce a cacontology-legal-outcomes:ComputerSeduceSolicitLure ;
+    rdfs:label "Using Computer to Seduce, Solicit, or Lure a Child"@en ;
+    rdfs:comment "Florida charge for using messaging app to seduce, solicit, and lure alleged minor to engage in sexual conduct."@en ;
+    cacontology-legal-outcomes:floridaStatute "F.S. 847.0135(3)" ;
+    cacontology-legal-outcomes:chargeClassification "Third Degree Felony" ;
+    cacontology-legal-outcomes:computerLureMethod "messaging app" ;
+    cacontology-legal-outcomes:solicitationType "multiple" .
+
+ex:charge-contributing-delinquency a cacontology-legal-outcomes:ContributingToDelinquency ;
+    rdfs:label "Contributing to the Delinquency or Dependency of a Child"@en ;
+    rdfs:comment "Florida charge for contributing to delinquency by attempting to provide vape and engage minors in illegal activity."@en ;
+    cacontology-legal-outcomes:floridaStatute "F.S. 827.04" ;
+    cacontology-legal-outcomes:chargeClassification "First Degree Misdemeanor" ;
+    cacontology-legal-outcomes:childDelinquencyContribution true ;
+    cacontology-legal-outcomes:contributionType "delinquency" .
+
+# =============================================================================
+# ARREST REPORT AND PROVENANCE
+# =============================================================================
+
+ex:arrest-report a cacontology-tactical:ArrestReport ;
+    rdfs:label "Felipe Lopez Arrest Report"@en ;
+    rdfs:comment "Official arrest report documenting the undercover operation, arrest, and evidence collected."@en ;
+    cacontology-tactical:reportDate "2024-12-07"^^xsd:date ;
+    cacontology-tactical:documentsArrest ex:arrest-operation .
+
+ex:evidence-provenance-record a cacontology-physical:PhysicalEvidenceProvenanceRecord ;
+    rdfs:label "Physical Evidence Provenance Record"@en ;
+    rdfs:comment "Chain of custody record for physical evidence collected during arrest including vehicle search items."@en .
+
+# =============================================================================
+# INVESTIGATION METRICS
+# =============================================================================
+
+ex:investigation-metrics a cacontology:InvestigationMetrics ;
+    rdfs:label "Miami ICAC Operation Metrics"@en ;
+    cacontology:investigationDuration "P4D"^^xsd:duration ;
+    cacontology:evidenceItemsCollected "5"^^xsd:nonNegativeInteger ;
+    cacontology:undercoverOperations "1"^^xsd:nonNegativeInteger ;
+    cacontology:arrestsMade "1"^^xsd:nonNegativeInteger ;
+    cacontology:chargesFiled "4"^^xsd:nonNegativeInteger .
+
+# =============================================================================
+# RELATIONSHIPS AND LINKAGES
+# =============================================================================
+
+# Link undercover operation to investigation
+ex:miami-icac-investigation investigation:hasObject ex:sibling-persona-operation .
+
+# Link arrest to investigation
+ex:miami-icac-investigation investigation:hasObject ex:arrest-operation .
+
+# Link evidence to operation
+ex:sibling-persona-operation cacontology-undercover:evidenceCollected ex:cellphone-messages .
+ex:sibling-persona-operation cacontology-undercover:leadsToArrest ex:arrest-operation .
+
+# Link physical evidence to consent searches
+ex:strawberry-vape cacontology-physical:seizedDuring ex:glove-compartment-search .
+ex:durex-condoms cacontology-physical:seizedDuring ex:glove-compartment-search .
+
+# Link defendant to booking and immigration
+ex:defendant-felipe-lopez cacontology-tactical:hasImmigrationHold ex:immigration-hold .

@@ -7,19 +7,18 @@ The CAC ontology family consists of 30+ interconnected modules organized into si
 
 This family of ontologies seeks to implement semantically clear information models that reflect the information, information relationships, workflows, and events that a Crimes Against Children Investigator uses or may use in the future. Each ontology represents a unique application domain within investigators'and prosecutors' discourse. This family of ontologies seeks to be universal and it is heavily informed by public documentation in the form of press releses from law enforcement agencies and prosecutor's offices. Finally, this family of ontologies seeks to use modern language as much as possible to reflect the unifying efforts of the CAC community, but there may be language in these ontologies that are more reflective of a certain country when that language is still professionally used.
 
-#### 1.1 Core Framework (3 modules + gUFO Integration)
+#### 1.1 Core Framework
 - `cacontology-core.ttl`: Base ontology for CAC investigations
-- `cacontology-core-gufo.ttl`: gUFO-enhanced investigation modeling with anti-rigid phases and roles
-- `cacontology-hotlines-core.ttl`: Hotline operations and reporting
+- `cacontology-core-spine.ttl`: Semantic spine defining top-level ontological categories
+- `cacontology-hotlines.ttl`: Hotline operations and reporting
 - `cacontology-us-ncmec.ttl`: NCMEC-specific extensions
 
-#### 1.2 gUFO Foundational Components
-- `cacontology-core-gufo.ttl`: Phase 1 core investigation modeling with gUFO patterns
-- `cacontology-temporal-gufo.ttl`: Phase 2 temporal framework for investigation lifecycle
-- `cacontology-gufo-integration-strategy.ttl`: Phase 3 strategy for full integration across 30+ modules
-- `examples/gufo-phase1-example.ttl`: Core gUFO integration examples
-- `examples/gufo-phase2-temporal-example.ttl`: Advanced temporal patterns
-- `examples/gufo-integration-summary.md`: Complete implementation overview
+#### 1.2 gUFO Foundational Components & Bridge Modules
+- `cacontology-bridge-gufo.ttl`: Bridge module aligning CAC classes to gUFO foundational ontology
+- `cacontology-bridge-case.ttl`: Bridge module aligning CAC classes to CASE Ontology
+- `cacontology-bridge-uco.ttl`: Bridge module aligning CAC classes to UCO
+- `cacontology-temporal.ttl`: Temporal framework for investigation lifecycle
+- `cacontology-integration-patterns.ttl`: Integration strategy across 40+ modules
 
 #### 1.2 International Coordination & Global Frameworks (4 modules)
 - `cacontology-international.ttl`: Global coordination & cross-border operations
@@ -50,20 +49,20 @@ This family of ontologies seeks to implement semantically clear information mode
 #### 1.6 Victim Services & Task Force Management (5+ modules)
 - `cacontology-victim-impact.ttl`: Victim impact assessment & recovery
 - `cacontology-taskforce.ttl`: CAC task force organization
-- `cacontology-sentencing.ttl`: Legal outcomes & sentencing
+- `cacontology-legal-outcomes.ttl`: Legal outcomes & sentencing
 - `cacontology-specialized-units.ttl`: Specialized units & advanced capabilities
 - `cacontology-sex-offender-registry.ttl`: Sex offender registry management
 
 #### 1.7 Validation Components (30 modules)
 - `cacontology-core-shapes.ttl`: SHACL shapes for core validation
-- `cacontology-hotlines-core-shapes.ttl`: SHACL shapes for hotline validation
+- `cacontology-hotlines-shapes.ttl`: SHACL shapes for hotline validation
 - `cacontology-forensics-shapes.ttl`: SHACL shapes for forensic validation
 - Plus 17+ additional SHACL validation modules
 
 #### 1.8 Supporting Components
-- JSON-LD contexts for developer integration (4 context files)
-- 12+ example data sets demonstrating real-world usage
-- 11 analytics query files for operational intelligence
+- JSON-LD contexts for developer integration
+- 56 example knowledge graphs demonstrating real-world usage
+- 28 SPARQL query files for operational intelligence
 - Testing framework and CI/CD pipeline
 - Complete documentation suite
 
@@ -71,12 +70,32 @@ This family of ontologies seeks to implement semantically clear information mode
 
 ```mermaid
 graph TD
-    subgraph Core
+    subgraph Foundational
+        GUFO[gUFO]
         UCO[UCO Core]
+        CASE_ONT[CASE]
+    end
+
+    subgraph Spine["Semantic Spine (v3.0.0)"]
+        SPINE[Core Spine]
+        SPINE_SHAPES[Spine Shapes]
+        BRIDGE_GUFO[Bridge: gUFO]
+        BRIDGE_UCO[Bridge: UCO]
+        BRIDGE_CASE[Bridge: CASE]
+        GUFO --> BRIDGE_GUFO
+        UCO --> BRIDGE_UCO
+        CASE_ONT --> BRIDGE_CASE
+        BRIDGE_GUFO --> SPINE
+        BRIDGE_UCO --> SPINE
+        BRIDGE_CASE --> SPINE
+        SPINE --> SPINE_SHAPES
+    end
+
+    subgraph Core
         CAC[CAC Core]
         HOTLINES[Hotlines Core]
         NCMEC[NCMEC Extension]
-        UCO --> CAC
+        SPINE --> CAC
         CAC --> HOTLINES
         CAC --> NCMEC
     end
@@ -228,29 +247,71 @@ graph TD
 - Wave-based deployment across 30+ modules (345-day timeline)
 - AI-enhanced analytics and pattern recognition capabilities
 
+### 7. Semantic Spine Architecture (v3.0.0)
+
+CAC Ontology v3.0.0 introduces the **semantic spine** — a thin, stable abstraction layer in the `cac-core:` namespace that mediates all alignment with foundational and external ontologies (gUFO, UCO, CASE). Rather than having each domain module subclass gUFO or UCO types directly, modules anchor to well-defined spine branches whose upstream alignments are maintained in dedicated bridge files.
+
+#### 7.1 Purpose
+- Provides a single, versionable layer of indirection between domain modules and foundational ontologies.
+- Insulates domain modules from upstream changes in gUFO, UCO, or CASE — only the bridge files need updating when foundational IRIs change.
+- Establishes canonical branch points (`cac-core:Phase`, `cac-core:Role`, `cac-core:Event`, `cac-core:Artifact`, `cac-core:AssessmentResult`, `cac-core:Situation`, `cac-core:LegalEvent`) that domain modules extend.
+
+#### 7.2 Spine Branches
+
+| Spine Class | Upstream Alignment | Domain Usage |
+|-------------|-------------------|--------------|
+| `cac-core:Phase` | `gufo:Phase` | Investigation phases, lifecycle stages |
+| `cac-core:Role` | `gufo:Role` | Investigator, victim, offender, and organizational roles |
+| `cac-core:Event` | `gufo:Event` | Actions, incidents, operational events |
+| `cac-core:LegalEvent` | `gufo:Event` | Court hearings, filings, legal proceedings |
+| `cac-core:Artifact` | `gufo:Object` | Evidence items, forensic artifacts, digital objects |
+| `cac-core:AssessmentResult` | — | Victim impact assessments, risk scores, analytical outputs |
+| `cac-core:Situation` | `gufo:Situation` | Cross-border scenarios, multi-jurisdiction coordination |
+
+#### 7.3 New Files
+
+| File | Purpose |
+|------|---------|
+| `cacontology-core-spine.ttl` | Spine class hierarchy and upstream `rdfs:subClassOf` declarations |
+| `cacontology-core-spine-shapes.ttl` | SHACL shapes enforcing spine-level constraints |
+| `cacontology-bridge-gufo.ttl` | Bridge aligning spine branches to gUFO classes |
+| `cacontology-bridge-uco.ttl` | Bridge aligning spine branches to UCO classes |
+| `cacontology-bridge-case.ttl` | Bridge aligning spine branches to CASE classes |
+
+#### 7.4 How Domain Modules Use the Spine
+
+Domain modules declare their classes as subclasses of the appropriate spine branch rather than directly subclassing `gufo:Phase`, `gufo:Role`, etc. For example:
+
+```turtle
+cacontology-grooming:OnlineGroomingSituation
+    rdfs:subClassOf cac-core:Situation .
+```
+
+This pattern ensures that when gUFO or UCO releases a breaking change, only the bridge files require updating — all 30+ domain modules remain untouched.
+
 ## Technical Design
 
 ### 1. Ontology Structure
 
 #### 1.1 Core Classes
 
-| Class | IRI | SubClassOf | Description |
-|-------|-----|------------|-------------|
-| CACInvestigation | https://cacontology.projectvic.org/core#CACInvestigation | case-investigation:Investigation | Complete investigation lifecycle |
-| **Investigation** | **https://cacontology.projectvic.org/gufo#Investigation** | **gufo:Kind** | **gUFO-enhanced investigation with phase modeling** |
-| **InitialPhase** | **https://cacontology.projectvic.org/gufo#InitialPhase** | **gufo:Phase** | **Initial investigation phase (anti-rigid)** |
-| **AnalysisPhase** | **https://cacontology.projectvic.org/gufo#AnalysisPhase** | **gufo:Phase** | **Evidence analysis phase** |
-| **LegalProcessPhase** | **https://cacontology.projectvic.org/gufo#LegalProcessPhase** | **gufo:Phase** | **Legal proceedings phase** |
-| **InvestigatorRole** | **https://cacontology.projectvic.org/gufo#InvestigatorRole** | **gufo:Role** | **Investigation role (anti-rigid, temporal)** |
-| **VictimRole** | **https://cacontology.projectvic.org/gufo#VictimRole** | **gufo:Role** | **Victim role with conflict prevention** |
-| HotlineReport | https://cacontology.projectvic.org/hotlines/core#HotlineReport | uco-observable:Observation | Report received by hotline |
-| EvidenceItem | https://cacontology.projectvic.org/hotlines/core#EvidenceItem | uco-observable:DigitalArtifact | Digital evidence artifact |
-| HotlineAction | https://cacontology.projectvic.org/hotlines/core#HotlineAction | uco-action:Action | Action performed on report |
-| ProductionOffense | https://cacontology.projectvic.org/production#ProductionOffense | uco-action:Crime | CSAM production activity |
-| CustodialRelationship | https://cacontology.projectvic.org/custodial#CustodialRelationship | uco-role:Role | Trust relationship |
-| AthleticCoachingExploitation | https://cacontology.projectvic.org/athletic-exploitation#AthleticCoachingExploitation | cacontology-educational:EducatorPerpetratedExploitation | Athletic coaching exploitation |
-| VictimImpactAssessment | https://cacontology.projectvic.org/victim-impact#VictimImpactAssessment | uco-core:UcoObject | Trauma assessment |
-| TaskForceOperation | https://cacontology.projectvic.org/taskforce#TaskForceOperation | uco-action:Action | Multi-agency operation |
+| Class | IRI | SubClassOf | Spine Anchor | Description |
+|-------|-----|------------|--------------|-------------|
+| CACInvestigation | https://cacontology.projectvic.org/core#CACInvestigation | case-investigation:Investigation | — | Complete investigation lifecycle |
+| **Investigation** | **https://cacontology.projectvic.org/gufo#Investigation** | **gufo:Kind** | — | **gUFO-enhanced investigation with phase modeling** |
+| **InitialPhase** | **https://cacontology.projectvic.org/gufo#InitialPhase** | **gufo:Phase** | `cac-core:Phase` (via `gufo:Phase`) | **Initial investigation phase (anti-rigid)** |
+| **AnalysisPhase** | **https://cacontology.projectvic.org/gufo#AnalysisPhase** | **gufo:Phase** | `cac-core:Phase` (via `gufo:Phase`) | **Evidence analysis phase** |
+| **LegalProcessPhase** | **https://cacontology.projectvic.org/gufo#LegalProcessPhase** | **gufo:Phase** | `cac-core:Phase` (via `gufo:Phase`) | **Legal proceedings phase** |
+| **InvestigatorRole** | **https://cacontology.projectvic.org/gufo#InvestigatorRole** | **gufo:Role** | `cac-core:Role` (via `gufo:Role`) | **Investigation role (anti-rigid, temporal)** |
+| **VictimRole** | **https://cacontology.projectvic.org/gufo#VictimRole** | **gufo:Role** | `cac-core:Role` (via `gufo:Role`) | **Victim role with conflict prevention** |
+| HotlineReport | https://cacontology.projectvic.org/hotlines#HotlineReport | uco-observable:Observation | — | Report received by hotline |
+| EvidenceItem | https://cacontology.projectvic.org/hotlines#EvidenceItem | uco-observable:DigitalArtifact | `cac-core:Artifact` | Digital evidence artifact |
+| HotlineAction | https://cacontology.projectvic.org/hotlines#HotlineAction | uco-action:Action | `cac-core:Event` (via `gufo:Event`) | Action performed on report |
+| ProductionOffense | https://cacontology.projectvic.org/production#ProductionOffense | uco-action:Crime | `cac-core:Event` (via `gufo:Event`) | CSAM production activity |
+| CustodialRelationship | https://cacontology.projectvic.org/custodial#CustodialRelationship | uco-role:Role | `cac-core:Role` (via `gufo:Role`) | Trust relationship |
+| AthleticCoachingExploitation | https://cacontology.projectvic.org/athletic-exploitation#AthleticCoachingExploitation | cacontology-educational:EducatorPerpetratedExploitation | — | Athletic coaching exploitation |
+| VictimImpactAssessment | https://cacontology.projectvic.org/victim-impact#VictimImpactAssessment | uco-core:UcoObject | `cac-core:AssessmentResult` | Trauma assessment |
+| TaskForceOperation | https://cacontology.projectvic.org/taskforce#TaskForceOperation | uco-action:Action | `cac-core:Event` (via `gufo:Event`) | Multi-agency operation |
 
 #### 1.2 Key Properties
 - Object properties for relationships between entities
@@ -262,13 +323,13 @@ graph TD
 
 #### 1.3 gUFO Integration Patterns
 
-| Pattern | Purpose | Example |
-|---------|---------|---------|
-| **Evidence Object Pattern** | Physical/digital evidence with gUFO object semantics | Forensic artifacts as `gufo:Object` |
-| **Legal Event Pattern** | Legal proceedings as temporal events | Court hearings as `gufo:Event` |
-| **Organizational Pattern** | Task forces and units as social objects | CAC units as `gufo:Kind` |
-| **Criminal Organization Pattern** | Criminal networks with role hierarchies | Trafficking networks with `gufo:Role` |
-| **Cross-Border Pattern** | International coordination scenarios | Multi-jurisdiction as `gufo:Situation` |
+| Pattern | Purpose | Spine Anchor | Example |
+|---------|---------|--------------|---------|
+| **Evidence Object Pattern** | Physical/digital evidence with gUFO object semantics | `cac-core:Artifact` (via `gufo:Object`) | Forensic artifacts anchored to spine Artifact branch |
+| **Legal Event Pattern** | Legal proceedings as temporal events | `cac-core:LegalEvent` (via `gufo:Event`) | Court hearings anchored to spine Event branch |
+| **Organizational Pattern** | Task forces and units as social objects | — | CAC units as `gufo:Kind` |
+| **Criminal Organization Pattern** | Criminal networks with role hierarchies | `cac-core:Role` (via `gufo:Role`) | Trafficking networks anchored to spine Role branch |
+| **Cross-Border Pattern** | International coordination scenarios | `cac-core:Situation` (via `gufo:Situation`) | Multi-jurisdiction anchored to spine Situation branch |
 
 #### 1.4 Constraints and Validation
 - Cardinality restrictions on critical relationships
@@ -309,17 +370,17 @@ graph TD
 - Standardized error handling and responses
 - Rate limiting and authentication support
 
-### 4. Case-Driven Extensions (Utah Christensen Press Release) and CAC Ontology v2.2.0
+### 4. Case-Driven Extensions (Utah Christensen Press Release) and CAC Ontology v3.0.0
 
-The November 2025 Utah ICAC / Garfield County press release about Dominic Lynn Christensen surfaced several recurring investigative and legal concepts that were only partially represented in the ontology family. This section documents both the **extensions implemented in CAC Ontology v2.2.0** and additional proposals for future versions.
+The November 2025 Utah ICAC / Garfield County press release about Dominic Lynn Christensen surfaced several recurring investigative and legal concepts that were only partially represented in the ontology family. This section documents both the **extensions implemented in CAC Ontology v2.2.0** (and carried forward into v3.0.0) and additional proposals for future versions.
 
-In **v2.2.0**, the following design work from this section has been realized:
+In **v2.2.0** (now part of v3.0.0), the following design work from this section has been realized:
 
 - A comprehensive Utah recidivism and registry-focused example graph in `examples_knowledge_graphs/utah-dominic-christensen-example.ttl`.
 - Supporting analytics in `example_SPARQL_queries/utah-dominic-christensen-analytics.rq`.
 - Targeted refinements to:
   - `cacontology-grooming.ttl` and `cacontology-grooming-shapes.ttl` (offline / physical-space grooming patterns such as `SexualConsequenceGameGrooming` and related SHACL constraints).
-  - `cacontology-sentencing.ttl` and `cacontology-sentencing-shapes.ttl` (state charges, concurrent sentences, and bail / held-without-bail modeling guidance).
+  - `cacontology-legal-outcomes.ttl` and `cacontology-legal-outcomes-shapes.ttl` (state charges, concurrent sentences, and bail / held-without-bail modeling guidance).
   - `cacontology-sex-offender-registry.ttl` and `cacontology-sex-offender-registry-shapes.ttl` (registration records, compliance history, and post-registration recidivism analytics).
 
 The remaining bullets in this section are intentionally kept at the narrative / roadmap level so they can be reviewed against additional cases before being formalized into TTL modules and shapes in a future release.
@@ -333,7 +394,7 @@ The remaining bullets in this section are intentionally kept at the narrative / 
   - Gap:
     - No structured way to distinguish **failure-to-register** vs **false-information** violations as legal offenses that can be charged and analyzed longitudinally.
   - Proposed direction:
-    - Introduce subclasses of `cacontology-registry:ConvictingOffense` (and/or `cacontology-sentencing:StateCharge`) such as:
+    - Introduce subclasses of `cacontology-registry:ConvictingOffense` (and/or `cacontology-legal-outcomes:StateCharge`) such as:
       - `FailureToRegisterOffense`
       - `FalseInformationRegistrationOffense`
     - Add simple datatype properties (or controlled-code properties) to characterize the violation type, e.g. `violationCategory` with values like `failure_to_register`, `false_information`, `late_update`.
@@ -357,14 +418,14 @@ The remaining bullets in this section are intentionally kept at the narrative / 
 
 - **Explicit modeling of bail / held-without-bail status**
   - Current state:
-    - `cacontology-sentencing` provides detailed modeling for legal proceedings and sentences, but does not distinguish:
+    - `cacontology-legal-outcomes` provides detailed modeling for legal proceedings and sentences, but does not distinguish:
       - defendants released on bail vs held in custody pretrial,
       - bail conditions, or
       - decisions to hold without bail.
   - Gap (illustrated by Christensen case):
     - The article contrasts 2021 conduct where Christensen was **released after posting bail** with the 2025 case where he is **held without bail**, which is operationally and analytically important.
   - Proposed direction:
-    - Introduce a light-weight **bail status pattern**, potentially in `cacontology-sentencing`:
+    - Introduce a light-weight **bail status pattern**, potentially in `cacontology-legal-outcomes`:
       - Either a `BailStatus` value object class or simple datatype property on `LegalProceeding` / `ArraignmentProceeding`, e.g.:
         - `bailStatus` with values such as `released_on_bail`, `held_without_bail`, `released_on_own_recognizance`.
       - Optional numeric/property support for bail amount and basic conditions if required in future press-release–driven models.
@@ -375,7 +436,7 @@ The remaining bullets in this section are intentionally kept at the narrative / 
   - Gap:
     - The Christensen narrative explicitly states that jail and probation terms for separate counts are **to be served at the same time**, which is important for analytics (e.g., total custodial exposure vs number of convictions).
   - Proposed direction:
-    - Add a simple concurrency indicator on `cacontology-sentencing:CriminalSentence`, such as:
+    - Add a simple concurrency indicator on `cacontology-legal-outcomes:CriminalSentence`, such as:
       - `sentenceConcurrency` with values `concurrent` / `consecutive` / `mixed`.
       - Optionally allow a link to other sentence resources when explicitly modeling which sentences are concurrent with which (`concurrentWith` object property).
 
@@ -398,13 +459,13 @@ The remaining bullets in this section are intentionally kept at the narrative / 
         - `ruleStructureDescription` (short textual description of the “game” rules).
     - Ensure it can be applied in both purely physical-space contexts and in hybrid online/offline scenarios (e.g., games proposed online and executed offline).
 
-These proposals are intentionally kept at the narrative/design level so they can be reviewed against additional cases before being formalized into TTL modules and SHACL shapes in a future release beyond v2.2.0.
+These proposals are intentionally kept at the narrative/design level so they can be reviewed against additional cases before being formalized into TTL modules and SHACL shapes in a future release beyond v3.0.0.
 
 ## Implementation Details
 
 ### 1. Current File Organization
 
-The block below reflected an earlier ICAC-era layout. The **current CAC Ontology v2.2.0 repository layout** at the top level is:
+The block below reflected an earlier ICAC-era layout. The **current CAC Ontology v3.0.0 repository layout** at the top level is:
 
 ```
 .
@@ -414,7 +475,7 @@ The block below reflected an earlier ICAC-era layout. The **current CAC Ontology
 ├── docs/                         # Architecture, design, user docs, PRD, glossary
 ├── testing/                      # Docker-based validation and development environment
 ├── contexts/                     # JSON-LD context files
-├── CHANGELOG.md                  # Version history (v2.2.0 and earlier)
+├── CHANGELOG.md                  # Version history (v3.0.0 and earlier)
 └── README.md                     # Top-level project overview
 ```
 
