@@ -7,9 +7,7 @@ Tests all 3 phases of gUFO integration and demonstrates enhanced capabilities.
 """
 
 import os
-import sys
 import time
-from pathlib import Path
 
 def test_phase_1_deployment():
     """Test Phase 1: Core Investigation Modeling"""

@@ -16,13 +16,11 @@ Features:
 
 import rdflib
 import pandas as pd
-import numpy as np
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingRegressor
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report, regression_report
+from sklearn.metrics import classification_report
 import networkx as nx
-from datetime import datetime, timedelta
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -458,13 +456,13 @@ def main():
         print("\n🔍 Analyzing Patterns...")
         
         # Detect role conflicts
-        conflicts = analytics.detect_role_conflicts()
+        analytics.detect_role_conflicts()
         
         # Analyze temporal patterns
-        patterns = analytics.analyze_temporal_patterns()
+        analytics.analyze_temporal_patterns()
         
         # Build investigation network
-        network, network_analysis = analytics.build_investigation_network()
+        analytics.build_investigation_network()
         
         # Generate insights
         insights = analytics.generate_investigation_insights(df)

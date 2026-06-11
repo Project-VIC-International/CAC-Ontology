@@ -4,9 +4,10 @@ Phase 6: SHACL Validation + Verification Suite
 Target: ndfl-isbell-sentencing-example.ttl
 """
 
-from rdflib import Graph, Namespace, URIRef
-from rdflib.namespace import RDF, RDFS
 import os
+import sys
+
+from rdflib import Graph, Namespace
 
 # Namespaces
 UCO_CORE = Namespace("https://ontology.unifiedcyberontology.org/uco/core/")
@@ -201,4 +202,4 @@ def main():
 
 if __name__ == "__main__":
     success = main()
-    exit(0 if success else 1)
+    sys.exit(0 if success else 1)
