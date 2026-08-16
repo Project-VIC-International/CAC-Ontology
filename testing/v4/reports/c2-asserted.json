@@ -1,0 +1,570 @@
+{
+  "asserted_triples": 24128,
+  "configuration": "C2",
+  "counts": {
+    "diagnostic_findings": 263,
+    "enduring_branch_classes": 516,
+    "owl_classes": 2120,
+    "phase_branch_classes": 126,
+    "role_branch_classes": 169,
+    "triples": 24128
+  },
+  "dependency_lock_sha256": "da9d4ecb42502130c74efd4805041a63e9cfe8cdb1ec151e9f1c0fca630b7653",
+  "diagnostics": {
+    "META001_OPERATIONAL_ROLE_AS_GUFO_CLASSIFIER": [
+      "https://cacontology.projectvic.org#AnalystRole",
+      "https://cacontology.projectvic.org#InvestigatorRole",
+      "https://cacontology.projectvic.org#OffenderRole",
+      "https://cacontology.projectvic.org#RescuerRole",
+      "https://cacontology.projectvic.org#VictimRole",
+      "https://cacontology.projectvic.org/custodial#AuthorityFigure",
+      "https://cacontology.projectvic.org/custodial#Babysitter",
+      "https://cacontology.projectvic.org/custodial#ChildcareProvider",
+      "https://cacontology.projectvic.org/custodial#Coach",
+      "https://cacontology.projectvic.org/custodial#FamilyFriend",
+      "https://cacontology.projectvic.org/custodial#Guardian",
+      "https://cacontology.projectvic.org/custodial#Mentor",
+      "https://cacontology.projectvic.org/custodial#PositionOfTrust",
+      "https://cacontology.projectvic.org/custodial#Relative",
+      "https://cacontology.projectvic.org/custodial#Teacher",
+      "https://cacontology.projectvic.org/detection#ContentAnalystRole",
+      "https://cacontology.projectvic.org/detection#HashAnalystRole",
+      "https://cacontology.projectvic.org/detection#MachineLearningSpecialistRole",
+      "https://cacontology.projectvic.org/detection#QualityAssuranceAnalystRole",
+      "https://cacontology.projectvic.org/extremist-enterprises#ContentProducerRole",
+      "https://cacontology.projectvic.org/extremist-enterprises#CoordinatorRole",
+      "https://cacontology.projectvic.org/extremist-enterprises#EnterpriseLeaderRole",
+      "https://cacontology.projectvic.org/extremist-enterprises#EnterpriseRole",
+      "https://cacontology.projectvic.org/extremist-enterprises#InnerCoreMemberRole",
+      "https://cacontology.projectvic.org/extremist-enterprises#RecruitmentSpecialistRole",
+      "https://cacontology.projectvic.org/forensics#EvidenceCustodianRole",
+      "https://cacontology.projectvic.org/forensics#ForensicExaminerRole",
+      "https://cacontology.projectvic.org/forensics#VictimIdentificationSpecialist",
+      "https://cacontology.projectvic.org/grooming#ChildVictim",
+      "https://cacontology.projectvic.org/grooming#OnlinePredator",
+      "https://cacontology.projectvic.org/infrastructure#AnalystRole",
+      "https://cacontology.projectvic.org/infrastructure#SecurityOperatorRole",
+      "https://cacontology.projectvic.org/infrastructure#SystemAdministratorRole",
+      "https://cacontology.projectvic.org/infrastructure#TakedownOperatorRole",
+      "https://cacontology.projectvic.org/institutional-exploitation#CareProviderRole",
+      "https://cacontology.projectvic.org/institutional-exploitation#CharitableOrganizationLeader",
+      "https://cacontology.projectvic.org/institutional-exploitation#InstitutionalFounder",
+      "https://cacontology.projectvic.org/institutional-exploitation#OrphanageDirector",
+      "https://cacontology.projectvic.org/institutional-exploitation#TrustedAdultRole",
+      "https://cacontology.projectvic.org/investigation-coordination#IntelligenceLiaison",
+      "https://cacontology.projectvic.org/investigation-coordination#LegalLiaison",
+      "https://cacontology.projectvic.org/investigation-coordination#LiaisonOfficer",
+      "https://cacontology.projectvic.org/investigation-coordination#OperationalLiaison",
+      "https://cacontology.projectvic.org/investigation-coordination#PrimaryLiaison",
+      "https://cacontology.projectvic.org/investigation-coordination#SecondaryLiaison",
+      "https://cacontology.projectvic.org/investigation-coordination#TechnicalLiaison",
+      "https://cacontology.projectvic.org/law-enforcement-corruption#CorruptArmyReservist",
+      "https://cacontology.projectvic.org/law-enforcement-corruption#CorruptLawEnforcementOfficer",
+      "https://cacontology.projectvic.org/law-enforcement-corruption#CorruptMetropolitanPoliceDepartmentOfficer",
+      "https://cacontology.projectvic.org/law-enforcement-corruption#CorruptStateTrooper",
+      "https://cacontology.projectvic.org/law-enforcement-corruption#FormerLawEnforcementOfficer",
+      "https://cacontology.projectvic.org/legal-outcomes#DefendantRole",
+      "https://cacontology.projectvic.org/legal-outcomes#DefenseAttorneyRole",
+      "https://cacontology.projectvic.org/legal-outcomes#JudgeRole",
+      "https://cacontology.projectvic.org/legal-outcomes#JuryRole",
+      "https://cacontology.projectvic.org/legal-outcomes#ProbationOfficerRole",
+      "https://cacontology.projectvic.org/legal-outcomes#ProsecutorRole",
+      "https://cacontology.projectvic.org/legal-outcomes#VictimRole",
+      "https://cacontology.projectvic.org/multi-jurisdiction#CoordinatingAgent",
+      "https://cacontology.projectvic.org/multi-jurisdiction#LeadAgency",
+      "https://cacontology.projectvic.org/multi-jurisdiction#LiaisonOfficer",
+      "https://cacontology.projectvic.org/multi-jurisdiction#ParticipatingAgency",
+      "https://cacontology.projectvic.org/multi-jurisdiction#TaskForceLeader",
+      "https://cacontology.projectvic.org/partnerships#AcademicPartner",
+      "https://cacontology.projectvic.org/partnerships#CivilSocietyPartner",
+      "https://cacontology.projectvic.org/partnerships#LawEnforcementPartner",
+      "https://cacontology.projectvic.org/partnerships#NGOPartner",
+      "https://cacontology.projectvic.org/partnerships#PartnerRole",
+      "https://cacontology.projectvic.org/partnerships#TechnologyPartner",
+      "https://cacontology.projectvic.org/physical#EvidenceCustodianRole",
+      "https://cacontology.projectvic.org/physical#ForensicAnalystRole",
+      "https://cacontology.projectvic.org/physical#SearchOfficerRole",
+      "https://cacontology.projectvic.org/production#Producer",
+      "https://cacontology.projectvic.org/production#ProductionFacilitator",
+      "https://cacontology.projectvic.org/production#ProductionVictim",
+      "https://cacontology.projectvic.org/specialized-units#AnalystRole",
+      "https://cacontology.projectvic.org/specialized-units#K9Officer",
+      "https://cacontology.projectvic.org/specialized-units#SpecializedOperatorRole",
+      "https://cacontology.projectvic.org/specialized-units#TechnicalSpecialistRole",
+      "https://cacontology.projectvic.org/specialized-units#UnitCommanderRole",
+      "https://cacontology.projectvic.org/taskforce#TaskForceAnalyst",
+      "https://cacontology.projectvic.org/taskforce#TaskForceCommander",
+      "https://cacontology.projectvic.org/taskforce#TaskForceCoordinator",
+      "https://cacontology.projectvic.org/taskforce#TaskForceForensicExaminer",
+      "https://cacontology.projectvic.org/taskforce#TaskForceInvestigator",
+      "https://cacontology.projectvic.org/taskforce#TaskForceMember",
+      "https://cacontology.projectvic.org/trafficking#AdultTraffickingVictimRole",
+      "https://cacontology.projectvic.org/trafficking#AssociateTraffickerRole",
+      "https://cacontology.projectvic.org/trafficking#FinancialFacilitatorRole",
+      "https://cacontology.projectvic.org/trafficking#MinorTraffickingVictimRole",
+      "https://cacontology.projectvic.org/trafficking#PrimaryTraffickerRole",
+      "https://cacontology.projectvic.org/trafficking#RecruitmentFacilitatorRole",
+      "https://cacontology.projectvic.org/trafficking#TraffickerRole",
+      "https://cacontology.projectvic.org/trafficking#TraffickingVictimRole",
+      "https://cacontology.projectvic.org/trafficking#TransportationFacilitatorRole",
+      "https://cacontology.projectvic.org/training#CertifiedProfessional",
+      "https://cacontology.projectvic.org/training#InternationalTrainer",
+      "https://cacontology.projectvic.org/training#SubjectMatterExpert",
+      "https://cacontology.projectvic.org/training#TrainingCoordinator",
+      "https://cacontology.projectvic.org/training#TrainingParticipant",
+      "https://cacontology.projectvic.org/undercover#OperationHandler",
+      "https://cacontology.projectvic.org/undercover#TechnicalSupport",
+      "https://cacontology.projectvic.org/undercover#UndercoverAgent",
+      "https://cacontology.projectvic.org/usa-federal-law#CEOSAttorneyRole",
+      "https://cacontology.projectvic.org/usa-federal-law#FederalDefendantRole",
+      "https://cacontology.projectvic.org/usa-federal-law#FederalInvestigatorRole",
+      "https://cacontology.projectvic.org/usa-federal-law#FederalProsecutorRole",
+      "https://cacontology.projectvic.org/usa-federal-law#FederalVictimRole",
+      "https://cacontology.projectvic.org/victim-impact#TherapistRole",
+      "https://cacontology.projectvic.org/victim-impact#TherapyParticipant",
+      "https://cacontology.projectvic.org/victim-impact#TraumatizedVictim",
+      "https://cacontology.projectvic.org/victim-impact#VictimAdvocateRole",
+      "https://cacontology.projectvic.org/victim-impact#VictimInRecovery"
+    ],
+    "META002_OPERATIONAL_PHASE_AS_GUFO_CLASSIFIER": [
+      "https://cacontology.projectvic.org#AnalysisPhase",
+      "https://cacontology.projectvic.org#ConclusionPhase",
+      "https://cacontology.projectvic.org#EvidencePhase",
+      "https://cacontology.projectvic.org#InitialPhase",
+      "https://cacontology.projectvic.org#LegalProcessPhase",
+      "https://cacontology.projectvic.org#VictimPhase",
+      "https://cacontology.projectvic.org/custodial#ActiveCustodyPhase",
+      "https://cacontology.projectvic.org/custodial#EmergencyCustody",
+      "https://cacontology.projectvic.org/custodial#ProbationaryCustodyPhase",
+      "https://cacontology.projectvic.org/custodial#SuspendedCustodyPhase",
+      "https://cacontology.projectvic.org/custodial#TemporaryCustody",
+      "https://cacontology.projectvic.org/custodial#TerminatedCustodyPhase",
+      "https://cacontology.projectvic.org/extremist-enterprises#MembershipTier",
+      "https://cacontology.projectvic.org/infrastructure#InfrastructureDecommissionPhase",
+      "https://cacontology.projectvic.org/infrastructure#InfrastructureDeploymentPhase",
+      "https://cacontology.projectvic.org/infrastructure#InfrastructureMaintenancePhase",
+      "https://cacontology.projectvic.org/infrastructure#InfrastructureOperationalPhase",
+      "https://cacontology.projectvic.org/production#ActiveProductionPhase",
+      "https://cacontology.projectvic.org/production#ProductionDistributionPhase",
+      "https://cacontology.projectvic.org/production#ProductionPreparationPhase",
+      "https://cacontology.projectvic.org/temporal#CompletedPhase",
+      "https://cacontology.projectvic.org/temporal#ResolutionPhase",
+      "https://cacontology.projectvic.org/usa-federal-law#PostConvictionPhase",
+      "https://cacontology.projectvic.org/usa-federal-law#PreTrialPhase",
+      "https://cacontology.projectvic.org/usa-federal-law#SentencingPhase",
+      "https://cacontology.projectvic.org/usa-federal-law#TrialPhase",
+      "https://cacontology.projectvic.org/usa-legislative#LegislativeStage"
+    ],
+    "META003_ENDURING_PHASE_OVERLAP": [
+      "https://cacontology.projectvic.org/custodial#ActiveCustodyPhase",
+      "https://cacontology.projectvic.org/custodial#EmergencyCustody",
+      "https://cacontology.projectvic.org/custodial#ProbationaryCustodyPhase",
+      "https://cacontology.projectvic.org/custodial#SuspendedCustodyPhase",
+      "https://cacontology.projectvic.org/custodial#TemporaryCustody",
+      "https://cacontology.projectvic.org/custodial#TerminatedCustodyPhase"
+    ],
+    "META004_CORE_ROLE_SUBCLASSES_GUFO_ROLE": [
+      "http://purl.org/nemo/gufo#Role"
+    ],
+    "META005_CORE_PHASE_SUBCLASSES_GUFO_PHASE": [
+      "http://purl.org/nemo/gufo#Phase"
+    ],
+    "META006_ROLE_ASSIGNMENT_INSTANCE_AS_GUFO_CLASSIFIER": [],
+    "META007_PHASE_OCCURRENCE_AS_GUFO_CLASSIFIER": [],
+    "META008_OPERATIONAL_ROLE_ENDURING_OVERLAP": [],
+    "META009_OPERATIONAL_ROLE_PHASE_OVERLAP": [],
+    "META010_OPERATIONAL_PHASE_EVENT_OVERLAP": [
+      "https://cacontology.projectvic.org/production#ActiveProductionPhase",
+      "https://cacontology.projectvic.org/production#ProductionDistributionPhase",
+      "https://cacontology.projectvic.org/production#ProductionPreparationPhase",
+      "https://cacontology.projectvic.org/usa-federal-law#PostConvictionPhase",
+      "https://cacontology.projectvic.org/usa-federal-law#PreTrialPhase",
+      "https://cacontology.projectvic.org/usa-federal-law#SentencingPhase",
+      "https://cacontology.projectvic.org/usa-federal-law#TrialPhase"
+    ],
+    "META011_GUFO_ROLE_CLASSIFIER_WITHOUT_ENDURING_BEARER_BRANCH": [
+      "https://cacontology.projectvic.org/custodial#AuthorityFigure",
+      "https://cacontology.projectvic.org/custodial#Babysitter",
+      "https://cacontology.projectvic.org/custodial#ChildcareProvider",
+      "https://cacontology.projectvic.org/custodial#Coach",
+      "https://cacontology.projectvic.org/custodial#FamilyFriend",
+      "https://cacontology.projectvic.org/custodial#Guardian",
+      "https://cacontology.projectvic.org/custodial#Mentor",
+      "https://cacontology.projectvic.org/custodial#PositionOfTrust",
+      "https://cacontology.projectvic.org/custodial#Relative",
+      "https://cacontology.projectvic.org/custodial#Teacher",
+      "https://cacontology.projectvic.org/detection#ContentAnalystRole",
+      "https://cacontology.projectvic.org/detection#HashAnalystRole",
+      "https://cacontology.projectvic.org/detection#MachineLearningSpecialistRole",
+      "https://cacontology.projectvic.org/detection#QualityAssuranceAnalystRole",
+      "https://cacontology.projectvic.org/extremist-enterprises#ContentProducerRole",
+      "https://cacontology.projectvic.org/extremist-enterprises#CoordinatorRole",
+      "https://cacontology.projectvic.org/extremist-enterprises#EnterpriseLeaderRole",
+      "https://cacontology.projectvic.org/extremist-enterprises#EnterpriseRole",
+      "https://cacontology.projectvic.org/extremist-enterprises#InnerCoreMemberRole",
+      "https://cacontology.projectvic.org/extremist-enterprises#RecruitmentSpecialistRole",
+      "https://cacontology.projectvic.org/forensics#EvidenceCustodianRole",
+      "https://cacontology.projectvic.org/forensics#ForensicExaminerRole",
+      "https://cacontology.projectvic.org/forensics#VictimIdentificationSpecialist",
+      "https://cacontology.projectvic.org/grooming#ChildVictim",
+      "https://cacontology.projectvic.org/grooming#OnlinePredator",
+      "https://cacontology.projectvic.org/infrastructure#AnalystRole",
+      "https://cacontology.projectvic.org/infrastructure#SecurityOperatorRole",
+      "https://cacontology.projectvic.org/infrastructure#SystemAdministratorRole",
+      "https://cacontology.projectvic.org/infrastructure#TakedownOperatorRole",
+      "https://cacontology.projectvic.org/institutional-exploitation#CareProviderRole",
+      "https://cacontology.projectvic.org/institutional-exploitation#CharitableOrganizationLeader",
+      "https://cacontology.projectvic.org/institutional-exploitation#InstitutionalFounder",
+      "https://cacontology.projectvic.org/institutional-exploitation#OrphanageDirector",
+      "https://cacontology.projectvic.org/institutional-exploitation#TrustedAdultRole",
+      "https://cacontology.projectvic.org/investigation-coordination#IntelligenceLiaison",
+      "https://cacontology.projectvic.org/investigation-coordination#LegalLiaison",
+      "https://cacontology.projectvic.org/investigation-coordination#LiaisonOfficer",
+      "https://cacontology.projectvic.org/investigation-coordination#OperationalLiaison",
+      "https://cacontology.projectvic.org/investigation-coordination#PrimaryLiaison",
+      "https://cacontology.projectvic.org/investigation-coordination#SecondaryLiaison",
+      "https://cacontology.projectvic.org/investigation-coordination#TechnicalLiaison",
+      "https://cacontology.projectvic.org/law-enforcement-corruption#CorruptArmyReservist",
+      "https://cacontology.projectvic.org/law-enforcement-corruption#CorruptLawEnforcementOfficer",
+      "https://cacontology.projectvic.org/law-enforcement-corruption#CorruptMetropolitanPoliceDepartmentOfficer",
+      "https://cacontology.projectvic.org/law-enforcement-corruption#CorruptStateTrooper",
+      "https://cacontology.projectvic.org/law-enforcement-corruption#FormerLawEnforcementOfficer",
+      "https://cacontology.projectvic.org/legal-outcomes#DefendantRole",
+      "https://cacontology.projectvic.org/legal-outcomes#DefenseAttorneyRole",
+      "https://cacontology.projectvic.org/legal-outcomes#JudgeRole",
+      "https://cacontology.projectvic.org/legal-outcomes#JuryRole",
+      "https://cacontology.projectvic.org/legal-outcomes#ProbationOfficerRole",
+      "https://cacontology.projectvic.org/legal-outcomes#ProsecutorRole",
+      "https://cacontology.projectvic.org/legal-outcomes#VictimRole",
+      "https://cacontology.projectvic.org/multi-jurisdiction#CoordinatingAgent",
+      "https://cacontology.projectvic.org/multi-jurisdiction#LeadAgency",
+      "https://cacontology.projectvic.org/multi-jurisdiction#LiaisonOfficer",
+      "https://cacontology.projectvic.org/multi-jurisdiction#ParticipatingAgency",
+      "https://cacontology.projectvic.org/multi-jurisdiction#TaskForceLeader",
+      "https://cacontology.projectvic.org/partnerships#AcademicPartner",
+      "https://cacontology.projectvic.org/partnerships#CivilSocietyPartner",
+      "https://cacontology.projectvic.org/partnerships#LawEnforcementPartner",
+      "https://cacontology.projectvic.org/partnerships#NGOPartner",
+      "https://cacontology.projectvic.org/partnerships#PartnerRole",
+      "https://cacontology.projectvic.org/partnerships#TechnologyPartner",
+      "https://cacontology.projectvic.org/physical#EvidenceCustodianRole",
+      "https://cacontology.projectvic.org/physical#ForensicAnalystRole",
+      "https://cacontology.projectvic.org/physical#SearchOfficerRole",
+      "https://cacontology.projectvic.org/production#Producer",
+      "https://cacontology.projectvic.org/production#ProductionFacilitator",
+      "https://cacontology.projectvic.org/production#ProductionVictim",
+      "https://cacontology.projectvic.org/specialized-units#AnalystRole",
+      "https://cacontology.projectvic.org/specialized-units#K9Officer",
+      "https://cacontology.projectvic.org/specialized-units#SpecializedOperatorRole",
+      "https://cacontology.projectvic.org/specialized-units#TechnicalSpecialistRole",
+      "https://cacontology.projectvic.org/specialized-units#UnitCommanderRole",
+      "https://cacontology.projectvic.org/taskforce#TaskForceAnalyst",
+      "https://cacontology.projectvic.org/taskforce#TaskForceCommander",
+      "https://cacontology.projectvic.org/taskforce#TaskForceCoordinator",
+      "https://cacontology.projectvic.org/taskforce#TaskForceForensicExaminer",
+      "https://cacontology.projectvic.org/taskforce#TaskForceInvestigator",
+      "https://cacontology.projectvic.org/taskforce#TaskForceMember",
+      "https://cacontology.projectvic.org/trafficking#AdultTraffickingVictimRole",
+      "https://cacontology.projectvic.org/trafficking#AssociateTraffickerRole",
+      "https://cacontology.projectvic.org/trafficking#FinancialFacilitatorRole",
+      "https://cacontology.projectvic.org/trafficking#MinorTraffickingVictimRole",
+      "https://cacontology.projectvic.org/trafficking#PrimaryTraffickerRole",
+      "https://cacontology.projectvic.org/trafficking#RecruitmentFacilitatorRole",
+      "https://cacontology.projectvic.org/trafficking#TraffickerRole",
+      "https://cacontology.projectvic.org/trafficking#TraffickingVictimRole",
+      "https://cacontology.projectvic.org/trafficking#TransportationFacilitatorRole",
+      "https://cacontology.projectvic.org/training#CertifiedProfessional",
+      "https://cacontology.projectvic.org/training#InternationalTrainer",
+      "https://cacontology.projectvic.org/training#SubjectMatterExpert",
+      "https://cacontology.projectvic.org/training#TrainingCoordinator",
+      "https://cacontology.projectvic.org/training#TrainingParticipant",
+      "https://cacontology.projectvic.org/undercover#OperationHandler",
+      "https://cacontology.projectvic.org/undercover#TechnicalSupport",
+      "https://cacontology.projectvic.org/undercover#UndercoverAgent",
+      "https://cacontology.projectvic.org/usa-federal-law#CEOSAttorneyRole",
+      "https://cacontology.projectvic.org/usa-federal-law#FederalDefendantRole",
+      "https://cacontology.projectvic.org/usa-federal-law#FederalInvestigatorRole",
+      "https://cacontology.projectvic.org/usa-federal-law#FederalProsecutorRole",
+      "https://cacontology.projectvic.org/usa-federal-law#FederalVictimRole",
+      "https://cacontology.projectvic.org/victim-impact#TherapistRole",
+      "https://cacontology.projectvic.org/victim-impact#TherapyParticipant",
+      "https://cacontology.projectvic.org/victim-impact#TraumatizedVictim",
+      "https://cacontology.projectvic.org/victim-impact#VictimAdvocateRole",
+      "https://cacontology.projectvic.org/victim-impact#VictimInRecovery"
+    ]
+  },
+  "generated_at": "2026-08-16T05:13:06.095271+00:00",
+  "inference": "asserted",
+  "inputs": [
+    {
+      "bytes": 31172,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-ai-csam.ttl",
+      "sha256": "8825e507f77095a5166d310fe2c533edb18bd7035f588fcaea767348e6d6d80e"
+    },
+    {
+      "bytes": 6810,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-analyst-wellbeing.ttl",
+      "sha256": "5544603774581865129981642bbc245261ab8e4f85ca9ba847d752f8436d8427"
+    },
+    {
+      "bytes": 30813,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-asset-forfeiture.ttl",
+      "sha256": "01aa2f776546faa194fea8fce313120914685524b19623685e57f0badcb18daa"
+    },
+    {
+      "bytes": 33536,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-athletic-exploitation.ttl",
+      "sha256": "305734ceada252ff9e2a002dbb97f8e5587f5035e46044b957887373a7ec616c"
+    },
+    {
+      "bytes": 2585,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-bridge-case.ttl",
+      "sha256": "0b5d3c209b6c063dd06f726c11987768e7175f73500006984495f11beb2438b3"
+    },
+    {
+      "bytes": 5060,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-bridge-gufo.ttl",
+      "sha256": "5f5821a9045e51997b8954b9453ffe1d5bd0528cea7d278fce27169943d7d2b0"
+    },
+    {
+      "bytes": 3186,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-bridge-uco.ttl",
+      "sha256": "4240ea2e91f4c2e1416900ec497d8817f84d47ec3cc46428d710d24584a6d7c2"
+    },
+    {
+      "bytes": 53333,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-case-management.ttl",
+      "sha256": "97471bff0e71fc467512ea19775ef459814270813db9ca451d70945776c9e752"
+    },
+    {
+      "bytes": 17097,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-core-spine.ttl",
+      "sha256": "ae883639f567d3ee7adb7d789a7df01f6f28890f06096fad6053d5625ea0960f"
+    },
+    {
+      "bytes": 27158,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-core.ttl",
+      "sha256": "63b9e7ea4e941ef2c227c1657813c132737292e7d2726390b0a4ee3914b20d50"
+    },
+    {
+      "bytes": 32366,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-custodial.ttl",
+      "sha256": "0b4dea9b6b142326ee369e81c2407c44fe954c8baaec94bf95275175832650ac"
+    },
+    {
+      "bytes": 28445,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-detection.ttl",
+      "sha256": "f2c55e546722a1dce895e54e65f7489e04a3c820324d17162fc54bedc56ac6e8"
+    },
+    {
+      "bytes": 52322,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-educational-exploitation.ttl",
+      "sha256": "bd14e07f61adb9d0672a81a11402a17d09bad0c787e6c0c710cf3067a4d38964"
+    },
+    {
+      "bytes": 47587,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-extremist-enterprises.ttl",
+      "sha256": "98d01d4f2ab9438dcd7d5bc9b3558b3c4b089ba59ee058d3115419d45b9b9882"
+    },
+    {
+      "bytes": 58412,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-forensics.ttl",
+      "sha256": "24b5a51087be6126cea8b695bd7aff117f834a6b190ca6b54604332d35f8e07c"
+    },
+    {
+      "bytes": 62472,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-grooming.ttl",
+      "sha256": "6e48f827881dc2180799c9e3b09ebb5bc38b7c841a792de7d2cdc4a2f24ef8f6"
+    },
+    {
+      "bytes": 21310,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-hotlines.ttl",
+      "sha256": "4e14dc3fd093150958daf3ac3da3182a4b9e103275539662be808b4df0c43b49"
+    },
+    {
+      "bytes": 45105,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-institutional-exploitation.ttl",
+      "sha256": "ba9a8d947ebe4b494d2f1f19a8e9e77d8349a077bf51c91572fffc8d1674b0b5"
+    },
+    {
+      "bytes": 24745,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-integration-patterns.ttl",
+      "sha256": "892471ae40a75f9c4ecd9e54757fb349f348ce6dd8f4f00a18427bbbfba04974"
+    },
+    {
+      "bytes": 54514,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-international.ttl",
+      "sha256": "41ec03dbbb9073ba6ebb3616eeacab3f29be063c8512bec9cf08bd63ddce34f6"
+    },
+    {
+      "bytes": 56682,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-investigation-coordination.ttl",
+      "sha256": "b7fd9cca9123d3ba602f70b7d5d96ea76828c8f51ebda2f4d3f12253ad11379c"
+    },
+    {
+      "bytes": 27314,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-law-enforcement-corruption.ttl",
+      "sha256": "eaf148338def17ab82b3f9773cb8b0bfd1b55051fbcf8438a483cfa4d901a768"
+    },
+    {
+      "bytes": 55315,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-legal-harmonization.ttl",
+      "sha256": "8fb6df206874c0a08a3d713bcc57c9ce65ef3814fc6bab9bf4f1a78e50e7ed62"
+    },
+    {
+      "bytes": 62276,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-legal-outcomes.ttl",
+      "sha256": "d4f3f71b1bf0a1b80c7fb41cbc9231a003cc3f2564ac19347eacd709c90f2fe4"
+    },
+    {
+      "bytes": 62786,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-multi-jurisdiction.ttl",
+      "sha256": "567609627f4c25f75d0c3077ef9f02d84a0169ea345ba65799ec52cef260b3c5"
+    },
+    {
+      "bytes": 25684,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-partnerships.ttl",
+      "sha256": "5a899d8d092326127e428835f9d0e345aa2515607d2e6abf670d677480de1dd4"
+    },
+    {
+      "bytes": 45751,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-physical-evidence.ttl",
+      "sha256": "7a3925de7d46eb6a921c90f700967c0ee62a7db5a96330e516cb40f56fe85368"
+    },
+    {
+      "bytes": 38203,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-platform-infrastructure.ttl",
+      "sha256": "beb8409536f7e510fc6ee149169f7ffad2cdadd861d85f85574c643dd44c0d51"
+    },
+    {
+      "bytes": 60556,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-platforms.ttl",
+      "sha256": "f38df3371ed685ad7761a714fa40c727701761c674d8cd158ad5b2defaeadfc4"
+    },
+    {
+      "bytes": 54535,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-prevention.ttl",
+      "sha256": "57a90fd146497c5163bfe51803a4d4144dd8281c47f9044f90ae51a5f4c592f5"
+    },
+    {
+      "bytes": 28774,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-production.ttl",
+      "sha256": "0e179e4f89d7cf22c4f60fd71f50a9df103d71cfcb4f6d90b10f8925b9037eed"
+    },
+    {
+      "bytes": 22549,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-recantation.ttl",
+      "sha256": "09119f2ae52ac6a6a53d10f6580ec66f20dcde35c69eae5566987ec5adbf4d86"
+    },
+    {
+      "bytes": 23326,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-recruitment-networks.ttl",
+      "sha256": "2baa7f42a2e4879acad09425c2c638a137a72057f3f9000391b110c3365ec3e5"
+    },
+    {
+      "bytes": 4981,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-sadistic-online-exploitation.ttl",
+      "sha256": "9a916c39a7b8d57fe396143668065fc2d3f7a0277776c9cb7847e2c98bcc14c3"
+    },
+    {
+      "bytes": 40555,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-sex-offender-registry.ttl",
+      "sha256": "fb9dd5ca99b30c5770ad4516df7fa401e19eb7e2220c638d596981edc45f0d63"
+    },
+    {
+      "bytes": 23929,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-sex-trafficking.ttl",
+      "sha256": "7957cea450b02be2e85f17eba8f81f39246f541b32ba295be7116a562466f998"
+    },
+    {
+      "bytes": 33954,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-sextortion.ttl",
+      "sha256": "b7e3da586a1acac6967bbf3fb66997b245a335789f1f954892318394b00b0c5b"
+    },
+    {
+      "bytes": 20954,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-specialized-units.ttl",
+      "sha256": "d8274bab2d0882a7067d3b16890b24f2222dbbb0eba38e98e1aa6ea631a114ce"
+    },
+    {
+      "bytes": 36758,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-stranger-abduction.ttl",
+      "sha256": "2347d239be549fbdc328d00d881a718e2792b776e5a746e8c94b62dc2d30c044"
+    },
+    {
+      "bytes": 36985,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-street-recruitment.ttl",
+      "sha256": "15119dc51d5bb238ebc1981097948298f76a18e51b140702590d50968001b61a"
+    },
+    {
+      "bytes": 17846,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-synthesis.ttl",
+      "sha256": "bcb74be5195be048fef57544bf0388a04b626d797540782f693e122726fa2038"
+    },
+    {
+      "bytes": 26912,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-tactical.ttl",
+      "sha256": "587bfe15bd2a607c7a0be7ed9d172b5b82e6418dac7510d08d3b82c05332b3aa"
+    },
+    {
+      "bytes": 57176,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-taskforce.ttl",
+      "sha256": "8fe51bd6ad501186b9238e9f64e169a2a9fa8f9f40b87d5eee92189557251d0f"
+    },
+    {
+      "bytes": 23591,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-temporal.ttl",
+      "sha256": "7caab0cac5efe4c7232fb4c1be950f715a45308cfcba0f1984a0acff1c1d98e0"
+    },
+    {
+      "bytes": 27733,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-training.ttl",
+      "sha256": "bada65f457693238be32a9cde1e654111f7d027c3a99aebb8c9bf87bb03f2e24"
+    },
+    {
+      "bytes": 53390,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-undercover.ttl",
+      "sha256": "92cea056700797ecccce7736016b77b10068ee8fb7aff5b1fc26bd6d188da1de"
+    },
+    {
+      "bytes": 25558,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-us-ncmec.ttl",
+      "sha256": "44bb4c8774e0aa6bcbbc7d9e146e8000edab3bbfa05ca1c88918bea3d8524a0b"
+    },
+    {
+      "bytes": 35727,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-usa-federal-law.ttl",
+      "sha256": "78f00a3aec77696ba18621a13dd89883954560d76b4ce881876de999959cf4bc"
+    },
+    {
+      "bytes": 22560,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-usa-legislative.ttl",
+      "sha256": "c51f81a2d4bb5a4ef13b148a1fe79d2a9acceaa75f5a6493466ea13f36311edd"
+    },
+    {
+      "bytes": 53012,
+      "path": "git:93de063951b758dd68a27611638c177fcf910eab:ontology/cacontology-victim-impact.ttl",
+      "sha256": "3c1d05edb6c48311c3be6eec532ce4c3c380a41a4613c292d50282b3c1991715"
+    },
+    {
+      "bytes": 11980,
+      "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/ontology/uco-gufo.ttl",
+      "sha256": "af8c803646d59e22402abbc613257572b63219cd6725f8d49b10dd9ad4b38c64"
+    }
+  ],
+  "runtime": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.13",
+    "rdflib": "7.6.0"
+  },
+  "schema_version": 1,
+  "scope": "CAC architecture diagnostics with optional RDFS closure. C2/C4 include the exact pinned profile ontology but do not follow its imports; this is not an OWL 2 DL consistency result.",
+  "sensitive_data": "Synthetic fixtures only; no real sensitive case data.",
+  "source": {
+    "branch": "proposal/issue-44-v4-foundational-architecture",
+    "commit": "41cc0049cf0304681801582d0e5ae1e2755ada12",
+    "dirty": true,
+    "tree": "473a15f5b9e1c453ecc1d8c5cbb7ab731561616d"
+  },
+  "status": "fail"
+}

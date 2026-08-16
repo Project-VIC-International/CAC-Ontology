@@ -1,0 +1,5 @@
+@prefix ex: <https://example.org/cac-v4/phone-trace/> .
+@prefix cacontology-us-ncmec: <https://cacontology.projectvic.org/us/ncmec#> .
+
+ex:trace-negative a cacontology-us-ncmec:PhoneNumberTrace ;
+    cacontology-us-ncmec:tracedToPhone "+1-202-555-0199" .

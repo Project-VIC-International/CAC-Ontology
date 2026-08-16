@@ -20,7 +20,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity/1.5.0> ,
@@ -317,19 +317,19 @@ cacontology-platforms:platformDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "platform duration"@en ;
     rdfs:comment "Duration of platform operation from launch to shutdown."@en ;
     rdfs:domain cacontology-platforms:ElectronicServiceProvider ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-platforms:phaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "phase duration"@en ;
     rdfs:comment "Duration of platform phase."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-platforms:actionDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "action duration"@en ;
     rdfs:comment "Duration of platform action."@en ;
     rdfs:domain cacontology-platforms:ContentModerationAction ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 # =============================================================================
 # PLATFORM PROPERTIES
@@ -784,12 +784,12 @@ cacontology-platforms:AnonymousChatPlatform rdf:type owl:Class ;
 cacontology-platforms:GuestChatFeature rdf:type owl:Class ;
     rdfs:label "Guest Chat Feature"@en ;
     rdfs:comment "Platform feature allowing users to chat without creating accounts or verifying identity."@en ;
-    rdfs:subClassOf uco-observable:DigitalServiceFeature .
+    rdfs:subClassOf uco-observable:OnlineServiceFacet .
 
 cacontology-platforms:TemporaryAccountSystem rdf:type owl:Class ;
     rdfs:label "Temporary Account System"@en ;
     rdfs:comment "System allowing creation of temporary accounts with minimal verification requirements."@en ;
-    rdfs:subClassOf uco-observable:DigitalServiceFeature .
+    rdfs:subClassOf uco-observable:OnlineService .
 
 cacontology-platforms:MinimalVerificationRequirement rdf:type owl:Class ;
     rdfs:label "Minimal Verification Requirement"@en ;
@@ -1006,13 +1006,13 @@ cacontology-platforms:fromPlatform rdf:type owl:ObjectProperty ;
     rdfs:label "from platform"@en ;
     rdfs:comment "Originating platform from which the offender migrated contact."@en ;
     rdfs:domain cacontology-platforms:ChannelMigrationEvent ;
-    rdfs:range uco-observable:DigitalService .
+    rdfs:range uco-observable:OnlineService .
 
 cacontology-platforms:toPlatform rdf:type owl:ObjectProperty ;
     rdfs:label "to platform"@en ;
     rdfs:comment "Destination platform to which contact was migrated."@en ;
     rdfs:domain cacontology-platforms:ChannelMigrationEvent ;
-    rdfs:range uco-observable:DigitalService .
+    rdfs:range uco-observable:OnlineService .
 
 cacontology-platforms:migrationRationale rdf:type owl:DatatypeProperty ;
     rdfs:label "migration rationale"@en ;
@@ -1057,10 +1057,10 @@ cacontology-platforms:platform rdf:type owl:ObjectProperty ;
     rdfs:label "platform"@en ;
     rdfs:comment "Optional platform instance that carried the misused affordance."@en ;
     rdfs:domain cacontology-platforms:AffordanceMisuse ;
-    rdfs:range uco-observable:DigitalService .
+    rdfs:range uco-observable:OnlineService .
 
 cacontology-platforms:misuseDescription rdf:type owl:DatatypeProperty ;
     rdfs:label "misuse description"@en ;
     rdfs:comment "Narrative description of how the affordance was misused to enable the phase transition."@en ;
     rdfs:domain cacontology-platforms:AffordanceMisuse ;
-    rdfs:range xsd:string . 
+    rdfs:range xsd:string .

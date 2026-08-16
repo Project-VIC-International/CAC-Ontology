@@ -8,6 +8,7 @@
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-us-ncmec: <https://cacontology.projectvic.org/us/ncmec#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
@@ -17,7 +18,7 @@
     owl:versionIRI <https://cacontology.projectvic.org/us/ncmec/shapes/3.1.0> ;
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/us/ncmec/3.1.0> ,
                 <http://purl.org/nemo/gufo#/1.0.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> .
@@ -281,10 +282,26 @@ cacontology-us-ncmec:PhoneNumberTraceShape rdf:type sh:NodeShape ;
         rdfs:comment "Phone verification status must be from the allowed list."@en     ] ;
     sh:property [
         sh:path cacontology-us-ncmec:tracedToPhone ;
-        sh:class uco-observable:PhoneNumber ;
+        sh:class uco-observable:PhoneAccount ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        rdfs:comment "Phone trace must trace to exactly one phone number."@en     ] .
+        sh:node [
+            sh:property [
+                sh:path uco-core:hasFacet ;
+                sh:qualifiedValueShape [
+                    sh:class uco-observable:PhoneAccountFacet ;
+                    sh:property [
+                        sh:path uco-observable:phoneNumber ;
+                        sh:datatype xsd:string ;
+                        sh:minCount 1 ;
+                        sh:maxCount 1
+                    ]
+                ] ;
+                sh:qualifiedMinCount 1
+            ]
+        ] ;
+        rdfs:comment "Phone trace must trace to exactly one structured phone account with a phone-account facet carrying one lexical phone number."@en
+    ] .
 
 cacontology-us-ncmec:ContentIdentificationShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-us-ncmec:ContentIdentification ;
@@ -292,7 +309,7 @@ cacontology-us-ncmec:ContentIdentificationShape rdf:type sh:NodeShape ;
     rdfs:comment "Validation shape for content identification instances."@en ;
     sh:property [
         sh:path cacontology-us-ncmec:identifiedContent ;
-        sh:class uco-observable:DigitalArtifact ;
+        sh:class cac-core:Artifact ;
         sh:minCount 1 ;
         rdfs:comment "Content identification must identify at least one digital artifact."@en     ] .
 
@@ -328,7 +345,7 @@ cacontology-us-ncmec:PlatformCooperationShape rdf:type sh:NodeShape ;
         rdfs:comment "Data provided must be from the allowed list."@en     ] ;
     sh:property [
         sh:path cacontology-us-ncmec:involvesPlatform ;
-        sh:class uco-observable:DigitalService ;
+        sh:class uco-observable:OnlineService ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         rdfs:comment "Platform cooperation must involve exactly one digital service."@en     ] .
@@ -565,7 +582,7 @@ cacontology-us-ncmec:PlatformCooperationCrossReferenceShape rdf:type sh:NodeShap
                 $this a cacontology-us-ncmec:PlatformCooperation .
                 FILTER NOT EXISTS {
                     $this cacontology-us-ncmec:involvesPlatform ?platform .
-                    ?platform a uco-observable:DigitalService .
+                    ?platform a uco-observable:OnlineService .
                 }
             }
         """     ] .

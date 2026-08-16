@@ -21,7 +21,7 @@
     owl:versionIRI <https://cacontology.projectvic.org/law-enforcement-corruption/shapes/3.1.0> ;
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/law-enforcement-corruption/3.1.0> ,
                 <http://purl.org/nemo/gufo#/1.0.0> ,
                 <http://www.w3.org/ns/shacl#> .
@@ -439,7 +439,7 @@ cacontology-corruption-shapes:OfficerParticipationShape rdf:type sh:NodeShape ;
 cacontology-corruption-shapes:QualifiedCorruptionParticipationShape rdf:type sh:NodeShape ;
     rdfs:label "Qualified Corruption Participation Shape"@en ;
     rdfs:comment "Validates qualified participation relationships in corruption according to gUFO patterns."@en ;
-    sh:targetClass gufo:ParticipationSituation ;
+    sh:targetClass cac-core:QualifiedParticipationSituation ;
     sh:property [
         sh:path cacontology-corruption:concernsCorruptOfficer ;
         sh:class cacontology-corruption:CorruptLawEnforcementOfficer ;
@@ -479,7 +479,7 @@ cacontology-corruption-shapes:HighSeverityCorruptionRule rdf:type sh:NodeShape ;
                 $this cacontology-corruption:hasCorruptionSeverity ?severity .
                 FILTER (?severity IN ("severe", "extreme"))
                 OPTIONAL {
-                    $this cacontology-corruption:isDetectedBy ?detection ;
+                    $this cacontology-corruption:isDetectedBy ?detection .
                     ?detection cacontology-corruption:hasInvestigationComplexity ?complexity .
                     FILTER (?complexity IN ("complex", "highly_complex", "extremely_complex"))
                 }
@@ -559,7 +559,7 @@ cacontology-corruption-shapes:DetectionDifficultyRule rdf:type sh:NodeShape ;
                 $this cacontology-corruption:hasDetectionDifficulty ?difficulty .
                 FILTER (?difficulty IN ("very_difficult", "nearly_impossible"))
                 OPTIONAL {
-                    $this cacontology-corruption:isDetectedBy ?detection ;
+                    $this cacontology-corruption:isDetectedBy ?detection .
                     ?detection cacontology-corruption:hasInvestigationComplexity ?complexity .
                     FILTER (?complexity IN ("highly_complex", "extremely_complex"))
                 }
@@ -656,4 +656,4 @@ cacontology-corruption-shapes:CorruptionDataQualityShape rdf:type sh:NodeShape ;
                 FILTER (!BOUND(?completeness) || !BOUND(?validation))
             }
         """
-    ] . 
+    ] .

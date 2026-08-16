@@ -1,0 +1,12 @@
+PREFIX cac-core: <https://cacontology.projectvic.org/core#>
+
+SELECT ?record ?assignment ?bearer ?classifier ?context
+WHERE {
+  ?record a cac-core:RoleRecord ;
+          cac-core:describesRoleAssignment ?assignment .
+  ?assignment a cac-core:RoleAssignment ;
+              cac-core:roleBearer ?bearer .
+  OPTIONAL { ?assignment cac-core:roleClassifier ?classifier . }
+  OPTIONAL { ?assignment cac-core:roleContext ?context . }
+}
+ORDER BY ?record

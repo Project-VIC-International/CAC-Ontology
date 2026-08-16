@@ -1,0 +1,13 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
+@prefix cac-enterprises: <https://cacontology.projectvic.org/extremist-enterprises#> .
+@prefix ex: <https://example.invalid/v4-test#> .
+
+ex:invalid-tier a cac-enterprises:MembershipTier,
+        cac-enterprises:EnterpriseHierarchy,
+        cac-core:Phase,
+        gufo:Phase ;
+    rdfs:label "Synthetic invalid mixed tier" ;
+    cac-enterprises:membershipLevel "leader" ;
+    cac-enterprises:accessLevel "full" .

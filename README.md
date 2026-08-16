@@ -4,6 +4,8 @@ The CAC Ontology is a family of RDF/OWL vocabularies for representing crimes-aga
 
 The current project release is **CAC v3.1.0**. The semantic spine was introduced in **v3.0.0** and remains the stable CAC-facing hierarchy in v3.1.0. CASE and UCO imports are pinned to **1.5.0**.
 
+> **Draft v4 proposal:** A foundational v4 architecture is under review in issue #44 and is not a published release. See the [proposal architecture](docs/v4-foundational-architecture.md), [v3-to-v4 migration notes](docs/v3-to-v4-migration.md), and [reproducible Gate 4 harness](testing/v4/README.md). The unmodified full-import OWL 2 DL gate remains on HOLD for disclosed upstream/tool-route blockers.
+
 ## What ships in v3.1.0
 
 The repository currently contains:
@@ -83,6 +85,8 @@ Start with the [documentation index](docs/README.md):
 - [Namespaces and prefixes](docs/namespaces-and-prefixes.md)
 - [Product requirements](docs/PRD.md)
 - [Glossary](docs/glossary.md)
+- [Draft v4 foundational architecture](docs/v4-foundational-architecture.md)
+- [Draft v3-to-v4 migration notes](docs/v3-to-v4-migration.md)
 
 For AI-assisted ontology work, read [agent.md](agent.md). It is the authoritative repository-specific agent workflow. Tool builders can also use the [CASE-UCO-SDK and its MCP server](https://github.com/vulnmaster/CASE-UCO-SDK); this README intentionally leaves detailed agent procedure to `agent.md`.
 

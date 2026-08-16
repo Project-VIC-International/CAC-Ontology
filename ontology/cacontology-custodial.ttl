@@ -22,7 +22,7 @@
     owl:versionIRI <https://cacontology.projectvic.org/custodial/3.1.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
@@ -44,7 +44,7 @@ cacontology-custodial:CustodialRelationship rdf:type owl:Class, gufo:Kind ;
     rdfs:comment "Legal or informal relationship involving custody, care, or supervision of a child. Modeled as gUFO Object with Kind typing for rigid identity criteria."@en ;
     rdfs:subClassOf uco-core:Relationship, cac-core:EnduringEntity .
 
-cacontology-custodial:PositionOfTrust rdf:type owl:Class, gufo:Role ;
+cacontology-custodial:PositionOfTrust rdf:type owl:Class ;
     rdfs:label "Position of Trust"@en ;
     rdfs:comment "Role or position that grants special access to or authority over children. Modeled as anti-rigid gUFO Role with temporal participation."@en ;
     rdfs:subClassOf cac-core:Role .
@@ -64,57 +64,57 @@ cacontology-custodial:ProfessionalCareRelationship rdf:type owl:Class, gufo:SubK
     rdfs:comment "Professional relationship involving child care or supervision duties. Modeled as gUFO SubKind with professional obligations."@en ;
     rdfs:subClassOf cacontology-custodial:CustodialRelationship .
 
-cacontology-custodial:TemporaryCustody rdf:type owl:Class, gufo:Phase ;
+cacontology-custodial:TemporaryCustody rdf:type owl:Class ;
     rdfs:label "Temporary Custody"@en ;
-    rdfs:comment "Short-term custody arrangement or supervision of a child. Modeled as anti-rigid gUFO Phase with temporal boundaries."@en ;
-    rdfs:subClassOf cacontology-custodial:CustodialRelationship , cac-core:Phase .
+    rdfs:comment "Short-term custodial relationship or supervision arrangement. Repository instances retain relationship identity, participants, and relationship attributes; this class is not a custody-state occurrence or gUFO Phase classifier."@en ;
+    rdfs:subClassOf cacontology-custodial:CustodialRelationship .
 
 # =============================================================================
 # AUTHORITY FIGURE CLASSES (extending UCO Role with gUFO Roles)
 # =============================================================================
 
 # Base Authority Figure as gUFO Role
-cacontology-custodial:AuthorityFigure rdf:type owl:Class, gufo:Role ;
+cacontology-custodial:AuthorityFigure rdf:type owl:Class ;
     rdfs:label "Authority Figure"@en ;
     rdfs:comment "Individual in position of authority, trust, or power over children. Modeled as anti-rigid gUFO Role with relational foundation."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-custodial:Guardian rdf:type owl:Class, gufo:Role ;
+cacontology-custodial:Guardian rdf:type owl:Class ;
     rdfs:label "Guardian"@en ;
     rdfs:comment "Legal or appointed guardian responsible for child's welfare. Modeled as anti-rigid gUFO Role with legal authority."@en ;
     rdfs:subClassOf cacontology-custodial:AuthorityFigure .
 
-cacontology-custodial:Babysitter rdf:type owl:Class, gufo:Role ;
+cacontology-custodial:Babysitter rdf:type owl:Class ;
     rdfs:label "Babysitter"@en ;
     rdfs:comment "Individual temporarily caring for children in parents' absence. Modeled as anti-rigid gUFO Role with temporary scope."@en ;
     rdfs:subClassOf cacontology-custodial:AuthorityFigure .
 
-cacontology-custodial:Relative rdf:type owl:Class, gufo:Role ;
+cacontology-custodial:Relative rdf:type owl:Class ;
     rdfs:label "Relative"@en ;
     rdfs:comment "Family member in position of trust or authority over child. Modeled as anti-rigid gUFO Role with familial basis."@en ;
     rdfs:subClassOf cacontology-custodial:AuthorityFigure .
 
-cacontology-custodial:Teacher rdf:type owl:Class, gufo:Role ;
+cacontology-custodial:Teacher rdf:type owl:Class ;
     rdfs:label "Teacher"@en ;
     rdfs:comment "Educational professional with authority over students. Modeled as anti-rigid gUFO Role with institutional authority."@en ;
     rdfs:subClassOf cacontology-custodial:AuthorityFigure .
 
-cacontology-custodial:Coach rdf:type owl:Class, gufo:Role ;
+cacontology-custodial:Coach rdf:type owl:Class ;
     rdfs:label "Coach"@en ;
     rdfs:comment "Sports or activity coach with authority over young participants. Modeled as anti-rigid gUFO Role with activity-based authority."@en ;
     rdfs:subClassOf cacontology-custodial:AuthorityFigure .
 
-cacontology-custodial:Mentor rdf:type owl:Class, gufo:Role ;
+cacontology-custodial:Mentor rdf:type owl:Class ;
     rdfs:label "Mentor"@en ;
     rdfs:comment "Adult mentor or role model with trusted relationship with child. Modeled as anti-rigid gUFO Role with developmental basis."@en ;
     rdfs:subClassOf cacontology-custodial:AuthorityFigure .
 
-cacontology-custodial:ChildcareProvider rdf:type owl:Class, gufo:Role ;
+cacontology-custodial:ChildcareProvider rdf:type owl:Class ;
     rdfs:label "Childcare Provider"@en ;
     rdfs:comment "Professional childcare or daycare provider. Modeled as anti-rigid gUFO Role with professional care obligations."@en ;
     rdfs:subClassOf cacontology-custodial:AuthorityFigure .
 
-cacontology-custodial:FamilyFriend rdf:type owl:Class, gufo:Role ;
+cacontology-custodial:FamilyFriend rdf:type owl:Class ;
     rdfs:label "Family Friend"@en ;
     rdfs:comment "Friend of family with trusted access to children. Modeled as anti-rigid gUFO Role with social trust basis."@en ;
     rdfs:subClassOf cacontology-custodial:AuthorityFigure .
@@ -169,10 +169,10 @@ cacontology-custodial:InformalCustody rdf:type owl:Class, gufo:SubKind ;
     rdfs:comment "Informal custody arrangement without legal documentation. Modeled as gUFO SubKind with social agreement basis."@en ;
     rdfs:subClassOf cacontology-custodial:CustodyArrangement .
 
-cacontology-custodial:EmergencyCustody rdf:type owl:Class, gufo:Phase ;
+cacontology-custodial:EmergencyCustody rdf:type owl:Class ;
     rdfs:label "Emergency Custody"@en ;
-    rdfs:comment "Temporary custody arrangement due to emergency circumstances. Modeled as anti-rigid gUFO Phase with crisis response characteristics."@en ;
-    rdfs:subClassOf cacontology-custodial:CustodyArrangement , cac-core:Phase .
+    rdfs:comment "Custody arrangement established because of emergency circumstances. It remains an arrangement type; an operational emergency state requires a distinct state occurrence when evidence calls for one."@en ;
+    rdfs:subClassOf cacontology-custodial:CustodyArrangement .
 
 cacontology-custodial:VisitationArrangement rdf:type owl:Class, gufo:SubKind ;
     rdfs:label "Visitation Arrangement"@en ;
@@ -187,29 +187,33 @@ cacontology-custodial:RestrictedContactArrangement rdf:type owl:Class, gufo:SubK
     rdfs:seeAlso <https://www.coursingjustice.com/> .
 
 # =============================================================================
-# CUSTODIAL PHASES (gUFO Phase Anti-Rigid Modeling)
+# CUSTODY STATE OCCURRENCES
 # =============================================================================
 
-# Custodial Relationship Phases (anti-rigid sortals)
-cacontology-custodial:ActiveCustodyPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-custodial:CustodyState rdf:type owl:Class ;
+    rdfs:label "Custody State"@en ;
+    rdfs:comment "An operational state occurrence in the lifecycle of one custodial relationship. The state is distinct from the relationship that persists through state changes."@en ;
+    rdfs:subClassOf cac-core:Phase .
+
+cacontology-custodial:ActiveCustodyPhase rdf:type owl:Class ;
     rdfs:label "Active Custody Phase"@en ;
-    rdfs:comment "Phase when custodial relationship is actively maintained and operational. Modeled as anti-rigid gUFO Phase."@en ;
-    rdfs:subClassOf cacontology-custodial:CustodialRelationship , cac-core:Phase .
+    rdfs:comment "Operational state occurrence during which a custodial relationship is actively maintained."@en ;
+    rdfs:subClassOf cacontology-custodial:CustodyState .
 
-cacontology-custodial:SuspendedCustodyPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-custodial:SuspendedCustodyPhase rdf:type owl:Class ;
     rdfs:label "Suspended Custody Phase"@en ;
-    rdfs:comment "Phase when custodial relationship is temporarily suspended but not terminated. Modeled as anti-rigid gUFO Phase."@en ;
-    rdfs:subClassOf cacontology-custodial:CustodialRelationship , cac-core:Phase .
+    rdfs:comment "Operational state occurrence during which a custodial relationship is temporarily suspended but not terminated."@en ;
+    rdfs:subClassOf cacontology-custodial:CustodyState .
 
-cacontology-custodial:TerminatedCustodyPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-custodial:TerminatedCustodyPhase rdf:type owl:Class ;
     rdfs:label "Terminated Custody Phase"@en ;
-    rdfs:comment "Phase when custodial relationship has been formally ended. Modeled as anti-rigid gUFO Phase."@en ;
-    rdfs:subClassOf cacontology-custodial:CustodialRelationship , cac-core:Phase .
+    rdfs:comment "Operational state occurrence recording that a custodial relationship has formally ended."@en ;
+    rdfs:subClassOf cacontology-custodial:CustodyState .
 
-cacontology-custodial:ProbationaryCustodyPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-custodial:ProbationaryCustodyPhase rdf:type owl:Class ;
     rdfs:label "Probationary Custody Phase"@en ;
-    rdfs:comment "Phase when custodial relationship is under evaluation or supervision. Modeled as anti-rigid gUFO Phase."@en ;
-    rdfs:subClassOf cacontology-custodial:CustodialRelationship , cac-core:Phase .
+    rdfs:comment "Operational state occurrence during which a custodial relationship is under evaluation or supervision."@en ;
+    rdfs:subClassOf cacontology-custodial:CustodyState .
 
 # =============================================================================
 # CUSTODIAL SITUATIONS (gUFO Situation Modeling)
@@ -458,27 +462,24 @@ cacontology-custodial:checkScope rdf:type owl:DatatypeProperty ;
 # gUFO RELATIONSHIPS (Enhanced Object Properties)
 # =============================================================================
 
-# Participant Relationships (enhanced with gUFO participation patterns)
+# Enduring custodial-association relationships
 cacontology-custodial:involvesCustodian rdf:type owl:ObjectProperty ;
     rdfs:label "involves custodian"@en ;
-    rdfs:comment "Links custodial relationship to the custodian or authority figure. Enhanced with gUFO participation patterns."@en ;
+    rdfs:comment "Links an enduring custodial relationship to its custodian or authority figure. This is not gufo:participatedIn, which relates an object to an event."@en ;
     rdfs:domain cacontology-custodial:CustodialRelationship ;
-    rdfs:range cacontology-custodial:AuthorityFigure ;
-    rdfs:subPropertyOf gufo:participatedIn .
+    rdfs:range cacontology-custodial:AuthorityFigure .
 
 cacontology-custodial:involvesChild rdf:type owl:ObjectProperty ;
     rdfs:label "involves child"@en ;
-    rdfs:comment "Links custodial relationship to the child under care. Enhanced with gUFO participation patterns."@en ;
+    rdfs:comment "Links an enduring custodial relationship to the child under care. This is not gufo:participatedIn, which ranges over events."@en ;
     rdfs:domain cacontology-custodial:CustodialRelationship ;
-    rdfs:range uco-identity:Person ;
-    rdfs:subPropertyOf gufo:participatedIn .
+    rdfs:range uco-identity:Person .
 
 cacontology-custodial:involvesParent rdf:type owl:ObjectProperty ;
     rdfs:label "involves parent"@en ;
-    rdfs:comment "Links custodial arrangement to the parent or legal guardian. Enhanced with gUFO participation patterns."@en ;
+    rdfs:comment "Links a custodial arrangement artifact to the parent or legal guardian it concerns. This is not gufo:participatedIn, which ranges over events."@en ;
     rdfs:domain cacontology-custodial:CustodyArrangement ;
-    rdfs:range uco-identity:Person ;
-    rdfs:subPropertyOf gufo:participatedIn .
+    rdfs:range uco-identity:Person .
 
 # Trust and Authority Relationships (enhanced with gUFO role patterns)
 cacontology-custodial:holdsPositionOf rdf:type owl:ObjectProperty ;
@@ -514,18 +515,17 @@ cacontology-custodial:violatesRelationship rdf:type owl:ObjectProperty ;
 
 cacontology-custodial:perpetratedBy rdf:type owl:ObjectProperty ;
     rdfs:label "perpetrated by"@en ;
-    rdfs:comment "Links trust violation to the authority figure who perpetrated it. Enhanced with gUFO event participation patterns."@en ;
+    rdfs:comment "Links a trust-violation event to the authority figure who participated as perpetrator. Its direction is event-to-object, so it specializes the inverse of gufo:participatedIn."@en ;
     rdfs:domain cacontology-custodial:TrustViolation ;
     rdfs:range cacontology-custodial:AuthorityFigure ;
-    rdfs:subPropertyOf gufo:participatedIn .
+    rdfs:subPropertyOf [ owl:inverseOf gufo:participatedIn ] .
 
 # gUFO Situation Relationships
 cacontology-custodial:occursInCustodialSituation rdf:type owl:ObjectProperty ;
     rdfs:label "occurs in custodial situation"@en ;
-    rdfs:comment "Links custodial event to situation in which it occurs. Enhanced with gUFO situation modeling."@en ;
+    rdfs:comment "Links a custodial event to the situation in which it occurs. This CAC event-to-situation relation is intentionally not aligned to gufo:participatedIn, which relates an object to an event."@en ;
     rdfs:domain cacontology-custodial:TrustViolation ;
-    rdfs:range cac-core:Situation ;
-    rdfs:subPropertyOf gufo:participatedIn .
+    rdfs:range cac-core:Situation .
 
 cacontology-custodial:createsCustodialSituation rdf:type owl:ObjectProperty ;
     rdfs:label "creates custodial situation"@en ;
@@ -534,20 +534,47 @@ cacontology-custodial:createsCustodialSituation rdf:type owl:ObjectProperty ;
     rdfs:range cac-core:Situation ;
     rdfs:subPropertyOf gufo:broughtAbout .
 
-# gUFO Phase Relationships for Custodial Lifecycle
+# Custodial lifecycle state relationships
+cacontology-custodial:hasCustodyState rdf:type owl:ObjectProperty ;
+    rdfs:label "has custody state"@en ;
+    rdfs:comment "Links a custodial relationship to one of its current or historical custody-state occurrences."@en ;
+    rdfs:domain cacontology-custodial:CustodialRelationship ;
+    rdfs:range cacontology-custodial:CustodyState ;
+    rdfs:subPropertyOf cac-core:hasPhase ;
+    owl:inverseOf cacontology-custodial:custodyStateOf .
+
+cacontology-custodial:custodyStateOf rdf:type owl:ObjectProperty ;
+    rdfs:label "custody state of"@en ;
+    rdfs:comment "Links a custody-state occurrence to the custodial relationship whose lifecycle it describes."@en ;
+    rdfs:domain cacontology-custodial:CustodyState ;
+    rdfs:range cacontology-custodial:CustodialRelationship ;
+    rdfs:subPropertyOf cac-core:isPhaseOf ;
+    owl:inverseOf cacontology-custodial:hasCustodyState .
+
+cacontology-custodial:currentCustodyState rdf:type owl:ObjectProperty ;
+    rdfs:label "current custody state"@en ;
+    rdfs:comment "Optionally identifies the custody state asserted to be current. Absence does not imply that the relationship is inactive."@en ;
+    rdfs:domain cacontology-custodial:CustodialRelationship ;
+    rdfs:range cacontology-custodial:CustodyState ;
+    rdfs:subPropertyOf cacontology-custodial:hasCustodyState .
+
 cacontology-custodial:inCustodyPhase rdf:type owl:ObjectProperty ;
     rdfs:label "in custody phase"@en ;
-    rdfs:comment "Links custodial relationship to its current phase. Enhanced with gUFO phase transitions."@en ;
+    rdfs:comment "Legacy relationship-to-state property whose name can be mistaken for the inverse direction. Deprecated in favor of currentCustodyState."@en ;
     rdfs:domain cacontology-custodial:CustodialRelationship ;
-    rdfs:range cac-core:Phase ;
-    rdfs:subPropertyOf cacontology:hasPhase .
+    rdfs:range cacontology-custodial:CustodyState ;
+    rdfs:subPropertyOf cacontology-custodial:currentCustodyState ;
+    owl:deprecated "true"^^xsd:boolean ;
+    dcterms:isReplacedBy cacontology-custodial:currentCustodyState .
 
 cacontology-custodial:hasCustodyPhase rdf:type owl:ObjectProperty ;
     rdfs:label "has custody phase"@en ;
-    rdfs:comment "Links custodial relationship to all phases it has experienced. Enhanced with gUFO phase history."@en ;
+    rdfs:comment "Legacy relationship-to-phase history property. Deprecated in favor of hasCustodyState."@en ;
     rdfs:domain cacontology-custodial:CustodialRelationship ;
-    rdfs:range cac-core:Phase ;
-    rdfs:subPropertyOf cacontology:hasPhase .
+    rdfs:range cacontology-custodial:CustodyState ;
+    rdfs:subPropertyOf cacontology-custodial:hasCustodyState ;
+    owl:deprecated "true"^^xsd:boolean ;
+    dcterms:isReplacedBy cacontology-custodial:hasCustodyState .
 
 # Investigation Relationships (enhanced with gUFO integration)
 cacontology-custodial:relevantToInvestigation rdf:type owl:ObjectProperty ;
@@ -560,4 +587,4 @@ cacontology-custodial:aggravatingFactor rdf:type owl:ObjectProperty ;
     rdfs:label "aggravating factor"@en ;
     rdfs:comment "Links trust violation to criminal offense as aggravating factor. Enhanced with gUFO causal patterns."@en ;
     rdfs:domain cacontology-custodial:TrustViolation ;
-    rdfs:range uco-action:Crime . 
+    rdfs:range cac-core:OffenseEvent .

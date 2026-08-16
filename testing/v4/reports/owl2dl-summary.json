@@ -1,0 +1,149 @@
+{
+  "configurations": {
+    "C3": {
+      "closure_manifest": "testing/v4/reports/c3-owl-closure.json",
+      "diagnostic_projection": {
+        "hermit": {
+          "failure_kind": null,
+          "log": "testing/v4/reports/c3-diagnostic-hermit.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "output_excerpt": "",
+          "reasoned_bytes": 6580649,
+          "reasoned_sha256": "118ea8fd9863ba23069105896a6254401a63ee5c878bc2d161ba034bc2d03f2e",
+          "return_code": 0,
+          "status": "pass"
+        },
+        "manifest": "testing/v4/reports/c3-diagnostic-projection.json",
+        "status": "non-normative-diagnostic-only"
+      },
+      "hermit": {
+        "failure_kind": "reasoner-unsupported-imported-swrl-builtin",
+        "log": "testing/v4/reports/c3-hermit.log",
+        "log_sha256": "7011c2ec6f51a63e4e3c987da0dbb95b1b5d133d951d1a0bcdf98487c44e236f",
+        "output_excerpt": "A SWRL rule uses a built-in atom, but built-in atoms are not supported yet.\nUse the -vvv option to show the stack trace.\nUse the --help option to see usage information.",
+        "return_code": 1,
+        "status": "fail"
+      },
+      "profile": {
+        "failure_kind": "owl2dl-profile-violations",
+        "log": "testing/v4/reports/c3-owl2dl-profile.log",
+        "log_sha256": "9cdb2c443033bdf126f0544fa0afb44fa209c19693e5fd95e6ad522542ddeca0",
+        "output_excerpt": "PROFILE VIOLATION ERROR https://cacontology.projectvic.org/prevention violates profile DL\nFor details see: http://robot.obolibrary.org/validate-profile#profile-violation-error\nUse the -vvv option to show the stack trace.\nUse the --help option to see usage information.",
+        "report": "testing/v4/reports/c3-owl2dl-profile.txt.gz",
+        "report_bytes": 90097,
+        "report_compression": "gzip-mtime-0",
+        "report_sha256": "b834a8cacd18f60cb440fdf9760897b12ae0e5337223439117780a0735895b21",
+        "return_code": 1,
+        "status": "fail",
+        "summary": {
+          "cac_owned_count": 0,
+          "categories": {
+            "Cannot pun between properties": 2,
+            "Use of undeclared annotation property": 5537,
+            "Use of undeclared class": 575,
+            "Use of undeclared datatype": 1,
+            "Use of undeclared object property": 1
+          },
+          "counting_method": "recognized-robot-violation-headers-v2",
+          "shared_or_unattributed_count": 0,
+          "upstream_owned_count": 6116,
+          "violation_count": 6116
+        }
+      },
+      "status": "fail"
+    },
+    "C4": {
+      "closure_manifest": "testing/v4/reports/c4-owl-closure.json",
+      "diagnostic_projection": {
+        "hermit": {
+          "failure_kind": null,
+          "log": "testing/v4/reports/c4-diagnostic-hermit.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "output_excerpt": "",
+          "reasoned_bytes": 6597647,
+          "reasoned_sha256": "8fb3aac28e9057d38c547eb74f53a70e563bc04d906a0c66ec344d122b3813b6",
+          "return_code": 0,
+          "status": "pass"
+        },
+        "manifest": "testing/v4/reports/c4-diagnostic-projection.json",
+        "status": "non-normative-diagnostic-only"
+      },
+      "hermit": {
+        "failure_kind": "owlapi-invalid-rdf-structure",
+        "log": "testing/v4/reports/c4-hermit.log",
+        "log_sha256": "e7ccb7fb47aa734af433c62182569ce8aa4386b8a7ea4ca8302ffc805835d853",
+        "output_excerpt": "value cannot be null at this stage\nUse the -vvv option to show the stack trace.\nUse the --help option to see usage information.",
+        "return_code": 1,
+        "status": "fail"
+      },
+      "profile": {
+        "failure_kind": "owlapi-invalid-rdf-structure",
+        "log": "testing/v4/reports/c4-owl2dl-profile.log",
+        "log_sha256": "e7ccb7fb47aa734af433c62182569ce8aa4386b8a7ea4ca8302ffc805835d853",
+        "output_excerpt": "value cannot be null at this stage\nUse the -vvv option to show the stack trace.\nUse the --help option to see usage information.",
+        "return_code": 1,
+        "status": "fail"
+      },
+      "status": "fail"
+    },
+    "C5": {
+      "closure_manifest": "testing/v4/reports/c5-owl-closure.json",
+      "diagnostic_projection": {
+        "hermit": {
+          "failure_kind": null,
+          "log": "testing/v4/reports/c5-diagnostic-hermit.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "output_excerpt": "",
+          "reasoned_bytes": 6582472,
+          "reasoned_sha256": "9271b59e1e2479e071c85a1d5ad69125a46ebdb737d841e2db573c4ee596f557",
+          "return_code": 0,
+          "status": "pass"
+        },
+        "manifest": "testing/v4/reports/c5-diagnostic-projection.json",
+        "status": "non-normative-diagnostic-only"
+      },
+      "hermit": {
+        "failure_kind": "reasoner-unsupported-imported-swrl-builtin",
+        "log": "testing/v4/reports/c5-hermit.log",
+        "log_sha256": "7011c2ec6f51a63e4e3c987da0dbb95b1b5d133d951d1a0bcdf98487c44e236f",
+        "output_excerpt": "A SWRL rule uses a built-in atom, but built-in atoms are not supported yet.\nUse the -vvv option to show the stack trace.\nUse the --help option to see usage information.",
+        "return_code": 1,
+        "status": "fail"
+      },
+      "profile": {
+        "failure_kind": "owl2dl-profile-violations",
+        "log": "testing/v4/reports/c5-owl2dl-profile.log",
+        "log_sha256": "9cdb2c443033bdf126f0544fa0afb44fa209c19693e5fd95e6ad522542ddeca0",
+        "output_excerpt": "PROFILE VIOLATION ERROR https://cacontology.projectvic.org/prevention violates profile DL\nFor details see: http://robot.obolibrary.org/validate-profile#profile-violation-error\nUse the -vvv option to show the stack trace.\nUse the --help option to see usage information.",
+        "report": "testing/v4/reports/c5-owl2dl-profile.txt.gz",
+        "report_bytes": 90136,
+        "report_compression": "gzip-mtime-0",
+        "report_sha256": "84598a2792d1122cdde99e2995964da99f17180108001f278a019598a95e232b",
+        "return_code": 1,
+        "status": "fail",
+        "summary": {
+          "cac_owned_count": 0,
+          "categories": {
+            "Cannot pun between properties": 2,
+            "Use of undeclared annotation property": 5537,
+            "Use of undeclared class": 575,
+            "Use of undeclared datatype": 1,
+            "Use of undeclared object property": 1
+          },
+          "counting_method": "recognized-robot-violation-headers-v2",
+          "shared_or_unattributed_count": 0,
+          "upstream_owned_count": 6116,
+          "violation_count": 6116
+        }
+      },
+      "status": "fail"
+    }
+  },
+  "generated_at": "2026-08-16T05:11:13.070089+00:00",
+  "runtime": {
+    "java": "openjdk version \"21.0.12\" 2026-07-21 LTS\nOpenJDK Runtime Environment Temurin-21.0.12+8 (build 21.0.12+8-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.12+8 (build 21.0.12+8-LTS, mixed mode, sharing)",
+    "robot": "ROBOT version 1.9.10",
+    "robot_jar_sha256": "16a73c074f3df359a7338a84b4e0788785fe06117f931bb9796e9619ea776105"
+  },
+  "schema_version": 1
+}

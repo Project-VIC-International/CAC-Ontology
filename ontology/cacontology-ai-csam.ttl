@@ -21,7 +21,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-05-23"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
@@ -314,7 +314,7 @@ cacontology-gufo:generationDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "generation duration"@en ;
     rdfs:comment "Duration of AI content generation process using gUFO temporal framework."@en ;
     rdfs:domain cacontology-ai:AIContentGeneration ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 # =============================================================================
 # AI-CSAM PROPERTIES
@@ -535,4 +535,4 @@ cacontology-ai:complicatesVictimIdentification rdf:type owl:ObjectProperty ;
     rdfs:label "complicates victim identification"@en ;
     rdfs:comment "Links AI-generated content to victim identification processes it affects."@en ;
     rdfs:domain cacontology-ai:AIGeneratedCSAM ;
-    rdfs:range uco-action:Action . 
+    rdfs:range uco-action:Action .

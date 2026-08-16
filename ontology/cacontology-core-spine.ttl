@@ -23,12 +23,13 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2026-03-16"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <http://purl.org/nemo/gufo#/1.0.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/action/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/role/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/victim/1.5.0> ,
                 <https://ontology.caseontology.org/case/investigation/1.5.0> .
 
 # =============================================================================
@@ -108,6 +109,12 @@ cac-core:ExploitationEvent a owl:Class ;
     rdfs:subClassOf cac-core:Event ;
     skos:scopeNote "Use when: modeling grooming interactions, abuse incidents, trafficking transfer events, or other exploitation occurrences."@en .
 
+cac-core:OffenseEvent a owl:Class ;
+    rdfs:label "Offense Event"@en ;
+    rdfs:comment "A CAC exploitation event that is also represented as a UCO action. This local interoperability class replaces references to the nonexistent UCO Crime class without asserting that every UCO action is an offense."@en ;
+    rdfs:subClassOf cac-core:ExploitationEvent , uco-action:Action ;
+    skos:scopeNote "Use for an alleged or established offense occurrence. Legal conclusions, charges, statutes, and documentary carriers remain separate entities."@en .
+
 cac-core:DetectionEvent a owl:Class ;
     rdfs:label "Detection Event"@en ;
     rdfs:comment "An event representing the detection, identification, or flagging of content, behavior, or indicators relevant to child exploitation."@en ;
@@ -148,25 +155,43 @@ cac-core:Situation a owl:Class ;
     rdfs:subClassOf cac-core:Entity , gufo:Situation ;
     skos:scopeNote "Use when: the concept is a state rather than an occurrence, holds over some interval, and contextualizes participants or events. Do not use when: the concept is something that happens — use cac-core:Event instead."@en .
 
+cac-core:QualifiedParticipationSituation a owl:Class ;
+    rdfs:label "Qualified Participation Situation"@en ;
+    rdfs:comment "A CAC situation used to qualify an entity's participation, compliance, corruption, or other contextual involvement without claiming that the situation is itself a gUFO Participation event portion."@en ;
+    rdfs:subClassOf cac-core:Situation ;
+    skos:scopeNote "Use when a participation-like relationship needs its own contextual node and properties. Keep the participating entity, the contextual situation, and any event occurrence distinct."@en .
+
 # =============================================================================
 # ROLE BRANCH
 # =============================================================================
 
 cac-core:Role a owl:Class ;
     rdfs:label "Role"@en ;
-    rdfs:comment "A non-rigid role borne by an enduring entity in a certain relational or contextual setting. A bearer can gain or lose a role without ceasing to exist. Aligned to both gUFO Role and UCO Role."@en ;
-    rdfs:subClassOf cac-core:Entity , gufo:Role , uco-role:Role ;
-    skos:scopeNote "Use when: the concept is a context-dependent function or capacity such as victim, offender, guardian, moderator, examiner, or advocate. Do not use when: the concept is a person — use cac-core:PersonLikeEntity for the bearer."@en .
+    rdfs:comment "The operational record branch for documented roles. A Role node records that some enduring entity serves in a context-dependent capacity; it is not itself the enduring bearer or a gUFO non-rigid type classifier."@en ;
+    rdfs:subClassOf cac-core:Entity , uco-role:Role ;
+    skos:scopeNote "Use for role records exchanged with UCO-oriented systems. Connect a canonical record to a cac-core:RoleAssignment, then identify the enduring bearer, optional gUFO classifier, and context on that assignment. Do not type the record or assignment as gufo:Role."@en .
+
+cac-core:RoleRecord a owl:Class ;
+    rdfs:label "Role Record"@en ;
+    rdfs:comment "A canonical UCO-compatible information or operational record that documents one contextual role assignment independently of the bearer and real-world assignment situation."@en ;
+    rdfs:subClassOf cac-core:Role ;
+    skos:scopeNote "Use when authoring new v4 data. Existing domain classes may remain direct subclasses of cac-core:Role until their repository-wide term dispositions are completed."@en .
+
+cac-core:RoleAssignment a owl:Class ;
+    rdfs:label "Role Assignment"@en ;
+    rdfs:comment "A temporally and contextually qualified situation in which an enduring entity instantiates or serves in a role. The assignment is distinct from its record, bearer, and optional non-rigid classifier."@en ;
+    rdfs:subClassOf cac-core:Situation , gufo:TemporaryInstantiationSituation ;
+    skos:scopeNote "Put the real-world role interval and context on this assignment. Record provenance remains on the RoleRecord. A RoleAssignment must never be used as a gufo:Role classifier."@en .
 
 # =============================================================================
 # PHASE BRANCH
 # =============================================================================
 
 cac-core:Phase a owl:Class ;
-    rdfs:label "Phase"@en ;
-    rdfs:comment "A temporal stage of some enduring entity, process, or situation. The bearer remains the same entity while changing phase. Aligned to gUFO Phase."@en ;
-    rdfs:subClassOf cac-core:Entity , gufo:Phase ;
-    skos:scopeNote "Use when: the concept is a lifecycle stage such as grooming phase, escalation phase, active investigation phase, or recovery phase. Do not use when: the concept is an investigation — phases participate in investigations but are not investigations themselves."@en .
+    rdfs:label "Operational Phase or State Occurrence"@en ;
+    rdfs:comment "A distinguishable operational stage or state occurrence that can carry sequence, interval, status, and lifecycle-subject information. It is a situation, not a gUFO non-rigid type classifier."@en ;
+    rdfs:subClassOf cac-core:Situation ;
+    skos:scopeNote "Use for workflow, investigation, relationship, or offense-trajectory state occurrences. Relate the occurrence to its lifecycle subject with cac-core:isPhaseOf. Use a separate owl:Class typed gufo:Phase only when genuine temporary bearer classification is required."@en .
 
 cac-core:ConditioningPhase a owl:Class ;
     rdfs:label "Conditioning Phase"@en ;
@@ -186,16 +211,48 @@ cac-core:conditioningMode a owl:DatatypeProperty ;
 # CORE OBJECT PROPERTIES
 # =============================================================================
 
+cac-core:describesRoleAssignment a owl:ObjectProperty ;
+    rdfs:label "describes role assignment"@en ;
+    rdfs:comment "Links an operational role record to the real-world role assignment situation it documents."@en ;
+    rdfs:domain cac-core:RoleRecord ;
+    rdfs:range cac-core:RoleAssignment .
+
+cac-core:roleBearer a owl:ObjectProperty ;
+    rdfs:label "role bearer"@en ;
+    rdfs:comment "Identifies the enduring entity that bears the role in a RoleAssignment. This direction is assignment-to-bearer; it is intentionally not aligned to gUFO concernsTemporaryWhole, which denotes temporary parthood rather than temporary instantiation."@en ;
+    rdfs:domain cac-core:RoleAssignment ;
+    rdfs:range cac-core:EnduringEntity ;
+    rdfs:seeAlso gufo:standsInQualifiedInstantiation .
+
+cac-core:roleClassifier a owl:ObjectProperty ;
+    rdfs:label "role classifier"@en ;
+    rdfs:comment "Identifies the genuine gUFO Role classifier instantiated by the bearer while the RoleAssignment holds."@en ;
+    rdfs:domain cac-core:RoleAssignment ;
+    rdfs:range gufo:Role ;
+    rdfs:subPropertyOf gufo:concernsNonRigidType .
+
+cac-core:roleContext a owl:ObjectProperty ;
+    rdfs:label "role context"@en ;
+    rdfs:comment "Identifies an investigation, event, relationship, organization, proceeding, or other context in which a RoleAssignment holds without treating that context as the role bearer."@en ;
+    rdfs:domain cac-core:RoleAssignment .
+
 cac-core:hasPhase a owl:ObjectProperty ;
     rdfs:label "has phase"@en ;
-    rdfs:comment "Links an enduring entity, process, or situation to one of its temporal phases."@en ;
-    rdfs:range cac-core:Phase .
+    rdfs:comment "Links an enduring entity, process, relationship, investigation, or situation to one of its operational phase or state occurrences."@en ;
+    rdfs:range cac-core:Phase ;
+    owl:inverseOf cac-core:isPhaseOf .
 
 cac-core:isPhaseOf a owl:ObjectProperty ;
     rdfs:label "is phase of"@en ;
-    rdfs:comment "Links a phase to the entity, process, or situation it is a temporal stage of."@en ;
+    rdfs:comment "Links an operational phase or state occurrence to the lifecycle subject whose state or stage it describes."@en ;
     rdfs:domain cac-core:Phase ;
     owl:inverseOf cac-core:hasPhase .
+
+cac-core:realizesPhaseClassifier a owl:ObjectProperty ;
+    rdfs:label "realizes phase classifier"@en ;
+    rdfs:comment "Optionally links an operational phase occurrence to a genuine gUFO Phase classifier. Do not use for ordinary workflow stages that make no bearer-reclassification claim."@en ;
+    rdfs:domain cac-core:Phase ;
+    rdfs:range gufo:Phase .
 
 cac-core:precedes a owl:ObjectProperty ;
     rdfs:label "precedes"@en ;

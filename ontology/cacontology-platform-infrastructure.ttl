@@ -18,7 +18,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-05-23"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
@@ -197,22 +197,22 @@ cacontology-infrastructure:UserAccessPatternAnalysis rdf:type owl:Class ;
 # INFRASTRUCTURE LIFECYCLE PHASES (gUFO Phase - Anti-Rigid)
 # =============================================================================
 
-cacontology-infrastructure:InfrastructureDeploymentPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-infrastructure:InfrastructureDeploymentPhase rdf:type owl:Class ;
     rdfs:label "Infrastructure Deployment Phase"@en ;
     rdfs:comment "Phase during which platform infrastructure is being deployed and configured (gUFO Phase - anti-rigid)."@en ;
     rdfs:subClassOf cac-core:Phase .
 
-cacontology-infrastructure:InfrastructureOperationalPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-infrastructure:InfrastructureOperationalPhase rdf:type owl:Class ;
     rdfs:label "Infrastructure Operational Phase"@en ;
     rdfs:comment "Phase during which platform infrastructure is actively supporting operations (gUFO Phase - anti-rigid)."@en ;
     rdfs:subClassOf cac-core:Phase .
 
-cacontology-infrastructure:InfrastructureMaintenancePhase rdf:type owl:Class, gufo:Phase ;
+cacontology-infrastructure:InfrastructureMaintenancePhase rdf:type owl:Class ;
     rdfs:label "Infrastructure Maintenance Phase"@en ;
     rdfs:comment "Phase during which infrastructure undergoes maintenance and updates (gUFO Phase - anti-rigid)."@en ;
     rdfs:subClassOf cac-core:Phase .
 
-cacontology-infrastructure:InfrastructureDecommissionPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-infrastructure:InfrastructureDecommissionPhase rdf:type owl:Class ;
     rdfs:label "Infrastructure Decommission Phase"@en ;
     rdfs:comment "Phase during which infrastructure is being decommissioned or shut down (gUFO Phase - anti-rigid)."@en ;
     rdfs:subClassOf cac-core:Phase .
@@ -221,22 +221,22 @@ cacontology-infrastructure:InfrastructureDecommissionPhase rdf:type owl:Class, g
 # TECHNICAL ROLES (gUFO Role - Anti-Rigid)
 # =============================================================================
 
-cacontology-infrastructure:SystemAdministratorRole rdf:type owl:Class, gufo:Role ;
+cacontology-infrastructure:SystemAdministratorRole rdf:type owl:Class ;
     rdfs:label "System Administrator Role"@en ;
     rdfs:comment "Role of person responsible for infrastructure system administration (gUFO Role - anti-rigid)."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-infrastructure:SecurityOperatorRole rdf:type owl:Class, gufo:Role ;
+cacontology-infrastructure:SecurityOperatorRole rdf:type owl:Class ;
     rdfs:label "Security Operator Role"@en ;
     rdfs:comment "Role of person managing security infrastructure and operations (gUFO Role - anti-rigid)."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-infrastructure:AnalystRole rdf:type owl:Class, gufo:Role ;
+cacontology-infrastructure:AnalystRole rdf:type owl:Class ;
     rdfs:label "Analyst Role"@en ;
     rdfs:comment "Role of person conducting infrastructure analysis (gUFO Role - anti-rigid)."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-infrastructure:TakedownOperatorRole rdf:type owl:Class, gufo:Role ;
+cacontology-infrastructure:TakedownOperatorRole rdf:type owl:Class ;
     rdfs:label "Takedown Operator Role"@en ;
     rdfs:comment "Role of law enforcement personnel conducting takedown operations (gUFO Role - anti-rigid)."@en ;
     rdfs:subClassOf cac-core:Role .
@@ -683,4 +683,4 @@ cacontology-infrastructure:resultsInSeizure rdf:type owl:ObjectProperty ;
     rdfs:label "results in seizure"@en ;
     rdfs:comment "Links takedown operation to asset seizure actions."@en ;
     rdfs:domain cacontology-infrastructure:InfrastructureTakedown ;
-    rdfs:range uco-action:Action . 
+    rdfs:range uco-action:Action .

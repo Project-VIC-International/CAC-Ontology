@@ -1,0 +1,573 @@
+{
+  "cac_inputs": [
+    {
+      "bytes": 31170,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-ai-csam.ttl",
+      "sha256": "976a748e36b32576ef5e536eb37ddbbf375629229586ec6184a8d8e044d88769"
+    },
+    {
+      "bytes": 6810,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-analyst-wellbeing.ttl",
+      "sha256": "5544603774581865129981642bbc245261ab8e4f85ca9ba847d752f8436d8427"
+    },
+    {
+      "bytes": 30813,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-asset-forfeiture.ttl",
+      "sha256": "01aa2f776546faa194fea8fce313120914685524b19623685e57f0badcb18daa"
+    },
+    {
+      "bytes": 33536,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-athletic-exploitation.ttl",
+      "sha256": "305734ceada252ff9e2a002dbb97f8e5587f5035e46044b957887373a7ec616c"
+    },
+    {
+      "bytes": 2596,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-bridge-case.ttl",
+      "sha256": "1c98a9280d5cd5bdeada8e985af557a3f4816df312b4c0e5259aedf0ce6b9ad5"
+    },
+    {
+      "bytes": 5102,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-bridge-gufo.ttl",
+      "sha256": "a49420c0883d6a7b92de4e3158b502c572360e411e062252074eb3af47237c46"
+    },
+    {
+      "bytes": 3197,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-bridge-uco.ttl",
+      "sha256": "f148a8d2478f95a326c50e5c7b00e730d0726ee99b56c0c46d96020ff5ead16d"
+    },
+    {
+      "bytes": 53333,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-case-management.ttl",
+      "sha256": "97471bff0e71fc467512ea19775ef459814270813db9ca451d70945776c9e752"
+    },
+    {
+      "bytes": 21403,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-core-spine.ttl",
+      "sha256": "cb7a84a5963dc39e0e7b40558139f2c74985fcdd8c249bd9033650fc52575ecd"
+    },
+    {
+      "bytes": 27588,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-core.ttl",
+      "sha256": "f35d4f62b99eda343fe569931d983d99b2d29023dcf16dc5e7889e07bcc368c5"
+    },
+    {
+      "bytes": 34156,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-custodial.ttl",
+      "sha256": "2f3435d8a5badf34c6c696c42594e221db5fe0365ebab3153c6e4fa3ec068a64"
+    },
+    {
+      "bytes": 28337,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-detection.ttl",
+      "sha256": "e267ec45ca48f461a6ec7f58543ea3f61944caf6cfbb18376ba1a1bd963f2239"
+    },
+    {
+      "bytes": 55754,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-educational-exploitation.ttl",
+      "sha256": "6e26b4ef56270aab7c365917ac735af3e70074dc33730acdeb88c8d4b53afc61"
+    },
+    {
+      "bytes": 47832,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-extremist-enterprises.ttl",
+      "sha256": "227ab9d0b25c9189a2d319fd9d8d205aa69be73fa2292a27baf51462a384a5b2"
+    },
+    {
+      "bytes": 58377,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-forensics.ttl",
+      "sha256": "10189504d5cf1408cdcd387033dcb61da16e213324178bbd1541f4949e51cf61"
+    },
+    {
+      "bytes": 62708,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-grooming.ttl",
+      "sha256": "2124b3ee074f6af30749928ca3529a7e36aa9802ce698b278aba35a212ab9b95"
+    },
+    {
+      "bytes": 2226,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-gufo-annotation-vocabulary.ttl",
+      "sha256": "7a713bb0fc987b4e81e516c7ea094eccd5410e2bad1958d96c48d6c37543674b"
+    },
+    {
+      "bytes": 21476,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-hotlines.ttl",
+      "sha256": "9489d51f38544a44d4126c3587ccbd49e79a5517c5f595c726c7b0b68d92ebcf"
+    },
+    {
+      "bytes": 45087,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-institutional-exploitation.ttl",
+      "sha256": "57e14ec30d0a6bba1f6962f61784d32b7aef6fa0498f9d5f5fdb9e356cad83d1"
+    },
+    {
+      "bytes": 26430,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-integration-patterns.ttl",
+      "sha256": "428e9fcef3cbbddb80fa4f0264692b9a403e729ed044ce1f4905374c06628f68"
+    },
+    {
+      "bytes": 54551,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-international.ttl",
+      "sha256": "4fed25dcf37db6873ea5df2946cd4c27a57207e49b11a07d04e8254c26b694a9"
+    },
+    {
+      "bytes": 56813,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-investigation-coordination.ttl",
+      "sha256": "4c8d3978b05967507295ca081bcfc8363020c2063c6c6e159c05fc1a370a7afc"
+    },
+    {
+      "bytes": 27466,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-law-enforcement-corruption.ttl",
+      "sha256": "bdeae0148ce2b62a0cd1642e1a21f93f054ce0c9cf715208171c4264223376df"
+    },
+    {
+      "bytes": 55941,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-legal-harmonization.ttl",
+      "sha256": "dc9fba3b7f00a208337574e2d2537984740094c16e53ba75a7953006a2554401"
+    },
+    {
+      "bytes": 62189,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-legal-outcomes.ttl",
+      "sha256": "a8ab82a845c31bebfe3c55bb2e759685890bc321325810b3ff55474ad04a34e9"
+    },
+    {
+      "bytes": 62729,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-multi-jurisdiction.ttl",
+      "sha256": "e2ee9d17f8ff75a00292af417e5f49f1f01d0e9fbaf3fe20550c23dae08ade94"
+    },
+    {
+      "bytes": 25622,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-partnerships.ttl",
+      "sha256": "b4ff83a034fb6790fa2397336b61ecd22637270b2a8d6ccecdaf2ec0eab3d127"
+    },
+    {
+      "bytes": 45718,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-physical-evidence.ttl",
+      "sha256": "1a7a4121f4f24cf3b7b2a78f0864af7aeb4e6a56c190506f1e4427ac2fd76055"
+    },
+    {
+      "bytes": 38111,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-platform-infrastructure.ttl",
+      "sha256": "8f10834ae3a044a61c3ad5bcebda5c0c8ac9c74537588dc4e1edc9a324e9e3d7"
+    },
+    {
+      "bytes": 60536,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-platforms.ttl",
+      "sha256": "83d5ce35518c6bce83ff942d96082c4426c3fcf48bdacca4cc62c88d034cd23e"
+    },
+    {
+      "bytes": 54941,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-prevention.ttl",
+      "sha256": "56002eefe78598ce70f8bd0868971dfb2c683ab10b14ff09437f597543f44983"
+    },
+    {
+      "bytes": 29387,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-production.ttl",
+      "sha256": "666c307e3115cdaea3c23257eb8e9eadfe37c751e758f832232d24cc231c7e62"
+    },
+    {
+      "bytes": 22554,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-recantation.ttl",
+      "sha256": "7281b12b8f501e1df5956ec56ff48c69c7f469f2997c7b0b1adb717ccf388b32"
+    },
+    {
+      "bytes": 23326,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-recruitment-networks.ttl",
+      "sha256": "2baa7f42a2e4879acad09425c2c638a137a72057f3f9000391b110c3365ec3e5"
+    },
+    {
+      "bytes": 4981,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-sadistic-online-exploitation.ttl",
+      "sha256": "9a916c39a7b8d57fe396143668065fc2d3f7a0277776c9cb7847e2c98bcc14c3"
+    },
+    {
+      "bytes": 40555,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-sex-offender-registry.ttl",
+      "sha256": "fb9dd5ca99b30c5770ad4516df7fa401e19eb7e2220c638d596981edc45f0d63"
+    },
+    {
+      "bytes": 23899,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-sex-trafficking.ttl",
+      "sha256": "ce3abb86774297b8ac15f88240ac92ac7ec30b1236913f6fab892ba8d765fa67"
+    },
+    {
+      "bytes": 33944,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-sextortion.ttl",
+      "sha256": "7710201105cd626a5cc4a9e62f48d9cdd5254b866df20cf819710896688ed649"
+    },
+    {
+      "bytes": 20891,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-specialized-units.ttl",
+      "sha256": "20c90a322deb4877dc4176a7acdfa8ed94394c268c193318f4322c0133f3def3"
+    },
+    {
+      "bytes": 2605,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-standards-profile.ttl",
+      "sha256": "d1bab20c9f1d2cfdd5d6e342c4e5a7c318af1f5b527a1a70a0634a55d8b81c66"
+    },
+    {
+      "bytes": 36758,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-stranger-abduction.ttl",
+      "sha256": "2347d239be549fbdc328d00d881a718e2792b776e5a746e8c94b62dc2d30c044"
+    },
+    {
+      "bytes": 36985,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-street-recruitment.ttl",
+      "sha256": "15119dc51d5bb238ebc1981097948298f76a18e51b140702590d50968001b61a"
+    },
+    {
+      "bytes": 17846,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-synthesis.ttl",
+      "sha256": "bcb74be5195be048fef57544bf0388a04b626d797540782f693e122726fa2038"
+    },
+    {
+      "bytes": 26912,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-tactical.ttl",
+      "sha256": "587bfe15bd2a607c7a0be7ed9d172b5b82e6418dac7510d08d3b82c05332b3aa"
+    },
+    {
+      "bytes": 57736,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-taskforce.ttl",
+      "sha256": "f2fc4183a91c5f81aa4ffe8b458be9c0161c7377b113a1b5db22369c1670aeba"
+    },
+    {
+      "bytes": 24100,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-temporal.ttl",
+      "sha256": "a24a0889e07a87740c5403339e017c483ab74ef8dc20d10991a8f2e0d574778a"
+    },
+    {
+      "bytes": 28463,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-training.ttl",
+      "sha256": "9eca0b0ac5fd01362b4fb03ac05134d0dcb502895206e298fd71eaeca1d125e1"
+    },
+    {
+      "bytes": 53349,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-undercover.ttl",
+      "sha256": "e360e80cc9ff8ee2e7c23dfc5b485e45556bd1fef4c49a4809e3fc345856aa8a"
+    },
+    {
+      "bytes": 25462,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-us-ncmec.ttl",
+      "sha256": "97201aff3f50014faec984a480471998dfa6dcd5409bb4acda6242ff844b36b3"
+    },
+    {
+      "bytes": 34715,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-usa-federal-law.ttl",
+      "sha256": "48d1f8b3e02268f03db74ca11e26e99df66ead35eef1e3fecd71693eb0641e03"
+    },
+    {
+      "bytes": 22548,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-usa-legislative.ttl",
+      "sha256": "add732434f0f0f24a5bc95341fdd5e12c91039930952898bd65510517da5bba8"
+    },
+    {
+      "bytes": 54418,
+      "canonicalization": "utf-8-lf",
+      "path": "ontology/cacontology-victim-impact.ttl",
+      "sha256": "dfa568ee81376487c92a0457a67f01e0312e1031f86da22f418da1087ef5f636"
+    },
+    {
+      "bytes": 11980,
+      "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/ontology/uco-gufo.ttl",
+      "sha256": "af8c803646d59e22402abbc613257572b63219cd6725f8d49b10dd9ad4b38c64"
+    }
+  ],
+  "configuration": "C4",
+  "dependency_inputs": [
+    {
+      "bytes": 24124,
+      "canonicalization": "utf-8-lf",
+      "license": "Apache-2.0",
+      "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/ontology/uco/core/core.ttl",
+      "requested_iri": "https://ontology.unifiedcyberontology.org/uco/core/1.5.0",
+      "sha256": "aaed3562001e4f5a6b42fde049267a869fff375b1d8f21931dfceae534c2b3c6",
+      "source": "ucoProject/UCO@7ebb3957e9e9a2e1bb9c66cd1ede8c912a726344",
+      "status": "resolved-vendored"
+    },
+    {
+      "bytes": 9099,
+      "canonicalization": "utf-8-lf",
+      "license": "Apache-2.0",
+      "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/ontology/uco/identity/identity.ttl",
+      "requested_iri": "https://ontology.unifiedcyberontology.org/uco/identity/1.5.0",
+      "sha256": "0c7fa3c249640fba6a5efda989db640eb1ca7ca41d61f56f4a00343892b84ecf",
+      "source": "ucoProject/UCO@7ebb3957e9e9a2e1bb9c66cd1ede8c912a726344",
+      "status": "resolved-vendored"
+    },
+    {
+      "bytes": 380207,
+      "canonicalization": "utf-8-lf",
+      "license": "Apache-2.0",
+      "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/ontology/uco/observable/observable.ttl",
+      "requested_iri": "https://ontology.unifiedcyberontology.org/uco/observable/1.5.0",
+      "sha256": "07095b77f9835031fe969b403064579b5d207f86e4a1b160c6a143667f8fc73a",
+      "source": "ucoProject/UCO@7ebb3957e9e9a2e1bb9c66cd1ede8c912a726344",
+      "status": "resolved-vendored"
+    },
+    {
+      "bytes": 15170,
+      "canonicalization": "utf-8-lf",
+      "license": "Apache-2.0",
+      "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/ontology/uco/action/action.ttl",
+      "requested_iri": "https://ontology.unifiedcyberontology.org/uco/action/1.5.0",
+      "sha256": "80eec8d3db41a61c7225022686edb1034c2ac6d4d6ad06536d9a7f6c83fbadee",
+      "source": "ucoProject/UCO@7ebb3957e9e9a2e1bb9c66cd1ede8c912a726344",
+      "status": "resolved-vendored"
+    },
+    {
+      "bytes": 12299,
+      "canonicalization": "utf-8-lf",
+      "license": "Apache-2.0",
+      "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/ontology/uco/tool/tool.ttl",
+      "requested_iri": "https://ontology.unifiedcyberontology.org/uco/tool/1.5.0",
+      "sha256": "5eb0837bf7ca743594553a3bee039caa8a2a3ff540d1f9cccb7edb001c6dc38f",
+      "source": "ucoProject/UCO@7ebb3957e9e9a2e1bb9c66cd1ede8c912a726344",
+      "status": "resolved-vendored"
+    },
+    {
+      "bytes": 77099,
+      "canonicalization": "utf-8-lf",
+      "license": "CC-BY-4.0",
+      "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/CDO-Shapes-gufo/dependencies/formatted-gufo.ttl",
+      "requested_iri": "http://purl.org/nemo/gufo#/1.0.0",
+      "sha256": "3ba0cb0a7db1469a3b88b543a1fa479465227b472350bc3b15e99d8419d0a270",
+      "source": "Cyber-Domain-Ontology/CDO-Shapes-gufo@1b13dd56308261f451db3e304ce7a5e044ed0297",
+      "status": "resolved-vendored"
+    },
+    {
+      "bytes": 1631,
+      "canonicalization": "utf-8-lf",
+      "license": "Apache-2.0",
+      "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/ontology/uco/role/role.ttl",
+      "requested_iri": "https://ontology.unifiedcyberontology.org/uco/role/1.5.0",
+      "sha256": "25ea8907ee1bb78ad42559d441d3e48c7d6fa5411458057610279069b0f49089",
+      "source": "ucoProject/UCO@7ebb3957e9e9a2e1bb9c66cd1ede8c912a726344",
+      "status": "resolved-vendored"
+    },
+    {
+      "bytes": 2009,
+      "canonicalization": "utf-8-lf",
+      "license": "Apache-2.0",
+      "path": "testing/v4/dependencies/case/8073d5a0a4f8741799adfe0c494d58fd6472acaa/ontology/master/case.ttl",
+      "requested_iri": "https://ontology.caseontology.org/case/case/1.5.0",
+      "sha256": "fa8ffa6b05534496e25da5bf6ef2522bafe1c008f61c2606c3affb8571720182",
+      "source": "casework/CASE@8073d5a0a4f8741799adfe0c494d58fd6472acaa",
+      "status": "resolved-vendored"
+    },
+    {
+      "bytes": 11227,
+      "canonicalization": "utf-8-lf",
+      "license": "Apache-2.0",
+      "path": "testing/v4/dependencies/case/8073d5a0a4f8741799adfe0c494d58fd6472acaa/ontology/investigation/investigation.ttl",
+      "requested_iri": "https://ontology.caseontology.org/case/investigation/1.5.0",
+      "sha256": "fe0fe33342f4e22aa01ef847276d05a98305dc84c8cce916fa88d039e9e88a87",
+      "source": "casework/CASE@8073d5a0a4f8741799adfe0c494d58fd6472acaa",
+      "status": "resolved-vendored"
+    },
+    {
+      "bytes": 1313,
+      "canonicalization": "utf-8-lf",
+      "license": "Apache-2.0",
+      "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/ontology/uco/victim/victim.ttl",
+      "requested_iri": "https://ontology.unifiedcyberontology.org/uco/victim/1.5.0",
+      "sha256": "c85345d3ed7abf2bc354a81bb1af86b6cf1721883e8b5215ab06389c9d885abc",
+      "source": "ucoProject/UCO@7ebb3957e9e9a2e1bb9c66cd1ede8c912a726344",
+      "status": "resolved-vendored"
+    },
+    {
+      "bytes": 2117,
+      "canonicalization": "utf-8-lf",
+      "license": "Apache-2.0",
+      "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/ontology/uco/pattern/pattern.ttl",
+      "requested_iri": "https://ontology.unifiedcyberontology.org/uco/pattern/1.5.0",
+      "sha256": "81583798b32a9364c16e96185fa9640d86e776981405cecbfa8a050f415a3686",
+      "source": "ucoProject/UCO@7ebb3957e9e9a2e1bb9c66cd1ede8c912a726344",
+      "status": "resolved-vendored"
+    },
+    {
+      "bytes": 6077,
+      "canonicalization": "utf-8-lf",
+      "license": "Apache-2.0",
+      "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/ontology/uco/location/location.ttl",
+      "requested_iri": "https://ontology.unifiedcyberontology.org/uco/location/1.5.0",
+      "sha256": "34339df2e44ca42f85a2eac25b35dcad6aaa0006cc104fcaaaf2d13ffc5c42a8",
+      "source": "ucoProject/UCO@7ebb3957e9e9a2e1bb9c66cd1ede8c912a726344",
+      "status": "resolved-vendored"
+    },
+    {
+      "bytes": 14766,
+      "canonicalization": "utf-8-lf",
+      "license": "Apache-2.0",
+      "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/ontology/uco/types/types.ttl",
+      "requested_iri": "https://ontology.unifiedcyberontology.org/uco/types/1.5.0",
+      "sha256": "8e39b4060a3992cf5cfd33eea781730479044c630e6bb8e4ac316117ae8ab9bd",
+      "source": "ucoProject/UCO@7ebb3957e9e9a2e1bb9c66cd1ede8c912a726344",
+      "status": "resolved-vendored"
+    },
+    {
+      "bytes": 2943,
+      "canonicalization": "utf-8-lf",
+      "license": "Apache-2.0",
+      "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/ontology/uco/master/uco.ttl",
+      "requested_iri": "https://ontology.unifiedcyberontology.org/uco/uco/1.5.0",
+      "sha256": "c730cded90c7312225660e9617ae6b7f3647c9aa0610f74a54720e4ad031b327",
+      "source": "ucoProject/UCO@7ebb3957e9e9a2e1bb9c66cd1ede8c912a726344",
+      "status": "resolved-vendored"
+    },
+    {
+      "bytes": 6718,
+      "canonicalization": "utf-8-lf",
+      "license": "Apache-2.0",
+      "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/ontology/uco/configuration/configuration.ttl",
+      "requested_iri": "https://ontology.unifiedcyberontology.org/uco/configuration/1.5.0",
+      "sha256": "54b724bb3910811962ef922df0e78b10c4a7d3daa59bfc537ade38210d2125b1",
+      "source": "ucoProject/UCO@7ebb3957e9e9a2e1bb9c66cd1ede8c912a726344",
+      "status": "resolved-vendored"
+    },
+    {
+      "bytes": 27853,
+      "canonicalization": "utf-8-lf",
+      "license": "Apache-2.0",
+      "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/ontology/uco/vocabulary/vocabulary.ttl",
+      "requested_iri": "https://ontology.unifiedcyberontology.org/uco/vocabulary/1.5.0",
+      "sha256": "4d71e2993a52d2071302f406d6d9403676dc5280481064eae3072e45f3c439a3",
+      "source": "ucoProject/UCO@7ebb3957e9e9a2e1bb9c66cd1ede8c912a726344",
+      "status": "resolved-vendored"
+    },
+    {
+      "bytes": 793,
+      "canonicalization": "utf-8-lf",
+      "license": "Apache-2.0",
+      "path": "testing/v4/dependencies/case/8073d5a0a4f8741799adfe0c494d58fd6472acaa/ontology/vocabulary/vocabulary.ttl",
+      "requested_iri": "https://ontology.caseontology.org/case/vocabulary/1.5.0",
+      "sha256": "a9c5e4188533b6976d4fee8823f62b48eb693b9f25e29297bcd4e9143ef0335c",
+      "source": "casework/CASE@8073d5a0a4f8741799adfe0c494d58fd6472acaa",
+      "status": "resolved-vendored"
+    },
+    {
+      "bytes": 4632,
+      "canonicalization": "utf-8-lf",
+      "license": "Apache-2.0",
+      "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/ontology/co/co.ttl",
+      "requested_iri": "https://ontology.unifiedcyberontology.org/co/1.5.0",
+      "sha256": "4f57580ba4bc22edc216373cadf24d9635250c1be1982bd755e4435dbe92745c",
+      "source": "ucoProject/UCO@7ebb3957e9e9a2e1bb9c66cd1ede8c912a726344",
+      "status": "resolved-vendored"
+    },
+    {
+      "bytes": 14732,
+      "canonicalization": "utf-8-lf",
+      "license": "Apache-2.0",
+      "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/ontology/owl/owl.ttl",
+      "requested_iri": "https://ontology.unifiedcyberontology.org/owl/1.5.0",
+      "sha256": "9a566547144faa14e4e010272e83743b44303de71ac5a33addbe9f48a8ba25cf",
+      "source": "ucoProject/UCO@7ebb3957e9e9a2e1bb9c66cd1ede8c912a726344",
+      "status": "resolved-vendored"
+    },
+    {
+      "bytes": 4354,
+      "canonicalization": "utf-8-lf",
+      "license": "Apache-2.0",
+      "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/ontology/uco/analysis/analysis.ttl",
+      "requested_iri": "https://ontology.unifiedcyberontology.org/uco/analysis/1.5.0",
+      "sha256": "978e8c12c2c853270a92b714a7598508799bf685667a42c18b174d636cb023ee",
+      "source": "ucoProject/UCO@7ebb3957e9e9a2e1bb9c66cd1ede8c912a726344",
+      "status": "resolved-vendored"
+    },
+    {
+      "bytes": 8571,
+      "canonicalization": "utf-8-lf",
+      "license": "Apache-2.0",
+      "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/ontology/uco/marking/marking.ttl",
+      "requested_iri": "https://ontology.unifiedcyberontology.org/uco/marking/1.5.0",
+      "sha256": "67f446e317325cec4902bac533666cd22993cfe94d363e1578cdd1518f95e4c5",
+      "source": "ucoProject/UCO@7ebb3957e9e9a2e1bb9c66cd1ede8c912a726344",
+      "status": "resolved-vendored"
+    },
+    {
+      "bytes": 765,
+      "canonicalization": "utf-8-lf",
+      "license": "Apache-2.0",
+      "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/ontology/uco/time/time.ttl",
+      "requested_iri": "https://ontology.unifiedcyberontology.org/uco/time/1.5.0",
+      "sha256": "cc002dddce0c51aee50eeee8ed0a3b0e0b3c8f887c560da074b9f6af11c337ea",
+      "source": "ucoProject/UCO@7ebb3957e9e9a2e1bb9c66cd1ede8c912a726344",
+      "status": "resolved-vendored"
+    },
+    {
+      "bytes": 39400,
+      "canonicalization": "utf-8-lf",
+      "license": "see-vendored-source",
+      "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/dependencies/collections-ontology/collections.owl",
+      "requested_iri": "http://purl.org/co",
+      "sha256": "4288bd13661118cf49aea485a769d9f4a6907b68a58161d28c1828f30eeec608",
+      "source": "collections-ontology/collections-ontology@619e7b02646321174635fd04be658e338bf7d1d7",
+      "status": "resolved-vendored"
+    },
+    {
+      "bytes": 2392,
+      "canonicalization": "utf-8-lf",
+      "license": "CC-BY-4.0",
+      "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/dependencies/error/docs/current/error.ttl",
+      "requested_iri": "http://purl.org/spar/error",
+      "sha256": "a8f6378aba0e4d046682826a7047d0b431d31727781e34fafe4cd5b13e6d570b",
+      "source": "SPAROntologies/error@101aca952ef854505f49725d852de00e6e192344",
+      "status": "resolved-vendored"
+    }
+  ],
+  "diagnostic_projection": null,
+  "imports_materialized": 321,
+  "input_set_sha256": "dc674f1de189408ab486bb40130917f00d0af2c3258531c95ec004c91e5505dd",
+  "schema_version": 1,
+  "scope": "Offline transitive semantic closure with owl:imports declarations removed only after all locked imported graphs are materialized.",
+  "serialized_bytes": 4500607,
+  "serialized_path": "testing/v4/tmp/reasoner/c4-closure.owl",
+  "serialized_sha256": "181ccca7cf866bf82deb87d292a8da9cafed64046c604e6053c4cc9c45599f46",
+  "triples": 38944
+}

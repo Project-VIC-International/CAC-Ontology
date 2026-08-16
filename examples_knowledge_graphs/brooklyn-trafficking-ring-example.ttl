@@ -37,7 +37,7 @@
     rdfs:label "Brooklyn-North Carolina Trafficking Ring"@en ;
     rdfs:comment "Coordinated group of 8 traffickers (6 men, 2 women) operating across Brooklyn and North Carolina with shared victims and resources."@en ;
     cacontology-trafficking:memberCount 8 ;
-    cacontology-trafficking:operationalDuration "P30M"^^xsd:duration ; # 30 months (July 2022 - ongoing 2025)
+    cacontology-trafficking:operationalDuration "P30M" ; # 30 months (July 2022 - ongoing 2025)
     cacontology-trafficking:hasHierarchy :trafficking_hierarchy ;
     cacontology-trafficking:conductsOperation :multi_state_trafficking_operation .
 
@@ -296,7 +296,7 @@
     rdfs:label "Brooklyn Sex Trafficking Conspiracy"@en ;
     rdfs:comment "Criminal conspiracy involving 8 defendants coordinating sex trafficking activities across Brooklyn and North Carolina from 2022-2025."@en ;
     cacontology:conspiracyMemberCount 8 ;
-    cacontology:conspiracyDuration "P30M"^^xsd:duration ; # 30 months
+    cacontology:conspiracyDuration "P30M" ; # 30 months
     uco-core:startTime "2022-07-01T00:00:00Z"^^xsd:dateTime ;
     cacontology:resultsInIndictment :superseding_indictment .
 

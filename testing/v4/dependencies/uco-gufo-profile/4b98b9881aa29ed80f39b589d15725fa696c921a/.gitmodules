@@ -1,0 +1,8 @@
+[submodule "dependencies/CDO-Shapes-gufo"]
+	path = dependencies/CDO-Shapes-gufo
+	url = https://github.com/Cyber-Domain-Ontology/CDO-Shapes-gufo.git
+	branch = main
+[submodule "dependencies/UCO"]
+	path = dependencies/UCO
+	url = https://github.com/ucoProject/UCO.git
+	branch = master

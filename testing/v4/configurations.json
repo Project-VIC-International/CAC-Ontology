@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "configurations": {
+    "C1": {
+      "description": "Frozen CAC v3.1 asserted baseline",
+      "gate": false,
+      "cac_source": "93de063951b758dd68a27611638c177fcf910eab",
+      "overlay": null,
+      "compatibility": null
+    },
+    "C2": {
+      "description": "Frozen CAC v3.1 plus pinned UCO gUFO Profile overlay",
+      "gate": false,
+      "cac_source": "93de063951b758dd68a27611638c177fcf910eab",
+      "overlay": "uco-gufo-profile@4b98b988",
+      "compatibility": null
+    },
+    "C3": {
+      "description": "Proposed CAC v4 normative graph",
+      "gate": true,
+      "cac_source": "WORKTREE",
+      "overlay": null,
+      "compatibility": null
+    },
+    "C4": {
+      "description": "Proposed CAC v4 plus pinned UCO gUFO Profile overlay",
+      "gate": true,
+      "cac_source": "WORKTREE",
+      "overlay": "uco-gufo-profile@4b98b988",
+      "compatibility": null
+    },
+    "C5": {
+      "description": "Proposed CAC v4 plus bounded v3 compatibility artifact",
+      "gate": true,
+      "cac_source": "WORKTREE",
+      "overlay": null,
+      "compatibility": "ontology/cacontology-v3-compatibility.ttl"
+    }
+  }
+}

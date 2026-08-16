@@ -21,7 +21,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-11-18"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/trafficking/3.1.0> ,
                 <http://purl.org/nemo/gufo#/1.0.0> .
 
@@ -47,9 +47,9 @@ cacontology-trafficking-shapes:TraffickingEnterpriseShape rdf:type sh:NodeShape 
     ] ;
     sh:property [
         sh:path cacontology-trafficking:enterpriseDuration ;
-        sh:datatype xsd:duration ;
+        sh:datatype xsd:string ;
         sh:maxCount 1 ;
-        sh:message "Trafficking enterprise can have at most one enterpriseDuration value of type xsd:duration."@en
+        sh:message "Trafficking enterprise can have at most one enterpriseDuration value of type xsd:string."@en
     ] ;
     sh:property [
         sh:path cacontology-trafficking:operatesInJurisdiction ;
@@ -158,9 +158,9 @@ cacontology-trafficking-shapes:EarningsCollectionShape rdf:type sh:NodeShape ;
     ] ;
     sh:property [
         sh:path cacontology-trafficking:earningsPeriod ;
-        sh:datatype xsd:duration ;
+        sh:datatype xsd:string ;
         sh:maxCount 1 ;
-        sh:message "earningsPeriod, when provided, must be a single xsd:duration value."@en
+        sh:message "earningsPeriod, when provided, must be a single xsd:string value."@en
     ] .
 
 cacontology-trafficking-shapes:MultiJurisdictionalSituationShape rdf:type sh:NodeShape ;

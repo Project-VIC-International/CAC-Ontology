@@ -1,0 +1,51 @@
+@prefix : <http://www.essepuntato.it/2009/10/error#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix error: <http://www.essepuntato.it/2009/10/error/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix owl2xml: <http://www.w3.org/2006/12/owl2-xml#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix swrl: <http://www.w3.org/2003/11/swrl#> .
+@prefix swrlb: <http://www.w3.org/2003/11/swrlb#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+dc:creator a owl:AnnotationProperty .
+
+dc:date a owl:AnnotationProperty .
+
+dc:description a owl:AnnotationProperty .
+
+dc:rights a owl:AnnotationProperty .
+
+dc:title a owl:AnnotationProperty .
+
+<http://purl.org/spar/error> a owl:Ontology ;
+    rdfs:label "Error Ontology"@en ;
+    dc:creator "Silvio Peroni"^^xsd:string ;
+    dc:date "2010-11-29"^^xsd:date ;
+    dc:description """The Error Ontology is an unit test that allow to produce an inconsistent model if a particular (and incorrect) situation happens.
+
+It works by means of a data property, "hasError" that denies its usage for ant resource. In fact, by defining its domain as "all those resource that don't have any hasErrorDescription assertion", a resource that asserts having an error makes the ontology inconsistent."""@en ;
+    dc:rights "This work is distributed under a Creative Commons Attribution Licence (http://creativecommons.org/licenses/by/3.0/)."@en ;
+    dc:title """The Error Ontology
+Making contraints on ontology resources"""@en ;
+    owl:versionInfo "1.0"^^xsd:string .
+
+rdfs:comment a owl:AnnotationProperty .
+
+rdfs:label a owl:AnnotationProperty .
+
+owl:Thing a owl:Class .
+
+owl:versionInfo a owl:AnnotationProperty .
+
+error:hasError a owl:DatatypeProperty ;
+    rdfs:label "has error"@en ;
+    dc:description "A data property linking a resource that contains a logical error (which results in it belonging to the class owl:Nothing, therefore making the model inconsistent) to a textual description of that error."@en ;
+    rdfs:comment "It describes in some way, usually in natural language, which kind of error results from this resource."@en ;
+    rdfs:domain [ a owl:Restriction ;
+            owl:cardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onProperty error:hasError ] ;
+    rdfs:range xsd:string .
+

@@ -26,28 +26,28 @@ example:Investigation001 rdf:type cacontology-gufo:Investigation ;
 example:InitialPhase001 rdf:type cacontology-gufo:InitialPhase ;
     cacontology-gufo:hasPhaseBeginPoint "2025-01-01T08:00:00Z"^^xsd:dateTimeStamp ;
     cacontology-gufo:hasPhaseEndPoint "2025-01-01T10:30:00Z"^^xsd:dateTimeStamp ;
-    cacontology-gufo:phaseDuration "PT2H30M"^^xsd:duration ;
+    cacontology-gufo:phaseDuration "PT2H30M" ;
     rdfs:label "Initial Investigation Phase 001"@en .
 
 # Analysis Phase Instance
 example:AnalysisPhase001 rdf:type cacontology-gufo:AnalysisPhase ;
     cacontology-gufo:hasPhaseBeginPoint "2025-01-01T10:30:00Z"^^xsd:dateTimeStamp ;
     cacontology-gufo:hasPhaseEndPoint "2025-01-03T16:00:00Z"^^xsd:dateTimeStamp ;
-    cacontology-gufo:phaseDuration "P2DT5H30M"^^xsd:duration ;
+    cacontology-gufo:phaseDuration "P2DT5H30M" ;
     rdfs:label "Analysis Investigation Phase 001"@en .
 
 # Legal Process Phase Instance
 example:LegalProcessPhase001 rdf:type cacontology-gufo:LegalProcessPhase ;
     cacontology-gufo:hasPhaseBeginPoint "2025-01-03T16:00:00Z"^^xsd:dateTimeStamp ;
     cacontology-gufo:hasPhaseEndPoint "2025-01-10T14:00:00Z"^^xsd:dateTimeStamp ;
-    cacontology-gufo:phaseDuration "P7DT22H"^^xsd:duration ;
+    cacontology-gufo:phaseDuration "P7DT22H" ;
     rdfs:label "Legal Process Investigation Phase 001"@en .
 
 # Evidence Phase Instance
 example:EvidencePhase001 rdf:type cacontology-gufo:EvidencePhase ;
     cacontology-gufo:hasPhaseBeginPoint "2025-01-10T14:00:00Z"^^xsd:dateTimeStamp ;
     cacontology-gufo:hasPhaseEndPoint "2025-01-25T17:00:00Z"^^xsd:dateTimeStamp ;
-    cacontology-gufo:phaseDuration "P15DT3H"^^xsd:duration ;
+    cacontology-gufo:phaseDuration "P15DT3H" ;
     rdfs:label "Evidence Investigation Phase 001"@en .
 
 # Current Phase (Resolution)

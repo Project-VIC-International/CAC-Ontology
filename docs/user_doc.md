@@ -1,6 +1,8 @@
 # CAC Ontology Family - User Documentation
 > **Current baseline:** CAC Ontology **v3.1.0**. The semantic spine was introduced in **v3.0.0**, and CASE/UCO imports are pinned to **1.5.0**. Examples are illustrative; verify classes and properties against the current Turtle modules and SHACL shapes.
 
+> **Draft v4 proposal:** Issue #44 proposes an explicit separation between operational role/phase records and gUFO classifiers, plus custody-state and membership-tier patterns. It is not a published release. Review [the proposed architecture](v4-foundational-architecture.md) and [migration notes](v3-to-v4-migration.md) before evaluating or testing those terms.
+
 One or more of these ontologies can be used to develop unique software applications for users that are then foundationally interoperable with other applications built on this family of ontologies.
 
 This family of ontologies seeks to implement semantically clear information models that reflect the information, information relationships, workflows, and events that a Crimes Against Children Investigator uses or may use in the future. Each ontology represents a unique application domain within investigators'and prosecutors' discourse. This family of ontologies seeks to be universal and it is heavily informed by public documentation in the form of press releases from law enforcement agencies and prosecutor's offices, and high-quality publications from nonprofits that are active in safeguarding children. Finally, this family of ontologies seeks to use modern language as much as possible to reflect the unifying efforts of the CAC community, but there may be language in these ontologies that are more reflective of a certain country when that language is still professionally used.

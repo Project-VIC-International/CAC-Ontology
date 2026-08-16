@@ -4,9 +4,11 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
 @prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix cacontology-hotlines: <https://cacontology.projectvic.org/hotlines#> .
@@ -19,7 +21,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-03-20"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0>,
                 <https://cacontology.projectvic.org/core/3.1.0> ,
                 <http://purl.org/nemo/gufo#/1.0.0> .
@@ -103,9 +105,9 @@ cacontology-hotlines:HotlineOrganization rdf:type owl:Class ;
 
 cacontology-hotlines:HotlineReport rdf:type owl:Class ;
     rdfs:label "Hotline Report"@en ;
-    rdfs:comment "A report submitted to a hotline about potential child sexual abuse material. Enhanced as gUFO Situation representing complex multi-party coordination contexts involving reporters, hotline organizations, evidence, and processing workflows."@en ;
-    rdfs:subClassOf uco-observable:Observation,
-                    cac-core:Situation .
+    rdfs:comment "A storable report artifact submitted to a hotline about potential child sexual abuse material. Reporter, intake, processing, and lifecycle occurrences are modeled separately rather than conflated with the report artifact."@en ;
+    rdfs:subClassOf cac-core:Artifact ;
+    rdf:type gufo:Kind .
 
 cacontology-hotlines:PublicReport rdf:type owl:Class ;
     rdfs:label "Public Report"@en ;
@@ -120,26 +122,24 @@ cacontology-hotlines:ESPReport rdf:type owl:Class ;
 cacontology-hotlines:AutomatedReporterAgent rdf:type owl:Class ;
     rdfs:label "Automated Reporter Agent"@en ;
     rdfs:comment "A software agent that automatically reports content to hotlines. Enhanced as gUFO Object for comprehensive software entity modeling."@en ;
-    rdfs:subClassOf uco-identity:Software,
+    rdfs:subClassOf uco-observable:Software,
                     cac-core:DigitalSystemEntity .
 
 cacontology-hotlines:ReporterRole rdf:type owl:Class ;
     rdfs:label "Reporter Role"@en ;
     rdfs:comment "The role of a person or organization submitting a report to a hotline. Enhanced as anti-rigid gUFO Role supporting dynamic role assignment and temporal constraints."@en ;
-    rdfs:subClassOf uco-role:SubjectRole,
-                    cac-core:Role .
+    rdfs:subClassOf cac-core:Role .
 
 cacontology-hotlines:IntakeChannel rdf:type owl:Class ;
     rdfs:label "Intake Channel"@en ;
     rdfs:comment "A channel through which reports are received (web form, API, phone, etc.). Enhanced as gUFO Object for comprehensive communication infrastructure modeling."@en ;
-    rdfs:subClassOf uco-core:Observable,
+    rdfs:subClassOf uco-observable:Observable,
                     cac-core:EnduringEntity .
 
 cacontology-hotlines:EvidenceItem rdf:type owl:Class ;
     rdfs:label "Evidence Item"@en ;
     rdfs:comment "A piece of evidence associated with a hotline report. Enhanced as gUFO Object for comprehensive digital artifact modeling."@en ;
-    rdfs:subClassOf uco-observable:DigitalArtifact,
-                    cac-core:Artifact .
+    rdfs:subClassOf cac-core:Artifact .
 
 cacontology-hotlines:ImageEvidence rdf:type owl:Class ;
     rdfs:label "Image Evidence"@en ;
@@ -289,13 +289,13 @@ cacontology-hotlines:producesHash rdf:type owl:ObjectProperty ;
     rdfs:label "produces hash"@en ;
     rdfs:comment "Links a hash submission action to the produced hash."@en ;
     rdfs:domain cacontology-hotlines:HashSubmissionAction ;
-    rdfs:range uco-observable:Hash .
+    rdfs:range uco-types:Hash .
 
 cacontology-hotlines:referencesHash rdf:type owl:ObjectProperty ;
     rdfs:label "references hash"@en ;
     rdfs:comment "Links a hash feedback action to the hash it references."@en ;
     rdfs:domain cacontology-hotlines:HashFeedbackAction ;
-    rdfs:range uco-observable:Hash .
+    rdfs:range uco-types:Hash .
 
 cacontology-hotlines:foundAtURL rdf:type owl:ObjectProperty ;
     rdfs:label "found at URL"@en ;
@@ -371,7 +371,7 @@ cacontology-hotlines:phaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "phase duration"@en ;
     rdfs:comment "The duration of a particular phase in ISO 8601 format."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-hotlines:roleAssignmentTime rdf:type owl:DatatypeProperty ;
     rdfs:label "role assignment time"@en ;
@@ -386,6 +386,10 @@ cacontology-hotlines:coordinationBeginTime rdf:type owl:DatatypeProperty ;
     rdfs:range xsd:dateTime .
 
 # Transitive Properties Enhanced with gUFO
+cacontology-hotlines:hasStep rdf:type owl:ObjectProperty ;
+    rdfs:label "has step"@en ;
+    rdfs:comment "Links a hotline workflow entity to an ordered step in that workflow."@en .
+
 cacontology-hotlines:nextStep rdf:type owl:TransitiveProperty ;
     rdfs:label "next step"@en ;
     rdfs:comment "Denotes the chronologically next action in the lifecycle. Enhanced with gUFO temporal sequence modeling."@en ;
@@ -401,4 +405,4 @@ cacontology-hotlines:linkedInvestigation rdf:type owl:ObjectProperty ;
     rdfs:label "linked investigation"@en ;
     rdfs:comment "Links a hotline report to an CAC investigation."@en ;
     rdfs:domain cacontology-hotlines:HotlineReport ;
-    rdfs:range <https://cacontology.projectvic.org#CACInvestigation> . 
+    rdfs:range <https://cacontology.projectvic.org#CACInvestigation> .

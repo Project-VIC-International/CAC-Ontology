@@ -1,0 +1,162 @@
+{
+  "baseline": {
+    "C3": {
+      "cac_owned_count": 812,
+      "shared_or_unattributed_count": 19,
+      "upstream_owned_count": 6116,
+      "violation_count": 6947
+    },
+    "C5": {
+      "violation_count": 6949
+    }
+  },
+  "configurations": {
+    "C3": {
+      "by_category": {
+        "Cannot pun between properties": 2,
+        "Use of undeclared annotation property": 5537,
+        "Use of undeclared class": 575,
+        "Use of undeclared datatype": 1,
+        "Use of undeclared object property": 1
+      },
+      "by_owner": {
+        "upstream": 6116
+      },
+      "by_owner_and_root_cause": {
+        "upstream": {
+          "embedded-shacl-vocabulary-not-declared-for-owlapi": 5537,
+          "missing-or-invalid-upstream-declaration": 577,
+          "property-kind-punning": 2
+        }
+      },
+      "by_root_cause": {
+        "embedded-shacl-vocabulary-not-declared-for-owlapi": 5537,
+        "missing-or-invalid-upstream-declaration": 577,
+        "property-kind-punning": 2
+      },
+      "configuration": "C3",
+      "examples_by_root_cause": {
+        "embedded-shacl-vocabulary-not-declared-for-owlapi": [
+          "Use of undeclared annotation property: <http://www.w3.org/ns/shacl#property> in annotation [Annotation(<http://www.w3.org/ns/shacl#property> _:genid2147483925) in AnnotationAssertion(<http://www.w3.org/ns/shacl#property> <https://ontology.unifiedcyberontology.org/uco/observable/SIMCardFacet> _:genid2147483925)]",
+          "Use of undeclared annotation property: <http://www.w3.org/ns/shacl#class> in annotation [Annotation(<http://www.w3.org/ns/shacl#class> <https://ontology.unifiedcyberontology.org/uco/observable/WindowsRegistryValue>) in AnnotationAssertion(<http://www.w3.org/ns/shacl#class> _:genid2147484618 <https://ontology.unifiedcyberontology.org/uco/observable/WindowsRegistryValue>)]",
+          "Use of undeclared annotation property: <http://www.w3.org/ns/shacl#nodeKind> in annotation [Annotation(<http://www.w3.org/ns/shacl#nodeKind> <http://www.w3.org/ns/shacl#Literal>) in AnnotationAssertion(<http://www.w3.org/ns/shacl#nodeKind> _:genid2147484443 <http://www.w3.org/ns/shacl#Literal>)]"
+        ],
+        "missing-or-invalid-upstream-declaration": [
+          "Use of undeclared class: <http://www.w3.org/ns/shacl#NodeShape> [ClassAssertion(<http://www.w3.org/ns/shacl#NodeShape> <https://ontology.unifiedcyberontology.org/uco/core/ConfidenceFacet>) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/prevention>) VersionIRI(<https://cacontology.projectvic.org/prevention/3.1.0>))]",
+          "Use of undeclared class: <http://www.w3.org/ns/shacl#NodeShape> [ClassAssertion(<http://www.w3.org/ns/shacl#NodeShape> <https://ontology.unifiedcyberontology.org/uco/tool/BuildUtilityType>) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/prevention>) VersionIRI(<https://cacontology.projectvic.org/prevention/3.1.0>))]",
+          "Use of undeclared class: <http://www.w3.org/ns/shacl#NodeShape> [ClassAssertion(<http://www.w3.org/ns/shacl#NodeShape> <https://ontology.unifiedcyberontology.org/uco/observable/TableFieldFacet>) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/prevention>) VersionIRI(<https://cacontology.projectvic.org/prevention/3.1.0>))]"
+        ],
+        "property-kind-punning": [
+          "Cannot pun between properties: <https://ontology.unifiedcyberontology.org/uco/pattern/patternExpression> [Declaration(DataProperty(<https://ontology.unifiedcyberontology.org/uco/pattern/patternExpression>)) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/prevention>) VersionIRI(<https://cacontology.projectvic.org/prevention/3.1.0>))]",
+          "Cannot pun between properties: <https://ontology.unifiedcyberontology.org/uco/pattern/patternExpression> [ObjectPropertyRange(<https://ontology.unifiedcyberontology.org/uco/pattern/patternExpression> <https://ontology.unifiedcyberontology.org/uco/pattern/PatternExpression>) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/prevention>) VersionIRI(<https://cacontology.projectvic.org/prevention/3.1.0>))]"
+        ]
+      },
+      "report": "testing/v4/reports/c3-owl2dl-profile.txt.gz",
+      "unique_primary_iris_by_root_cause": {
+        "embedded-shacl-vocabulary-not-declared-for-owlapi": 26,
+        "missing-or-invalid-upstream-declaration": 6,
+        "property-kind-punning": 1
+      },
+      "violation_count": 6116
+    },
+    "C5": {
+      "by_category": {
+        "Cannot pun between properties": 2,
+        "Use of undeclared annotation property": 5537,
+        "Use of undeclared class": 575,
+        "Use of undeclared datatype": 1,
+        "Use of undeclared object property": 1
+      },
+      "by_owner": {
+        "upstream": 6116
+      },
+      "by_owner_and_root_cause": {
+        "upstream": {
+          "embedded-shacl-vocabulary-not-declared-for-owlapi": 5537,
+          "missing-or-invalid-upstream-declaration": 577,
+          "property-kind-punning": 2
+        }
+      },
+      "by_root_cause": {
+        "embedded-shacl-vocabulary-not-declared-for-owlapi": 5537,
+        "missing-or-invalid-upstream-declaration": 577,
+        "property-kind-punning": 2
+      },
+      "configuration": "C5",
+      "examples_by_root_cause": {
+        "embedded-shacl-vocabulary-not-declared-for-owlapi": [
+          "Use of undeclared annotation property: <http://www.w3.org/ns/shacl#nodeKind> in annotation [Annotation(<http://www.w3.org/ns/shacl#nodeKind> <http://www.w3.org/ns/shacl#Literal>) in AnnotationAssertion(<http://www.w3.org/ns/shacl#nodeKind> _:genid2147484443 <http://www.w3.org/ns/shacl#Literal>)]",
+          "Use of undeclared annotation property: <http://www.w3.org/ns/shacl#property> in annotation [Annotation(<http://www.w3.org/ns/shacl#property> _:genid2147483674) in AnnotationAssertion(<http://www.w3.org/ns/shacl#property> <https://ontology.unifiedcyberontology.org/owl/distinctMembers-subjects-shape> _:genid2147483674)]",
+          "Use of undeclared annotation property: <http://www.w3.org/ns/shacl#nodeKind> in annotation [Annotation(<http://www.w3.org/ns/shacl#nodeKind> <http://www.w3.org/ns/shacl#Literal>) in AnnotationAssertion(<http://www.w3.org/ns/shacl#nodeKind> _:genid2147484455 <http://www.w3.org/ns/shacl#Literal>)]"
+        ],
+        "missing-or-invalid-upstream-declaration": [
+          "Use of undeclared class: <http://www.w3.org/ns/shacl#NodeShape> [ClassAssertion(<http://www.w3.org/ns/shacl#NodeShape> <https://ontology.unifiedcyberontology.org/uco/core/ConfidenceFacet>) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/prevention>) VersionIRI(<https://cacontology.projectvic.org/prevention/3.1.0>))]",
+          "Use of undeclared class: <http://www.w3.org/ns/shacl#NodeShape> [ClassAssertion(<http://www.w3.org/ns/shacl#NodeShape> <https://ontology.unifiedcyberontology.org/uco/tool/BuildUtilityType>) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/prevention>) VersionIRI(<https://cacontology.projectvic.org/prevention/3.1.0>))]",
+          "Use of undeclared class: <http://www.w3.org/ns/shacl#NodeShape> [ClassAssertion(<http://www.w3.org/ns/shacl#NodeShape> <https://ontology.unifiedcyberontology.org/uco/observable/TableFieldFacet>) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/prevention>) VersionIRI(<https://cacontology.projectvic.org/prevention/3.1.0>))]"
+        ],
+        "property-kind-punning": [
+          "Cannot pun between properties: <https://ontology.unifiedcyberontology.org/uco/pattern/patternExpression> [Declaration(DataProperty(<https://ontology.unifiedcyberontology.org/uco/pattern/patternExpression>)) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/prevention>) VersionIRI(<https://cacontology.projectvic.org/prevention/3.1.0>))]",
+          "Cannot pun between properties: <https://ontology.unifiedcyberontology.org/uco/pattern/patternExpression> [ObjectPropertyRange(<https://ontology.unifiedcyberontology.org/uco/pattern/patternExpression> <https://ontology.unifiedcyberontology.org/uco/pattern/PatternExpression>) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/prevention>) VersionIRI(<https://cacontology.projectvic.org/prevention/3.1.0>))]"
+        ]
+      },
+      "report": "testing/v4/reports/c5-owl2dl-profile.txt.gz",
+      "unique_primary_iris_by_root_cause": {
+        "embedded-shacl-vocabulary-not-declared-for-owlapi": 26,
+        "missing-or-invalid-upstream-declaration": 6,
+        "property-kind-punning": 1
+      },
+      "violation_count": 6116
+    }
+  },
+  "delta_from_baseline": {
+    "C3": -831,
+    "C5": -833
+  },
+  "details": {
+    "bytes": 264263,
+    "format": "gzip-compressed JSON Lines; one record per recognized ROBOT violation header",
+    "path": "testing/v4/reports/rem-014-findings.jsonl.gz",
+    "sha256": "9115383fe70c0a080d0837e1053e15dbece82b036852c99ffbeab20b3a1b9fc9"
+  },
+  "method": "Count recognized ROBOT violation headers; classify primary IRI and axiom actor without treating multiline annotation text as separate violations.",
+  "mission": "REM-014",
+  "priority_units": [
+    {
+      "cac_occurrences": 0,
+      "effort": 5,
+      "impact": 2,
+      "occurrences": 5537,
+      "priority_score": 0,
+      "remedy": "Treat upstream embedded shapes separately or obtain an upstream/profile correction.",
+      "risk": 3,
+      "root_cause": "embedded-shacl-vocabulary-not-declared-for-owlapi",
+      "scope": "external",
+      "unique_primary_iris": 26
+    },
+    {
+      "cac_occurrences": 0,
+      "effort": 5,
+      "impact": 3,
+      "occurrences": 577,
+      "priority_score": 0,
+      "remedy": "Preserve as upstream evidence and avoid silently patching pinned bytes.",
+      "risk": 4,
+      "root_cause": "missing-or-invalid-upstream-declaration",
+      "scope": "external",
+      "unique_primary_iris": 6
+    },
+    {
+      "cac_occurrences": 0,
+      "effort": 2,
+      "impact": 5,
+      "occurrences": 2,
+      "priority_score": 0,
+      "remedy": "Separate object and datatype property meanings; preserve compatibility explicitly.",
+      "risk": 5,
+      "root_cause": "property-kind-punning",
+      "scope": "external",
+      "unique_primary_iris": 1
+    }
+  ],
+  "schema_version": 1
+}

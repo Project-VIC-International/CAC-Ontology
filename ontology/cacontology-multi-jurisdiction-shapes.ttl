@@ -21,7 +21,7 @@
     owl:versionIRI <https://cacontology.projectvic.org/multi-jurisdiction/shapes/3.1.0> ;
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/multi-jurisdiction/3.1.0> ,
                 <http://purl.org/nemo/gufo#/1.0.0> .
 
@@ -52,16 +52,13 @@ cacontology-multi:OrganizationObjectTypeValidationShape rdf:type sh:NodeShape ;
 cacontology-multi:CoordinationRoleValidationShape rdf:type sh:NodeShape ;
     sh:targetClass cac-core:Role ;
     rdfs:label "Coordination Role Validation Shape"@en ;
-    rdfs:comment "Validates gUFO Role type consistency for coordination roles."@en ;
+    rdfs:comment "Prevents operational coordination-role records from being typed as gUFO Role classifiers."@en ;
     sh:sparql [
-        sh:message "Coordination roles must be properly typed as gUFO Role and extend cac-core:Role."@en ;
+        sh:message "Operational coordination-role records must not also be gUFO Role classifiers."@en ;
         sh:select """
             SELECT $this
             WHERE {
                 $this rdf:type gufo:Role .
-                FILTER NOT EXISTS {
-                    $this rdf:type/rdfs:subClassOf* cac-core:Role .
-                }
             }
         """
     ] .
@@ -831,8 +828,8 @@ cacontology-multi:TaskForceCompositionShape rdf:type sh:NodeShape ;
                 {
                     SELECT $this (COUNT(DISTINCT ?level) AS ?levelCount)
                     WHERE {
-                        $this cacontology-multi:includesAgency ?agency ;
-                        ?agency rdf:type ?agencyType ;
+                        $this cacontology-multi:includesAgency ?agency .
+                        ?agency rdf:type ?agencyType .
                         ?agencyType rdfs:subClassOf* cacontology-multi:LawEnforcementAgency .
                         BIND(
                             IF(?agencyType = cacontology-multi:FederalAgency, "federal",
@@ -860,7 +857,7 @@ cacontology-multi:MultiAgencyOperationCompositionShape rdf:type sh:NodeShape ;
                 {
                     SELECT $this (COUNT(DISTINCT ?jurisdiction) AS ?jurisdictionCount)
                     WHERE {
-                        $this cacontology-multi:involvesAgency ?agency ;
+                        $this cacontology-multi:involvesAgency ?agency .
                         ?agency cacontology-multi:operatesInJurisdiction ?jurisdiction .
                     }
                     GROUP BY $this
@@ -976,7 +973,7 @@ cacontology-multi:CoordinationRoleShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 cacontology-multi:QualifiedCoordinationParticipationShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:ParticipationSituation ;
+    sh:targetClass cac-core:QualifiedParticipationSituation ;
     rdfs:label "Qualified Coordination Participation Shape"@en ;
     rdfs:comment "Validates gUFO qualified participation situations in multi-jurisdictional coordination."@en ;
     sh:sparql [
@@ -984,12 +981,12 @@ cacontology-multi:QualifiedCoordinationParticipationShape rdf:type sh:NodeShape 
         sh:select """
             SELECT $this
             WHERE {
-                $this rdf:type gufo:ParticipationSituation .
+                $this rdf:type cac-core:QualifiedParticipationSituation .
                 $this gufo:standsInQualifiedParticipation ?role .
                 $this cacontology-multi:concernsCoordinationEvent ?event .
                 FILTER NOT EXISTS {
-                    ?role rdf:type* cacontology-multi:CoordinatingAgent ;
-                    ?event rdf:type* cacontology-multi:MultiJurisdictionalInvestigation .
+                    ?role rdf:type/rdfs:subClassOf* cacontology-multi:CoordinatingAgent .
+                    ?event rdf:type/rdfs:subClassOf* cacontology-multi:MultiJurisdictionalInvestigation .
                 }
             }
         """
@@ -1232,4 +1229,4 @@ cacontology-multi:ResourceSharingValidationShape rdf:type sh:NodeShape ;
                 FILTER (?effectiveness IN ("poor", "fair") || ?utilization < 0.6)
             }
         """
-    ] . 
+    ] .

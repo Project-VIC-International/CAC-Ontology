@@ -20,7 +20,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
@@ -28,6 +28,16 @@
                 <https://ontology.unifiedcyberontology.org/uco/role/1.5.0> ,
                 <https://cacontology.projectvic.org/3.1.0> ,
                 <http://purl.org/nemo/gufo#/1.0.0> .
+
+# Explicit declarations for classes already used by task-force properties and examples.
+cacontology-taskforce:CertificationProgram rdf:type owl:Class ;
+    rdfs:label "Certification Program"@en .
+
+cacontology-taskforce:FederalLawEnforcementPartner rdf:type owl:Class ;
+    rdfs:label "Federal Law Enforcement Partner"@en .
+
+cacontology-taskforce:LocalLawEnforcementPartner rdf:type owl:Class ;
+    rdfs:label "Local Law Enforcement Partner"@en .
 
 # =============================================================================
 # CAC TASK FORCE CLASSES (extending UCO Observable with gUFO Object)
@@ -125,32 +135,32 @@ cacontology-taskforce:TrainingUnit rdf:type owl:Class ;
 # TASK FORCE MEMBER CLASSES (extending UCO Role with gUFO Role)
 # =============================================================================
 
-cacontology-taskforce:TaskForceMember rdf:type owl:Class, gufo:Role ;
+cacontology-taskforce:TaskForceMember rdf:type owl:Class ;
     rdfs:label "Task Force Member"@en ;
     rdfs:comment "Individual member of an CAC task force with specialized training."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-taskforce:TaskForceCommander rdf:type owl:Class, gufo:Role ;
+cacontology-taskforce:TaskForceCommander rdf:type owl:Class ;
     rdfs:label "Task Force Commander"@en ;
     rdfs:comment "Command-level officer responsible for task force operations."@en ;
     rdfs:subClassOf cacontology-taskforce:TaskForceMember .
 
-cacontology-taskforce:TaskForceCoordinator rdf:type owl:Class, gufo:Role ;
+cacontology-taskforce:TaskForceCoordinator rdf:type owl:Class ;
     rdfs:label "Task Force Coordinator"@en ;
     rdfs:comment "Coordinator responsible for inter-agency cooperation and resource management."@en ;
     rdfs:subClassOf cacontology-taskforce:TaskForceMember .
 
-cacontology-taskforce:TaskForceInvestigator rdf:type owl:Class, gufo:Role ;
+cacontology-taskforce:TaskForceInvestigator rdf:type owl:Class ;
     rdfs:label "Task Force Investigator"@en ;
     rdfs:comment "Investigator specializing in CAC cases and child exploitation."@en ;
     rdfs:subClassOf cacontology-taskforce:TaskForceMember .
 
-cacontology-taskforce:TaskForceAnalyst rdf:type owl:Class, gufo:Role ;
+cacontology-taskforce:TaskForceAnalyst rdf:type owl:Class ;
     rdfs:label "Task Force Analyst"@en ;
     rdfs:comment "Analyst specializing in CAC intelligence and data analysis."@en ;
     rdfs:subClassOf cacontology-taskforce:TaskForceMember .
 
-cacontology-taskforce:TaskForceForensicExaminer rdf:type owl:Class, gufo:Role ;
+cacontology-taskforce:TaskForceForensicExaminer rdf:type owl:Class ;
     rdfs:label "Task Force Forensic Examiner"@en ;
     rdfs:comment "Digital forensic examiner specializing in CAC evidence."@en ;
     rdfs:subClassOf cacontology-taskforce:TaskForceMember .
@@ -191,7 +201,7 @@ cacontology-taskforce:ReactiveOperation rdf:type owl:Class ;
 cacontology-taskforce:ResourceSharing rdf:type owl:Class ;
     rdfs:label "Resource Sharing"@en ;
     rdfs:comment "Sharing of resources, personnel, or expertise between task forces."@en ;
-    rdfs:subClassOf uco-observable:ObservableObject, cac-core:Situation .
+    rdfs:subClassOf cac-core:Situation .
 
 cacontology-taskforce:PersonnelSharing rdf:type owl:Class ;
     rdfs:label "Personnel Sharing"@en ;
@@ -220,7 +230,7 @@ cacontology-taskforce:IntelligenceSharing rdf:type owl:Class ;
 cacontology-taskforce:CoordinationMechanism rdf:type owl:Class ;
     rdfs:label "Coordination Mechanism"@en ;
     rdfs:comment "Formal mechanism for coordinating task force activities."@en ;
-    rdfs:subClassOf uco-observable:ObservableObject, cac-core:Situation .
+    rdfs:subClassOf cac-core:Situation .
 
 cacontology-taskforce:TaskForceAlliance rdf:type owl:Class ;
     rdfs:label "Task Force Alliance"@en ;
@@ -236,6 +246,11 @@ cacontology-taskforce:RegionalCoordination rdf:type owl:Class ;
     rdfs:label "Regional Coordination"@en ;
     rdfs:comment "Coordination mechanism for regional task force activities."@en ;
     rdfs:subClassOf cacontology-taskforce:CoordinationMechanism .
+
+# Explicit declaration prevents OWLAPI from treating this object-property
+# target as a datatype when it also occurs in data-property domains.
+cacontology-taskforce:TaskForceTraining rdf:type owl:Class ;
+    rdfs:label "Task Force Training"@en .
 
 # =============================================================================
 # gUFO TEMPORAL PROPERTIES
@@ -273,13 +288,13 @@ cacontology-taskforce:operationPhaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "operation phase duration"@en ;
     rdfs:comment "Duration of operation phase."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-taskforce:coordinationDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "coordination duration"@en ;
     rdfs:comment "Duration of coordination mechanism."@en ;
     rdfs:domain cacontology-taskforce:CoordinationMechanism ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 # =============================================================================
 # TASK FORCE PROPERTIES
@@ -709,7 +724,7 @@ cacontology-taskforce:teachersEducated rdf:type owl:DatatypeProperty ;
 # Historical Timeline Properties
 cacontology-taskforce:reportingYear rdf:type owl:DatatypeProperty ;
     rdfs:domain cacontology-taskforce:AnnualPerformance ;
-    rdfs:range xsd:gYear ;
+    rdfs:range xsd:integer ;
     rdfs:label "reporting year"@en ;
     rdfs:comment "Year for which performance metrics are reported."@en .
 
@@ -1139,4 +1154,4 @@ cacontology-taskforce:coordinatesWithCivilian rdf:type owl:ObjectProperty ;
     rdfs:domain cacontology-taskforce:MilitaryICACtaskForce ;
     rdfs:range cacontology-taskforce:ICACtaskForce ;
     rdfs:label "coordinates with civilian"@en ;
-    rdfs:comment "Links military task force to civilian task forces for coordination."@en . 
+    rdfs:comment "Links military task force to civilian task forces for coordination."@en .

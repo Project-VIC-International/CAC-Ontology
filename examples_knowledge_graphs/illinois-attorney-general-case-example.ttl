@@ -165,7 +165,7 @@
 
 # 2022 Annual Performance (26% increase)
 :Illinois2022Performance rdf:type cacontology-taskforce:AnnualPerformance ;
-    cacontology-taskforce:reportingYear "2022"^^xsd:gYear ;
+    cacontology-taskforce:reportingYear "2022"^^xsd:integer ;
     cacontology-taskforce:yearOverYearIncrease 26.0 ;  # 26% increase in 2022
     cacontology-taskforce:measuresPerformance :IllinoisICACtaskForce .
 

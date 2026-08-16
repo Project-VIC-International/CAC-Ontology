@@ -1,0 +1,238 @@
+[
+  {
+    "file": "cacontology-ai-csam-shapes.ttl",
+    "mentions": [
+      "gufo:Phase"
+    ],
+    "messages": [
+      "Operational AI phase occurrences must not also be gUFO Phase classifiers."
+    ],
+    "shape": "https://cacontology.projectvic.org/ai-csam#PhaseLevelSeparationShape",
+    "targets": [
+      "https://cacontology.projectvic.org/ai-csam#AIDetectionPhase",
+      "https://cacontology.projectvic.org/ai-csam#ContentGenerationPhase",
+      "https://cacontology.projectvic.org/ai-csam#ForensicAnalysisPhase"
+    ]
+  },
+  {
+    "file": "cacontology-athletic-exploitation-shapes.ttl",
+    "mentions": [
+      "gufo:Phase"
+    ],
+    "messages": [
+      "Operational athletic phase occurrences must not also be gUFO Phase classifiers."
+    ],
+    "shape": "https://cacontology.projectvic.org/athletic#PhaseLevelSeparationShape",
+    "targets": [
+      "https://cacontology.projectvic.org/athletic#AuthorityEstablishmentPhase",
+      "https://cacontology.projectvic.org/athletic#DiscoveryPhase",
+      "https://cacontology.projectvic.org/athletic#ExploitationPhase",
+      "https://cacontology.projectvic.org/athletic#GroomingPhase",
+      "https://cacontology.projectvic.org/athletic#PhysicalCoercionPhase"
+    ]
+  },
+  {
+    "file": "cacontology-athletic-exploitation-shapes.ttl",
+    "mentions": [
+      "gufo:Role"
+    ],
+    "messages": [
+      "Athletic entities must use compatible foundational typing; operational role records must not also be gUFO classifiers."
+    ],
+    "shape": "n3c613ab4cda744cbb55f01f37c989e9cb103",
+    "targets": []
+  },
+  {
+    "file": "cacontology-case-management-shapes.ttl",
+    "mentions": [
+      "gufo:Phase"
+    ],
+    "messages": [
+      "Operational case-management phase occurrences must not also be gUFO Phase classifiers."
+    ],
+    "shape": "https://cacontology.projectvic.org/case-management#PhaseLevelSeparationShape",
+    "targets": [
+      "https://cacontology.projectvic.org/case-management#ActiveInvestigationPhase",
+      "https://cacontology.projectvic.org/case-management#CaseInitiationPhase",
+      "https://cacontology.projectvic.org/case-management#CourtProceedingsPhase",
+      "https://cacontology.projectvic.org/case-management#DispositionPhase",
+      "https://cacontology.projectvic.org/case-management#ProsecutionPreparationPhase"
+    ]
+  },
+  {
+    "file": "cacontology-core-shapes.ttl",
+    "mentions": [
+      "gufo:Role",
+      "gufo:Phase"
+    ],
+    "messages": [
+      "All gUFO entities must have proper foundational typing"
+    ],
+    "shape": "https://cacontology.projectvic.org#FoundationalTypeConsistencyShape",
+    "targets": []
+  },
+  {
+    "file": "cacontology-detection-shapes.ttl",
+    "mentions": [
+      "gufo:Role",
+      "gufo:Phase"
+    ],
+    "messages": [
+      "All detection gUFO entities must have proper foundational typing"
+    ],
+    "shape": "https://cacontology.projectvic.org/detection#DetectionFoundationalTypeShape",
+    "targets": []
+  },
+  {
+    "file": "cacontology-educational-exploitation-shapes.ttl",
+    "mentions": [
+      "gufo:Role"
+    ],
+    "messages": [
+      "Operational educator-role records must not also be gUFO Role classifiers."
+    ],
+    "shape": "https://cacontology.projectvic.org/educational/shapes#FoundationalTypeComplianceShape",
+    "targets": []
+  },
+  {
+    "file": "cacontology-educational-exploitation-shapes.ttl",
+    "mentions": [
+      "gufo:Phase"
+    ],
+    "messages": [
+      "Operational educational phase occurrences must not also be gUFO Phase classifiers."
+    ],
+    "shape": "https://cacontology.projectvic.org/educational/shapes#FoundationalTypeComplianceShape",
+    "targets": []
+  },
+  {
+    "file": "cacontology-extremist-enterprises-shapes.ttl",
+    "mentions": [
+      "gufo:Role"
+    ],
+    "messages": [
+      "Operational role records must not also be gUFO Role classifiers."
+    ],
+    "shape": "https://cacontology.projectvic.org/extremist-enterprises#OperationalRoleLevelSeparationRule",
+    "targets": [
+      "https://cacontology.projectvic.org/core#Role"
+    ]
+  },
+  {
+    "file": "cacontology-multi-jurisdiction-shapes.ttl",
+    "mentions": [
+      "gufo:Role"
+    ],
+    "messages": [
+      "Operational coordination-role records must not also be gUFO Role classifiers."
+    ],
+    "shape": "https://cacontology.projectvic.org/multi-jurisdiction#CoordinationRoleValidationShape",
+    "targets": [
+      "https://cacontology.projectvic.org/core#Role"
+    ]
+  },
+  {
+    "file": "cacontology-partnerships-shapes.ttl",
+    "mentions": [
+      "gufo:Phase"
+    ],
+    "messages": [
+      "Operational partnership phase occurrences must not also be gUFO Phase classifiers."
+    ],
+    "shape": "https://cacontology.projectvic.org/partnerships/shapes#PartnershipPhaseTypeValidationShape",
+    "targets": [
+      "https://cacontology.projectvic.org/core#Phase"
+    ]
+  },
+  {
+    "file": "cacontology-partnerships-shapes.ttl",
+    "mentions": [
+      "gufo:Role"
+    ],
+    "messages": [
+      "Operational partner-role records must not also be gUFO Role classifiers."
+    ],
+    "shape": "https://cacontology.projectvic.org/partnerships/shapes#PartnerRoleTypeValidationShape",
+    "targets": [
+      "https://cacontology.projectvic.org/core#Role"
+    ]
+  },
+  {
+    "file": "cacontology-physical-evidence-shapes.ttl",
+    "mentions": [
+      "gufo:Phase"
+    ],
+    "messages": [
+      "Operational evidence phase occurrences must not also be gUFO Phase classifiers."
+    ],
+    "shape": "https://cacontology.projectvic.org/physical/shapes#EvidencePhaseTypeValidationShape",
+    "targets": [
+      "https://cacontology.projectvic.org/core#Phase"
+    ]
+  },
+  {
+    "file": "cacontology-physical-evidence-shapes.ttl",
+    "mentions": [
+      "gufo:Role"
+    ],
+    "messages": [
+      "Operational forensic-role records must not also be gUFO Role classifiers."
+    ],
+    "shape": "https://cacontology.projectvic.org/physical/shapes#ForensicRoleTypeValidationShape",
+    "targets": [
+      "https://cacontology.projectvic.org/core#Role"
+    ]
+  },
+  {
+    "file": "cacontology-platform-infrastructure-shapes.ttl",
+    "mentions": [
+      "gufo:Phase"
+    ],
+    "messages": [
+      "Operational infrastructure phase occurrences must not also be gUFO Phase classifiers."
+    ],
+    "shape": "https://cacontology.projectvic.org/infrastructure/shapes#InfrastructurePhaseTypeValidationShape",
+    "targets": [
+      "https://cacontology.projectvic.org/core#Phase"
+    ]
+  },
+  {
+    "file": "cacontology-platform-infrastructure-shapes.ttl",
+    "mentions": [
+      "gufo:Role"
+    ],
+    "messages": [
+      "Operational technical-role records must not also be gUFO Role classifiers."
+    ],
+    "shape": "https://cacontology.projectvic.org/infrastructure/shapes#TechnicalRoleTypeValidationShape",
+    "targets": [
+      "https://cacontology.projectvic.org/core#Role"
+    ]
+  },
+  {
+    "file": "cacontology-production-shapes.ttl",
+    "mentions": [
+      "gufo:Phase"
+    ],
+    "messages": [
+      "Operational production phase occurrences must not also be gUFO Phase classifiers."
+    ],
+    "shape": "https://cacontology.projectvic.org/production#ProductionPhaseShape",
+    "targets": [
+      "https://cacontology.projectvic.org/core#Phase"
+    ]
+  },
+  {
+    "file": "cacontology-production-shapes.ttl",
+    "mentions": [
+      "gufo:Role"
+    ],
+    "messages": [
+      "Operational production-role records must not also be gUFO Role classifiers."
+    ],
+    "shape": "https://cacontology.projectvic.org/production#ProductionRoleShape",
+    "targets": [
+      "https://cacontology.projectvic.org/core#Role"
+    ]
+  }
+]

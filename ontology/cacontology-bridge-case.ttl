@@ -30,7 +30,7 @@
 # The following documents the relationship between CACInvestigation and
 # the CASE Investigation class.
 
-cac-bridge-case:CACInvestigationAlignment a owl:Axiom ;
+cac-bridge-case:CACInvestigationAlignment a owl:NamedIndividual ;
     rdfs:label "CACInvestigation CASE Alignment"@en ;
     rdfs:comment "Documents the alignment between cacontology:CACInvestigation and case-investigation:Investigation. CACInvestigation retains its existing rdfs:subClassOf case-investigation:Investigation in the reference layer."@en ;
     cac-bridge-case:disposition "retainInReferenceLayer" .
@@ -41,4 +41,4 @@ cac-bridge-case:CACInvestigationAlignment a owl:Axiom ;
 
 cac-bridge-case:disposition a owl:AnnotationProperty ;
     rdfs:label "disposition"@en ;
-    rdfs:comment "Records the disposition decision for a CASE alignment axiom."@en .
+    rdfs:comment "Records the disposition decision for a CASE alignment record."@en .

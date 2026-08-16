@@ -1,0 +1,12 @@
+PREFIX cac-custody: <https://cacontology.projectvic.org/custodial#>
+
+SELECT ?relationship ?state ?stateType ?isCurrent
+WHERE {
+  ?relationship a cac-custody:CustodialRelationship ;
+                cac-custody:hasCustodyState ?state .
+  ?state a cac-custody:CustodyState, ?stateType ;
+         cac-custody:custodyStateOf ?relationship .
+  FILTER (?stateType != cac-custody:CustodyState)
+  BIND(EXISTS { ?relationship cac-custody:currentCustodyState ?state } AS ?isCurrent)
+}
+ORDER BY ?relationship ?state

@@ -21,7 +21,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-11-18"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/temporal/3.1.0> ,
                 <http://purl.org/nemo/gufo#/1.0.0> .
 
@@ -35,21 +35,21 @@ cacontology-temporal-shapes:PhaseTemporalPropertiesShape rdf:type sh:NodeShape ;
     sh:targetClass cac-core:Phase ;
     sh:property [
         sh:path cacontology-temporal:hasMinimumDuration ;
-        sh:datatype xsd:duration ;
+        sh:datatype xsd:string ;
         sh:maxCount 1 ;
-        sh:message "hasMinimumDuration, when provided, must be a single xsd:duration value."@en
+        sh:message "hasMinimumDuration, when provided, must be a single xsd:string value."@en
     ] ;
     sh:property [
         sh:path cacontology-temporal:hasMaximumDuration ;
-        sh:datatype xsd:duration ;
+        sh:datatype xsd:string ;
         sh:maxCount 1 ;
-        sh:message "hasMaximumDuration, when provided, must be a single xsd:duration value."@en
+        sh:message "hasMaximumDuration, when provided, must be a single xsd:string value."@en
     ] ;
     sh:property [
         sh:path cacontology-temporal:hasTypicalDuration ;
-        sh:datatype xsd:duration ;
+        sh:datatype xsd:string ;
         sh:maxCount 1 ;
-        sh:message "hasTypicalDuration, when provided, must be a single xsd:duration value."@en
+        sh:message "hasTypicalDuration, when provided, must be a single xsd:string value."@en
     ] ;
     sh:property [
         sh:path cacontology-temporal:hasLegalDeadline ;
@@ -103,14 +103,14 @@ cacontology-temporal-shapes:PhaseTransitionEventShape rdf:type sh:NodeShape ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:class cac-core:Phase ;
-        sh:message "PhaseTransitionEvent must have exactly one transitionsFrom value of type gufo:Phase."@en
+        sh:message "PhaseTransitionEvent must have exactly one transitionsFrom value of type cac-core:Phase."@en
     ] ;
     sh:property [
         sh:path cacontology-temporal:transitionsTo ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:class cac-core:Phase ;
-        sh:message "PhaseTransitionEvent must have exactly one transitionsTo value of type gufo:Phase."@en
+        sh:message "PhaseTransitionEvent must have exactly one transitionsTo value of type cac-core:Phase."@en
     ] .
 
 # =============================================================================

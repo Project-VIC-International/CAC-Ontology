@@ -1,0 +1,22 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
+@prefix ex: <https://example.invalid/v4-test#> .
+
+ex:VictimRoleClassifier a owl:Class, gufo:Role .
+
+ex:person-1 a cac-core:EnduringEntity ;
+    rdfs:label "Synthetic enduring bearer" .
+ex:investigation-1 a cac-core:Situation ;
+    rdfs:label "Synthetic investigation context" .
+
+ex:assignment-1 a cac-core:RoleAssignment ;
+    rdfs:label "Synthetic victim-role assignment" ;
+    cac-core:roleBearer ex:person-1 ;
+    cac-core:roleClassifier ex:VictimRoleClassifier ;
+    cac-core:roleContext ex:investigation-1 .
+
+ex:record-1 a cac-core:RoleRecord ;
+    rdfs:label "Synthetic role record" ;
+    cac-core:describesRoleAssignment ex:assignment-1 .

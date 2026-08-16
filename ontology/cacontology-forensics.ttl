@@ -21,7 +21,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/action/1.5.0> ,
@@ -172,17 +172,17 @@ cacontology-forensics:CustodyDocument rdf:type owl:Class ;
 # FORENSIC PROCESS ROLES (extending UCO Role with gUFO Role)
 # =============================================================================
 
-cacontology-forensics:ForensicExaminerRole rdf:type owl:Class, gufo:Role ;
+cacontology-forensics:ForensicExaminerRole rdf:type owl:Class ;
     rdfs:label "Forensic Examiner Role"@en ;
     rdfs:comment "Role of a person conducting digital forensic examination and analysis."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-forensics:EvidenceCustodianRole rdf:type owl:Class, gufo:Role ;
+cacontology-forensics:EvidenceCustodianRole rdf:type owl:Class ;
     rdfs:label "Evidence Custodian Role"@en ;
     rdfs:comment "Role of a person responsible for evidence custody and security."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-forensics:VictimIdentificationSpecialist rdf:type owl:Class, gufo:Role ;
+cacontology-forensics:VictimIdentificationSpecialist rdf:type owl:Class ;
     rdfs:label "Victim Identification Specialist"@en ;
     rdfs:comment "Role of specialist focused on identifying child victims from digital evidence."@en ;
     rdfs:subClassOf cac-core:Role .
@@ -223,7 +223,7 @@ cacontology-forensics:forensicPhaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "forensic phase duration"@en ;
     rdfs:comment "Duration of forensic phase."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 # =============================================================================
 # FORENSIC PROPERTIES

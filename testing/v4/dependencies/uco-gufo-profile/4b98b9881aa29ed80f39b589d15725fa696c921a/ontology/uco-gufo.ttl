@@ -1,0 +1,476 @@
+# imports: http://purl.org/nemo/gufo#/1.0.0
+# imports: https://ontology.unifiedcyberontology.org/uco/uco/1.5.0
+
+@prefix drafting: <http://example.org/ontology/drafting/> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-analysis: <https://ontology.unifiedcyberontology.org/uco/analysis/> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/ontology/uco-gufo>
+	a owl:Ontology ;
+	owl:imports
+		<http://purl.org/nemo/gufo#/1.0.0> ,
+		<https://ontology.unifiedcyberontology.org/uco/uco/1.5.0>
+		;
+	.
+
+drafting:AbstractIndividualType
+	a owl:Class ;
+	rdfs:subClassOf
+		drafting:UcoType ,
+		gufo:AbstractIndividualType
+		;
+	rdfs:seeAlso <https://github.com/ucoProject/UCO-Profile-gufo/pull/18#discussion_r3066676308> ;
+	.
+
+drafting:Bearing
+	a
+		gufo:Kind ,
+		owl:Class
+		;
+	rdfs:subClassOf
+		drafting:Quality ,
+		[
+			a owl:Restriction ;
+			rdfs:comment "This restriction is more suited for any gUFO Object + UCO Object with a physical projection, but such a class is not defined yet in gUFO or UCO."@en ;
+			owl:onProperty gufo:inheresIn ;
+			owl:allValuesFrom uco-observable:Device ;
+		]
+		;
+	rdfs:seeAlso <https://github.com/ucoProject/UCO/issues/567> ;
+	.
+
+drafting:Endurant
+	a owl:Class ;
+	rdfs:subClassOf
+		gufo:Endurant ,
+		uco-core:UcoThing
+		;
+	rdfs:seeAlso <https://github.com/ucoProject/UCO/issues/544> ;
+	owl:disjointWith drafting:Perdurant ;
+	.
+
+drafting:FacetType
+	a owl:Class ;
+	rdfs:subClassOf
+		gufo:EndurantType ,
+		owl:Thing
+		;
+	rdfs:comment "Note: This is not a subclass of uco-core:UcoThing due in part to entailed imposition of an IRI form that does not seem appropriate in this situation.  If this were a subclass of UcoThing, then FacetType would trigger a SHACL info-severity validation result, visible to end-users on every SHACL run, because the IRI '...FacetType' does not end with a UUID."@en ;
+	rdfs:seeAlso
+		<https://github.com/ucoProject/UCO/issues/430> ,
+		<https://github.com/ucoProject/UCO/issues/595>
+		;
+	owl:disjointUnionOf (
+		drafting:GeneralFacetType
+		drafting:SpecificFacetType
+	) ;
+	owl:disjointWith
+		uco-core:UcoInherentCharacterizationThing ,
+		uco-core:UcoObject
+		;
+	.
+
+drafting:GeneralFacetType
+	a owl:Class ;
+	rdfs:subClassOf
+		drafting:FacetType ,
+		gufo:Category
+		;
+	.
+
+drafting:Instant
+	a owl:Class ;
+	rdfs:subClassOf
+		drafting:InstantaneousPerdurant ,
+		time:Instant
+		;
+	.
+
+drafting:InstantaneousPerdurant
+	a owl:Class ;
+	rdfs:subClassOf drafting:Perdurant ;
+	rdfs:isDefinedBy <https://github.com/ucoProject/UCO/issues/651> ;
+	.
+
+drafting:Perdurant
+	a owl:Class ;
+	rdfs:subClassOf uco-core:UcoObject ;
+	rdfs:seeAlso
+		<https://github.com/ucoProject/UCO/issues/544> ,
+		<https://github.com/ucoProject/UCO/issues/651>
+		;
+	owl:disjointWith drafting:Endurant ;
+	.
+
+drafting:Quality
+	a owl:Class ;
+	rdfs:subClassOf
+		drafting:Endurant ,
+		gufo:Quality ,
+		uco-core:UcoInherentCharacterizationThing
+		;
+	rdfs:seeAlso <https://github.com/ucoProject/UCO/issues/535> ;
+	.
+
+drafting:SpecificFacetType
+	a owl:Class ;
+	rdfs:subClassOf
+		drafting:FacetType ,
+		gufo:Kind
+		;
+	.
+
+drafting:Technique
+	a owl:Class ;
+	rdfs:subClassOf
+		drafting:UcoType ,
+		gufo:EventType
+		;
+	rdfs:isDefinedBy <https://github.com/ucoProject/UCO/issues/666> ;
+	.
+
+drafting:UcoType
+	a owl:Class ;
+	rdfs:subClassOf gufo:Type ;
+	rdfs:isDefinedBy <https://github.com/ucoProject/UCO/issues/666> ;
+	owl:disjointWith uco-core:UcoThing ;
+	.
+
+drafting:Vehicle
+	a owl:Class ;
+	rdfs:subClassOf uco-observable:Device ;
+	rdfs:seeAlso <https://github.com/ucoProject/UCO/issues/567> ;
+	.
+
+drafting:Velocity
+	a
+		gufo:Kind ,
+		owl:Class
+		;
+	rdfs:subClassOf
+		drafting:Quality ,
+		[
+			a owl:Restriction ;
+			rdfs:comment "This restriction is more suited for any gUFO Object + UCO Object with a physical projection, but such a class is not defined yet in gUFO or UCO."@en ;
+			owl:onProperty gufo:inheresIn ;
+			owl:allValuesFrom uco-observable:Device ;
+		]
+		;
+	rdfs:seeAlso <https://github.com/ucoProject/UCO/issues/567> ;
+	.
+
+drafting:hadParticipant
+	a
+		owl:ObjectProperty ,
+		gufo:MaterialRelationshipType
+		;
+	rdfs:subPropertyOf [
+		owl:inverseOf gufo:participatedIn ;
+	] ;
+	rdfs:domain drafting:Perdurant ;
+	rdfs:range drafting:Endurant ;
+	rdfs:seeAlso <https://github.com/ucoProject/UCO/issues/544> ;
+	.
+
+drafting:hadPerdurantProperPart
+	a
+		owl:ObjectProperty ,
+		gufo:MaterialRelationshipType
+		;
+	rdfs:subPropertyOf [
+		owl:inverseOf gufo:isEventProperPartOf ;
+	] ;
+	rdfs:domain drafting:Perdurant ;
+	rdfs:range drafting:Perdurant ;
+	rdfs:seeAlso <https://github.com/ucoProject/UCO/issues/544> ;
+	.
+
+drafting:isBearerOf
+	a owl:ObjectProperty ;
+	rdfs:domain gufo:ConcreteIndividual ;
+	rdfs:range gufo:Aspect ;
+	owl:inverseOf gufo:inheresIn ;
+	.
+
+drafting:techniqueID
+	a owl:DatatypeProperty ;
+	rdfs:domain drafting:Technique ;
+	rdfs:isDefinedBy <https://github.com/ucoProject/UCO/issues/666> ;
+	.
+
+uco-action:Action
+	rdfs:subClassOf
+		drafting:Perdurant ,
+		gufo:Event
+		;
+	.
+
+uco-action:endTime
+	rdfs:seeAlso
+		gufo:hasEndPoint ,
+		gufo:hasEndPointInXSDDateTimeStamp
+		;
+	.
+
+uco-action:instrument
+	a gufo:MaterialRelationshipType ;
+	rdfs:subPropertyOf drafting:hadParticipant ;
+	.
+
+uco-action:object
+	a gufo:MaterialRelationshipType ;
+	rdfs:subPropertyOf drafting:hadParticipant ;
+	.
+
+uco-action:participant
+	a gufo:MaterialRelationshipType ;
+	rdfs:subPropertyOf drafting:hadParticipant ;
+	.
+
+uco-action:performer
+	a gufo:MaterialRelationshipType ;
+	rdfs:subPropertyOf drafting:hadParticipant ;
+	.
+
+uco-action:result
+	a gufo:MaterialRelationshipType ;
+	rdfs:subPropertyOf drafting:hadParticipant ;
+	.
+
+uco-action:startTime
+	rdfs:seeAlso
+		gufo:hasBeginPoint ,
+		gufo:hasBeginPointInXSDDateTimeStamp
+		;
+	.
+
+uco-action:subaction
+	a gufo:MaterialRelationshipType ;
+	rdfs:subPropertyOf drafting:hadPerdurantProperPart ;
+	.
+
+uco-analysis:AnalyticResult
+	a gufo:SubKind ;
+	.
+
+uco-core:Assertion
+	a gufo:Kind ;
+	rdfs:subClassOf
+		drafting:Endurant ,
+		gufo:Object
+		;
+	.
+
+uco-core:Event
+	rdfs:subClassOf
+		drafting:Perdurant ,
+		gufo:Event
+		;
+	.
+
+uco-core:Facet
+	a drafting:GeneralFacetType ;
+	rdfs:subClassOf gufo:IntrinsicMode ;
+	.
+
+uco-core:Item
+	rdfs:subClassOf
+		drafting:Endurant ,
+		gufo:Object
+		;
+	.
+
+uco-core:Relationship
+	rdfs:subClassOf
+		drafting:Endurant ,
+		gufo:Object
+		;
+	.
+
+uco-core:UcoInherentCharacterizationThing
+	owl:disjointWith drafting:FacetType ;
+	.
+
+uco-core:UcoObject
+	owl:disjointWith drafting:FacetType ;
+	.
+
+uco-core:UcoThing
+	owl:disjointWith drafting:UcoType ;
+	.
+
+uco-core:endTime
+	rdfs:seeAlso
+		gufo:hasEndPoint ,
+		gufo:hasEndPointInXSDDateTimeStamp
+		;
+	.
+
+uco-core:hasFacet
+	rdfs:subPropertyOf drafting:isBearerOf ;
+	.
+
+uco-core:startTime
+	rdfs:seeAlso
+		gufo:hasBeginPoint ,
+		gufo:hasBeginPointInXSDDateTimeStamp
+		;
+	.
+
+uco-identity:Identity
+	a gufo:Category ;
+	.
+
+uco-identity:Organization
+	a gufo:Kind ;
+	rdfs:subClassOf
+		drafting:Endurant ,
+		gufo:FunctionalComplex
+		;
+	.
+
+uco-identity:Person
+	a gufo:Kind ;
+	rdfs:subClassOf
+		drafting:Endurant ,
+		gufo:FunctionalComplex
+		;
+	.
+
+uco-location:Location
+	rdfs:subClassOf
+		drafting:Endurant ,
+		gufo:Object
+		;
+	.
+
+uco-observable:AlternateDataStream
+	a gufo:Kind ;
+	rdfs:subClassOf
+		drafting:Endurant ,
+		gufo:Object
+		;
+	.
+
+uco-observable:BluetoothAddressFacet
+	a drafting:SpecificFacetType ;
+	.
+
+uco-observable:Device
+	rdfs:subClassOf
+		drafting:Endurant ,
+		gufo:FunctionalComplex
+		;
+	.
+
+uco-observable:FileSystem
+	a gufo:Kind ;
+	.
+
+uco-observable:FileSystemObject
+	a gufo:Category ;
+	.
+
+uco-observable:MACAddressFacet
+	a drafting:GeneralFacetType ;
+	.
+
+uco-types:Hash
+	a drafting:AbstractIndividualType ;
+	rdfs:subClassOf gufo:AbstractIndividual ;
+	.
+
+[]
+	a owl:Axiom ;
+	rdfs:comment "This axiom will be redundant upon resolution of UCO Issue 651."@en ;
+	rdfs:seeAlso <https://github.com/ucoProject/UCO/issues/651> ;
+	owl:annotatedObject drafting:Perdurant ;
+	owl:annotatedProperty rdfs:subClassOf ;
+	owl:annotatedSubject uco-action:Action ;
+	.
+
+[]
+	a owl:Axiom ;
+	rdfs:comment "This axiom will be redundant upon resolution of UCO Issue 651."@en ;
+	rdfs:seeAlso <https://github.com/ucoProject/UCO/issues/651> ;
+	owl:annotatedObject drafting:Perdurant ;
+	owl:annotatedProperty rdfs:subClassOf ;
+	owl:annotatedSubject uco-core:Event ;
+	.
+
+[]
+	a owl:Axiom ;
+	rdfs:comment
+		"This specialization stems from a Facet currently being understood to be an intrinsic mode that is not measurable.  Were it measurable, a Facet would be a Quality."@en ,
+		"This specialization will raise some disussion pertaining to core:ConfidenceFacet.  If a ConfidenceFacet is measurable, then it is a specialization of gufo:Quality, and Facet should instead be a subclass of IntrinsicAspect."@en
+		;
+	owl:annotatedObject gufo:IntrinsicMode ;
+	owl:annotatedProperty rdfs:subClassOf ;
+	owl:annotatedSubject uco-core:Facet ;
+	.
+
+[]
+	a owl:Axiom ;
+	rdfs:seeAlso
+		<http://example.org/kb/AnalyticResult-14641bfa-ef39-4394-a8ae-d0f57a2d637a> ,
+		<https://github.com/casework/CASE-Examples/tree/dc6f6b901289c1684fd88e25e9bcec925974d155/examples/illustrations/partitions> ,
+		uco-analysis:AnalyticResult
+		;
+	owl:annotatedObject gufo:Object ;
+	owl:annotatedProperty rdfs:subClassOf ;
+	owl:annotatedSubject uco-core:Assertion ;
+	.
+
+[]
+	a owl:NegativePropertyAssertion ;
+	rdfs:comment "If this specialization were introduced, a further specialization would be suggested for gufo:mediates.  A demonstration exists among the CASE examples that is incompatible: A Relationship, 'Mapped_Into', that relates two Actions together to demonstrate a lifecycle phase."@en ;
+	rdfs:seeAlso
+		<http://example.org/kb/lifecycle_phase-60a55e96-d39e-487e-9b39-3ba96e1ffc7a> ,
+		<https://github.com/casework/CASE-Examples/tree/dc6f6b901289c1684fd88e25e9bcec925974d155/examples/illustrations/forensic_lifecycle> ,
+		[
+			a owl:NegativePropertyAssertion ;
+			rdfs:comment "gufo:mediates has range gufo:Endurant, but a uco-core:Relationship is permitted to link any UcoObject, including perdurants."@en ;
+			rdfs:seeAlso
+				<http://example.org/kb/lifecycle_phase-60a55e96-d39e-487e-9b39-3ba96e1ffc7a> ,
+				<https://github.com/casework/CASE-Examples/tree/dc6f6b901289c1684fd88e25e9bcec925974d155/examples/illustrations/forensic_lifecycle>
+				;
+			owl:assertionProperty rdfs:subPropertyOf ;
+			owl:sourceInvididual uco-core:source ;
+			owl:targetInvididual gufo:mediates ;
+		] ,
+		[
+			a owl:NegativePropertyAssertion ;
+			rdfs:comment "gufo:mediates has range gufo:Endurant, but a uco-core:Relationship is permitted to link any UcoObject, including perdurants."@en ;
+			rdfs:seeAlso
+				<http://example.org/kb/lifecycle_phase-60a55e96-d39e-487e-9b39-3ba96e1ffc7a> ,
+				<https://github.com/casework/CASE-Examples/tree/dc6f6b901289c1684fd88e25e9bcec925974d155/examples/illustrations/forensic_lifecycle>
+				;
+			owl:assertionProperty rdfs:subPropertyOf ;
+			owl:sourceInvididual uco-core:target ;
+			owl:targetInvididual gufo:mediates ;
+		]
+		;
+	owl:assertionProperty rdfs:subClassOf ;
+	owl:sourceInvididual uco-core:Relationship ;
+	owl:targetInvididual gufo:Relator ;
+	.
+
+[]
+	a owl:NegativePropertyAssertion ;
+	rdfs:comment "This might apply for a more general 'Perdurant' class, but drafting:Perdurant would not be appropriate - it is in the UcoThing subclass hierarchy."@en ;
+	owl:assertionProperty rdfs:subClassOf ;
+	owl:sourceInvididual gufo:Event ;
+	owl:targetInvididual drafting:Perdurant ;
+	.
+

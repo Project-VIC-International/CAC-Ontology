@@ -2,6 +2,8 @@
 
 This glossary applies to **CAC Ontology v3.1.0**. The semantic spine entries identify their v3.0.0 introduction as historical release context. See [Namespaces and prefixes](namespaces-and-prefixes.md) for canonical IRIs.
 
+Draft v4 terminology is defined normatively for proposal review in [the v4 foundational architecture](v4-foundational-architecture.md) and [v3-to-v4 migration notes](v3-to-v4-migration.md). In that proposal, `RoleAssignment` is an operational bearer/classifier/context record, `Phase` is an operational occurrence linked to a separate phase classifier, `CustodyState` records time-varying custody, and `MembershipTier` is a controlled concept. These meanings do not change the published v3.1.0 release.
+
 ## Acronyms
 
 - **CAID**: Child Abuse Image Database
@@ -268,4 +270,4 @@ See the individual ontology modules and their SKOS concept schemes for complete 
 
 ## License
 
-This project is licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0). 
+This project is licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).

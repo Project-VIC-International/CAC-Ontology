@@ -1,0 +1,10 @@
+PREFIX cac-enterprises: <https://cacontology.projectvic.org/extremist-enterprises#>
+
+SELECT ?membership ?tier ?membershipLevel ?accessLevel
+WHERE {
+  ?membership cac-enterprises:hasMembershipTier ?tier .
+  ?tier a cac-enterprises:MembershipTier ;
+        cac-enterprises:membershipLevel ?membershipLevel .
+  OPTIONAL { ?tier cac-enterprises:accessLevel ?accessLevel . }
+}
+ORDER BY ?membership

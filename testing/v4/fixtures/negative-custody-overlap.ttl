@@ -1,0 +1,10 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix cac-custody: <https://cacontology.projectvic.org/custodial#> .
+@prefix ex: <https://example.invalid/v4-test#> .
+
+ex:invalid-mixed-node a cac-custody:CustodialRelationship, cac-custody:CustodyState ;
+    rdfs:label "Synthetic invalid mixed relationship and state" ;
+    cac-custody:relationshipType "guardian" ;
+    cac-custody:trustLevel "high" ;
+    cac-custody:accessLevel "supervised" ;
+    cac-custody:custodyStateOf ex:invalid-mixed-node .

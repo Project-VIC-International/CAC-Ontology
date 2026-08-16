@@ -1,0 +1,8 @@
+{
+  "claim_limit": "This report audits the content-addressed .ttl files registered in dependency-lock.json; unregistered upstream source examples are outside the vendored runtime closure.",
+  "files_audited": 28,
+  "finding_count": 0,
+  "findings": [],
+  "schema_version": 1,
+  "status": "pass"
+}

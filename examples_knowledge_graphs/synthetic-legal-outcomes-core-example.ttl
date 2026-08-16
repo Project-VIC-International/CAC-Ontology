@@ -93,21 +93,21 @@ ex:ConvictionRecord_Synthetic a cacontology-legal-outcomes:ConvictionRecord ;
     cacontology-legal-outcomes:priorConvictions "0"^^xsd:nonNegativeInteger .
 
 # -----------------------------------------------------------------------------
-# Sentence with sentenceDurationMonths (companion to xsd:duration)
+# Sentence with sentenceDurationMonths (numeric analytics companion to the canonical duration string)
 # -----------------------------------------------------------------------------
 
 ex:PrisonSentence_Synthetic a cacontology-legal-outcomes:PrisonSentence ;
     rdfs:label "Synthetic 120-month prison sentence"@en ;
     uco-core:description "Abstract sentence term for numeric-duration property demonstration." ;
     cacontology-legal-outcomes:sentenceDurationMonths 120 ;
-    cacontology-legal-outcomes:sentenceDuration "P10Y"^^xsd:duration ;
+    cacontology-legal-outcomes:sentenceDuration "P10Y" ;
     cacontology-legal-outcomes:appliesTo ex:Charge_Count1_Possession ,
         ex:Charge_Count2_Distribution .
 
 ex:SupervisedRelease_Synthetic a cacontology-legal-outcomes:SupervisedRelease ;
     rdfs:label "Synthetic 60-month supervised release"@en ;
     cacontology-legal-outcomes:sentenceDurationMonths 60 ;
-    cacontology-legal-outcomes:sentenceDuration "P5Y"^^xsd:duration ;
+    cacontology-legal-outcomes:sentenceDuration "P5Y" ;
     cacontology-legal-outcomes:hasSpecialCondition ex:InternetMonitoringCondition_Synthetic .
 
 ex:InternetMonitoringCondition_Synthetic

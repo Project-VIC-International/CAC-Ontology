@@ -387,7 +387,7 @@ ex:evidence-provenance-record a cacontology-physical:PhysicalEvidenceProvenanceR
 
 ex:investigation-metrics a cacontology:InvestigationMetrics ;
     rdfs:label "Miami ICAC Operation Metrics"@en ;
-    cacontology:investigationDuration "P4D"^^xsd:duration ;
+    cacontology:investigationDuration "P4D" ;
     cacontology:evidenceItemsCollected "5"^^xsd:nonNegativeInteger ;
     cacontology:undercoverOperations "1"^^xsd:nonNegativeInteger ;
     cacontology:arrestsMade "1"^^xsd:nonNegativeInteger ;

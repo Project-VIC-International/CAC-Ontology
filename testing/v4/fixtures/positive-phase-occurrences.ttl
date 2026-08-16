@@ -1,0 +1,19 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
+@prefix ex: <https://example.invalid/v4-test#> .
+
+ex:relationship-1 a cac-core:EnduringEntity .
+
+ex:active-state-1 a cac-core:Phase ;
+    rdfs:label "Synthetic active state, first occurrence" ;
+    cac-core:isPhaseOf ex:relationship-1 ;
+    cac-core:precedes ex:suspended-state-1 .
+
+ex:suspended-state-1 a cac-core:Phase ;
+    rdfs:label "Synthetic suspended state" ;
+    cac-core:isPhaseOf ex:relationship-1 ;
+    cac-core:precedes ex:active-state-2 .
+
+ex:active-state-2 a cac-core:Phase ;
+    rdfs:label "Synthetic active state, second occurrence" ;
+    cac-core:isPhaseOf ex:relationship-1 .

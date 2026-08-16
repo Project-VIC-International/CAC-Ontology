@@ -21,7 +21,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
@@ -156,27 +156,27 @@ cacontology-multi:InternationalJurisdiction rdf:type owl:Class ;
 # COORDINATION ROLE CLASSES (extending UCO Role with gUFO Role)
 # =============================================================================
 
-cacontology-multi:LeadAgency rdf:type owl:Class, gufo:Role ;
+cacontology-multi:LeadAgency rdf:type owl:Class ;
     rdfs:label "Lead Agency"@en ;
     rdfs:comment "Primary agency responsible for coordinating multi-jurisdictional investigation."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-multi:ParticipatingAgency rdf:type owl:Class, gufo:Role ;
+cacontology-multi:ParticipatingAgency rdf:type owl:Class ;
     rdfs:label "Participating Agency"@en ;
     rdfs:comment "Agency providing support or resources to multi-jurisdictional investigation."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-multi:TaskForceLeader rdf:type owl:Class, gufo:Role ;
+cacontology-multi:TaskForceLeader rdf:type owl:Class ;
     rdfs:label "Task Force Leader"@en ;
     rdfs:comment "Officer responsible for leading multi-agency task force operations."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-multi:LiaisonOfficer rdf:type owl:Class, gufo:Role ;
+cacontology-multi:LiaisonOfficer rdf:type owl:Class ;
     rdfs:label "Liaison Officer"@en ;
     rdfs:comment "Officer responsible for communication between agencies."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-multi:CoordinatingAgent rdf:type owl:Class, gufo:Role ;
+cacontology-multi:CoordinatingAgent rdf:type owl:Class ;
     rdfs:label "Coordinating Agent"@en ;
     rdfs:comment "Personnel responsible for coordinating multi-jurisdictional activities."@en ;
     rdfs:subClassOf cac-core:Role .
@@ -265,7 +265,7 @@ cacontology-multi:coordinationPhaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "coordination phase duration"@en ;
     rdfs:comment "Duration of coordination phase."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 # =============================================================================
 # INTERSTATE TRANSPORTATION FRAMEWORK (Buffalo/Vermont Case Enhancement)
@@ -1214,4 +1214,4 @@ cacontology-multi:involvesFBIFieldOffice rdf:type owl:ObjectProperty ;
     rdfs:label "involves FBI field office"@en ;
     rdfs:comment "Links operation to participating FBI field office."@en ;
     rdfs:domain cacontology-multi:AllFBIFieldOfficesOperation ;
-    rdfs:range uco-identity:Organization . 
+    rdfs:range uco-identity:Organization .

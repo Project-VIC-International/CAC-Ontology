@@ -168,13 +168,13 @@ ex:charge_sex_exploitation a cacontology-legal-outcomes:SexualExploitationOfMino
 
 ex:prison_term a cacontology-legal-outcomes:PrisonSentence ;
   rdfs:label "Prison sentence (10 years)"@en ;
-  cacontology-legal-outcomes:sentenceDuration "P10Y"^^xsd:duration ;
+  cacontology-legal-outcomes:sentenceDuration "P10Y" ;
   uco-core:description "First 10 years to be served in prison (per press release)." ;
   cacontology-legal-outcomes:appliesTo ex:charge_servitude_1 .
 
 ex:probation_term a cacontology-legal-outcomes:ProbationSentence ;
   rdfs:label "Probation sentence (15 years; strict probation)"@en ;
-  cacontology-legal-outcomes:sentenceDuration "P15Y"^^xsd:duration ;
+  cacontology-legal-outcomes:sentenceDuration "P15Y" ;
   cacontology-legal-outcomes:probationConditions "10"^^xsd:nonNegativeInteger ;
   cacontology-legal-outcomes:supervisionLevel "intensive" ;
   cacontology-legal-outcomes:reportingFrequency "as_directed" ;

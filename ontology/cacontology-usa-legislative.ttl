@@ -26,7 +26,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:created "2026-01-27"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <http://purl.org/nemo/gufo#/1.0.0> ,
                 <https://cacontology.projectvic.org/legal-harmonization/3.1.0> ,
                 <https://cacontology.projectvic.org/multi-jurisdiction/3.1.0> .
@@ -264,7 +264,7 @@ cacontology-usa-leg:USStateICACtaskForce rdf:type owl:Class ;
 # U.S. LEGISLATIVE STAGE CLASSES (gUFO: Phase)
 # =============================================================================
 
-cacontology-usa-leg:LegislativeStage rdf:type owl:Class, gufo:Phase ;
+cacontology-usa-leg:LegislativeStage rdf:type owl:Class ;
     rdfs:subClassOf cac-core:Phase ;
     rdfs:label "Legislative Stage"@en ;
     rdfs:comment "Stage in the U.S. legislative process."@en ;

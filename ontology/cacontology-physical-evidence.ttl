@@ -19,7 +19,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
@@ -260,17 +260,17 @@ cacontology-physical:EvidenceDispositionPhase rdf:type owl:Class ;
 # FORENSIC ANALYSIS ROLES (gUFO Role - Anti-Rigid)
 # =============================================================================
 
-cacontology-physical:ForensicAnalystRole rdf:type owl:Class, gufo:Role ;
+cacontology-physical:ForensicAnalystRole rdf:type owl:Class ;
     rdfs:label "Forensic Analyst Role"@en ;
     rdfs:comment "Role of person conducting forensic analysis of physical evidence (gUFO Role - anti-rigid). Roles are non-rigid capacities; persons play roles via holdsRole."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-physical:EvidenceCustodianRole rdf:type owl:Class, gufo:Role ;
+cacontology-physical:EvidenceCustodianRole rdf:type owl:Class ;
     rdfs:label "Evidence Custodian Role"@en ;
     rdfs:comment "Role of person responsible for evidence custody and chain of custody (gUFO Role - anti-rigid). Roles are non-rigid capacities; persons play roles via holdsRole."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-physical:SearchOfficerRole rdf:type owl:Class, gufo:Role ;
+cacontology-physical:SearchOfficerRole rdf:type owl:Class ;
     rdfs:label "Search Officer Role"@en ;
     rdfs:comment "Role of law enforcement officer conducting physical searches (gUFO Role - anti-rigid). Roles are non-rigid capacities; persons play roles via holdsRole."@en ;
     rdfs:subClassOf cac-core:Role .
@@ -897,4 +897,4 @@ cacontology-physical:evidenceFoundInVehicle rdf:type owl:ObjectProperty ;
     rdfs:label "evidence found in vehicle"@en ;
     rdfs:comment "Links physical evidence to the vehicle it was found in."@en ;
     rdfs:domain cacontology-physical:PhysicalEvidence ;
-    rdfs:range cacontology-physical:SuspectVehicle . 
+    rdfs:range cacontology-physical:SuspectVehicle .

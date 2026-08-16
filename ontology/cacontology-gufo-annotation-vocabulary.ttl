@@ -1,0 +1,38 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
+
+<https://cacontology.projectvic.org/gufo/annotation-vocabulary> rdf:type owl:Ontology ;
+    rdfs:label "CAC gUFO Integration Annotation Vocabulary"@en ;
+    rdfs:comment "Owning declaration module for CAC-authored annotations that document modeling constraints and integration guidance. These properties annotate ontology resources; they do not assert domain relationships in instance data."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/gufo/annotation-vocabulary/4.0.0> ;
+    owl:versionInfo "4.0.0-proposal" ;
+    dcterms:creator "CAC Ontology Team" ;
+    dcterms:issued "2026-08-15"^^xsd:date .
+
+cacontology-gufo:hasAntiRigidityConstraint rdf:type owl:AnnotationProperty ;
+    rdfs:label "has anti-rigidity constraint"@en ;
+    rdfs:comment "Documents an anti-rigidity modeling constraint for the annotated ontology resource."@en .
+
+cacontology-gufo:hasRelationshipConstraint rdf:type owl:AnnotationProperty ;
+    rdfs:label "has relationship constraint"@en ;
+    rdfs:comment "Documents a relationship-specific modeling or validation constraint."@en .
+
+cacontology-gufo:hasTemporalProperty rdf:type owl:AnnotationProperty ;
+    rdfs:label "has temporal property"@en ;
+    rdfs:comment "Documents the temporal properties associated with an ontology resource."@en .
+
+cacontology-gufo:hasValidationConstraint rdf:type owl:AnnotationProperty ;
+    rdfs:label "has validation constraint"@en ;
+    rdfs:comment "Documents an implementation-facing validation constraint."@en .
+
+cacontology-gufo:involvesSituation rdf:type owl:AnnotationProperty ;
+    rdfs:label "involves situation"@en ;
+    rdfs:comment "Documents a situation pattern involved in the annotated modeling construct."@en .
+
+cacontology-gufo:temporalConstraint rdf:type owl:AnnotationProperty ;
+    rdfs:label "temporal constraint"@en ;
+    rdfs:comment "Documents a temporal ordering or interval constraint."@en .

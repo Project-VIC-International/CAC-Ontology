@@ -20,7 +20,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-05-23"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/ai-csam/3.1.0>,
                 <http://purl.org/nemo/gufo#/1.0.0> .
 
@@ -77,11 +77,11 @@ cacontology-ai:AIGeneratedCSAMShape rdf:type sh:NodeShape ;
         sh:message "AI-generated CSAM must be linked to a gUFO Event generation process"@en ;
         sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a cacontology-ai:GenerationProcessError . }
+            CONSTRUCT { $this a cacontology-ai:GenerationProcessError . }
             WHERE {
                 $this a cacontology-ai:AIGeneratedCSAM .
                 FILTER NOT EXISTS { 
-                    $this cacontology-ai:generatedUsing ?generation ;
+                    $this cacontology-ai:generatedUsing ?generation .
                     ?generation a gufo:Event .
                 }
             }
@@ -111,7 +111,7 @@ cacontology-ai:DeepfakeCSAMShape rdf:type sh:NodeShape ;
         sh:message "Manipulation time must be after original content creation"@en ;
         sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a cacontology-ai:TemporalInconsistencyError . }
+            CONSTRUCT { $this a cacontology-ai:TemporalInconsistencyError . }
             WHERE {
                 $this cacontology-gufo:manipulationTimePoint ?manipTime .
                 $this cacontology-gufo:creationTimePoint ?createTime .
@@ -136,7 +136,7 @@ cacontology-ai:SyntheticMediaCSAMShape rdf:type sh:NodeShape ;
         sh:message "Fully synthetic content cannot depict real victims"@en ;
         sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a cacontology-ai:SyntheticContentError . }
+            CONSTRUCT { $this a cacontology-ai:SyntheticContentError . }
             WHERE {
                 $this cacontology-ai:artificialnessLevel "fully_synthetic" .
                 $this cacontology-ai:realVictimDepicted true .
@@ -203,7 +203,7 @@ cacontology-ai:AIContentGenerationShape rdf:type sh:NodeShape ;
     # gUFO temporal properties validation
     sh:property [
         sh:path cacontology-gufo:generationDuration ;
-        sh:datatype xsd:duration ;
+        sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "Generation duration should use gUFO temporal framework"@en
@@ -215,7 +215,7 @@ cacontology-ai:AIContentGenerationShape rdf:type sh:NodeShape ;
         sh:message "Generation end time must be after start time"@en ;
         sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a cacontology-ai:TemporalInconsistencyError . }
+            CONSTRUCT { $this a cacontology-ai:TemporalInconsistencyError . }
             WHERE {
                 $this uco-core:startTime ?start .
                 $this uco-core:endTime ?end .
@@ -235,11 +235,11 @@ cacontology-ai:ModelTrainingShape rdf:type sh:NodeShape ;
         sh:message "Model training should involve generation phases"@en ;
         sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a cacontology-ai:PhaseValidationError . }
+            CONSTRUCT { $this a cacontology-ai:PhaseValidationError . }
             WHERE {
                 $this a cacontology-ai:ModelTraining .
                 FILTER NOT EXISTS { 
-                    $this cacontology-ai:hasPhase ?phase ;
+                    $this cacontology-ai:hasPhase ?phase .
                     ?phase a cacontology-ai:ContentGenerationPhase .
                 }
             }
@@ -306,17 +306,17 @@ cacontology-ai:AIContentDetectionShape rdf:type sh:NodeShape ;
     sh:rule [
         a sh:SPARQLRule ;
         sh:severity sh:Violation ;
-        sh:message "AI detection must be performed by entities with appropriate gUFO Roles"@en ;
+        sh:message "AI detection must be performed by entities with an AI forensic analyst role record"@en ;
         sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a cacontology-ai:RoleValidationError . }
+            CONSTRUCT { $this a cacontology-ai:RoleValidationError . }
             WHERE {
                 $this a cacontology-ai:AIContentDetection .
                 $this uco-action:performer ?performer .
                 FILTER NOT EXISTS { 
-                    ?performer cacontology-ai:playsRole ?role ;
-                    ?role a gufo:Role ;
-                    ?role rdfs:subClassOf* cacontology-ai:AIForensicAnalyst .
+                    ?performer cacontology-ai:playsRole ?role .
+                    ?role a ?roleType .
+                    ?roleType rdfs:subClassOf* cacontology-ai:AIForensicAnalyst .
                 }
             }
         """
@@ -347,7 +347,7 @@ cacontology-ai:SyntheticMediaAnalysisShape rdf:type sh:NodeShape ;
         sh:message "Synthetic media analysis must be performed by qualified specialists"@en ;
         sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a cacontology-ai:SpecialistQualificationError . }
+            CONSTRUCT { $this a cacontology-ai:SpecialistQualificationError . }
             WHERE {
                 $this a cacontology-ai:SyntheticMediaAnalysis .
                 $this uco-action:performer ?performer .
@@ -447,13 +447,13 @@ cacontology-ai:AICSAMInvestigationShape rdf:type sh:NodeShape ;
         sh:message "Complex AI-CSAM investigations should involve gUFO Situations"@en ;
         sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a cacontology-ai:SituationInvolvementError . }
+            CONSTRUCT { $this a cacontology-ai:SituationInvolvementError . }
             WHERE {
                 $this a cacontology-ai:AICSAMInvestigation .
                 $this cacontology-ai:investigationChallengeLevel ?level .
                 FILTER(?level IN ("high", "extreme"))
                 FILTER NOT EXISTS { 
-                    $this cacontology-ai:involvesSituation ?situation ;
+                    $this cacontology-ai:involvesSituation ?situation .
                     ?situation a gufo:Situation .
                 }
             }
@@ -481,7 +481,7 @@ cacontology-ai:AIDetectionPhaseShape rdf:type sh:NodeShape ;
         sh:message "AI detection phases must demonstrate anti-rigidity (can change based on detection results)"@en ;
         sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a cacontology-ai:AntiRigidityError . }
+            CONSTRUCT { $this a cacontology-ai:AntiRigidityError . }
             WHERE {
                 $this a cacontology-ai:AIDetectionPhase .
                 FILTER NOT EXISTS { 
@@ -502,12 +502,12 @@ cacontology-ai:ContentGenerationPhaseShape rdf:type sh:NodeShape ;
         sh:message "Generation phases must follow logical sequence"@en ;
         sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a cacontology-ai:PhaseSequenceError . }
+            CONSTRUCT { $this a cacontology-ai:PhaseSequenceError . }
             WHERE {
-                $this a cacontology-ai:ContentGenerationPhase ;
-                ?nextPhase cacontology-ai:followsPhase $this ;
+                $this a cacontology-ai:ContentGenerationPhase .
+                ?nextPhase cacontology-ai:followsPhase $this .
                 ?nextPhase a cacontology-ai:AIDetectionPhase .
-                $this cacontology-gufo:endTimePoint ?thisEnd ;
+                $this cacontology-gufo:endTimePoint ?thisEnd .
                 ?nextPhase cacontology-gufo:beginTimePoint ?nextStart .
                 FILTER(?nextStart <= ?thisEnd)
             }
@@ -529,11 +529,11 @@ cacontology-ai:AIForensicAnalystShape rdf:type sh:NodeShape ;
         sh:message "AI forensic analysts must demonstrate specialized competencies"@en ;
         sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a cacontology-ai:CompetencyValidationError . }
+            CONSTRUCT { $this a cacontology-ai:CompetencyValidationError . }
             WHERE {
                 $this a cacontology-ai:AIForensicAnalyst .
                 FILTER NOT EXISTS { 
-                    $this cacontology-ai:hasCompetency ?competency ;
+                    $this cacontology-ai:hasCompetency ?competency .
                     ?competency cacontology-ai:competencyType "ai_content_analysis" .
                 }
             }
@@ -551,11 +551,11 @@ cacontology-ai:SyntheticMediaExaminerShape rdf:type sh:NodeShape ;
         sh:message "Synthetic media examiners must have synthetic media analysis competency"@en ;
         sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a cacontology-ai:SpecializedCompetencyError . }
+            CONSTRUCT { $this a cacontology-ai:SpecializedCompetencyError . }
             WHERE {
                 $this a cacontology-ai:SyntheticMediaExaminer .
                 FILTER NOT EXISTS { 
-                    $this cacontology-ai:hasCompetency ?competency ;
+                    $this cacontology-ai:hasCompetency ?competency .
                     ?competency cacontology-ai:competencyType "synthetic_media_analysis" .
                 }
             }
@@ -577,7 +577,7 @@ cacontology-ai:AIContentInvestigationSituationShape rdf:type sh:NodeShape ;
         sh:message "Investigation situations must involve multiple stakeholders"@en ;
         sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a cacontology-ai:StakeholderValidationError . }
+            CONSTRUCT { $this a cacontology-ai:StakeholderValidationError . }
             WHERE {
                 $this a cacontology-ai:AIContentInvestigationSituation .
                 {
@@ -601,17 +601,17 @@ cacontology-ai:TechnicalAnalysisSituationShape rdf:type sh:NodeShape ;
         sh:message "Technical analysis situations must coordinate between experts and legal teams"@en ;
         sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a cacontology-ai:CoordinationValidationError . }
+            CONSTRUCT { $this a cacontology-ai:CoordinationValidationError . }
             WHERE {
                 $this a cacontology-ai:TechnicalAnalysisSituation .
                 FILTER NOT EXISTS { 
-                    $this cacontology-ai:hasParticipant ?expert ;
-                    ?expert cacontology-ai:playsRole ?role ;
+                    $this cacontology-ai:hasParticipant ?expert .
+                    ?expert cacontology-ai:playsRole ?role .
                     ?role rdfs:subClassOf* cacontology-ai:AIForensicAnalyst .
                 }
                 FILTER NOT EXISTS { 
-                    $this cacontology-ai:hasParticipant ?legal ;
-                    ?legal cacontology-ai:playsRole ?legalRole ;
+                    $this cacontology-ai:hasParticipant ?legal .
+                    ?legal cacontology-ai:playsRole ?legalRole .
                     ?legalRole cacontology-ai:roleType "legal_specialist" .
                 }
             }
@@ -633,9 +633,9 @@ cacontology-ai:AIGenerationCrossReferenceShape rdf:type sh:NodeShape ;
             WHERE {
                 $this a cacontology-ai:AIGeneratedCSAM .
                 FILTER NOT EXISTS {
-                    $this cacontology-ai:generatedUsing ?generation ;
-                    ?generation a cacontology-ai:AIContentGeneration ;
-                    ?generation a gufo:Event .
+                    $this cacontology-ai:generatedUsing ?generation .
+                    ?generation a cacontology-ai:AIContentGeneration ,
+                                  gufo:Event .
                 }
             }
         """
@@ -652,9 +652,9 @@ cacontology-ai:DetectionToolCrossReferenceShape rdf:type sh:NodeShape ;
             WHERE {
                 $this a cacontology-ai:AIContentDetection .
                 FILTER NOT EXISTS {
-                    $this cacontology-ai:usesDetectionTool ?tool ;
-                    ?tool a cacontology-ai:AIDetectionTool ;
-                    ?tool a gufo:Object .
+                    $this cacontology-ai:usesDetectionTool ?tool .
+                    ?tool a cacontology-ai:AIDetectionTool ,
+                            gufo:Object .
                 }
             }
         """
@@ -726,34 +726,30 @@ cacontology-ai:GUFODataQualityShape rdf:type sh:NodeShape ;
         sh:message "AI entities must be properly typed as gUFO foundational entities"@en ;
         sh:prefixes cacontology-ai: ;
         sh:construct """
-            INSERT { $this a cacontology-ai:FoundationalTypeError . }
+            CONSTRUCT { $this a cacontology-ai:FoundationalTypeError . }
             WHERE {
-                $this a ?aiType ;
+                $this a ?aiType .
                 ?aiType rdfs:subClassOf* cacontology-ai:AIGeneratedCSAM .
                 FILTER NOT EXISTS { 
-                    $this a ?gufoType ;
+                    $this a ?gufoType .
                     ?gufoType rdfs:subClassOf* gufo:Object .
                 }
             }
         """
     ] .
 
-cacontology-ai:AntiRigidityValidationShape rdf:type sh:NodeShape ;
+cacontology-ai:PhaseLevelSeparationShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-ai:AIDetectionPhase ,
                    cacontology-ai:ContentGenerationPhase ,
                    cacontology-ai:ForensicAnalysisPhase ;
-    rdfs:label "Anti-Rigidity Validation Shape"@en ;
-    rdfs:comment "Validation of anti-rigidity constraints for gUFO Phases in AI-CSAM contexts."@en ;
+    rdfs:label "Phase Level Separation Shape"@en ;
+    rdfs:comment "Prevents operational AI phase occurrences from being typed as gUFO Phase classifiers."@en ;
     sh:sparql [
-        sh:message "Anti-rigid phases must demonstrate changeability based on context"@en ;
+        sh:message "Operational AI phase occurrences must not also be gUFO Phase classifiers."@en ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a gufo:Phase ;
-                ?this rdfs:subClassOf* cacontology-ai:AIDetectionPhase .
-                FILTER NOT EXISTS { 
-                    $this cacontology-gufo:hasAntiRigidityConstraint ?constraint .
-                }
+                $this a gufo:Phase .
             }
         """
     ] .

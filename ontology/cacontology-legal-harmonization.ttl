@@ -7,6 +7,7 @@
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
 
 @prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix cacontology-legal: <https://cacontology.projectvic.org/legal-harmonization#> .
@@ -24,7 +25,7 @@
     owl:versionIRI <https://cacontology.projectvic.org/legal-harmonization/3.1.0> ;
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <http://purl.org/nemo/gufo#/1.0.0> ,
                 <https://cacontology.projectvic.org/multi-jurisdiction/3.1.0> ,
                 <https://cacontology.projectvic.org/core/3.1.0> .
@@ -275,28 +276,28 @@ cacontology-legal:hasLegalEffectiveness rdf:type owl:DatatypeProperty ;
     rdfs:comment "Legal effectiveness assessment (ineffective, limited, moderate, effective, highly_effective) - gUFO quality aspect."@en ;
     rdfs:domain [ owl:unionOf ( cacontology-legal:NationalLegislation cacontology-legal:RegionalFramework cacontology-legal:TreatyFramework ) ] ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-legal:hasComplianceLevel rdf:type owl:DatatypeProperty ;
     rdfs:label "has compliance level"@en ;
     rdfs:comment "Compliance level assessment (0.0 to 1.0) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-legal:LegalCompliance ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-legal:hasHarmonizationDegree rdf:type owl:DatatypeProperty ;
     rdfs:label "has harmonization degree"@en ;
     rdfs:comment "Harmonization degree across jurisdictions (minimal, partial, substantial, comprehensive, complete) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-legal:PolicyHarmonization ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-legal:hasImplementationQuality rdf:type owl:DatatypeProperty ;
     rdfs:label "has implementation quality"@en ;
     rdfs:comment "Quality of legislation implementation (poor, fair, good, excellent, exemplary) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-legal:NationalLegislation ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 # Legal Coverage and Scope Quality Aspects
 cacontology-legal:hasCoverageCompleteness rdf:type owl:DatatypeProperty ;
@@ -304,21 +305,21 @@ cacontology-legal:hasCoverageCompleteness rdf:type owl:DatatypeProperty ;
     rdfs:comment "Completeness of legal coverage (0.0 to 1.0) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-legal:LegalCoverageAssessment ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-legal:hasGapSeverity rdf:type owl:DatatypeProperty ;
     rdfs:label "has gap severity"@en ;
     rdfs:comment "Severity level of legal framework gaps (minor, moderate, major, critical, systemic) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-legal:LegalFrameworkGap ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-legal:hasLegalRobustness rdf:type owl:DatatypeProperty ;
     rdfs:label "has legal robustness"@en ;
     rdfs:comment "Robustness of legal framework (weak, moderate, strong, very_strong, comprehensive) - gUFO quality aspect."@en ;
     rdfs:domain [ owl:unionOf ( cacontology-legal:NationalLegislation cacontology-legal:RegionalFramework ) ] ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 # International Cooperation Quality Aspects
 cacontology-legal:hasCooperationIntensity rdf:type owl:DatatypeProperty ;
@@ -326,21 +327,21 @@ cacontology-legal:hasCooperationIntensity rdf:type owl:DatatypeProperty ;
     rdfs:comment "Intensity of international cooperation (minimal, moderate, substantial, intensive, comprehensive) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-legal:InternationalLawEnforcement ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-legal:hasTreatyStrength rdf:type owl:DatatypeProperty ;
     rdfs:label "has treaty strength"@en ;
     rdfs:comment "Strength of treaty framework (weak, moderate, strong, binding, comprehensive) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-legal:TreatyFramework ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-legal:hasExtraditionEfficiency rdf:type owl:DatatypeProperty ;
     rdfs:label "has extradition efficiency"@en ;
     rdfs:comment "Efficiency of extradition processes (0.0 to 1.0) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-legal:ExtraditionAgreement ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 # Reform and Development Quality Aspects
 cacontology-legal:hasReformUrgency rdf:type owl:DatatypeProperty ;
@@ -348,21 +349,21 @@ cacontology-legal:hasReformUrgency rdf:type owl:DatatypeProperty ;
     rdfs:comment "Urgency level for legal reform (low, moderate, high, urgent, critical) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-legal:LegalReform ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-legal:hasDevelopmentProgress rdf:type owl:DatatypeProperty ;
     rdfs:label "has development progress"@en ;
     rdfs:comment "Progress in policy development (0.0 to 1.0) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-legal:PolicyDevelopment ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-legal:hasCapacityLevel rdf:type owl:DatatypeProperty ;
     rdfs:label "has capacity level"@en ;
     rdfs:comment "Legal capacity level (insufficient, basic, adequate, strong, advanced) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-legal:CapacityBuilding ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 # Assessment and Validation Quality Aspects
 cacontology-legal:hasAssessmentReliability rdf:type owl:DatatypeProperty ;
@@ -370,14 +371,14 @@ cacontology-legal:hasAssessmentReliability rdf:type owl:DatatypeProperty ;
     rdfs:comment "Reliability of legislative assessment (0.0 to 1.0) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-legal:LegislativeAssessment ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-legal:hasStandardCompliance rdf:type owl:DatatypeProperty ;
     rdfs:label "has standard compliance"@en ;
     rdfs:comment "Compliance with international standards (non_compliant, partially_compliant, substantially_compliant, fully_compliant) - gUFO quality aspect."@en ;
     rdfs:domain [ owl:unionOf ( cacontology-legal:InternationalStandard cacontology-legal:BestPractice ) ] ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 # Data Quality Aspects (Multi-domain)
 cacontology-legal:hasDataQuality rdf:type owl:DatatypeProperty ;
@@ -391,7 +392,7 @@ cacontology-legal:hasDataQuality rdf:type owl:DatatypeProperty ;
         ) 
     ] ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 # =============================================================================
 # gUFO PARTICIPATION AND PART-WHOLE RELATIONSHIPS
@@ -407,10 +408,9 @@ cacontology-legal:participatesIn rdf:type owl:ObjectProperty ;
 
 cacontology-legal:isAssessedBy rdf:type owl:ObjectProperty ;
     rdfs:label "is assessed by"@en ;
-    rdfs:comment "Links legislation to assessment activities - gUFO participation relation."@en ;
+    rdfs:comment "Links legislation to the resulting legislative assessment. This CAC relation is intentionally not a subproperty of gufo:participatedIn because both endpoints are enduring information objects, whereas gufo:participatedIn ranges over events."@en ;
     rdfs:domain cacontology-legal:NationalLegislation ;
-    rdfs:range cacontology-legal:LegislativeAssessment ;
-    rdfs:subPropertyOf gufo:participatedIn .
+    rdfs:range cacontology-legal:LegislativeAssessment .
 
 # Part-whole relationships for legal frameworks
 cacontology-legal:isComponentOf rdf:type owl:ObjectProperty ;
@@ -425,12 +425,12 @@ cacontology-legal:standsInQualifiedCompliance rdf:type owl:ObjectProperty ;
     rdfs:label "stands in qualified compliance"@en ;
     rdfs:comment "Links entities to qualified compliance situations - gUFO qualified relation."@en ;
     rdfs:domain [ owl:unionOf ( cacontology-legal:NationalLegislation uco-location:Location ) ] ;
-    rdfs:range gufo:ParticipationSituation .
+    rdfs:range cac-core:QualifiedParticipationSituation .
 
 cacontology-legal:concernsLegalFramework rdf:type owl:ObjectProperty ;
     rdfs:label "concerns legal framework"@en ;
     rdfs:comment "Links compliance situations to the legal frameworks involved - gUFO qualified relation."@en ;
-    rdfs:domain gufo:ParticipationSituation ;
+    rdfs:domain cac-core:QualifiedParticipationSituation ;
     rdfs:range cacontology-legal:NationalLegislation .
 
 # =============================================================================
@@ -582,7 +582,7 @@ cacontology-legal:isCountrySpecific rdf:type owl:AnnotationProperty ;
 # =============================================================================
 
 cacontology-legal:LegislativeRole rdf:type owl:Class ;
-    rdfs:subClassOf cac-core:Role , uco-core:Role ;
+    rdfs:subClassOf cac-core:Role , uco-role:Role ;
     rdfs:label "Legislative Role"@en ;
     rdfs:comment "Role an actor plays in the legislative ecosystem."@en ;
     cacontology-legal:isCountrySpecific false .
@@ -893,8 +893,13 @@ cacontology-legal:DataProtectionForMinorsLaw rdf:type owl:Class ;
 # Note: Jurisdiction is reused from cacontology-multi:Jurisdiction
 # =============================================================================
 
+cacontology-legal:LegalNorm rdf:type owl:Class ;
+    rdfs:subClassOf cac-core:EnduringEntity ;
+    rdfs:label "Legal Norm"@en ;
+    rdfs:comment "A prescriptive legal rule or standard that endures through time. The norm is distinct from any legislative document that records, proposes, or expresses it."@en .
+
 cacontology-legal:Statute rdf:type owl:Class ;
-    rdfs:subClassOf gufo:Norm ;
+    rdfs:subClassOf cacontology-legal:LegalNorm ;
     rdfs:label "Statute"@en ;
     rdfs:comment "Enacted law within a jurisdiction."@en ;
     cacontology-legal:isCountrySpecific false .
@@ -906,7 +911,7 @@ cacontology-legal:Correspondence rdf:type owl:Class ;
     cacontology-legal:isCountrySpecific false .
 
 cacontology-legal:LegislativeInstrument rdf:type owl:Class ;
-    rdfs:subClassOf gufo:AbstractArtifact ;
+    rdfs:subClassOf cac-core:Artifact ;
     rdfs:label "Legislative Instrument"@en ;
     rdfs:comment "A bill, resolution, or other legislative document."@en ;
     cacontology-legal:isCountrySpecific false .

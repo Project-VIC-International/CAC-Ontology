@@ -1,0 +1,265 @@
+# imports: http://example.org/ontology/uco-gufo
+
+@prefix drafting: <http://example.org/ontology/drafting/> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix kb: <http://example.org/kb/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix sh-uco-gufo: <http://example.org/shapes/sh-uco-gufo/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-analysis: <https://ontology.unifiedcyberontology.org/uco/analysis/> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/kb>
+	a owl:Ontology ;
+	rdfs:comment "This knowledge base instantiates each of the mapped classes and properties, so SHACL shapes can perform a review for inconsistencies in the mapping between UCO and the mapped ontology."@en ;
+	owl:imports <http://example.org/ontology/uco-gufo> ;
+	sh:shapesGraph <http://example.org/shapes/sh-uco-gufo> ;
+	.
+
+kb:AbstractIndividualType-658cf3ca-f7fb-41d7-a1a3-3d13811a119c
+	a
+		drafting:AbstractIndividualType ,
+		owl:Class
+		;
+	rdfs:subClassOf uco-core:UcoInherentCharacterizationThing ;
+	rdfs:seeAlso sh-uco-gufo:AbstractIndividualType-shape ;
+	.
+
+kb:Action-13c91d40-9ca0-4558-81a1-4f7db888c371
+	a uco-action:Action ;
+	gufo:hasBeginPointInXSDDateTimeStamp "2020-01-02T03:04:05Z"^^xsd:dateTimeStamp ;
+	gufo:hasEndPointInXSDDateTimeStamp "2021-02-03T04:05:06Z"^^xsd:dateTimeStamp ;
+	uco-action:endTime "2021-02-03T04:05:06Z"^^xsd:dateTime ;
+	uco-action:startTime "2020-01-02T03:04:05Z"^^xsd:dateTime ;
+	.
+
+kb:Action-3bf63503-51e7-49bc-b7c2-fc2ed0c811a2
+	a uco-action:Action ;
+	uco-action:instrument kb:Camera-1c9a2999-b34c-459b-b983-113c7b9e71df ;
+	uco-action:object kb:Device-f28f07fa-0c36-486e-b957-750d183e5851 ;
+	uco-action:participant kb:Person-ee7130a7-0fec-48df-8312-4da1a214bd59 ;
+	uco-action:performer kb:Person-799c0b1d-2259-4438-b282-168060b3cb57 ;
+	uco-action:result kb:File-9a36db96-b6ee-49e6-a976-046a95a072a0 ;
+	uco-core:description "A photographer and assistant use a camera to photograph a device." ;
+	.
+
+kb:Action-8d1de002-78d4-4dd5-8841-653bb229d3bb
+	a uco-action:Action ;
+	uco-action:subaction kb:Action-8e371326-10db-4ecf-adb5-e9220b07694b ;
+	.
+
+kb:Action-8e371326-10db-4ecf-adb5-e9220b07694b
+	a uco-action:Action ;
+	.
+
+kb:AlternateDataStream-e6ceee40-5614-4740-b08c-d21ce9b2356d
+	a
+		uco-observable:AlternateDataStream ,
+		uco-observable:FileSystemObject
+		;
+	rdfs:comment "TODO - The assignment of FileSystemObject is only necessary until UCO Issue 590 is incorporated."@en ;
+	rdfs:seeAlso <https://github.com/ucoProject/UCO/issues/590> ;
+	.
+
+kb:AnalyticResult-34fb92db-d576-45a7-9d62-dae04510968f
+	a uco-analysis:AnalyticResult ;
+	.
+
+kb:Bearing-74c2bb20-1e4f-40ac-807e-bc2c528e39da
+	a drafting:Bearing ;
+	gufo:inheresIn kb:Vehicle-c7e910e8-4bed-473e-ad74-3df3eb63cbcc ;
+	.
+
+kb:BluetoothAddress-53c6bc31-4f9c-4ca7-96cb-c9c61d7e4ca2
+	a uco-observable:BluetoothAddress ;
+	uco-core:hasFacet
+		kb:BluetoothAddressFacet-717b8cce-e9c2-4d59-81e4-1747d7e2d8ee ,
+		kb:MACAddressFacet-3b25d05e-a3b0-4828-8b6d-1e08f4d4264f
+		;
+	.
+
+kb:BluetoothAddressFacet-717b8cce-e9c2-4d59-81e4-1747d7e2d8ee
+	a uco-observable:BluetoothAddressFacet ;
+	.
+
+kb:Camera-1c9a2999-b34c-459b-b983-113c7b9e71df
+	a uco-observable:Device ;
+	rdfs:comment "A digital, non-phone camera."@en ;
+	.
+
+kb:ContentData-0571dfb7-889e-4e8c-bec7-47a62ab9286f
+	a uco-observable:ContentData ;
+	.
+
+kb:ContentData-179c7e84-f72d-47f7-b6f3-3f4a1f0938bd
+	a uco-observable:ContentData ;
+	uco-core:hasFacet kb:ContentDataFacet-a961d865-087b-43bd-ab31-0e33331c5628 ;
+	.
+
+kb:ContentData-3f13e43a-a3f4-4dcc-8db2-e934b24890ec
+	a uco-observable:ContentData ;
+	.
+
+kb:ContentDataFacet-a961d865-087b-43bd-ab31-0e33331c5628
+	a uco-observable:ContentDataFacet ;
+	.
+
+kb:Device-f28f07fa-0c36-486e-b957-750d183e5851
+	a uco-observable:Device ;
+	rdfs:comment "A subject device that was photographed."@en ;
+	.
+
+kb:Event-03a1a1db-0579-4427-9a51-448c32281146
+	a uco-core:Event ;
+	gufo:hasBeginPointInXSDDateTimeStamp "2010-01-02T03:04:05Z"^^xsd:dateTimeStamp ;
+	gufo:hasEndPointInXSDDateTimeStamp "2011-02-03T04:05:06Z"^^xsd:dateTimeStamp ;
+	uco-core:endTime "2011-02-03T04:05:06Z"^^xsd:dateTime ;
+	uco-core:startTime "2010-01-02T03:04:05Z"^^xsd:dateTime ;
+	.
+
+kb:File-9a36db96-b6ee-49e6-a976-046a95a072a0
+	a uco-observable:RasterPicture ;
+	rdfs:comment "TODO - At the time of this writing, File and its subclasses need alignment with gUFO."@en ;
+	.
+
+kb:FileSystem-c0becd4a-5b5d-4a26-a1f8-175d623abab2
+	a uco-observable:FileSystem ;
+	.
+
+kb:Hash-4c3d0623-d365-4c69-a1a1-01523c6502fa
+	a
+		gufo:QualityValue ,
+		uco-types:Hash
+		;
+	uco-types:hashMethod "SHA1" ;
+	uco-types:hashValue "da39a3ee5e6b4b0d3255bfef95601890afd80709"^^xsd:hexBinary ;
+	.
+
+kb:Instant-24d2c5f3-d194-4db9-972a-9472c267d047
+	a time:Instant ;
+	.
+
+kb:Instant-2918592a-9d87-4b30-acbc-521a19f97fcd
+	a time:Instant ;
+	time:inXSDDateTimeStamp "2023-11-22T15:30:00Z"^^xsd:dateTimeStamp ;
+	.
+
+kb:Instant-9c8a3c04-11ee-46a7-b320-8c5abe28b5cc
+	a drafting:Instant ;
+	.
+
+kb:Instant-c9ae3fce-ddcb-416b-971b-559c2f5bee95
+	a time:Instant ;
+	.
+
+kb:Interval-336d4db4-727e-4694-8bf0-5902c6ae504f
+	a time:Interval ;
+	time:hasBeginning kb:Instant-24d2c5f3-d194-4db9-972a-9472c267d047 ;
+	time:hasEnd kb:Instant-c9ae3fce-ddcb-416b-971b-559c2f5bee95 ;
+	time:inside kb:Instant-2918592a-9d87-4b30-acbc-521a19f97fcd ;
+	.
+
+kb:Location-c39f5c70-ba6d-44a1-8c6c-426b0372eade
+	a uco-location:Location ;
+	.
+
+kb:MACAddressFacet-3b25d05e-a3b0-4828-8b6d-1e08f4d4264f
+	a uco-observable:MACAddressFacet ;
+	.
+
+kb:Organization-3b542161-47e1-40cd-a1b1-e1b9d07af81f
+	a uco-identity:Organization ;
+	.
+
+kb:Person-0c9728af-7f52-400e-9861-72cd11f6966a
+	a uco-identity:Person ;
+	.
+
+kb:Person-799c0b1d-2259-4438-b282-168060b3cb57
+	a uco-identity:Person ;
+	.
+
+kb:Person-ee7130a7-0fec-48df-8312-4da1a214bd59
+	a uco-identity:Person ;
+	.
+
+kb:Quality-4b765c1f-362c-4562-a50f-7bb781fe4737
+	a drafting:Quality ;
+	gufo:hasReifiedQualityValue kb:Hash-4c3d0623-d365-4c69-a1a1-01523c6502fa ;
+	gufo:inheresIn kb:ContentData-179c7e84-f72d-47f7-b6f3-3f4a1f0938bd ;
+	.
+
+kb:QualityValueAttributionSituation-3ec99074-3cd1-4d24-a2c0-2339850ab9d2
+	a gufo:QualityValueAttributionSituation ;
+	gufo:concernsQualityType drafting:Bearing ;
+	gufo:concernsQualityValue "90 degrees" ;
+	gufo:hasBeginPoint kb:Instant-24d2c5f3-d194-4db9-972a-9472c267d047 ;
+	gufo:hasEndPoint kb:Instant-c9ae3fce-ddcb-416b-971b-559c2f5bee95 ;
+	.
+
+kb:QualityValueAttributionSituation-872b7dd1-b49a-4278-bfdf-df507493d63f
+	a gufo:QualityValueAttributionSituation ;
+	gufo:concernsQualityType drafting:Velocity ;
+	gufo:concernsQualityValue "50 km/h" ;
+	gufo:hasBeginPoint kb:Instant-24d2c5f3-d194-4db9-972a-9472c267d047 ;
+	gufo:hasEndPoint kb:Instant-c9ae3fce-ddcb-416b-971b-559c2f5bee95 ;
+	.
+
+kb:Relationship-2be6b54a-a051-499c-9dcd-63d17d813293
+	a uco-core:Relationship ;
+	uco-core:isDirectional "true"^^xsd:boolean ;
+	uco-core:kindOfRelationship "Contained_Within" ;
+	uco-core:source kb:ContentData-0571dfb7-889e-4e8c-bec7-47a62ab9286f ;
+	uco-core:target kb:ContentData-3f13e43a-a3f4-4dcc-8db2-e934b24890ec ;
+	.
+
+kb:Technique-65f288f9-8ff0-417c-8459-c27dd5ce3866
+	a
+		drafting:Technique ,
+		owl:Class
+		;
+	rdfs:subClassOf uco-action:Action ;
+	rdfs:seeAlso sh-uco-gufo:Technique-shape ;
+	.
+
+kb:Technique-7658ecca-bec7-4d67-baa9-49aeb83dd45b
+	a
+		drafting:Technique ,
+		owl:Class
+		;
+	rdfs:subClassOf uco-action:Action ;
+	drafting:techniqueID "" ;
+	rdfs:seeAlso sh-uco-gufo:techniqueID-subjects-shape ;
+	.
+
+kb:UcoType-0abcbac0-cbbb-46a6-9cb0-a17d3b8d705b
+	a
+		drafting:UcoType ,
+		owl:Class
+		;
+	rdfs:subClassOf uco-core:UcoThing ;
+	rdfs:seeAlso sh-uco-gufo:UcoType-shape ;
+	.
+
+kb:Vehicle-c7e910e8-4bed-473e-ad74-3df3eb63cbcc
+	a drafting:Vehicle ;
+	gufo:standsInQualifiedAttribution
+		kb:QualityValueAttributionSituation-3ec99074-3cd1-4d24-a2c0-2339850ab9d2 ,
+		kb:QualityValueAttributionSituation-872b7dd1-b49a-4278-bfdf-df507493d63f
+		;
+	.
+
+kb:Velocity-62bc6232-b570-45d7-b382-d4e0a36fceb9
+	a drafting:Velocity ;
+	gufo:inheresIn kb:Vehicle-c7e910e8-4bed-473e-ad74-3df3eb63cbcc ;
+	.
+

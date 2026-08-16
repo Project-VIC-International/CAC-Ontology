@@ -17,9 +17,29 @@
     owl:versionIRI <https://cacontology.projectvic.org/training/3.1.0> ;
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/core/3.1.0> ,
                 <http://purl.org/nemo/gufo#/1.0.0> .
+
+# Explicit declarations for metric and evaluation classes already used by
+# properties, SHACL shapes, and example data.
+cacontology-training:GlobalTrainingReach rdf:type owl:Class ;
+    rdfs:label "Global Training Reach"@en .
+
+cacontology-training:K9ProgramMetrics rdf:type owl:Class ;
+    rdfs:label "K9 Program Metrics"@en .
+
+cacontology-training:OperationalTrainingMetrics rdf:type owl:Class ;
+    rdfs:label "Operational Training Metrics"@en .
+
+cacontology-training:OutreachEventMetrics rdf:type owl:Class ;
+    rdfs:label "Outreach Event Metrics"@en .
+
+cacontology-training:ProfessionalTrainingMetrics rdf:type owl:Class ;
+    rdfs:label "Professional Training Metrics"@en .
+
+cacontology-training:TrainingEffectiveness rdf:type owl:Class ;
+    rdfs:label "Training Effectiveness"@en .
 
 # =============================================================================
 # TRAINING INFRASTRUCTURE (gUFO Event and Organization modeling)
@@ -179,27 +199,27 @@ cacontology-training:ProfessionalDevelopment rdf:type owl:Class ;
 # =============================================================================
 
 # Training Roles as gUFO Roles (anti-rigid)
-cacontology-training:InternationalTrainer rdf:type owl:Class, gufo:Role ;
+cacontology-training:InternationalTrainer rdf:type owl:Class ;
     rdfs:subClassOf cac-core:Role ;
     rdfs:label "International Trainer"@en ;
     rdfs:comment "Trainer delivering international training programs. Modeled as anti-rigid gUFO Role."@en .
 
-cacontology-training:TrainingCoordinator rdf:type owl:Class, gufo:Role ;
+cacontology-training:TrainingCoordinator rdf:type owl:Class ;
     rdfs:subClassOf cac-core:Role ;
     rdfs:label "Training Coordinator"@en ;
     rdfs:comment "Coordinator responsible for organizing training programs. Modeled as anti-rigid gUFO Role."@en .
 
-cacontology-training:SubjectMatterExpert rdf:type owl:Class, gufo:Role ;
+cacontology-training:SubjectMatterExpert rdf:type owl:Class ;
     rdfs:subClassOf cac-core:Role ;
     rdfs:label "Subject Matter Expert"@en ;
     rdfs:comment "Expert providing specialized knowledge in training. Modeled as anti-rigid gUFO Role."@en .
 
-cacontology-training:TrainingParticipant rdf:type owl:Class, gufo:Role ;
+cacontology-training:TrainingParticipant rdf:type owl:Class ;
     rdfs:subClassOf cac-core:Role ;
     rdfs:label "Training Participant"@en ;
     rdfs:comment "Professional participating in training programs. Modeled as anti-rigid gUFO Role."@en .
 
-cacontology-training:CertifiedProfessional rdf:type owl:Class, gufo:Role ;
+cacontology-training:CertifiedProfessional rdf:type owl:Class ;
     rdfs:subClassOf cac-core:Role ;
     rdfs:label "Certified Professional"@en ;
     rdfs:comment "Professional who has achieved certification. Modeled as anti-rigid gUFO Role."@en .
@@ -338,19 +358,19 @@ cacontology-training:trainingDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "training duration"@en ;
     rdfs:comment "Duration of training program from start to completion."@en ;
     rdfs:domain cacontology-training:InternationalTraining ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-training:phaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "phase duration"@en ;
     rdfs:comment "Duration of training phase."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-training:roleDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "role duration"@en ;
     rdfs:comment "Duration of individual's training role."@en ;
     rdfs:domain cac-core:Role ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 # =============================================================================
 # PROPERTIES FOR TRAINING DATA
@@ -527,4 +547,4 @@ cacontology-training:improvesProficiency rdf:type owl:ObjectProperty ;
     rdfs:domain cacontology-training:InternationalTraining ;
     rdfs:range uco-core:UcoObject ;
     rdfs:label "improves proficiency"@en ;
-    rdfs:comment "Area of proficiency improved by training."@en . 
+    rdfs:comment "Area of proficiency improved by training."@en .

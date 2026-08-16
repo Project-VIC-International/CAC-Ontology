@@ -36,7 +36,7 @@
     rdfs:label "Brooklyn April 2025 Trafficking Ring"@en ;
     rdfs:comment "Coordinated group of 5 traffickers (3 men, 2 women) operating across Brooklyn, North Carolina, and Albany/Troy with 2 victims."@en ;
     cacontology-trafficking:memberCount 5 ;
-    cacontology-trafficking:operationalDuration "P4M"^^xsd:duration ; # 4 months (October 2024 - February 2025)
+    cacontology-trafficking:operationalDuration "P4M" ; # 4 months (October 2024 - February 2025)
     cacontology-trafficking:hasHierarchy :april_2025_hierarchy ;
     cacontology-trafficking:conductsOperation :multi_state_april_operation .
 
@@ -388,7 +388,7 @@
     rdfs:label "April 2025 Sex Trafficking Conspiracy"@en ;
     rdfs:comment "Criminal conspiracy involving 5 defendants coordinating sex trafficking activities across multiple states."@en ;
     cacontology:conspiracyMemberCount 5 ;
-    cacontology:conspiracyDuration "P4M"^^xsd:duration ; # 4 months
+    cacontology:conspiracyDuration "P4M" ; # 4 months
     uco-core:startTime "2024-10-05T00:00:00Z"^^xsd:dateTime ;
     cacontology:resultsInIndictment :fourteen_count_indictment .
 

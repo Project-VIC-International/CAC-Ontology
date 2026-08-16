@@ -1,0 +1,65 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "cac-core": "https://cacontology.projectvic.org/core#",
+    "cac-custody": "https://cacontology.projectvic.org/custodial#",
+    "cac-enterprises": "https://cacontology.projectvic.org/extremist-enterprises#",
+    "gufo": "http://purl.org/nemo/gufo#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "RoleRecord": "cac-core:RoleRecord",
+    "RoleAssignment": "cac-core:RoleAssignment",
+    "Phase": "cac-core:Phase",
+    "CustodyState": "cac-custody:CustodyState",
+    "MembershipTier": "cac-enterprises:MembershipTier",
+
+    "describesRoleAssignment": {
+      "@id": "cac-core:describesRoleAssignment",
+      "@type": "@id"
+    },
+    "roleBearer": {
+      "@id": "cac-core:roleBearer",
+      "@type": "@id"
+    },
+    "roleClassifier": {
+      "@id": "cac-core:roleClassifier",
+      "@type": "@id"
+    },
+    "roleContext": {
+      "@id": "cac-core:roleContext",
+      "@type": "@id"
+    },
+    "isPhaseOf": {
+      "@id": "cac-core:isPhaseOf",
+      "@type": "@id"
+    },
+    "realizesPhaseClassifier": {
+      "@id": "cac-core:realizesPhaseClassifier",
+      "@type": "@id"
+    },
+    "precedes": {
+      "@id": "cac-core:precedes",
+      "@type": "@id"
+    },
+    "hasCustodyState": {
+      "@id": "cac-custody:hasCustodyState",
+      "@type": "@id"
+    },
+    "currentCustodyState": {
+      "@id": "cac-custody:currentCustodyState",
+      "@type": "@id"
+    },
+    "custodyStateOf": {
+      "@id": "cac-custody:custodyStateOf",
+      "@type": "@id"
+    },
+    "hasMembershipTier": {
+      "@id": "cac-enterprises:hasMembershipTier",
+      "@type": "@id"
+    },
+    "membershipLevel": "cac-enterprises:membershipLevel",
+    "accessLevel": "cac-enterprises:accessLevel",
+    "label": "rdfs:label"
+  }
+}

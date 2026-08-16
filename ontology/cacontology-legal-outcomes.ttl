@@ -20,7 +20,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
@@ -608,37 +608,37 @@ cacontology-legal-outcomes:publicLawCitation rdf:type owl:DatatypeProperty ;
 # =============================================================================
 
 # Legal System Roles as gUFO Roles (anti-rigid)
-cacontology-legal-outcomes:JudgeRole rdf:type owl:Class, gufo:Role ;
+cacontology-legal-outcomes:JudgeRole rdf:type owl:Class ;
     rdfs:label "Judge Role"@en ;
     rdfs:comment "Role of judge presiding over CAC legal proceedings. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-legal-outcomes:ProsecutorRole rdf:type owl:Class, gufo:Role ;
+cacontology-legal-outcomes:ProsecutorRole rdf:type owl:Class ;
     rdfs:label "Prosecutor Role"@en ;
     rdfs:comment "Role of prosecutor handling CAC criminal charges. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-legal-outcomes:DefenseAttorneyRole rdf:type owl:Class, gufo:Role ;
+cacontology-legal-outcomes:DefenseAttorneyRole rdf:type owl:Class ;
     rdfs:label "Defense Attorney Role"@en ;
     rdfs:comment "Role of defense attorney representing CAC defendants. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-legal-outcomes:DefendantRole rdf:type owl:Class, gufo:Role ;
+cacontology-legal-outcomes:DefendantRole rdf:type owl:Class ;
     rdfs:label "Defendant Role"@en ;
     rdfs:comment "Role of individual charged with CAC crimes. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-legal-outcomes:VictimRole rdf:type owl:Class, gufo:Role ;
+cacontology-legal-outcomes:VictimRole rdf:type owl:Class ;
     rdfs:label "Victim Role"@en ;
     rdfs:comment "Role of victim in CAC legal proceedings. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-legal-outcomes:JuryRole rdf:type owl:Class, gufo:Role ;
+cacontology-legal-outcomes:JuryRole rdf:type owl:Class ;
     rdfs:label "Jury Role"@en ;
     rdfs:comment "Role of jury members in CAC trial proceedings. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-legal-outcomes:ProbationOfficerRole rdf:type owl:Class, gufo:Role ;
+cacontology-legal-outcomes:ProbationOfficerRole rdf:type owl:Class ;
     rdfs:label "Probation Officer Role"@en ;
     rdfs:comment "Role of probation officer supervising CAC offenders. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
@@ -712,23 +712,23 @@ cacontology-legal-outcomes:proceedingDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "proceeding duration"@en ;
     rdfs:comment "Duration of legal proceeding from start to completion."@en ;
     rdfs:domain cacontology-legal-outcomes:LegalProceeding ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-legal-outcomes:phaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "phase duration"@en ;
     rdfs:comment "Duration of legal phase."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-legal-outcomes:sentenceDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "sentence duration"@en ;
     rdfs:comment "Duration of criminal sentence."@en ;
     rdfs:domain cacontology-legal-outcomes:CriminalSentence ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-legal-outcomes:sentenceDurationMonths rdf:type owl:DatatypeProperty ;
     rdfs:label "sentence duration in months"@en ;
-    rdfs:comment "Duration of a criminal sentence expressed as a whole number of months, as stated on the judgment (e.g. AO 245B, https://www.uscourts.gov/forms/criminal-judgment-forms/judgment-criminal-case-0). Convenience companion to sentenceDuration (xsd:duration) for direct numeric comparison in analytics (e.g. sentences over 120 months)."@en ;
+    rdfs:comment "Duration of a criminal sentence expressed as a whole number of months, as stated on the judgment (e.g. AO 245B, https://www.uscourts.gov/forms/criminal-judgment-forms/judgment-criminal-case-0). Convenience companion to sentenceDuration (xsd:string) for direct numeric comparison in analytics (e.g. sentences over 120 months)."@en ;
     rdfs:domain cacontology-legal-outcomes:CriminalSentence ;
     rdfs:range xsd:integer ;
     dcterms:source "AO 245B Judgment in a Criminal Case (U.S. Courts)."@en ;
@@ -738,7 +738,7 @@ cacontology-legal-outcomes:roleDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "role duration"@en ;
     rdfs:comment "Duration of individual's legal role."@en ;
     rdfs:domain cac-core:Role ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 # =============================================================================
 # LEGAL SYSTEM PROPERTIES

@@ -24,7 +24,7 @@
     owl:versionIRI <https://cacontology.projectvic.org/infrastructure/shapes/3.1.0> ;
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/infrastructure/3.1.0> ,
                 <http://purl.org/nemo/gufo#/1.0.0> .
 
@@ -523,7 +523,7 @@ cacontology-infrastructure:InfrastructureHostingCrossReferenceShape rdf:type sh:
             WHERE {
                 $this a cacontology-infrastructure:PlatformInfrastructure .
                 FILTER NOT EXISTS {
-                    $this cacontology-infrastructure:hostedBy ?provider ;
+                    $this cacontology-infrastructure:hostedBy ?provider .
                     ?provider a cacontology-infrastructure:HostingProvider .
                 }
             }
@@ -541,7 +541,7 @@ cacontology-infrastructure:TakedownTargetCrossReferenceShape rdf:type sh:NodeSha
             WHERE {
                 $this a cacontology-infrastructure:InfrastructureTakedown .
                 FILTER NOT EXISTS {
-                    $this cacontology-infrastructure:targetsInfrastructure ?infrastructure ;
+                    $this cacontology-infrastructure:targetsInfrastructure ?infrastructure .
                     ?infrastructure a cacontology-infrastructure:PlatformInfrastructure .
                 }
             }
@@ -559,7 +559,7 @@ cacontology-infrastructure:AnalysisSubjectCrossReferenceShape rdf:type sh:NodeSh
             WHERE {
                 $this a cacontology-infrastructure:InfrastructureAnalysis .
                 FILTER NOT EXISTS {
-                    $this cacontology-infrastructure:analysesInfrastructure ?infrastructure ;
+                    $this cacontology-infrastructure:analysesInfrastructure ?infrastructure .
                     ?infrastructure a cacontology-infrastructure:PlatformInfrastructure .
                 }
             }
@@ -575,7 +575,7 @@ cacontology-infrastructure:PaymentSystemCrossReferenceShape rdf:type sh:NodeShap
         sh:select """
             SELECT $this
             WHERE {
-                $this a cacontology-infrastructure:PlatformInfrastructure ;
+                $this a cacontology-infrastructure:PlatformInfrastructure .
                 ?payment cacontology-infrastructure:monthlyRevenue ?revenue .
                 FILTER (?revenue > 0)
                 FILTER NOT EXISTS {
@@ -762,7 +762,7 @@ cacontology-infrastructure-shapes:InfrastructureObjectTypeValidationShape rdf:ty
             WHERE {
                 $this rdf:type gufo:Object .
                 FILTER NOT EXISTS {
-                    $this rdf:type ?obsClass ;
+                    $this rdf:type ?obsClass .
                     ?obsClass rdfs:subClassOf* uco-observable:ObservableObject .
                 }
             }
@@ -780,7 +780,7 @@ cacontology-infrastructure-shapes:TakedownEventTypeValidationShape rdf:type sh:N
             WHERE {
                 $this rdf:type gufo:Event .
                 FILTER NOT EXISTS {
-                    $this rdf:type ?actionClass ;
+                    $this rdf:type ?actionClass .
                     ?actionClass rdfs:subClassOf* uco-action:Action .
                 }
             }
@@ -798,7 +798,7 @@ cacontology-infrastructure-shapes:AnalysisEventTypeValidationShape rdf:type sh:N
             WHERE {
                 $this rdf:type gufo:Event .
                 FILTER NOT EXISTS {
-                    $this rdf:type ?actionClass ;
+                    $this rdf:type ?actionClass .
                     ?actionClass rdfs:subClassOf* uco-action:Action .
                 }
             }
@@ -808,16 +808,13 @@ cacontology-infrastructure-shapes:AnalysisEventTypeValidationShape rdf:type sh:N
 cacontology-infrastructure-shapes:InfrastructurePhaseTypeValidationShape rdf:type sh:NodeShape ;
     sh:targetClass cac-core:Phase ;
     rdfs:label "Infrastructure Phase Type Validation Shape"@en ;
-    rdfs:comment "Validates gUFO Phase type consistency for infrastructure phases."@en ;
+    rdfs:comment "Prevents operational infrastructure phase occurrences from being typed as gUFO Phase classifiers."@en ;
     sh:sparql [
-        sh:message "Infrastructure phases must be properly typed as gUFO Phase and extend infrastructure classes."@en ;
+        sh:message "Operational infrastructure phase occurrences must not also be gUFO Phase classifiers."@en ;
         sh:select """
             SELECT $this
             WHERE {
                 $this rdf:type gufo:Phase .
-                FILTER NOT EXISTS {
-                    $this rdf:type/rdfs:subClassOf* cacontology-infrastructure:PlatformInfrastructure .
-                }
             }
         """
     ] .
@@ -825,16 +822,13 @@ cacontology-infrastructure-shapes:InfrastructurePhaseTypeValidationShape rdf:typ
 cacontology-infrastructure-shapes:TechnicalRoleTypeValidationShape rdf:type sh:NodeShape ;
     sh:targetClass cac-core:Role ;
     rdfs:label "Technical Role Type Validation Shape"@en ;
-    rdfs:comment "Validates gUFO Role type consistency for technical roles."@en ;
+    rdfs:comment "Prevents operational technical-role records from being typed as gUFO Role classifiers."@en ;
     sh:sparql [
-        sh:message "Technical roles must be properly typed as gUFO Role and extend UCO Identity."@en ;
+        sh:message "Operational technical-role records must not also be gUFO Role classifiers."@en ;
         sh:select """
             SELECT $this
             WHERE {
                 $this rdf:type gufo:Role .
-                FILTER NOT EXISTS {
-                    $this rdf:type/rdfs:subClassOf* cac-core:Role .
-                }
             }
         """
     ] .
@@ -1134,7 +1128,7 @@ cacontology-infrastructure-shapes:InfrastructureParticipationShape rdf:type sh:N
                 $this rdf:type cacontology-infrastructure:PlatformInfrastructure .
                 FILTER NOT EXISTS {
                     { $this cacontology-infrastructure:hostedBy ?provider } UNION
-                    { ?role a gufo:Role ; cacontology-infrastructure:manages $this }
+                    { ?role a cac-core:Role ; cacontology-infrastructure:manages $this }
                 }
             }
         """
@@ -1189,7 +1183,7 @@ cacontology-infrastructure-shapes:InfrastructureCompositionShape rdf:type sh:Nod
         sh:select """
             SELECT $this
             WHERE {
-                $this cacontology-infrastructure:containsComponent ?part ;
+                $this cacontology-infrastructure:containsComponent ?part .
                 ?part cacontology-infrastructure:containsComponent $this .
             }
         """
@@ -1334,7 +1328,7 @@ cacontology-infrastructure-shapes:VulnerabilityAssessmentRule rdf:type sh:NodeSh
                 $this cacontology-infrastructure:hasInfrastructureVulnerability ?vulnerability .
                 FILTER (?vulnerability IN ("high", "critical"))
                 FILTER NOT EXISTS {
-                    $this cacontology-infrastructure:protectedBy ?security ;
+                    $this cacontology-infrastructure:protectedBy ?security .
                     ?security cacontology-infrastructure:hasSecurityStrength ?strength .
                     FILTER (?strength IN ("strong", "military_grade"))
                 }
@@ -1401,4 +1395,4 @@ cacontology-infrastructure-shapes:InfrastructureDataQualityShape rdf:type sh:Nod
                 }
             }
         """
-    ] . 
+    ] .

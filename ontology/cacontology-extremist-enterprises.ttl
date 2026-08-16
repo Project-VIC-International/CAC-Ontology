@@ -3,6 +3,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
@@ -19,7 +20,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-04-15"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/action/1.5.0> ,
@@ -42,13 +43,6 @@ cacontology-enterprises:ExtremistNetworkCell rdf:type gufo:SubKind .
 cacontology-enterprises:CyberExtremistNetwork rdf:type gufo:SubKind .
 
 # Enterprise Roles as Roles (anti-rigid relationally dependent)
-cacontology-enterprises:EnterpriseRole rdf:type gufo:Role .
-cacontology-enterprises:EnterpriseLeaderRole rdf:type gufo:Role .
-cacontology-enterprises:InnerCoreMemberRole rdf:type gufo:Role .
-cacontology-enterprises:ContentProducerRole rdf:type gufo:Role .
-cacontology-enterprises:RecruitmentSpecialistRole rdf:type gufo:Role .
-cacontology-enterprises:CoordinatorRole rdf:type gufo:Role .
-
 # Content and Artifacts as Kinds
 cacontology-enterprises:Lorebook rdf:type gufo:Kind .
 cacontology-enterprises:VictimContentCompilation rdf:type gufo:SubKind .
@@ -84,7 +78,6 @@ cacontology-enterprises:EnterpriseHierarchy rdf:type gufo:Kind .
 cacontology-enterprises:InnerCore rdf:type gufo:SubKind .
 cacontology-enterprises:LeadershipStructure rdf:type gufo:SubKind .
 cacontology-enterprises:RecruitmentHierarchy rdf:type gufo:SubKind .
-cacontology-enterprises:MembershipTier rdf:type gufo:Phase .
 cacontology-enterprises:ContentCompilationSystem rdf:type gufo:Kind .
 cacontology-enterprises:ContentCurrencySystem rdf:type gufo:Kind .
 cacontology-enterprises:MembershipAdvancementSystem rdf:type gufo:SubKind .
@@ -150,9 +143,8 @@ cacontology-enterprises:RecruitmentHierarchy rdf:type owl:Class ;
 
 cacontology-enterprises:MembershipTier rdf:type owl:Class ;
     rdfs:label "Membership Tier"@en ;
-    rdfs:comment "Membership tier within enterprise hierarchy determining access and privileges."@en ;
-    rdfs:subClassOf cacontology-enterprises:EnterpriseHierarchy ,
-                    cac-core:Phase .
+    rdfs:comment "Controlled concept representing a membership level and its associated access designation. A tier entry is not the enterprise, a member, a hierarchy object, a lifecycle occurrence, or a gUFO Phase classifier."@en ;
+    rdfs:subClassOf skos:Concept .
 
 # =============================================================================
 # ENTERPRISE ROLES (extending UCO Role and gUFO)
@@ -489,9 +481,13 @@ cacontology-enterprises:advancementCriteria rdf:type owl:DatatypeProperty ;
 
 cacontology-enterprises:accessLevel rdf:type owl:DatatypeProperty ;
     rdfs:label "access level"@en ;
-    rdfs:comment "Level of access to enterprise resources and channels."@en ;
-    rdfs:domain cacontology-enterprises:AccessControlSystem ;
+    rdfs:comment "Level of access associated with a membership tier or managed by an access-control system. No global domain is asserted because published data uses this property at both levels."@en ;
     rdfs:range xsd:string .
+
+cacontology-enterprises:hasMembershipTier rdf:type owl:ObjectProperty ;
+    rdfs:label "has membership tier"@en ;
+    rdfs:comment "Links an enterprise membership or role-assignment node to a controlled MembershipTier concept. No global domain is asserted until the membership-class audit selects one stable subject type."@en ;
+    rdfs:range cacontology-enterprises:MembershipTier .
 
 # Exploitation Method Properties
 cacontology-enterprises:coercionSeverity rdf:type owl:DatatypeProperty ;
@@ -761,10 +757,10 @@ cacontology-enterprises:hasNetworkComponent rdf:type owl:ObjectProperty ;
 
 cacontology-enterprises:hasMember rdf:type owl:ObjectProperty ;
     rdfs:label "has member"@en ;
-    rdfs:comment "Links enterprise to its members using gUFO collection membership pattern."@en ;
+    rdfs:comment "Links an enterprise, modeled as a gUFO FunctionalComplex, to a person who is one of its functional components. Its direction is the inverse of gufo:isComponentOf; it is not collection membership."@en ;
     rdfs:domain cacontology-enterprises:ChildExploitationEnterprise ;
     rdfs:range uco-identity:Person ;
-    rdfs:subPropertyOf gufo:isCollectionMemberOf .
+    rdfs:subPropertyOf [ owl:inverseOf gufo:isComponentOf ] .
 
 # Temporal Properties using gUFO temporal framework
 cacontology-enterprises:hasOperationalPeriod rdf:type owl:ObjectProperty ;
@@ -837,14 +833,14 @@ cacontology-enterprises:participatesInCoercion rdf:type owl:ObjectProperty ;
     rdfs:comment "Links persons to coercion events they participate in."@en ;
     rdfs:domain uco-identity:Person ;
     rdfs:range cacontology-enterprises:SelfHarmCoercion ;
-    rdfs:subPropertyOf gufo:participatesIn .
+    rdfs:subPropertyOf gufo:participatedIn .
 
 cacontology-enterprises:participatesInRecruitment rdf:type owl:ObjectProperty ;
     rdfs:label "participates in recruitment"@en ;
     rdfs:comment "Links persons to recruitment events they participate in."@en ;
     rdfs:domain uco-identity:Person ;
     rdfs:range cacontology-enterprises:ContentBasedRecruitment ;
-    rdfs:subPropertyOf gufo:participatesIn .
+    rdfs:subPropertyOf gufo:participatedIn .
 
 # =============================================================================
 # GUFO TEMPORAL DATA PROPERTIES
@@ -877,4 +873,4 @@ cacontology-enterprises:hasInvestigationBeginDate rdf:type owl:DatatypeProperty 
     rdfs:comment "Begin date of investigation event using gUFO temporal framework."@en ;
     rdfs:domain cacontology-enterprises:CovertEmployeeOperation ;
     rdfs:range xsd:dateTimeStamp ;
-    rdfs:subPropertyOf gufo:hasBeginPointInXSDDateTimeStamp . 
+    rdfs:subPropertyOf gufo:hasBeginPointInXSDDateTimeStamp .

@@ -1,0 +1,9 @@
+{
+  "configuration": "C2",
+  "gate": false,
+  "status": "blocked",
+  "blocker": "The exact UCO gUFO Profile artifact at revision prefix 4b98b988 is not present locally, and remote import retrieval failed at the machine TLS layer.",
+  "effect": "No C2 consistency result is claimed. C1 asserted-graph evidence remains valid; C4 cannot pass until the same overlay bytes are locked.",
+  "source_commit": "93de063951b758dd68a27611638c177fcf910eab",
+  "sensitive_data": "No real sensitive case data is present."
+}

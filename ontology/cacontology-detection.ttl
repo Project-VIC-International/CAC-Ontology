@@ -21,7 +21,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/action/1.5.0> ,
@@ -165,19 +165,19 @@ cacontology-detection:RiskStratificationAction rdf:type owl:Class ;
     rdfs:subClassOf cac-core:DetectionEvent .
 
 # =============================================================================
-# HASH AND DETECTION ARTIFACT CLASSES (extending UCO Observable with gUFO Object)
+# HASH VALUE AND DETECTION RESULT CLASSES
 # =============================================================================
 
-# Hash and Detection Results as gUFO Objects
+# UCO Hash is an inherent-characterization branch, disjoint from UcoObject.
 cacontology-detection:PhotoDNAHash rdf:type owl:Class ;
     rdfs:label "PhotoDNA Hash"@en ;
-    rdfs:comment "A Microsoft PhotoDNA hash for robust image matching that survives common transformations. Modeled as gUFO Object."@en ;
-    rdfs:subClassOf uco-types:Hash, cac-core:Artifact .
+    rdfs:comment "A Microsoft PhotoDNA hash for robust image matching that survives common transformations. Modeled as a UCO Hash, not as an Artifact/UcoObject."@en ;
+    rdfs:subClassOf uco-types:Hash .
 
 cacontology-detection:PerceptualHash rdf:type owl:Class ;
     rdfs:label "Perceptual Hash"@en ;
-    rdfs:comment "A hash that captures visual similarity rather than exact bit patterns (e.g., pHash, aHash, dHash). Modeled as gUFO Object."@en ;
-    rdfs:subClassOf uco-types:Hash, cac-core:Artifact .
+    rdfs:comment "A hash that captures visual similarity rather than exact bit patterns (e.g., pHash, aHash, dHash). Modeled as a UCO Hash, not as an Artifact/UcoObject."@en ;
+    rdfs:subClassOf uco-types:Hash .
 
 cacontology-detection:DetectionResult rdf:type owl:Class ;
     rdfs:label "Detection Result"@en ;
@@ -251,22 +251,22 @@ cacontology-detection:FalsePositiveManagementSituation rdf:type owl:Class ;
 # =============================================================================
 
 # Detection Process Roles as gUFO Roles (anti-rigid)
-cacontology-detection:ContentAnalystRole rdf:type owl:Class, gufo:Role ;
+cacontology-detection:ContentAnalystRole rdf:type owl:Class ;
     rdfs:label "Content Analyst Role"@en ;
     rdfs:comment "Role of professional analyzing flagged content for classification. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-detection:HashAnalystRole rdf:type owl:Class, gufo:Role ;
+cacontology-detection:HashAnalystRole rdf:type owl:Class ;
     rdfs:label "Hash Analyst Role"@en ;
     rdfs:comment "Role of specialist working with hash databases and matching systems. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-detection:MachineLearningSpecialistRole rdf:type owl:Class, gufo:Role ;
+cacontology-detection:MachineLearningSpecialistRole rdf:type owl:Class ;
     rdfs:label "Machine Learning Specialist Role"@en ;
     rdfs:comment "Role of specialist developing and maintaining ML detection systems. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-detection:QualityAssuranceAnalystRole rdf:type owl:Class, gufo:Role ;
+cacontology-detection:QualityAssuranceAnalystRole rdf:type owl:Class ;
     rdfs:label "Quality Assurance Analyst Role"@en ;
     rdfs:comment "Role focused on validating detection accuracy and managing quality metrics. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
@@ -325,19 +325,19 @@ cacontology-detection:detectionDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "detection duration"@en ;
     rdfs:comment "Duration of detection action from start to completion."@en ;
     rdfs:domain cacontology-detection:AutomatedDetectionAction ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-detection:phaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "phase duration"@en ;
     rdfs:comment "Duration of detection phase."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-detection:roleDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "role duration"@en ;
     rdfs:comment "Duration of individual's detection role."@en ;
     rdfs:domain cac-core:Role ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 # =============================================================================
 # DETECTION PROPERTIES
@@ -409,12 +409,12 @@ cacontology-detection:modelVersion rdf:type owl:DatatypeProperty ;
 cacontology-detection:sarClassification rdf:type owl:ObjectProperty ;
     rdfs:label "SAR classification"@en ;
     rdfs:comment "Links content to its SAR (1-5) classification level."@en ;
-    rdfs:range cacontology-detection:SARClassificationScheme .
+    rdfs:range skos:Concept .
 
 cacontology-detection:copineClassification rdf:type owl:ObjectProperty ;
     rdfs:label "COPINE classification"@en ;
     rdfs:comment "Links content to its COPINE classification level."@en ;
-    rdfs:range cacontology-detection:COPINEClassificationScheme .
+    rdfs:range skos:Concept .
 
 cacontology-detection:ageEstimate rdf:type owl:DatatypeProperty ;
     rdfs:label "age estimate"@en ;
@@ -499,4 +499,4 @@ cacontology-detection:generatedHash rdf:type owl:ObjectProperty ;
     rdfs:label "generated hash"@en ;
     rdfs:comment "Links a hashing action to the hash that was generated."@en ;
     rdfs:domain cacontology-detection:ContentHashingAction ;
-    rdfs:range uco-types:Hash . 
+    rdfs:range uco-types:Hash .

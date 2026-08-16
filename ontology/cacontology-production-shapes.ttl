@@ -18,7 +18,7 @@
     owl:versionIRI <https://cacontology.projectvic.org/production/shapes/3.1.0> ;
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/production/3.1.0> ,
                 <http://purl.org/nemo/gufo#/1.0.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> .
@@ -30,7 +30,7 @@
 cacontology-production:ProductionPhaseShape rdf:type sh:NodeShape ;
     sh:targetClass cac-core:Phase ;
     rdfs:label "Production Phase Shape"@en ;
-    rdfs:comment "gUFO-enhanced validation shape for production phases with anti-rigidity constraints."@en ;
+    rdfs:comment "Validation shape for operational production phase occurrences and level separation."@en ;
     sh:property [
         sh:path cacontology-production:hasProductionPhaseBeginPoint ;
         sh:datatype xsd:dateTimeStamp ;
@@ -63,7 +63,7 @@ cacontology-production:ProductionPhaseShape rdf:type sh:NodeShape ;
         """
     ] ;
     sh:sparql [
-        sh:message "Phase instances must be anti-rigid (cannot exist without being instantiated by entities)."@en ;
+        sh:message "Operational production phase occurrences must not also be gUFO Phase classifiers."@en ;
         sh:prefixes [
             sh:declare [
                 sh:prefix "gufo" ;
@@ -72,14 +72,8 @@ cacontology-production:ProductionPhaseShape rdf:type sh:NodeShape ;
         ] ;
         sh:select """
             PREFIX gufo: <http://purl.org/nemo/gufo#>
-            PREFIX owl: <http://www.w3.org/2002/07/owl#>
             SELECT ?this WHERE {
                 ?this a gufo:Phase .
-                FILTER NOT EXISTS { ?this a owl:Class . }
-                FILTER NOT EXISTS { 
-                    ?entity ?property ?this .
-                    ?property rdfs:subPropertyOf* gufo:hasPhase .
-                }
             }
         """
     ] .
@@ -104,7 +98,7 @@ cacontology-production:ActiveProductionPhaseShape rdf:type sh:NodeShape ;
 cacontology-production:ProductionRoleShape rdf:type sh:NodeShape ;
     sh:targetClass cac-core:Role ;
     rdfs:label "Production Role Shape"@en ;
-    rdfs:comment "gUFO-enhanced validation shape for production roles with anti-rigidity and temporal constraints."@en ;
+    rdfs:comment "Validation shape for operational production-role records and level separation."@en ;
     sh:property [
         sh:path cacontology-production:hasRoleBeginPoint ;
         sh:datatype xsd:dateTimeStamp ;
@@ -137,7 +131,7 @@ cacontology-production:ProductionRoleShape rdf:type sh:NodeShape ;
         """
     ] ;
     sh:sparql [
-        sh:message "Role instances must be anti-rigid (cannot exist without being played by entities)."@en ;
+        sh:message "Operational production-role records must not also be gUFO Role classifiers."@en ;
         sh:prefixes [
             sh:declare [
                 sh:prefix "gufo" ;
@@ -146,14 +140,8 @@ cacontology-production:ProductionRoleShape rdf:type sh:NodeShape ;
         ] ;
         sh:select """
             PREFIX gufo: <http://purl.org/nemo/gufo#>
-            PREFIX owl: <http://www.w3.org/2002/07/owl#>
             SELECT ?this WHERE {
                 ?this a gufo:Role .
-                FILTER NOT EXISTS { ?this a owl:Class . }
-                FILTER NOT EXISTS { 
-                    ?entity ?property ?this .
-                    ?property rdfs:subPropertyOf* gufo:playsRole .
-                }
             }
         """
     ] .
@@ -703,4 +691,4 @@ cacontology-production:DataQualityShape rdf:type sh:NodeShape ;
         sh:minLength 10 ;
         sh:maxLength 1000 ;
         sh:message "Comment should be between 10 and 1000 characters when provided."@en
-    ] . 
+    ] .

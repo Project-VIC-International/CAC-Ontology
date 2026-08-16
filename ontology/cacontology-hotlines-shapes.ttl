@@ -6,6 +6,7 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
@@ -20,7 +21,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:created "2024-03-20"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/hotlines/3.1.0>,
                 <http://purl.org/nemo/gufo#/1.0.0> .
 
@@ -91,7 +92,7 @@ hotline:HotlineOrganizationShape rdf:type sh:NodeShape ;
         sh:message "Hotline organizations must demonstrate operational capabilities"@en ;
         sh:prefixes hotline: ;
         sh:construct """
-            INSERT { $this a hotline:OrganizationalError . }
+            CONSTRUCT { $this a hotline:OrganizationalError . }
             WHERE {
                 $this a hotline:HotlineOrganization .
                 FILTER NOT EXISTS { 
@@ -127,7 +128,7 @@ hotline:ReporterRoleShape rdf:type sh:NodeShape ;
         sh:message "Reporter roles must demonstrate anti-rigidity (can be gained/lost)"@en ;
         sh:prefixes hotline: ;
         sh:construct """
-            INSERT { $this a hotline:AntiRigidityError . }
+            CONSTRUCT { $this a hotline:AntiRigidityError . }
             WHERE {
                 $this a hotline:ReporterRole .
                 FILTER NOT EXISTS { 
@@ -162,10 +163,10 @@ hotline:EvidenceItemShape rdf:type sh:NodeShape ;
         sh:message "Evidence first seen time must be before report submission time"@en ;
         sh:prefixes hotline: ;
         sh:construct """
-            INSERT { $this a hotline:TemporalInconsistencyError . }
+            CONSTRUCT { $this a hotline:TemporalInconsistencyError . }
             WHERE {
                 ?report hotline:hasEvidence $this .
-                $this hotline:firstSeen ?evidenceTime ;
+                $this hotline:firstSeen ?evidenceTime .
                 ?report uco-core:createdTime ?reportTime .
                 FILTER(?evidenceTime > ?reportTime)
             }
@@ -181,7 +182,7 @@ hotline:MediaEvidenceShape rdf:type sh:NodeShape ;
     sh:property [
         sh:path uco-observable:hash ;
         sh:minCount 1 ;
-        sh:class uco-observable:Hash ;
+        sh:class uco-types:Hash ;
         sh:message "Media evidence must have at least one hash"@en
     ] ;
     # Forensic integrity validation
@@ -191,12 +192,12 @@ hotline:MediaEvidenceShape rdf:type sh:NodeShape ;
         sh:message "Media evidence must maintain cryptographic integrity"@en ;
         sh:prefixes hotline: ;
         sh:construct """
-            INSERT { $this a hotline:IntegrityError . }
+            CONSTRUCT { $this a hotline:IntegrityError . }
             WHERE {
-                $this a ?mediaType ;
+                $this a ?mediaType .
                 ?mediaType rdfs:subClassOf* [ owl:unionOf (hotline:ImageEvidence hotline:VideoEvidence) ] .
                 FILTER NOT EXISTS { 
-                    $this uco-observable:hash ?hash ;
+                    $this uco-observable:hash ?hash .
                     ?hash uco-observable:hashMethod ?method .
                 }
             }
@@ -233,7 +234,7 @@ hotline:HotlineActionShape rdf:type sh:NodeShape ;
         sh:message "Action end time must be after start time"@en ;
         sh:prefixes hotline: ;
         sh:construct """
-            INSERT { $this a hotline:TemporalInconsistencyError . }
+            CONSTRUCT { $this a hotline:TemporalInconsistencyError . }
             WHERE {
                 $this uco-core:startTime ?start .
                 $this uco-core:endTime ?end .
@@ -264,7 +265,7 @@ hotline:ReportReviewActionShape rdf:type sh:NodeShape ;
         sh:message "Report review must be performed by qualified analyst"@en ;
         sh:prefixes hotline: ;
         sh:construct """
-            INSERT { $this a hotline:QualificationError . }
+            CONSTRUCT { $this a hotline:QualificationError . }
             WHERE {
                 $this a hotline:ReportReviewAction .
                 $this uco-action:performer ?performer .
@@ -292,12 +293,12 @@ hotline:ForwardToLEActionShape rdf:type sh:NodeShape ;
         sh:message "Law enforcement forwarding must involve coordination situation"@en ;
         sh:prefixes hotline: ;
         sh:construct """
-            INSERT { $this a hotline:CoordinationError . }
+            CONSTRUCT { $this a hotline:CoordinationError . }
             WHERE {
                 $this a hotline:ForwardToLEAction .
                 FILTER NOT EXISTS { 
                     ?report hotline:triggersAction $this ;
-                    ?report hotline:involvesCoordination ?coordination ;
+                            hotline:involvesCoordination ?coordination .
                     ?coordination a hotline:MultiAgencyCoordination .
                 }
             }
@@ -320,7 +321,7 @@ hotline:HotlinePhaseShape rdf:type sh:NodeShape ;
     sh:property [
         sh:path hotline:phaseDuration ;
         sh:maxCount 1 ;
-        sh:datatype xsd:duration ;
+        sh:datatype xsd:string ;
         sh:message "Phases can have duration specifications"@en
     ] ;
     # Phase transition validation
@@ -330,11 +331,11 @@ hotline:HotlinePhaseShape rdf:type sh:NodeShape ;
         sh:message "Phase transitions must follow logical sequence"@en ;
         sh:prefixes hotline: ;
         sh:construct """
-            INSERT { $this a hotline:PhaseSequenceError . }
+            CONSTRUCT { $this a hotline:PhaseSequenceError . }
             WHERE {
                 ?report hotline:currentPhase $this .
-                $this hotline:phaseBeginTime ?thisStart ;
-                ?report hotline:hasPhaseTransition ?transition ;
+                $this hotline:phaseBeginTime ?thisStart .
+                ?report hotline:hasPhaseTransition ?transition .
                 ?transition uco-core:endTime ?prevEnd .
                 FILTER(?thisStart <= ?prevEnd)
             }
@@ -361,9 +362,9 @@ hotline:SpecialistRoleShape rdf:type sh:NodeShape ;
         sh:message "Specialist roles require demonstrated competencies"@en ;
         sh:prefixes hotline: ;
         sh:construct """
-            INSERT { $this a hotline:CompetencyError . }
+            CONSTRUCT { $this a hotline:CompetencyError . }
             WHERE {
-                $this a ?roleType ;
+                $this a ?roleType .
                 ?roleType rdfs:subClassOf* [ owl:unionOf (hotline:HotlineAnalystRole hotline:ForensicsSpecialistRole hotline:LiaisonRole) ] .
                 FILTER NOT EXISTS { 
                     $this hotline:hasCompetency ?competency .
@@ -380,7 +381,7 @@ hotline:HashSubmissionActionShape rdf:type sh:NodeShape ;
     sh:property [
         sh:path hotline:producesHash ;
         sh:minCount 1 ;
-        sh:class uco-observable:Hash ;
+        sh:class uco-types:Hash ;
         sh:message "A hash submission action must produce at least one hash"@en
     ] ;
     # Hash validation integrity
@@ -390,12 +391,12 @@ hotline:HashSubmissionActionShape rdf:type sh:NodeShape ;
         sh:message "Hash submissions must maintain cryptographic integrity"@en ;
         sh:prefixes hotline: ;
         sh:construct """
-            INSERT { $this a hotline:HashIntegrityError . }
+            CONSTRUCT { $this a hotline:HashIntegrityError . }
             WHERE {
                 $this hotline:producesHash ?hash .
                 FILTER NOT EXISTS { 
                     ?hash uco-observable:hashMethod ?method ;
-                    ?hash uco-observable:hashValue ?value .
+                          uco-observable:hashValue ?value .
                 }
             }
         """
@@ -409,7 +410,7 @@ hotline:HashFeedbackActionShape rdf:type sh:NodeShape ;
     sh:property [
         sh:path hotline:referencesHash ;
         sh:minCount 1 ;
-        sh:class uco-observable:Hash ;
+        sh:class uco-types:Hash ;
         sh:message "A hash feedback action must reference at least one hash"@en
     ] ;
     sh:property [
@@ -450,12 +451,12 @@ hotline:MultiAgencyCoordinationShape rdf:type sh:NodeShape ;
         sh:message "Multi-agency coordination must involve at least two organizations"@en ;
         sh:prefixes hotline: ;
         sh:construct """
-            INSERT { $this a hotline:CoordinationParticipantError . }
+            CONSTRUCT { $this a hotline:CoordinationParticipantError . }
             WHERE {
                 $this a hotline:MultiAgencyCoordination .
                 {
                     SELECT $this (COUNT(?org) AS ?orgCount) WHERE {
-                        $this hotline:hasParticipant ?org ;
+                        $this hotline:hasParticipant ?org .
                         ?org a uco-identity:Organization .
                     } GROUP BY $this
                 }
@@ -476,9 +477,9 @@ hotline:LifecycleValidationShape rdf:type sh:NodeShape ;
         sh:message "The first action must be a ReportReviewAction"@en ;
         sh:prefixes hotline: ;
         sh:construct """
-            INSERT { $this a hotline:LifecycleError . }
+            CONSTRUCT { $this a hotline:LifecycleError . }
             WHERE {
-                $this hotline:triggersAction ?action ;
+                $this hotline:triggersAction ?action .
                 ?action a hotline:HotlineAction .
                 FILTER NOT EXISTS { ?prev hotline:nextStep ?action . }
                 FILTER NOT EXISTS { ?action a hotline:ReportReviewAction . }
@@ -492,17 +493,17 @@ hotline:LifecycleValidationShape rdf:type sh:NodeShape ;
         sh:message "Phases must follow logical sequence: Intake → Review → Action → Closure"@en ;
         sh:prefixes hotline: ;
         sh:construct """
-            INSERT { $this a hotline:PhaseSequenceError . }
+            CONSTRUCT { $this a hotline:PhaseSequenceError . }
             WHERE {
-                $this hotline:currentPhase ?currentPhase ;
-                ?currentPhase a ?phaseType ;
-                ?phaseType rdfs:subClassOf gufo:Phase .
+                $this hotline:currentPhase ?currentPhase .
+                ?currentPhase a ?phaseType .
+                ?phaseType rdfs:subClassOf* cac-core:Phase .
                 # Invalid transitions logic would be implemented here
                 FILTER EXISTS {
                     # Example: ActionPhase cannot directly follow IntakePhase
-                    ?currentPhase a hotline:ActionPhase ;
+                    ?currentPhase a hotline:ActionPhase .
                     ?previousPhase hotline:nextPhase ?currentPhase ;
-                    ?previousPhase a hotline:IntakePhase .
+                                   a hotline:IntakePhase .
                 }
             }
         """
@@ -514,12 +515,12 @@ hotline:LifecycleValidationShape rdf:type sh:NodeShape ;
         sh:message "gUFO Events must maintain temporal consistency within phases"@en ;
         sh:prefixes hotline: ;
         sh:construct """
-            INSERT { $this a hotline:TemporalConsistencyError . }
+            CONSTRUCT { $this a hotline:TemporalConsistencyError . }
             WHERE {
-                $this hotline:triggersAction ?action ;
+                $this hotline:triggersAction ?action .
                 ?action a gufo:Event ;
-                ?action uco-core:startTime ?actionStart .
-                $this hotline:currentPhase ?phase ;
+                        uco-core:startTime ?actionStart .
+                $this hotline:currentPhase ?phase .
                 ?phase hotline:phaseBeginTime ?phaseStart .
                 FILTER(?actionStart < ?phaseStart)
             }
@@ -529,17 +530,18 @@ hotline:LifecycleValidationShape rdf:type sh:NodeShape ;
     sh:rule [
         a sh:SPARQLRule ;
         sh:severity sh:Violation ;
-        sh:message "All actions must be performed by entities with appropriate gUFO Roles"@en ;
+        sh:message "All actions must be performed by entities with an operational hotline-role record"@en ;
         sh:prefixes hotline: ;
         sh:construct """
-            INSERT { $this a hotline:RoleAssignmentError . }
+            CONSTRUCT { $this a hotline:RoleAssignmentError . }
             WHERE {
-                $this hotline:triggersAction ?action ;
+                $this hotline:triggersAction ?action .
                 ?action uco-action:performer ?performer .
                 FILTER NOT EXISTS { 
-                    ?performer hotline:playsRole ?role ;
-                    ?role a gufo:Role .
+                    ?performer hotline:playsRole ?role .
+                    ?role a ?roleType .
+                    ?roleType rdfs:subClassOf* cac-core:Role .
                 }
             }
         """
-    ] . 
+    ] .

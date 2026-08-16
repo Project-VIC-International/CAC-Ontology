@@ -35,14 +35,14 @@
     uco-core:endTime "2024-04-01T00:00:00Z"^^xsd:dateTime .
 
 # Perpetrator
-<https://example.org/persons/matthew-isaacs> rdf:type cacontology-production:Producer ;
+<https://example.org/persons/matthew-isaacs> rdf:type cacontology-production:ProducerClassifier ;
     rdfs:label "Matthew Isaacs"@en ;
     uco-identity:hasName "Matthew Isaacs" ;
     uco-identity:age 33 ;
     uco-location:hasLocation <https://example.org/locations/hartford-apartment> .
 
 # Victim (anonymized)
-<https://example.org/persons/child-victim> rdf:type cacontology-production:ProductionVictim ;
+<https://example.org/persons/child-victim> rdf:type cacontology-production:ProductionVictimClassifier ;
     rdfs:label "Child Victim"@en ;
     uco-identity:age 5 ;
     uco-location:hasLocation <https://example.org/locations/hartford-apartment-same-floor> .
@@ -367,4 +367,4 @@ cacontology-taskforce:caseCategory rdf:type owl:DatatypeProperty ;
     rdfs:label "case category"@en ;
     rdfs:comment "Category of case within federal initiative framework."@en ;
     rdfs:domain cacontology-taskforce:ProjectSafeChildhoodCase ;
-    rdfs:range xsd:string . 
+    rdfs:range xsd:string .

@@ -24,7 +24,7 @@
     owl:versionIRI <https://cacontology.projectvic.org/legal-harmonization/shapes/3.1.0> ;
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/legal-harmonization/3.1.0> ,
                 <https://cacontology.projectvic.org/multi-jurisdiction/3.1.0> ,
                 <http://purl.org/nemo/gufo#/1.0.0> ,
@@ -571,7 +571,7 @@ cacontology-legal-shapes:TreatyFrameworkCompositionShape rdf:type sh:NodeShape ;
 cacontology-legal-shapes:QualifiedComplianceParticipationShape rdf:type sh:NodeShape ;
     rdfs:label "Qualified Compliance Participation Shape"@en ;
     rdfs:comment "Validates qualified participation relationships in legal compliance according to gUFO patterns."@en ;
-    sh:targetClass gufo:ParticipationSituation ;
+    sh:targetClass cac-core:QualifiedParticipationSituation ;
     sh:property [
         sh:path cacontology-legal:concernsLegalFramework ;
         sh:class cacontology-legal:NationalLegislation ;
@@ -631,8 +631,8 @@ cacontology-legal-shapes:ComprehensiveHarmonizationRule rdf:type sh:NodeShape ;
                 FILTER (?degree IN ("comprehensive", "complete"))
                 OPTIONAL {
                     ?treaty cacontology-legal:facilitatesCooperation ?cooperation ;
-                    ?cooperation rdf:type cacontology-legal:InternationalLawEnforcement ;
-                    ?treaty cacontology-legal:hasTreatyStrength ?strength .
+                            cacontology-legal:hasTreatyStrength ?strength .
+                    ?cooperation rdf:type cacontology-legal:InternationalLawEnforcement .
                     FILTER (?strength IN ("binding", "comprehensive"))
                 }
                 FILTER (!BOUND(?strength))
@@ -659,7 +659,7 @@ cacontology-legal-shapes:CriticalGapReformRule rdf:type sh:NodeShape ;
                 $this cacontology-legal:hasGapSeverity ?severity .
                 FILTER (?severity IN ("critical", "systemic"))
                 OPTIONAL {
-                    $this cacontology-legal:requiresReform ?reform ;
+                    $this cacontology-legal:requiresReform ?reform .
                     ?reform cacontology-legal:hasReformUrgency ?urgency .
                     FILTER (?urgency IN ("urgent", "critical"))
                 }
@@ -900,7 +900,7 @@ cacontology-legal-shapes:StatuteShape rdf:type sh:NodeShape ;
     sh:property [
         sh:path rdfs:subClassOf ;
         sh:qualifiedValueShape [
-            sh:class gufo:Norm
+            sh:class cacontology-legal:LegalNorm
         ] ;
         sh:qualifiedMinCount 1 ;
         sh:severity sh:Violation ;

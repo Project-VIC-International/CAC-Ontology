@@ -21,7 +21,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-05-23"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/asset-forfeiture/3.1.0>,
                 <https://cacontology.projectvic.org/core/3.1.0>,
                 <http://purl.org/nemo/gufo#/1.0.0> .
@@ -85,7 +85,7 @@ cacontology-asset-forfeiture:AssetForfeitureActionShape rdf:type sh:NodeShape ;
         sh:message "Forfeiture end time must be after begin time"@en ;
         sh:prefixes cacontology-asset-forfeiture: ;
         sh:construct """
-            INSERT { $this a cacontology-asset-forfeiture:TemporalInconsistencyError . }
+            CONSTRUCT { $this a cacontology-asset-forfeiture:TemporalInconsistencyError . }
             WHERE {
                 $this cacontology-gufo:forfeitureBeginTime ?begin .
                 $this cacontology-gufo:forfeitureEndTime ?end .
@@ -113,11 +113,11 @@ cacontology-asset-forfeiture:PropertyRestraintActionShape rdf:type sh:NodeShape 
         sh:message "Property restraint should transition to restraint phase"@en ;
         sh:prefixes cacontology-asset-forfeiture: ;
         sh:construct """
-            INSERT { $this a cacontology-asset-forfeiture:PhaseTransitionError . }
+            CONSTRUCT { $this a cacontology-asset-forfeiture:PhaseTransitionError . }
             WHERE {
                 $this a cacontology-asset-forfeiture:PropertyRestraintAction .
                 FILTER NOT EXISTS { 
-                    $this cacontology-asset-forfeiture:currentPhase ?phase ;
+                    $this cacontology-asset-forfeiture:currentPhase ?phase .
                     ?phase a cacontology-asset-forfeiture:RestraintPhase .
                 }
             }
@@ -322,12 +322,12 @@ cacontology-asset-forfeiture:RestraintPhaseShape rdf:type sh:NodeShape ;
         sh:message "Restraint phase should follow asset identification phase"@en ;
         sh:prefixes cacontology-asset-forfeiture: ;
         sh:construct """
-            INSERT { $this a cacontology-asset-forfeiture:PhaseSequenceError . }
+            CONSTRUCT { $this a cacontology-asset-forfeiture:PhaseSequenceError . }
             WHERE {
-                $this a cacontology-asset-forfeiture:RestraintPhase ;
+                $this a cacontology-asset-forfeiture:RestraintPhase .
                 ?action cacontology-asset-forfeiture:currentPhase $this .
                 FILTER NOT EXISTS { 
-                    ?action cacontology-asset-forfeiture:previousPhase ?prev ;
+                    ?action cacontology-asset-forfeiture:previousPhase ?prev .
                     ?prev a cacontology-asset-forfeiture:AssetIdentificationPhase .
                 }
             }
@@ -345,11 +345,11 @@ cacontology-asset-forfeiture:LegalProceedingsPhaseShape rdf:type sh:NodeShape ;
         sh:message "Legal proceedings phase must involve court proceedings"@en ;
         sh:prefixes cacontology-asset-forfeiture: ;
         sh:construct """
-            INSERT { $this a cacontology-asset-forfeiture:CourtInvolvementError . }
+            CONSTRUCT { $this a cacontology-asset-forfeiture:CourtInvolvementError . }
             WHERE {
                 $this a cacontology-asset-forfeiture:LegalProceedingsPhase .
                 FILTER NOT EXISTS { 
-                    $this cacontology-asset-forfeiture:involvesCourtProceeding ?proceeding ;
+                    $this cacontology-asset-forfeiture:involvesCourtProceeding ?proceeding .
                     ?proceeding a cacontology-asset-forfeiture:LegalProceedingsSituation .
                 }
             }
@@ -367,14 +367,14 @@ cacontology-asset-forfeiture:RecoveryPhaseShape rdf:type sh:NodeShape ;
         sh:message "Recovery phase must have completed legal proceedings"@en ;
         sh:prefixes cacontology-asset-forfeiture: ;
         sh:construct """
-            INSERT { $this a cacontology-asset-forfeiture:LegalCompletionError . }
+            CONSTRUCT { $this a cacontology-asset-forfeiture:LegalCompletionError . }
             WHERE {
-                $this a cacontology-asset-forfeiture:RecoveryPhase ;
+                $this a cacontology-asset-forfeiture:RecoveryPhase .
                 ?action cacontology-asset-forfeiture:currentPhase $this .
                 FILTER NOT EXISTS { 
-                    ?action cacontology-asset-forfeiture:previousPhase ?prev ;
+                    ?action cacontology-asset-forfeiture:previousPhase ?prev .
                     ?prev a cacontology-asset-forfeiture:LegalProceedingsPhase ;
-                    ?prev cacontology-asset-forfeiture:phaseStatus "completed" .
+                          cacontology-asset-forfeiture:phaseStatus "completed" .
                 }
             }
         """
@@ -404,7 +404,7 @@ cacontology-asset-forfeiture:MultiStateForfeitureShape rdf:type sh:NodeShape ;
         sh:message "Multi-state forfeiture must involve multiple jurisdictions"@en ;
         sh:prefixes cacontology-asset-forfeiture: ;
         sh:construct """
-            INSERT { $this a cacontology-asset-forfeiture:JurisdictionalError . }
+            CONSTRUCT { $this a cacontology-asset-forfeiture:JurisdictionalError . }
             WHERE {
                 $this a cacontology-asset-forfeiture:MultiStateForfeiture .
                 {
@@ -436,14 +436,14 @@ cacontology-asset-forfeiture:JurisdictionalCoordinationShape rdf:type sh:NodeSha
         sh:message "Jurisdictional coordination must involve multiple legal authorities"@en ;
         sh:prefixes cacontology-asset-forfeiture: ;
         sh:construct """
-            INSERT { $this a cacontology-asset-forfeiture:CoordinationValidationError . }
+            CONSTRUCT { $this a cacontology-asset-forfeiture:CoordinationValidationError . }
             WHERE {
                 $this a cacontology-asset-forfeiture:JurisdictionalCoordination .
                 {
                     SELECT $this (COUNT(?authority) AS ?authorityCount) WHERE {
-                        $this cacontology-asset-forfeiture:hasParticipant ?authority ;
+                        $this cacontology-asset-forfeiture:hasParticipant ?authority .
                         ?authority a cac-core:OrganizationLikeEntity ;
-                        ?authority cacontology-asset-forfeiture:organizationType "legal_authority" .
+                                   cacontology-asset-forfeiture:organizationType "legal_authority" .
                     } GROUP BY $this
                 }
                 FILTER(?authorityCount < 2)
@@ -462,15 +462,15 @@ cacontology-asset-forfeiture:LegalProceedingsSituationShape rdf:type sh:NodeShap
         sh:message "Legal proceedings must involve courts, legal counsel, and enforcement agencies"@en ;
         sh:prefixes cacontology-asset-forfeiture: ;
         sh:construct """
-            INSERT { $this a cacontology-asset-forfeiture:LegalParticipationError . }
+            CONSTRUCT { $this a cacontology-asset-forfeiture:LegalParticipationError . }
             WHERE {
                 $this a cacontology-asset-forfeiture:LegalProceedingsSituation .
                 FILTER NOT EXISTS { 
-                    $this cacontology-asset-forfeiture:hasParticipant ?court ;
+                    $this cacontology-asset-forfeiture:hasParticipant ?court .
                     ?court a cacontology-asset-forfeiture:StateSupremeCourt .
                 }
                 FILTER NOT EXISTS { 
-                    $this cacontology-asset-forfeiture:hasParticipant ?counsel ;
+                    $this cacontology-asset-forfeiture:hasParticipant ?counsel .
                     ?counsel cacontology-asset-forfeiture:playsRole cacontology-asset-forfeiture:LegalCounsel .
                 }
             }
@@ -494,7 +494,7 @@ cacontology-asset-forfeiture:AssetTargetingCrossReferenceShape rdf:type sh:NodeS
                 $this cacontology-asset-forfeiture:targetedAsset ?asset .
                 FILTER NOT EXISTS {
                     ?asset a cac-core:EnduringEntity ;
-                    ?asset uco-observable:propertyOwner ?owner .
+                           uco-observable:propertyOwner ?owner .
                 }
             }
         """
@@ -552,8 +552,8 @@ cacontology-asset-forfeiture:PhaseSequenceValidationShape rdf:type sh:NodeShape 
             WHERE {
                 $this a cacontology-asset-forfeiture:AssetForfeitureAction .
                 $this cacontology-asset-forfeiture:currentPhase ?currentPhase .
-                $this cacontology-asset-forfeiture:previousPhase ?prevPhase ;
-                ?currentPhase cacontology-gufo:phaseTransitionTime ?currentTime ;
+                $this cacontology-asset-forfeiture:previousPhase ?prevPhase .
+                ?currentPhase cacontology-gufo:phaseTransitionTime ?currentTime .
                 ?prevPhase cacontology-gufo:phaseTransitionTime ?prevTime .
                 FILTER (?currentTime <= ?prevTime)
             }

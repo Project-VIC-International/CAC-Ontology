@@ -57,7 +57,7 @@ geilenfeld-case:st-josephs-home-for-boys rdf:type cacontology-institutional:Orph
     rdfs:label "St. Joseph's Home for Boys"@en ;
     rdfs:comment "Orphanage founded in Haiti in 1985 as a home for orphaned, impoverished, and vulnerable children."@en ;
     uco-core:name "St. Joseph's Home for Boys" ;
-    cacontology-institutional:foundingYear "1985"^^xsd:gYear ;
+    cacontology-institutional:foundingYear "1985"^^xsd:integer ;
     cacontology-institutional:operationDurationYears 25 ; # 1985-2010+
     cacontology-institutional:childrenServed 100 ; # Estimated number over 25 years
     cacontology-institutional:foundedBy geilenfeld-case:michael-karl-geilenfeld ;
@@ -268,8 +268,8 @@ geilenfeld-case:long-term-abuse-pattern rdf:type cacontology-institutional:LongT
                                                  cacontology-institutional:InstitutionalAbuseEvidence ;
     rdfs:label "Long-Term Institutional Abuse Pattern"@en ;
     rdfs:comment "Evidence pattern showing systematic abuse spanning more than two decades within institutional setting."@en ;
-    cacontology-institutional:abuseStartYear "1985"^^xsd:gYear ;
-    cacontology-institutional:abuseEndYear "2010"^^xsd:gYear ;
+    cacontology-institutional:abuseStartYear "1985"^^xsd:integer ;
+    cacontology-institutional:abuseEndYear "2010"^^xsd:integer ;
     cacontology-institutional:documentsPattern geilenfeld-case:orphanage-exploitation-operation .
 
 # Additional victim testimony evidence

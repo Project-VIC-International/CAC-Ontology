@@ -1,0 +1,16 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
+@prefix ex: <https://example.invalid/v4-test#> .
+
+ex:lifecycle-1 a cac-core:Situation ;
+    rdfs:label "Synthetic lifecycle" .
+
+ex:phase-a a cac-core:Phase ;
+    rdfs:label "Synthetic phase A" ;
+    cac-core:isPhaseOf ex:lifecycle-1 ;
+    cac-core:precedes ex:phase-b .
+
+ex:phase-b a cac-core:Phase ;
+    rdfs:label "Synthetic phase B" ;
+    cac-core:isPhaseOf ex:lifecycle-1 ;
+    cac-core:precedes ex:phase-a .

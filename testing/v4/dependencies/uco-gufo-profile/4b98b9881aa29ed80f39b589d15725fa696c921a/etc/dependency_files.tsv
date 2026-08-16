@@ -1,0 +1,4 @@
+http://example.org/ontology/uco-gufo	${top_srcdir}/ontology/uco-gufo.ttl
+http://example.org/shapes/sh-gufo	${top_srcdir}/dependencies/CDO-Shapes-gufo/shapes/sh-gufo.ttl
+http://example.org/shapes/sh-uco-gufo	${top_srcdir}/shapes/sh-uco-gufo.ttl
+http://purl.org/nemo/gufo#/1.0.0	${top_srcdir}/dependencies/CDO-Shapes-gufo/dependencies/formatted-gufo.ttl

@@ -18,7 +18,7 @@
     owl:versionIRI <https://cacontology.projectvic.org/investigation-coordination/3.1.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-01-27"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:versionInfo "3.1.0" ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.caseontology.org/case/case/1.5.0> ,
@@ -263,44 +263,37 @@ cacontology-coord:JointOperationsPlan rdf:type owl:Class ;
 cacontology-coord:LiaisonOfficer rdf:type owl:Class ;
     rdfs:label "Liaison Officer"@en ;
     rdfs:comment "Designated officer responsible for maintaining communication and coordination between agencies."@en ;
-    rdfs:subClassOf uco-role:Role , cac-core:Role ;
-    rdf:type gufo:Role .
+    rdfs:subClassOf uco-role:Role , cac-core:Role .
 
 cacontology-coord:PrimaryLiaison rdf:type owl:Class ;
     rdfs:label "Primary Liaison"@en ;
     rdfs:comment "Primary liaison officer with full authority for inter-agency communication and coordination."@en ;
-    rdfs:subClassOf cacontology-coord:LiaisonOfficer ;
-    rdf:type gufo:Role .
+    rdfs:subClassOf cacontology-coord:LiaisonOfficer .
 
 cacontology-coord:SecondaryLiaison rdf:type owl:Class ;
     rdfs:label "Secondary Liaison"@en ;
     rdfs:comment "Secondary liaison officer providing backup and specialized coordination support."@en ;
-    rdfs:subClassOf cacontology-coord:LiaisonOfficer ;
-    rdf:type gufo:Role .
+    rdfs:subClassOf cacontology-coord:LiaisonOfficer .
 
 cacontology-coord:TechnicalLiaison rdf:type owl:Class ;
     rdfs:label "Technical Liaison"@en ;
     rdfs:comment "Technical liaison officer specializing in technical coordination and information sharing."@en ;
-    rdfs:subClassOf cacontology-coord:LiaisonOfficer ;
-    rdf:type gufo:Role .
+    rdfs:subClassOf cacontology-coord:LiaisonOfficer .
 
 cacontology-coord:LegalLiaison rdf:type owl:Class ;
     rdfs:label "Legal Liaison"@en ;
     rdfs:comment "Legal liaison officer handling legal aspects of inter-agency coordination and agreements."@en ;
-    rdfs:subClassOf cacontology-coord:LiaisonOfficer ;
-    rdf:type gufo:Role .
+    rdfs:subClassOf cacontology-coord:LiaisonOfficer .
 
 cacontology-coord:IntelligenceLiaison rdf:type owl:Class ;
     rdfs:label "Intelligence Liaison"@en ;
     rdfs:comment "Intelligence liaison officer managing intelligence sharing and coordination activities."@en ;
-    rdfs:subClassOf cacontology-coord:LiaisonOfficer ;
-    rdf:type gufo:Role .
+    rdfs:subClassOf cacontology-coord:LiaisonOfficer .
 
 cacontology-coord:OperationalLiaison rdf:type owl:Class ;
     rdfs:label "Operational Liaison"@en ;
     rdfs:comment "Operational liaison officer coordinating operational activities and tactical coordination."@en ;
-    rdfs:subClassOf cacontology-coord:LiaisonOfficer ;
-    rdf:type gufo:Role .
+    rdfs:subClassOf cacontology-coord:LiaisonOfficer .
 
 # =============================================================================
 # METRICS AND PERFORMANCE CLASSES (gUFO: Object)
@@ -840,35 +833,35 @@ cacontology-coord:hasCoordinationEffectiveness rdf:type owl:DatatypeProperty ;
     rdfs:comment "Coordination effectiveness level assessment (poor, fair, good, excellent, outstanding) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:InvestigationCoordination ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasComplexityLevel rdf:type owl:DatatypeProperty ;
     rdfs:label "has complexity level"@en ;
     rdfs:comment "Coordination complexity level assessment (simple, moderate, complex, highly_complex, extremely_complex) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:InvestigationCoordination ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasSuccessRate rdf:type owl:DatatypeProperty ;
     rdfs:label "has success rate"@en ;
     rdfs:comment "Success rate measurement (0.0 to 1.0) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:InvestigationCoordination ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasCoordinationIntensity rdf:type owl:DatatypeProperty ;
     rdfs:label "has coordination intensity"@en ;
     rdfs:comment "Coordination integration intensity (minimal, moderate, high, intensive, fully_integrated) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:JointInvestigation ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasUnificationLevel rdf:type owl:DatatypeProperty ;
     rdfs:label "has unification level"@en ;
     rdfs:comment "Unification degree measurement (0.0 to 1.0) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:JointInvestigation ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 # Information Sharing Quality Aspects
 cacontology-coord:hasSharingEfficiency rdf:type owl:DatatypeProperty ;
@@ -876,35 +869,35 @@ cacontology-coord:hasSharingEfficiency rdf:type owl:DatatypeProperty ;
     rdfs:comment "Information sharing efficiency level (poor, fair, good, excellent, optimal) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:InformationSharing ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasSecurityLevel rdf:type owl:DatatypeProperty ;
     rdfs:label "has security level"@en ;
     rdfs:comment "Security assessment level (basic, standard, enhanced, high, maximum) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:InformationSharing ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasTimeliness rdf:type owl:DatatypeProperty ;
     rdfs:label "has timeliness"@en ;
     rdfs:comment "Timeliness score measurement (0.0 to 1.0) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:InformationSharing ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasIntelligenceValue rdf:type owl:DatatypeProperty ;
     rdfs:label "has intelligence value"@en ;
     rdfs:comment "Intelligence value assessment (low, moderate, high, critical, exceptional) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:IntelligenceSharing ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasActionability rdf:type owl:DatatypeProperty ;
     rdfs:label "has actionability"@en ;
     rdfs:comment "Actionability score measurement (0.0 to 1.0) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:IntelligenceSharing ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 # Personnel Quality Aspects
 cacontology-coord:hasLiaisonEffectiveness rdf:type owl:DatatypeProperty ;
@@ -912,21 +905,21 @@ cacontology-coord:hasLiaisonEffectiveness rdf:type owl:DatatypeProperty ;
     rdfs:comment "Liaison effectiveness level (poor, adequate, good, excellent, exceptional) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:LiaisonOfficer ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasTrustLevel rdf:type owl:DatatypeProperty ;
     rdfs:label "has trust level"@en ;
     rdfs:comment "Trust relationship measurement (0.0 to 1.0) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:LiaisonOfficer ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasResponsiveness rdf:type owl:DatatypeProperty ;
     rdfs:label "has responsiveness"@en ;
     rdfs:comment "Response capability level (slow, moderate, good, rapid, immediate) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:LiaisonOfficer ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 # Data Quality Aspects
 cacontology-coord:hasDataQuality rdf:type owl:DatatypeProperty ;
@@ -943,7 +936,7 @@ cacontology-coord:hasDataQuality rdf:type owl:DatatypeProperty ;
         ) 
     ] ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasDataCompleteness rdf:type owl:DatatypeProperty ;
     rdfs:label "has data completeness"@en ;
@@ -959,7 +952,7 @@ cacontology-coord:hasDataCompleteness rdf:type owl:DatatypeProperty ;
         ) 
     ] ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasDataConsistency rdf:type owl:DatatypeProperty ;
     rdfs:label "has data consistency"@en ;
@@ -975,7 +968,7 @@ cacontology-coord:hasDataConsistency rdf:type owl:DatatypeProperty ;
         ) 
     ] ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasValidationLevel rdf:type owl:DatatypeProperty ;
     rdfs:label "has validation level"@en ;
@@ -991,21 +984,21 @@ cacontology-coord:hasValidationLevel rdf:type owl:DatatypeProperty ;
         ) 
     ] ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasReliability rdf:type owl:DatatypeProperty ;
     rdfs:label "has reliability"@en ;
     rdfs:comment "Reliability measurement (0.0 to 1.0) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:CoordinationMetrics ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasAccuracy rdf:type owl:DatatypeProperty ;
     rdfs:label "has accuracy"@en ;
     rdfs:comment "Accuracy measurement (0.0 to 1.0) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:CoordinationMetrics ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 # =============================================================================
 # gUFO PARTICIPATION AND PART-WHOLE RELATIONSHIPS
@@ -1031,14 +1024,14 @@ cacontology-coord:participatesInSharing rdf:type owl:ObjectProperty ;
 # Part-whole relationships for complex coordination structures
 cacontology-coord:isComponentOf rdf:type owl:ObjectProperty ;
     rdfs:label "is component of"@en ;
-    rdfs:comment "Links component agencies to task force or multi-agency coordination structures - gUFO part-whole relation."@en ;
+    rdfs:comment "Links an agency to a task-force or multi-agency coordination event in which it participates. The legacy property name is retained for compatibility; the formal alignment is participation, not object parthood."@en ;
     rdfs:domain uco-identity:Organization ;
     rdfs:range [ owl:unionOf ( cacontology-coord:TaskForceCoordination cacontology-coord:MultiAgencyCoordination ) ] ;
-    rdfs:subPropertyOf gufo:isComponentOf .
+    rdfs:subPropertyOf gufo:participatedIn .
 
 cacontology-coord:hasComponent rdf:type owl:ObjectProperty ;
     rdfs:label "has component"@en ;
-    rdfs:comment "Links coordination structures to their component agencies - gUFO part-whole relation."@en ;
+    rdfs:comment "Inverse compatibility relation from a coordination event to a participating agency. The legacy property name is retained, but the relation is not gUFO object parthood."@en ;
     rdfs:domain [ owl:unionOf ( cacontology-coord:TaskForceCoordination cacontology-coord:MultiAgencyCoordination cacontology-coord:JointInvestigation ) ] ;
     rdfs:range uco-identity:Organization ;
     owl:inverseOf cacontology-coord:isComponentOf .
@@ -1066,7 +1059,7 @@ cacontology-coord:standsInQualifiedParticipation rdf:type owl:ObjectProperty ;
     rdfs:label "stands in qualified participation"@en ;
     rdfs:comment "Links entities to qualified participation situations in coordination - gUFO qualified relation."@en ;
     rdfs:domain [ owl:unionOf ( uco-identity:Organization uco-identity:Person ) ] ;
-    rdfs:range gufo:ParticipationSituation .
+    rdfs:range cac-core:QualifiedParticipationSituation .
 
 cacontology-coord:standsInQualifiedParthood rdf:type owl:ObjectProperty ;
     rdfs:label "stands in qualified parthood"@en ;
@@ -1077,7 +1070,7 @@ cacontology-coord:standsInQualifiedParthood rdf:type owl:ObjectProperty ;
 cacontology-coord:concernsParticipant rdf:type owl:ObjectProperty ;
     rdfs:label "concerns participant"@en ;
     rdfs:comment "Links participation situations to the participating entities - gUFO qualified relation."@en ;
-    rdfs:domain gufo:ParticipationSituation ;
+    rdfs:domain cac-core:QualifiedParticipationSituation ;
     rdfs:range [ owl:unionOf ( uco-identity:Organization uco-identity:Person ) ] .
 
 cacontology-coord:concernsTemporaryWhole rdf:type owl:ObjectProperty ;
@@ -1090,4 +1083,4 @@ cacontology-coord:concernsTemporaryPart rdf:type owl:ObjectProperty ;
     rdfs:label "concerns temporary part"@en ;
     rdfs:comment "Links part-whole situations to the part entity - gUFO qualified relation."@en ;
     rdfs:domain gufo:TemporaryParthoodSituation ;
-    rdfs:range [ owl:unionOf ( uco-identity:Organization case-investigation:Investigation ) ] . 
+    rdfs:range [ owl:unionOf ( uco-identity:Organization case-investigation:Investigation ) ] .

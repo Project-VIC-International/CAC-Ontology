@@ -18,7 +18,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-01-03"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     dcterms:description "Comprehensive strategy for Phase 3 full integration of gUFO across CAC ontology family, including validation patterns, module mapping, and integration guidelines."@en ;
     owl:imports <https://cacontology.projectvic.org/bridge/gufo/3.1.0> ,
                 <https://cacontology.projectvic.org/temporal/3.1.0> ,
@@ -30,10 +30,15 @@
 # =============================================================================
 
 # Integration Strategy Framework
+cacontology-integration:PlanningArtifact rdf:type owl:Class ;
+    rdfs:label "Planning Artifact"@en ;
+    rdfs:comment "A storable artifact that documents an integration, validation, or implementation strategy. It is a plan carrier, not the execution event and not a gUFO Plan term."@en ;
+    rdfs:subClassOf cac-core:Artifact .
+
 cacontology-integration:ModuleIntegrationStrategy rdf:type owl:Class ;
     rdfs:label "Module Integration Strategy"@en ;
     rdfs:comment "Framework for systematically integrating gUFO concepts into CAC ontology modules. Defines patterns, priorities, and validation approaches."@en ;
-    rdfs:subClassOf gufo:Plan .
+    rdfs:subClassOf cacontology-integration:PlanningArtifact .
 
 # Module Integration Priority Levels
 cacontology-integration:HighPriorityModule rdf:type owl:Class ;
@@ -122,115 +127,113 @@ cacontology-integration:ExtremistEnterprisesModule rdf:type cacontology-integrat
 # PHASE 3: INTEGRATION PATTERNS FOR CAC MODULES
 # =============================================================================
 
+cacontology-integration:IntegrationPattern rdf:type owl:Class ;
+    rdfs:label "Integration Pattern"@en ;
+    rdfs:comment "Descriptor for an ontology integration pattern. Concrete pattern IRIs intentionally use OWL 2 class/individual punning: each remains an ontology class while also denoting an IntegrationPattern value for planning relationships."@en .
+
 # Evidence and Forensics Patterns
-cacontology-integration:EvidenceObjectPattern rdf:type owl:Class ;
+cacontology-integration:EvidenceObjectPattern rdf:type owl:Class , cacontology-integration:IntegrationPattern ;
     rdfs:label "Evidence Object Pattern"@en ;
     rdfs:comment "gUFO pattern for modeling digital evidence as Objects with intrinsic properties and forensic lifecycle phases."@en ;
     rdfs:subClassOf cac-core:Artifact .
 
-cacontology-integration:ForensicsLifecyclePattern rdf:type owl:Class ;
+cacontology-integration:ForensicsLifecyclePattern rdf:type owl:Class , cacontology-integration:IntegrationPattern ;
     rdfs:label "Forensics Lifecycle Pattern"@en ;
-    rdfs:comment "gUFO pattern for modeling forensics process lifecycle with acquisition, analysis, and presentation phases."@en ;
-    rdfs:subClassOf gufo:Process .
+    rdfs:comment "Descriptor for modeling a forensics lifecycle with acquisition, analysis, and presentation phases. Concrete lifecycle occurrences are modeled separately as events and phases."@en .
 
 # Coordination and Jurisdiction Patterns
-cacontology-integration:CoordinationSituationPattern rdf:type owl:Class ;
+cacontology-integration:CoordinationSituationPattern rdf:type owl:Class , cacontology-integration:IntegrationPattern ;
     rdfs:label "Coordination Situation Pattern"@en ;
     rdfs:comment "gUFO pattern for modeling multi-jurisdiction coordination situations with participating organizations and temporal constraints."@en ;
     rdfs:subClassOf cac-core:Situation .
 
-cacontology-integration:InstitutionalRolePattern rdf:type owl:Class ;
+cacontology-integration:InstitutionalRolePattern rdf:type owl:Class , cacontology-integration:IntegrationPattern ;
     rdfs:label "Institutional Role Pattern"@en ;
     rdfs:comment "gUFO pattern for modeling institutional roles in multi-jurisdiction contexts with authority and responsibility boundaries."@en ;
     rdfs:subClassOf cac-core:Role .
 
 # Legal Process Patterns
-cacontology-integration:LegalEventPattern rdf:type owl:Class ;
+cacontology-integration:LegalEventPattern rdf:type owl:Class , cacontology-integration:IntegrationPattern ;
     rdfs:label "Legal Event Pattern"@en ;
     rdfs:comment "gUFO pattern for modeling legal events (hearings, sentencing, appeals) with temporal boundaries and legal effects."@en ;
     rdfs:subClassOf cac-core:LegalEvent .
 
-cacontology-integration:JudicialPhasePattern rdf:type owl:Class ;
+cacontology-integration:JudicialPhasePattern rdf:type owl:Class , cacontology-integration:IntegrationPattern ;
     rdfs:label "Judicial Phase Pattern"@en ;
     rdfs:comment "gUFO pattern for modeling judicial process phases (pre-trial, trial, sentencing, appeals) with legal constraints."@en ;
     rdfs:subClassOf cac-core:Phase .
 
 # Organizational Patterns
-cacontology-integration:OrganizationalPattern rdf:type owl:Class ;
+cacontology-integration:OrganizationalPattern rdf:type owl:Class , cacontology-integration:IntegrationPattern ;
     rdfs:label "Organizational Pattern"@en ;
     rdfs:comment "gUFO pattern for modeling CAC taskforces and law enforcement organizations with structure and capabilities."@en ;
     rdfs:subClassOf cac-core:OrganizationLikeEntity .
 
-cacontology-integration:TaskforceRolePattern rdf:type owl:Class ;
+cacontology-integration:TaskforceRolePattern rdf:type owl:Class , cacontology-integration:IntegrationPattern ;
     rdfs:label "Taskforce Role Pattern"@en ;
     rdfs:comment "gUFO pattern for modeling roles within CAC taskforces with specialization and coordination relationships."@en ;
     rdfs:subClassOf cac-core:Role .
 
 # Specialized Capability Patterns
-cacontology-integration:SpecializedRolePattern rdf:type owl:Class ;
+cacontology-integration:SpecializedRolePattern rdf:type owl:Class , cacontology-integration:IntegrationPattern ;
     rdfs:label "Specialized Role Pattern"@en ;
     rdfs:comment "gUFO pattern for modeling specialized investigative roles with specific capabilities and training requirements."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-integration:CapabilityPattern rdf:type owl:Class ;
+cacontology-integration:CapabilityPattern rdf:type owl:Class , cacontology-integration:IntegrationPattern ;
     rdfs:label "Capability Pattern"@en ;
-    rdfs:comment "gUFO pattern for modeling specialized capabilities as intrinsic properties of organizations or individuals."@en ;
-    rdfs:subClassOf gufo:IntrinsicMoment .
+    rdfs:comment "Descriptor for modeling specialized capabilities of organizations or individuals; concrete capability modes are modeled separately."@en .
 
 # Registry and Compliance Patterns
-cacontology-integration:RegistrationPattern rdf:type owl:Class ;
+cacontology-integration:RegistrationPattern rdf:type owl:Class , cacontology-integration:IntegrationPattern ;
     rdfs:label "Registration Pattern"@en ;
     rdfs:comment "gUFO pattern for modeling sex offender registration as ongoing situation with compliance requirements."@en ;
     rdfs:subClassOf cac-core:Situation .
 
-cacontology-integration:CompliancePattern rdf:type owl:Class ;
+cacontology-integration:CompliancePattern rdf:type owl:Class , cacontology-integration:IntegrationPattern ;
     rdfs:label "Compliance Pattern"@en ;
     rdfs:comment "gUFO pattern for modeling compliance with registration requirements as temporal situation with monitoring."@en ;
     rdfs:subClassOf cac-core:Situation .
 
 # Prevention and Education Patterns
-cacontology-integration:PreventiveActionPattern rdf:type owl:Class ;
+cacontology-integration:PreventiveActionPattern rdf:type owl:Class , cacontology-integration:IntegrationPattern ;
     rdfs:label "Preventive Action Pattern"@en ;
     rdfs:comment "gUFO pattern for modeling prevention activities as actions with preventive intent and outcome measurement."@en ;
     rdfs:subClassOf cac-core:SupportEvent .
 
-cacontology-integration:EducationalPattern rdf:type owl:Class ;
+cacontology-integration:EducationalPattern rdf:type owl:Class , cacontology-integration:IntegrationPattern ;
     rdfs:label "Educational Pattern"@en ;
-    rdfs:comment "gUFO pattern for modeling educational interventions as processes with learning outcomes and effectiveness measures."@en ;
-    rdfs:subClassOf gufo:Process .
+    rdfs:comment "Descriptor for modeling educational interventions with learning outcomes and effectiveness measures; intervention occurrences remain separate events."@en .
 
 # International Coordination Patterns
-cacontology-integration:CrossBorderPattern rdf:type owl:Class ;
+cacontology-integration:CrossBorderPattern rdf:type owl:Class , cacontology-integration:IntegrationPattern ;
     rdfs:label "Cross-Border Pattern"@en ;
     rdfs:comment "gUFO pattern for modeling cross-border investigations as complex situations spanning multiple jurisdictions."@en ;
     rdfs:subClassOf cac-core:Situation .
 
-cacontology-integration:TreatyPattern rdf:type owl:Class ;
+cacontology-integration:TreatyPattern rdf:type owl:Class , cacontology-integration:IntegrationPattern ;
     rdfs:label "Treaty Pattern"@en ;
-    rdfs:comment "gUFO pattern for modeling international treaties and agreements as normative frameworks governing cooperation."@en ;
-    rdfs:subClassOf gufo:Norm .
+    rdfs:comment "Descriptor for modeling international treaties and agreements as normative frameworks governing cooperation; treaty norms and their documentary carriers remain separate domain entities."@en .
 
 # Advanced Technology Patterns
-cacontology-integration:AIGenerationPattern rdf:type owl:Class ;
+cacontology-integration:AIGenerationPattern rdf:type owl:Class , cacontology-integration:IntegrationPattern ;
     rdfs:label "AI Generation Pattern"@en ;
-    rdfs:comment "gUFO pattern for modeling AI generation processes creating synthetic CSAM with algorithmic characteristics."@en ;
-    rdfs:subClassOf gufo:Process .
+    rdfs:comment "Descriptor for modeling AI generation processes and their outputs; concrete generation occurrences remain separate events."@en .
 
-cacontology-integration:SyntheticArtifactPattern rdf:type owl:Class ;
+cacontology-integration:SyntheticArtifactPattern rdf:type owl:Class , cacontology-integration:IntegrationPattern ;
     rdfs:label "Synthetic Artifact Pattern"@en ;
     rdfs:comment "gUFO pattern for modeling AI-generated artifacts with synthetic properties and detection characteristics."@en ;
     rdfs:subClassOf cac-core:Artifact .
 
 # Criminal Organization Patterns
-cacontology-integration:CriminalOrganizationPattern rdf:type owl:Class ;
+cacontology-integration:CriminalOrganizationPattern rdf:type owl:Class , cacontology-integration:IntegrationPattern ;
     rdfs:label "Criminal Organization Pattern"@en ;
     rdfs:comment "gUFO pattern for modeling criminal enterprises with hierarchical structure and operational patterns."@en ;
     rdfs:subClassOf cac-core:OrganizationLikeEntity .
 
-cacontology-integration:IdeologyPattern rdf:type owl:Class ;
+cacontology-integration:IdeologyPattern rdf:type owl:Class , cacontology-integration:IntegrationPattern ;
     rdfs:label "Ideology Pattern"@en ;
-    rdfs:comment "gUFO pattern for modeling extremist ideologies as belief systems influencing criminal behavior."@en ;
-    rdfs:subClassOf gufo:AbstractArtifact .
+    rdfs:comment "Descriptor for modeling extremist ideologies as belief systems influencing criminal behavior; concrete ideology artifacts remain separate."@en .
 
 # =============================================================================
 # PHASE 3: VALIDATION AND CONSISTENCY FRAMEWORK
@@ -240,7 +243,7 @@ cacontology-integration:IdeologyPattern rdf:type owl:Class ;
 cacontology-integration:ValidationStrategy rdf:type owl:Class ;
     rdfs:label "Validation Strategy"@en ;
     rdfs:comment "Framework for validating gUFO integration across CAC modules ensuring consistency and correctness."@en ;
-    rdfs:subClassOf gufo:Plan .
+    rdfs:subClassOf cacontology-integration:PlanningArtifact .
 
 # Consistency Validation Types
 cacontology-integration:OntologicalConsistency rdf:type owl:Class ;
@@ -272,7 +275,7 @@ cacontology-integration:hasIntegrationPattern rdf:type owl:ObjectProperty ;
     rdfs:label "has integration pattern"@en ;
     rdfs:comment "Links module integration strategy to specific gUFO patterns to be applied."@en ;
     rdfs:domain cacontology-integration:ModuleIntegrationStrategy ;
-    rdfs:range owl:Class .
+    rdfs:range cacontology-integration:IntegrationPattern .
 
 cacontology-integration:hasIntegrationPriority rdf:type owl:DatatypeProperty ;
     rdfs:label "has integration priority"@en ;
@@ -284,26 +287,26 @@ cacontology-integration:hasIntegrationTimeline rdf:type owl:DatatypeProperty ;
     rdfs:label "has integration timeline"@en ;
     rdfs:comment "Expected duration for completing module integration."@en ;
     rdfs:domain cacontology-integration:ModuleIntegrationStrategy ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-integration:requiresValidation rdf:type owl:ObjectProperty ;
     rdfs:label "requires validation"@en ;
     rdfs:comment "Links integration pattern to validation strategies that must be applied."@en ;
-    rdfs:domain owl:Class ;
+    rdfs:domain cacontology-integration:IntegrationPattern ;
     rdfs:range cacontology-integration:ValidationStrategy .
 
 # Pattern Dependencies
 cacontology-integration:dependsOnPattern rdf:type owl:ObjectProperty ;
     rdfs:label "depends on pattern"@en ;
     rdfs:comment "Links integration pattern to other patterns it depends on for proper implementation."@en ;
-    rdfs:domain owl:Class ;
-    rdfs:range owl:Class .
+    rdfs:domain cacontology-integration:IntegrationPattern ;
+    rdfs:range cacontology-integration:IntegrationPattern .
 
 cacontology-integration:extendsPattern rdf:type owl:ObjectProperty ;
     rdfs:label "extends pattern"@en ;
     rdfs:comment "Links integration pattern to base pattern it extends with additional features."@en ;
-    rdfs:domain owl:Class ;
-    rdfs:range owl:Class .
+    rdfs:domain cacontology-integration:IntegrationPattern ;
+    rdfs:range cacontology-integration:IntegrationPattern .
 
 # Validation Properties
 cacontology-integration:hasValidationRule rdf:type owl:DatatypeProperty ;
@@ -324,36 +327,36 @@ cacontology-integration:hasValidationQuery rdf:type owl:DatatypeProperty ;
 
 # High Priority Module Configurations
 cacontology-integration:ForensicsModule cacontology-integration:hasIntegrationPriority "1"^^xsd:integer ;
-    cacontology-integration:hasIntegrationTimeline "P30D"^^xsd:duration .
+    cacontology-integration:hasIntegrationTimeline "P30D" .
 
 cacontology-integration:MultiJurisdictionModule cacontology-integration:hasIntegrationPriority "1"^^xsd:integer ;
-    cacontology-integration:hasIntegrationTimeline "P45D"^^xsd:duration .
+    cacontology-integration:hasIntegrationTimeline "P45D" .
 
 cacontology-integration:LegalOutcomesModule cacontology-integration:hasIntegrationPriority "1"^^xsd:integer ;
-    cacontology-integration:hasIntegrationTimeline "P30D"^^xsd:duration .
+    cacontology-integration:hasIntegrationTimeline "P30D" .
 
 cacontology-integration:TaskforceModule cacontology-integration:hasIntegrationPriority "1"^^xsd:integer ;
-    cacontology-integration:hasIntegrationTimeline "P30D"^^xsd:duration .
+    cacontology-integration:hasIntegrationTimeline "P30D" .
 
 # Medium Priority Module Configurations
 cacontology-integration:SpecializedUnitsModule cacontology-integration:hasIntegrationPriority "2"^^xsd:integer ;
-    cacontology-integration:hasIntegrationTimeline "P30D"^^xsd:duration .
+    cacontology-integration:hasIntegrationTimeline "P30D" .
 
 cacontology-integration:SexOffenderRegistryModule cacontology-integration:hasIntegrationPriority "2"^^xsd:integer ;
-    cacontology-integration:hasIntegrationTimeline "P30D"^^xsd:duration .
+    cacontology-integration:hasIntegrationTimeline "P30D" .
 
 cacontology-integration:PreventionModule cacontology-integration:hasIntegrationPriority "2"^^xsd:integer ;
-    cacontology-integration:hasIntegrationTimeline "P30D"^^xsd:duration .
+    cacontology-integration:hasIntegrationTimeline "P30D" .
 
 cacontology-integration:InternationalModule cacontology-integration:hasIntegrationPriority "2"^^xsd:integer ;
-    cacontology-integration:hasIntegrationTimeline "P45D"^^xsd:duration .
+    cacontology-integration:hasIntegrationTimeline "P45D" .
 
 # Low Priority Module Configurations
 cacontology-integration:AICsamModule cacontology-integration:hasIntegrationPriority "3"^^xsd:integer ;
-    cacontology-integration:hasIntegrationTimeline "P45D"^^xsd:duration .
+    cacontology-integration:hasIntegrationTimeline "P45D" .
 
 cacontology-integration:ExtremistEnterprisesModule cacontology-integration:hasIntegrationPriority "3"^^xsd:integer ;
-    cacontology-integration:hasIntegrationTimeline "P45D"^^xsd:duration .
+    cacontology-integration:hasIntegrationTimeline "P45D" .
 
 # =============================================================================
 # PHASE 3: PATTERN DEPENDENCIES AND VALIDATION REQUIREMENTS
@@ -388,20 +391,20 @@ cacontology-integration:TaskforceRolePattern cacontology-integration:requiresVal
 cacontology-integration:Phase3Wave1 rdf:type owl:Class ;
     rdfs:label "Phase 3 Wave 1 Implementation"@en ;
     rdfs:comment "First wave implementing high-priority modules (forensics, multi-jurisdiction, legal outcomes, taskforce)."@en ;
-    cacontology-integration:hasIntegrationTimeline "P120D"^^xsd:duration .
+    cacontology-integration:hasIntegrationTimeline "P120D" .
 
 cacontology-integration:Phase3Wave2 rdf:type owl:Class ;
     rdfs:label "Phase 3 Wave 2 Implementation"@en ;
     rdfs:comment "Second wave implementing medium-priority modules (specialized units, registry, prevention, international)."@en ;
-    cacontology-integration:hasIntegrationTimeline "P135D"^^xsd:duration .
+    cacontology-integration:hasIntegrationTimeline "P135D" .
 
 cacontology-integration:Phase3Wave3 rdf:type owl:Class ;
     rdfs:label "Phase 3 Wave 3 Implementation"@en ;
     rdfs:comment "Third wave implementing low-priority modules (AI CSAM, extremist enterprises, advanced features)."@en ;
-    cacontology-integration:hasIntegrationTimeline "P90D"^^xsd:duration .
+    cacontology-integration:hasIntegrationTimeline "P90D" .
 
 # Total Integration Timeline: 345 days (approximately 11 months)
 cacontology-integration:TotalPhase3Implementation rdf:type owl:Class ;
     rdfs:label "Total Phase 3 Implementation"@en ;
     rdfs:comment "Complete Phase 3 implementation across all CAC modules with validation and testing."@en ;
-    cacontology-integration:hasIntegrationTimeline "P345D"^^xsd:duration . 
+    cacontology-integration:hasIntegrationTimeline "P345D" .

@@ -1,0 +1,10 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix cac-enterprises: <https://cacontology.projectvic.org/extremist-enterprises#> .
+@prefix ex: <https://example.invalid/v4-test#> .
+
+ex:leader-tier a cac-enterprises:MembershipTier ;
+    rdfs:label "Synthetic leader tier" ;
+    cac-enterprises:membershipLevel "leader" ;
+    cac-enterprises:accessLevel "full" .
+
+ex:membership-1 cac-enterprises:hasMembershipTier ex:leader-tier .

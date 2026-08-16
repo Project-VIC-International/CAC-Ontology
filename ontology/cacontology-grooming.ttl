@@ -24,7 +24,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
@@ -208,17 +208,21 @@ cacontology-grooming:OnlinePredationSituation rdf:type owl:Class ;
 cacontology-grooming:ChildVictim rdf:type owl:Class, gufo:Role ;
     rdfs:label "Child Victim"@en ;
     rdfs:comment "Minor child who is the target of grooming behavior. When analysis depends on the victim’s exact age at specific grooming events (e.g., 13-or-younger online grooming in 2025), that age SHOULD be represented using one or more cacontology-temporal:AgeAtTimeSituation instances linked to the underlying person."@en ;
-    rdfs:subClassOf uco-identity:Person , cac-core:Role .
+    rdfs:subClassOf uco-identity:Person , cac-core:PersonLikeEntity .
 
 cacontology-grooming:OnlinePredator rdf:type owl:Class, gufo:Role ;
     rdfs:label "Online Predator"@en ;
     rdfs:comment "Individual who engages in grooming behavior toward children online. Age-at-time for this offender MAY be captured via cacontology-temporal:AgeAtTimeSituation instances when age-gap and legal-capacity reasoning is required."@en ;
-    rdfs:subClassOf uco-identity:Person , cac-core:Role .
+    rdfs:subClassOf uco-identity:Person , cac-core:PersonLikeEntity .
 
 cacontology-grooming:VictimVulnerability rdf:type owl:Class ;
     rdfs:label "Victim Vulnerability"@en ;
-    rdfs:comment "Characteristics or circumstances that make a child more susceptible to grooming."@en ;
-    rdfs:subClassOf uco-core:UcoObject, gufo:IntrinsicMoment .
+    rdfs:comment "An intrinsic vulnerability mode inhering in a child and making that child more susceptible to grooming. Contextual circumstances are represented separately as VictimVulnerabilitySituation."@en ;
+    rdfs:subClassOf gufo:IntrinsicMode , [
+        rdf:type owl:Restriction ;
+        owl:onProperty gufo:inheresIn ;
+        owl:someValuesFrom uco-identity:Person
+    ] .
 
 # =============================================================================
 # gUFO TEMPORAL PROPERTIES
@@ -256,7 +260,7 @@ cacontology-grooming:groomingPhaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "grooming phase duration"@en ;
     rdfs:comment "Duration of grooming phase."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 # =============================================================================
 # GROOMING BEHAVIOR PROPERTIES
@@ -433,7 +437,7 @@ cacontology-grooming:primaryPlatform rdf:type owl:ObjectProperty ;
     rdfs:label "primary platform"@en ;
     rdfs:comment "Main digital platform where grooming communication occurred."@en ;
     rdfs:domain cacontology-grooming:GroomingBehavior ;
-    rdfs:range uco-observable:DigitalService .
+    rdfs:range uco-observable:OnlineService .
 
 cacontology-grooming:timeOfContact rdf:type owl:DatatypeProperty ;
     rdfs:label "time of contact"@en ;
@@ -488,7 +492,7 @@ cacontology-grooming:AnonymousInitiation rdf:type owl:Class ;
 cacontology-grooming:PlatformAnonymityFeature rdf:type owl:Class ;
     rdfs:label "Platform Anonymity Feature"@en ;
     rdfs:comment "Platform features that enable anonymous communication (guest messaging, temporary accounts, no profile requirements)."@en ;
-    rdfs:subClassOf uco-observable:DigitalServiceFeature .
+    rdfs:subClassOf uco-observable:OnlineServiceFacet .
 
 cacontology-grooming:TrustThroughAnonymity rdf:type owl:Class ;
     rdfs:label "Trust Through Anonymity"@en ;
@@ -1132,4 +1136,4 @@ cacontology-grooming:replacementAccountId rdf:type owl:ObjectProperty ;
     rdfs:label "replacement account id"@en ;
     rdfs:comment "Reference to the new account used to resume contact if known."@en ;
     rdfs:domain cacontology-grooming:AccountReplacementEvent ;
-    rdfs:range uco-observable:Account . 
+    rdfs:range uco-observable:Account .

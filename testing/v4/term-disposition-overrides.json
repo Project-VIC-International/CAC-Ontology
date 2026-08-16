@@ -1,0 +1,132 @@
+{
+  "https://cacontology.projectvic.org/core#Role": {
+    "primary_level": "role-record",
+    "v4_action": "remove-superclass",
+    "migration_mode": "automatic",
+    "asserted_delta": "remove rdfs:subClassOf gufo:Role",
+    "inferred_delta": "operational role records no longer infer classifier-level gufo:Role membership",
+    "fixture_ids": "RQ-01|RQ-07|RQ-10",
+    "reviewer_status": "reviewed"
+  },
+  "https://cacontology.projectvic.org/core#RoleRecord": {
+    "primary_level": "role-record",
+    "v4_action": "add-term",
+    "migration_mode": "conditional",
+    "asserted_delta": "new canonical record specialization under cac-core:Role",
+    "inferred_delta": "new v4 records remain UCO-compatible through the operational Role branch",
+    "fixture_ids": "RQ-01|RQ-07|RQ-09",
+    "reviewer_status": "reviewed"
+  },
+  "https://cacontology.projectvic.org/core#Phase": {
+    "primary_level": "phase-occurrence",
+    "v4_action": "move-branch",
+    "migration_mode": "automatic",
+    "asserted_delta": "replace gufo:Phase superclass with cac-core:Situation",
+    "inferred_delta": "operational phase nodes remain situations and lose classifier-level entailment",
+    "fixture_ids": "PQ-01|PQ-03|PQ-08",
+    "reviewer_status": "reviewed"
+  },
+  "https://cacontology.projectvic.org/custodial#TemporaryCustody": {
+    "primary_level": "enduring-entity",
+    "v4_action": "remove-superclass",
+    "migration_mode": "automatic",
+    "asserted_delta": "remove cac-core:Phase parent and gufo:Phase metaclass type",
+    "inferred_delta": "relationship instances no longer infer operational phase or gUFO classifier identity",
+    "fixture_ids": "CQ-02|M-C1",
+    "reviewer_status": "reviewed"
+  },
+  "https://cacontology.projectvic.org/custodial#EmergencyCustody": {
+    "primary_level": "enduring-entity",
+    "v4_action": "remove-superclass",
+    "migration_mode": "automatic",
+    "asserted_delta": "remove cac-core:Phase parent and gufo:Phase metaclass type",
+    "inferred_delta": "arrangement instances no longer infer operational phase or gUFO classifier identity",
+    "fixture_ids": "CQ-03",
+    "reviewer_status": "reviewed"
+  },
+  "https://cacontology.projectvic.org/custodial#ActiveCustodyPhase": {
+    "primary_level": "phase-occurrence",
+    "v4_action": "move-branch",
+    "migration_mode": "automatic",
+    "asserted_delta": "replace CustodialRelationship parent with CustodyState and remove gufo:Phase metaclass type",
+    "inferred_delta": "state occurrences cease to infer relationship identity",
+    "fixture_ids": "CQ-01|M-C2",
+    "reviewer_status": "reviewed"
+  },
+  "https://cacontology.projectvic.org/custodial#SuspendedCustodyPhase": {
+    "primary_level": "phase-occurrence",
+    "v4_action": "move-branch",
+    "migration_mode": "automatic",
+    "asserted_delta": "replace CustodialRelationship parent with CustodyState and remove gufo:Phase metaclass type",
+    "inferred_delta": "state occurrences cease to infer relationship identity",
+    "fixture_ids": "CQ-01|M-C2",
+    "reviewer_status": "reviewed"
+  },
+  "https://cacontology.projectvic.org/custodial#TerminatedCustodyPhase": {
+    "primary_level": "phase-occurrence",
+    "v4_action": "move-branch",
+    "migration_mode": "automatic",
+    "asserted_delta": "replace CustodialRelationship parent with CustodyState and remove gufo:Phase metaclass type",
+    "inferred_delta": "state occurrences cease to infer relationship identity",
+    "fixture_ids": "CQ-01|M-C2",
+    "reviewer_status": "reviewed"
+  },
+  "https://cacontology.projectvic.org/custodial#ProbationaryCustodyPhase": {
+    "primary_level": "phase-occurrence",
+    "v4_action": "move-branch",
+    "migration_mode": "automatic",
+    "asserted_delta": "replace CustodialRelationship parent with CustodyState and remove gufo:Phase metaclass type",
+    "inferred_delta": "state occurrences cease to infer relationship identity",
+    "fixture_ids": "CQ-01|M-C2",
+    "reviewer_status": "reviewed"
+  },
+  "https://cacontology.projectvic.org/extremist-enterprises#MembershipTier": {
+    "primary_level": "controlled-concept",
+    "v4_action": "move-branch",
+    "migration_mode": "automatic",
+    "asserted_delta": "replace EnterpriseHierarchy and cac-core:Phase parents with skos:Concept; remove gufo:Phase metaclass type",
+    "inferred_delta": "tier entries no longer infer hierarchy-object, phase-occurrence, or phase-classifier identity",
+    "fixture_ids": "CQ-05|CQ-06|M-T1",
+    "reviewer_status": "reviewed"
+  },
+  "https://cacontology.projectvic.org/production#Producer": {
+    "primary_level": "role-record",
+    "v4_action": "split",
+    "replacement_iri": "https://cacontology.projectvic.org/production#ProducerClassifier",
+    "migration_mode": "conditional",
+    "asserted_delta": "retain role-linked nodes as Producer records; move evidenced enduring bearer nodes to ProducerClassifier",
+    "inferred_delta": "records retain UCO role identity; bearer nodes gain person-like non-rigid classifier semantics without record identity",
+    "fixture_ids": "RQ-08|M-R3",
+    "reviewer_status": "reviewed"
+  },
+  "https://cacontology.projectvic.org/production#ProductionVictim": {
+    "primary_level": "role-record",
+    "v4_action": "split",
+    "replacement_iri": "https://cacontology.projectvic.org/production#ProductionVictimClassifier",
+    "migration_mode": "conditional",
+    "asserted_delta": "retain role-linked nodes as ProductionVictim records; move evidenced enduring bearer nodes to ProductionVictimClassifier",
+    "inferred_delta": "records retain UCO role identity; bearer nodes gain person-like non-rigid classifier semantics without record identity",
+    "fixture_ids": "RQ-08|M-R3",
+    "reviewer_status": "reviewed"
+  },
+  "https://cacontology.projectvic.org/production#ProducerClassifier": {
+    "primary_level": "role-classifier",
+    "v4_action": "add-term",
+    "replacement_iri": "",
+    "migration_mode": "conditional",
+    "asserted_delta": "new person-like gufo:Role classifier for evidenced producer bearers",
+    "inferred_delta": "classifier instances infer enduring person-like identity, not operational role-record identity",
+    "fixture_ids": "RQ-02|RQ-08|M-R3",
+    "reviewer_status": "reviewed"
+  },
+  "https://cacontology.projectvic.org/production#ProductionVictimClassifier": {
+    "primary_level": "role-classifier",
+    "v4_action": "add-term",
+    "replacement_iri": "",
+    "migration_mode": "conditional",
+    "asserted_delta": "new person-like gufo:Role classifier for evidenced production-victim bearers",
+    "inferred_delta": "classifier instances infer enduring person-like identity, not operational role-record identity",
+    "fixture_ids": "RQ-02|RQ-08|M-R3",
+    "reviewer_status": "reviewed"
+  }
+}

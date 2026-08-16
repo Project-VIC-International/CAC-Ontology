@@ -87,7 +87,46 @@ cacontology-international:GlobalCaseTracking rdf:type owl:Class ;
     rdfs:comment "System for tracking cases across multiple jurisdictions."@en .
 
 cacontology-international:InternationalReferral rdf:type owl:Class ;
-    rdfs:subClassOf cac-core:CoordinationEvent ;    rdfs:label "International Referral"@en ;    rdfs:comment "Referral of cases or information to international partners."@en .# SA JACET-inspired Live Streaming Operations  cacontology-international:LiveStreamingInvestigation rdf:type owl:Class ;    rdfs:subClassOf cacontology-international:CrossBorderInvestigation ;    rdfs:label "Live Streaming Investigation"@en ;    rdfs:comment "Investigation involving live streaming of child abuse across international borders (e.g., Philippines operations)."@en .cacontology-international:DistanceChildAbuse rdf:type owl:Class ;    rdfs:subClassOf cacontology-international:CrossBorderOperation ;    rdfs:label "Distance Child Abuse"@en ;    rdfs:comment "Child abuse ordered and instructed remotely across international borders via online platforms."@en .cacontology-international:InstructedAbuseOperation rdf:type owl:Class ;    rdfs:subClassOf cacontology-international:DistanceChildAbuse ;    rdfs:label "Instructed Abuse Operation"@en ;    rdfs:comment "Investigation of suspects ordering and instructing live child abuse viewed online from another country."@en .cacontology-international:OverseasVictimCoordination rdf:type owl:Class ;    rdfs:subClassOf cacontology-international:InternationalReferral ;    rdfs:label "Overseas Victim Coordination"@en ;    rdfs:comment "Coordination for identifying and assisting child victims located in foreign countries."@en .# NCMEC Integration (based on WA case)cacontology-international:NCMECReporting rdf:type owl:Class ;    rdfs:subClassOf cacontology-international:InternationalReferral ;    rdfs:label "NCMEC Reporting"@en ;    rdfs:comment "Reporting mechanism from US National Center for Missing and Exploited Children to international partners."@en .cacontology-international:USAustraliaCoordination rdf:type owl:Class ;    rdfs:subClassOf cacontology-international:InternationalPartnership ;    rdfs:label "US-Australia Coordination"@en ;    rdfs:comment "Coordination mechanism between United States and Australia for child exploitation investigations."@en .cacontology-international:ACCCEIntegration rdf:type owl:Class ;    rdfs:subClassOf cacontology-international:InternationalReferral ;    rdfs:label "ACCCE Integration"@en ;    rdfs:comment "Integration between international reports and AFP-led Australian Centre to Counter Child Exploitation."@en .
+    rdfs:subClassOf cac-core:CoordinationEvent ;
+    rdfs:label "International Referral"@en ;
+    rdfs:comment "Referral of cases or information to international partners."@en .
+
+# SA JACET-inspired Live Streaming Operations
+cacontology-international:LiveStreamingInvestigation rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-international:CrossBorderInvestigation ;
+    rdfs:label "Live Streaming Investigation"@en ;
+    rdfs:comment "Investigation involving live streaming of child abuse across international borders (e.g., Philippines operations)."@en .
+
+cacontology-international:DistanceChildAbuse rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-international:CrossBorderOperation ;
+    rdfs:label "Distance Child Abuse"@en ;
+    rdfs:comment "Child abuse ordered and instructed remotely across international borders via online platforms."@en .
+
+cacontology-international:InstructedAbuseOperation rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-international:DistanceChildAbuse ;
+    rdfs:label "Instructed Abuse Operation"@en ;
+    rdfs:comment "Investigation of suspects ordering and instructing live child abuse viewed online from another country."@en .
+
+cacontology-international:OverseasVictimCoordination rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-international:InternationalReferral ;
+    rdfs:label "Overseas Victim Coordination"@en ;
+    rdfs:comment "Coordination for identifying and assisting child victims located in foreign countries."@en .
+
+# NCMEC Integration (based on WA case)
+cacontology-international:NCMECReporting rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-international:InternationalReferral ;
+    rdfs:label "NCMEC Reporting"@en ;
+    rdfs:comment "Reporting mechanism from US National Center for Missing and Exploited Children to international partners."@en .
+
+cacontology-international:USAustraliaCoordination rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-international:InternationalPartnership ;
+    rdfs:label "US-Australia Coordination"@en ;
+    rdfs:comment "Coordination mechanism between United States and Australia for child exploitation investigations."@en .
+
+cacontology-international:ACCCEIntegration rdf:type owl:Class ;
+    rdfs:subClassOf cacontology-international:InternationalReferral ;
+    rdfs:label "ACCCE Integration"@en ;
+    rdfs:comment "Integration between international reports and AFP-led Australian Centre to Counter Child Exploitation."@en .
 
 cacontology-international:CrossJurisdictionalInvestigation rdf:type owl:Class ;
     rdfs:subClassOf cacontology-international:CrossBorderInvestigation ;
@@ -955,4 +994,4 @@ cacontology-international:enablesAutomatedMatching rdf:type owl:ObjectProperty ;
     rdfs:label "enables automated matching"@en ;
     rdfs:comment "Links database network to automated cross-matching capabilities."@en ;
     rdfs:domain cacontology-international:GlobalDatabaseNetwork ;
-    rdfs:range cacontology-international:AutomatedCrossMatching . 
+    rdfs:range cacontology-international:AutomatedCrossMatching .

@@ -1,6 +1,6 @@
 # CAC Ontology Family Architecture
 
-> **Current baseline:** CAC Ontology **v3.1.0**. The semantic spine was introduced in **v3.0.0**. CASE/UCO imports are pinned to **1.5.0**.
+> **Published baseline:** CAC Ontology **v3.1.0**. A local, unreleased v4 architecture proposal is documented in [v4-foundational-architecture.md](v4-foundational-architecture.md). CASE/UCO imports remain pinned to **1.5.0** in the proposal baseline.
 
 ## Semantic Spine Architecture
 
@@ -17,8 +17,10 @@ graph TD
     Entity --> EnduringEntity["cac-core:EnduringEntity"]
     Entity --> Occurrent["cac-core:Occurrent"]
     Entity --> Situation["cac-core:Situation"]
-    Entity --> Role["cac-core:Role"]
-    Entity --> Phase["cac-core:Phase"]
+    Entity --> Role["cac-core:Role (operational record branch)"]
+    Situation --> RoleAssignment["cac-core:RoleAssignment"]
+    Situation --> Phase["cac-core:Phase (operational occurrence)"]
+    Role --> RoleRecord["cac-core:RoleRecord"]
 
     EnduringEntity --> PersonLikeEntity["cac-core:PersonLikeEntity"]
     EnduringEntity --> OrganizationLikeEntity["cac-core:OrganizationLikeEntity"]
@@ -42,13 +44,14 @@ graph TD
 |---|---|---|
 | `cac-core:EnduringEntity` | `gufo:Object` | `uco-core:UcoObject` |
 | `cac-core:Event` | `gufo:Event` | `uco-action:Action` |
-| `cac-core:Role` | `gufo:Role` | — |
-| `cac-core:Phase` | `gufo:Phase` | — |
+| `cac-core:Role` | No direct classifier alignment; operational record branch | — |
+| `cac-core:RoleAssignment` | `gufo:TemporaryInstantiationSituation` | — |
+| `cac-core:Phase` | No direct classifier alignment; operational occurrence under `gufo:Situation` | — |
 | `cac-core:Situation` | `gufo:Situation` | — |
 | `cac-core:Artifact` | `gufo:Object` | `uco-observable:ObservableObject` |
 | `cac-core:PersonLikeEntity` | `gufo:Object` | `uco-identity:Person` |
 
-These mappings are maintained in three dedicated bridge files: `cacontology-bridge-gufo.ttl`, `cacontology-bridge-uco.ttl`, and `cacontology-bridge-case.ttl`.
+These mappings are maintained in three dedicated bridge files: `cacontology-bridge-gufo.ttl`, `cacontology-bridge-uco.ttl`, and `cacontology-bridge-case.ttl`. In the v4 proposal, genuine `gufo:Role` and `gufo:Phase` classifiers are separate OWL classes connected to operational assignments or occurrences; they are not superclasses of `cac-core:Role` or `cac-core:Phase`.
 
 ---
 
@@ -72,6 +75,7 @@ graph TD
     subgraph "CAC Semantic Spine"
         CAC_PHASE[cac-core:Phase]
         CAC_ROLE[cac-core:Role]
+        CAC_ROLE_ASSIGNMENT[cac-core:RoleAssignment]
         CAC_EVENT[cac-core:Event]
         CAC_SITUATION[cac-core:Situation]
         CAC_ENDURING[cac-core:EnduringEntity]
@@ -87,11 +91,14 @@ graph TD
         LIFECYCLE_SIT[LifecycleSituation]
     end
 
-    GUFO_PHASE --> CAC_PHASE
-    GUFO_ROLE --> CAC_ROLE
     GUFO_EVENT --> CAC_EVENT
     GUFO_SITUATION --> CAC_SITUATION
+    GUFO_SITUATION --> CAC_PHASE
+    GUFO_SITUATION --> CAC_ROLE_ASSIGNMENT
     GUFO_OBJECT --> CAC_ENDURING
+
+    CAC_PHASE -. realizesPhaseClassifier .-> GUFO_PHASE
+    CAC_ROLE_ASSIGNMENT -. roleClassifier .-> GUFO_ROLE
 
     CAC_PHASE --> INIT_PHASE
     CAC_PHASE --> ANALYSIS_PHASE
@@ -507,9 +514,12 @@ classDiagram
         +EvidenceItem[] hasEvidence
     }
     class PhotoDNAHash {
-        <<Artifact>>
+        <<UCO Hash>>
         +String photoDNAValue
         +String hashAlgorithm
+    }
+    class UcoHash {
+        <<UCO Hash>>
     }
     class SocialMediaPlatform {
         <<DigitalSystemEntity>>
@@ -517,7 +527,7 @@ classDiagram
     }
 
     Artifact <|-- HotlineReport
-    Artifact <|-- PhotoDNAHash
+    UcoHash <|-- PhotoDNAHash
     DigitalSystemEntity <|-- SocialMediaPlatform
 
     class ForensicAcquisitionAction {
@@ -700,4 +710,4 @@ The following are project requirements or targets, not v3.1.0 completion or benc
 - Performance benchmarks (Q1 query ≤ 500ms on 5M triples)
 - Cross-reference validation between ontology modules
 
-See [Glossary](glossary.md) for acronyms and key terms. 
+See [Glossary](glossary.md) for acronyms and key terms.

@@ -251,6 +251,8 @@ graph TD
 
 ### 7. Semantic Spine Architecture
 
+> **v4 proposal correction:** The v3 text below historically treated operational `cac-core:Role` and `cac-core:Phase` resources as gUFO classifier classes. The Gate 3 v4 proposal separates those levels. See [v4-foundational-architecture.md](v4-foundational-architecture.md) for the normative proposal model.
+
 CAC Ontology v3.1.0 retains the **semantic spine** introduced in v3.0.0 — a thin, stable abstraction layer in the `cac-core:` namespace that mediates alignment with gUFO, UCO, and CASE. Domain modules anchor to spine branches whose upstream alignments are maintained in dedicated bridge files.
 
 #### 7.1 Purpose
@@ -262,9 +264,10 @@ CAC Ontology v3.1.0 retains the **semantic spine** introduced in v3.0.0 — a th
 
 | Spine Class | Upstream Alignment | Domain Usage |
 |-------------|-------------------|--------------|
-| `cac-core:Phase` | `gufo:Phase` | Investigation phases, lifecycle stages, offense-trajectory state-machine states |
-| `cac-core:ConditioningPhase` | `gufo:Phase` (via `cac-core:Phase`) | Macro preparatory phase in offense trajectories; optional `conditioningMode` |
-| `cac-core:Role` | `gufo:Role` | Investigator, victim, offender, and organizational roles |
+| `cac-core:Phase` | Operational `gufo:Situation`; optional separate `gufo:Phase` classifier | Investigation phase and lifecycle-stage occurrences |
+| `cac-core:ConditioningPhase` | `cac-core:Phase` occurrence class | Macro preparatory occurrences in offense trajectories; optional `conditioningMode` |
+| `cac-core:Role` | Operational record branch; no direct `gufo:Role` superclass | Investigator, victim, offender, and organizational role records |
+| `cac-core:RoleAssignment` | `gufo:TemporaryInstantiationSituation` | Contextual bearer-to-classifier assignment |
 | `cac-core:Event` | `gufo:Event` | Actions, incidents, operational events |
 | `cac-core:LegalEvent` | `gufo:Event` | Court hearings, filings, legal proceedings |
 | `cac-core:Artifact` | `gufo:Object` | Evidence items, forensic artifacts, digital objects |
@@ -325,7 +328,7 @@ Example trajectory pattern: `InitialContactPhase` → `ConditioningPhase` → `E
 | EvidenceItem | https://cacontology.projectvic.org/hotlines#EvidenceItem | uco-observable:DigitalArtifact | `cac-core:Artifact` | Digital evidence artifact |
 | HotlineAction | https://cacontology.projectvic.org/hotlines#HotlineAction | uco-action:Action | `cac-core:Event` (via `gufo:Event`) | Action performed on report |
 | ProductionOffense | https://cacontology.projectvic.org/production#ProductionOffense | uco-action:Crime | `cac-core:Event` (via `gufo:Event`) | CSAM production activity |
-| CustodialRelationship | https://cacontology.projectvic.org/custodial#CustodialRelationship | uco-role:Role | `cac-core:Role` (via `gufo:Role`) | Trust relationship |
+| CustodialRelationship | https://cacontology.projectvic.org/custodial#CustodialRelationship | `cac-core:EnduringEntity` | Enduring relationship with separate `CustodyState` history | Trust relationship |
 | AthleticCoachingExploitation | https://cacontology.projectvic.org/athletic-exploitation#AthleticCoachingExploitation | cacontology-educational:EducatorPerpetratedExploitation | — | Athletic coaching exploitation |
 | VictimImpactAssessment | https://cacontology.projectvic.org/victim-impact#VictimImpactAssessment | uco-core:UcoObject | `cac-core:AssessmentResult` | Trauma assessment |
 | TaskForceOperation | https://cacontology.projectvic.org/taskforce#TaskForceOperation | uco-action:Action | `cac-core:Event` (via `gufo:Event`) | Multi-agency operation |
@@ -345,7 +348,7 @@ Example trajectory pattern: `InitialContactPhase` → `ConditioningPhase` → `E
 | **Evidence Object Pattern** | Physical/digital evidence with gUFO object semantics | `cac-core:Artifact` (via `gufo:Object`) | Forensic artifacts anchored to spine Artifact branch |
 | **Legal Event Pattern** | Legal proceedings as temporal events | `cac-core:LegalEvent` (via `gufo:Event`) | Court hearings anchored to spine Event branch |
 | **Organizational Pattern** | Task forces and units as social objects | — | CAC units as `gufo:Kind` |
-| **Criminal Organization Pattern** | Criminal networks with role hierarchies | `cac-core:Role` (via `gufo:Role`) | Trafficking networks anchored to spine Role branch |
+| **Criminal Organization Pattern** | Criminal networks with role hierarchies | `cac-core:Role` operational records plus optional separate classifiers | Trafficking networks anchored to the role-record branch |
 | **Cross-Border Pattern** | International coordination scenarios | `cac-core:Situation` (via `gufo:Situation`) | Multi-jurisdiction anchored to spine Situation branch |
 
 #### 1.4 Constraints and Validation

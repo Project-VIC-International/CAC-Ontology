@@ -1,0 +1,18 @@
+{
+  "java": {
+    "distribution": "Eclipse Temurin JRE",
+    "release": "21.0.12+8",
+    "archive": "OpenJDK21U-jre_x64_windows_hotspot_21.0.12_8.zip",
+    "bytes": 48993215,
+    "sha256": "b8aa18fef5edb69bee8618f99677d66d0873d22cb40d974c15ac9ffcdecf73ba",
+    "source": "https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.12%2B8/OpenJDK21U-jre_x64_windows_hotspot_21.0.12_8.zip"
+  },
+  "robot": {
+    "release": "1.9.10",
+    "artifact": "robot.jar",
+    "bytes": 82604728,
+    "sha256": "16a73c074f3df359a7338a84b4e0788785fe06117f931bb9796e9619ea776105",
+    "source": "https://github.com/ontodev/robot/releases/download/v1.9.10/robot.jar"
+  },
+  "policy": "Runtime binaries remain outside Git. Evidence is valid only when local bytes match these publisher-provided digests."
+}

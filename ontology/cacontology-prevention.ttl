@@ -22,6 +22,16 @@
     owl:imports <http://purl.org/nemo/gufo#/1.0.0> ,
                 <https://cacontology.projectvic.org/core/3.1.0> .
 
+# Explicit declarations for parent classes already used by the prevention model.
+cacontology-prevention:EducationalOutreach rdf:type owl:Class ;
+    rdfs:label "Educational Outreach"@en .
+
+cacontology-prevention:PreventionCampaign rdf:type owl:Class ;
+    rdfs:label "Prevention Campaign"@en .
+
+cacontology-prevention:SafetyEducationEvent rdf:type owl:Class ;
+    rdfs:label "Safety Education Event"@en .
+
 # =============================================================================
 # PREVENTION PROGRAM FRAMEWORK (gUFO Event and Organization modeling)
 # =============================================================================
@@ -1064,4 +1074,4 @@ cacontology-prevention:identifiesTrustedAdult rdf:type owl:ObjectProperty ;
     rdfs:label "identifies trusted adult"@en ;
     rdfs:comment "Links program to trusted adult identification."@en ;
     rdfs:domain cacontology-prevention:TrustedAdultIdentification ;
-    rdfs:range uco-identity:Person . 
+    rdfs:range uco-identity:Person .

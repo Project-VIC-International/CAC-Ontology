@@ -21,7 +21,7 @@
     owl:versionIRI <https://cacontology.projectvic.org/physical/shapes/3.1.0> ;
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/physical/3.1.0> ,
                 <http://purl.org/nemo/gufo#/1.0.0> .
 
@@ -45,7 +45,7 @@ cacontology-physical-shapes:SearchEventTypeValidationShape rdf:type sh:NodeShape
             WHERE {
                 $this rdf:type gufo:Event .
                 FILTER NOT EXISTS {
-                    $this rdf:type ?actionClass ;
+                    $this rdf:type ?actionClass .
                     ?actionClass rdfs:subClassOf* uco-action:Action .
                 }
             }
@@ -63,7 +63,7 @@ cacontology-physical-shapes:ProcurementEventTypeValidationShape rdf:type sh:Node
             WHERE {
                 $this rdf:type gufo:Event .
                 FILTER NOT EXISTS {
-                    $this rdf:type ?actionClass ;
+                    $this rdf:type ?actionClass .
                     ?actionClass rdfs:subClassOf* uco-action:Action .
                 }
             }
@@ -73,17 +73,13 @@ cacontology-physical-shapes:ProcurementEventTypeValidationShape rdf:type sh:Node
 cacontology-physical-shapes:EvidencePhaseTypeValidationShape rdf:type sh:NodeShape ;
     sh:targetClass cac-core:Phase ;
     rdfs:label "Evidence Phase Type Validation Shape"@en ;
-    rdfs:comment "Validates gUFO Phase type consistency for evidence phases."@en ;
+    rdfs:comment "Prevents operational evidence phase occurrences from being typed as gUFO Phase classifiers."@en ;
     sh:sparql [
-        sh:message "Evidence phases must be properly typed as gUFO Phase and extend evidence classes."@en ;
+        sh:message "Operational evidence phase occurrences must not also be gUFO Phase classifiers."@en ;
         sh:select """
             SELECT $this
             WHERE {
                 $this rdf:type gufo:Phase .
-                FILTER NOT EXISTS {
-                    $this rdf:type ?phaseClass ;
-                    ?phaseClass rdfs:subClassOf* cacontology-physical:PhysicalEvidence .
-                }
             }
         """
     ] .
@@ -91,16 +87,13 @@ cacontology-physical-shapes:EvidencePhaseTypeValidationShape rdf:type sh:NodeSha
 cacontology-physical-shapes:ForensicRoleTypeValidationShape rdf:type sh:NodeShape ;
     sh:targetClass cac-core:Role ;
     rdfs:label "Forensic Role Type Validation Shape"@en ;
-    rdfs:comment "Validates gUFO Role type consistency for forensic roles."@en ;
+    rdfs:comment "Prevents operational forensic-role records from being typed as gUFO Role classifiers."@en ;
     sh:sparql [
-        sh:message "Forensic roles must be properly typed as gUFO Role and extend cac-core:Role."@en ;
+        sh:message "Operational forensic-role records must not also be gUFO Role classifiers."@en ;
         sh:select """
             SELECT $this
             WHERE {
                 $this rdf:type gufo:Role .
-                FILTER NOT EXISTS {
-                    $this rdfs:subClassOf* cac-core:Role .
-                }
             }
         """
     ] .
@@ -603,7 +596,7 @@ cacontology-physical-shapes:ForensicRoleParticipationShape rdf:type sh:NodeShape
                 $this rdf:type cacontology-physical:ForensicAnalystRole .
                 FILTER NOT EXISTS {
                     ?evidence cacontology-physical:forensicAnalysisRequired true ;
-                    ?evidence cacontology-physical:analyzedBy $this .
+                              cacontology-physical:analyzedBy $this .
                 }
             }
         """
@@ -622,7 +615,7 @@ cacontology-physical-shapes:EvidenceCompositionShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this cacontology-physical:containsItem ?part ;
+                $this cacontology-physical:containsItem ?part .
                 ?part cacontology-physical:containsItem $this .
             }
         """
@@ -638,7 +631,7 @@ cacontology-physical-shapes:ComputerEquipmentCompositionShape rdf:type sh:NodeSh
             SELECT $this
             WHERE {
                 $this rdf:type cacontology-physical:ComputerEquipment .
-                $this cacontology-physical:containsItem ?storage ;
+                $this cacontology-physical:containsItem ?storage .
                 ?storage rdf:type cacontology-physical:StorageMedia .
                 FILTER NOT EXISTS {
                     ?storage cacontology-physical:storageCapacity ?capacity .
@@ -1195,4 +1188,4 @@ cacontology-physical-shapes:BodycamFootageShape rdf:type sh:NodeShape ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "May specify if footage was matched to suspect selfies."@en
-    ] . 
+    ] .

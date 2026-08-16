@@ -22,7 +22,7 @@
     owl:versionIRI <https://cacontology.projectvic.org/law-enforcement-corruption/3.1.0> ;
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <http://purl.org/nemo/gufo#/1.0.0> ,
                 <https://cacontology.projectvic.org/core/3.1.0> .
 
@@ -73,7 +73,7 @@ cacontology-corruption:OfficerChildTrafficking rdf:type owl:Class ;
 cacontology-corruption:CorruptLawEnforcementOfficer rdf:type owl:Class ;
     rdfs:label "Corrupt Law Enforcement Officer"@en ;
     rdfs:comment "Law enforcement officer engaged in child exploitation activities."@en ;
-    rdfs:subClassOf uco-role:Role , cac-core:Role ;
+    rdfs:subClassOf cac-core:PersonLikeEntity ;
     rdf:type gufo:Role .
 
 cacontology-corruption:CorruptStateTrooper rdf:type owl:Class ;
@@ -356,28 +356,28 @@ cacontology-corruption:hasCorruptionSeverity rdf:type owl:DatatypeProperty ;
     rdfs:comment "Corruption severity level assessment (minor, moderate, serious, severe, extreme) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-corruption:LawEnforcementCorruption ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-corruption:hasAuthorityAbuseDegree rdf:type owl:DatatypeProperty ;
     rdfs:label "has authority abuse degree"@en ;
     rdfs:comment "Degree of authority abuse (minimal, moderate, extensive, systematic, comprehensive) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-corruption:PositionOfAuthorityAbuse ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-corruption:hasCorruptionImpact rdf:type owl:DatatypeProperty ;
     rdfs:label "has corruption impact"@en ;
     rdfs:comment "Impact level of corruption on victims and system (low, moderate, high, severe, devastating) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-corruption:LawEnforcementCorruption ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-corruption:hasVictimVulnerability rdf:type owl:DatatypeProperty ;
     rdfs:label "has victim vulnerability"@en ;
     rdfs:comment "Victim vulnerability exploitation level (0.0 to 1.0) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-corruption:LawEnforcementCorruption ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 # Authority Enhancement Quality Aspects
 cacontology-corruption:hasAuthorityEnhancementLevel rdf:type owl:DatatypeProperty ;
@@ -385,21 +385,21 @@ cacontology-corruption:hasAuthorityEnhancementLevel rdf:type owl:DatatypePropert
     rdfs:comment "Level of authority enhancement through uniform/symbols (minimal, moderate, significant, substantial, maximum) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-corruption:UniformBasedExploitation ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-corruption:hasIntimidationFactor rdf:type owl:DatatypeProperty ;
     rdfs:label "has intimidation factor"@en ;
     rdfs:comment "Intimidation factor through position abuse (0.0 to 1.0) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-corruption:PositionOfAuthorityAbuse ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-corruption:hasSymbolVisibility rdf:type owl:DatatypeProperty ;
     rdfs:label "has symbol visibility"@en ;
     rdfs:comment "Visibility level of authority symbols (hidden, subtle, visible, prominent, conspicuous) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-corruption:AuthoritySymbolExploitation ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 # Officer Corruption Quality Aspects
 cacontology-corruption:hasCorruptionDependency rdf:type owl:DatatypeProperty ;
@@ -407,21 +407,21 @@ cacontology-corruption:hasCorruptionDependency rdf:type owl:DatatypeProperty ;
     rdfs:comment "Officer dependency on corrupt activities (low, moderate, high, complete, systemic) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-corruption:CorruptLawEnforcementOfficer ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-corruption:hasPositionExploitationLevel rdf:type owl:DatatypeProperty ;
     rdfs:label "has position exploitation level"@en ;
     rdfs:comment "Level of position exploitation (0.0 to 1.0) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-corruption:CorruptLawEnforcementOfficer ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-corruption:hasTrustBetrayalLevel rdf:type owl:DatatypeProperty ;
     rdfs:label "has trust betrayal level"@en ;
     rdfs:comment "Level of public trust betrayal (minimal, moderate, significant, severe, complete) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-corruption:CorruptLawEnforcementOfficer ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 # Detection and Investigation Quality Aspects
 cacontology-corruption:hasDetectionDifficulty rdf:type owl:DatatypeProperty ;
@@ -429,21 +429,21 @@ cacontology-corruption:hasDetectionDifficulty rdf:type owl:DatatypeProperty ;
     rdfs:comment "Difficulty level of detecting corruption (easy, moderate, difficult, very_difficult, nearly_impossible) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-corruption:InsiderThreat ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-corruption:hasInvestigationComplexity rdf:type owl:DatatypeProperty ;
     rdfs:label "has investigation complexity"@en ;
     rdfs:comment "Complexity level of corruption investigation (simple, moderate, complex, highly_complex, extremely_complex) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-corruption:InsiderThreatDetection ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-corruption:hasEvidenceIntegrity rdf:type owl:DatatypeProperty ;
     rdfs:label "has evidence integrity"@en ;
     rdfs:comment "Integrity level of evidence (0.0 to 1.0) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-corruption:InsiderThreatDetection ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 # Data Quality Aspects (Multi-domain)
 cacontology-corruption:hasDataQuality rdf:type owl:DatatypeProperty ;
@@ -457,7 +457,7 @@ cacontology-corruption:hasDataQuality rdf:type owl:DatatypeProperty ;
         ) 
     ] ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-corruption:hasDataCompleteness rdf:type owl:DatatypeProperty ;
     rdfs:label "has data completeness"@en ;
@@ -470,7 +470,7 @@ cacontology-corruption:hasDataCompleteness rdf:type owl:DatatypeProperty ;
         ) 
     ] ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-corruption:hasValidationLevel rdf:type owl:DatatypeProperty ;
     rdfs:label "has validation level"@en ;
@@ -483,7 +483,7 @@ cacontology-corruption:hasValidationLevel rdf:type owl:DatatypeProperty ;
         ) 
     ] ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 # =============================================================================
 # gUFO PARTICIPATION AND PART-WHOLE RELATIONSHIPS
@@ -499,20 +499,19 @@ cacontology-corruption:participatesIn rdf:type owl:ObjectProperty ;
 
 cacontology-corruption:isDetectedBy rdf:type owl:ObjectProperty ;
     rdfs:label "is detected by"@en ;
-    rdfs:comment "Links corruption to detection activities - gUFO participation relation."@en ;
+    rdfs:comment "Links a corruption event to a distinct detection event. It is intentionally not a subproperty of gufo:participatedIn, which relates an object participant to an event."@en ;
     rdfs:domain cacontology-corruption:LawEnforcementCorruption ;
-    rdfs:range cacontology-corruption:InsiderThreatDetection ;
-    rdfs:subPropertyOf gufo:participatedIn .
+    rdfs:range cacontology-corruption:InsiderThreatDetection .
 
 # Qualified relations for corruption networks
 cacontology-corruption:standsInQualifiedCorruption rdf:type owl:ObjectProperty ;
     rdfs:label "stands in qualified corruption"@en ;
     rdfs:comment "Links entities to qualified corruption situations - gUFO qualified relation."@en ;
     rdfs:domain [ owl:unionOf ( cacontology-corruption:CorruptLawEnforcementOfficer uco-identity:Organization ) ] ;
-    rdfs:range gufo:ParticipationSituation .
+    rdfs:range cac-core:QualifiedParticipationSituation .
 
 cacontology-corruption:concernsCorruptOfficer rdf:type owl:ObjectProperty ;
     rdfs:label "concerns corrupt officer"@en ;
     rdfs:comment "Links corruption situations to the officers involved - gUFO qualified relation."@en ;
-    rdfs:domain gufo:ParticipationSituation ;
-    rdfs:range cacontology-corruption:CorruptLawEnforcementOfficer . 
+    rdfs:domain cac-core:QualifiedParticipationSituation ;
+    rdfs:range cacontology-corruption:CorruptLawEnforcementOfficer .

@@ -1,0 +1,43 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<https://cacontology.projectvic.org/standards-profile> rdf:type owl:Ontology ;
+    rdfs:label "CAC Bounded Standards Declaration Profile"@en ;
+    rdfs:comment "Declaration-only application profile for the exact SKOS and DCMI terms used by the CAC ontology family. These declarations do not transfer ownership of external terms to Project VIC and do not reproduce or import either complete upstream vocabulary."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/standards-profile/4.0.0> ;
+    owl:versionInfo "4.0.0-proposal" ;
+    dcterms:creator "CAC Ontology Team" ;
+    dcterms:issued "2026-08-15"^^xsd:date ;
+    dcterms:description "Authoritative reference bytes are pinned locally: W3C SKOS Recommendation RDF/XML SHA-256 e79633b8d0564816cee8a99f5c9acf9a0e6fc7257c7209acd684ecad53a89dd6; DCMI Metadata Terms 2012-06-14 Turtle SHA-256 13df401072dd7015bf9d75162f3e41c8138075304b7b9cc1aa1e9c16db976797."@en ;
+    dcterms:source <https://www.w3.org/TR/2009/REC-skos-reference-20090818/skos.rdf> ,
+                   <https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_terms.ttl> .
+
+# Exact SKOS class surface used by CAC.
+skos:Concept rdf:type owl:Class ;
+    rdfs:isDefinedBy <https://www.w3.org/TR/2009/REC-skos-reference-20090818/> .
+
+skos:ConceptScheme rdf:type owl:Class ;
+    rdfs:isDefinedBy <https://www.w3.org/TR/2009/REC-skos-reference-20090818/> .
+
+# SKOS lexical/documentation terms are annotations in the normative SKOS OWL vocabulary.
+skos:altLabel rdf:type owl:AnnotationProperty .
+skos:definition rdf:type owl:AnnotationProperty .
+skos:editorialNote rdf:type owl:AnnotationProperty .
+skos:prefLabel rdf:type owl:AnnotationProperty .
+skos:scopeNote rdf:type owl:AnnotationProperty .
+
+# SKOS semantic relations remain object properties and therefore require IRI values.
+skos:exactMatch rdf:type owl:ObjectProperty .
+skos:inScheme rdf:type owl:ObjectProperty .
+
+# CAC uses this bounded DCMI surface only as ontology annotations.
+dcterms:creator rdf:type owl:AnnotationProperty .
+dcterms:description rdf:type owl:AnnotationProperty .
+dcterms:isReplacedBy rdf:type owl:AnnotationProperty .
+dcterms:issued rdf:type owl:AnnotationProperty .
+dcterms:source rdf:type owl:AnnotationProperty .
+dcterms:title rdf:type owl:AnnotationProperty .

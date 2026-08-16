@@ -1,0 +1,113 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-datatype: <https://cacontology.projectvic.org/datatype-policy#> .
+@prefix cacontology-detection: <https://cacontology.projectvic.org/detection#> .
+@prefix cacontology-forensics: <https://cacontology.projectvic.org/forensics#> .
+@prefix cacontology-grooming: <https://cacontology.projectvic.org/grooming#> .
+@prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
+@prefix cacontology-hotlines: <https://cacontology.projectvic.org/hotlines#> .
+@prefix cacontology-integration: <https://cacontology.projectvic.org/integration-patterns#> .
+@prefix cacontology-institutional: <https://cacontology.projectvic.org/institutional-exploitation#> .
+@prefix cacontology-legal-outcomes: <https://cacontology.projectvic.org/legal-outcomes#> .
+@prefix cacontology-multi: <https://cacontology.projectvic.org/multi-jurisdiction#> .
+@prefix cacontology-partnerships: <https://cacontology.projectvic.org/partnerships#> .
+@prefix cacontology-platforms: <https://cacontology.projectvic.org/platforms#> .
+@prefix cacontology-sextortion: <https://cacontology.projectvic.org/sextortion#> .
+@prefix cacontology-specialized: <https://cacontology.projectvic.org/specialized-units#> .
+@prefix cacontology-taskforce: <https://cacontology.projectvic.org/taskforce#> .
+@prefix cacontology-temporal: <https://cacontology.projectvic.org/temporal#> .
+@prefix cacontology-trafficking: <https://cacontology.projectvic.org/trafficking#> .
+@prefix cacontology-training: <https://cacontology.projectvic.org/training#> .
+@prefix cacontology-undercover: <https://cacontology.projectvic.org/undercover#> .
+@prefix cacontology-federal: <https://cacontology.projectvic.org/usa-federal-law#> .
+@prefix cacontology-impact: <https://cacontology.projectvic.org/victim-impact#> .
+
+<https://cacontology.projectvic.org/datatype-policy/shapes> rdf:type owl:Ontology ;
+    rdfs:label "CAC Canonical Datatype Policy Shapes"@en ;
+    rdfs:comment "Reusable SHACL controls for lexical durations and four-digit civil years represented with OWL 2 supported datatypes."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/datatype-policy/shapes/4.0.0> ;
+    owl:versionInfo "4.0.0-proposal" ;
+    dcterms:creator "CAC Ontology Team" ;
+    dcterms:issued "2026-08-15"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/3.1.0> .
+
+cacontology-datatype:CanonicalDurationLexicalShape rdf:type sh:NodeShape ;
+    rdfs:label "Canonical duration lexical shape"@en ;
+    rdfs:comment "Validates XML Schema duration lexical syntax while storing the value as xsd:string so the normative OWL graph remains within the supported datatype map."@en ;
+    sh:targetObjectsOf
+        cacontology:conspiracyDuration ,
+        cacontology:phaseDuration ,
+        cacontology-detection:detectionDuration ,
+        cacontology-detection:phaseDuration ,
+        cacontology-detection:roleDuration ,
+        cacontology-forensics:forensicPhaseDuration ,
+        cacontology-grooming:groomingPhaseDuration ,
+        cacontology-gufo:exploitationDuration ,
+        cacontology-gufo:generationDuration ,
+        cacontology-hotlines:phaseDuration ,
+        cacontology-integration:hasIntegrationTimeline ,
+        cacontology-legal-outcomes:phaseDuration ,
+        cacontology-legal-outcomes:proceedingDuration ,
+        cacontology-legal-outcomes:roleDuration ,
+        cacontology-legal-outcomes:sentenceDuration ,
+        cacontology-multi:coordinationPhaseDuration ,
+        cacontology-partnerships:cooperationDuration ,
+        cacontology-partnerships:partnershipDuration ,
+        cacontology-partnerships:phaseDuration ,
+        cacontology-partnerships:roleDuration ,
+        cacontology-platforms:actionDuration ,
+        cacontology-platforms:phaseDuration ,
+        cacontology-platforms:platformDuration ,
+        cacontology-sextortion:incidentDuration ,
+        cacontology-specialized:operationDuration ,
+        cacontology-specialized:phaseDuration ,
+        cacontology-specialized:roleDuration ,
+        cacontology-specialized:unitDuration ,
+        cacontology-taskforce:coordinationDuration ,
+        cacontology-taskforce:operationPhaseDuration ,
+        cacontology-temporal:hasActiveDuration ,
+        cacontology-temporal:hasMaximumDuration ,
+        cacontology-temporal:hasMinimumDuration ,
+        cacontology-temporal:hasSuspendedDuration ,
+        cacontology-temporal:hasTimeToFirstAction ,
+        cacontology-temporal:hasTimeToResolution ,
+        cacontology-temporal:hasTypicalDuration ,
+        cacontology-trafficking:earningsPeriod ,
+        cacontology-trafficking:enterpriseDuration ,
+        cacontology-trafficking:phaseDuration ,
+        cacontology-trafficking:roleDuration ,
+        cacontology-training:phaseDuration ,
+        cacontology-training:roleDuration ,
+        cacontology-training:trainingDuration ,
+        cacontology-undercover:operationPhaseDuration ,
+        cacontology-federal:phaseDuration ,
+        cacontology-federal:prosecutionDuration ,
+        cacontology-federal:roleDuration ,
+        cacontology-impact:impactPhaseDuration ,
+        cacontology-impact:recoveryTimeframe ;
+    sh:nodeKind sh:Literal ;
+    sh:datatype xsd:string ;
+    sh:pattern "^-?P(?:[0-9]+(?:[.][0-9]+)?Y)?(?:[0-9]+(?:[.][0-9]+)?M)?(?:[0-9]+(?:[.][0-9]+)?D)?(?:T(?:[0-9]+(?:[.][0-9]+)?H)?(?:[0-9]+(?:[.][0-9]+)?M)?(?:[0-9]+(?:[.][0-9]+)?S)?)?$" ;
+    sh:pattern "^[-]?P.*[0-9].*$" ;
+    sh:not [ sh:pattern "T$" ] ;
+    sh:message "Duration values must be xsd:string literals in canonical XML Schema duration lexical form, such as P3D, P4M, P2Y, or PT4H."@en .
+
+cacontology-datatype:FourDigitCivilYearShape rdf:type sh:NodeShape ;
+    rdfs:label "Four-digit civil year shape"@en ;
+    rdfs:comment "Validates civil-year values as four-digit xsd:integer literals. Historical years outside 1000–9999 require a separately approved representation."@en ;
+    sh:targetObjectsOf
+        cacontology-institutional:foundingYear ,
+        cacontology-institutional:abuseStartYear ,
+        cacontology-institutional:abuseEndYear ,
+        cacontology-taskforce:reportingYear ;
+    sh:nodeKind sh:Literal ;
+    sh:datatype xsd:integer ;
+    sh:minInclusive 1000 ;
+    sh:maxInclusive 9999 ;
+    sh:message "Civil years must be four-digit xsd:integer values from 1000 through 9999."@en .

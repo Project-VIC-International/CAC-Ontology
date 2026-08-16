@@ -1,0 +1,28 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix cac-custody: <https://cacontology.projectvic.org/custodial#> .
+@prefix ex: <https://example.invalid/v4-test#> .
+
+ex:relationship-1 a cac-custody:CustodialRelationship ;
+    rdfs:label "Synthetic custodial relationship" ;
+    cac-custody:relationshipType "guardian" ;
+    cac-custody:trustLevel "high" ;
+    cac-custody:accessLevel "supervised" ;
+    cac-custody:involvesCustodian ex:synthetic-custodian ;
+    cac-custody:involvesChild ex:synthetic-child ;
+    cac-custody:hasCustodyState ex:active-1, ex:suspended-1 ;
+    cac-custody:currentCustodyState ex:suspended-1 .
+
+ex:synthetic-custodian rdfs:label "Synthetic custodian" .
+ex:synthetic-child rdfs:label "Synthetic child" .
+
+ex:active-1 a cac-custody:CustodyState, cac-custody:ActiveCustodyPhase ;
+    rdfs:label "Synthetic active custody state" ;
+    cac-custody:custodyStateOf ex:relationship-1 ;
+    cac-custody:hasCustodyBeginPoint "2026-01-01T00:00:00Z"^^xsd:dateTimeStamp ;
+    cac-custody:precedesCustodyPhase ex:suspended-1 .
+
+ex:suspended-1 a cac-custody:CustodyState, cac-custody:SuspendedCustodyPhase ;
+    rdfs:label "Synthetic suspended custody state" ;
+    cac-custody:custodyStateOf ex:relationship-1 ;
+    cac-custody:hasCustodyBeginPoint "2026-02-01T00:00:00Z"^^xsd:dateTimeStamp .

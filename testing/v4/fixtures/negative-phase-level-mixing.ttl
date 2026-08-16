@@ -1,0 +1,5 @@
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
+@prefix ex: <https://example.invalid/v4-test#> .
+
+ex:invalid-phase-occurrence a cac-core:Phase, gufo:Phase .

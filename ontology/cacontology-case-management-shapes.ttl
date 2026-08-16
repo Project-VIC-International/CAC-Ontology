@@ -18,7 +18,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-01-27"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/case-management/3.1.0>,
                 <http://purl.org/nemo/gufo#/1.0.0> .
 
@@ -63,7 +63,7 @@ cacontology-case:CaseManagementShape rdf:type sh:NodeShape ;
         sh:message "Case management must have proper gUFO Object properties"@en ;
         sh:prefixes cacontology-case: ;
         sh:construct """
-            INSERT { $this a cacontology-case:ObjectConsistencyError . }
+            CONSTRUCT { $this a cacontology-case:ObjectConsistencyError . }
             WHERE {
                 $this a cacontology-case:CaseManagement .
                 FILTER NOT EXISTS { 
@@ -114,7 +114,7 @@ cacontology-case:CaseWorkflowShape rdf:type sh:NodeShape ;
         sh:message "Workflow end time must be after begin time"@en ;
         sh:prefixes cacontology-case: ;
         sh:construct """
-            INSERT { $this a cacontology-case:TemporalInconsistencyError . }
+            CONSTRUCT { $this a cacontology-case:TemporalInconsistencyError . }
             WHERE {
                 $this cacontology-gufo:workflowBeginTime ?begin .
                 $this cacontology-gufo:workflowEndTime ?end .
@@ -205,7 +205,7 @@ cacontology-case:CaseInitiationPhaseShape rdf:type sh:NodeShape ;
         sh:message "Case initiation phases must demonstrate anti-rigidity (duration varies based on case complexity)"@en ;
         sh:prefixes cacontology-case: ;
         sh:construct """
-            INSERT { $this a cacontology-case:AntiRigidityError . }
+            CONSTRUCT { $this a cacontology-case:AntiRigidityError . }
             WHERE {
                 $this a cacontology-case:CaseInitiationPhase .
                 FILTER NOT EXISTS { 
@@ -226,12 +226,12 @@ cacontology-case:ActiveInvestigationPhaseShape rdf:type sh:NodeShape ;
         sh:message "Active investigation phase should follow case initiation phase"@en ;
         sh:prefixes cacontology-case: ;
         sh:construct """
-            INSERT { $this a cacontology-case:PhaseSequenceError . }
+            CONSTRUCT { $this a cacontology-case:PhaseSequenceError . }
             WHERE {
-                $this a cacontology-case:ActiveInvestigationPhase ;
+                $this a cacontology-case:ActiveInvestigationPhase .
                 ?caseManagement cacontology-case:currentPhase $this .
                 FILTER NOT EXISTS { 
-                    ?caseManagement cacontology-case:previousPhase ?prev ;
+                    ?caseManagement cacontology-case:previousPhase ?prev .
                     ?prev a cacontology-case:CaseInitiationPhase .
                 }
             }
@@ -253,11 +253,11 @@ cacontology-case:CaseManagerRoleShape rdf:type sh:NodeShape ;
         sh:message "Case manager roles must have appropriate management competency"@en ;
         sh:prefixes cacontology-case: ;
         sh:construct """
-            INSERT { $this a cacontology-case:RoleCompetencyError . }
+            CONSTRUCT { $this a cacontology-case:RoleCompetencyError . }
             WHERE {
                 $this a cacontology-case:CaseManagerRole .
                 FILTER NOT EXISTS { 
-                    $this cacontology-case:hasCompetency ?competency ;
+                    $this cacontology-case:hasCompetency ?competency .
                     ?competency cacontology-case:competencyType "case_management" .
                 }
             }
@@ -398,12 +398,12 @@ cacontology-case:MultiJurisdictionalCaseManagementShape rdf:type sh:NodeShape ;
         sh:message "Multi-jurisdictional case management must involve multiple jurisdictions"@en ;
         sh:prefixes cacontology-case: ;
         sh:construct """
-            INSERT { $this a cacontology-case:JurisdictionCoordinationError . }
+            CONSTRUCT { $this a cacontology-case:JurisdictionCoordinationError . }
             WHERE {
                 $this a cacontology-case:MultiJurisdictionalCaseManagement .
                 {
                     SELECT $this (COUNT(?jurisdiction) AS ?jurisdictionCount) WHERE {
-                        $this cacontology-case:participatesInManagement ?jurisdiction ;
+                        $this cacontology-case:participatesInManagement ?jurisdiction .
                         ?jurisdiction a cacontology-case:JurisdictionalEntity .
                     } GROUP BY $this
                 }
@@ -482,26 +482,26 @@ cacontology-case:GUFODataQualityShape rdf:type sh:NodeShape ;
         sh:message "Case management entities must be properly typed as gUFO foundational entities"@en ;
         sh:prefixes cacontology-case: ;
         sh:construct """
-            INSERT { $this a cacontology-case:FoundationalTypeError . }
+            CONSTRUCT { $this a cacontology-case:FoundationalTypeError . }
             WHERE {
                 {
-                    $this a ?managementType ;
+                    $this a ?managementType .
                     ?managementType rdfs:subClassOf* cacontology-case:CaseManagement .
                     FILTER NOT EXISTS { $this a gufo:Object . }
                 } UNION {
-                    $this a ?workflowType ;
+                    $this a ?workflowType .
                     ?workflowType rdfs:subClassOf* cacontology-case:CaseWorkflow .
                     FILTER NOT EXISTS { $this a gufo:Event . }
                 } UNION {
-                    $this a ?assignmentType ;
+                    $this a ?assignmentType .
                     ?assignmentType rdfs:subClassOf* cacontology-case:CaseAssignment .
                     FILTER NOT EXISTS { $this a gufo:Event . }
                 } UNION {
-                    $this a ?docType ;
+                    $this a ?docType .
                     ?docType rdfs:subClassOf* cacontology-case:CaseDocumentation .
                     FILTER NOT EXISTS { $this a gufo:Object . }
                 } UNION {
-                    $this a ?reviewType ;
+                    $this a ?reviewType .
                     ?reviewType rdfs:subClassOf* cacontology-case:CaseReview .
                     FILTER NOT EXISTS { $this a gufo:Event . }
                 }
@@ -509,30 +509,20 @@ cacontology-case:GUFODataQualityShape rdf:type sh:NodeShape ;
         """
     ] .
 
-cacontology-case:AntiRigidityValidationShape rdf:type sh:NodeShape ;
+cacontology-case:PhaseLevelSeparationShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-case:CaseInitiationPhase ,
                    cacontology-case:ActiveInvestigationPhase ,
                    cacontology-case:ProsecutionPreparationPhase ,
                    cacontology-case:CourtProceedingsPhase ,
                    cacontology-case:DispositionPhase ;
-    rdfs:label "Anti-Rigidity Validation Shape"@en ;
-    rdfs:comment "Validation of anti-rigidity constraints for gUFO Phases in case management contexts."@en ;
+    rdfs:label "Phase Level Separation Shape"@en ;
+    rdfs:comment "Prevents operational case-management phase occurrences from being typed as gUFO Phase classifiers."@en ;
     sh:sparql [
-        sh:message "Anti-rigid phases must demonstrate changeability based on case management context"@en ;
+        sh:message "Operational case-management phase occurrences must not also be gUFO Phase classifiers."@en ;
         sh:select """
             SELECT $this
             WHERE {
                 $this a gufo:Phase .
-                {
-                    { $this a cacontology-case:CaseInitiationPhase . } UNION
-                    { $this a cacontology-case:ActiveInvestigationPhase . } UNION
-                    { $this a cacontology-case:ProsecutionPreparationPhase . } UNION
-                    { $this a cacontology-case:CourtProceedingsPhase . } UNION
-                    { $this a cacontology-case:DispositionPhase . }
-                }
-                FILTER NOT EXISTS { 
-                    $this cacontology-gufo:hasAntiRigidityConstraint ?constraint .
-                }
             }
         """
     ] .
@@ -558,9 +548,9 @@ cacontology-case:WorkflowIntegrityValidationShape rdf:type sh:NodeShape ;
                 }
                 FILTER(?phaseCount > 3)
                 FILTER NOT EXISTS {
-                    $this cacontology-case:hasEnhancedDocumentation ?documentation ;
+                    $this cacontology-case:hasEnhancedDocumentation ?documentation .
                     ?documentation cacontology-case:documentationType "multi_phase_coordination" .
                 }
             }
         """
-    ] . 
+    ] .

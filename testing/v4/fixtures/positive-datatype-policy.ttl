@@ -1,0 +1,6 @@
+@prefix ex: <https://example.org/cac-v4/datatype-policy/> .
+@prefix cacontology-temporal: <https://cacontology.projectvic.org/temporal#> .
+@prefix cacontology-institutional: <https://cacontology.projectvic.org/institutional-exploitation#> .
+
+ex:phase-positive cacontology-temporal:hasMinimumDuration "P3D" .
+ex:institution-positive cacontology-institutional:foundingYear 1985 .

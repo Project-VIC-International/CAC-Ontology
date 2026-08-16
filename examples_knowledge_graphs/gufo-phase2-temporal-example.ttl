@@ -38,10 +38,10 @@ example:Investigation001 rdf:type cacontology-gufo:Investigation ;
 example:InitialPhase001 rdf:type cacontology-gufo:InitialPhase ;
     cacontology-gufo:hasPhaseBeginPoint "2025-01-01T08:00:00Z"^^xsd:dateTimeStamp ;
     cacontology-gufo:hasPhaseEndPoint "2025-01-01T12:00:00Z"^^xsd:dateTimeStamp ;
-    cacontology-gufo:phaseDuration "PT4H"^^xsd:duration ;
-    cacontology-temporal:hasMinimumDuration "PT2H"^^xsd:duration ;
-    cacontology-temporal:hasMaximumDuration "PT8H"^^xsd:duration ;
-    cacontology-temporal:hasTypicalDuration "PT3H"^^xsd:duration ;
+    cacontology-gufo:phaseDuration "PT4H" ;
+    cacontology-temporal:hasMinimumDuration "PT2H" ;
+    cacontology-temporal:hasMaximumDuration "PT8H" ;
+    cacontology-temporal:hasTypicalDuration "PT3H" ;
     cacontology-temporal:urgencyLevel "4"^^xsd:integer ;
     cacontology-temporal:phaseEfficiency "1.33"^^xsd:decimal ;  # 4h actual / 3h typical
     cacontology-temporal:phaseCompletionRate "1.0"^^xsd:decimal ;
@@ -51,10 +51,10 @@ example:InitialPhase001 rdf:type cacontology-gufo:InitialPhase ;
 example:AnalysisPhase001 rdf:type cacontology-gufo:AnalysisPhase ;
     cacontology-gufo:hasPhaseBeginPoint "2025-01-01T12:00:00Z"^^xsd:dateTimeStamp ;
     cacontology-gufo:hasPhaseEndPoint "2025-01-05T16:00:00Z"^^xsd:dateTimeStamp ;
-    cacontology-gufo:phaseDuration "P4DT4H"^^xsd:duration ;
-    cacontology-temporal:hasMinimumDuration "P1D"^^xsd:duration ;
-    cacontology-temporal:hasMaximumDuration "P7D"^^xsd:duration ;
-    cacontology-temporal:hasTypicalDuration "P3D"^^xsd:duration ;
+    cacontology-gufo:phaseDuration "P4DT4H" ;
+    cacontology-temporal:hasMinimumDuration "P1D" ;
+    cacontology-temporal:hasMaximumDuration "P7D" ;
+    cacontology-temporal:hasTypicalDuration "P3D" ;
     cacontology-temporal:urgencyLevel "3"^^xsd:integer ;
     cacontology-temporal:phaseEfficiency "1.47"^^xsd:decimal ;  # 4.17d actual / 3d typical
     cacontology-temporal:phaseCompletionRate "0.95"^^xsd:decimal ;
@@ -64,7 +64,7 @@ example:AnalysisPhase001 rdf:type cacontology-gufo:AnalysisPhase ;
 example:LegalProcessPhase001 rdf:type cacontology-gufo:LegalProcessPhase ;
     cacontology-gufo:hasPhaseBeginPoint "2025-01-05T16:00:00Z"^^xsd:dateTimeStamp ;
     cacontology-gufo:hasPhaseEndPoint "2025-01-15T14:00:00Z"^^xsd:dateTimeStamp ;
-    cacontology-gufo:phaseDuration "P9DT22H"^^xsd:duration ;
+    cacontology-gufo:phaseDuration "P9DT22H" ;
     cacontology-temporal:hasLegalDeadline "2025-01-20T23:59:59Z"^^xsd:dateTimeStamp ;
     cacontology-temporal:WarrantExpirationDate "2025-02-05T16:00:00Z"^^xsd:dateTimeStamp ;
     cacontology-temporal:urgencyLevel "5"^^xsd:integer ;
@@ -76,7 +76,7 @@ example:LegalProcessPhase001 rdf:type cacontology-gufo:LegalProcessPhase ;
 example:EvidencePhase001 rdf:type cacontology-gufo:EvidencePhase ;
     cacontology-gufo:hasPhaseBeginPoint "2025-01-15T14:00:00Z"^^xsd:dateTimeStamp ;
     cacontology-gufo:hasPhaseEndPoint "2025-02-20T17:00:00Z"^^xsd:dateTimeStamp ;
-    cacontology-gufo:phaseDuration "P36DT3H"^^xsd:duration ;
+    cacontology-gufo:phaseDuration "P36DT3H" ;
     cacontology-temporal:EvidencePreservationDeadline "2025-03-15T23:59:59Z"^^xsd:dateTimeStamp ;
     cacontology-temporal:urgencyLevel "2"^^xsd:integer ;
     cacontology-temporal:phaseEfficiency "1.8"^^xsd:decimal ;  # Extended due to complexity
@@ -181,10 +181,10 @@ example:MultiJurisdictionSituation001 rdf:type cacontology-temporal:MultiJurisdi
 # =============================================================================
 
 # Investigation Time Metrics
-example:Investigation001 cacontology-temporal:hasTimeToFirstAction "PT4H"^^xsd:duration ;
-    cacontology-temporal:hasTimeToResolution "P50DT9H"^^xsd:duration ;
-    cacontology-temporal:hasActiveDuration "P39DT7H"^^xsd:duration ;
-    cacontology-temporal:hasSuspendedDuration "P11DT4H"^^xsd:duration .
+example:Investigation001 cacontology-temporal:hasTimeToFirstAction "PT4H" ;
+    cacontology-temporal:hasTimeToResolution "P50DT9H" ;
+    cacontology-temporal:hasActiveDuration "P39DT7H" ;
+    cacontology-temporal:hasSuspendedDuration "P11DT4H" .
 
 # =============================================================================
 # TEMPORAL EVENT DEPENDENCIES AND SEQUENCES

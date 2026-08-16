@@ -16,7 +16,7 @@
     owl:versionIRI <https://cacontology.projectvic.org/platforms/shapes/3.1.0> ;
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/platforms/3.1.0> ,
                 <http://purl.org/nemo/gufo#/1.0.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> .
@@ -787,14 +787,14 @@ cacontology-platforms:ChannelMigrationEventShape rdf:type sh:NodeShape ;
     rdfs:comment "Validation shape for cross-platform channel migration events."@en ;
     sh:property [
         sh:path cacontology-platforms:fromPlatform ;
-        sh:class uco-observable:DigitalService ;
+        sh:class uco-observable:OnlineService ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Channel migration must specify exactly one originating platform."@en
     ] ;
     sh:property [
         sh:path cacontology-platforms:toPlatform ;
-        sh:class uco-observable:DigitalService ;
+        sh:class uco-observable:OnlineService ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Channel migration must specify exactly one destination platform."@en
@@ -853,7 +853,7 @@ cacontology-platforms:AffordanceMisuseShape rdf:type sh:NodeShape ;
     ] ;
     sh:property [
         sh:path cacontology-platforms:platform ;
-        sh:class uco-observable:DigitalService ;
+        sh:class uco-observable:OnlineService ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "Optional platform instance may be specified at most once."@en

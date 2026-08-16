@@ -17,7 +17,7 @@
     owl:versionIRI <https://cacontology.projectvic.org/specialized-units/3.1.0> ;
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <http://purl.org/nemo/gufo#/1.0.0> ,
                 <https://cacontology.projectvic.org/core/3.1.0> .
 
@@ -37,7 +37,7 @@ cacontology-specialized:ElectronicStorageDeviceK9 rdf:type owl:Class ;
     rdfs:comment "K9 trained to detect electronic storage devices during search operations. Modeled as gUFO Organization."@en .
 
 # K9 Roles as gUFO Roles (anti-rigid)
-cacontology-specialized:K9Officer rdf:type owl:Class, gufo:Role ;
+cacontology-specialized:K9Officer rdf:type owl:Class ;
     rdfs:subClassOf cac-core:Role ;
     rdfs:label "K9 Officer"@en ;
     rdfs:comment "Law enforcement officer handling and working with detection dogs. Modeled as anti-rigid gUFO Role."@en .
@@ -278,22 +278,22 @@ cacontology-specialized:SpecializedCapabilitySituation rdf:type owl:Class ;
 # =============================================================================
 
 # Specialized Unit Roles as gUFO Roles (anti-rigid)
-cacontology-specialized:UnitCommanderRole rdf:type owl:Class, gufo:Role ;
+cacontology-specialized:UnitCommanderRole rdf:type owl:Class ;
     rdfs:label "Unit Commander Role"@en ;
     rdfs:comment "Role of commanding officer for specialized unit. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-specialized:SpecializedOperatorRole rdf:type owl:Class, gufo:Role ;
+cacontology-specialized:SpecializedOperatorRole rdf:type owl:Class ;
     rdfs:label "Specialized Operator Role"@en ;
     rdfs:comment "Role of specialized operator within unit. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-specialized:TechnicalSpecialistRole rdf:type owl:Class, gufo:Role ;
+cacontology-specialized:TechnicalSpecialistRole rdf:type owl:Class ;
     rdfs:label "Technical Specialist Role"@en ;
     rdfs:comment "Role of technical specialist providing specialized capabilities. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-specialized:AnalystRole rdf:type owl:Class, gufo:Role ;
+cacontology-specialized:AnalystRole rdf:type owl:Class ;
     rdfs:label "Analyst Role"@en ;
     rdfs:comment "Role of analyst supporting specialized unit operations. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
@@ -367,22 +367,22 @@ cacontology-specialized:unitDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "unit duration"@en ;
     rdfs:comment "Duration of specialized unit operation."@en ;
     rdfs:domain cacontology-specialized:SpecializedInvestigativeUnit ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-specialized:operationDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "operation duration"@en ;
     rdfs:comment "Duration of named operation."@en ;
     rdfs:domain cacontology-specialized:NamedOperation ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-specialized:phaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "phase duration"@en ;
     rdfs:comment "Duration of operational phase."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-specialized:roleDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "role duration"@en ;
     rdfs:comment "Duration of specialized role."@en ;
     rdfs:domain cac-core:Role ;
-    rdfs:range xsd:duration . 
+    rdfs:range xsd:string .

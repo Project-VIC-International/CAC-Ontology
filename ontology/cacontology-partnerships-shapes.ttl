@@ -22,7 +22,7 @@
     owl:versionIRI <https://cacontology.projectvic.org/partnerships/shapes/3.1.0> ;
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/partnerships/3.1.0> ,
                 <http://purl.org/nemo/gufo#/1.0.0> .
 
@@ -46,7 +46,7 @@ cacontology-partnerships-shapes:CooperationEventTypeValidationShape rdf:type sh:
             WHERE {
                 $this rdf:type gufo:Event .
                 FILTER NOT EXISTS {
-                    $this rdf:type ?eventClass ;
+                    $this rdf:type ?eventClass .
                     ?eventClass rdfs:subClassOf* uco-action:Action .
                 }
             }
@@ -56,17 +56,13 @@ cacontology-partnerships-shapes:CooperationEventTypeValidationShape rdf:type sh:
 cacontology-partnerships-shapes:PartnershipPhaseTypeValidationShape rdf:type sh:NodeShape ;
     sh:targetClass cac-core:Phase ;
     rdfs:label "Partnership Phase Type Validation Shape"@en ;
-    rdfs:comment "Validates gUFO Phase type consistency for partnership phases."@en ;
+    rdfs:comment "Prevents operational partnership phase occurrences from being typed as gUFO Phase classifiers."@en ;
     sh:sparql [
-        sh:message "Partnership phases must be properly typed as gUFO Phase and extend partnership classes."@en ;
+        sh:message "Operational partnership phase occurrences must not also be gUFO Phase classifiers."@en ;
         sh:select """
             SELECT $this
             WHERE {
                 $this rdf:type gufo:Phase .
-                FILTER NOT EXISTS {
-                    $this rdf:type ?phaseClass ;
-                    ?phaseClass rdfs:subClassOf* cacontology-partnerships:PublicPrivatePartnership .
-                }
             }
         """
     ] .
@@ -74,16 +70,13 @@ cacontology-partnerships-shapes:PartnershipPhaseTypeValidationShape rdf:type sh:
 cacontology-partnerships-shapes:PartnerRoleTypeValidationShape rdf:type sh:NodeShape ;
     sh:targetClass cac-core:Role ;
     rdfs:label "Partner Role Type Validation Shape"@en ;
-    rdfs:comment "Validates gUFO Role type consistency for partner roles."@en ;
+    rdfs:comment "Prevents operational partner-role records from being typed as gUFO Role classifiers."@en ;
     sh:sparql [
-        sh:message "Partner roles must be properly typed as gUFO Role and extend cac-core:Role."@en ;
+        sh:message "Operational partner-role records must not also be gUFO Role classifiers."@en ;
         sh:select """
             SELECT $this
             WHERE {
                 $this rdf:type gufo:Role .
-                FILTER NOT EXISTS {
-                    $this rdf:type/rdfs:subClassOf* cac-core:Role .
-                }
             }
         """
     ] .
@@ -877,7 +870,7 @@ cacontology-partnerships-shapes:TechCooperationValidityShape rdf:type sh:NodeSha
             WHERE {
                 $this a cacontology-partnerships:TechIndustryCooperation .
                 FILTER NOT EXISTS {
-                    $this cacontology-partnerships:includesPartner ?org ;
+                    $this cacontology-partnerships:includesPartner ?org .
                     ?org cacontology-partnerships:hasRole cacontology-partnerships:TechnologyPartner .
                 }
             }
@@ -996,16 +989,19 @@ cacontology-partnerships-shapes:TechCooperationParticipationShape rdf:type sh:No
             SELECT $this
             WHERE {
                 $this rdf:type cacontology-partnerships:TechIndustryCooperation .
-                FILTER NOT EXISTS {
-                    $this cacontology-partnerships:includesPartner ?techOrg ;
-                    ?techOrg cacontology-partnerships:hasRole ?techRole ;
+                FILTER (
+                  NOT EXISTS {
+                    $this cacontology-partnerships:includesPartner ?techOrg .
+                    ?techOrg cacontology-partnerships:hasRole ?techRole .
                     ?techRole rdf:type cacontology-partnerships:TechnologyPartner .
-                } ||
-                FILTER NOT EXISTS {
-                    $this cacontology-partnerships:includesPartner ?leOrg ;
-                    ?leOrg cacontology-partnerships:hasRole ?leRole ;
+                  }
+                  ||
+                  NOT EXISTS {
+                    $this cacontology-partnerships:includesPartner ?leOrg .
+                    ?leOrg cacontology-partnerships:hasRole ?leRole .
                     ?leRole rdf:type cacontology-partnerships:LawEnforcementPartner .
-                }
+                  }
+                )
             }
         """
     ] .
@@ -1023,9 +1019,9 @@ cacontology-partnerships-shapes:MultiStakeholderParticipationShape rdf:type sh:N
                 {
                     SELECT $this (COUNT(DISTINCT ?roleType) AS ?roleTypeCount)
                     WHERE {
-                        $this cacontology-partnerships:includesPartner ?partner ;
-                        ?partner cacontology-partnerships:hasRole ?role ;
-                        ?role rdf:type ?roleType ;
+                        $this cacontology-partnerships:includesPartner ?partner .
+                        ?partner cacontology-partnerships:hasRole ?role .
+                        ?role rdf:type ?roleType .
                         ?roleType rdfs:subClassOf* cacontology-partnerships:PartnerRole .
                     }
                     GROUP BY $this
@@ -1049,13 +1045,13 @@ cacontology-partnerships-shapes:PartnershipCompositionShape rdf:type sh:NodeShap
             SELECT $this
             WHERE {
                 $this rdf:type cacontology-partnerships:PublicPrivatePartnership .
-                $this cacontology-partnerships:includesPartner ?publicOrg ;
-                ?publicOrg cacontology-partnerships:hasRole ?publicRole ;
+                $this cacontology-partnerships:includesPartner ?publicOrg .
+                ?publicOrg cacontology-partnerships:hasRole ?publicRole .
                 ?publicRole rdf:type cacontology-partnerships:LawEnforcementPartner .
                 FILTER NOT EXISTS {
-                    $this cacontology-partnerships:includesPartner ?privateOrg ;
-                    ?privateOrg cacontology-partnerships:hasRole ?privateRole ;
-                    ?privateRole rdf:type ?privateRoleType ;
+                    $this cacontology-partnerships:includesPartner ?privateOrg .
+                    ?privateOrg cacontology-partnerships:hasRole ?privateRole .
+                    ?privateRole rdf:type ?privateRoleType .
                     ?privateRoleType rdfs:subClassOf* cacontology-partnerships:PartnerRole .
                     FILTER (?privateRoleType != cacontology-partnerships:LawEnforcementPartner)
                 }
@@ -1106,7 +1102,7 @@ cacontology-partnerships-shapes:InformationSharingCompositionShape rdf:type sh:N
 # =============================================================================
 
 cacontology-partnerships-shapes:QualifiedPartnershipParticipationShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:ParticipationSituation ;
+    sh:targetClass cac-core:QualifiedParticipationSituation ;
     rdfs:label "Qualified Partnership Participation Shape"@en ;
     rdfs:comment "Validates gUFO qualified participation situations in partnerships."@en ;
     sh:sparql [
@@ -1114,12 +1110,12 @@ cacontology-partnerships-shapes:QualifiedPartnershipParticipationShape rdf:type 
         sh:select """
             SELECT $this
             WHERE {
-                $this rdf:type gufo:ParticipationSituation .
-                $this gufo:participatesIn ?partnership ;
+                $this rdf:type cac-core:QualifiedParticipationSituation .
+                $this gufo:participatedIn ?partnership .
                 ?partnership rdf:type cacontology-partnerships:PublicPrivatePartnership .
                 FILTER NOT EXISTS {
-                    ?org cacontology-partnerships:hasRole ?role ;
-                    ?role rdf:type ?roleType ;
+                    ?org cacontology-partnerships:hasRole ?role .
+                    ?role rdf:type ?roleType .
                     ?roleType rdfs:subClassOf* cacontology-partnerships:PartnerRole .
                 }
             }
@@ -1338,4 +1334,4 @@ cacontology-partnerships-shapes:PartnershipDataQualityShape rdf:type sh:NodeShap
                 }
             }
         """
-    ] . 
+    ] .

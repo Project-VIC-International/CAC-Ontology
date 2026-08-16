@@ -1,0 +1,81 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
+@prefix cac-v4-shapes: <https://cacontology.projectvic.org/v4/foundation/shapes#> .
+
+<https://cacontology.projectvic.org/v4/foundation/shapes> a owl:Ontology ;
+    rdfs:label "CAC v4 Foundational Architecture Rich SHACL Profile"@en ;
+    rdfs:comment "Rich conformance constraints for separating operational records and occurrences from gUFO bearer classifiers."@en ;
+    dcterms:creator "CAC Ontology Team" ;
+    dcterms:issued "2026-08-15"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/core/3.1.0> .
+
+cac-v4-shapes:RoleAssignmentRichShape a sh:NodeShape ;
+    sh:targetClass cac-core:RoleAssignment ;
+    sh:not [ sh:class gufo:Role ] ;
+    sh:message "ROLE-LEVEL-001: an assignment individual cannot be a gufo:Role classifier."@en ;
+    sh:property [
+        sh:path cac-core:roleBearer ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class cac-core:EnduringEntity ;
+        sh:message "ROLE-BEARER-001: exactly one enduring bearer is required."@en
+    ] ;
+    sh:property [
+        sh:path cac-core:roleClassifier ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class gufo:Role ;
+        sh:message "ROLE-CLASSIFIER-001: exactly one genuine gufo:Role classifier is required in the rich profile."@en
+    ] ;
+    sh:property [
+        sh:path cac-core:roleContext ;
+        sh:minCount 1 ;
+        sh:severity sh:Warning ;
+        sh:message "ROLE-CONTEXT-001: a context should be supplied for a relationally dependent role."@en
+    ] .
+
+cac-v4-shapes:RoleRecordRichShape a sh:NodeShape ;
+    sh:targetClass cac-core:RoleRecord ;
+    sh:property [
+        sh:path cac-core:describesRoleAssignment ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class cac-core:RoleAssignment ;
+        sh:message "ROLE-RECORD-001: a RoleRecord must describe exactly one RoleAssignment."@en
+    ] .
+
+cac-v4-shapes:PhaseOccurrenceRichShape a sh:NodeShape ;
+    sh:targetClass cac-core:Phase ;
+    sh:not [ sh:class gufo:Phase ] ;
+    sh:message "PHASE-LEVEL-001: an operational occurrence cannot be a gufo:Phase classifier."@en ;
+    sh:property [
+        sh:path cac-core:isPhaseOf ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "PHASE-SUBJECT-001: exactly one lifecycle subject is required in the rich profile."@en
+    ] ;
+    sh:sparql [
+        sh:message "PHASE-ORDER-001: an operational phase occurrence must not precede itself."@en ;
+        sh:select """
+            PREFIX cac-core: <https://cacontology.projectvic.org/core#>
+            SELECT $this WHERE { $this cac-core:precedes $this . }
+        """
+    ] ;
+    sh:sparql [
+        sh:message "PHASE-ORDER-002: an explicit two-node precedence cycle is not allowed."@en ;
+        sh:select """
+            PREFIX cac-core: <https://cacontology.projectvic.org/core#>
+            SELECT $this WHERE {
+                $this cac-core:precedes ?other .
+                ?other cac-core:precedes $this .
+                FILTER ($this != ?other)
+            }
+        """
+    ] .

@@ -50,6 +50,7 @@ tmp/
 temp/
 *.tmp
 *.log
+testing/v4/reports/*-owl2dl-profile.txt
 
 # Ontology files — allow tracked directories, exclude root-level .ttl by default
 *.ttl
@@ -57,9 +58,48 @@ temp/
 !examples_knowledge_graphs/*.ttl
 !raven-us-extensions.ttl
 !analytics_demonstration/**/*.ttl
+!testing/v4/fixtures/*.ttl
 
 # Explicitly exclude Ed_graph.ttl
 Ed_graph.ttl
+
+# Gate 4 dependency closure: keep exact runtime ontology bytes, not full
+# reconstructed upstream development trees.
+!testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/ontology/*.ttl
+!testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/shapes/*.ttl
+!testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/tests/exemplars.ttl
+testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/**
+!testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/
+!testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/LICENSE
+!testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/ontology/
+!testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/ontology/**/
+!testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/ontology/**/*.ttl
+!testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/dependencies/
+!testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/dependencies/collections-ontology/
+!testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/dependencies/collections-ontology/collections.owl
+!testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/dependencies/collections-ontology/LICENSE
+!testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/dependencies/error/
+!testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/dependencies/error/LICENSE
+!testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/dependencies/error/docs/
+!testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/dependencies/error/docs/current/
+!testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/dependencies/error/docs/current/error.ttl
+testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/CDO-Shapes-gufo/**
+!testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/CDO-Shapes-gufo/
+!testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/CDO-Shapes-gufo/LICENSE
+!testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/CDO-Shapes-gufo/THIRD_PARTY_LICENSES.md
+!testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/CDO-Shapes-gufo/dependencies/
+!testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/CDO-Shapes-gufo/dependencies/formatted-gufo.ttl
+!testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/CDO-Shapes-gufo/shapes/
+!testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/CDO-Shapes-gufo/shapes/sh-gufo.ttl
+testing/v4/dependencies/case/**
+!testing/v4/dependencies/case/
+!testing/v4/dependencies/case/8073d5a0a4f8741799adfe0c494d58fd6472acaa/
+!testing/v4/dependencies/case/8073d5a0a4f8741799adfe0c494d58fd6472acaa/LICENSE
+!testing/v4/dependencies/case/8073d5a0a4f8741799adfe0c494d58fd6472acaa/ontology/
+!testing/v4/dependencies/case/8073d5a0a4f8741799adfe0c494d58fd6472acaa/ontology/**/
+!testing/v4/dependencies/case/8073d5a0a4f8741799adfe0c494d58fd6472acaa/ontology/**/*.ttl
+!testing/v4/dependencies/w3c/*.ttl
+!testing/v4/dependencies/standards/dublin-core-terms-2012-06-14.ttl
 
 # Ontospy cache
 .ontospy_cache/

@@ -28,7 +28,7 @@
 #
 # These were previously owl:equivalentClass axioms scattered across domain
 # modules. They are preserved here for reasoning continuity but are no longer
-# part of the public reference layer. Each axiom is annotated with its
+# part of the public reference layer. Each alignment record is annotated with its
 # disposition status.
 # =============================================================================
 
@@ -38,7 +38,7 @@
 # subclass cac-core:Event or its sub-branches. The equivalence is preserved
 # here for backward-compatible reasoning.
 
-cac-bridge-gufo:CriminalEventAlignment a owl:Axiom ;
+cac-bridge-gufo:CriminalEventAlignment a owl:NamedIndividual ;
     rdfs:label "CriminalEvent Legacy Alignment"@en ;
     rdfs:comment "Documents the legacy equivalence between cacontology:ChildSexualAbuseEvent and cacontology-gufo:CriminalEvent. This alignment is retained in the bridge layer for reasoning continuity."@en ;
     cac-bridge-gufo:disposition "moveToBridgeLayer" ;
@@ -48,7 +48,7 @@ cac-bridge-gufo:CriminalEventAlignment a owl:Axiom ;
 cacontology:ChildSexualAbuseEvent skos:exactMatch cacontology-gufo:CriminalEvent .
 
 # --- VictimRole alignment ---
-cac-bridge-gufo:VictimRoleAlignment a owl:Axiom ;
+cac-bridge-gufo:VictimRoleAlignment a owl:NamedIndividual ;
     rdfs:label "VictimRole Legacy Alignment"@en ;
     rdfs:comment "Documents the legacy equivalence between cacontology:VictimRole and cacontology-gufo:VictimRole. This alignment is retained in the bridge layer for reasoning continuity."@en ;
     cac-bridge-gufo:disposition "moveToBridgeLayer" ;
@@ -58,7 +58,7 @@ cac-bridge-gufo:VictimRoleAlignment a owl:Axiom ;
 cacontology:VictimRole skos:exactMatch cacontology-gufo:VictimRole .
 
 # --- OffenderRole alignment ---
-cac-bridge-gufo:OffenderRoleAlignment a owl:Axiom ;
+cac-bridge-gufo:OffenderRoleAlignment a owl:NamedIndividual ;
     rdfs:label "OffenderRole Legacy Alignment"@en ;
     rdfs:comment "Documents the legacy equivalence between cacontology:OffenderRole and cacontology-gufo:OffenderRole. This alignment is retained in the bridge layer for reasoning continuity."@en ;
     cac-bridge-gufo:disposition "moveToBridgeLayer" ;
@@ -73,7 +73,7 @@ cacontology:OffenderRole skos:exactMatch cacontology-gufo:OffenderRole .
 
 cac-bridge-gufo:disposition a owl:AnnotationProperty ;
     rdfs:label "disposition"@en ;
-    rdfs:comment "Records the disposition decision for a legacy alignment axiom: retainInReferenceLayer, moveToBridgeLayer, deprecateAndReplace, or pendingReview."@en .
+    rdfs:comment "Records the disposition decision for a legacy alignment record: retainInReferenceLayer, moveToBridgeLayer, deprecateAndReplace, or pendingReview."@en .
 
 cac-bridge-gufo:migratedFrom a owl:AnnotationProperty ;
     rdfs:label "migrated from"@en ;

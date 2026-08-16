@@ -37,7 +37,7 @@
 # now anchors to cac-core:InvestigativeAction which inherits from
 # uco-action:Action through the spine.
 
-cac-bridge-uco:ReceiveCybertipActionAlignment a owl:Axiom ;
+cac-bridge-uco:ReceiveCybertipActionAlignment a owl:NamedIndividual ;
     rdfs:label "ReceiveCybertipAction UCO Alignment"@en ;
     rdfs:comment "Documents the alignment path for ReceiveCybertipAction. It now subclasses cac-core:InvestigativeAction (which inherits from uco-action:Action). Its former owl:equivalentClass to cacontology-gufo:CriminalEvent has been moved to the gUFO bridge."@en ;
     cac-bridge-uco:disposition "retainInReferenceLayer" .
@@ -48,4 +48,4 @@ cac-bridge-uco:ReceiveCybertipActionAlignment a owl:Axiom ;
 
 cac-bridge-uco:disposition a owl:AnnotationProperty ;
     rdfs:label "disposition"@en ;
-    rdfs:comment "Records the disposition decision for a UCO alignment axiom."@en .
+    rdfs:comment "Records the disposition decision for a UCO alignment record."@en .

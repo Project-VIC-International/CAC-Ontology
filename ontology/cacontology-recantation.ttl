@@ -16,7 +16,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2026-03-13"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/action/1.5.0> ,
@@ -230,7 +230,7 @@ cacontology-recantation:statementAboutEvent rdf:type owl:ObjectProperty ;
     rdfs:label "statement about event"@en ;
     rdfs:comment "Links a victim statement to the abuse or exploitation event it concerns."@en ;
     rdfs:domain cacontology-recantation:VictimStatement ;
-    rdfs:range uco-action:Crime ;
+    rdfs:range cac-core:OffenseEvent ;
     dcterms:source "Robert Peters, 'Winning Without Words: Prosecuting Cases with Recanting or Nonverbal Victims' (Coursing Justice presentation, 2026), and companion transcript 'Recantation 101' (2026)."@en ;
     rdfs:seeAlso <https://www.coursingjustice.com/> .
 

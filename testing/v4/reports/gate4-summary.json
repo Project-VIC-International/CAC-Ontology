@@ -1,0 +1,295 @@
+{
+  "configurations": {
+    "C1": {
+      "diagnostic_findings": 148,
+      "source_commit": "93de063951b758dd68a27611638c177fcf910eab",
+      "status": "observed-baseline"
+    },
+    "C2": {
+      "asserted": {
+        "diagnostic_findings": 263,
+        "status": "fail",
+        "triples": 24128
+      },
+      "gate": false,
+      "rdfs": {
+        "diagnostic_findings": 271,
+        "status": "fail",
+        "triples": 48138
+      },
+      "scope_note": "Exact profile ontology applied to the frozen base; imported submodule closure is not included."
+    },
+    "C3": {
+      "asserted": {
+        "diagnostic_findings": 0,
+        "status": "pass",
+        "triples": 24049
+      },
+      "rdfs": {
+        "diagnostic_findings": 0,
+        "status": "pass",
+        "triples": 47376
+      }
+    },
+    "C4": {
+      "asserted": {
+        "diagnostic_findings": 0,
+        "status": "pass",
+        "triples": 24257
+      },
+      "gate": true,
+      "rdfs": {
+        "diagnostic_findings": 0,
+        "status": "pass",
+        "triples": 48742
+      },
+      "scope_note": "Exact profile ontology applied to the candidate; imported submodule closure is not included."
+    },
+    "C5": {
+      "asserted": {
+        "diagnostic_findings": 0,
+        "status": "pass",
+        "triples": 24065
+      },
+      "rdfs": {
+        "diagnostic_findings": 0,
+        "status": "pass",
+        "triples": 47403
+      }
+    }
+  },
+  "dependencies": {
+    "imports": 75,
+    "owlapi_rdf_structures": {
+      "finding_count": 8,
+      "report": "testing/v4/reports/dependency-owlapi-rdf-structures.json",
+      "status": "fail-upstream"
+    },
+    "resolved_local": 48,
+    "resolved_vendored": 27,
+    "turtle_syntax": {
+      "files_audited": 28,
+      "finding_count": 0,
+      "report": "testing/v4/reports/dependency-turtle-syntax.json",
+      "status": "pass"
+    },
+    "uco_gufo_profile": {
+      "commit": "4b98b9881aa29ed80f39b589d15725fa696c921a",
+      "license": "Apache-2.0",
+      "license_path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/LICENSE",
+      "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/ontology/uco-gufo.ttl",
+      "revision_prefix": "4b98b988",
+      "sha256": "af8c803646d59e22402abbc613257572b63219cd6725f8d49b10dd9ad4b38c64",
+      "shapes_path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/shapes/sh-uco-gufo.ttl",
+      "shapes_sha256": "aa9778136a159dd7a0496266f132671d0c88714d6a3c397a27e86475220fa896",
+      "snapshot_files": [
+        {
+          "bytes": 56,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/.flake8",
+          "sha256": "6a9844c67247edf14d018444316a0955c8baa9f3687ba67c00c3afdb32db0dc9"
+        },
+        {
+          "bytes": 1504,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/.github/workflows/ci.yml",
+          "sha256": "c250f3c4ed5aec234756ed41673b0675f13a920e2ebad0b1244d3f874efa75b7"
+        },
+        {
+          "bytes": 1235,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/.github/workflows/supply-chain.yml",
+          "sha256": "4232803a010a51c81b4639b8eacf9c1ebb0dcb95e3b916d1b75beb5f6708bf1f"
+        },
+        {
+          "bytes": 75,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/.gitignore",
+          "sha256": "5814bb04d4d756484d954176c5ac63d8d34e0e302aef07bcb84a89285f2f5994"
+        },
+        {
+          "bytes": 281,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/.gitmodules",
+          "sha256": "08e2e32c688708670db5dfedaddbab21074d00d16c73c7492282d006b584e9d1"
+        },
+        {
+          "bytes": 448,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/.pre-commit-config.yaml",
+          "sha256": "55141e40cdf12b7ae98aa97fc76b95c053960def7456ba09a734ac318dfa55e3"
+        },
+        {
+          "bytes": 9115,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/CODEMETA.yaml",
+          "sha256": "b6aa70e9dd27b71dd3082d7ccefeb479566adc54588a20bc9d8ff5f9e2628c56"
+        },
+        {
+          "bytes": 347,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/CODEOWNERS",
+          "sha256": "231626dab782dc0963c3051b5d635fb6c152ad92f15c68996d01320129ae3327"
+        },
+        {
+          "bytes": 2229,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/CONTRIBUTE.md",
+          "sha256": "ca7223d6da710ac3bd36969f7613a8fe2259a9d465c5dae14a3575255e9e3a2d"
+        },
+        {
+          "bytes": 1109,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/Makefile",
+          "sha256": "4682a379a8b4091c9cb056ae3847b507d3af903b5c8fcd0cb98ce669b816473b"
+        },
+        {
+          "bytes": 352,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/etc/dependency_files.tsv",
+          "sha256": "0d98fb9987968c6e2074c19b8c8f6502136dcd27b165cb8381af8b30409acfe3"
+        },
+        {
+          "bytes": 84,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/etc/domain_directories.tsv",
+          "sha256": "d41ebb781ff61f20a274e9e86e1215074461c65c562368a5cba61fb3d719a6fe"
+        },
+        {
+          "bytes": 10173,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/LICENSE",
+          "sha256": "a6cba85bc92e0cff7a450b1d873c0eaa2e9fc96bf472df0247a26bec77bf3ff9"
+        },
+        {
+          "bytes": 6299,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/Makefile",
+          "sha256": "2df2381cb6b47a438cca64d2d78e9079d0871513cf3b60fdfc1077c45472e513"
+        },
+        {
+          "bytes": 217,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/ontology/.empty.ttl",
+          "sha256": "c47b7e74e087d289174485ca5a12815d7d759a07fd55df387f08579d2f8cc82f"
+        },
+        {
+          "bytes": 6870,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/ontology/catalog-v001.xml",
+          "sha256": "57d1c7bad5d2881be57bc3ec834a5102bac074db3215025453580290667cce88"
+        },
+        {
+          "bytes": 3401,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/ontology/Makefile",
+          "sha256": "30e50b6ed5f57f34c672e10db0b11734138ad11aefebe1bfcd70e4eefe1a8c7d"
+        },
+        {
+          "bytes": 2350,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/ontology/test_disjointedness_symmetry.py",
+          "sha256": "a9e21243a9b5ea6245ff841d679edd732b7e58cb5f893fc0220e14f6a1e6b983"
+        },
+        {
+          "bytes": 11980,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/ontology/uco-gufo.ttl",
+          "sha256": "af8c803646d59e22402abbc613257572b63219cd6725f8d49b10dd9ad4b38c64"
+        },
+        {
+          "bytes": 706,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/README.md",
+          "sha256": "42ef5df2a7af834f175bc41f3a18795e61f1a5147a5e35e47ab63c1d2de55d7a"
+        },
+        {
+          "bytes": 30,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/requirements.txt",
+          "sha256": "79a120bd5f875fc9b3c92d8de1daed38e3c2982f91dcea628838fc2f364ca7b4"
+        },
+        {
+          "bytes": 217,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/shapes/.empty.ttl",
+          "sha256": "c47b7e74e087d289174485ca5a12815d7d759a07fd55df387f08579d2f8cc82f"
+        },
+        {
+          "bytes": 6990,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/shapes/catalog-v001.xml",
+          "sha256": "8c5ea629f1bdbe686b47a363b0de71ed1b65f8d7f72f1e1af81343e58ecf83ea"
+        },
+        {
+          "bytes": 3541,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/shapes/Makefile",
+          "sha256": "a926b16a60cfecfa337d54be73828f9e4f257c26b6038a3d10bd40f6f6508fb0"
+        },
+        {
+          "bytes": 3140,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/shapes/sh-uco-gufo.ttl",
+          "sha256": "aa9778136a159dd7a0496266f132671d0c88714d6a3c397a27e86475220fa896"
+        },
+        {
+          "bytes": 4303,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/src/entail.py",
+          "sha256": "24ed6c5fd2ec2ada0cbbd1fa3c1b912895b15d072de53adde272a212371ce679"
+        },
+        {
+          "bytes": 8580,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/tests/exemplars.ttl",
+          "sha256": "cac4b931e7158c1db3176ef56632b7cec25c72b3f45576e2bc30ff81980c701e"
+        },
+        {
+          "bytes": 2979,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/tests/Makefile",
+          "sha256": "4f49bcccdab3405ee75af3307f0a014e7565d10da796ecde158e929f559975a1"
+        },
+        {
+          "bytes": 5864,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/tests/test_exemplar_coverage.py",
+          "sha256": "fd59b8be0565c0a400a928e56c91c27936ad3fa8334af3e6222ca3702828f376"
+        },
+        {
+          "bytes": 1955,
+          "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/THIRD_PARTY_LICENSES.md",
+          "sha256": "2214c07b3431a04d5c203b23326e048bf7de0d23fdb7091920e52efd227ff44b"
+        }
+      ],
+      "source_archive_note": "User-provided GitHub source ZIP; Git submodule working trees are not embedded in source archives.",
+      "source_archive_sha256": "e8298fa86e24432947901c8b574378bee4b3d3d8cf946a25f37d912908d0c8d6",
+      "status": "resolved-local-with-runtime-closure",
+      "submodule_closure": {
+        "CDO-Shapes-gufo": "1b13dd56308261f451db3e304ce7a5e044ed0297",
+        "SPAR-error": "101aca952ef854505f49725d852de00e6e192344",
+        "UCO": "7ebb3957e9e9a2e1bb9c66cd1ede8c912a726344",
+        "collections-ontology": "619e7b02646321174635fd04be658e338bf7d1d7",
+        "note": "Runtime ontology and shape closure is reconstructed. Build-only nested submodules not referenced by the vendored catalogs are intentionally omitted.",
+        "status": "resolved-runtime"
+      }
+    },
+    "unresolved_remote": 0
+  },
+  "gate4_recommendation": {
+    "github_mutation_authorized": false,
+    "reason": "CAC-only and exact-profile diagnostic projections are coherent, and recognized C3/C5 profile violations are now entirely upstream-owned. The unmodified full import closure still fails the normative OWL 2 DL gate because the exact upstream profile contains malformed RDF structures and imported SWRL built-ins are unsupported by HermiT.",
+    "status": "hold"
+  },
+  "generated_at": "2026-08-16T05:16:41.661096+00:00",
+  "owl_2_dl": {
+    "claim": "The non-normative diagnostic projections are coherent under HermiT, but they do not satisfy the full-import OWL 2 DL gate.",
+    "diagnostic_projection_status": "pass",
+    "status": "fail",
+    "summary": "testing/v4/reports/owl2dl-summary.json"
+  },
+  "schema_version": 1,
+  "sensitive_data": "Synthetic fixtures only; no real investigative, victim, or adopter data is present.",
+  "shacl_sparql": {
+    "pr48_detection_failures": 7,
+    "proposal_failures": 0,
+    "queries": 459
+  },
+  "source": {
+    "base_commit": "93de063951b758dd68a27611638c177fcf910eab",
+    "branch": "proposal/issue-44-v4-foundational-architecture",
+    "candidate_commit": "41cc0049cf0304681801582d0e5ae1e2755ada12",
+    "candidate_tree": "473a15f5b9e1c453ecc1d8c5cbb7ab731561616d",
+    "changed_paths": 252,
+    "commits": 35,
+    "detection_shapes_changed": true,
+    "tracked_dirty": false,
+    "tracked_evidence_dirty": true,
+    "tracked_source_changes": [],
+    "unsigned_commits": []
+  },
+  "term_dispositions": {
+    "pending": 0,
+    "policy": "A pending or ambiguous row is not authorized for semantic edit.",
+    "reviewed": 299,
+    "rows": 299,
+    "schema_version": 1
+  },
+  "tests": {
+    "return_code": 0,
+    "status": "pass",
+    "tests_run": 94
+  }
+}

@@ -19,7 +19,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-05-23"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
@@ -227,12 +227,12 @@ cacontology-partnerships:JointOperation rdf:type owl:Class ;
 # =============================================================================
 
 # Partner Roles as gUFO Roles (anti-rigid)
-cacontology-partnerships:PartnerRole rdf:type owl:Class, gufo:Role ;
+cacontology-partnerships:PartnerRole rdf:type owl:Class ;
     rdfs:label "Partner Role"@en ;
     rdfs:comment "Role played by an organization within a public-private partnership framework. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-partnerships:LawEnforcementPartner rdf:type owl:Class, gufo:Role ;
+cacontology-partnerships:LawEnforcementPartner rdf:type owl:Class ;
     rdfs:label "Law Enforcement Partner"@en ;
     rdfs:comment "Law enforcement agency participating in partnership with investigative and enforcement responsibilities. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cacontology-partnerships:PartnerRole .
@@ -240,9 +240,9 @@ cacontology-partnerships:LawEnforcementPartner rdf:type owl:Class, gufo:Role ;
 cacontology-partnerships:TechnologyPartner rdf:type owl:Class, gufo:Role ;
     rdfs:label "Technology Partner"@en ;
     rdfs:comment "Technology company or provider participating in partnership with technical capabilities and platform access. Modeled as anti-rigid gUFO Role."@en ;
-    rdfs:subClassOf cacontology-partnerships:PartnerRole .
+    rdfs:subClassOf cac-core:OrganizationLikeEntity .
 
-cacontology-partnerships:NGOPartner rdf:type owl:Class, gufo:Role ;
+cacontology-partnerships:NGOPartner rdf:type owl:Class ;
     rdfs:label "NGO Partner"@en ;
     rdfs:comment "Non-governmental organization participating in partnership with advocacy and support capabilities. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cacontology-partnerships:PartnerRole .
@@ -250,9 +250,9 @@ cacontology-partnerships:NGOPartner rdf:type owl:Class, gufo:Role ;
 cacontology-partnerships:AcademicPartner rdf:type owl:Class, gufo:Role ;
     rdfs:label "Academic Partner"@en ;
     rdfs:comment "Academic institution participating in partnership with research and training capabilities. Modeled as anti-rigid gUFO Role."@en ;
-    rdfs:subClassOf cacontology-partnerships:PartnerRole .
+    rdfs:subClassOf cac-core:OrganizationLikeEntity .
 
-cacontology-partnerships:CivilSocietyPartner rdf:type owl:Class, gufo:Role ;
+cacontology-partnerships:CivilSocietyPartner rdf:type owl:Class ;
     rdfs:label "Civil Society Partner"@en ;
     rdfs:comment "Civil society organization participating in partnership with community engagement capabilities. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cacontology-partnerships:PartnerRole .
@@ -326,25 +326,25 @@ cacontology-partnerships:partnershipDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "partnership duration"@en ;
     rdfs:comment "Duration of partnership from formation to termination."@en ;
     rdfs:domain cacontology-partnerships:PublicPrivatePartnership ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-partnerships:phaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "phase duration"@en ;
     rdfs:comment "Duration of partnership phase."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-partnerships:cooperationDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "cooperation duration"@en ;
     rdfs:comment "Duration of cooperation event."@en ;
     rdfs:domain cacontology-partnerships:TechnologyCooperation ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-partnerships:roleDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "role duration"@en ;
     rdfs:comment "Duration of partner role."@en ;
     rdfs:domain cac-core:Role ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 # =============================================================================
 # PARTNERSHIP RELATIONSHIPS
@@ -443,4 +443,4 @@ cacontology-partnerships:respondsToEmergency rdf:type owl:ObjectProperty ;
     rdfs:label "responds to emergency"@en ;
     rdfs:comment "Links partners to emergency coordination they participate in."@en ;
     rdfs:domain uco-identity:Organization ;
-    rdfs:range cacontology-partnerships:EmergencyCoordination . 
+    rdfs:range cacontology-partnerships:EmergencyCoordination .

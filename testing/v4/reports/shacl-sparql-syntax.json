@@ -1,0 +1,65 @@
+{
+  "failures": 7,
+  "pr48_detection_failures": 7,
+  "proposal_failures": 0,
+  "queries": 459,
+  "results": [
+    {
+      "error": "Expected SelectQuery, found '{'  (at char 283), (line:7, col:17)",
+      "error_type": "ParseException",
+      "file": "cacontology-detection-shapes.ttl",
+      "ordinal": 5,
+      "owner": "nc8bdb21915c6488e8e4ff793606948c5b36",
+      "query_type": "select"
+    },
+    {
+      "error": "Expected SelectQuery, found '?'  (at char 291), (line:7, col:17)",
+      "error_type": "ParseException",
+      "file": "cacontology-detection-shapes.ttl",
+      "ordinal": 7,
+      "owner": "nc8bdb21915c6488e8e4ff793606948c5b64",
+      "query_type": "select"
+    },
+    {
+      "error": "Expected SelectQuery, found 'FILTER'  (at char 317), (line:7, col:17)",
+      "error_type": "ParseException",
+      "file": "cacontology-detection-shapes.ttl",
+      "ordinal": 9,
+      "owner": "nc8bdb21915c6488e8e4ff793606948c5b71",
+      "query_type": "select"
+    },
+    {
+      "error": "Expected SelectQuery, found 'FILTER'  (at char 403), (line:8, col:17)",
+      "error_type": "ParseException",
+      "file": "cacontology-detection-shapes.ttl",
+      "ordinal": 10,
+      "owner": "nc8bdb21915c6488e8e4ff793606948c5b74",
+      "query_type": "select"
+    },
+    {
+      "error": "Expected SelectQuery, found 'FILTER'  (at char 137), (line:5, col:17)",
+      "error_type": "ParseException",
+      "file": "cacontology-detection-shapes.ttl",
+      "ordinal": 11,
+      "owner": "nc8bdb21915c6488e8e4ff793606948c5b77",
+      "query_type": "select"
+    },
+    {
+      "error": "Expected SelectQuery, found 'FILTER'  (at char 402), (line:8, col:17)",
+      "error_type": "ParseException",
+      "file": "cacontology-detection-shapes.ttl",
+      "ordinal": 12,
+      "owner": "nc8bdb21915c6488e8e4ff793606948c5b80",
+      "query_type": "select"
+    },
+    {
+      "error": "Expected SelectQuery, found '?'  (at char 343), (line:8, col:17)",
+      "error_type": "ParseException",
+      "file": "cacontology-detection-shapes.ttl",
+      "ordinal": 13,
+      "owner": "nc8bdb21915c6488e8e4ff793606948c5b83",
+      "query_type": "select"
+    }
+  ],
+  "shape_files": 50
+}

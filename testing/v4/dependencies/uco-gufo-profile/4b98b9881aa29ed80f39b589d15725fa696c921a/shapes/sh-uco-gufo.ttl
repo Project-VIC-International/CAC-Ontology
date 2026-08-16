@@ -1,0 +1,107 @@
+# imports: http://example.org/ontology/uco-gufo
+# imports: http://example.org/shapes/sh-gufo
+
+@prefix drafting: <http://example.org/ontology/drafting/> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix sh-uco-gufo: <http://example.org/shapes/sh-uco-gufo/> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/shapes/sh-uco-gufo>
+	a owl:Ontology ;
+	owl:imports
+		<http://example.org/ontology/uco-gufo> ,
+		<http://example.org/shapes/sh-gufo>
+		;
+	.
+
+sh-uco-gufo:AbstractIndividualType-shape
+	a sh:NodeShape ;
+	sh:property [
+		sh:hasValue uco-core:UcoInherentCharacterizationThing ;
+		sh:path [
+			sh:zeroOrMorePath rdfs:subClassOf ;
+		] ;
+	] ;
+	sh:targetClass drafting:AbstractIndividualType ;
+	.
+
+sh-uco-gufo:Bearing-shape
+	a sh:NodeShape ;
+	rdfs:seeAlso <https://github.com/ucoProject/UCO/issues/567> ;
+	sh:property [
+		a sh:PropertyShape ;
+		rdfs:comment "This shape is more suited for any gUFO Object + UCO Object with a physical projection, but such a class is not defined yet in gUFO or UCO."@en ;
+		sh:class uco-observable:Device ;
+		sh:path gufo:inheresIn ;
+	] ;
+	sh:targetClass drafting:Bearing ;
+	.
+
+sh-uco-gufo:Technique-shape
+	a sh:NodeShape ;
+	rdfs:isDefinedBy <https://github.com/ucoProject/UCO/issues/666> ;
+	sh:property
+		[
+			sh:hasValue uco-action:Action ;
+			sh:path [
+				sh:oneOrMorePath rdfs:subClassOf ;
+			] ;
+		] ,
+		[
+			sh:nodeKind sh:Literal ;
+			sh:path drafting:techniqueID ;
+		]
+		;
+	sh:targetClass drafting:Technique ;
+	.
+
+sh-uco-gufo:UcoThing-disjointWith-UcoType-shape
+	a sh:NodeShape ;
+	rdfs:isDefinedBy <https://github.com/ucoProject/UCO/issues/666> ;
+	sh:message "core:UcoThing and drafting:UcoType are disjoint classes."@en ;
+	sh:not [
+		a sh:NodeShape ;
+		sh:class drafting:UcoType ;
+	] ;
+	sh:targetClass uco-core:UcoThing ;
+	.
+
+sh-uco-gufo:UcoType-shape
+	a sh:NodeShape ;
+	rdfs:isDefinedBy <https://github.com/ucoProject/UCO/issues/666> ;
+	sh:class owl:Class ;
+	sh:property [
+		sh:hasValue uco-core:UcoThing ;
+		sh:path [
+			sh:zeroOrMorePath rdfs:subClassOf ;
+		] ;
+	] ;
+	sh:targetClass drafting:UcoType ;
+	.
+
+sh-uco-gufo:Velocity-shape
+	a sh:NodeShape ;
+	rdfs:seeAlso <https://github.com/ucoProject/UCO/issues/567> ;
+	sh:property [
+		a sh:PropertyShape ;
+		rdfs:comment "This shape is more suited for any gUFO Object + UCO Object with a physical projection, but such a class is not defined yet in gUFO or UCO."@en ;
+		sh:class uco-observable:Device ;
+		sh:path gufo:inheresIn ;
+	] ;
+	sh:targetClass drafting:Velocity ;
+	.
+
+sh-uco-gufo:techniqueID-subjects-shape
+	a sh:NodeShape ;
+	rdfs:isDefinedBy <https://github.com/ucoProject/UCO/issues/666> ;
+	sh:class drafting:Technique ;
+	sh:targetSubjectsOf drafting:techniqueID ;
+	.
+

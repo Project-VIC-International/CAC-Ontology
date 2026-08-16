@@ -1,0 +1,8 @@
+{
+  "claim_limit": "Paths are asserted rdfs:subClassOf traces; HermiT is authoritative for unsatisfiability.",
+  "classes": [],
+  "configuration": "C4-diagnostic-projection",
+  "schema_version": 1,
+  "status": "pass",
+  "unsatisfiable_class_count": 0
+}

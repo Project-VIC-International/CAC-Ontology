@@ -1,0 +1,10 @@
+PREFIX cac-core: <https://cacontology.projectvic.org/core#>
+
+SELECT ?subject ?occurrence ?nextOccurrence ?classifier
+WHERE {
+  ?occurrence a cac-core:Phase ;
+              cac-core:isPhaseOf ?subject .
+  OPTIONAL { ?occurrence cac-core:precedes ?nextOccurrence . }
+  OPTIONAL { ?occurrence cac-core:realizesPhaseClassifier ?classifier . }
+}
+ORDER BY ?subject ?occurrence

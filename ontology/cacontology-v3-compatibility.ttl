@@ -1,0 +1,38 @@
+@prefix cac-compat: <https://cacontology.projectvic.org/compatibility#> .
+@prefix cac-custody: <https://cacontology.projectvic.org/custodial#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://cacontology.projectvic.org/compatibility/v3-to-v4> a owl:Ontology ;
+    rdfs:label "CAC Ontology v3-to-v4 Compatibility Proposal"@en ;
+    rdfs:comment "Gate 3 proposal containing only semantically safe, one-way continuity axioms. It intentionally provides no class equivalence for historical role/phase conflation."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/compatibility/v3-to-v4/proposal> ;
+    owl:versionInfo "Gate 3 proposal" ;
+    dcterms:created "2026-08-15"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/custodial/3.1.0> .
+
+# The legacy properties already have the same relationship-to-state direction.
+# One-way subproperty bridges preserve reads through the canonical properties
+# without claiming full equivalence or restoring phase-classifier semantics.
+cac-custody:inCustodyPhase a owl:ObjectProperty ;
+    owl:deprecated "true"^^xsd:boolean ;
+    rdfs:subPropertyOf cac-custody:currentCustodyState ;
+    dcterms:isReplacedBy cac-custody:currentCustodyState ;
+    rdfs:seeAlso cac-compat:CustodyPropertyMigration .
+
+cac-custody:hasCustodyPhase a owl:ObjectProperty ;
+    owl:deprecated "true"^^xsd:boolean ;
+    rdfs:subPropertyOf cac-custody:hasCustodyState ;
+    dcterms:isReplacedBy cac-custody:hasCustodyState ;
+    rdfs:seeAlso cac-compat:CustodyPropertyMigration .
+
+cac-compat:CustodyPropertyMigration a owl:NamedIndividual ;
+    rdfs:label "Custody property migration notice"@en ;
+    rdfs:comment "Replace inCustodyPhase with currentCustodyState and hasCustodyPhase with hasCustodyState. State values remain operational CustodyState occurrences, never gufo:Phase classifiers."@en .
+
+cac-compat:RolePhaseMigration a owl:NamedIndividual ;
+    rdfs:label "Role and phase level-separation migration notice"@en ;
+    rdfs:comment "Historical operational role and phase resources cannot be bridged to gufo:Role or gufo:Phase by equivalence or subclass axioms. Migrate role records through RoleAssignment and phase data as distinct occurrences."@en .

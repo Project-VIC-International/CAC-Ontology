@@ -5,6 +5,18 @@ All notable changes to the CAC ontology family will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Proposed — v4 foundational architecture (issue #44)
+
+- Separates operational role assignments and phase occurrences from gUFO type-level role and phase classifiers.
+- Adds explicit custody-state and membership-tier patterns, bounded v3 compatibility artifacts, migration guidance, consumer contracts, and positive/negative competency fixtures.
+- Repairs reviewed UCO/gUFO semantic-reference, datatype, vocabulary-ownership, declaration, and OWL 2 DL profile findings owned by CAC.
+- Adds a content-addressed offline dependency closure and clean-checkout identity controls for the Gate 4 conformance harness.
+- Retains a strict release HOLD: diagnostic CAC projections pass, while the unmodified full-import OWL 2 DL route still has separately attributed upstream/tooling blockers.
+
+This section describes a draft proposal only. CAC v3.1.0 remains the current published release.
+
 ## [3.1.0] - 2026-08-09
 
 ### Added - Conditioning Phase (offense-trajectory macro phase)

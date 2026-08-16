@@ -493,9 +493,9 @@ cacontology-detection:ClassificationResultObjectShape rdf:type sh:NodeShape ;
 
 # Classification Scheme gUFO Object Validation
 cacontology-detection:ClassificationSchemeGUFOShape rdf:type sh:NodeShape ;
-    sh:targetClass cacontology-detection:SARClassificationScheme ,
-                   cacontology-detection:COPINEClassificationScheme ,
-                   cacontology-detection:TannerScaleScheme ;
+    sh:targetNode cacontology-detection:SARClassificationScheme ,
+                  cacontology-detection:COPINEClassificationScheme ,
+                  cacontology-detection:TannerScaleScheme ;
     rdfs:label "gUFO Classification Scheme Shape"@en ;
     rdfs:comment "Validates classification schemes as gUFO Objects."@en  .
 

@@ -47,7 +47,7 @@ ex:primary-trafficker-role a cacontology-sex-trafficking:TraffickerRole ;
     cacontology-sex-trafficking:traffickerType "Primary Trafficker" ;
     cacontology-sex-trafficking:operationScope "Local" ;
     cacontology-sex-trafficking:victimCount 2 ;
-    cacontology-sex-trafficking:operationDuration "P6M"^^xsd:duration .
+    cacontology-sex-trafficking:operationDuration "P6M" .
 
 ex:bushwick-address a uco-location:SimpleAddress ;
     uco-location:street "123 Bushwick Avenue" ;
@@ -70,7 +70,7 @@ ex:victim-jane-smith a uco-identity:Person ;
 ex:primary-victim-role a cacontology-sex-trafficking:VictimRole ;
     cacontology-sex-trafficking:victimType "Minor Victim" ;
     cacontology-sex-trafficking:ageAtExploitation 15 ;
-    cacontology-sex-trafficking:exploitationDuration "P4M"^^xsd:duration ;
+    cacontology-sex-trafficking:exploitationDuration "P4M" ;
     cacontology-sex-trafficking:reportingMethod "School Social Worker" .
 
 ex:jane-recruitment-role a cacontology-recruitment:VictimRecruitmentRole ;
@@ -89,7 +89,7 @@ ex:victim-mary-jones a uco-identity:Person ;
 ex:secondary-victim-role a cacontology-sex-trafficking:VictimRole ;
     cacontology-sex-trafficking:victimType "Minor Victim" ;
     cacontology-sex-trafficking:ageAtExploitation 15 ;
-    cacontology-sex-trafficking:exploitationDuration "P2M"^^xsd:duration ;
+    cacontology-sex-trafficking:exploitationDuration "P2M" ;
     cacontology-sex-trafficking:reportingMethod "Peer Disclosure" .
 
 ex:mary-recruitment-role a cacontology-recruitment:VictimRecruitmentRole ;
@@ -134,7 +134,7 @@ ex:bushwick-recruitment-network a cacontology-recruitment:ClassmateRecruitmentNe
     cacontology-recruitment:networkSize 3 ;
     cacontology-recruitment:victimRecruitersCount 1 ;
     cacontology-recruitment:schoolsInvolved 1 ;
-    cacontology-recruitment:operationDuration "P6M"^^xsd:duration ;
+    cacontology-recruitment:operationDuration "P6M" ;
     cacontology-recruitment:networkMembers ex:victim-jane-smith, ex:victim-mary-jones, ex:defendant-john-doe ;
     cacontology-recruitment:primarySchool ex:local-high-school .
 
@@ -167,7 +167,7 @@ ex:school-disclosure a cacontology-recruitment:SchoolBasedReporting ;
     cacontology-recruitment:reportingStaff ex:social-worker-smith ;
     cacontology-recruitment:reportingDate "2024-03-20"^^xsd:date ;
     cacontology-recruitment:reportingMethod "Private Counseling Session" ;
-    cacontology-recruitment:reportingDelay "P1D"^^xsd:duration ;
+    cacontology-recruitment:reportingDelay "P1D" ;
     cacontology-recruitment:mandatoryReportingTrigger true ;
     cacontology-recruitment:reportingOutcome "Police Notification" .
 
@@ -189,9 +189,9 @@ ex:website-monitoring-operation a cacontology-undercover:WebsiteAdvertisementRes
     cacontology-undercover:operationType "Website Advertisement Response" ;
     cacontology-undercover:websitePlatform "Backpage.com" ;
     cacontology-undercover:advertisementURL "https://backpage.com/ad/12345" ;
-    cacontology-undercover:advertisementLiveTime "P2D"^^xsd:duration ;
+    cacontology-undercover:advertisementLiveTime "P2D" ;
     cacontology-undercover:victimPhotoCount 3 ;
-    cacontology-undercover:responseTime "PT2H"^^xsd:duration ;
+    cacontology-undercover:responseTime "PT2H" ;
     cacontology-undercover:operationDate "2024-03-25"^^xsd:date ;
     cacontology-undercover:leadAgency "NYPD" .
 
@@ -204,7 +204,7 @@ ex:apartment-sting-operation a cacontology-undercover:ApartmentStingOperation ;
     cacontology-undercover:hasSecureExit true ;
     cacontology-undercover:surveillanceTeamCount 6 ;
     cacontology-undercover:operationDate "2024-03-28"^^xsd:date ;
-    cacontology-undercover:operationDuration "PT4H"^^xsd:duration ;
+    cacontology-undercover:operationDuration "PT4H" ;
     cacontology-undercover:arrestsMade 1 .
 
 ex:sting-apartment a uco-location:SimpleAddress ;
@@ -219,7 +219,7 @@ ex:phone-instruction-monitoring a cacontology-undercover:PhoneInstructionMonitor
     cacontology-undercover:phoneNumberMonitored "+1-718-555-0123" ;
     cacontology-undercover:instructionType "Client Communication Training" ;
     cacontology-undercover:clientContactMethod "Text Messaging" ;
-    cacontology-undercover:monitoringDuration "P7D"^^xsd:duration ;
+    cacontology-undercover:monitoringDuration "P7D" ;
     cacontology-undercover:instructionsIntercepted 15 ;
     cacontology-undercover:evidenceCollected true .
 
@@ -345,7 +345,7 @@ ex:case-outcome a cacontology-core:CaseOutcome ;
 ex:investigation-metrics a cacontology-core:InvestigationMetrics ;
     uco-core:name "Bushwick case investigation metrics" ;
     cacontology-core:investigation ex:bushwick-investigation ;
-    cacontology-core:investigationDuration "P75D"^^xsd:duration ;
+    cacontology-core:investigationDuration "P75D" ;
     cacontology-core:evidenceItemsCollected 25 ;
     cacontology-core:witnessesInterviewed 8 ;
     cacontology-core:undercoverOperations 3 ;

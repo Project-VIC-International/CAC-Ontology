@@ -1,0 +1,25 @@
+@prefix cac-compat-shapes: <https://cacontology.projectvic.org/compatibility/shapes#> .
+@prefix cac-custody: <https://cacontology.projectvic.org/custodial#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://cacontology.projectvic.org/compatibility/v3-to-v4/shapes> a owl:Ontology ;
+    rdfs:label "CAC Ontology v3-to-v4 Compatibility Shapes Proposal"@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/compatibility/v3-to-v4/shapes/proposal> ;
+    owl:versionInfo "Gate 3 proposal" ;
+    dcterms:created "2026-08-15"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/compatibility/v3-to-v4/proposal> .
+
+cac-compat-shapes:InCustodyPhaseDeprecationShape a sh:NodeShape ;
+    sh:targetSubjectsOf cac-custody:inCustodyPhase ;
+    sh:severity sh:Warning ;
+    sh:message "inCustodyPhase is deprecated; use currentCustodyState."@en .
+
+cac-compat-shapes:HasCustodyPhaseDeprecationShape a sh:NodeShape ;
+    sh:targetSubjectsOf cac-custody:hasCustodyPhase ;
+    sh:severity sh:Warning ;
+    sh:message "hasCustodyPhase is deprecated; use hasCustodyState."@en .

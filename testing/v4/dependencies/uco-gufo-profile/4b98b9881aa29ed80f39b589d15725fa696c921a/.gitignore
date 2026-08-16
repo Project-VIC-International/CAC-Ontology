@@ -1,0 +1,8 @@
+*.jar
+*.swp
+.*.done.log
+.venv-pre-commit
+_*.*
+__pycache__
+generated-*
+venv

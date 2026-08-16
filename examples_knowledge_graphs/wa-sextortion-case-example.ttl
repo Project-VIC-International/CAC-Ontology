@@ -27,7 +27,7 @@
     uco-core:endTime "2025-04-02T00:00:00Z"^^xsd:dateTime ;
     cacontology-sextortion:victimCount 3 ;
     cacontology-sextortion:victimAgeGroup "under 16" ;
-    cacontology-sextortion:incidentDuration "P6M"^^xsd:duration .
+    cacontology-sextortion:incidentDuration "P6M" .
 
 # =============================================================================
 # OFFENDER AND VICTIMS

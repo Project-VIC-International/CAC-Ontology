@@ -192,7 +192,7 @@ ex:1dfe3c61-2953-5be1-b5c6-f2ffa5caf291 rdf:type cacontology-legal-outcomes:Stat
 ex:0550f100-c17d-56b4-8097-d2ae9820bd24 rdf:type cacontology-legal-outcomes:PrisonSentence ;
     rdfs:label "2021 Jail Sentence (364 days concurrent)"@en ;
     cacontology-legal-outcomes:sentenceLength 12 ;
-    cacontology-legal-outcomes:sentenceDuration "P364D"^^xsd:duration ;
+    cacontology-legal-outcomes:sentenceDuration "P364D" ;
     cacontology-legal-outcomes:sentenceConcurrency "concurrent" ;
     rdfs:comment "Each 2021 crime received a 364-day jail sentence, ordered to be served concurrently with the other sentences."@en ;
     cacontology-legal-outcomes:appliesTo ex:830477dc-1655-56a1-802e-cb40903d732c ,
@@ -201,7 +201,7 @@ ex:0550f100-c17d-56b4-8097-d2ae9820bd24 rdf:type cacontology-legal-outcomes:Pris
 ex:561c8464-0aa3-5997-bbaa-9451c977d192 rdf:type cacontology-legal-outcomes:ProbationSentence ;
     rdfs:label "2021 Probation Sentence (48 months concurrent)"@en ;
     cacontology-legal-outcomes:sentenceLength 48 ;
-    cacontology-legal-outcomes:sentenceDuration "P4Y"^^xsd:duration ;
+    cacontology-legal-outcomes:sentenceDuration "P4Y" ;
      cacontology-legal-outcomes:sentenceConcurrency "concurrent" ;
     rdfs:comment "Probation of 48 months imposed for each 2021 crime, to be served concurrently."@en ;
     cacontology-legal-outcomes:appliesTo ex:830477dc-1655-56a1-802e-cb40903d732c ,

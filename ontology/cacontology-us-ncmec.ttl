@@ -19,7 +19,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-03-20"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/3.1.0> .
 
 # NCMEC Report Structure
@@ -38,21 +38,18 @@ cacontology-us-ncmec:ChildSexTraffickingIncident rdf:type owl:Class ;
     rdfs:label "Child Sex Trafficking Incident"@en ;
     rdfs:comment "Incidents involving child sex trafficking. Source: NCMEC Cybertip API Section B.1.1, incidentType 'Child Sex Trafficking'."@en ;
     rdfs:subClassOf cacontology-us-ncmec:NCMECIncidentType ;
-    skos:exactMatch "CST" ;
     cacontology-us-ncmec:incidentCode "CST" .
 
 cacontology-us-ncmec:ChildSexTourismIncident rdf:type owl:Class ;
     rdfs:label "Child Sex Tourism Incident"@en ;
     rdfs:comment "Incidents involving child sex tourism. Source: NCMEC Cybertip API Section B.1.1, incidentType 'Child Sex Tourism'."@en ;
     rdfs:subClassOf cacontology-us-ncmec:NCMECIncidentType ;
-    skos:exactMatch "CST" ;
     cacontology-us-ncmec:incidentCode "CST" .
 
 cacontology-us-ncmec:OnlineEnticementIncident rdf:type owl:Class ;
     rdfs:label "Online Enticement Incident"@en ;
     rdfs:comment "Incidents involving online enticement of children for sexual acts. Source: NCMEC Cybertip API Section B.1.1, incidentType 'Online Enticement of Children for Sexual Acts'."@en ;
     rdfs:subClassOf cacontology-us-ncmec:NCMECIncidentType ;
-    skos:exactMatch "OE" ;
     cacontology-us-ncmec:incidentCode "OE" .
 
 # NCMEC Report Annotations
@@ -423,13 +420,13 @@ cacontology-us-ncmec:tracedToPhone rdf:type owl:ObjectProperty ;
     rdfs:label "traced to phone"@en ;
     rdfs:comment "Links phone trace to specific phone number."@en ;
     rdfs:domain cacontology-us-ncmec:PhoneNumberTrace ;
-    rdfs:range uco-observable:PhoneNumber .
+    rdfs:range uco-observable:PhoneAccount .
 
 cacontology-us-ncmec:identifiedContent rdf:type owl:ObjectProperty ;
     rdfs:label "identified content"@en ;
     rdfs:comment "Links content identification to identified digital content."@en ;
     rdfs:domain cacontology-us-ncmec:ContentIdentification ;
-    rdfs:range uco-observable:DigitalArtifact .
+    rdfs:range cac-core:Artifact .
 
 # Processing Relationships
 cacontology-us-ncmec:processedTip rdf:type owl:ObjectProperty ;
@@ -455,10 +452,10 @@ cacontology-us-ncmec:involvesPlatform rdf:type owl:ObjectProperty ;
     rdfs:label "involves platform"@en ;
     rdfs:comment "Links platform cooperation to the digital platform involved."@en ;
     rdfs:domain cacontology-us-ncmec:PlatformCooperation ;
-    rdfs:range uco-observable:DigitalService .
+    rdfs:range uco-observable:OnlineService .
 
 cacontology-us-ncmec:supportedBy rdf:type owl:ObjectProperty ;
     rdfs:label "supported by"@en ;
     rdfs:comment "Links tip analysis to platform cooperation that supported it."@en ;
     rdfs:domain cacontology-us-ncmec:CyberTipAnalysis ;
-    rdfs:range cacontology-us-ncmec:PlatformCooperation . 
+    rdfs:range cacontology-us-ncmec:PlatformCooperation .

@@ -1,0 +1,13 @@
+@prefix ex: <https://example.org/cac-v4/phone-trace/> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix cacontology-us-ncmec: <https://cacontology.projectvic.org/us/ncmec#> .
+
+ex:trace-positive a cacontology-us-ncmec:PhoneNumberTrace ;
+    cacontology-us-ncmec:tracedToPhone ex:phone-account .
+
+ex:phone-account a uco-observable:PhoneAccount ;
+    uco-core:hasFacet ex:phone-account-facet .
+
+ex:phone-account-facet a uco-observable:PhoneAccountFacet ;
+    uco-observable:phoneNumber "+1-202-555-0142" .

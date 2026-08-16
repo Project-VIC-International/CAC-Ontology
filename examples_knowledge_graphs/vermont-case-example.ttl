@@ -163,13 +163,13 @@
 # PARTICIPANTS AND ROLES
 # =============================================================================
 
-:BrianBluto rdf:type cacontology-production:Producer ;
+:BrianBluto rdf:type cacontology-production:ProducerClassifier ;
     rdfs:label "Brian Bluto"@en ;
     rdfs:comment "60-year-old defendant from Alburgh, Vermont"@en ;
     cacontology:hasAge 60 ;
     cacontology:hasSentence :SentenceDetails .
 
-:PrimaryVictim rdf:type cacontology-production:ProductionVictim ;
+:PrimaryVictim rdf:type cacontology-production:ProductionVictimClassifier ;
     rdfs:label "Primary Victim"@en ;
     rdfs:comment "Victim recorded during ages 13-16 over 3+ year period"@en ;
     cacontology-production:victimAge 13 ; # Starting age
@@ -233,4 +233,4 @@
 
 # Evidence relationships
 :ProducedMaterial cacontology-production:evidenceOf :VermontProduction .
-:SearchAndSeizure cacontology:recoversEvidence :ProducedMaterial . 
+:SearchAndSeizure cacontology:recoversEvidence :ProducedMaterial .

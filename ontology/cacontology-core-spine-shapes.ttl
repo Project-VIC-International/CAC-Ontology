@@ -20,7 +20,7 @@
     owl:imports <https://cacontology.projectvic.org/core/3.1.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2026-03-16"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date .
+    dcterms:modified "2026-08-15"^^xsd:date .
 
 # =============================================================================
 # ARTIFACT SHAPE
@@ -116,6 +116,38 @@ cac-core-shapes:RoleShape a sh:NodeShape ;
         sh:datatype xsd:string ;
         sh:name "label"@en     ] .
 
+cac-core-shapes:RoleRecordShape a sh:NodeShape ;
+    sh:targetClass cac-core:RoleRecord ;
+    rdfs:label "Role Record Shape"@en ;
+    rdfs:comment "Minimal interoperability requirements for canonical v4 role records."@en ;
+    sh:property [
+        sh:path cac-core:describesRoleAssignment ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class cac-core:RoleAssignment ;
+        sh:message "A canonical RoleRecord must describe exactly one RoleAssignment."@en
+    ] .
+
+cac-core-shapes:RoleAssignmentShape a sh:NodeShape ;
+    sh:targetClass cac-core:RoleAssignment ;
+    rdfs:label "Role Assignment Shape"@en ;
+    rdfs:comment "Minimal structural and modeling-level constraints for role assignments."@en ;
+    sh:not [ sh:class gufo:Role ] ;
+    sh:message "A RoleAssignment is a situation and must not also be a gufo:Role classifier."@en ;
+    sh:property [
+        sh:path cac-core:roleBearer ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class cac-core:EnduringEntity ;
+        sh:message "A RoleAssignment must identify exactly one enduring role bearer."@en
+    ] ;
+    sh:property [
+        sh:path cac-core:roleClassifier ;
+        sh:maxCount 1 ;
+        sh:class gufo:Role ;
+        sh:message "When supplied, roleClassifier must identify one owl:Class typed gufo:Role."@en
+    ] .
+
 # =============================================================================
 # PHASE SHAPE
 # =============================================================================
@@ -123,7 +155,9 @@ cac-core-shapes:RoleShape a sh:NodeShape ;
 cac-core-shapes:PhaseShape a sh:NodeShape ;
     sh:targetClass cac-core:Phase ;
     rdfs:label "Phase Shape"@en ;
-    rdfs:comment "Minimal interoperability shape for phases."@en ;
+    rdfs:comment "Minimal interoperability shape for operational phase and state occurrences."@en ;
+    sh:not [ sh:class gufo:Phase ] ;
+    sh:message "An operational cac-core:Phase occurrence must not also be a gufo:Phase classifier."@en ;
     sh:property [
         sh:path rdfs:label ;
         sh:minCount 1 ;

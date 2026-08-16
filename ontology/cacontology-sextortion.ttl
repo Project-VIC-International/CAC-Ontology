@@ -18,7 +18,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-05-23"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
@@ -308,7 +308,7 @@ cacontology-sextortion:DemandMessage rdf:type owl:Class ;
 cacontology-sextortion:InstantMessagingPlatform rdf:type owl:Class ;
     rdfs:label "Instant Messaging Platform"@en ;
     rdfs:comment "Digital platform used for instant messaging in sextortion incidents."@en ;
-    rdfs:subClassOf uco-observable:DigitalService .
+    rdfs:subClassOf uco-observable:OnlineService .
 
 cacontology-sextortion:PrivateMessagingFeature rdf:type owl:Class ;
     rdfs:label "Private Messaging Feature"@en ;
@@ -370,7 +370,7 @@ cacontology-sextortion:incidentDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "incident duration"@en ;
     rdfs:comment "Duration of sextortion incident from initial contact to resolution."@en ;
     rdfs:domain cacontology-sextortion:SextortionIncident ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 # Deception Properties
 cacontology-sextortion:claimedAge rdf:type owl:DatatypeProperty ;
@@ -564,7 +564,7 @@ cacontology-sextortion:analyzesDevice rdf:type owl:ObjectProperty ;
     rdfs:label "analyzes device"@en ;
     rdfs:comment "Links forensic analysis to devices examined."@en ;
     rdfs:domain cacontology-sextortion:DeviceForensicAnalysis ;
-    rdfs:range uco-observable:DigitalDevice .
+    rdfs:range uco-observable:Device .
 
 cacontology-sextortion:reconstructsConversation rdf:type owl:ObjectProperty ;
     rdfs:label "reconstructs conversation"@en ;
@@ -622,4 +622,4 @@ cacontology-sextortion:coercionCycleDemandType rdf:type owl:DatatypeProperty ;
     rdfs:label "coercion cycle demand type"@en ;
     rdfs:comment "Type of demand driving a coercion cycle iteration (imagery_quota, live_conduct, financial, victim_recruitment)."@en ;
     rdfs:domain cacontology-sextortion:CoercionCycle ;
-    rdfs:range xsd:string . 
+    rdfs:range xsd:string .
