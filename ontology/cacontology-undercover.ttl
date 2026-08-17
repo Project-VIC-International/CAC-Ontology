@@ -243,7 +243,7 @@ cacontology-undercover:communicationPlatform rdf:type owl:ObjectProperty ;
     rdfs:label "communication platform"@en ;
     rdfs:comment "Digital platform where undercover communication took place."@en ;
     rdfs:domain cacontology-undercover:UndercoverCommunication ;
-    rdfs:range uco-observable:DigitalService .
+    rdfs:range uco-observable:OnlineService .
 
 cacontology-undercover:containsCriminalContent rdf:type owl:DatatypeProperty ;
     rdfs:label "contains criminal content"@en ;

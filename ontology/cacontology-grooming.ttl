@@ -433,7 +433,7 @@ cacontology-grooming:primaryPlatform rdf:type owl:ObjectProperty ;
     rdfs:label "primary platform"@en ;
     rdfs:comment "Main digital platform where grooming communication occurred."@en ;
     rdfs:domain cacontology-grooming:GroomingBehavior ;
-    rdfs:range uco-observable:DigitalService .
+    rdfs:range uco-observable:OnlineService .
 
 cacontology-grooming:timeOfContact rdf:type owl:DatatypeProperty ;
     rdfs:label "time of contact"@en ;

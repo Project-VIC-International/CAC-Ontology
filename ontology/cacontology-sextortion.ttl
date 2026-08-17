@@ -308,7 +308,7 @@ cacontology-sextortion:DemandMessage rdf:type owl:Class ;
 cacontology-sextortion:InstantMessagingPlatform rdf:type owl:Class ;
     rdfs:label "Instant Messaging Platform"@en ;
     rdfs:comment "Digital platform used for instant messaging in sextortion incidents."@en ;
-    rdfs:subClassOf uco-observable:DigitalService .
+    rdfs:subClassOf uco-observable:OnlineService .
 
 cacontology-sextortion:PrivateMessagingFeature rdf:type owl:Class ;
     rdfs:label "Private Messaging Feature"@en ;

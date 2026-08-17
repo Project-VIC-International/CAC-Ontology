@@ -787,14 +787,14 @@ cacontology-platforms:ChannelMigrationEventShape rdf:type sh:NodeShape ;
     rdfs:comment "Validation shape for cross-platform channel migration events."@en ;
     sh:property [
         sh:path cacontology-platforms:fromPlatform ;
-        sh:class uco-observable:DigitalService ;
+        sh:class uco-observable:OnlineService ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Channel migration must specify exactly one originating platform."@en
     ] ;
     sh:property [
         sh:path cacontology-platforms:toPlatform ;
-        sh:class uco-observable:DigitalService ;
+        sh:class uco-observable:OnlineService ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Channel migration must specify exactly one destination platform."@en
@@ -853,7 +853,7 @@ cacontology-platforms:AffordanceMisuseShape rdf:type sh:NodeShape ;
     ] ;
     sh:property [
         sh:path cacontology-platforms:platform ;
-        sh:class uco-observable:DigitalService ;
+        sh:class uco-observable:OnlineService ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "Optional platform instance may be specified at most once."@en

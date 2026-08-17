@@ -1006,13 +1006,13 @@ cacontology-platforms:fromPlatform rdf:type owl:ObjectProperty ;
     rdfs:label "from platform"@en ;
     rdfs:comment "Originating platform from which the offender migrated contact."@en ;
     rdfs:domain cacontology-platforms:ChannelMigrationEvent ;
-    rdfs:range uco-observable:DigitalService .
+    rdfs:range uco-observable:OnlineService .
 
 cacontology-platforms:toPlatform rdf:type owl:ObjectProperty ;
     rdfs:label "to platform"@en ;
     rdfs:comment "Destination platform to which contact was migrated."@en ;
     rdfs:domain cacontology-platforms:ChannelMigrationEvent ;
-    rdfs:range uco-observable:DigitalService .
+    rdfs:range uco-observable:OnlineService .
 
 cacontology-platforms:migrationRationale rdf:type owl:DatatypeProperty ;
     rdfs:label "migration rationale"@en ;
@@ -1057,7 +1057,7 @@ cacontology-platforms:platform rdf:type owl:ObjectProperty ;
     rdfs:label "platform"@en ;
     rdfs:comment "Optional platform instance that carried the misused affordance."@en ;
     rdfs:domain cacontology-platforms:AffordanceMisuse ;
-    rdfs:range uco-observable:DigitalService .
+    rdfs:range uco-observable:OnlineService .
 
 cacontology-platforms:misuseDescription rdf:type owl:DatatypeProperty ;
     rdfs:label "misuse description"@en ;

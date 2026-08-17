@@ -455,7 +455,7 @@ cacontology-us-ncmec:involvesPlatform rdf:type owl:ObjectProperty ;
     rdfs:label "involves platform"@en ;
     rdfs:comment "Links platform cooperation to the digital platform involved."@en ;
     rdfs:domain cacontology-us-ncmec:PlatformCooperation ;
-    rdfs:range uco-observable:DigitalService .
+    rdfs:range uco-observable:OnlineService .
 
 cacontology-us-ncmec:supportedBy rdf:type owl:ObjectProperty ;
     rdfs:label "supported by"@en ;

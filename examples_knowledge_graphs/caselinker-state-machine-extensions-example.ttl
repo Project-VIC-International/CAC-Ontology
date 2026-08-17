@@ -15,14 +15,14 @@
 # =============================================================================
 
 # --- Shared platforms (Instagram DM → Messenger pattern) ---
-# Typed as DigitalService only to avoid full SocialMediaPlatform/MessagingService
+# Typed as OnlineService only to avoid full SocialMediaPlatform/MessagingService
 # shape requirements in this focused state-machine example.
-<urn:uuid:a1b2c3d4-e5f6-7890-abcd-ef1234567890> rdf:type uco-observable:DigitalService ;
+<urn:uuid:a1b2c3d4-e5f6-7890-abcd-ef1234567890> rdf:type uco-observable:OnlineService ;
     rdfs:label "Instagram"@en ;
     uco-core:name "Instagram" ;
     uco-core:description "Initial contact platform in sextortion case with public-profile DM entry point." .
 
-<urn:uuid:b2c3d4e5-f6a7-8901-bcde-f12345678901> rdf:type uco-observable:DigitalService ;
+<urn:uuid:b2c3d4e5-f6a7-8901-bcde-f12345678901> rdf:type uco-observable:OnlineService ;
     rdfs:label "Facebook Messenger"@en ;
     uco-core:name "Facebook Messenger" ;
     uco-core:description "Destination platform with live video capability used after migration from Instagram." .

@@ -134,7 +134,7 @@ ex:EscalationPattern1 rdf:type cacontology-grooming:EscalationPattern ;
     cacontology-grooming:patternConfidence 0.92 ;
     cacontology-grooming:escalationRate 14 .
 
-ex:ChatPlatform rdf:type uco-observable:DigitalService ;
+ex:ChatPlatform rdf:type uco-observable:OnlineService ;
     rdfs:label "TeenChat Platform" .
 
 # =============================================================================

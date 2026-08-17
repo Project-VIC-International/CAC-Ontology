@@ -83,8 +83,8 @@ class TestChannelMigrationEvent(unittest.TestCase):
             @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
             @prefix cac-core: <https://cacontology.projectvic.org/core#> .
             @prefix cac-platforms: <https://cacontology.projectvic.org/platforms#> .
-            <urn:uuid:platform-instagram> a uco-observable:DigitalService .
-            <urn:uuid:platform-messenger> a uco-observable:DigitalService .
+            <urn:uuid:platform-instagram> a uco-observable:OnlineService .
+            <urn:uuid:platform-messenger> a uco-observable:OnlineService .
             <urn:uuid:phase-trust> a cac-core:Phase .
             <urn:uuid:phase-image> a cac-core:Phase .
             <urn:uuid:test-channel-migration-valid> a cac-platforms:ChannelMigrationEvent ;
@@ -131,7 +131,7 @@ class TestAffordanceMisuse(unittest.TestCase):
             <urn:uuid:affordance-ephemerality> a cac-platforms:PlatformAffordance .
             <urn:uuid:phase-trust> a cac-core:Phase .
             <urn:uuid:phase-image> a cac-core:Phase .
-            <urn:uuid:platform-snapchat> a uco-observable:DigitalService .
+            <urn:uuid:platform-snapchat> a uco-observable:OnlineService .
             <urn:uuid:test-affordance-misuse-valid> a cac-platforms:AffordanceMisuse ;
                 cac-platforms:affordanceClass <urn:uuid:affordance-ephemerality> ;
                 cac-platforms:enablesTransitionFrom <urn:uuid:phase-trust> ;

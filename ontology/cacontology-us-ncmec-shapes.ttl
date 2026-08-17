@@ -328,7 +328,7 @@ cacontology-us-ncmec:PlatformCooperationShape rdf:type sh:NodeShape ;
         rdfs:comment "Data provided must be from the allowed list."@en     ] ;
     sh:property [
         sh:path cacontology-us-ncmec:involvesPlatform ;
-        sh:class uco-observable:DigitalService ;
+        sh:class uco-observable:OnlineService ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         rdfs:comment "Platform cooperation must involve exactly one digital service."@en     ] .
@@ -565,7 +565,7 @@ cacontology-us-ncmec:PlatformCooperationCrossReferenceShape rdf:type sh:NodeShap
                 $this a cacontology-us-ncmec:PlatformCooperation .
                 FILTER NOT EXISTS {
                     $this cacontology-us-ncmec:involvesPlatform ?platform .
-                    ?platform a uco-observable:DigitalService .
+                    ?platform a uco-observable:OnlineService .
                 }
             }
         """     ] .
