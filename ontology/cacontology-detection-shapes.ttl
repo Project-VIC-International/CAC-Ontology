@@ -26,7 +26,7 @@
                 <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ;
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-08-09"^^xsd:date .
+    dcterms:modified "2026-08-14"^^xsd:date .
 
 # =============================================================================
 # gUFO DETECTION TOOL VALIDATION (Objects)
@@ -362,7 +362,7 @@ cacontology-detection:MassContentAnalysisSituationShape rdf:type sh:NodeShape ;
                 {
                     SELECT ?this (COUNT(?action) as ?actionCount)
                     WHERE {
-                        ?action gufo:occursInSituation ?this ;
+                        ?action gufo:occursInSituation ?this .
                         ?action a cacontology-detection:AutomatedDetectionAction .
                     }
                     GROUP BY ?this
@@ -636,7 +636,7 @@ cacontology-detection:DetectionTemporalConsistencyShape rdf:type sh:NodeShape ;
             PREFIX gufo: <http://purl.org/nemo/gufo#>
             SELECT ?this
             WHERE {
-                ?this cacontology-detection:hasDetectionBeginPoint ?detectionBegin ;
+                ?this cacontology-detection:hasDetectionBeginPoint ?detectionBegin .
                 ?phase a cacontology-detection:InitialDetectionPhase ;
                        cacontology-detection:hasPhaseBeginPoint ?phaseBegin ;
                        cacontology-detection:hasPhaseEndPoint ?phaseEnd .
@@ -700,7 +700,7 @@ cacontology-detection:DetectionActionResultCrossReferenceShape rdf:type sh:NodeS
             WHERE {
                 ?this a cacontology-detection:AutomatedDetectionAction .
                 FILTER NOT EXISTS {
-                    ?this uco-action:result ?result ;
+                    ?this uco-action:result ?result .
                     ?result a cacontology-detection:DetectionResult .
                 }
             }
@@ -728,7 +728,7 @@ cacontology-detection:HashingActionResultCrossReferenceShape rdf:type sh:NodeSha
             WHERE {
                 ?this a cacontology-detection:ContentHashingAction .
                 FILTER NOT EXISTS {
-                    ?this uco-action:result ?hash ;
+                    ?this uco-action:result ?hash .
                     ?hash a ?hashType .
                     FILTER (?hashType IN (
                         cacontology-detection:PhotoDNAHash,
@@ -758,7 +758,7 @@ cacontology-detection:ClassificationActionResultCrossReferenceShape rdf:type sh:
             WHERE {
                 ?this a cacontology-detection:ManualClassificationAction .
                 FILTER NOT EXISTS {
-                    ?this uco-action:result ?result ;
+                    ?this uco-action:result ?result .
                     ?result a cacontology-detection:ClassificationResult .
                 }
             }
@@ -786,7 +786,7 @@ cacontology-detection:DatabaseMatchInputCrossReferenceShape rdf:type sh:NodeShap
             WHERE {
                 ?this a cacontology-detection:DatabaseMatchAction .
                 FILTER NOT EXISTS {
-                    ?this uco-action:object ?hash ;
+                    ?this uco-action:object ?hash .
                     ?hash a ?hashType .
                     FILTER (?hashType IN (
                         cacontology-detection:PhotoDNAHash,
@@ -824,7 +824,7 @@ cacontology-detection:DetectionRoleParticipationShape rdf:type sh:NodeShape ;
             PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/1.5.0>
             SELECT ?this
             WHERE {
-                ?this gufo:playsRole ?role ;
+                ?this gufo:playsRole ?role .
                 ?role a cacontology-detection:ContentAnalystRole .
                 FILTER NOT EXISTS {
                     ?action a cacontology-detection:ManualClassificationAction ;
