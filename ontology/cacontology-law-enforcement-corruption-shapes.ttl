@@ -479,7 +479,7 @@ cacontology-corruption-shapes:HighSeverityCorruptionRule rdf:type sh:NodeShape ;
                 $this cacontology-corruption:hasCorruptionSeverity ?severity .
                 FILTER (?severity IN ("severe", "extreme"))
                 OPTIONAL {
-                    $this cacontology-corruption:isDetectedBy ?detection ;
+                    $this cacontology-corruption:isDetectedBy ?detection .
                     ?detection cacontology-corruption:hasInvestigationComplexity ?complexity .
                     FILTER (?complexity IN ("complex", "highly_complex", "extremely_complex"))
                 }
@@ -559,7 +559,7 @@ cacontology-corruption-shapes:DetectionDifficultyRule rdf:type sh:NodeShape ;
                 $this cacontology-corruption:hasDetectionDifficulty ?difficulty .
                 FILTER (?difficulty IN ("very_difficult", "nearly_impossible"))
                 OPTIONAL {
-                    $this cacontology-corruption:isDetectedBy ?detection ;
+                    $this cacontology-corruption:isDetectedBy ?detection .
                     ?detection cacontology-corruption:hasInvestigationComplexity ?complexity .
                     FILTER (?complexity IN ("highly_complex", "extremely_complex"))
                 }

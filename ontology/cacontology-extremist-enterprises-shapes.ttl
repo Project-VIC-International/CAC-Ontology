@@ -764,7 +764,7 @@ cacontology-enterprises:GufoCoercionEventValidation rdf:type sh:NodeShape ;
                     }
                     UNION
                     {
-                        ?person uco-identity:Person .
+                        ?person rdf:type uco-identity:Person .
                         ?person cacontology-enterprises:participatesInCoercion $this .
                     }
                 }

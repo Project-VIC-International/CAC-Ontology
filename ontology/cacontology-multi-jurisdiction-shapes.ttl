@@ -831,8 +831,8 @@ cacontology-multi:TaskForceCompositionShape rdf:type sh:NodeShape ;
                 {
                     SELECT $this (COUNT(DISTINCT ?level) AS ?levelCount)
                     WHERE {
-                        $this cacontology-multi:includesAgency ?agency ;
-                        ?agency rdf:type ?agencyType ;
+                        $this cacontology-multi:includesAgency ?agency .
+                        ?agency rdf:type ?agencyType .
                         ?agencyType rdfs:subClassOf* cacontology-multi:LawEnforcementAgency .
                         BIND(
                             IF(?agencyType = cacontology-multi:FederalAgency, "federal",
@@ -860,7 +860,7 @@ cacontology-multi:MultiAgencyOperationCompositionShape rdf:type sh:NodeShape ;
                 {
                     SELECT $this (COUNT(DISTINCT ?jurisdiction) AS ?jurisdictionCount)
                     WHERE {
-                        $this cacontology-multi:involvesAgency ?agency ;
+                        $this cacontology-multi:involvesAgency ?agency .
                         ?agency cacontology-multi:operatesInJurisdiction ?jurisdiction .
                     }
                     GROUP BY $this
@@ -988,7 +988,7 @@ cacontology-multi:QualifiedCoordinationParticipationShape rdf:type sh:NodeShape 
                 $this gufo:standsInQualifiedParticipation ?role .
                 $this cacontology-multi:concernsCoordinationEvent ?event .
                 FILTER NOT EXISTS {
-                    ?role rdf:type* cacontology-multi:CoordinatingAgent ;
+                    ?role rdf:type* cacontology-multi:CoordinatingAgent .
                     ?event rdf:type* cacontology-multi:MultiJurisdictionalInvestigation .
                 }
             }

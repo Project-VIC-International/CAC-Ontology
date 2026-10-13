@@ -45,7 +45,7 @@ cacontology-physical-shapes:SearchEventTypeValidationShape rdf:type sh:NodeShape
             WHERE {
                 $this rdf:type gufo:Event .
                 FILTER NOT EXISTS {
-                    $this rdf:type ?actionClass ;
+                    $this rdf:type ?actionClass .
                     ?actionClass rdfs:subClassOf* uco-action:Action .
                 }
             }
@@ -63,7 +63,7 @@ cacontology-physical-shapes:ProcurementEventTypeValidationShape rdf:type sh:Node
             WHERE {
                 $this rdf:type gufo:Event .
                 FILTER NOT EXISTS {
-                    $this rdf:type ?actionClass ;
+                    $this rdf:type ?actionClass .
                     ?actionClass rdfs:subClassOf* uco-action:Action .
                 }
             }
@@ -81,7 +81,7 @@ cacontology-physical-shapes:EvidencePhaseTypeValidationShape rdf:type sh:NodeSha
             WHERE {
                 $this rdf:type gufo:Phase .
                 FILTER NOT EXISTS {
-                    $this rdf:type ?phaseClass ;
+                    $this rdf:type ?phaseClass .
                     ?phaseClass rdfs:subClassOf* cacontology-physical:PhysicalEvidence .
                 }
             }
@@ -602,7 +602,7 @@ cacontology-physical-shapes:ForensicRoleParticipationShape rdf:type sh:NodeShape
             WHERE {
                 $this rdf:type cacontology-physical:ForensicAnalystRole .
                 FILTER NOT EXISTS {
-                    ?evidence cacontology-physical:forensicAnalysisRequired true ;
+                    ?evidence cacontology-physical:forensicAnalysisRequired true .
                     ?evidence cacontology-physical:analyzedBy $this .
                 }
             }
@@ -622,7 +622,7 @@ cacontology-physical-shapes:EvidenceCompositionShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this cacontology-physical:containsItem ?part ;
+                $this cacontology-physical:containsItem ?part .
                 ?part cacontology-physical:containsItem $this .
             }
         """
@@ -638,7 +638,7 @@ cacontology-physical-shapes:ComputerEquipmentCompositionShape rdf:type sh:NodeSh
             SELECT $this
             WHERE {
                 $this rdf:type cacontology-physical:ComputerEquipment .
-                $this cacontology-physical:containsItem ?storage ;
+                $this cacontology-physical:containsItem ?storage .
                 ?storage rdf:type cacontology-physical:StorageMedia .
                 FILTER NOT EXISTS {
                     ?storage cacontology-physical:storageCapacity ?capacity .

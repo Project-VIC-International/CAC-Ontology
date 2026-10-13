@@ -480,11 +480,11 @@ cacontology-custodial:AuthorityRoleExclusivityShape rdf:type sh:NodeShape ;
             WHERE {
                 ?this cacontology-custodial:hasAuthority ?role1 ;
                       cacontology-custodial:hasAuthority ?role2 .
-                ?role1 a cacontology-custodial:Guardian ;
-                ?role2 a cacontology-custodial:Teacher ;
-                ?custodialRel1 cacontology-custodial:involvesCustodian ?this ;
-                ?custodialRel2 cacontology-custodial:involvesCustodian ?this ;
-                ?custodialRel1 cacontology-custodial:involvesChild ?child ;
+                ?role1 a cacontology-custodial:Guardian .
+                ?role2 a cacontology-custodial:Teacher .
+                ?custodialRel1 cacontology-custodial:involvesCustodian ?this .
+                ?custodialRel2 cacontology-custodial:involvesCustodian ?this .
+                ?custodialRel1 cacontology-custodial:involvesChild ?child .
                 ?custodialRel2 cacontology-custodial:involvesChild ?child .
                 FILTER (?role1 != ?role2)
             }
@@ -601,7 +601,7 @@ cacontology-custodial:CustodialParticipationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT ?this
             WHERE {
-                ?this cacontology-custodial:involvesCustodian ?custodian ;
+                ?this cacontology-custodial:involvesCustodian ?custodian .
                 ?custodian cacontology-custodial:hasAuthority ?authorityRole .
                 FILTER NOT EXISTS {
                     ?authorityRole a gufo:Role .

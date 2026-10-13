@@ -630,8 +630,8 @@ cacontology-legal-shapes:ComprehensiveHarmonizationRule rdf:type sh:NodeShape ;
                 $this cacontology-legal:hasHarmonizationDegree ?degree .
                 FILTER (?degree IN ("comprehensive", "complete"))
                 OPTIONAL {
-                    ?treaty cacontology-legal:facilitatesCooperation ?cooperation ;
-                    ?cooperation rdf:type cacontology-legal:InternationalLawEnforcement ;
+                    ?treaty cacontology-legal:facilitatesCooperation ?cooperation .
+                    ?cooperation rdf:type cacontology-legal:InternationalLawEnforcement .
                     ?treaty cacontology-legal:hasTreatyStrength ?strength .
                     FILTER (?strength IN ("binding", "comprehensive"))
                 }
@@ -659,7 +659,7 @@ cacontology-legal-shapes:CriticalGapReformRule rdf:type sh:NodeShape ;
                 $this cacontology-legal:hasGapSeverity ?severity .
                 FILTER (?severity IN ("critical", "systemic"))
                 OPTIONAL {
-                    $this cacontology-legal:requiresReform ?reform ;
+                    $this cacontology-legal:requiresReform ?reform .
                     ?reform cacontology-legal:hasReformUrgency ?urgency .
                     FILTER (?urgency IN ("urgent", "critical"))
                 }

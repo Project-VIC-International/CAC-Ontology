@@ -633,8 +633,8 @@ cacontology-ai:AIGenerationCrossReferenceShape rdf:type sh:NodeShape ;
             WHERE {
                 $this a cacontology-ai:AIGeneratedCSAM .
                 FILTER NOT EXISTS {
-                    $this cacontology-ai:generatedUsing ?generation ;
-                    ?generation a cacontology-ai:AIContentGeneration ;
+                    $this cacontology-ai:generatedUsing ?generation .
+                    ?generation a cacontology-ai:AIContentGeneration .
                     ?generation a gufo:Event .
                 }
             }
@@ -652,8 +652,8 @@ cacontology-ai:DetectionToolCrossReferenceShape rdf:type sh:NodeShape ;
             WHERE {
                 $this a cacontology-ai:AIContentDetection .
                 FILTER NOT EXISTS {
-                    $this cacontology-ai:usesDetectionTool ?tool ;
-                    ?tool a cacontology-ai:AIDetectionTool ;
+                    $this cacontology-ai:usesDetectionTool ?tool .
+                    ?tool a cacontology-ai:AIDetectionTool .
                     ?tool a gufo:Object .
                 }
             }
@@ -749,7 +749,7 @@ cacontology-ai:AntiRigidityValidationShape rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this
             WHERE {
-                $this a gufo:Phase ;
+                $this a gufo:Phase .
                 ?this rdfs:subClassOf* cacontology-ai:AIDetectionPhase .
                 FILTER NOT EXISTS { 
                     $this cacontology-gufo:hasAntiRigidityConstraint ?constraint .

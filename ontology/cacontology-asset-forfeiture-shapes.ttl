@@ -493,7 +493,7 @@ cacontology-asset-forfeiture:AssetTargetingCrossReferenceShape rdf:type sh:NodeS
                 $this a cacontology-asset-forfeiture:AssetForfeitureAction .
                 $this cacontology-asset-forfeiture:targetedAsset ?asset .
                 FILTER NOT EXISTS {
-                    ?asset a cac-core:EnduringEntity ;
+                    ?asset a cac-core:EnduringEntity .
                     ?asset uco-observable:propertyOwner ?owner .
                 }
             }
@@ -552,8 +552,8 @@ cacontology-asset-forfeiture:PhaseSequenceValidationShape rdf:type sh:NodeShape 
             WHERE {
                 $this a cacontology-asset-forfeiture:AssetForfeitureAction .
                 $this cacontology-asset-forfeiture:currentPhase ?currentPhase .
-                $this cacontology-asset-forfeiture:previousPhase ?prevPhase ;
-                ?currentPhase cacontology-gufo:phaseTransitionTime ?currentTime ;
+                $this cacontology-asset-forfeiture:previousPhase ?prevPhase .
+                ?currentPhase cacontology-gufo:phaseTransitionTime ?currentTime .
                 ?prevPhase cacontology-gufo:phaseTransitionTime ?prevTime .
                 FILTER (?currentTime <= ?prevTime)
             }

@@ -558,7 +558,7 @@ cacontology-case:WorkflowIntegrityValidationShape rdf:type sh:NodeShape ;
                 }
                 FILTER(?phaseCount > 3)
                 FILTER NOT EXISTS {
-                    $this cacontology-case:hasEnhancedDocumentation ?documentation ;
+                    $this cacontology-case:hasEnhancedDocumentation ?documentation .
                     ?documentation cacontology-case:documentationType "multi_phase_coordination" .
                 }
             }
