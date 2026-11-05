@@ -24,7 +24,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-11-03"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
@@ -326,6 +326,10 @@ cacontology-grooming:exhibitsPattern rdf:type owl:ObjectProperty ;
     rdfs:comment "Links grooming behavior to an identifiable pattern."@en ;
     rdfs:domain cacontology-grooming:GroomingBehavior ;
     rdfs:range cacontology-grooming:GroomingPattern .
+
+cacontology-grooming:performedBy rdf:type owl:ObjectProperty ;
+    rdfs:label "performed by"@en ;
+    rdfs:comment "Links a grooming event to an entity that performed that event."@en .
 
 # Communication Properties
 cacontology-grooming:communicationFrequency rdf:type owl:DatatypeProperty ;

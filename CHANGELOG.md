@@ -9,8 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Scope forensic and USA-federal event participation shapes to their own declared event branches instead of every `cac-core:Event` (#58). Unrelated support events no longer require forensic or prosecution participants. Existing participant alternatives remain required for the targeted domain events and their subclasses.
-- Add focused positive, negative, cross-domain and RDFS-subclass regression checks in `testing/test_event_participation_scope.py`.
+- Scope forensic, USA-federal and grooming event participation shapes to their own declared event branches instead of every `cac-core:Event` (#58). Unrelated support events no longer require forensic, prosecution or grooming participants. Existing participant alternatives remain required for the targeted domain events and their subclasses, including subclasses declared in other modules.
+- Declare the existing grooming `performedBy` predicate as an object property, preserving participant alternatives and minimum count.
+- Add focused positive, negative, cross-domain and RDFS-subclass regression checks in `testing/test_event_participation_scope.py`, preserving federal phase participation and grooming phase and process-composition constraints.
+- Complete the illustrative account-replacement example with an explicitly fictional performer and verify that removing participation still fails validation. No real person or investigative facts are added.
 
 ## [3.1.0] - 2026-08-09
 

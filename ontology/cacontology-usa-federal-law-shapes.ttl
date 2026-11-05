@@ -16,7 +16,7 @@
     owl:versionIRI <https://cacontology.projectvic.org/usa-federal-law/shapes/3.1.0> ;
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-11-03"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/usa-federal-law/3.1.0> ,
                 <http://purl.org/nemo/gufo#/1.0.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> .
