@@ -16,7 +16,7 @@
     owl:versionIRI <https://cacontology.projectvic.org/usa-federal-law/shapes/3.1.0> ;
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-11-03"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/usa-federal-law/3.1.0> ,
                 <http://purl.org/nemo/gufo#/1.0.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> .
@@ -398,7 +398,27 @@ cacontology-usa-federal:ProsecutionTemporalValidationShape rdf:type sh:NodeShape
 # =============================================================================
 
 cacontology-usa-federal:EventParticipationValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass cac-core:Event ;
+    rdfs:comment "Require federal participation only for this module's criminal events and legal processes, including their subclasses; unrelated CAC events are outside this rule."@en ;
+    sh:targetClass cacontology-usa-federal:FederalProsecution ,
+                   cacontology-usa-federal:FederalInvestigation ,
+                   cacontology-usa-federal:ChildPornographyProduction ,
+                   cacontology-usa-federal:ChildPornographyDistribution ,
+                   cacontology-usa-federal:ChildPornographyReceipt ,
+                   cacontology-usa-federal:ChildPornographyPossession ,
+                   cacontology-usa-federal:SexTraffickingOfMinors ,
+                   cacontology-usa-federal:CommercialSexualExploitation ,
+                   cacontology-usa-federal:SexTraffickingConspiracy ,
+                   cacontology-usa-federal:AggravatedSexualAbuse ,
+                   cacontology-usa-federal:SexualAbuseOfMinor ,
+                   cacontology-usa-federal:AbusiveContactWithMinor ,
+                   cacontology-usa-federal:ChildSupportEvasion ,
+                   cacontology-usa-federal:SexTourism ,
+                   cacontology-usa-federal:ForeignCommerceExploitation ,
+                   cacontology-usa-federal:ExtraterritorialProduction ,
+                   cacontology-usa-federal:TransportationForSexualExploitation ,
+                   cacontology-usa-federal:ObscenityDistribution ,
+                   cacontology-usa-federal:ObscenityTransportation ,
+                   cacontology-usa-federal:ObscenityImportation ;
     sh:property [
         sh:path [ sh:alternativePath ( 
             cacontology-usa-federal:prosecutedBy 

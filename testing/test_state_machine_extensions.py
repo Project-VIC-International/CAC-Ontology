@@ -179,6 +179,7 @@ class TestAccountReplacementEvent(unittest.TestCase):
             <urn:uuid:account-new> a uco-observable:Account .
             <urn:uuid:phase-initial-contact> a cac-grooming:InitialContactPhase , cac-core:Phase .
             <urn:uuid:test-account-replacement-valid> a cac-grooming:AccountReplacementEvent ;
+                cac-grooming:performedBy <urn:uuid:test-actor> ;
                 cac-grooming:triggeredBy "platform_ban" ;
                 cac-grooming:resumesAt <urn:uuid:phase-initial-contact> ;
                 cac-grooming:originalAccountId <urn:uuid:account-banned> ;
@@ -197,14 +198,27 @@ class TestAccountReplacementEvent(unittest.TestCase):
         g = rdflib.Graph()
         g.parse(
             data="""
+            @prefix cac-core: <https://cacontology.projectvic.org/core#> .
             @prefix cac-grooming: <https://cacontology.projectvic.org/grooming#> .
+            <urn:uuid:phase-initial-contact> a cac-core:Phase .
             <urn:uuid:test-account-replacement-invalid> a cac-grooming:AccountReplacementEvent ;
+                cac-grooming:performedBy <urn:uuid:test-actor> ;
                 cac-grooming:triggeredBy "account_hack" ;
                 cac-grooming:resumesAt <urn:uuid:phase-initial-contact> .
             """,
             format="turtle",
         )
-        self.assertFalse(shacl_validate(g, self.shapes))
+        shapes = rdflib.Graph().parse(self.shapes, format="turtle")
+        conforms, report, text = validate(
+            g, shacl_graph=shapes, inference="none", do_owl_imports=False,
+        )
+        self.assertFalse(conforms, text)
+        sh = rdflib.Namespace("http://www.w3.org/ns/shacl#")
+        self.assertEqual({CAC_GROOMING.triggeredBy}, set(report.objects(None, sh.resultPath)), text)
+        self.assertEqual(
+            {sh.InConstraintComponent},
+            set(report.objects(None, sh.sourceConstraintComponent)), text,
+        )
 
 
 if __name__ == "__main__":

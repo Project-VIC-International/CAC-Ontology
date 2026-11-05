@@ -18,7 +18,7 @@
     owl:versionIRI <https://cacontology.projectvic.org/forensics/shapes/3.1.0> ;
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-11-03"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/forensics/3.1.0> ,
                 <http://purl.org/nemo/gufo#/1.0.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> .
@@ -554,7 +554,14 @@ cacontology-forensics:EvidenceCustodianRoleShape rdf:type sh:NodeShape ;
 
 # Forensic Event Participation Validation
 cacontology-forensics:ForensicEventParticipationShape rdf:type sh:NodeShape ;
-    sh:targetClass cac-core:Event ;
+    rdfs:comment "Require forensic participation only for this module's forensic action branches, including their subclasses; unrelated CAC events are outside this rule."@en ;
+    sh:targetClass cacontology-forensics:ForensicAcquisitionAction ,
+                   cacontology-forensics:ChainOfCustodyAction ,
+                   cacontology-forensics:EvidenceVerificationAction ,
+                   cacontology-forensics:TimelineAnalysisAction ,
+                   cacontology-forensics:MetadataExtractionAction ,
+                   cacontology-forensics:VictimIdentificationProcess ,
+                   cacontology-forensics:VictimRemovalAction ;
     sh:property [
         sh:path [ sh:alternativePath ( 
             cacontology-forensics:examinedBy 
