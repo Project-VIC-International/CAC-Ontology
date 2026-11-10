@@ -220,6 +220,41 @@ cacontology-platforms:LegalComplianceCapabilityShape rdf:type sh:NodeShape ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "Emergency disclosure capability must be a boolean value."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-platforms:responseTimeFrame ;
+        sh:datatype xsd:integer ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 1 ;
+        sh:maxInclusive 365 ;
+        sh:message "Response time frame must be between 1 and 365 days."@en
+    ] .
+
+# Warning (not a violation) for graphs that still put capability properties
+# directly on the provider. These properties are declared with rdfs:domain
+# LegalComplianceCapability.
+cacontology-platforms:ProviderLegalComplianceMisplacementShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:ElectronicServiceProvider ;
+    rdfs:label "Provider Legal Compliance Misplacement Shape"@en ;
+    rdfs:comment "Warns when acceptsLegalProcess, legalProcessContactInfo or responseTimeFrame is stated directly on a service provider instead of on its LegalComplianceCapability node."@en ;
+    sh:property [
+        sh:path cacontology-platforms:acceptsLegalProcess ;
+        sh:maxCount 0 ;
+        sh:severity sh:Warning ;
+        sh:message "Move this property from the provider to its LegalComplianceCapability node (linked with hasLegalComplianceCapability), where it is declared. Legal-process contact details change. Check them against the provider's current law-enforcement guide before use."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-platforms:legalProcessContactInfo ;
+        sh:maxCount 0 ;
+        sh:severity sh:Warning ;
+        sh:message "Move this property from the provider to its LegalComplianceCapability node (linked with hasLegalComplianceCapability), where it is declared. Legal-process contact details change. Check them against the provider's current law-enforcement guide before use."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-platforms:responseTimeFrame ;
+        sh:maxCount 0 ;
+        sh:severity sh:Warning ;
+        sh:message "Move this property from the provider to its LegalComplianceCapability node (linked with hasLegalComplianceCapability), where it is declared. Legal-process contact details change. Check them against the provider's current law-enforcement guide before use."@en
     ] .
 
 # =============================================================================
@@ -422,15 +457,6 @@ cacontology-platforms:LegalDataDisclosureActionShape rdf:type sh:NodeShape ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Legal data disclosure action must specify start time."@en
-    ] ;
-    sh:property [
-        sh:path cacontology-platforms:responseTimeFrame ;
-        sh:datatype xsd:integer ;
-        sh:minCount 0 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 1 ;
-        sh:maxInclusive 365 ;
-        sh:message "Response time frame must be between 1 and 365 days."@en
     ] ;
     sh:property [
         sh:path cacontology-platforms:legalProcessUsed ;
