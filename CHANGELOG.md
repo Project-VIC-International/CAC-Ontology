@@ -5,6 +5,14 @@ All notable changes to the CAC ontology family will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed - Legal compliance shape placement and UCO bridge axiom
+
+- `cacontology-platforms:LegalComplianceValidationShape` now targets `cacontology-platforms:LegalComplianceCapability`, the declared `rdfs:domain` of `acceptsLegalProcess` and `legalProcessContactInfo`, instead of `ElectronicServiceProvider`. Providers link to the capability with `hasLegalComplianceCapability`, as the platform cooperation SPARQL example already assumes. Before, a graph that followed the declared domain was never checked, and a graph that followed the shape put capability properties on the provider.
+- New `LegalComplianceCapabilityShape` carries the datatype checks for `acceptsLegalProcess`, `legalProcessContactInfo` and `emergencyDisclosureCapable`; the `acceptsLegalProcess` and `emergencyDisclosureCapable` checks moved off `ElectronicServiceProviderShape` for the same reason. Data that put these properties on the provider no longer gets those checks and should move them to the capability node.
+- `cacontology-bridge-uco.ttl`: the `ReceiveCybertipAction` alignment `owl:Axiom` is now a blank node annotating `cacontology:ReceiveCybertipAction rdfs:subClassOf cac-core:InvestigativeAction` (`owl:annotatedSource` / `owl:annotatedProperty` / `owl:annotatedTarget`). The IRI-identified axiom (`cac-bridge-uco:ReceiveCybertipActionAlignment`) failed UCO's `uco-owl:Axiom-shape` ("An owl:Axiom must be a blank node.") whenever the bridge file was loaded with `case_validate --built-version case-1.5.0`.
+
 ## [3.1.0] - 2026-08-09
 
 ### Added - Conditioning Phase (offense-trajectory macro phase)

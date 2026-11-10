@@ -4,6 +4,8 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix cac-bridge-uco: <https://cacontology.projectvic.org/bridge/uco#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 
 # =============================================================================
 # Ontology Declaration
@@ -37,7 +39,17 @@
 # now anchors to cac-core:InvestigativeAction which inherits from
 # uco-action:Action through the spine.
 
-cac-bridge-uco:ReceiveCybertipActionAlignment a owl:Axiom ;
+# The axiom annotation is a blank node, as the OWL 2 mapping to RDF requires
+# (an IRI-identified owl:Axiom is not consumed by OWL parsers, and UCO's
+# uco-owl:Axiom-shape rejects it). It annotates the asserted triple
+# cacontology:ReceiveCybertipAction rdfs:subClassOf cac-core:InvestigativeAction
+# from cacontology-core.ttl. Up to 3.1.0 this node had the IRI
+# cac-bridge-uco:ReceiveCybertipActionAlignment.
+
+[] a owl:Axiom ;
+    owl:annotatedSource cacontology:ReceiveCybertipAction ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedTarget cac-core:InvestigativeAction ;
     rdfs:label "ReceiveCybertipAction UCO Alignment"@en ;
     rdfs:comment "Documents the alignment path for ReceiveCybertipAction. It now subclasses cac-core:InvestigativeAction (which inherits from uco-action:Action). Its former owl:equivalentClass to cacontology-gufo:CriminalEvent has been moved to the gUFO bridge."@en ;
     cac-bridge-uco:disposition "retainInReferenceLayer" .
