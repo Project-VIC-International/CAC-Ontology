@@ -177,9 +177,10 @@ cacontology-synthesis-shapes:TextEvidencePointerHashShape rdf:type sh:NodeShape 
         """
     ] .
 
-# Preserve action semantics for workflow/provenance actions.
+# Investigative actions only. UCO leaves performer, object, and startTime optional
+# on uco-action:Action, and forbids startTime on uco-action:ActionLifecycle.
+# Targeting every Action rejected valid lifecycles and actions with no object.
 cacontology-synthesis-shapes:ActionSemanticsShape rdf:type sh:NodeShape ;
-    sh:targetClass uco-action:Action ;
     sh:targetClass investigation:InvestigativeAction ;
     rdfs:label "Action Semantics Shape"@en ;
     sh:property [
